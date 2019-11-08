@@ -1,0 +1,9 @@
+{
+  "name": "boilerplate-frontend-react",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "react boilerplate starter project",
+  "devDependencies": {
+    "webpack": "^4.41.2"
+  }
+}
