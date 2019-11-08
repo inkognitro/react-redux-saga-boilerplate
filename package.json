@@ -5,5 +5,9 @@
   "description": "react boilerplate starter project",
   "devDependencies": {
     "webpack": "^4.41.2"
+  },
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-redux": "^7.1.3"
   }
 }
