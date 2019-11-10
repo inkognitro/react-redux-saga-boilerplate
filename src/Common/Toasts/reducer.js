@@ -1,7 +1,9 @@
 import {APPEND_TOAST_ACTION_TYPE} from "App/Common/Toasts/actions";
+import uuidV4 from 'uuid/v4';
 
 const createInitialToastState = () => {
     return {
+        id: uuidV4(),
         type: 'info',
         message: ''
     };

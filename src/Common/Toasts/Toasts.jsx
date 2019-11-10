@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 const Toast = (props) => {
     return (
         <div>
-            TOAST: {props.message} ({props.type})
+            Toast of type "{props.type}" with id "{props.id}" and message "{props.message}"
         </div>
     );
 };
 Toast.propTypes = {
+    id: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['info']).isRequired,
 };
@@ -17,7 +18,7 @@ Toast.propTypes = {
 const Toasts = (props) => {
     return (
         <div className={props.className}>
-            {props.toasts.map((toastProps) => (<Toast {...toastProps} />))}
+            {props.toasts.map((toastProps) => (<Toast key={toastProps.id} {...toastProps} />))}
         </div>
     );
 };

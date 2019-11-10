@@ -9,7 +9,7 @@ export default class Home extends React.Component {
             <Content>
                 <a href="#" onClick={(event) => {
                     event.preventDefault();
-                    store.dispatch(appendToast('blabalbla lasdfklj', 'info'))}
+                    store.dispatch(appendToast('blablabla', 'info'))}
                 }>
                     appendToast
                 </a>
