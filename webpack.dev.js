@@ -4,9 +4,11 @@ const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
     mode: "development",
+    entry: path.resolve(__dirname, './entry.dev.js'),
     devServer: {
-        contentBase: path.join(__dirname, './dist'),
+        contentBase: './dist',
         compress: true,
-        port: 9000
+        port: 9000,
+        hot: true
     }
 });
