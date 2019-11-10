@@ -10,5 +10,10 @@ module.exports = merge(commonConfig, {
         compress: true,
         port: 9000,
         hot: true
-    }
+    },
+    resolve: {
+        alias: {
+            'react-dom': '@hot-loader/react-dom',
+        },
+    },
 });
