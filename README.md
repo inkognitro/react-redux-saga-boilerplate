@@ -1,5 +1,5 @@
 # React Redux Boilerplate
-Frontend boilerplate with time travelling through redux. Thanks god, or simply thanks Dan Abramov :)
+Frontend boilerplate with time travelling through react and redux. Thanks god, or simply thanks Dan Abramov :)
 
 ## Development mode
 to run the app with hot module reloading at //localhost:9000, run:
