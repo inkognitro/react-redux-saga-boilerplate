@@ -1,5 +1,12 @@
-# React Redux Boilerplate :: Frontend with time travelling
+# React Redux Boilerplate
+Frontend boilerplate with time travelling through redux. Thanks god, or simply thanks Dan Abramov :)
 
-Dev: npm run start
+## Development mode
+to run the app with hot module reloading at //localhost:9000, run:
 
-Prod: npm run build
+    npm run start
+
+## Production mode
+to build the app in the *dist* folder, run:
+
+    npm run build
