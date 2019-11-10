@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-    entry: "./src/entry.jsx",
+    entry: path.resolve(__dirname, './src/entry.jsx'),
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, 'dist'),
         filename: "app.js",
     },
     module: {
@@ -11,9 +11,6 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: "babel-loader",
-                options: {
-                    presets: ["es2015"]
-                },
             },
         ]
     }

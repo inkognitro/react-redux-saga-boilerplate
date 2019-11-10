@@ -1,7 +1,7 @@
-import {Component} from 'react';
+import React from 'react';
 import {render as renderReactApp} from 'react-dom'
 
-class App extends Component {
+class App extends React.Component {
     render() {
         return "test ok";
     }
