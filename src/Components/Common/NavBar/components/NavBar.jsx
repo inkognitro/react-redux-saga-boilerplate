@@ -16,4 +16,4 @@ NavBar.propTypes = {
     }),
 };
 
-export {NavBar};
+export default NavBar;

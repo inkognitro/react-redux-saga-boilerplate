@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import {Toasts as RepresentationalToasts} from '../components/Toasts';
+import store from "App/Redux/store";
+import RepresentationalToasts from "App/Components/Common/Toasts/components/Toasts"
+import {closeToast} from "App/Redux/Common/Toasts/actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -10,10 +12,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = () => {
     return {
-        //onCloseToast: (toastId) => dispatch() //todo: add remove toast function (and fade out functions!)
+        onCloseToast: (toastId) => store.dispatch(closeToast(toastId))
     };
 };
 
 const Toasts = connect(mapStateToProps, mapDispatchToProps)(RepresentationalToasts);
 
-export {Toasts};
+export default Toasts;

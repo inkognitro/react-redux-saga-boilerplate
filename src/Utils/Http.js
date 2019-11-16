@@ -1,0 +1,3 @@
+const sendGetRequest = () => {};
+
+export {sendGetRequest};

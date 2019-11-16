@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Toast} from './Toast';
+import Toast from './Toast';
 
 const Toasts = (props) => {
     return (
@@ -22,4 +22,4 @@ Toasts.propTypes = {
     onCloseToast: PropTypes.func.isRequired,
 };
 
-export {Toasts};
+export default Toasts;

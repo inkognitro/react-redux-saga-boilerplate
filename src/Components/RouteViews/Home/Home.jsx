@@ -1,17 +1,16 @@
 import React from 'react';
-import {appRedux} from 'App/Redux/AppRedux'
-import {appendToast} from "App/Redux/Common/Toasts/actions";
-import {Content} from 'App/Components/Common/PageTypes/components/Content';
-import {Link} from 'App/Components/Common/Link/containers/Link';
+import ContentPage from 'App/Components/Common/PageTypes/components/ContentPage';
+import {addToast} from "App/Utils/Toaster";
+import Link from 'App/Components/Common/Link/containers/Link';
 
 export default class Home extends React.Component {
     render() {
         return (
-            <Content>
-                <Link onClick={() => appRedux.dispatch(appendToast('blablabla', 'info'))}>
+            <ContentPage>
+                <Link onClick={() => addToast('info', 'sdfjklsdfjklsdfjkl')}>
                     appendToast
                 </Link>
-            </Content>
+            </ContentPage>
         );
     }
 }
