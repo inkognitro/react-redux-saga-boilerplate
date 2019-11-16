@@ -1,7 +1,9 @@
 import {combineReducers, createStore} from 'redux'
-import {reducer as toasts} from 'App/Common/Toasts/reducer';
+import {auth} from 'App/Redux/Common/Auth/reducer';
+import {toasts} from 'App/Redux/Common/Toasts/reducer';
 
 const appReducer = combineReducers({
+    auth,
     toasts,
 });
 

@@ -14,6 +14,7 @@ const Link = (props) => {
         </a>
     );
 };
+
 Link.propTypes = {
     onClick: PropTypes.func.isRequired,
 };

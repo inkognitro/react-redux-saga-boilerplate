@@ -1,4 +1,4 @@
-import {APPEND_TOAST_ACTION_TYPE} from "App/Common/Toasts/actions";
+import {APPEND_TOAST_ACTION_TYPE} from "App/Redux/Common/Toasts/actions";
 import uuidV4 from 'uuid/v4';
 
 const createInitialToastState = () => {
@@ -19,7 +19,7 @@ const toast = (state, action) => {
     return state;
 };
 
-const reducer = (state = [], action) => {
+const toasts = (state = [], action) => {
     if(action === undefined) {
         return state;
     }
@@ -32,4 +32,4 @@ const reducer = (state = [], action) => {
     return state;
 };
 
-export {reducer};
+export {toasts};
