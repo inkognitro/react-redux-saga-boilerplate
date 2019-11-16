@@ -1,3 +1,6 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 # React Redux Boilerplate
 Frontend boilerplate with time travelling through react and redux. Thanks god, or simply thanks Dan Abramov :)
 
