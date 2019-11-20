@@ -9,7 +9,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(ts|js)x?$/,
+                exclude: /node_modules/,
                 loader: "babel-loader",
             },
         ]
@@ -18,7 +19,7 @@ module.exports = {
         alias: {
             App: path.resolve(__dirname, './src'),
         },
-        extensions: ['.js', '.jsx'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     plugins: [
         new HtmlWebpackPlugin({
