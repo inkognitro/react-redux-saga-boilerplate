@@ -23,6 +23,8 @@
     "babel-loader": "^8.0.6",
     "html-webpack-plugin": "^3.2.0",
     "react-hot-loader": "^4.12.16",
+    "tslint": "^5.20.1",
+    "tslint-immutable": "^6.0.1",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
@@ -30,6 +32,8 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
