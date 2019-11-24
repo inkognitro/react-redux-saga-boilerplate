@@ -1,22 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 import Toasts from 'App/Components/Common/Toasts/containers/Toasts';
 import NavBar from "App/Components/Common/NavBar/containers/NavBar";
 
-const ContentPage = (props) => {
+export type ContentPageProps = {
+
+}
+
+export const ContentPage: FunctionComponent<ContentPageProps> = (props) => {
     return (
-        <div className={props.className}>
+        <React.Fragment>
             <NavBar />
             <div>
                 {props.children}
             </div>
             <Toasts />
-        </div>
+        </React.Fragment>
     );
 };
-
-ContentPage.propTypes = {
-    className: PropTypes.string,
-};
-
-export default ContentPage;

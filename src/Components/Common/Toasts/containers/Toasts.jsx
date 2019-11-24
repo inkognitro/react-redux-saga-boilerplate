@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import store from "App/Redux/store";
-import RepresentationalToasts from "App/Components/Common/Toasts/components/Toasts"
+import {Toasts as RepresentationalToasts} from "App/Components/Common/Toasts/components/Toasts"
 import {closeToast} from "App/Redux/Common/Toasts/actions";
 
 const mapStateToProps = (state) => {

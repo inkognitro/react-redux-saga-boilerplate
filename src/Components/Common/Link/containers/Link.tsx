@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 
-type LinkProps = {
+export type LinkProps = {
     onClick(): void,
 }
 
-const Link: FunctionComponent<LinkProps> = (props) => {
+export const Link: FunctionComponent<LinkProps> = (props) => {
     return (
         <a
             href="#"
@@ -17,5 +17,3 @@ const Link: FunctionComponent<LinkProps> = (props) => {
         </a>
     );
 };
-
-export default Link;

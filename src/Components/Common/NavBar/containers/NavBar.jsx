@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import RepresentationalNavBar from "../components/NavBar"
+import {NavBar as RepresentationalNavBar} from "../components/NavBar"
 
 const mapStateToProps = (state) => {
     return {
