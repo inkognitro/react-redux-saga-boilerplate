@@ -1,7 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 
-const Link = (props) => {
+type LinkProps = {
+    onClick(): void,
+}
+
+const Link: FunctionComponent<LinkProps> = (props) => {
     return (
         <a
             href="#"
@@ -13,10 +16,6 @@ const Link = (props) => {
             {props.children}
         </a>
     );
-};
-
-Link.propTypes = {
-    onClick: PropTypes.func.isRequired,
 };
 
 export default Link;
