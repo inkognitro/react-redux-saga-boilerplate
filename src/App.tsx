@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import store from 'App/Redux/store';
-import Home from 'App/Components/RouteViews/Home/Home';
+import Home from "App/Components/RouteViews/Home/Home";
 
 export default class App extends React.Component {
     render() {
