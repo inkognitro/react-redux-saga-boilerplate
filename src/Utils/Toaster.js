@@ -1,7 +1,7 @@
 import React from 'react';
 import store from 'App/Redux/store'
-import {addToast as createAddToastAction} from "App/Redux/Common/Toasts/actions";
+import {addToastMessage} from "App/Redux/Common/Toasts/actions";
 
-const addToast = (type, message) => store.dispatch(createAddToastAction(type, message));
+const addToast = (type, message) => store.dispatch(addToastMessage(type, message));
 
 export {addToast};

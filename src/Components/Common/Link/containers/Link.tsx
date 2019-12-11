@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
+import './Link.scss';
 
 export type LinkProps = {
     onClick(): void,
-}
+};
 
 export const Link: FunctionComponent<LinkProps> = (props) => {
     return (

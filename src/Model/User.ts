@@ -1,4 +1,5 @@
-export default class User {
-    id: string
-    username: string
-}
+export type User = {
+    id: string,
+    username: string,
+};
+

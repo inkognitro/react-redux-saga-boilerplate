@@ -1,0 +1,10 @@
+@import 'App/Variables.scss';
+
+a {
+  color: $colorPrimary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

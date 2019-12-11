@@ -12,6 +12,4 @@ const mapDispatchToProps = () => {
     return {};
 };
 
-const NavBar = connect(mapStateToProps, mapDispatchToProps)(RepresentationalNavBar);
-
-export default NavBar;
+export const NavBar = connect(mapStateToProps, mapDispatchToProps)(RepresentationalNavBar);
