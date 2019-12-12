@@ -6,13 +6,12 @@ import 'App/App.scss';
 
 //todo: remove allowJs in tsconfig.json after typescript migration has been done
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <div>IMPLEMENT ROUTING HERE!</div>
-                <Home/>
-            </Provider>
-        );
-    }
-}
+//todo: implement routing
+
+export const App = () => {
+    return (
+        <Provider store={store}>
+            <Home/>
+        </Provider>
+    );
+};

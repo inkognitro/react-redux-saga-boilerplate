@@ -1,25 +1,25 @@
 import {
-    ADD_TOAST_MESSAGE_ACTION_TYPE,
-    REMOVE_TOAST_MESSAGE_ACTION_TYPE,
-    AddToastMessageAction,
+    ADD_TOAST_MESSAGE_TO_PIPELINE,
+    ADD_MESSAGE_TO_TOAST,
+    ToastActionType,
     RemoveToastMessageAction,
     Message
 } from "App/Redux/Common/Toasts/types";
 
-export const addToastMessage = (message: Message): AddToastMessageAction => {
+export function addToastMessageToPipeline (message: Message): ToastActionType {
     return {
-        type: ADD_TOAST_MESSAGE_ACTION_TYPE,
+        type: ADD_TOAST_MESSAGE_TO_PIPELINE,
         payload: {
             message: message
         }
     }
-};
+}
 
-export const removeToastMessage = (message: Message): RemoveToastMessageAction => {
+export function addMessageToToast(message: Message): ToastActionType {
     return {
-        type: REMOVE_TOAST_MESSAGE_ACTION_TYPE,
+        type: ADD_MESSAGE_TO_TOAST,
         payload: {
             message: message
         }
     }
-};
+}
