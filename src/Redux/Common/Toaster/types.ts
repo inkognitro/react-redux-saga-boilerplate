@@ -4,7 +4,7 @@ type toastAnimation = 'fadeIn' | 'fadeOut';
 type messageType = 'info' | 'success' | 'error';
 type messageAnimation = 'slideIn' | 'slideOut';
 
-export interface ToastsState {
+export interface ToasterState {
     messagesInPipeline: Message[],
     toasts: Toast[]
 }
@@ -42,4 +42,4 @@ interface AddMessageToToastAction {
     }
 }
 
-export type ToastActionType = (AddMessageToPipelineAction | AddMessageToToastAction);
+export type ToasterActionType = (AddMessageToPipelineAction | AddMessageToToastAction);

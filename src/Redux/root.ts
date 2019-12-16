@@ -1,12 +1,14 @@
 import {combineReducers, applyMiddleware, createStore} from 'redux'
 import {auth} from 'App/Redux/Common/Auth/reducer';
-import {toasts} from 'App/Redux/Common/Toasts/reducer';
+import {toaster} from 'App/Redux/Common/Toaster/reducer';
 import thunkMiddleware from 'redux-thunk';
 
-const appReducer = combineReducers({
+const rootReducer = combineReducers({
     auth,
-    toasts,
+    toaster,
 });
+
 const middleware = applyMiddleware(thunkMiddleware);
-const store = createStore(appReducer, middleware);
-export default store;
+
+export type RootState = ReturnType<typeof rootReducer>;
+export const store = createStore(rootReducer, middleware);

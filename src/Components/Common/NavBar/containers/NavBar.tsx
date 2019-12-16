@@ -1,8 +1,8 @@
-import React from 'react';
 import { connect } from 'react-redux'
 import {NavBar as RepresentationalNavBar} from "../components/NavBar"
+import {RootState} from "App/Redux/root";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         currentUser: state.auth.user,
     };

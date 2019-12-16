@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import Toasts from 'App/Components/Common/Toasts/containers/Toasts';
+import Toasts from 'App/Components/Common/Toaster/containers/Toaster';
 import {NavBar} from "App/Components/Common/NavBar/containers/NavBar";
 
 export type ContentPageProps = {

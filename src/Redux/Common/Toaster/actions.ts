@@ -1,12 +1,11 @@
 import {
     ADD_TOAST_MESSAGE_TO_PIPELINE,
     ADD_MESSAGE_TO_TOAST,
-    ToastActionType,
-    RemoveToastMessageAction,
+    ToasterActionType,
     Message
-} from "App/Redux/Common/Toasts/types";
+} from "App/Redux/Common/Toaster/types";
 
-export function addToastMessageToPipeline (message: Message): ToastActionType {
+export function addToastMessageToPipeline (message: Message): ToasterActionType {
     return {
         type: ADD_TOAST_MESSAGE_TO_PIPELINE,
         payload: {
@@ -15,7 +14,7 @@ export function addToastMessageToPipeline (message: Message): ToastActionType {
     }
 }
 
-export function addMessageToToast(message: Message): ToastActionType {
+export function addMessageToToast(message: Message): ToasterActionType {
     return {
         type: ADD_MESSAGE_TO_TOAST,
         payload: {

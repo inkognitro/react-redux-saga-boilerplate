@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import store from 'App/Redux/store';
+import {store} from 'App/Redux/root';
 import Home from "App/Components/RouteViews/Home/Home";
 import 'App/App.scss';
 

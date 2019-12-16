@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import {User} from 'App/Model/User';
 
 export type NavBarProps = {
-    currentUser: User
+    currentUser: (User | null)
 }
 
 export const NavBar: FunctionComponent<NavBarProps> = (props) => {
