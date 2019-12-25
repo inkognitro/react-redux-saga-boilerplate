@@ -7,10 +7,6 @@ import {NotFoundError} from 'App/Components/RouteViews/Errors';
 import 'App/App.scss';
 import {homeRoute} from 'App/Redux/Common/Routing/routes';
 
-//todo: remove allowJs in tsconfig.json after typescript migration has been done
-
-//todo: implement routing
-
 export const App = () => {
     return (
         <Provider store={store}>

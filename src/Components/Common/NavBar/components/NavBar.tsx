@@ -21,6 +21,11 @@ export const NavBar: FunctionComponent<NavBarProps> = (props) => {
             <li className="nav-item">
                 <a className="nav-link disabled" href="#">Disabled</a>
             </li>
+            <li className="nav-item">
+                <a className="nav-link">
+                    CurrentUser :: {(props.currentUser ? props.currentUser.username : 'Anonymous')}
+                </a>
+            </li>
         </ul>
     );
 };

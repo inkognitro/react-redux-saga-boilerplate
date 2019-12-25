@@ -5,7 +5,7 @@ import {createHomeRouteUrl} from "App/Redux/Common/Routing/routes";
 
 export const NotFoundError: FunctionComponent<> = () => {
     return (
-        <ContentPage>
+        <ContentPage contentClassName="text-center">
             <h1>404 - Page not found</h1>
             <Link url={createHomeRouteUrl()}>
                 back to start

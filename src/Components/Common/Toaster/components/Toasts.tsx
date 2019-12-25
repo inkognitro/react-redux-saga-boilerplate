@@ -1,12 +1,12 @@
 import React, {FunctionComponent} from 'react';
 import {Toast, ToastProps} from './Toast';
 
-export type ToasterProps = {
+export type ToastsProps = {
     toasts: Array<ToastProps>,
     onCloseToast(toastId: string): void,
 };
 
-export const Toasts: FunctionComponent<ToasterProps> = (props) => {
+export const Toasts: FunctionComponent<ToastsProps> = (props) => {
     return (
         <div>
             {props.toasts.map((toastProps) => (
