@@ -6,7 +6,7 @@ export type ToasterProps = {
     onCloseToast(toastId: string): void,
 };
 
-export const Toaster: FunctionComponent<ToasterProps> = (props) => {
+export const Toasts: FunctionComponent<ToasterProps> = (props) => {
     return (
         <div>
             {props.toasts.map((toastProps) => (

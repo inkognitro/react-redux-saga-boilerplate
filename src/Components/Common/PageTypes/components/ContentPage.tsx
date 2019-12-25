@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import Toasts from 'App/Components/Common/Toaster/containers/Toaster';
+import {ConnectedToasts} from 'App/Components/Common/Toaster/containers/ConnectedToasts';
 import {NavBar} from "App/Components/Common/NavBar/containers/NavBar";
 
 export type ContentPageProps = {
@@ -17,7 +17,7 @@ export const ContentPage: FunctionComponent<ContentPageProps> = (props) => {
                     </div>
                 </div>
             </div>
-            <Toasts />
+            <ConnectedToasts />
         </React.Fragment>
     );
 };
