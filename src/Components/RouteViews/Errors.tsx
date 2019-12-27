@@ -3,13 +3,19 @@ import {ContentPage} from 'App/Components/Common/PageTypes/components/ContentPag
 import {Link} from 'App/Components/Common/Link/containers/Link';
 import {createHomeRouteUrl} from "App/Redux/Common/Routing/routes";
 
-export const NotFoundError: FunctionComponent<> = () => {
+export type NotFoundErrorProps = {
+    contentClassName?: string,
+};
+
+export const NotFoundError: FunctionComponent<NotFoundErrorProps> = () => {
     return (
-        <ContentPage contentClassName="text-center">
-            <h1>404 - Page not found</h1>
-            <Link url={createHomeRouteUrl()}>
-                back to start
-            </Link>
+        <ContentPage>
+            <div className="text-center">
+                <h1>404 - Page not found</h1>
+                <Link url={createHomeRouteUrl()}>
+                    back to start
+                </Link>
+            </div>
         </ContentPage>
     );
 };

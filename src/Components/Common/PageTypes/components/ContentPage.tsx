@@ -2,9 +2,7 @@ import React, { FunctionComponent } from 'react';
 import {ConnectedGlobalToasts} from 'App/Components/Common/Toaster/containers/ConnectedGlobalToasts';
 import {ConnectedGlobalNavBar} from "App/Components/Common/NavBar/containers/ConnectedGlobalNavBar";
 
-export type ContentPageProps = {
-    contentClassName?: string,
-};
+export type ContentPageProps = {};
 
 export const ContentPage: FunctionComponent<ContentPageProps> = (props) => {
     return (
@@ -12,7 +10,7 @@ export const ContentPage: FunctionComponent<ContentPageProps> = (props) => {
             <ConnectedGlobalNavBar />
             <div className="container">
                 <div className="row">
-                    <div className={'col-sm' + (props.contentClassName ? ' ' + props.contentClassName : '')}>
+                    <div className="col-sm">
                         {props.children}
                     </div>
                 </div>
