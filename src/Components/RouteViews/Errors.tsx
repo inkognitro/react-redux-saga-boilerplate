@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {ContentPage} from 'App/Components/Common/PageTypes/components/ContentPage';
 import {Link} from 'App/Components/Common/Link/containers/Link';
-import {createHomeRouteUrl} from "App/Redux/Common/Routing/routes";
+import {createHomeRouteUrl} from "App/Redux/Routing/routes";
 
 export type NotFoundErrorProps = {
     contentClassName?: string,

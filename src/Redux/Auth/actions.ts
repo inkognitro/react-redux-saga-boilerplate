@@ -1,4 +1,4 @@
-import {AuthActionType, REFRESH_TOKEN} from "App/Redux/Common/Auth/types";
+import {AuthActionType, REFRESH_TOKEN} from "./types";
 
 export function refreshToken (currentApiToken: string): AuthActionType {
     return {

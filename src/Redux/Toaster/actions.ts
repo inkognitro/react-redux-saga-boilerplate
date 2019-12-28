@@ -3,7 +3,7 @@ import {
     ADD_MESSAGE_TO_TOAST,
     ToasterActionType,
     Message
-} from "App/Redux/Common/Toaster/types";
+} from "./types";
 
 export function addToastMessageToPipeline (message: Message): ToasterActionType {
     return {

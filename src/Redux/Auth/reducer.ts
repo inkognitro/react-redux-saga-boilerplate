@@ -1,4 +1,4 @@
-import {AuthActionType, AuthState} from "App/Redux/Common/Auth/types";
+import {AuthActionType, AuthState} from "./types";
 
 const initialAuthState: AuthState = {
     apiToken: null,

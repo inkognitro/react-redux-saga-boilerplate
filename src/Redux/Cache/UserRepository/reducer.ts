@@ -1,4 +1,5 @@
-import {UserRepositoryState, UserRepositoryActionType, RECEIVE_USER} from "App/Redux/FetchedData/UserRepository/types";
+import {UserRepositoryState, UserRepositoryActionType, RECEIVE_USER} from "./types";
+import {User} from "App/Redux/Cache/UserRepository/types";
 
 const initialUserRepositoryState: UserRepositoryState = {
     users: [],
@@ -12,7 +13,7 @@ export function userRepository (state: UserRepositoryState = initialUserReposito
     if(action.type === RECEIVE_USER) {
         return Object.assign({}, state, {
             users: [
-                ...state.users.filter((user) => (user.id !== action.payload.user.id)),
+                ...state.users.filter((user: User) => (user.id !== action.payload.user.id)),
                 action.payload.user
             ]
         });

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {User} from 'App/Model/User';
+import {User} from 'App/Redux/Cache/UserRepository/types';
 import './NavBar.scss';
 
 export type NavBarProps = {

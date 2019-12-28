@@ -1,4 +1,4 @@
-import {User} from "App/Model/User";
+import {User} from "App/Redux/Cache/UserRepository/types";
 
 export interface AuthState {
     apiToken: string | null,

@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Home} from 'App/Components/RouteViews/Home';
 import {NotFoundError} from 'App/Components/RouteViews/Errors';
 import 'App/App.scss';
-import {homeRoute} from 'App/Redux/Common/Routing/routes';
+import {homeRoute} from 'App/Redux/Routing/routes';
 
 export const App = () => {
     return (
