@@ -1,7 +1,8 @@
-import {ADD_MESSAGE_TO_TOAST, ADD_TOAST_MESSAGE_TO_PIPELINE, ToasterActionType, ToasterState} from "./types";
+import {ToasterActionType, ToasterState} from "./types";
+import {ADD_TOAST} from "App/Redux/Toaster/Toast/types";
 
 const initialToasterState: ToasterState = {
-    messagesInPipeline: [],
+    toastMessagesToAdd: [],
     toasts: []
 };
 
@@ -10,23 +11,11 @@ export function toaster (state: ToasterState = initialToasterState, action?: Toa
         return state;
     }
 
-    if(action.type === ADD_TOAST_MESSAGE_TO_PIPELINE) {
+    if(action.type === ADD_TOAST) {
         return Object.assign({}, state, {
-            messagesInPipeline: [
-                ...state.messagesInPipeline,
-                action.payload.message,
-            ]
-        });
-    }
-
-    if(action.type === ADD_MESSAGE_TO_TOAST) {
-        return Object.assign({}, state, {
-            messagesInPipeline: state.messagesInPipeline.filter(
-                (message) => (message.id !== action.payload.message.id)
-            ),
             toasts: [
+                action.payload.toast,
                 ...state.toasts,
-                action.payload.message,
             ]
         });
     }

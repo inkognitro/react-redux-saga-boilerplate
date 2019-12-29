@@ -1,7 +1,13 @@
 import {UserRepositoryState, UserRepositoryActionType, RECEIVE_USER} from "./types";
 
 const initialUserRepositoryState: UserRepositoryState = {
-    users: [],
+    users: [
+        {
+            id: '8e5ae1bc-7f5f-49b8-8aff-2c6a5955c612',
+            username: 'vegeta',
+            apiToken: 'some-pseudo-api-token-1234'
+        },
+    ], //todo: replace with empty array!
 };
 
 export function userRepository (state: UserRepositoryState = initialUserRepositoryState, action?: UserRepositoryActionType): UserRepositoryState {

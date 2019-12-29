@@ -1,18 +1,18 @@
 import React from 'react';
 import {ContentPage} from 'App/Components/Common/PageTypes/components/ContentPage';
 import {FunctionalLink, Link} from 'App/Components/Common/Link/containers/Link';
-import {executeRequest, createGetRequest, ExecutionSummary} from "App/Utility/Http/RequestHandling";
+import {executeRequest, createPostRequest, ExecutionSummary} from "App/Utility/Http/ApiRequestHandling";
 
 export class Home extends React.Component {
 
-    handleGetRequest() {
-        const request = createGetRequest({
+    handleRequest() {
+        const request = createPostRequest({
             url: '//localhost:9000/auth/refreshtoken.json',
-            headers: {'X-API-TOKEN': 'some-pseudo-api-token'},
             queryParameters: {
                 foo: 'bar',
                 hihi: 'blöölk'
-            }
+            },
+            body: {foo: 'bar'},
         });
         executeRequest(request).then((summary: ExecutionSummary) => {
             console.log('executeRequest :: then');
@@ -28,7 +28,7 @@ export class Home extends React.Component {
             <ContentPage>
                 <h1>Home</h1>
                 <Link url="/some-page-which-does-not-exist">go to non existing page!</Link>
-                <div><FunctionalLink onClick={() => this.handleGetRequest()}>handleGetRequest</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.handleRequest()}>handleRequest</FunctionalLink></div>
             </ContentPage>
         );
     }

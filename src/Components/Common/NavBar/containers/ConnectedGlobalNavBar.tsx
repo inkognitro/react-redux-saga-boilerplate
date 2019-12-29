@@ -2,10 +2,11 @@ import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {NavBar as RepresentationalNavBar, NavBarProps as RepresentationalNavBarProps} from "../components/NavBar"
 import {RootState} from "App/Redux/root";
+import {findCurrentUser} from "App/Redux/Auth/selectors";
 
 const mapStateToProps = (state: RootState) => {
     return {
-        currentUser: state.auth.user,
+        currentUser: findCurrentUser(state),
     };
 };
 
