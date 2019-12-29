@@ -1,18 +1,23 @@
-import {User} from "App/Redux/Cache/UserRepository/types";
-
 export interface AuthState {
-    apiToken: string | null,
-    user: User | null,
+    currentUserId: (string | null),
 }
 
 const ACTION_SUFFIX = '1b901980-6cd9-4799-a19b-08f05941611b';
 
-export const REFRESH_TOKEN = 'REFRESH_TOKEN' + ACTION_SUFFIX;
-interface RefreshTokenAction {
-    type: typeof REFRESH_TOKEN,
+export const REFRESH_API_TOKEN = 'REFRESH_API_TOKEN' + ACTION_SUFFIX;
+interface RefreshApiTokenAction {
+    type: typeof REFRESH_API_TOKEN,
     payload: {
-        currentApiToken: string,
+        userId: string,
     }
 }
 
-export type AuthActionType = (RefreshTokenAction);
+export const RECEIVE_API_TOKEN = 'RECEIVE_API_TOKEN' + ACTION_SUFFIX;
+interface ReceiveApiTokenAction {
+    type: typeof RECEIVE_API_TOKEN,
+    payload: {
+        currentUserId: string,
+    }
+}
+
+export type AuthActionType = (RefreshApiTokenAction | ReceiveApiTokenAction);

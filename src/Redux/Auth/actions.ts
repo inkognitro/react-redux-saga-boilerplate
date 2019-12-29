@@ -1,10 +1,10 @@
-import {AuthActionType, REFRESH_TOKEN} from "./types";
+import {AuthActionType, REFRESH_API_TOKEN} from "./types";
 
-export function refreshToken (currentApiToken: string): AuthActionType {
+export function refreshApiToken (userId: string): AuthActionType {
     return {
-        type: REFRESH_TOKEN,
+        type: REFRESH_API_TOKEN,
         payload: {
-            currentApiToken: currentApiToken
+            userId: userId
         }
     };
 }

@@ -6,7 +6,8 @@ export interface UserRepositoryState {
 
 export type User = {
     id: string,
-    username: string,
+    username?: string,
+    apiToken?: string,
 };
 
 export const RECEIVE_USER = 'RECEIVE_USER' + ACTION_SUFFIX;
