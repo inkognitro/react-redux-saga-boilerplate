@@ -11,6 +11,13 @@ export type ExecutionSummary = {
     response: null | Response,
 };
 
+export function getResponseBodyJson(summary: ExecutionSummary): object {
+    if(!summary.response || !summary.response.body) {
+        return {};
+    }
+    return summary.response.body;
+}
+
 export type GetRequestCreationSettings = {
     url: string,
     queryParameters?: object,

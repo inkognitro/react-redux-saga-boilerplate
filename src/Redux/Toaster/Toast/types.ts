@@ -1,9 +1,5 @@
 import {Message} from "App/Redux/Toaster/Message/types";
 
-export const INFO_TOAST_TYPE = 'info';
-export const SUCCESS_TOAST_TYPE = 'success';
-export const ERROR_TOAST_TYPE = 'error';
-
 export enum ToastTypes {
     INFO = 'info',
     SUCCESS = 'success',
@@ -24,21 +20,21 @@ export type Toast = {
     isAnimationRunning: boolean,
 };
 
-export type AddToast = {
+type AddToast = {
     type: ToastActionTypes.ADD_TOAST,
     payload: {
         toast: Toast,
     }
 };
 
-export type BeginShowToastAnimation = {
+type BeginShowToastAnimation = {
     type: ToastActionTypes.BEGIN_SHOW_TOAST_ANIMATION,
     payload: {
         toastId: string,
     }
 };
 
-export type EndShowToastAnimation = {
+type EndShowToastAnimation = {
     type: ToastActionTypes.END_SHOW_TOAST_ANIMATION,
     payload: {
         toastId: string,

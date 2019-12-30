@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {Toast, ToastProps} from './Toast';
 
 export type ToastsProps = {
-    toasts: Array<ToastProps>,
+    toasts: ToastProps[],
     onCloseToast(toastId: string): void,
 };
 

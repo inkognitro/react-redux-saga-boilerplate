@@ -1,4 +1,4 @@
-import {UserRepositoryState, UserRepositoryActionType, RECEIVE_USER} from "./types";
+import {UserRepositoryState, UserRepositoryActions, UserRepositoryActionTypes} from "./types";
 
 const initialUserRepositoryState: UserRepositoryState = {
     users: [
@@ -10,12 +10,12 @@ const initialUserRepositoryState: UserRepositoryState = {
     ], //todo: replace with empty array!
 };
 
-export function userRepository (state: UserRepositoryState = initialUserRepositoryState, action?: UserRepositoryActionType): UserRepositoryState {
+export function userRepository (state: UserRepositoryState = initialUserRepositoryState, action?: UserRepositoryActions): UserRepositoryState {
     if(action === undefined) {
         return state;
     }
 
-    if(action.type === RECEIVE_USER) {
+    if(action.type === UserRepositoryActionTypes.RECEIVE_USER) {
         const storedUserIndex = state.users.findIndex((user) => (user.id === action.payload.user.id));
         if(storedUserIndex === -1) {
             return Object.assign({}, state, {

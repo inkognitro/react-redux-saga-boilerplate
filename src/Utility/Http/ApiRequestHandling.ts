@@ -10,6 +10,9 @@ import {Request} from "./types";
 import {findCurrentUserApiToken} from "App/Redux/Auth/selectors";
 import {store} from "App/Redux/root";
 
+const apiV1BaseUrl = '//localhost:9000';
+export const AUTH_REFRESH_TOKEN_ENDPOINT = apiV1BaseUrl + '/auth/refreshtoken.json';
+
 export function createGetRequest(settings: GetRequestCreationSettings): Request {
     const request = createGeneralGetRequest(settings);
     return createWithApiTokenHeaderEnhancedRequest(request);

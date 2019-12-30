@@ -1,8 +1,8 @@
-import {RECEIVE_USER, User, UserRepositoryActionType} from "./types";
+import {User, UserRepositoryActions, UserRepositoryActionTypes} from "./types";
 
-export function receiveUserData(user: User): UserRepositoryActionType {
+export function receiveUserData(user: User): UserRepositoryActions {
     return {
-        type: RECEIVE_USER,
+        type: UserRepositoryActionTypes.RECEIVE_USER,
         payload: {
             user: user
         }

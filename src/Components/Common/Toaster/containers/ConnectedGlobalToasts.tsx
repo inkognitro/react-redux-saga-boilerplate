@@ -2,10 +2,11 @@ import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {Toasts, ToastsProps} from 'App/Components/Common/Toaster/components/Toasts';
 import {RootState} from "App/Redux/root";
+import {getToasts} from "App/Redux/Toaster/selectors";
 
 const mapStateToProps = (state: RootState) => {
     return {
-        toasts: state.toaster.toasts
+        toasts: getToasts(state)
     };
 };
 

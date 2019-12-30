@@ -2,8 +2,16 @@ import React from 'react';
 import {ContentPage} from 'App/Components/Common/PageTypes/components/ContentPage';
 import {FunctionalLink, Link} from 'App/Components/Common/Link/containers/Link';
 import {executeRequest, createPostRequest, ExecutionSummary} from "App/Utility/Http/ApiRequestHandling";
+import {fetchRefreshedCurrentUserApiToken} from "App/Redux/Auth/actions";
+import {store} from "App/Redux/root";
 
 export class Home extends React.Component {
+
+    componentDidMount(): void {
+        const action = fetchRefreshedCurrentUserApiToken();
+        // @ts-ignore
+        store.dispatch(action);
+    }
 
     handleRequest() {
         const request = createPostRequest({
