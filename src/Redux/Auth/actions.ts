@@ -7,8 +7,8 @@ import {
     ExecutionSummary
 } from "App/Utility/Http/ApiRequestHandling";
 import {receiveUserData} from "App/Redux/Cache/UserRepository/actions";
-import {findCurrentUser, findCurrentUsersApiTokenFromCookie} from "App/Redux/Auth/selectors";
-import {AppThunk, store} from "App/Redux/root";
+import {findCurrentUsersApiTokenFromCookie} from "App/Redux/Auth/selectors";
+import {AppThunk} from "App/Redux/root";
 import {getResponseBodyJson} from "App/Utility/Http/RequestHandling";
 import {findCookieContent, setCookie} from "App/Utility/CookieHandling";
 import {User} from "App/Redux/Cache/UserRepository/types";
@@ -25,7 +25,7 @@ export function initializeCurrentUser(): AppThunk {
     }
 }
 
-export function authenticate(username: string, password: string): AppThunk {
+export function authenticate(username: string, password: string, shouldRemember: boolean): AppThunk {
     return function (dispatch) {
         const request = createGetRequest({ //todo: change to POST request!
             url: AUTH_AUTHENTICATE_ENDPOINT,
@@ -37,17 +37,13 @@ export function authenticate(username: string, password: string): AppThunk {
         executeRequest(request).then((summary: ExecutionSummary) => {
             // @ts-ignore
             const user = getResponseBodyJson(summary).data.user;
-            setCurrentUser(user, dispatch);
+            setCurrentUser(user, dispatch, shouldRemember);
         });
         //todo: check if catch is also needed. if yes, pass callback functions as props and don't return a promise!
     }
 }
 
 function fetchNewApiToken(currentApiToken: string): AppThunk {
-    const currentUser = findCurrentUser(store.getState());
-    if (currentUser === null) {
-        return () => {};
-    }
     return function (dispatch) {
         const request = createGetRequest({
             url: AUTH_REFRESH_TOKEN_ENDPOINT,
@@ -62,17 +58,16 @@ function fetchNewApiToken(currentApiToken: string): AppThunk {
                 setCurrentUser(user, dispatch);
             })
             .catch(() => {
-                dispatch(receiveUserData({id: currentUser.id, apiToken: null}));
                 dispatch(setCurrentUserId(null));
             });
     }
 }
 
-function setCurrentUser(user: User, dispatch: Function): void {
+function setCurrentUser(user: User, dispatch: Function, shouldRemember?: boolean): void {
     dispatch(receiveUserData(user));
     dispatch(setCurrentUserId(user.id));
     if(user.apiToken) {
-        refreshApiTokenCookie(user.apiToken);
+        refreshApiTokenCookie(user.apiToken, shouldRemember);
     }
 }
 
@@ -85,8 +80,8 @@ function setCurrentUserId(userId: (null | string)): AuthActions {
     };
 }
 
-function refreshApiTokenCookie(apiToken: string): void {
-    if(!findCookieContent(API_TOKEN_COOKIE_NAME)) {
+function refreshApiTokenCookie(apiToken: string, shouldRemember?: boolean): void {
+    if(!shouldRemember && !findCookieContent(API_TOKEN_COOKIE_NAME)) {
         return;
     }
     setCookie({
