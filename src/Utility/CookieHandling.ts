@@ -17,14 +17,18 @@ export function findCookieContent(cookieName: string): (null | string) {
 type CookieSettings = {
     name: string,
     content: string,
-    timeToLiveInDays: number,
+    timeToLiveInDays?: number,
 };
 
 export function setCookie(settings: CookieSettings): void {
-    let d = new Date();
-    d.setTime(d.getTime() + (settings.timeToLiveInDays * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + d.toUTCString();
-    document.cookie = settings.name + "=" + settings.content + ";" + expires + ";path=/";
+    const expiresCookiePart = (settings.timeToLiveInDays ? createCookieExpires(settings.timeToLiveInDays) : '');
+    document.cookie = settings.name + "=" + settings.content + ";" + expiresCookiePart + ";path=/";
+}
+
+function createCookieExpires(timeToLiveInDays: number): string {
+    let date = new Date();
+    date.setTime(date.getTime() + (timeToLiveInDays * 24 * 60 * 60 * 1000));
+    return 'expires=' + date.toUTCString();
 }
 
 export function removeCookie(cookieName: string): void {

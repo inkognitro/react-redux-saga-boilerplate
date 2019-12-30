@@ -10,7 +10,7 @@ import {receiveUserData} from "App/Redux/Cache/UserRepository/actions";
 import {findCurrentUsersApiTokenFromCookie} from "App/Redux/Auth/selectors";
 import {AppThunk} from "App/Redux/root";
 import {getResponseBodyJson} from "App/Utility/Http/RequestHandling";
-import {findCookieContent, setCookie} from "App/Utility/CookieHandling";
+import {findCookieContent, removeCookie, setCookie} from "App/Utility/CookieHandling";
 import {User} from "App/Redux/Cache/UserRepository/types";
 
 export function initializeCurrentUser(): AppThunk {
@@ -35,6 +35,7 @@ export function authenticate(username: string, password: string, shouldRemember:
             },
         });
         executeRequest(request).then((summary: ExecutionSummary) => {
+            removeCookie(API_TOKEN_COOKIE_NAME);
             // @ts-ignore
             const user = getResponseBodyJson(summary).data.user;
             setCurrentUser(user, dispatch, shouldRemember);
@@ -81,12 +82,14 @@ function setCurrentUserId(userId: (null | string)): AuthActions {
 }
 
 function refreshApiTokenCookie(apiToken: string, shouldRemember?: boolean): void {
-    if(!shouldRemember && !findCookieContent(API_TOKEN_COOKIE_NAME)) {
-        return;
-    }
-    setCookie({
+    let settings = {
         name: API_TOKEN_COOKIE_NAME,
         content: apiToken,
-        timeToLiveInDays: 14, //todo: take value from jwt expiration date!
-    });
+    };
+    if(shouldRemember || findCookieContent(API_TOKEN_COOKIE_NAME)) {
+        settings = Object.assign({}, settings, {
+            timeToLiveInDays: 14 //todo: take value from jwt expiration date!
+        });
+    }
+    setCookie(settings);
 }
