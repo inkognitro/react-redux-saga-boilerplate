@@ -1,4 +1,4 @@
-import {Toast, ToastActionType} from "App/Redux/Toaster/Toast/types";
+import {Toast, ToastActions} from "App/Redux/Toaster/Toast/types";
 import {Message} from "App/Redux/Toaster/Message/types";
 
 export type ToasterState = {
@@ -11,4 +11,4 @@ export type MessageToAdd = {
     message: Message,
 };
 
-export type ToasterActionType = (ToastActionType);
+export type ToasterAction = (ToastActions);

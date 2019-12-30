@@ -17,5 +17,8 @@ export function findCurrentUserApiToken(state: RootState): (null | string) {
     if(!currentUser) {
         return null;
     }
+    if(!currentUser.apiToken) {
+        return null;
+    }
     return currentUser.apiToken;
 }

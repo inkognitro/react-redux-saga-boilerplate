@@ -1,19 +1,21 @@
 import {
     createGetRequest as createGeneralGetRequest,
     createPostRequest as createGeneralPostRequest,
+    executeRequest as executeGeneralRequest,
+    GetRequestCreationSettings,
+    PostRequestCreationSettings,
     ExecutionSummary as GeneralExecutionSummary,
-    executeRequest as executeGeneralRequest
 } from "./RequestHandling";
-import {CreateGetRequestSettings, GetRequest, PostRequest, Request} from "./types";
+import {Request} from "./types";
 import {findCurrentUserApiToken} from "App/Redux/Auth/selectors";
 import {store} from "App/Redux/root";
 
-export function createGetRequest(settings: CreateGetRequestSettings): GetRequest {
+export function createGetRequest(settings: GetRequestCreationSettings): Request {
     const request = createGeneralGetRequest(settings);
     return createWithApiTokenHeaderEnhancedRequest(request);
 }
 
-export function createPostRequest(settings: CreateGetRequestSettings): PostRequest {
+export function createPostRequest(settings: PostRequestCreationSettings): Request {
     const request = createGeneralPostRequest(settings);
     return createWithApiTokenHeaderEnhancedRequest(request);
 }

@@ -1,23 +1,16 @@
-type CommonCreateRequestSettings = {
+export enum RequestMethods {
+    GET = 'GET',
+    POST = 'POST',
+}
+
+export type Request = {
+    method: RequestMethods,
+    id: string,
     url: string,
     queryParameters?: object,
     headers?: object,
+    body?: object,
 };
-
-type CommonRequestSettings = {
-    method: string,
-    id: string
-};
-
-export const GET_METHOD = 'GET';
-export type CreateGetRequestSettings = CommonCreateRequestSettings;
-export type GetRequest = (CommonRequestSettings & CreateGetRequestSettings);
-
-export const POST_METHOD = 'POST';
-export type CreatePostRequestSettings = (CommonCreateRequestSettings & { body?: object });
-export type PostRequest = (CommonRequestSettings & CreatePostRequestSettings);
-
-export type Request = (PostRequest | GetRequest);
 
 export type Response = {
     statusCode: number,
