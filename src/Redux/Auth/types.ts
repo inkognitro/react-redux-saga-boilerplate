@@ -3,22 +3,14 @@ export type AuthState = {
 }
 
 export enum AuthActionTypes {
-    REFRESH_API_TOKEN = 'REFRESH_API_TOKEN-1b901980-6cd9-4799-a19b-08f05941611b',
-    RECEIVE_API_TOKEN = 'RECEIVE_API_TOKEN-1b901980-6cd9-4799-a19b-08f05941611b',
+    SET_CURRENT_USER_ID = 'SET_CURRENT_USER_ID-1b901980-6cd9-4799-a19b-08f05941611b',
 }
 
-type RefreshApiTokenAction = {
-    type: AuthActionTypes.REFRESH_API_TOKEN,
+type SetCurrentUser = {
+    type: AuthActionTypes.SET_CURRENT_USER_ID,
     payload: {
         userId: string,
     }
 };
 
-type ReceiveApiTokenAction = {
-    type: AuthActionTypes.RECEIVE_API_TOKEN,
-    payload: {
-        currentUserId: string,
-    }
-};
-
-export type AuthActions = (RefreshApiTokenAction | ReceiveApiTokenAction);
+export type AuthActions = (SetCurrentUser);

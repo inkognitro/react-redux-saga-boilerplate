@@ -38,6 +38,30 @@ export function createPostRequest(settings: PostRequestCreationSettings): Reques
     });
 }
 
+export type PutRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
+export function createPutRequest(settings: PutRequestCreationSettings): Request {
+    return Object.assign({}, settings,{
+        method: RequestMethods.PUT,
+        id: uuidV4(),
+    });
+}
+
+export type PatchRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
+export function createPatchRequest(settings: PatchRequestCreationSettings): Request {
+    return Object.assign({}, settings,{
+        method: RequestMethods.PATCH,
+        id: uuidV4(),
+    });
+}
+
+export type DeleteRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
+export function createDeleteRequest(settings: DeleteRequestCreationSettings): Request {
+    return Object.assign({}, settings,{
+        method: RequestMethods.DELETE,
+        id: uuidV4(),
+    });
+}
+
 export function executeRequest(request: Request): Promise<ExecutionSummary> {
     return new Promise<ExecutionSummary>((resolve, reject) => {
         axios(createAxiosConfigFromRequest(request))
