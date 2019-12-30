@@ -16,12 +16,12 @@ to build the app in the *dist* folder, run:
     
 ## Features
 1. Caching: Received api data is cached in redux store
-2. Basic Authentication with [JWT](http://jwt.io) and remember me flag
+2. Basic authentication with [JWT](http://jwt.io) and remember me flag
 3. Integrated toasts in redux store
     - multiple messages per toast
     - async support (message waiting pipeline for running animations)
 4. Sass support
-5. Abstracted request handling with axios library in the background
+5. Abstracted request handling with [axios](http://npmjs.com/package/axios) library in the background
 6. UTC datetime handling
 7. Basic form components
 8. Integration of Bootstrap 4
