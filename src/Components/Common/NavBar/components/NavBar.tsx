@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import {User} from 'App/Redux/Cache/UserRepository/types';
+import {NavLink} from 'react-router-dom'
+import {createHomeRouteUrl} from 'App/Redux/Routing/routes';
 import './NavBar.scss';
 
 export type NavBarProps = {
@@ -10,21 +12,12 @@ export const NavBar: FunctionComponent<NavBarProps> = (props) => {
     return (
         <ul className="nav justify-content-center">
             <li className="nav-item">
-                <a className="nav-link active" href="#">Active</a>
+                <NavLink className="nav-link" to={createHomeRouteUrl()}>Home</NavLink>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link">
+                <span className="nav-link">
                     CurrentUser :: {(props.currentUser ? props.currentUser.username : 'Anonymous')}
-                </a>
+                </span>
             </li>
         </ul>
     );

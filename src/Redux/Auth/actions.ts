@@ -39,7 +39,7 @@ export function authenticate(username: string, password: string): AppThunk {
             const user = getResponseBodyJson(summary).data.user;
             setCurrentUser(user, dispatch);
         });
-        //todo: check if catch is also needed. if yes, then pass callback functions as props and do not return a promise!
+        //todo: check if catch is also needed. if yes, pass callback functions as props and don't return a promise!
     }
 }
 
@@ -92,6 +92,6 @@ function refreshApiTokenCookie(apiToken: string): void {
     setCookie({
         name: API_TOKEN_COOKIE_NAME,
         content: apiToken,
-        timeToLiveInDays: 14, //todo take value from jwt expiration date!
+        timeToLiveInDays: 14, //todo: take value from jwt expiration date!
     });
 }
