@@ -33,5 +33,5 @@ to build the app in the *dist* folder, run:
 4. Form components
 
 ## Appreciation
-Many thanks to [Dan Abramov](http://github.com/gaearon) for his contributations in the JS world, especially with react and [redux](http://redux.js.org/).
+Many thanks to [Dan Abramov](http://github.com/gaearon) for his contributions in the JS world, especially with react and [redux](http://redux.js.org/).
 It is and has always been a pleasure to learn from him.
