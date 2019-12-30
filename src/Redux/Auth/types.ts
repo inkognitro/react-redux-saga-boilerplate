@@ -1,4 +1,7 @@
+export const API_TOKEN_COOKIE_NAME = 'apiToken';
+
 export type AuthState = {
+    currentUserHasBeenInitialized: boolean,
     currentUserId: (string | null),
 }
 
@@ -9,7 +12,7 @@ export enum AuthActionTypes {
 type SetCurrentUser = {
     type: AuthActionTypes.SET_CURRENT_USER_ID,
     payload: {
-        userId: string,
+        userId: (null | string),
     }
 };
 

@@ -1,6 +1,8 @@
 import {User} from "App/Redux/Cache/UserRepository/types";
 import {findUserById} from "App/Redux/Cache/UserRepository/selectors";
 import {RootState} from "App/Redux/root";
+import {findCookieContent} from "App/Utility/CookieHandling";
+import {API_TOKEN_COOKIE_NAME} from "App/Redux/Auth/types";
 
 //todo: use reselect library for performance optimization
 
@@ -21,4 +23,8 @@ export function findCurrentUserApiToken(state: RootState): (null | string) {
         return null;
     }
     return currentUser.apiToken;
+}
+
+export function findCurrentUsersApiTokenFromCookie(): (null | string) {
+    return findCookieContent(API_TOKEN_COOKIE_NAME);
 }
