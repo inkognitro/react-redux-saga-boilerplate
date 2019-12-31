@@ -5,9 +5,13 @@
 Frontend boilerplate with time travelling through react and redux, written in TypeScript.
  
 ## Setup
-1. Clone or download this repository
-2. Enter in console: *npm install*
-3. Follow the steps below
+1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
+2. Clone or download this repository
+3. Move into project directory in console
+4. Run *npm install* in console
+5. Follow the steps below to
+   - either: serve de app in development mode
+   - or: to build the app for production
 
 ## Development mode
 to run the app with hot module reloading at *//localhost:9000*, run:
