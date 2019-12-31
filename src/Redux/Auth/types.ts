@@ -1,7 +1,7 @@
 export const API_TOKEN_COOKIE_NAME = 'apiToken';
 
 export type AuthState = {
-    currentUserHasBeenInitialized: boolean,
+    hasCurrentUserBeenInitialized: boolean,
     currentUserId: (string | null),
 }
 

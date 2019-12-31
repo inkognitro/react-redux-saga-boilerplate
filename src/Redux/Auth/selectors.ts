@@ -28,3 +28,7 @@ export function findCurrentUserApiToken(state: RootState): (null | string) {
 export function findCurrentUsersApiTokenFromCookie(): (null | string) {
     return findCookieContent(API_TOKEN_COOKIE_NAME);
 }
+
+export function hasCurrentUserBeenInitialized(state: RootState): boolean {
+    return state.auth.hasCurrentUserBeenInitialized;
+}

@@ -1,7 +1,7 @@
 import {AuthActions, AuthActionTypes, AuthState} from "./types";
 
 const initialAuthState: AuthState = {
-    currentUserHasBeenInitialized: false,
+    hasCurrentUserBeenInitialized: false,
     currentUserId: null,
 };
 
@@ -12,7 +12,7 @@ export function auth (state: AuthState = initialAuthState, action?: AuthActions)
 
     if(action.type === AuthActionTypes.SET_CURRENT_USER_ID) {
         return Object.assign({}, state, {
-            currentUserHasBeenInitialized: true,
+            hasCurrentUserBeenInitialized: true,
             currentUserId: action.payload.userId
         });
     }

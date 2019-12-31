@@ -5,7 +5,20 @@ import {createHomeRouteUrl, createLoginRouteUrl} from 'App/Redux/Routing/routes'
 import './NavBar.scss';
 
 export type NavBarProps = {
-    currentUser: (User | null)
+    currentUser: (User | null),
+};
+
+function renderCurrentUserNavItem (props: NavBarProps) {
+    if(!props.currentUser) {
+        return;
+    }
+    return (
+        <li className="nav-item">
+            <span className="nav-link">
+                {props.currentUser.username}
+            </span>
+        </li>
+    );
 }
 
 export const NavBar: FunctionComponent<NavBarProps> = (props) => {
@@ -17,11 +30,7 @@ export const NavBar: FunctionComponent<NavBarProps> = (props) => {
             <li className="nav-item">
                 <NavLink className="nav-link" to={createLoginRouteUrl()}>Login</NavLink>
             </li>
-            <li className="nav-item">
-                <span className="nav-link">
-                    CurrentUser :: {(props.currentUser ? props.currentUser.username : 'Anonymous')}
-                </span>
-            </li>
+            {renderCurrentUserNavItem(props)}
         </ul>
     );
 };
