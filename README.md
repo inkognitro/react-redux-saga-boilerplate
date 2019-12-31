@@ -3,6 +3,11 @@
 
 # React Redux Typescript Boilerplate - Under construction!!!
 Frontend boilerplate with time travelling through react and redux, written in TypeScript.
+ 
+## Setup
+1. Clone or download this repository
+2. Enter in console: *npm install*
+3. Follow the steps below
 
 ## Development mode
 to run the app with hot module reloading at *//localhost:9000*, run:
