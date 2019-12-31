@@ -10,7 +10,7 @@ Frontend boilerplate with time travelling through react and redux, written in Ty
 3. Move into project directory in console
 4. Run *npm install* in console
 5. Follow the steps below to
-   - either: serve de app in development mode
+   - either: serve the app for development mode
    - or: to build the app for production
 
 ## Development mode
