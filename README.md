@@ -34,6 +34,7 @@ to build the app in the *dist* folder, run:
 6. UTC datetime handling
 7. Basic form components
 8. Integration of Bootstrap 4
+9. Integration of Material Icons
   
 ## Open todos (in progress)
 1. Toast creation and integration instead of using *alert('foo')*;
