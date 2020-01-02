@@ -3,6 +3,7 @@ import {Message} from "App/Redux/Toaster/Message/types";
 export enum ToastTypes {
     INFO = 'info',
     SUCCESS = 'success',
+    WARNING = 'warning',
     ERROR = 'error',
 }
 

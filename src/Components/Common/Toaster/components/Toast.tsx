@@ -1,18 +1,32 @@
 import React, {FunctionComponent} from 'react';
-import {FunctionalLink} from 'App/Components/Common/Link/containers/Link';
+import {Message} from "App/Redux/Toaster/Message/types";
+import {Message as MessageComponent} from "./Message";
+
+function getToastClassName(type: string): string {
+    let classNames = ['app-toast'];
+    if(type === 'success') {
+        classNames.push('app-toast-success');
+    } else if(type === 'warning') {
+        classNames.push('app-toast-warning');
+    } else if(type === 'error') {
+        classNames.push('app-toast-error');
+    } else {
+        classNames.push('app-toast-info');
+    }
+    return classNames.join(' ');
+}
 
 export type ToastProps = {
     id: string,
-    message: string,
+    messages: Message[],
     type: 'info' | 'warning' | 'error',
     onClose(toastId: string): void,
 };
 
 export const Toast: FunctionComponent<ToastProps> = (props) => {
     return (
-        <div>
-            Toast of type "{props.type}" with id "{props.id}" and message "{props.message}"
-            <FunctionalLink onClick={() => props.onClose(props.id)}>CLOSE</FunctionalLink>
+        <div className={getToastClassName(props.type)}>
+            {props.messages.map((message) => (<MessageComponent {...message} key={message.id}/>))}
         </div>
     );
 };

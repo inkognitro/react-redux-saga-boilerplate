@@ -1,8 +1,40 @@
-$colorPrimary: #428bca;
-$colorSecondary: lighten(#428bca, 20%);
-$colorSuccess: #5cb85c;
-$colorInfo: #5bc0de;
-$colorWarning: #f0ad4e;
-$colorDanger: #d9534f;
+$colorPrimary: #007bff;
+$colorSecondary: #6c757d;
+$colorSuccess: #28a745;
+$colorInfo: #17a2b8;
+$colorWarning: #ffc107;
+$colorDanger: #dc3545;
+$colorSmoothLineOnWhite: #ededed;
 
-$colorPrimaryBorder: darken($colorPrimary, 10%);
+/* BOOTSTRAP 4: START */
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: $colorPrimary;
+  --secondary: $colorSecondary;
+  --success: $colorSuccess;
+  --info: $colorInfo;
+  --warning: $colorWarning;
+  --danger: $colorDanger;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+/* BOOTSTRAP 4: END */

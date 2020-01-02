@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Toast, ToastProps} from './Toast';
+import './Toasts.scss';
 
 export type ToastsProps = {
     toasts: ToastProps[],
@@ -8,7 +9,7 @@ export type ToastsProps = {
 
 export const Toasts: FunctionComponent<ToastsProps> = (props) => {
     return (
-        <div>
+        <div className="app-toasts">
             {props.toasts.map((toastProps) => (
                 <Toast
                     key={toastProps.id}
