@@ -1,0 +1,14 @@
+@import 'App/Variables.scss';
+
+.app-icon {
+  color: $colorText;
+  font-size: 24px !important;
+
+  &.app-icon-style-info {color: $colorInfo;}
+  &.app-icon-style-success {color: $colorSuccess;}
+  &.app-icon-style-warning {color: $colorWarning;}
+  &.app-icon-style-error {color: $colorError;}
+
+  &.app-icon-size-small {font-size: 18px !important;}
+  &.app-icon-size-big {font-size: 40px !important;}
+}

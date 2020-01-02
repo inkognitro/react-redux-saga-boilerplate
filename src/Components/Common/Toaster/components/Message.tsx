@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {FunctionalLink} from 'App/Components/Common/Link/containers/Link';
+import {CloseIcon} from "App/Components/Common/Icons/CloseIcon";
 
 export type MessageProps = {
     id: string,
@@ -10,7 +10,7 @@ export const Message: FunctionComponent<MessageProps> = (props) => {
     return (
         <div className="app-toast-message">
             {props.message}
-            <FunctionalLink onClick={() => console.log('close message!')}>CLOSE</FunctionalLink>
+            <CloseIcon />
         </div>
     );
 };
