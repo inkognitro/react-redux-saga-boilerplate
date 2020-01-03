@@ -1,10 +1,12 @@
 $colorText: #212529;
 $colorPrimary: #007bff;
-$colorSecondary: #6c757d;
+$colorSecondary: #b3c2cf;
 $colorSuccess: #28a745;
 $colorInfo: #17a2b8;
 $colorWarning: #ffc107;
 $colorError: #dc3545;
+$colorInteractive: $colorPrimary;
+$colorInteracting: $colorPrimary;
 $colorSmoothLineOnWhite: #ededed;
 
 @mixin boxShadow() {

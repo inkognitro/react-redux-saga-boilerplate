@@ -19,11 +19,18 @@
     &.app-toast-error { border-color: $colorError; }
 
     .app-toast-message {
+      position: relative;
       width: 250px;
       padding:15px 20px;
       border-top: 1px solid $colorSmoothLineOnWhite;
 
       &:first-child {border-top: 0;}
+
+      .app-toast-message-close-icon {
+        position:absolute;
+        top:7px;
+        right: 7px;
+      }
     }
   }
 }

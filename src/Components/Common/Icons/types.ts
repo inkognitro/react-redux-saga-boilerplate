@@ -5,21 +5,31 @@ export enum IconTypes {
     SUCCESS = 'success',
     WARNING = 'warning',
     ERROR = 'error',
+    INTERACTIVE = 'interactive',
+    SECONDARY = 'secondary',
 }
 
 export enum IconSizes {
-    NORMAL = 'normal',
-    SMALL = 'small',
-    BIG = 'big',
+    XS = 'xs',
+    SM = 'sm',
+    MD = 'md',
+    LG = 'lg',
+    XL = 'xl',
 }
 
 export type CommonIconProps = {
     type?: IconTypes,
     size?: IconSizes,
+    className?: string,
+    onClick?(): void,
 };
 
 export function createBaseClassNames(props: CommonIconProps): string {
     let classNames = ['app-icon'];
+
+    if(props.className) {
+        classNames.push(props.className);
+    }
 
     if(props.type === IconTypes.INFO) {
         classNames.push('app-icon-style-info');
@@ -29,14 +39,26 @@ export function createBaseClassNames(props: CommonIconProps): string {
         classNames.push('app-icon-style-warning');
     } else if(props.type === IconTypes.ERROR) {
         classNames.push('app-icon-style-error');
+    } else if(props.type === IconTypes.INTERACTIVE) {
+        classNames.push('app-icon-style-interactive');
+    } else if(props.type === IconTypes.SECONDARY) {
+        classNames.push('app-icon-style-secondary');
     }
 
-    if(props.size === IconSizes.NORMAL) {
-        classNames.push('app-icon-size-normal');
-    } else if(props.size === IconSizes.SMALL) {
-        classNames.push('app-icon-size-small');
-    } else if(props.size === IconSizes.BIG) {
-        classNames.push('app-icon-size-big');
+    if(props.size === IconSizes.XS) {
+        classNames.push('app-icon-size-xs');
+    } else if(props.size === IconSizes.SM) {
+        classNames.push('app-icon-size-sm');
+    } else if(props.size === IconSizes.MD) {
+        classNames.push('app-icon-size-md');
+    } else if(props.size === IconSizes.LG) {
+        classNames.push('app-icon-size-lg');
+    } else if(props.size === IconSizes.XL) {
+        classNames.push('app-icon-size-xl');
+    }
+
+    if(props.onClick) {
+        classNames.push('app-icon-clickable');
     }
 
     return classNames.join(' ');
