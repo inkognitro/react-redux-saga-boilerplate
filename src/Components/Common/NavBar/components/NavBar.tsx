@@ -3,9 +3,11 @@ import {User} from 'App/Redux/Cache/UserRepository/types';
 import {NavLink} from 'react-router-dom'
 import {createHomeRouteUrl, createLoginRouteUrl} from 'App/Redux/Routing/routes';
 import './NavBar.scss';
+import {FunctionalLink} from "App/Components/Common/Link/containers/Link";
 
 export type NavBarProps = {
     currentUser: (User | null),
+    onClickLogout(): void,
 };
 
 function renderCurrentUserNavItem (props: NavBarProps) {
@@ -14,9 +16,9 @@ function renderCurrentUserNavItem (props: NavBarProps) {
     }
     return (
         <li className="nav-item">
-            <span className="nav-link">
-                {props.currentUser.username}
-            </span>
+            <FunctionalLink onClick={() => props.onClickLogout()} className="nav-link">
+                Logout {props.currentUser.username}
+            </FunctionalLink>
         </li>
     );
 }

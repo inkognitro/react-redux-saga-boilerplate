@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {Component, createRef, RefObject} from 'react';
 import {CloseIcon} from "App/Components/Common/Icons/CloseIcon";
 import {IconSizes, IconTypes} from "App/Components/Common/Icons/types";
 
@@ -7,16 +7,25 @@ export type MessageProps = {
     message: string,
 };
 
-export const Message: FunctionComponent<MessageProps> = (props) => {
-    return (
-        <div className="app-toast-message">
-            {props.message}
-            <CloseIcon
-                onClick={() => console.log('close')}
-                type={IconTypes.SECONDARY}
-                size={IconSizes.SM}
-                className="app-toast-message-close-icon"
-            />
-        </div>
-    );
-};
+export class Message extends Component<MessageProps> {
+    private messageElement: RefObject<HTMLDivElement>;
+
+    constructor(props: MessageProps) {
+        super(props);
+        this.messageElement = createRef();
+    }
+
+    render() {
+        return (
+            <div ref={this.messageElement} className="app-toast-message">
+                {this.props.message}
+                <CloseIcon
+                    onClick={() => console.log('close')}
+                    type={IconTypes.SECONDARY}
+                    size={IconSizes.SM}
+                    className="app-toast-message-close-icon"
+                />
+            </div>
+        );
+    }
+}

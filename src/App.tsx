@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {store} from 'App/Redux/root';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
@@ -9,7 +9,7 @@ import {homeRoute, loginRoute} from 'App/Redux/Routing/routes';
 import {initializeCurrentUser} from "App/Redux/Auth/actions";
 import 'App/App.scss';
 
-export class App extends React.Component {
+export class App extends Component {
     componentDidMount(): void {
         // @ts-ignore
         store.dispatch(initializeCurrentUser());

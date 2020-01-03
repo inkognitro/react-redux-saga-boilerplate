@@ -12,7 +12,9 @@ const mapStateToProps = (state: RootState) => {
 };
 
 const mapDispatchToProps = () => {
-    return {};
+    return {
+        onClickLogout: () => console.log('logout!') //todo: dispatch(logout()),
+    };
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

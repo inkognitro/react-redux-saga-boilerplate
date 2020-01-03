@@ -25,6 +25,12 @@ export function initializeCurrentUser(): AppThunk {
     }
 }
 
+export function logout(): AppThunk {
+    return function (dispatch) {
+        dispatch(setCurrentUserId(null));
+    }
+}
+
 export function authenticate(username: string, password: string, shouldRemember: boolean): AppThunk {
     return function (dispatch) {
         const request = createGetRequest({ //todo: change to POST request!
