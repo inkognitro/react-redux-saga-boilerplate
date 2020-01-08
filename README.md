@@ -24,9 +24,9 @@ to build the app in the *dist* folder, run:
     npm run build
     
 ## Features
-1. Caching: Received api data is cached in redux store
-2. Basic authentication with [JWT](http://jwt.io) and remember me flag
-3. Integrated toasts in redux store
+1. Caching: Prepared caching for user data in redux store
+2. Basic authentication with [JWT](http://jwt.io) and remember me flag (redux)
+3. Integrated toasts (redux)
     - multiple messages per toast
     - async support (message waiting pipeline for running animations)
 4. Sass support
