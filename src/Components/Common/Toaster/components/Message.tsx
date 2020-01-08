@@ -4,7 +4,7 @@ import {IconSizes, IconTypes} from "App/Components/Common/Icons/types";
 
 export type MessageProps = {
     id: string,
-    message: string,
+    content: string,
 };
 
 export class Message extends Component<MessageProps> {
@@ -18,7 +18,7 @@ export class Message extends Component<MessageProps> {
     render() {
         return (
             <div ref={this.messageElement} className="app-toast-message">
-                {this.props.message}
+                {this.props.content}
                 <CloseIcon
                     onClick={() => console.log('close')}
                     type={IconTypes.SECONDARY}

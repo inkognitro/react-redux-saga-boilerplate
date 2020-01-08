@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {store} from 'App/Redux/root';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Home} from 'App/Components/RouteViews/Home';
 import {Login} from "App/Components/RouteViews/Auth/Login";
 import {NotFoundError} from 'App/Components/RouteViews/Errors';
