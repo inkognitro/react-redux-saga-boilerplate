@@ -7,7 +7,7 @@ Frontend boilerplate with time travelling through react and redux, written in Ty
 ## Setup
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
 2. Clone or download this repository
-3. Move into project directory in console
+3. Open console and move into project folder
 4. Run *npm install* in console
 5. Follow the steps below to
    - either: serve the app for development mode
