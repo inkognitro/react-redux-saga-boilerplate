@@ -27,6 +27,7 @@ export function initializeCurrentUser(): AppThunk {
 
 export function logout(): AppThunk {
     return function (dispatch) {
+        removeCookie(API_TOKEN_COOKIE_NAME);
         dispatch(setCurrentUserId(null));
     }
 }

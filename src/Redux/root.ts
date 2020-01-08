@@ -11,6 +11,7 @@ const root = combineReducers({
 });
 
 const middleware = applyMiddleware(thunkMiddleware);
+
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, null, Action<string>>
 
 export type RootState = ReturnType<typeof root>;

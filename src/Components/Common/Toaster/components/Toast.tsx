@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
-import {Message} from "App/Redux/Toaster/Message/types";
 import {Message as MessageComponent} from "./Message";
+import {Message} from "App/Redux/Toaster/types";
 
 function getToastClassName(type: string): string {
     let classNames = ['app-toast'];

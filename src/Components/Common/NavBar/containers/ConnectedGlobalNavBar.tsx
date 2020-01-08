@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {NavBar as RepresentationalNavBar, NavBarProps as RepresentationalNavBarProps} from "../components/NavBar"
 import {RootState} from "App/Redux/root";
 import {findCurrentUser, hasCurrentUserBeenInitialized} from "App/Redux/Auth/selectors";
+import {logout} from "App/Redux/Auth/actions";
 
 const mapStateToProps = (state: RootState) => {
     return {
@@ -11,9 +12,9 @@ const mapStateToProps = (state: RootState) => {
     };
 };
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => { //todo: type hinting!
     return {
-        onClickLogout: () => console.log('logout!') //todo: dispatch(logout()),
+        onClickLogout: () => dispatch(logout()),
     };
 };
 
