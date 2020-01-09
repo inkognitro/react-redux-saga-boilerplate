@@ -15,7 +15,6 @@ export const ContentPage: FunctionComponent<ContentPageProps> = (props) => {
                     </div>
                 </div>
             </div>
-            <ConnectedGlobalToasts />
         </React.Fragment>
     );
 };

@@ -8,6 +8,7 @@ import {NotFoundError} from 'App/Components/RouteViews/Errors';
 import {homeRoute, loginRoute} from 'App/Redux/Routing/routes';
 import {initializeCurrentUser} from "App/Redux/Auth/actions";
 import 'App/App.scss';
+import {ConnectedGlobalToasts} from "App/Components/Common/Toaster/containers/ConnectedGlobalToasts";
 
 export class App extends Component {
     componentDidMount(): void {
@@ -25,6 +26,7 @@ export class App extends Component {
                         <Route path="*" component={NotFoundError}/>
                     </Switch>
                 </Router>
+                <ConnectedGlobalToasts />
             </Provider>
         );
     }
