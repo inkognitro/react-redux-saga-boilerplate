@@ -12,9 +12,11 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = () => {
     return {
-        onCloseToast: (toastId: string) => {
+        /*
+        onRemoveToast: (toastId: string) => {
             console.log('Remove toast with id "' + toastId + '"');
         }
+        */
     };
 };
 

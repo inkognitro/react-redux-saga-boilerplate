@@ -12,6 +12,7 @@ const mapStateToProps = (state: RootState) => {
     };
 };
 
+//@ts-ignore
 const mapDispatchToProps = (dispatch) => { //todo: type hinting!
     return {
         onClickLogout: () => dispatch(logout()),

@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from 'react';
-import {Message as MessageComponent} from "./Message";
-import {Message} from "App/Redux/Toaster/types";
+import {Message} from "./Message";
+import {Toast as ToastData} from "App/Redux/Toaster/types";
+import {Message as MessageData} from "App/Redux/Toaster/types";
 
 function getToastClassName(type: string): string {
     let classNames = ['app-toast'];
@@ -16,17 +17,20 @@ function getToastClassName(type: string): string {
     return classNames.join(' ');
 }
 
-export type ToastProps = {
-    id: string,
-    messages: Message[],
-    type: 'info' | 'warning' | 'error',
-    onClose(toastId: string): void,
-};
+export type ToastProps = (ToastData & {
+    //onRemove(): void,
+    //onRemoveMessage(messageId: string): void,
+});
 
 export const Toast: FunctionComponent<ToastProps> = (props) => {
     return (
         <div className={getToastClassName(props.type)}>
-            {props.messages.map((message) => (<MessageComponent {...message} key={message.id}/>))}
+            {props.messages.map((messageData: MessageData) => (
+                <Message
+                    key={messageData.id}
+                    {...messageData}
+                />
+            ))}
         </div>
     );
 };

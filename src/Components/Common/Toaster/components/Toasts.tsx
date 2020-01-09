@@ -1,20 +1,19 @@
 import React, {FunctionComponent} from 'react';
-import {Toast, ToastProps} from './Toast';
+import {Toast} from './Toast';
 import './Toasts.scss';
+import {Toast as ToastData} from "App/Redux/Toaster/types";
 
 export type ToastsProps = {
-    toasts: ToastProps[],
-    onCloseToast(toastId: string): void,
+    toasts: ToastData[],
 };
 
 export const Toasts: FunctionComponent<ToastsProps> = (props) => {
     return (
         <div className="app-toasts">
-            {props.toasts.map((toastProps) => (
+            {props.toasts.map((toastData: ToastData) => (
                 <Toast
-                    key={toastProps.id}
-                    onClose={(toastId) => props.onCloseToast(toastId)}
-                    {...toastProps}
+                    key={toastData.id}
+                    {...toastData}
                 />
             ))}
         </div>
