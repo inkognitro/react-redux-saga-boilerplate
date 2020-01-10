@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import {ConnectedGlobalToasts} from 'App/Components/Common/Toaster/containers/ConnectedGlobalToasts';
 import {ConnectedGlobalNavBar} from "App/Components/Common/NavBar/containers/ConnectedGlobalNavBar";
 
 export type ContentPageProps = {};

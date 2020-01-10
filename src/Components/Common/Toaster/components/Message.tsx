@@ -13,9 +13,8 @@ export class Message extends Component<MessageProps> {
     private introAnimation: TimelineLite;
 
     playIntroAnimation() {
-        const messageWrapperHeight = this.messageWrapper.clientHeight;
         this.introAnimation = new TimelineLite({paused: true});
-        this.introAnimation.fromTo(this.messageWrapper, {height: 0}, {height: messageWrapperHeight, duration: 0.3});
+        this.introAnimation.fromTo(this.messageWrapper, {height: 0}, {height: 'auto', duration: 0.3});
         this.introAnimation.fromTo(this.messageWrapper, {x: '100%'}, {x: '0%', duration: 0.8, ease: Power1.easeOut});
         this.introAnimation.set(this.messageWrapper, {height: ''});
         this.introAnimation.play();
