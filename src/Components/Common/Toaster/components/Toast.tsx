@@ -32,15 +32,16 @@ export class Toast extends Component<ToastProps> {
 
     playIntroAnimation() {
         this.introAnimation = new TimelineLite({paused: true});
-        this.introAnimation.fromTo(this.toastWrapper, {height: 0}, {height: 'auto', duration: 0.3});
-        this.introAnimation.fromTo(this.toast, {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.8, ease: Power1.easeOut});
+        this.introAnimation.addLabel('start');
+        this.introAnimation.fromTo(this.toastWrapper, {height: 0}, {height: 'auto', duration: 0.5}, 'start');
+        this.introAnimation.fromTo(this.toast, {opacity: 0, y: -25}, {opacity: 1, y: 0, marginTop: 20, duration: 0.8, ease: Power1.easeOut}, 'start');
         this.introAnimation.play();
     }
 
     playOutroAnimation() {
         this.outroAnimation = new TimelineLite({paused: true, onComplete: this.props.onRemove});
-        this.outroAnimation.to(this.toast, {opacity: 0, y: 25, duration: 4, ease: Power1.easeIn});
-        this.outroAnimation.to(this.toastWrapper, {height: 0, duration: 0.15});
+        this.outroAnimation.to(this.toast, {opacity: 0, y: 25, marginTop: 0, duration: 0.4, ease: Power1.easeIn});
+        this.outroAnimation.to(this.toastWrapper, {height: 0, duration: 0.15}, );
         this.outroAnimation.play();
     }
 
