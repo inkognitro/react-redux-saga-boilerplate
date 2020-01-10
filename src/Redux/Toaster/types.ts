@@ -39,7 +39,6 @@ export type Message = {
 
 export enum ToasterActionTypes {
     ADD_MESSAGE_TO_PIPELINE = 'ADD_MESSAGE_TO_PIPELINE-8266728a-7572-48cb-9ff4-2e27071e1343',
-    ADD_TOAST = 'ADD_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
     MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST = 'MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
     BLOCK_TOAST_FOR_MESSAGE_RECEIVING = 'BLOCK_TOAST_FOR_MESSAGE_RECEIVING-8266728a-7572-48cb-9ff4-2e27071e1343',
     REMOVE_TOAST = 'REMOVE_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
@@ -53,18 +52,11 @@ type AddMessageToPipeline = {
     }
 };
 
-type AddToast = {
-    type: ToasterActionTypes.ADD_TOAST,
-    payload: {
-        toast: Toast,
-    }
-};
-
 type MoveMessagesFromPipelineToToast = {
     type: ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST,
     payload: {
         toastId: string,
-        areMessageIntroAnimationsEnabled: boolean,
+        enableMessageIntroAnimation: boolean,
     }
 };
 
@@ -92,7 +84,6 @@ type RemoveToast = {
 
 export type ToasterActions = (
     AddMessageToPipeline
-    | AddToast
     | MoveMessagesFromPipelineToToast
     | BlockToastForMessageReceiving
     | RemoveToastMessage

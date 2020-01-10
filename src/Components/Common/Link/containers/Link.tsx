@@ -10,7 +10,7 @@ export type FunctionalLinkProps = {
 export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) => {
     return (
         <a
-            href="#"
+            href=""
             className={props.className}
             onClick={(event) => {
                 event.preventDefault();

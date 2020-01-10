@@ -39,7 +39,7 @@ export class Toast extends Component<ToastProps> {
 
     playOutroAnimation() {
         this.outroAnimation = new TimelineLite({paused: true, onComplete: this.props.onRemove});
-        this.outroAnimation.to(this.toast, {opacity: 0, y: 25, duration: 0.4, ease: Power1.easeIn});
+        this.outroAnimation.to(this.toast, {opacity: 0, y: 25, duration: 4, ease: Power1.easeIn});
         this.outroAnimation.to(this.toastWrapper, {height: 0, duration: 0.15});
         this.outroAnimation.play();
     }

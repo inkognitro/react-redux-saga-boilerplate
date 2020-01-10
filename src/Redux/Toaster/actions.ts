@@ -1,6 +1,6 @@
 import {findToastById, getCommonToastIdByType} from "App/Redux/Toaster/selectors";
 import {AppThunk, store} from "App/Redux/root";
-import {ToastTypes, ToasterActions, ToasterActionTypes, Toast} from "App/Redux/Toaster/types";
+import {ToastTypes, ToasterActions, ToasterActionTypes} from "App/Redux/Toaster/types";
 
 const uuidV4 = require('uuid/v4');
 
@@ -10,30 +10,30 @@ type AddToastMessageProps = {
 };
 
 export function addToastMessage(props: AddToastMessageProps): AppThunk {
-    return function(dispatch) {
+    return function (dispatch) {
         const toastId = getCommonToastIdByType(props.type);
         dispatch(addMessageToPipeline(toastId, props.type, props.content));
-
-        //todo: consider toast.canReceiveMessages!
-
         setTimeout(() => {
             const storedToast = findToastById(store.getState(), toastId);
-            if(storedToast === null) {
-                dispatch(addToast({
-                    id: toastId,
-                    type: props.type,
-                    messages: [],
-                    canReceiveMessages: true,
-                }));
+            if (storedToast === null) {
                 dispatch(moveMessagesFromPipelineToToast(toastId, false));
                 return;
             }
-            dispatch(moveMessagesFromPipelineToToast(toastId, true));
+            if (storedToast.canReceiveMessages) {
+                dispatch(moveMessagesFromPipelineToToast(toastId, true));
+            }
         }, 200)
     };
 }
 
-export function removeToast(toastId: string): ToasterActions {
+export function removeToast(toastId: string): AppThunk {
+    return function (dispatch) {
+        dispatch(createRemoveToastMessageAction(toastId));
+        dispatch(moveMessagesFromPipelineToToast(toastId, false));
+    };
+}
+
+function createRemoveToastMessageAction(toastId: string): ToasterActions {
     return {
         type: ToasterActionTypes.REMOVE_TOAST,
         payload: {
@@ -66,16 +66,7 @@ function moveMessagesFromPipelineToToast(toastId: string, areMessageIntroAnimati
         type: ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST,
         payload: {
             toastId: toastId,
-            areMessageIntroAnimationsEnabled: areMessageIntroAnimationsEnabled,
-        }
-    };
-}
-
-function addToast(toast: Toast): ToasterActions {
-    return {
-        type: ToasterActionTypes.ADD_TOAST,
-        payload: {
-            toast: toast,
+            enableMessageIntroAnimation: areMessageIntroAnimationsEnabled,
         }
     };
 }
