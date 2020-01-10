@@ -32,14 +32,16 @@
         border-color: $colorError;
       }
 
-      .app-toast-message-wrapper {
+      .app-toast-message {
         position: relative;
+        background-color:white;
         width: 250px;
+        border-bottom: 1px solid $colorSmoothLineOnWhite;
 
-        .app-toast-message {
+        .app-toast-message-content {
+          overflow: hidden;
           width: 100%;
           padding: 15px 20px;
-          border-bottom: 1px solid $colorSmoothLineOnWhite;
 
           .app-toast-message-close-icon {
             position: absolute;

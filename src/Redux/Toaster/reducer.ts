@@ -6,6 +6,8 @@ const initialToasterState: ToasterState = {
 };
 
 export function toaster (state: ToasterState = initialToasterState, action?: ToasterActions): ToasterState {
+    console.log(action);
+
     if(!action) {
         return state;
     }
@@ -30,7 +32,7 @@ export function toaster (state: ToasterState = initialToasterState, action?: Toa
 
     if(action.type === ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST) {
         const toastId = action.payload.toastId;
-        const areMessageIntroAnimationsEnabled = action.payload.areMessageIntroAnimationsEnabled
+        const areMessageIntroAnimationsEnabled = action.payload.areMessageIntroAnimationsEnabled;
         return Object.assign({}, state, {
             messagesToAdd: state.messagesToAdd.filter(
                 (messageToAdd) => (messageToAdd.toastId !== toastId)
@@ -50,6 +52,42 @@ export function toaster (state: ToasterState = initialToasterState, action?: Toa
                 }
                 return storedToast;
             })
+        });
+    }
+
+    if(action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
+        const toastId = action.payload.toastId;
+        return Object.assign({}, state, {
+            toasts: state.toasts.map((storedToast) => {
+                if(storedToast.id === toastId) {
+                    return Object.assign({}, storedToast, {
+                        canReceiveMessages: false,
+                    });
+                }
+                return storedToast;
+            })
+        });
+    }
+
+    if(action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
+        const toastId = action.payload.toastId;
+        const messageId = action.payload.toastMessageId;
+        return Object.assign({}, state, {
+            toasts: state.toasts.map((storedToast) => {
+                if(storedToast.id === toastId) {
+                    return Object.assign({}, storedToast, {
+                        messages: storedToast.messages.filter((message) => (message.id !== messageId)),
+                    });
+                }
+                return storedToast;
+            })
+        });
+    }
+
+    if(action.type === ToasterActionTypes.REMOVE_TOAST) {
+        const toastId = action.payload.toastId;
+        return Object.assign({}, state, {
+            toasts: state.toasts.filter((storedToast) => (storedToast.id !== toastId))
         });
     }
 

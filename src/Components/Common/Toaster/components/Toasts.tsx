@@ -5,6 +5,9 @@ import {Toast as ToastData} from "App/Redux/Toaster/types";
 
 export type ToastsProps = {
     toasts: ToastData[],
+    onRemoveToast(toastId: string): void,
+    onRemoveToastMessage(toastId: string, toastMessageId: string): void,
+    onBlockToastForMessageReceiving(toastId: string): void,
 };
 
 export const Toasts: FunctionComponent<ToastsProps> = (props) => {
@@ -12,8 +15,11 @@ export const Toasts: FunctionComponent<ToastsProps> = (props) => {
         <div className="app-toasts">
             {props.toasts.map((toastData: ToastData) => (
                 <Toast
-                    key={toastData.id}
                     {...toastData}
+                    key={toastData.id}
+                    onRemove={() => props.onRemoveToast(toastData.id)}
+                    onRemoveMessage={(messageId: string) => props.onRemoveToastMessage(toastData.id, messageId)}
+                    onBlockMessageReceiving={() => props.onBlockToastForMessageReceiving(toastData.id)}
                 />
             ))}
         </div>

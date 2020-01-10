@@ -13,6 +13,9 @@ export function addToastMessage(props: AddToastMessageProps): AppThunk {
     return function(dispatch) {
         const toastId = getCommonToastIdByType(props.type);
         dispatch(addMessageToPipeline(toastId, props.type, props.content));
+
+        //todo: consider toast.canReceiveMessages!
+
         setTimeout(() => {
             const storedToast = findToastById(store.getState(), toastId);
             if(storedToast === null) {
@@ -20,12 +23,41 @@ export function addToastMessage(props: AddToastMessageProps): AppThunk {
                     id: toastId,
                     type: props.type,
                     messages: [],
+                    canReceiveMessages: true,
                 }));
                 dispatch(moveMessagesFromPipelineToToast(toastId, false));
                 return;
             }
             dispatch(moveMessagesFromPipelineToToast(toastId, true));
         }, 200)
+    };
+}
+
+export function removeToast(toastId: string): ToasterActions {
+    return {
+        type: ToasterActionTypes.REMOVE_TOAST,
+        payload: {
+            toastId: toastId,
+        }
+    };
+}
+
+export function blockToastForMessageReceiving(toastId: string): ToasterActions {
+    return {
+        type: ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
+        payload: {
+            toastId: toastId,
+        }
+    };
+}
+
+export function removeToastMessage(toastId: string, toastMessageId: string): ToasterActions {
+    return {
+        type: ToasterActionTypes.REMOVE_TOAST_MESSAGE,
+        payload: {
+            toastId: toastId,
+            toastMessageId: toastMessageId
+        }
     };
 }
 

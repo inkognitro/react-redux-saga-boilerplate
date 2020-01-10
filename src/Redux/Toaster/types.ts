@@ -28,6 +28,7 @@ export type Toast = {
     id: string,
     type: ToastTypes,
     messages: Message[],
+    canReceiveMessages: boolean,
 };
 
 export type Message = {
@@ -40,6 +41,9 @@ export enum ToasterActionTypes {
     ADD_MESSAGE_TO_PIPELINE = 'ADD_MESSAGE_TO_PIPELINE-8266728a-7572-48cb-9ff4-2e27071e1343',
     ADD_TOAST = 'ADD_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
     MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST = 'MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
+    BLOCK_TOAST_FOR_MESSAGE_RECEIVING = 'BLOCK_TOAST_FOR_MESSAGE_RECEIVING-8266728a-7572-48cb-9ff4-2e27071e1343',
+    REMOVE_TOAST = 'REMOVE_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
+    REMOVE_TOAST_MESSAGE = 'REMOVE_TOAST_MESSAGE-8266728a-7572-48cb-9ff4-2e27071e1343',
 }
 
 type AddMessageToPipeline = {
@@ -64,4 +68,33 @@ type MoveMessagesFromPipelineToToast = {
     }
 };
 
-export type ToasterActions = (AddMessageToPipeline | AddToast | MoveMessagesFromPipelineToToast);
+type BlockToastForMessageReceiving = {
+    type: ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
+    payload: {
+        toastId: string,
+    }
+};
+
+type RemoveToastMessage = {
+    type: ToasterActionTypes.REMOVE_TOAST_MESSAGE,
+    payload: {
+        toastId: string,
+        toastMessageId: string,
+    }
+};
+
+type RemoveToast = {
+    type: ToasterActionTypes.REMOVE_TOAST,
+    payload: {
+        toastId: string,
+    }
+};
+
+export type ToasterActions = (
+    AddMessageToPipeline
+    | AddToast
+    | MoveMessagesFromPipelineToToast
+    | BlockToastForMessageReceiving
+    | RemoveToastMessage
+    | RemoveToast
+);

@@ -24,7 +24,24 @@ export type CommonIconProps = {
     onClick?(): void,
 };
 
-export function createBaseClassNames(props: CommonIconProps): string {
+type IconProps = {
+    className?: string,
+    onClick?(): void,
+};
+
+export function createBaseIconProps(commonProps: CommonIconProps): IconProps {
+    let props = {
+        className: createBaseClassNames(commonProps),
+    };
+    if(commonProps.onClick) {
+        props = Object.assign({}, props, {
+            onClick: commonProps.onClick
+        });
+    }
+    return props;
+}
+
+function createBaseClassNames(props: CommonIconProps): string {
     let classNames = ['app-icon'];
 
     if(props.className) {

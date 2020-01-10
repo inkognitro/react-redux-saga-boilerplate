@@ -19,14 +19,16 @@ function getToastClassName(type: string): string {
 }
 
 export type ToastProps = (ToastData & {
-    //onRemove(): void,
-    //onRemoveMessage(messageId: string): void,
+    onRemove(): void,
+    onRemoveMessage(messageId: string): void,
+    onBlockMessageReceiving(): void,
 });
 
 export class Toast extends Component<ToastProps> {
     private toastWrapper: HTMLDivElement;
     private toast: HTMLDivElement;
     private introAnimation: TimelineLite;
+    private outroAnimation: TimelineLite;
 
     playIntroAnimation() {
         this.introAnimation = new TimelineLite({paused: true});
@@ -35,8 +37,32 @@ export class Toast extends Component<ToastProps> {
         this.introAnimation.play();
     }
 
+    playOutroAnimation() {
+        this.outroAnimation = new TimelineLite({paused: true, onComplete: this.props.onRemove});
+        this.outroAnimation.to(this.toast, {opacity: 0, y: 25, duration: 0.4, ease: Power1.easeIn});
+        this.outroAnimation.to(this.toastWrapper, {height: 0, duration: 0.15});
+        this.outroAnimation.play();
+    }
+
     componentDidMount() {
         this.playIntroAnimation();
+    }
+
+    shouldRemoveToastOnClickCloseMessage() {
+        return (this.props.messages.length === 1);
+    }
+
+    close() {
+        this.props.onBlockMessageReceiving();
+        this.playOutroAnimation();
+    }
+
+    removeMessage(messageId: string) {
+        if(this.shouldRemoveToastOnClickCloseMessage()) {
+            this.close();
+            return;
+        }
+        this.props.onRemoveMessage(messageId);
     }
 
     render() {
@@ -45,8 +71,10 @@ export class Toast extends Component<ToastProps> {
                 <div ref={(element: HTMLDivElement) => this.toast = element} className={getToastClassName(this.props.type)}>
                     {this.props.messages.map((messageData: MessageData) => (
                         <Message
-                            key={messageData.id}
                             {...messageData}
+                            key={messageData.id}
+                            shouldPlayOutroAnimationOnCloseClick={!this.shouldRemoveToastOnClickCloseMessage()}
+                            onRemove={() => this.removeMessage(messageData.id)}
                         />
                     ))}
                 </div>
