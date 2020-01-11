@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {Action, applyMiddleware, combineReducers, createStore} from 'redux'
-import {auth} from 'Common/Auth/redux/reducer';
-import {toaster} from 'Common/Layout/redux/Toaster/reducer';
-import {cache} from 'Common/Cache/redux/reducer';
+import {auth} from 'App/Common/Auth/Redux/Reducer';
+import {toaster} from 'App/Common/Layout/Redux/Toaster/Reducer';
+import {cache} from 'App/Common/Cache/Redux/Reducer';
 import thunkMiddleware, {ThunkAction} from 'redux-thunk';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Home} from 'MainApp/Routing/components/Home';
-import {Login} from "MainApp/Routing/components/Auth/Login";
-import {NotFoundError} from 'MainApp/Routing/components/Errors';
-import {homeRoute, loginRoute} from 'MainApp/Routing/routes';
-import {initializeCurrentUser} from "Common/Auth/redux/actions";
+import {Home} from 'MainApp/Routing/Components/Home';
+import {Login} from "MainApp/Routing/Components/Auth/Login";
+import {NotFoundError} from 'MainApp/Routing/Components/Errors';
+import {homeRoute, loginRoute} from 'App/MainApp/Routing/RouteFactory';
+import {initializeCurrentUser} from "App/Common/Auth/Redux/Actions";
 import 'MainApp/App.scss';
-import {Toaster} from "MainApp/Layout/components/Toaster";
+import {Toaster} from "MainApp/Layout/Components/Toaster";
 
 const root = combineReducers({auth, cache, toaster});
 export type RootState = ReturnType<typeof root>;
