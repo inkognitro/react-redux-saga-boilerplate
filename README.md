@@ -4,7 +4,7 @@
 # React Redux Typescript Boilerplate - Under construction!!!
 Frontend boilerplate with time travelling through react and redux, written in TypeScript.
  
-## Setup
+## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
 2. Clone or download this repository
 3. Open console and move into project folder
@@ -37,10 +37,9 @@ to build the app in the *dist* folder, run:
 9. Integration of Material Icons
   
 ## Open todos (in progress)
-1. Toast creation and integration instead of using *alert('foo')*;
-2. Authentication with JWT payload, considering TTL for cookie.
-3. UTC datetime handling
-4. Form components
+1. Authentication with JWT payload, considering TTL for cookie.
+2. UTC datetime handling
+3. Form components
 
 ## Appreciation
 Many thanks to [Dan Abramov](http://github.com/gaearon) for his contributions in the JS world, especially with react and [redux](http://redux.js.org/).
