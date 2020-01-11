@@ -1,18 +1,19 @@
 import {
+    executeRequest as executeGeneralRequest,
+    RequestExecutionSettings as GeneralRequestExecutionSettings,
+} from "Common/RequestHandling/Redux/Actions";
+import {
     createGetRequest as createGeneralGetRequest,
     createPostRequest as createGeneralPostRequest,
-    executeRequest as executeGeneralRequest,
-    ExecutionSummary as GeneralExecutionSummary,
     GetRequestCreationSettings,
-    PostRequestCreationSettings,
-    Request,
-    RequestExecutionSettings as GeneralRequestExecutionSettings,
-} from "Common/Utility/HttpRequestHandling";
+    PostRequestCreationSettings
+} from "Common/RequestHandling/Redux/Factory";
 import {findCurrentUserApiToken} from "Common/Auth/Redux/Selectors";
 import {apiV1BaseUrl} from "Common/config";
-import {store} from "MainApp/App";
+import {AppThunk, store} from "MainApp/App";
 import {addToastMessage} from "Common/Layout/Redux/Toaster/Actions";
 import {ToastTypes} from "Common/Layout/Redux/Toaster/Types";
+import {ExecutionSummary as GeneralExecutionSummary, Request} from "Common/RequestHandling/Redux/Types";
 
 export const API_TOKEN_HEADER_NAME = 'X-API-TOKEN';
 
@@ -30,7 +31,7 @@ export function createPostRequest(settings: PostRequestCreationSettings): Reques
 }
 
 export type RequestExecutionSettings = GeneralRequestExecutionSettings;
-export function executeRequest(settings: RequestExecutionSettings): void {
+export function executeRequest(settings: RequestExecutionSettings): AppThunk {
     const apiRequestExecutionSettings = Object.assign({}, settings, {
         onError: (summary: ExecutionSummary): void  => {
             dispatchToastErrorMessages(summary);
@@ -39,7 +40,9 @@ export function executeRequest(settings: RequestExecutionSettings): void {
             }
         }
     });
-    executeGeneralRequest(apiRequestExecutionSettings);
+    return function(dispatch) {
+        dispatch(executeGeneralRequest(apiRequestExecutionSettings));
+    };
 }
 
 export type ExecutionSummary = GeneralExecutionSummary;

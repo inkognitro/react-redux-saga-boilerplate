@@ -5,13 +5,13 @@ import {
     createGetRequest,
     executeRequest,
     ExecutionSummary
-} from "MainApp/RequestHandling/ApiRequestHandling";
-import {receiveUserData} from "MainApp/RequestHandling/Redux/UserRepository/Actions";
+} from "MainApp/Utility/ApiRequestHandling";
+import {receiveUserData} from "MainApp/Cache/Redux/UserRepository/Actions";
 import {findCurrentUsersApiTokenFromCookie} from "Common/Auth/Redux/Selectors";
-import {getResponseBodyJson} from "Common/Utility/HttpRequestHandling";
 import {findCookieContent, removeCookie, setCookie} from "Common/Utility/CookieHandling";
-import {User} from "MainApp/RequestHandling/Redux/UserRepository/Types";
+import {User} from "MainApp/Cache/Redux/UserRepository/Types";
 import {AppThunk} from "MainApp/App";
+import {getResponseBodyJson} from "Common/RequestHandling/Redux/Selectors";
 
 export function initializeCurrentUser(): AppThunk {
     const apiToken = findCurrentUsersApiTokenFromCookie();
@@ -41,7 +41,7 @@ export function authenticate(username: string, password: string, shouldRemember:
                 password: password,
             },
         });
-        executeRequest({
+        dispatch(executeRequest({
             request: request,
             onSuccess(summary: ExecutionSummary): void {
                 removeCookie(API_TOKEN_COOKIE_NAME);
@@ -49,7 +49,7 @@ export function authenticate(username: string, password: string, shouldRemember:
                 const user = getResponseBodyJson(summary).data.user;
                 setCurrentUser(user, dispatch, shouldRemember);
             }
-        });
+        }));
     }
 }
 
@@ -61,7 +61,7 @@ function fetchNewApiToken(currentApiToken: string): AppThunk {
                 [API_TOKEN_HEADER_NAME]: currentApiToken
             },
         });
-        executeRequest({
+        dispatch(executeRequest({
             request: request,
             onSuccess(summary: ExecutionSummary): void {
                 // @ts-ignore
@@ -71,7 +71,7 @@ function fetchNewApiToken(currentApiToken: string): AppThunk {
             onError(): void {
                 dispatch(setCurrentUserId(null));
             }
-        });
+        }));
     }
 }
 

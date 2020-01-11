@@ -1,0 +1,51 @@
+import {Request, RequestMethods} from "Common/RequestHandling/Redux/Types";
+import {v4 as uuidV4} from "uuid";
+
+export type GetRequestCreationSettings = {
+    url: string,
+    queryParameters?: object,
+    headers?: object,
+};
+
+export function createGetRequest(settings: GetRequestCreationSettings): Request {
+    return Object.assign({}, settings, {
+        method: RequestMethods.GET,
+        id: uuidV4(),
+    });
+}
+
+export type PostRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
+
+export function createPostRequest(settings: PostRequestCreationSettings): Request {
+    return Object.assign({}, settings, {
+        method: RequestMethods.POST,
+        id: uuidV4(),
+    });
+}
+
+export type PutRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
+
+export function createPutRequest(settings: PutRequestCreationSettings): Request {
+    return Object.assign({}, settings, {
+        method: RequestMethods.PUT,
+        id: uuidV4(),
+    });
+}
+
+export type PatchRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
+
+export function createPatchRequest(settings: PatchRequestCreationSettings): Request {
+    return Object.assign({}, settings, {
+        method: RequestMethods.PATCH,
+        id: uuidV4(),
+    });
+}
+
+export type DeleteRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
+
+export function createDeleteRequest(settings: DeleteRequestCreationSettings): Request {
+    return Object.assign({}, settings, {
+        method: RequestMethods.DELETE,
+        id: uuidV4(),
+    });
+}
