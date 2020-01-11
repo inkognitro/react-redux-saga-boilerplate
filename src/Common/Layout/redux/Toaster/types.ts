@@ -56,7 +56,6 @@ type MoveMessagesFromPipelineToToast = {
     type: ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST,
     payload: {
         toastId: string,
-        enableMessageIntroAnimation: boolean,
     }
 };
 

@@ -1,15 +1,6 @@
-import {CommonToastIds, Toast, ToastTypes} from "Common/Layout/redux/Toaster/types";
-import {RootState} from "MainApp/App";
+import {CommonToastIds, Toast, ToasterState, ToastTypes} from "Common/Layout/redux/Toaster/types";
 
 //todo: use reselect library for performance optimization
-
-export function findToastById(state: RootState, toastId: string): (null | Toast) {
-    const toast = state.toaster.toasts.find((toast) => (toast.id === toastId));
-    if(!toast) {
-        return null;
-    }
-    return toast;
-}
 
 export function getCommonToastIdByType(type: ToastTypes): string {
     if(type === ToastTypes.INFO) {
@@ -27,6 +18,6 @@ export function getCommonToastIdByType(type: ToastTypes): string {
     throw new Error('toast type "' + type + '" not supported');
 }
 
-export function getToasts(state: RootState): Toast[] {
-    return state.toaster.toasts;
+export function getToasts(state: ToasterState): Toast[] {
+    return state.toasts;
 }

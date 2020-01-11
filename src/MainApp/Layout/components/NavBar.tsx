@@ -43,8 +43,8 @@ export const RepresentationalNavBar: FunctionComponent<RepresentationalNavBarPro
 
 const mapStateToProps = (state: RootState) => {
     return {
-        hasCurrentUserBeenInitialized: hasCurrentUserBeenInitialized(state),
-        currentUser: findCurrentUser(state),
+        hasCurrentUserBeenInitialized: hasCurrentUserBeenInitialized(state.auth),
+        currentUser: findCurrentUser(state.auth, state.cache.userRepository),
     };
 };
 

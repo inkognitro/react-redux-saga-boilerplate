@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContentPage} from 'MainApp/Layout/PageTypes/ContentPage';
+import {ContentPage} from 'MainApp/Layout/components/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/components/Link/Link';
 import {addToastMessage} from "Common/Layout/redux/Toaster/actions";
 import {ToastTypes} from "Common/Layout/redux/Toaster/types";

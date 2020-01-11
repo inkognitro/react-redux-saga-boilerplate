@@ -1,8 +1,7 @@
-import {findToastById, getCommonToastIdByType} from "Common/Layout/redux/Toaster/selectors";
+import {v4 as uuidV4} from 'uuid';
+import {getCommonToastIdByType} from "Common/Layout/redux/Toaster/selectors";
 import {ToastTypes, ToasterActions, ToasterActionTypes} from "Common/Layout/redux/Toaster/types";
-import {AppThunk, store} from "MainApp/App";
-
-const uuidV4 = require('uuid/v4');
+import {AppThunk} from "MainApp/App";
 
 type AddToastMessageProps = {
     type: ToastTypes,
@@ -14,14 +13,7 @@ export function addToastMessage(props: AddToastMessageProps): AppThunk {
         const toastId = getCommonToastIdByType(props.type);
         dispatch(addMessageToPipeline(toastId, props.type, props.content));
         setTimeout(() => {
-            const storedToast = findToastById(store.getState(), toastId);
-            if (storedToast === null) {
-                dispatch(moveMessagesFromPipelineToToast(toastId, false));
-                return;
-            }
-            if (storedToast.canReceiveMessages) {
-                dispatch(moveMessagesFromPipelineToToast(toastId, true));
-            }
+            dispatch(moveMessagesFromPipelineToToast(toastId));
         }, 200)
     };
 }
@@ -29,7 +21,7 @@ export function addToastMessage(props: AddToastMessageProps): AppThunk {
 export function removeToast(toastId: string): AppThunk {
     return function (dispatch) {
         dispatch(createRemoveToastMessageAction(toastId));
-        dispatch(moveMessagesFromPipelineToToast(toastId, false));
+        dispatch(moveMessagesFromPipelineToToast(toastId));
     };
 }
 
@@ -61,12 +53,11 @@ export function removeToastMessage(toastId: string, toastMessageId: string): Toa
     };
 }
 
-function moveMessagesFromPipelineToToast(toastId: string, areMessageIntroAnimationsEnabled: boolean): ToasterActions {
+function moveMessagesFromPipelineToToast(toastId: string): ToasterActions {
     return {
         type: ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST,
         payload: {
-            toastId: toastId,
-            enableMessageIntroAnimation: areMessageIntroAnimationsEnabled,
+            toastId: toastId
         }
     };
 }

@@ -12,7 +12,7 @@ import {NotFoundError} from 'MainApp/Routing/components/Errors';
 import {homeRoute, loginRoute} from 'MainApp/Routing/routes';
 import {initializeCurrentUser} from "Common/Auth/redux/actions";
 import 'MainApp/App.scss';
-import {Toaster} from "MainApp/Layout/Toaster";
+import {Toaster} from "MainApp/Layout/components/Toaster";
 
 const root = combineReducers({auth, cache, toaster});
 export type RootState = ReturnType<typeof root>;

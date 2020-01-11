@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContentPage} from 'MainApp/Layout/PageTypes/ContentPage';
+import {ContentPage} from 'MainApp/Layout/components/PageTypes/ContentPage';
 import {FunctionalLink} from 'Common/Layout/components/Link/Link';
 import {authenticate} from "Common/Auth/redux/actions";
 import {store} from "MainApp/App";

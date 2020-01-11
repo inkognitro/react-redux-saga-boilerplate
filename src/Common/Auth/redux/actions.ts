@@ -5,10 +5,10 @@ import {
     createGetRequest,
     executeRequest,
     ExecutionSummary
-} from "Common/Utility/Http/ApiRequestHandling";
+} from "MainApp/Utility/ApiRequestHandling";
 import {receiveUserData} from "Common/Cache/redux/UserRepository/actions";
 import {findCurrentUsersApiTokenFromCookie} from "Common/Auth/redux/selectors";
-import {getResponseBodyJson} from "Common/Utility/Http/RequestHandling";
+import {getResponseBodyJson} from "Common/Utility/HttpRequestHandling";
 import {findCookieContent, removeCookie, setCookie} from "Common/Utility/CookieHandling";
 import {User} from "Common/Cache/redux/UserRepository/types";
 import {AppThunk} from "MainApp/App";

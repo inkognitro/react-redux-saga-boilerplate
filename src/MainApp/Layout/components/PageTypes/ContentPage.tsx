@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {NavBar} from "MainApp/Layout/NavBar";
+import {NavBar} from "MainApp/Layout/components/NavBar";
 
 export type ContentPageProps = {};
 

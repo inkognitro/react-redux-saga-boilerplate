@@ -11,13 +11,13 @@ function createInitialToastState(): Toast {
 }
 
 function toastReducer(state: Toast = createInitialToastState(), action?: ToasterActions): Toast {
-    if(!action) {
+    if (!action) {
         return state;
     }
 
-    if(action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
+    if (action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
         const toastId = action.payload.toastId;
-        if(toastId !== state.id) {
+        if (toastId !== state.id) {
             return state;
         }
         const messageId = action.payload.toastMessageId;
@@ -26,9 +26,9 @@ function toastReducer(state: Toast = createInitialToastState(), action?: Toaster
         });
     }
 
-    if(action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
+    if (action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
         const toastId = action.payload.toastId;
-        if(toastId !== state.id) {
+        if (toastId !== state.id) {
             return state;
         }
         return Object.assign({}, state, {
@@ -44,12 +44,12 @@ const initialToasterState: ToasterState = {
     toasts: []
 };
 
-export function toaster (state: ToasterState = initialToasterState, action?: ToasterActions): ToasterState {
-    if(!action) {
+export function toaster(state: ToasterState = initialToasterState, action?: ToasterActions): ToasterState {
+    if (!action) {
         return state;
     }
 
-    if(action.type === ToasterActionTypes.ADD_MESSAGE_TO_PIPELINE) {
+    if (action.type === ToasterActionTypes.ADD_MESSAGE_TO_PIPELINE) {
         return Object.assign({}, state, {
             messagesToAdd: [
                 action.payload.messageToAdd,
@@ -58,19 +58,12 @@ export function toaster (state: ToasterState = initialToasterState, action?: Toa
         });
     }
 
-    if(action.type === ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST) {
+    if (action.type === ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST) {
         const toastId = action.payload.toastId;
-        const enableMessageIntroAnimation = action.payload.enableMessageIntroAnimation;
-        const toast = findOrCreateNullableToastForMessagesToAdd(state, toastId);
-        if(!toast) {
+        const newToast = findUpdatedOrCreatedToastWithAddedMessages(state, toastId);
+        if (!newToast) {
             return state;
         }
-        const newToast = Object.assign({}, toast, {
-            messages: [
-                ...createAdditionalMessages(state, toastId, enableMessageIntroAnimation),
-                ...toast.messages,
-            ]
-        });
         const doesToastAlreadyExist = (state.toasts.findIndex((toast) => (toast.id === toastId)) !== -1);
         let toastsToAdd = (doesToastAlreadyExist ? [] : [newToast]);
         return Object.assign({}, state, {
@@ -82,19 +75,19 @@ export function toaster (state: ToasterState = initialToasterState, action?: Toa
         });
     }
 
-    if(action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
+    if (action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
         return Object.assign({}, state, {
             toasts: state.toasts.map((toast) => toastReducer(toast, action))
         });
     }
 
-    if(action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
+    if (action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
         return Object.assign({}, state, {
             toasts: state.toasts.map((toast) => toastReducer(toast, action))
         });
     }
 
-    if(action.type === ToasterActionTypes.REMOVE_TOAST) {
+    if (action.type === ToasterActionTypes.REMOVE_TOAST) {
         const toastId = action.payload.toastId;
         return Object.assign({}, state, {
             toasts: state.toasts.filter((storedToast) => (storedToast.id !== toastId))
@@ -104,29 +97,31 @@ export function toaster (state: ToasterState = initialToasterState, action?: Toa
     return state;
 }
 
-function findOrCreateNullableToastForMessagesToAdd(toaster: ToasterState, toastId: string): (null | Toast) {
-    const toast = toaster.toasts.find((toast) => (toast.id === toastId));
-    if(toast) {
-        return toast;
-    }
-    const firstMessageToAdd = toaster.messagesToAdd.slice().reverse().find(
-        (messageToAdd) => (messageToAdd.id = toastId)
-    );
-    if(!firstMessageToAdd) {
+function findUpdatedOrCreatedToastWithAddedMessages(toasterState: ToasterState, toastId: string): (null | Toast) {
+    const storedToast = toasterState.toasts.find((toast) => (toast.id === toastId));
+    if (storedToast && !storedToast.canReceiveMessages) {
         return null;
     }
-    return Object.assign({}, createInitialToastState(), {
+    const messagesToAdd = toasterState.messagesToAdd.filter((messageToAdd) => (messageToAdd.toastId === toastId));
+    if (messagesToAdd.length === 0) {
+        return null;
+    }
+    if(storedToast) {
+        return Object.assign({}, storedToast, {
+            messages: [
+                ...createAdditionalMessages(messagesToAdd, true),
+                ...storedToast.messages
+            ]
+        });
+    }
+    return Object.assign(createInitialToastState(), {
         id: toastId,
-        type: firstMessageToAdd.type,
+        type: messagesToAdd[0].type,
+        messages: createAdditionalMessages(messagesToAdd, false)
     });
 }
 
-function createAdditionalMessages(
-    state: ToasterState,
-    toastId: string,
-    enableMessageIntroAnimation: boolean
-): Message[] {
-    const messagesToAdd = state.messagesToAdd.filter((messageToAdd) => (messageToAdd.toastId === toastId));
+function createAdditionalMessages(messagesToAdd: MessageToAdd[], enableMessageIntroAnimation: boolean): Message[] {
     return messagesToAdd.map((messagesToAdd: MessageToAdd): Message => ({
         id: messagesToAdd.id,
         content: messagesToAdd.content,

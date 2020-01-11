@@ -1,21 +1,20 @@
-import {User} from "Common/Cache/redux/UserRepository/types";
+import {User, UserRepositoryState} from "Common/Cache/redux/UserRepository/types";
 import {findUserById} from "Common/Cache/redux/UserRepository/selectors";
 import {findCookieContent} from "Common/Utility/CookieHandling";
-import {API_TOKEN_COOKIE_NAME} from "Common/Auth/redux/types";
-import {RootState} from "MainApp/App";
+import {API_TOKEN_COOKIE_NAME, AuthState} from "Common/Auth/redux/types";
 
 //todo: use reselect library for performance optimization
 
-export function findCurrentUser(state: RootState): (null | User) {
-    const currentUserId = state.auth.currentUserId;
+export function findCurrentUser(state: AuthState, userRepositoryState: UserRepositoryState): (null | User) {
+    const currentUserId = state.currentUserId;
     if(!currentUserId) {
         return null;
     }
-    return findUserById(state, currentUserId);
+    return findUserById(userRepositoryState, currentUserId);
 }
 
-export function findCurrentUserApiToken(state: RootState): (null | string) {
-    const currentUser = findCurrentUser(state);
+export function findCurrentUserApiToken(state: AuthState, userRepositoryState: UserRepositoryState): (null | string) {
+    const currentUser = findCurrentUser(state, userRepositoryState);
     if(!currentUser) {
         return null;
     }
@@ -29,6 +28,6 @@ export function findCurrentUsersApiTokenFromCookie(): (null | string) {
     return findCookieContent(API_TOKEN_COOKIE_NAME);
 }
 
-export function hasCurrentUserBeenInitialized(state: RootState): boolean {
-    return state.auth.hasCurrentUserBeenInitialized;
+export function hasCurrentUserBeenInitialized(state: AuthState): boolean {
+    return state.hasCurrentUserBeenInitialized;
 }

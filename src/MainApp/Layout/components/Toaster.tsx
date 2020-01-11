@@ -7,7 +7,7 @@ import {RootState} from "MainApp/App";
 
 const mapStateToProps = (state: RootState) => {
     return {
-        toasts: getToasts(state)
+        toasts: getToasts(state.toaster)
     };
 };
 

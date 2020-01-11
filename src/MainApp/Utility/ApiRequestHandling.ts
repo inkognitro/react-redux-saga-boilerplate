@@ -4,9 +4,8 @@ import {
     executeRequest as executeGeneralRequest,
     GetRequestCreationSettings,
     PostRequestCreationSettings,
-    ExecutionSummary as GeneralExecutionSummary,
-} from "./RequestHandling";
-import {Request} from "./types";
+    ExecutionSummary as GeneralExecutionSummary, Request,
+} from "Common/Utility/HttpRequestHandling";
 import {findCurrentUserApiToken} from "Common/Auth/redux/selectors";
 import {apiV1BaseUrl} from "Common/config";
 import {store} from "MainApp/App";
@@ -44,7 +43,8 @@ const createWithApiTokenHeaderEnhancedRequest = (request: Request): Request => {
     if(request.headers && request.headers[API_TOKEN_HEADER_NAME]) {
         return request;
     }
-    const apiToken = findCurrentUserApiToken(store.getState());
+    const reduxState = store.getState();
+    const apiToken = findCurrentUserApiToken(reduxState.auth, reduxState.cache.userRepository);
     if(!apiToken) {
         return request;
     }

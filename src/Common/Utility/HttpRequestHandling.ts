@@ -1,10 +1,27 @@
 import axios from 'axios';
-const uuidV4 = require('uuid/v4');
-import {
-    RequestMethods,
-    Request,
-    Response,
-} from "./types";
+import {v4 as uuidV4} from 'uuid';
+
+enum RequestMethods {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    PATCH = 'PATCH',
+    DELETE = 'DELETE',
+}
+
+export type Request = {
+    method: RequestMethods,
+    id: string,
+    url: string,
+    queryParameters?: object,
+    headers?: object,
+    body?: object,
+};
+
+type Response = {
+    statusCode: number,
+    body: object,
+};
 
 export type ExecutionSummary = {
     request: Request,
