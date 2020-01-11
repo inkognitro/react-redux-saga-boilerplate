@@ -1,4 +1,4 @@
-import {CommonToastIds, Toast, ToasterState, ToastTypes} from "App/Common/Layout/Redux/Toaster/Types";
+import {CommonToastIds, Toast, ToasterState, ToastTypes} from "Common/Layout/Redux/Toaster/Types";
 
 //todo: use reselect library for performance optimization
 

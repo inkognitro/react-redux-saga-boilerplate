@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {CloseIcon} from "Common/Layout/Components/Icons/CloseIcon";
 import {IconSizes, IconTypes} from "Common/Layout/Components/Icons/Icon";
-import {Message as MessageData} from "App/Common/Layout/Redux/Toaster/Types";
+import {Message as MessageData} from "Common/Layout/Redux/Toaster/Types";
 import {TimelineLite, Power1} from 'gsap';
 
 export type MessageProps = (MessageData & {

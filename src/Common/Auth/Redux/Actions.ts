@@ -6,11 +6,11 @@ import {
     executeRequest,
     ExecutionSummary
 } from "MainApp/Utility/ApiRequestHandling";
-import {receiveUserData} from "App/Common/Cache/Redux/UserRepository/Actions";
-import {findCurrentUsersApiTokenFromCookie} from "App/Common/Auth/Redux/Selectors";
+import {receiveUserData} from "Common/Cache/Redux/UserRepository/Actions";
+import {findCurrentUsersApiTokenFromCookie} from "Common/Auth/Redux/Selectors";
 import {getResponseBodyJson} from "Common/Utility/HttpRequestHandling";
 import {findCookieContent, removeCookie, setCookie} from "Common/Utility/CookieHandling";
-import {User} from "App/Common/Cache/Redux/UserRepository/Types";
+import {User} from "Common/Cache/Redux/UserRepository/Types";
 import {AppThunk} from "MainApp/App";
 
 export function initializeCurrentUser(): AppThunk {

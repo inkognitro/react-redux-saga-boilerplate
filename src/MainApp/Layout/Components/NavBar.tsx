@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {findCurrentUser, hasCurrentUserBeenInitialized} from "App/Common/Auth/Redux/Selectors";
-import {logout} from "App/Common/Auth/Redux/Actions";
+import {findCurrentUser, hasCurrentUserBeenInitialized} from "Common/Auth/Redux/Selectors";
+import {logout} from "Common/Auth/Redux/Actions";
 import {RootState} from "MainApp/App";
-import {User} from 'App/Common/Cache/Redux/UserRepository/Types';
-import {createHomeRouteUrl, createLoginRouteUrl} from 'App/MainApp/Routing/RouteFactory';
+import {User} from 'Common/Cache/Redux/UserRepository/Types';
+import {createHomeRouteUrl, createLoginRouteUrl} from 'MainApp/Routing/RouteFactory';
 import {FunctionalLink} from "Common/Layout/Components/Link/Link";
 import './NavBar.scss';
 

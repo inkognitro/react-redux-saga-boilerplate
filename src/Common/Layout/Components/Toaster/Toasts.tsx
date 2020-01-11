@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {Toast} from './Toast';
 import './Toasts.scss';
-import {Toast as ToastData} from "App/Common/Layout/Redux/Toaster/Types";
+import {Toast as ToastData} from "Common/Layout/Redux/Toaster/Types";
 
 export type ToastsProps = {
     toasts: ToastData[],

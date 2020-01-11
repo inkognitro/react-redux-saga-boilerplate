@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Message} from "./Message";
-import {Toast as ToastData} from "App/Common/Layout/Redux/Toaster/Types";
-import {Message as MessageData} from "App/Common/Layout/Redux/Toaster/Types";
+import {Toast as ToastData} from "Common/Layout/Redux/Toaster/Types";
+import {Message as MessageData} from "Common/Layout/Redux/Toaster/Types";
 import {Power1, TimelineLite} from "gsap/gsap-core";
 
 function getToastClassName(type: string): string {

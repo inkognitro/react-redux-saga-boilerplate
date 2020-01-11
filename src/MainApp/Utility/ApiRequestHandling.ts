@@ -6,7 +6,7 @@ import {
     PostRequestCreationSettings,
     ExecutionSummary as GeneralExecutionSummary, Request,
 } from "Common/Utility/HttpRequestHandling";
-import {findCurrentUserApiToken} from "App/Common/Auth/Redux/Selectors";
+import {findCurrentUserApiToken} from "Common/Auth/Redux/Selectors";
 import {apiV1BaseUrl} from "Common/config";
 import {store} from "MainApp/App";
 

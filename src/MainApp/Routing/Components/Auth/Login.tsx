@@ -1,7 +1,7 @@
 import React from 'react';
 import {ContentPage} from 'MainApp/Layout/Components/PageTypes/ContentPage';
 import {FunctionalLink} from 'Common/Layout/Components/Link/Link';
-import {authenticate} from "App/Common/Auth/Redux/Actions";
+import {authenticate} from "Common/Auth/Redux/Actions";
 import {store} from "MainApp/App";
 
 export class Login extends React.Component {

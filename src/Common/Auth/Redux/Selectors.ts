@@ -1,7 +1,7 @@
-import {User, UserRepositoryState} from "App/Common/Cache/Redux/UserRepository/Types";
-import {findUserById} from "App/Common/Cache/Redux/UserRepository/Selectors";
+import {User, UserRepositoryState} from "Common/Cache/Redux/UserRepository/Types";
+import {findUserById} from "Common/Cache/Redux/UserRepository/Selectors";
 import {findCookieContent} from "Common/Utility/CookieHandling";
-import {API_TOKEN_COOKIE_NAME, AuthState} from "App/Common/Auth/Redux/Types";
+import {API_TOKEN_COOKIE_NAME, AuthState} from "Common/Auth/Redux/Types";
 
 //todo: use reselect library for performance optimization
 
