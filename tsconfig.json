@@ -10,7 +10,8 @@
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {
-      "App/*": ["./*"]
+      "Common/*": ["./Common/*"],
+      "MainApp/*": ["./MainApp/*"]
     },
     "removeComments": true,
     "allowUnreachableCode": false,

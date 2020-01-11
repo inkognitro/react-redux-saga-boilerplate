@@ -1,4 +1,4 @@
-import {User, UserRepositoryState} from "Common/Cache/Redux/UserRepository/Types";
+import {User, UserRepositoryState} from "MainApp/RequestHandling/Redux/UserRepository/Types";
 
 //todo: use reselect library for performance optimization
 

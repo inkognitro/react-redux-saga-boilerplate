@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 import {findCurrentUser, hasCurrentUserBeenInitialized} from "Common/Auth/Redux/Selectors";
 import {logout} from "Common/Auth/Redux/Actions";
 import {RootState} from "MainApp/App";
-import {User} from 'Common/Cache/Redux/UserRepository/Types';
+import {User} from 'MainApp/RequestHandling/Redux/UserRepository/Types';
 import {createHomeRouteUrl, createLoginRouteUrl} from 'MainApp/Routing/RouteFactory';
 import {FunctionalLink} from "Common/Layout/Components/Link/Link";
 import './NavBar.scss';
