@@ -41,13 +41,15 @@ export function authenticate(username: string, password: string, shouldRemember:
                 password: password,
             },
         });
-        executeRequest(request).then((summary: ExecutionSummary) => {
-            removeCookie(API_TOKEN_COOKIE_NAME);
-            // @ts-ignore
-            const user = getResponseBodyJson(summary).data.user;
-            setCurrentUser(user, dispatch, shouldRemember);
+        executeRequest({
+            request: request,
+            onSuccess(summary: ExecutionSummary): void {
+                removeCookie(API_TOKEN_COOKIE_NAME);
+                // @ts-ignore
+                const user = getResponseBodyJson(summary).data.user;
+                setCurrentUser(user, dispatch, shouldRemember);
+            }
         });
-        //todo: check if catch is also needed. if yes, pass callback functions as props and don't return a promise!
     }
 }
 
@@ -59,15 +61,17 @@ function fetchNewApiToken(currentApiToken: string): AppThunk {
                 [API_TOKEN_HEADER_NAME]: currentApiToken
             },
         });
-        executeRequest(request)
-            .then((summary: ExecutionSummary) => {
+        executeRequest({
+            request: request,
+            onSuccess(summary: ExecutionSummary): void {
                 // @ts-ignore
                 const user = getResponseBodyJson(summary).data.user;
                 setCurrentUser(user, dispatch);
-            })
-            .catch(() => {
+            },
+            onError(): void {
                 dispatch(setCurrentUserId(null));
-            });
+            }
+        });
     }
 }
 

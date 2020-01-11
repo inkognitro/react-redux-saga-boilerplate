@@ -79,25 +79,36 @@ export function createDeleteRequest(settings: DeleteRequestCreationSettings): Re
     });
 }
 
-export function executeRequest(request: Request): Promise<ExecutionSummary> {
-    return new Promise<ExecutionSummary>((resolve, reject) => {
-        axios(createAxiosConfigFromRequest(request))
-            .then((response: AxiosResponse): void => {
-                const summary = createSummaryFromAxiosResponse(request, response);
-                resolve(summary);
-            })
-            .catch((error: AxiosError): void => {
-                if(!error.request) {
-                    console.log(error.message);
-                    throw new Error('Wrong axios setup!');
-                }
-                const summary = createSummaryFromAxiosResponse(request, error.response);
-                reject(summary);
-            });
-    });
+export type RequestExecutionSettings = {
+    request: Request,
+    onSuccess?(summary: ExecutionSummary): void,
+    onError?(summary: ExecutionSummary): void,
+};
+export function executeRequest(settings: RequestExecutionSettings): void {
+    const request = settings.request;
+    axios(createAxiosConfigFromExecutionSettings(settings))
+        .then((response: AxiosResponse): void => {
+            if(!settings.onSuccess) {
+                return;
+            }
+            const summary = createSummaryFromAxiosResponse(request, response);
+            settings.onSuccess(summary);
+        })
+        .catch((error: AxiosError): void => {
+            if(!error.request) {
+                console.log(error.message);
+                throw new Error('Wrong axios setup!');
+            }
+            if(!settings.onError) {
+                return;
+            }
+            const summary = createSummaryFromAxiosResponse(request, error.response);
+            settings.onError(summary);
+        });
 }
 
-const createAxiosConfigFromRequest = (request: Request): object => {
+const createAxiosConfigFromExecutionSettings = (settings: RequestExecutionSettings): object => {
+    const request = settings.request;
     let config = {
         method: getAxiosRequestMethodByRequest(request),
         url: request.url,

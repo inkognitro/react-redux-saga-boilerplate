@@ -2,13 +2,17 @@ import {
     createGetRequest as createGeneralGetRequest,
     createPostRequest as createGeneralPostRequest,
     executeRequest as executeGeneralRequest,
+    ExecutionSummary as GeneralExecutionSummary,
     GetRequestCreationSettings,
     PostRequestCreationSettings,
-    ExecutionSummary as GeneralExecutionSummary, Request,
+    Request,
+    RequestExecutionSettings as GeneralRequestExecutionSettings,
 } from "Common/Utility/HttpRequestHandling";
 import {findCurrentUserApiToken} from "Common/Auth/Redux/Selectors";
 import {apiV1BaseUrl} from "Common/config";
 import {store} from "MainApp/App";
+import {addToastMessage} from "Common/Layout/Redux/Toaster/Actions";
+import {ToastTypes} from "Common/Layout/Redux/Toaster/Types";
 
 export const API_TOKEN_HEADER_NAME = 'X-API-TOKEN';
 
@@ -25,15 +29,17 @@ export function createPostRequest(settings: PostRequestCreationSettings): Reques
     return createWithApiTokenHeaderEnhancedRequest(request);
 }
 
-export function executeRequest(request: Request): Promise<ExecutionSummary> {
-    return new Promise<ExecutionSummary>((resolve, reject) => {
-        executeGeneralRequest(request)
-            .then((summary: ExecutionSummary): void => resolve(summary))
-            .catch((summary: ExecutionSummary): void => {
-                dispatchToastErrorMessages(summary);
-                reject(summary);
-            });
+export type RequestExecutionSettings = GeneralRequestExecutionSettings;
+export function executeRequest(settings: RequestExecutionSettings): void {
+    const apiRequestExecutionSettings = Object.assign({}, settings, {
+        onError: (summary: ExecutionSummary): void  => {
+            dispatchToastErrorMessages(summary);
+            if(settings.onError) {
+                settings.onError(summary);
+            }
+        }
     });
+    executeGeneralRequest(apiRequestExecutionSettings);
 }
 
 export type ExecutionSummary = GeneralExecutionSummary;
@@ -58,11 +64,13 @@ const createWithHeaderEnhancedRequest = (request: Request, headerProperty: strin
 };
 
 const dispatchToastErrorMessages = (summary: ExecutionSummary): void => {
-
     if(!summary.response) {
-        alert('No');
+        //@ts-ignore
+        store.dispatch(addToastMessage({
+            content: 'Could not connect to server.', //todo: translate,
+            type: ToastTypes.ERROR,
+        }));
+        return;
     }
-
-    console.log('dispatchToastErrorMessages:');
-    console.log(summary);
+    //todo: extend with not authorized error and so on..
 };
