@@ -22,6 +22,7 @@ export function requestHandling(state: RequestHandlingState = initialRequestHand
         });
     }
 
+    /*
     if (action.type === RequestHandlingActionTypes.CLOSE_REQUEST) {
         return Object.assign({}, state, {
             runningHttpRequests: state.runningHttpRequests.filter(
@@ -29,6 +30,7 @@ export function requestHandling(state: RequestHandlingState = initialRequestHand
             ),
         });
     }
+    */
 
     return state;
 }

@@ -5,7 +5,7 @@ import {
     createGetRequest,
     executeRequest,
     ExecutionSummary
-} from "MainApp/Utility/ApiRequestHandling";
+} from "MainApp/Utility/ApiHttpRequestHandling";
 import {receiveUserData} from "MainApp/Cache/Redux/UserRepository/Actions";
 import {findCurrentUsersApiTokenFromCookie} from "Common/Auth/Redux/Selectors";
 import {findCookieContent, removeCookie, setCookie} from "Common/Utility/CookieHandling";
@@ -40,6 +40,7 @@ export function authenticate(username: string, password: string, shouldRemember:
                 username: username,
                 password: password,
             },
+            isLoaderEnabled: true,
         });
         dispatch(executeRequest({
             request: request,
@@ -60,6 +61,7 @@ function fetchNewApiToken(currentApiToken: string): AppThunk {
             headers: {
                 [API_TOKEN_HEADER_NAME]: currentApiToken
             },
+            isLoaderEnabled: true,
         });
         dispatch(executeRequest({
             request: request,

@@ -5,12 +5,14 @@ export type GetRequestCreationSettings = {
     url: string,
     queryParameters?: object,
     headers?: object,
+    isLoaderEnabled?: boolean
 };
 
 export function createGetRequest(settings: GetRequestCreationSettings): Request {
     return Object.assign({}, settings, {
         method: RequestMethods.GET,
         id: uuidV4(),
+        isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
@@ -20,6 +22,7 @@ export function createPostRequest(settings: PostRequestCreationSettings): Reques
     return Object.assign({}, settings, {
         method: RequestMethods.POST,
         id: uuidV4(),
+        isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
@@ -29,6 +32,7 @@ export function createPutRequest(settings: PutRequestCreationSettings): Request 
     return Object.assign({}, settings, {
         method: RequestMethods.PUT,
         id: uuidV4(),
+        isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
@@ -38,6 +42,7 @@ export function createPatchRequest(settings: PatchRequestCreationSettings): Requ
     return Object.assign({}, settings, {
         method: RequestMethods.PATCH,
         id: uuidV4(),
+        isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
@@ -47,5 +52,6 @@ export function createDeleteRequest(settings: DeleteRequestCreationSettings): Re
     return Object.assign({}, settings, {
         method: RequestMethods.DELETE,
         id: uuidV4(),
+        isLoaderEnabled: settings.isLoaderEnabled,
     });
 }

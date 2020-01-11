@@ -13,6 +13,7 @@ export type Request = {
     queryParameters?: object,
     headers?: object,
     body?: object,
+    isLoaderEnabled?: boolean,
 };
 
 export type Response = {
