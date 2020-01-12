@@ -24,17 +24,19 @@ to build the app in the *dist* folder, run:
     npm run build
     
 ## Features
-1. Caching: Prepared caching for user data in redux store
+1. Prepared caching of api data in redux store
 2. Basic authentication with [JWT](http://jwt.io) and remember me flag (redux)
 3. Integrated toasts (redux)
     - multiple messages per toast
-    - async support (message waiting pipeline for running animations)
+    - message waiting pipeline for running animations (async visibility of toast messages)
 4. Sass support
 5. Abstracted request handling with [axios](http://npmjs.com/package/axios) library in the background
-6. UTC datetime handling
-7. Basic form components
-8. Integration of Bootstrap 4
-9. Integration of Material Icons
+6. Running requests in redux store
+7. Loader according to running requests (*request.isLoaderEnabled*)
+8. UTC datetime handling
+9. Basic form components
+10. Integration of Bootstrap 4
+11. Integration of Material Icons
   
 ## Open todos (in progress)
 1. Authentication with JWT payload, considering TTL for cookie.
