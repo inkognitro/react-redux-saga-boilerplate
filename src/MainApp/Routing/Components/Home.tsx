@@ -4,7 +4,6 @@ import {FunctionalLink, Link} from 'Common/Layout/Components/Link/Link';
 import {addToastMessage} from "Common/Layout/Redux/Toaster/Actions";
 import {ToastTypes} from "Common/Layout/Redux/Toaster/Types";
 import {store} from "MainApp/App";
-import {isRequestRunningWithEnabledLoader} from "Common/RequestHandling/Redux/Selectors";
 
 export class Home extends React.Component {
     addToast(type: ToastTypes) {
@@ -13,13 +12,6 @@ export class Home extends React.Component {
             type: type,
             content: 'foo',
         }));
-    }
-
-    renderLoader() { //todo: move to common and app component, with icon loader and overlapping div
-        if(!isRequestRunningWithEnabledLoader(store.getState().requestHandling)) {
-            return;
-        }
-        return 'should show loader..';
     }
 
     render() {
@@ -41,9 +33,6 @@ export class Home extends React.Component {
                 <br />
                 <h3>Redux</h3>
                 <div><FunctionalLink onClick={() => console.log(store.getState())}>print redux state</FunctionalLink></div>
-
-                <br /><br />
-                {this.renderLoader()}
             </ContentPage>
         );
     }

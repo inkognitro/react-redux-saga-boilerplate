@@ -14,7 +14,7 @@ import {homeRoute, loginRoute} from 'MainApp/Routing/RouteFactory';
 import {initializeCurrentUser} from "Common/Auth/Redux/Actions";
 import {Toaster} from "MainApp/Layout/Components/Toaster";
 import 'MainApp/App.scss';
-import {isRequestRunningWithEnabledLoader} from "Common/RequestHandling/Redux/Selectors";
+import {Loader} from "MainApp/Layout/Components/Loader";
 
 const root = combineReducers({requestHandling, auth, cache, toaster});
 export type RootState = ReturnType<typeof root>;
@@ -41,6 +41,7 @@ export class RootComponent extends Component {
                     </Switch>
                 </Router>
                 <Toaster />
+                <Loader />
             </Provider>
         );
     }
