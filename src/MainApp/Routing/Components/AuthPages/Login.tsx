@@ -1,8 +1,9 @@
 import React from 'react';
 import {ContentPage} from 'MainApp/Layout/Components/PageTypes/ContentPage';
-import {FunctionalLink} from 'Common/Layout/Components/Link/Link';
 import {authenticate} from "Common/Auth/Redux/Actions";
 import {store} from "MainApp/App";
+import {PrimaryButton} from "Common/Layout/Components/Form/Buttons/PrimaryButton";
+import {TextField, TextFieldTypes} from "Common/Layout/Components/Form/InputElements/TextField";
 
 export class Login extends React.Component {
     login() {
@@ -14,9 +15,11 @@ export class Login extends React.Component {
         return (
             <ContentPage>
                 <h1>Login</h1>
-                <FunctionalLink onClick={() => this.login()}>
-                    simulate login
-                </FunctionalLink>
+                <TextField label="Username" placeholder="e.g. songoku" />
+                <TextField label="Password" type={TextFieldTypes.PASSWORD} />
+                <PrimaryButton onClick={() => this.login()}>
+                    Login
+                </PrimaryButton>
             </ContentPage>
         );
     }
