@@ -17,9 +17,7 @@ export class Login extends React.Component {
                 <h1>Login</h1>
                 <TextField label="Username" placeholder="e.g. songoku" />
                 <TextField label="Password" type={TextFieldTypes.PASSWORD} />
-                <PrimaryButton onClick={() => this.login()}>
-                    Login
-                </PrimaryButton>
+                <PrimaryButton onClick={() => this.login()}>Login</PrimaryButton>
             </ContentPage>
         );
     }
