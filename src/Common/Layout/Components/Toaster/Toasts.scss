@@ -41,12 +41,12 @@
         .app-toast-message-content {
           overflow: hidden;
           width: 100%;
-          padding: 15px 20px;
+          padding: 15px 20px 15px 20px;
 
           .app-toast-message-close-icon {
             position: absolute;
-            top: 7px;
-            right: 7px;
+            top: 10px;
+            right: 10px;
           }
         }
 
