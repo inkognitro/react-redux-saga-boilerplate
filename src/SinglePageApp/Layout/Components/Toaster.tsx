@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {Toasts, ToastsProps} from 'Common/Layout/Components/Toaster/Toasts';
 import {getToasts} from "Common/Layout/Redux/Toaster/Selectors";
 import {removeToastMessage, removeToast, blockToastForMessageReceiving} from "Common/Layout/Redux/Toaster/Actions";
-import {RootState} from "MainApp/App";
+import {RootState} from "SinglePageApp/App";
 
 const mapStateToProps = (state: RootState) => {
     return {

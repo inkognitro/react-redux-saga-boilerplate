@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
-import {ContentPage} from 'MainApp/Layout/Components/PageTypes/ContentPage';
+import {ContentPage} from 'SinglePageApp/Layout/Components/PageTypes/ContentPage';
 import {Link} from 'Common/Layout/Components/Link/Link';
-import {createHomeRouteUrl} from "MainApp/Routing/RouteFactory";
+import {createHomeRouteUrl} from "SinglePageApp/Routing/RouteFactory";
 
 export type NotFoundErrorProps = {};
 export const NotFoundError: FunctionComponent<NotFoundErrorProps> = () => {

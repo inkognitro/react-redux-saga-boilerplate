@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import {RootState} from "MainApp/App";
+import {RootState} from "SinglePageApp/App";
 import {isRequestRunningWithEnabledLoader} from "Common/RequestHandling/Redux/Selectors";
 import {Loader as CommonLoader, LoaderProps as CommonLoaderProps} from "Common/Layout/Components/Loader/Loader";
 

@@ -11,7 +11,7 @@
     "baseUrl": "./src",
     "paths": {
       "Common/*": ["./Common/*"],
-      "MainApp/*": ["./MainApp/*"]
+      "SinglePageApp/*": ["./SinglePageApp/*"]
     },
     "removeComments": true,
     "allowUnreachableCode": false,

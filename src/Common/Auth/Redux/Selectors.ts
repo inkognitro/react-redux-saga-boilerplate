@@ -1,5 +1,5 @@
-import {User, UserRepositoryState} from "MainApp/Cache/Redux/UserRepository/Types";
-import {findUserById} from "MainApp/Cache/Redux/UserRepository/Selectors";
+import {User, UserRepositoryState} from "SinglePageApp/Cache/Redux/UserRepository/Types";
+import {findUserById} from "SinglePageApp/Cache/Redux/UserRepository/Selectors";
 import {findCookieContent} from "Common/Utility/CookieHandling";
 import {API_TOKEN_COOKIE_NAME, AuthState} from "Common/Auth/Redux/Types";
 

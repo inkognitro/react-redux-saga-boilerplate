@@ -1,9 +1,0 @@
-{
-  "messages": [
-    {
-      "type": "error",
-      "code": "badRequestError",
-      "defaultTranslation": "Bad request."
-    }
-  ]
-}

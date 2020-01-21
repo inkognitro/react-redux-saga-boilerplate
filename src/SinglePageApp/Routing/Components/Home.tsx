@@ -1,9 +1,9 @@
 import React from 'react';
-import {ContentPage} from 'MainApp/Layout/Components/PageTypes/ContentPage';
+import {ContentPage} from 'SinglePageApp/Layout/Components/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/Components/Link/Link';
 import {addToastMessage} from "Common/Layout/Redux/Toaster/Actions";
 import {ToastTypes} from "Common/Layout/Redux/Toaster/Types";
-import {store} from "MainApp/App";
+import {store} from "SinglePageApp/App";
 
 export class Home extends React.Component {
     addToast(type: ToastTypes) {

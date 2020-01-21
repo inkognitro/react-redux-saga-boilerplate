@@ -5,12 +5,12 @@ import {
     createGetRequest,
     executeRequest,
     ExecutionSummary
-} from "MainApp/Utility/ApiHttpRequestHandling";
-import {receiveUserData} from "MainApp/Cache/Redux/UserRepository/Actions";
+} from "SinglePageApp/Utility/ApiHttpRequestHandling";
+import {receiveUserData} from "SinglePageApp/Cache/Redux/UserRepository/Actions";
 import {findCurrentUsersApiTokenFromCookie} from "Common/Auth/Redux/Selectors";
 import {findCookieContent, removeCookie, setCookie} from "Common/Utility/CookieHandling";
-import {User} from "MainApp/Cache/Redux/UserRepository/Types";
-import {AppThunk} from "MainApp/App";
+import {User} from "SinglePageApp/Cache/Redux/UserRepository/Types";
+import {AppThunk} from "SinglePageApp/App";
 import {getResponseBodyJson} from "Common/RequestHandling/Redux/Selectors";
 
 export function initializeCurrentUser(): AppThunk {

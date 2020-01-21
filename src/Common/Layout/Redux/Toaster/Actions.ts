@@ -1,7 +1,7 @@
 import {v4 as uuidV4} from 'uuid';
 import {getCommonToastIdByType} from "Common/Layout/Redux/Toaster/Selectors";
 import {ToastTypes, ToasterActions, ToasterActionTypes} from "Common/Layout/Redux/Toaster/Types";
-import {AppThunk} from "MainApp/App";
+import {AppThunk} from "SinglePageApp/App";
 
 type AddToastMessageProps = {
     type: ToastTypes,

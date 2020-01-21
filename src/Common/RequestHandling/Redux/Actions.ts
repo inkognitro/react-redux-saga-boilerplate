@@ -5,7 +5,7 @@ import {
     RequestHandlingActionTypes,
     RequestMethods
 } from "Common/RequestHandling/Redux/Types";
-import {AppThunk} from "MainApp/App";
+import {AppThunk} from "SinglePageApp/App";
 
 export type RequestExecutionSettings = {
     request: Request,

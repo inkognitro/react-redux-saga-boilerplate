@@ -10,7 +10,7 @@ import {
 } from "Common/RequestHandling/Redux/Factory";
 import {findCurrentUserApiToken} from "Common/Auth/Redux/Selectors";
 import {apiV1BaseUrl} from "Common/config";
-import {AppThunk, store} from "MainApp/App";
+import {AppThunk, store} from "SinglePageApp/App";
 import {addToastMessage} from "Common/Layout/Redux/Toaster/Actions";
 import {ToastTypes} from "Common/Layout/Redux/Toaster/Types";
 import {ExecutionSummary as GeneralExecutionSummary, Request} from "Common/RequestHandling/Redux/Types";
