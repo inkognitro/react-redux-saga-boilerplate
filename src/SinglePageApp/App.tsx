@@ -6,16 +6,11 @@ import {auth} from 'Common/Auth/Redux/Reducer';
 import {toaster} from 'Common/Layout/Redux/Toaster/Reducer';
 import {cache} from 'SinglePageApp/Cache/Redux/Reducer';
 import thunkMiddleware, {ThunkAction} from 'redux-thunk';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Home} from 'SinglePageApp/Routing/Components/Home';
-import {Login} from "SinglePageApp/Routing/Components/AuthPages/Login";
-import {NotFoundError} from 'SinglePageApp/Routing/Components/ErrorPages/Error404';
-import {homeRoute, loginRoute, passwordForgottenRoute} from 'SinglePageApp/Routing/RouteFactory';
 import {initializeCurrentUser} from "Common/Auth/Redux/Actions";
 import {Toaster} from "SinglePageApp/Layout/Components/Toaster";
 import 'SinglePageApp/App.scss';
 import {Loader} from "SinglePageApp/Layout/Components/Loader";
-import {PwForgotten} from "SinglePageApp/Routing/Components/AuthPages/PwForgotten";
+import {Router} from 'SinglePageApp/Routing/Components/Router';
 
 const root = combineReducers({requestHandling, auth, cache, toaster});
 export type RootState = ReturnType<typeof root>;
@@ -26,7 +21,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, nul
 export const store = createStore(root, middleware);
 
 export class RootComponent extends Component {
-    componentDidMount(): void {
+    componentDidMount() {
         // @ts-ignore
         store.dispatch(initializeCurrentUser());
     }
@@ -34,14 +29,7 @@ export class RootComponent extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Router>
-                    <Switch>
-                        <Route exact path={homeRoute.routerUrl} component={Home}/>
-                        <Route exact path={loginRoute.routerUrl} component={Login}/>
-                        <Route exact path={passwordForgottenRoute.routerUrl} component={PwForgotten}/>
-                        <Route path="*" component={NotFoundError}/>
-                    </Switch>
-                </Router>
+                <Router />
                 <Toaster />
                 <Loader />
             </Provider>

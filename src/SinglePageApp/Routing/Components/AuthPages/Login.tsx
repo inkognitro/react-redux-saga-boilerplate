@@ -16,11 +16,11 @@ export class Login extends React.Component {
 
     render() {
         return (
-            <ContentPage>
+            <ContentPage topDividedContent={true}>
                 <div className="col-sm-12 col-md-6 offset-md-3">
                     <Card title="Login">
                         <div className="card-text">
-                            <TextField label="Username" placeholder="e.g. songoku" />
+                            <TextField label="Username" placeholder="e.g. songoku" errorMessage="wrong foo!" />
                             <TextField label="Password" type={TextFieldTypes.PASSWORD} />
                             <PrimaryButton onClick={() => this.login()}>Login</PrimaryButton>
                         </div>

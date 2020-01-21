@@ -9,7 +9,7 @@ import {createLoginRouteUrl} from "SinglePageApp/Routing/RouteFactory";
 export class PwForgotten extends React.Component {
     render() {
         return (
-            <ContentPage>
+            <ContentPage topDividedContent={true}>
                 <div className="col-sm-12 col-md-6 offset-md-3">
                     <Card title="Request password reset link">
                         <div className="card-text">

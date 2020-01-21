@@ -16,7 +16,7 @@ export class Home extends React.Component {
 
     render() {
         return (
-            <ContentPage>
+            <ContentPage topDividedContent={true}>
                 <h1>Features</h1>
 
                 <br />
