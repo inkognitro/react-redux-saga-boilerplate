@@ -4,6 +4,9 @@ import {authenticate} from "Common/Auth/Redux/Actions";
 import {store} from "SinglePageApp/App";
 import {PrimaryButton} from "Common/Layout/Components/Form/Buttons/PrimaryButton";
 import {TextField, TextFieldTypes} from "Common/Layout/Components/Form/InputElements/TextField";
+import {Card} from "Common/Layout/Components/Card/Card";
+import {Link} from "Common/Layout/Components/Link/Link";
+import {createPasswordForgottenUrl} from "SinglePageApp/Routing/RouteFactory";
 
 export class Login extends React.Component {
     login() {
@@ -14,10 +17,22 @@ export class Login extends React.Component {
     render() {
         return (
             <ContentPage>
-                <h1>Login</h1>
-                <TextField label="Username" placeholder="e.g. songoku" />
-                <TextField label="Password" type={TextFieldTypes.PASSWORD} />
-                <PrimaryButton onClick={() => this.login()}>Login</PrimaryButton>
+                <div className="col-sm-12 col-md-6 offset-md-3">
+                    <Card title="Login">
+                        <div className="card-text">
+                            <TextField label="Username" placeholder="e.g. songoku" />
+                            <TextField label="Password" type={TextFieldTypes.PASSWORD} />
+                            <PrimaryButton onClick={() => this.login()}>Login</PrimaryButton>
+                        </div>
+                        <div className="card-text text-right">
+                            <small className="text-muted">
+                                <Link url={createPasswordForgottenUrl()}>
+                                    Did you forget your password?
+                                </Link>
+                            </small>
+                        </div>
+                    </Card>
+                </div>
             </ContentPage>
         );
     }

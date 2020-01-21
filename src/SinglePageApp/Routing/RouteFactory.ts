@@ -15,3 +15,10 @@ export const loginRoute: Route = {
 export const createLoginRouteUrl = (): string => {
     return loginRoute.routerUrl;
 };
+
+export const passwordForgottenRoute: Route = {
+    routerUrl: '/auth/pwforgotten',
+};
+export const createPasswordForgottenUrl = (): string => {
+    return passwordForgottenRoute.routerUrl;
+};
