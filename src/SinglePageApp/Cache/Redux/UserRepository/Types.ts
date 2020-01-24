@@ -9,7 +9,6 @@ export enum UserRepositoryActionTypes {
 export type User = {
     id: string,
     username?: string,
-    apiToken?: (null | string),
 };
 
 type ReceiverUserAction = {

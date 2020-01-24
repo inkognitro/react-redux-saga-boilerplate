@@ -8,7 +8,7 @@ import {
     GetRequestCreationSettings,
     PostRequestCreationSettings
 } from "Common/RequestHandling/Redux/Factory";
-import {findCurrentUserApiToken} from "Common/Auth/Redux/Selectors";
+import {findApiToken} from "Common/Auth/Redux/Selectors";
 import {apiV1BaseUrl} from "Common/config";
 import {AppThunk, store} from "SinglePageApp/App";
 import {addToastMessage} from "Common/Layout/Redux/Toaster/Actions";
@@ -53,7 +53,7 @@ const createWithApiTokenHeaderEnhancedRequest = (request: Request): Request => {
         return request;
     }
     const reduxState = store.getState();
-    const apiToken = findCurrentUserApiToken(reduxState.auth, reduxState.cache.userRepository);
+    const apiToken = findApiToken(reduxState.auth);
     if(!apiToken) {
         return request;
     }

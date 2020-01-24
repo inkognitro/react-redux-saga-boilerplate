@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {findCurrentUser, hasCurrentUserBeenInitialized} from "Common/Auth/Redux/Selectors";
+import {findCurrentUser} from "Common/Auth/Redux/Selectors";
 import {logout} from "Common/Auth/Redux/Actions";
 import {RootState} from "SinglePageApp/App";
 import {User} from 'SinglePageApp/Cache/Redux/UserRepository/Types';
@@ -43,7 +43,6 @@ export const RepresentationalNavBar: FunctionComponent<RepresentationalNavBarPro
 
 const mapStateToProps = (state: RootState) => {
     return {
-        hasCurrentUserBeenInitialized: hasCurrentUserBeenInitialized(state.auth),
         currentUser: findCurrentUser(state.auth, state.cache.userRepository),
     };
 };

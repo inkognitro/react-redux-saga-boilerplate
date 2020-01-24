@@ -4,6 +4,9 @@ import {FunctionalLink, Link} from 'Common/Layout/Components/Link/Link';
 import {addToastMessage} from "Common/Layout/Redux/Toaster/Actions";
 import {ToastTypes} from "Common/Layout/Redux/Toaster/Types";
 import {store} from "SinglePageApp/App";
+import {getSecondsUntilExpiration} from "Common/Auth/JWT";
+
+const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmLTgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0.ZUwq2yWnT-H3fvpmUJwJkR3sG4aWQGMTo4tP8tNBHrc';
 
 export class Home extends React.Component {
     addToast(type: ToastTypes) {
@@ -14,7 +17,15 @@ export class Home extends React.Component {
         }));
     }
 
+    logJwtToken() {
+        const secondsUntilExpiration = getSecondsUntilExpiration(jwt);
+        console.log('secondsUntilExpiration');
+        console.log(secondsUntilExpiration);
+    }
+
     render() {
+        this.logJwtToken();
+
         return (
             <ContentPage topDividedContent={true}>
                 <h1>Features</h1>

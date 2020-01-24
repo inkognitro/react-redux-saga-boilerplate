@@ -13,21 +13,14 @@ export function findCurrentUser(state: AuthState, userRepositoryState: UserRepos
     return findUserById(userRepositoryState, currentUserId);
 }
 
-export function findCurrentUserApiToken(state: AuthState, userRepositoryState: UserRepositoryState): (null | string) {
-    const currentUser = findCurrentUser(state, userRepositoryState);
-    if(!currentUser) {
-        return null;
-    }
-    if(!currentUser.apiToken) {
-        return null;
-    }
-    return currentUser.apiToken;
+export function findApiToken(state: AuthState): (null | string) {
+    return state.apiToken;
 }
 
-export function findCurrentUsersApiTokenFromCookie(): (null | string) {
+export function findApiTokenFromCookie(): (null | string) {
     return findCookieContent(API_TOKEN_COOKIE_NAME);
 }
 
-export function hasCurrentUserBeenInitialized(state: AuthState): boolean {
-    return state.hasCurrentUserBeenInitialized;
+export function isFetchingApiToken(state: AuthState): boolean {
+    return state.isFetchingApiToken;
 }

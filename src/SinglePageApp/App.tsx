@@ -6,7 +6,7 @@ import {auth} from 'Common/Auth/Redux/Reducer';
 import {toaster} from 'Common/Layout/Redux/Toaster/Reducer';
 import {cache} from 'SinglePageApp/Cache/Redux/Reducer';
 import thunkMiddleware, {ThunkAction} from 'redux-thunk';
-import {initializeCurrentUser} from "Common/Auth/Redux/Actions";
+import {initializeAuth} from "Common/Auth/Redux/Actions";
 import {Toaster} from "SinglePageApp/Layout/Components/Toaster";
 import 'SinglePageApp/App.scss';
 import {Loader} from "SinglePageApp/Layout/Components/Loader";
@@ -20,10 +20,14 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, nul
 
 export const store = createStore(root, middleware);
 
+function getAuthState() {
+    return store.getState().auth;
+}
+
 export class RootComponent extends Component {
     componentDidMount() {
         // @ts-ignore
-        store.dispatch(initializeCurrentUser());
+        store.dispatch(initializeAuth(getAuthState));
     }
 
     render() {
