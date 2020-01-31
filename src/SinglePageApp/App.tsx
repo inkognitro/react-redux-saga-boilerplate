@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {Action, applyMiddleware, combineReducers, createStore} from 'redux'
-import {requestHandling} from 'Common/RequestHandling/Redux/Reducer';
-import {auth} from 'Common/Auth/Redux/Reducer';
-import {toaster} from 'Common/Layout/Redux/Toaster/Reducer';
-import {cache} from 'SinglePageApp/Cache/Redux/Reducer';
-import thunkMiddleware, {ThunkAction} from 'redux-thunk';
-import {initializeAuth} from "Common/Auth/Redux/Actions";
+import {applyMiddleware, combineReducers, createStore} from 'redux'
+import {requestHandling} from 'Common/Application/RequestHandling/Redux/Reducer';
+import {auth} from 'Common/Application/Auth/Redux/Reducer';
+import {toaster} from 'Common/Application/Layout/Redux/Toaster/Reducer';
+import {cache} from 'SinglePageApp/../Common/Application/EntityCache/Redux/Reducer';
+import thunkMiddleware from 'redux-thunk';
+import {initializeAuth} from "Common/Application/Auth/Redux/Actions";
 import {Toaster} from "SinglePageApp/Layout/Components/Toaster";
 import 'SinglePageApp/App.scss';
 import {Loader} from "SinglePageApp/Layout/Components/Loader";
@@ -16,7 +16,6 @@ const root = combineReducers({requestHandling, auth, cache, toaster});
 export type RootState = ReturnType<typeof root>;
 
 const middleware = applyMiddleware(thunkMiddleware);
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, null, Action<string>> //todo: move middleware application and thunk type to common!
 
 export const store = createStore(root, middleware);
 

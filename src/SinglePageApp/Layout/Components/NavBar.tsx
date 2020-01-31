@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {findCurrentUser} from "Common/Auth/Redux/Selectors";
-import {logout} from "Common/Auth/Redux/Actions";
+import {findCurrentUser} from "Common/Application/Auth/Redux/Selectors";
+import {logout} from "Common/Application/Auth/Redux/Actions";
 import {RootState} from "SinglePageApp/App";
-import {User} from 'SinglePageApp/Cache/Redux/UserRepository/Types';
+import {User} from 'Common/Application/EntityCache/Redux/UserRepository/Types';
 import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/RouteFactory';
-import {FunctionalLink} from "Common/Layout/Components/Link/Link";
+import {FunctionalLink} from "Common/Application/Layout/Components/Link/Link";
 import './NavBar.scss';
 
 export type RepresentationalNavBarProps = {

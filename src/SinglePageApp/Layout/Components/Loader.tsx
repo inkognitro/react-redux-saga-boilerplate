@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {RootState} from "SinglePageApp/App";
-import {isRequestRunningWithEnabledLoader} from "Common/RequestHandling/Redux/Selectors";
-import {Loader as CommonLoader, LoaderProps as CommonLoaderProps} from "Common/Layout/Components/Loader/Loader";
+import {isRequestRunningWithEnabledLoader} from "Common/Application/RequestHandling/Redux/Selectors";
+import {Loader as CommonLoader, LoaderProps as CommonLoaderProps} from "Common/Application/Layout/Components/Loader/Loader";
 
 const mapStateToProps = (state: RootState) => {
     return {

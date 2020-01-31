@@ -1,9 +1,9 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/Components/PageTypes/ContentPage';
-import {PrimaryButton} from "Common/Layout/Components/Form/Buttons/PrimaryButton";
-import {TextField} from "Common/Layout/Components/Form/InputElements/TextField";
-import {Card} from "Common/Layout/Components/Card/Card";
-import {Link} from "Common/Layout/Components/Link/Link";
+import {PrimaryButton} from "Common/Application/Layout/Components/Form/Buttons/PrimaryButton";
+import {TextField} from "Common/Application/Layout/Components/Form/InputElements/TextField";
+import {Card} from "Common/Application/Layout/Components/Card/Card";
+import {Link} from "Common/Application/Layout/Components/Link/Link";
 import {createLoginRouteUrl} from "SinglePageApp/Routing/RouteFactory";
 
 export class PwForgotten extends React.Component {
