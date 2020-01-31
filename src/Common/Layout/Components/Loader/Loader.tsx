@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import './Loader.scss';
 import {AlignedArea, horizontalAligns, verticalAligns} from "Common/Layout/Components/AlignedArea/AlignedArea";
 import {TimelineLite} from "gsap/gsap-core";
+import {IconSizes, IconTypes} from "Common/Layout/Components/Icons/Icon";
+import {LoaderIconRotating} from "Common/Layout/Components/Icons/LoaderIconRotating";
+import './Loader.scss';
 
 export type LoaderProps = {
     isVisible: boolean,
@@ -45,7 +47,7 @@ export class Loader extends Component<LoaderProps> {
         return (
             <div ref={(element: HTMLDivElement) => this.loader = element} className="app-loader">
                 <AlignedArea horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.MIDDLE}>
-                    LOADING... {this.props.isVisible}
+                    <LoaderIconRotating size={IconSizes.LG} type={IconTypes.WHITE} />
                 </AlignedArea>
             </div>
         );

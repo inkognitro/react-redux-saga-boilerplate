@@ -7,6 +7,7 @@ export enum IconTypes {
     ERROR = 'error',
     INTERACTIVE = 'interactive',
     SECONDARY = 'secondary',
+    WHITE = 'white',
 }
 
 export enum IconSizes {
@@ -60,6 +61,8 @@ function createBaseClassNames(props: CommonIconProps): string {
         classNames.push('app-icon-style-interactive');
     } else if(props.type === IconTypes.SECONDARY) {
         classNames.push('app-icon-style-secondary');
+    } else if(props.type === IconTypes.WHITE) {
+        classNames.push('app-icon-style-white');
     }
 
     if(props.size === IconSizes.XS) {

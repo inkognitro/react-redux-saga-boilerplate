@@ -1,4 +1,5 @@
 export const API_TOKEN_COOKIE_NAME = 'apiToken';
+export const SHOULD_REMEMBER_AUTH_COOKIE_NAME = 'shouldRememberAuth';
 
 export type AuthState = {
     isFetchingApiToken: boolean,

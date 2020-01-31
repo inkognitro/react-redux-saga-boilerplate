@@ -29,8 +29,8 @@ export function executeRequest(settings: RequestExecutionSettings): AppThunk {
             .catch((error: AxiosError): void => {
                 dispatch(createCloseRequestAction(settings.request.id));
                 if(!error.request) {
-                    console.log(error.message);
-                    throw new Error('Wrong axios setup!');
+                    console.error(error);
+                    return;
                 }
                 if(!settings.onError) {
                     return;

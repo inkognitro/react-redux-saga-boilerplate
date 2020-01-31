@@ -7,11 +7,6 @@ type Payload = {
     "jti": string,
 };
 
-export function getTimeToLiveInDays(jwt: string): number {
-    console.log('jwt = ' + jwt);
-    return 14; //todo: calculate!
-}
-
 export function getSecondsUntilExpiration(jwt: string): number {
     const expirationUtcDateTime = getExpirationUTCDateTime(jwt);
     return getUtcDateTimeMinusNowInSeconds(expirationUtcDateTime);
