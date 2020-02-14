@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {Link} from 'Common/Application/Layout/Components/Link/Link';
+import {Link} from 'Common/Layout/UI/Link/Link';
 import {createHomeRouteUrl} from "SinglePageApp/Routing/RouteFactory";
 import {ErrorPage} from "SinglePageApp/Layout/Components/PageTypes/ErrorPage";
 

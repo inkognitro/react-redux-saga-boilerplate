@@ -1,11 +1,11 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/Components/PageTypes/ContentPage';
-import {authenticate} from "Common/Application/Auth/Redux/Actions";
+import {authenticate} from "Common/Auth/Redux/Actions";
 import {store} from "SinglePageApp/App";
-import {PrimaryButton} from "Common/Application/Layout/Components/Form/Buttons/PrimaryButton";
-import {TextField, TextFieldTypes} from "Common/Application/Layout/Components/Form/InputElements/TextField";
-import {Card} from "Common/Application/Layout/Components/Card/Card";
-import {Link} from "Common/Application/Layout/Components/Link/Link";
+import {PrimaryButton} from "Common/Layout/UI/Form/Buttons/PrimaryButton";
+import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/InputElements/TextField";
+import {Card} from "Common/Layout/UI/Card/Card";
+import {Link} from "Common/Layout/UI/Link/Link";
 import {createPasswordForgottenUrl} from "SinglePageApp/Routing/RouteFactory";
 
 export class Login extends React.Component {

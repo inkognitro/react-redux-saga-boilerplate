@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import {Toasts, ToastsProps} from 'Common/Application/Layout/Components/Toaster/Toasts';
-import {getToasts} from "Common/Application/Layout/Redux/Toaster/Selectors";
-import {removeToastMessage, removeToast, blockToastForMessageReceiving} from "Common/Application/Layout/Redux/Toaster/Actions";
+import {Toasts, ToastsProps} from 'Common/Toaster/Application/UI/Toasts';
+import {getToasts} from "Common/Toaster/Domain/Selectors";
+import {createRemoveToastMessageAction, createRemoveToastThunk, createBlockToastForMessageReceivingAction} from "Common/Toaster/Domain/Actions";
 import {RootState} from "SinglePageApp/App";
 
 const mapStateToProps = (state: RootState) => {
@@ -14,9 +14,9 @@ const mapStateToProps = (state: RootState) => {
 //@ts-ignore
 const mapDispatchToProps = (dispatch) => { //todo: add correct type hint
     return {
-        onRemoveToast: (toastId: string): void => dispatch(removeToast(toastId)),
-        onRemoveToastMessage: (toastId: string, toastMessageId: string): void => dispatch(removeToastMessage(toastId, toastMessageId)),
-        onBlockToastForMessageReceiving: (toastId: string): void => dispatch(blockToastForMessageReceiving(toastId)),
+        onRemoveToast: (toastId: string): void => dispatch(createRemoveToastThunk(toastId)),
+        onRemoveToastMessage: (toastId: string, toastMessageId: string): void => dispatch(createRemoveToastMessageAction(toastId, toastMessageId)),
+        onBlockToastForMessageReceiving: (toastId: string): void => dispatch(createBlockToastForMessageReceivingAction(toastId)),
     };
 };
 

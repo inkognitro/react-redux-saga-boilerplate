@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux'
-import {requestHandling} from 'Common/Application/RequestHandling/Redux/Reducer';
-import {auth} from 'Common/Application/Auth/Redux/Reducer';
-import {toaster} from 'Common/Application/Layout/Redux/Toaster/Reducer';
-import {cache} from 'SinglePageApp/../Common/Application/EntityCache/Redux/Reducer';
+import {requestHandling} from 'Common/RequestHandling/Domain/Reducer';
+import {auth} from 'Common/Auth/Redux/Reducer';
+import {toaster} from 'Common/Toaster/Domain/Reducer';
+import {cache} from 'SinglePageApp/../Common/EntityCache/Redux/Reducer';
 import thunkMiddleware from 'redux-thunk';
-import {initializeAuth} from "Common/Application/Auth/Redux/Actions";
+import {initializeAuth} from "Common/Auth/Redux/Actions";
 import {Toaster} from "SinglePageApp/Layout/Components/Toaster";
 import 'SinglePageApp/App.scss';
 import {Loader} from "SinglePageApp/Layout/Components/Loader";

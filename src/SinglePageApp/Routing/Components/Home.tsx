@@ -1,17 +1,17 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/Components/PageTypes/ContentPage';
-import {FunctionalLink, Link} from 'Common/Application/Layout/Components/Link/Link';
-import {addToastMessage} from "Common/Application/Layout/Redux/Toaster/Actions";
-import {ToastTypes} from "Common/Application/Layout/Redux/Toaster/Types";
+import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
+import {createAddToastMessageThunk} from "Common/Toaster/Domain/Actions";
 import {store} from "SinglePageApp/App";
-import {getSecondsUntilExpiration} from "Common/Application/Auth/JWT";
+import {getSecondsUntilExpiration} from "Common/Auth/JWT";
+import {ToastTypes} from "Common/Toaster/Application/ToastRepository";
 
 const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmLTgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0.ZUwq2yWnT-H3fvpmUJwJkR3sG4aWQGMTo4tP8tNBHrc';
 
 export class Home extends React.Component {
     addToast(type: ToastTypes) {
         // @ts-ignore
-        store.dispatch(addToastMessage({
+        store.dispatch(createAddToastMessageThunk({
             type: type,
             content: 'foo',
         }));
