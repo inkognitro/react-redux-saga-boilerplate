@@ -1,5 +1,5 @@
 import {ToasterState} from "Common/Toaster/Domain/Types";
-import {Toast, ToastTypes} from "Common/Toaster/Application/ToastRepository";
+import {Toast, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
 
 //todo: use reselect library for performance optimization
 

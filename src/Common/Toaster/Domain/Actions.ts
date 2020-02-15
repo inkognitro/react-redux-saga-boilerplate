@@ -2,7 +2,7 @@ import {v4 as uuidV4} from 'uuid';
 import {getCommonToastIdByType} from "Common/Toaster/Domain/Selectors";
 import {ToasterActions, ToasterActionTypes} from "Common/Toaster/Domain/Types";
 import {AppThunk} from "Common/types";
-import {ToastTypes} from "Common/Toaster/Application/ToastRepository";
+import {ToastTypes} from "Common/Toaster/Domain/ToastRepository";
 
 //todo: get rid of imports outside of the toaster domain layer!
 

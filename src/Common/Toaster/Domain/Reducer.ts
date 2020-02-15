@@ -1,6 +1,6 @@
-import {Message, MessageToAdd, ToasterActions, ToasterActionTypes, ToasterState} from "./Types";
+import {ToasterActions, ToasterActionTypes, ToasterState} from "./Types";
 import {v4 as uuidV4} from "uuid";
-import {Toast, ToastTypes} from "Common/Toaster/Application/ToastRepository";
+import {Message, MessageToAdd, Toast, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
 
 function createInitialToastState(): Toast {
     return {

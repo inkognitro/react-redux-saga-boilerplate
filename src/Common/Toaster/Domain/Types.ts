@@ -1,21 +1,8 @@
-import {Toast, ToastTypes} from "Common/Toaster/Application/ToastRepository";
+import {MessageToAdd, Toast} from "Common/Toaster/Domain/ToastRepository";
 
 export type ToasterState = {
     messagesToAdd: MessageToAdd[],
     toasts: Toast[],
-};
-
-export type MessageToAdd = {
-    id: string,
-    toastId: string,
-    type: ToastTypes,
-    content: string,
-};
-
-export type Message = {
-    id: string,
-    content: string,
-    isIntroAnimationEnabled: boolean,
 };
 
 export enum ToasterActionTypes {
