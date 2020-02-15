@@ -2,35 +2,27 @@ import {AppDispatch} from "Common/types";
 import {AuthState} from "Common/Auth/Domain/Types";
 import {UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
 import {
-    createInitializeCurrentUserThunk, createLogoutThunk, createStartRefreshTokenIfNeededIntervalThunk,
+    createAuthenticateOrFailThunk,
+    createInitializeCurrentUserThunk,
+    createLogoutThunk,
+    createStartRefreshTokenIfNeededIntervalThunk,
 } from "Common/Auth/Domain/Actions";
 import {CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage";
+import {AuthBackendService} from "Common/Auth/Domain/AuthBackendService";
 
 export interface AuthManagerInterface {
 
 }
 
-type AuthDataFromBackend = {
-    user: {
-        id: string,
-        username: string,
-    },
-    apiToken: string
-};
-
-export interface AuthBackendService {
-    findAuthDataByCredentials(username: string, password: string): Promise<(null | AuthDataFromBackend)>
-    findRefreshedAuthDataByApiToken(apiToken: string): Promise<(null | AuthDataFromBackend)>
-}
-
 type AuthStateSelector = () => AuthState;
 
-export type AuthenticateOrFailSettings = {
+export type AuthenticateSettings = {
     username: string,
     password: string,
     shouldRemember: boolean,
     onSuccess?(): void,
     onError?(): void,
+    isLoaderEnabled: boolean,
 };
 
 export class AuthManager implements AuthManagerInterface {
@@ -61,10 +53,10 @@ export class AuthManager implements AuthManagerInterface {
     }
 
     logoutCurrentUser(): void {
-        createLogoutThunk(this.cookieStorage);
+        this.dispatch(createLogoutThunk(this.cookieStorage));
     }
 
-    authenticateOrFailByCredentials(settings: AuthenticateOrFailSettings): void {
-
+    authenticate(settings: AuthenticateSettings): void {
+        this.dispatch(createAuthenticateOrFailThunk(settings, this.cookieStorage, this.authBackendService));
     }
 }

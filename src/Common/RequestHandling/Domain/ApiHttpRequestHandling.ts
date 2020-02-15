@@ -1,10 +1,20 @@
 import {ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
 import {
+    createGetRequest as generalCreateGetRequest,
+    createPostRequest as generalCreatePostRequest,
     createWithHeaderEnhancedHttpRequest,
     ExecutionSummary as GeneralExecutionSummary,
     HttpRequestHandlerInterface,
     RequestExecutionSettings as GeneralRequestExecutionSettings
 } from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandling";
+
+export enum API_ENDPOINT_URLS {
+    AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate.json',
+    AUTH_REFRESH_TOKEN = '//localhost:3000/auth/refreshtoken.json',
+}
+
+export const createGetRequest = generalCreateGetRequest;
+export const createPostRequest = generalCreatePostRequest;
 
 export type ExecutionSummary = GeneralExecutionSummary;
 export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {

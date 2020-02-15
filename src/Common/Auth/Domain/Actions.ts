@@ -5,7 +5,7 @@ import {
     AuthState,
     SHOULD_REMEMBER_AUTH_COOKIE_NAME
 } from "./Types";
-import {ExecutionSummary} from "Common/RequestHandling/Domain/ApiHttpRequestHandling";
+import {API_ENDPOINT_URLS, ExecutionSummary} from "Common/RequestHandling/Domain/ApiHttpRequestHandling";
 import {createReceiveUserDataAction} from "Common/EntityCache/Domain/User/Actions";
 import {findApiToken, findApiTokenFromCookie, shouldRememberAuthByCookie} from "Common/Auth/Domain/Selectors";
 import {CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage";
@@ -14,7 +14,8 @@ import {getSecondsUntilExpiration} from "Common/Auth/Domain/JWTHandling";
 import {apiTokenCookieTimeToLiveInDays, triggerApiTokenRefreshBeforeExpirationInSeconds} from "Common/config";
 import {AppThunk} from "Common/types";
 import {User} from "Common/EntityCache/Domain/User/UserRepository";
-import {AuthenticateOrFailSettings} from "Common/Auth/Domain/AuthManagement";
+import {AuthenticateSettings} from "Common/Auth/Domain/AuthManagement";
+import {AuthBackendService, AuthData} from "Common/Auth/Domain/AuthBackendService";
 
 export function createInitializeCurrentUserThunk(
     getAuthState: () => AuthState,
@@ -56,28 +57,24 @@ export function createLogoutThunk(cookieStorage: CookieStorageInterface): AppThu
     }
 }
 
-export function createAuthenticateOrFailThunk(settings: AuthenticateOrFailSettings): AppThunk {
+export function createAuthenticateOrFailThunk( //OK
+    settings: AuthenticateSettings,
+    cookieStorage: CookieStorageInterface,
+    authBackendService: AuthBackendService
+): AppThunk {
     return function (dispatch) {
-        const request = createGetRequest({ //todo: change to POST request!
-            url: AUTH_AUTHENTICATE_ENDPOINT,
-            queryParameters: { //todo: change to POST request body!
-                username: username,
-                password: password,
-            },
-            isLoaderEnabled: true,
-        });
         dispatch({type: AuthActionTypes.START_API_TOKEN_FETCH});
-        dispatch(executeRequest({
-            request: request,
-            onSuccess: (summary: ExecutionSummary): void => {
-                // @ts-ignore
-                const data = getResponseBodyJson(summary).data;
-                setAuthUser(data.jwt, data.user, dispatch, shouldRemember);
+        authBackendService.receiveAuthData({
+            username: settings.username,
+            password: settings.password,
+            onSuccess: (data: AuthData) => {
+                setAuthUser(cookieStorage, data.token, data.user, dispatch, shouldRemember);
             },
             onError: (): void => {
                 dispatch({type: AuthActionTypes.END_API_TOKEN_FETCH});
-            }
-        }));
+            },
+            isLoaderEnabled: settings.isLoaderEnabled,
+        });
     }
 }
 
