@@ -8,6 +8,7 @@ import {FunctionalLink} from "Common/Layout/UI/Link/Link";
 import './NavBar.scss';
 import {User} from "Common/EntityCache/Domain/User/UserRepository";
 import {createLogoutThunk} from "Common/Auth/Domain/AuthManager";
+import {AppDispatch} from "Common/types";
 
 export type RepresentationalNavBarProps = {
     currentUser: (User | null),
@@ -48,7 +49,7 @@ const mapStateToProps = (state: RootState) => {
 };
 
 //@ts-ignore
-const mapDispatchToProps = (dispatch) => { //todo: type hinting!
+const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
         onClickLogout: () => dispatch(createLogoutThunk()),
     };

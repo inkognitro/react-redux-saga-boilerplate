@@ -4,6 +4,7 @@ import {Toasts, ToastsProps} from 'Common/Toaster/UI/Toasts';
 import {getToasts} from "Common/Toaster/Domain/Selectors";
 import {createRemoveToastMessageAction, createRemoveToastThunk, createBlockToastForMessageReceivingAction} from "Common/Toaster/Domain/Actions";
 import {RootState} from "SinglePageApp/App";
+import {AppDispatch} from "Common/types";
 
 const mapStateToProps = (state: RootState) => {
     return {
@@ -12,11 +13,11 @@ const mapStateToProps = (state: RootState) => {
 };
 
 //@ts-ignore
-const mapDispatchToProps = (dispatch) => { //todo: add correct type hint
+const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
         onRemoveToast: (toastId: string): void => dispatch(createRemoveToastThunk(toastId)),
-        onRemoveToastMessage: (toastId: string, toastMessageId: string): void => dispatch(createRemoveToastMessageAction(toastId, toastMessageId)),
-        onBlockToastForMessageReceiving: (toastId: string): void => dispatch(createBlockToastForMessageReceivingAction(toastId)),
+        onRemoveToastMessage: (toastId: string, toastMessageId: string) => dispatch(createRemoveToastMessageAction(toastId, toastMessageId)),
+        onBlockToastForMessageReceiving: (toastId: string) => dispatch(createBlockToastForMessageReceivingAction(toastId)),
     };
 };
 
