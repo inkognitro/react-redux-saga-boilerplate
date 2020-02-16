@@ -2,12 +2,12 @@ import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {findCurrentUser} from "Common/Auth/Domain/Selectors";
-import {createLogoutThunk} from "Common/Auth/Domain/Actions";
 import {RootState} from "SinglePageApp/App";
 import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/RouteFactory';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
 import './NavBar.scss';
 import {User} from "Common/EntityCache/Domain/User/UserRepository";
+import {createLogoutThunk} from "Common/Auth/Domain/AuthManager";
 
 export type RepresentationalNavBarProps = {
     currentUser: (User | null),

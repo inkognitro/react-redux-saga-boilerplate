@@ -10,7 +10,7 @@ import {Toaster} from "SinglePageApp/Layout/UI/Toaster";
 import 'SinglePageApp/App.scss';
 import {Loader} from "SinglePageApp/Layout/UI/Loader";
 import {Router} from 'SinglePageApp/Routing/UI/Router';
-import {initializeAuth} from "Common/Auth/Domain/AuthManagement";
+import {initializeAuth} from "Common/Auth/Domain/AuthManager";
 
 const root = combineReducers({requestHandling, auth, cache, toaster});
 export type RootState = ReturnType<typeof root>;

@@ -12,6 +12,10 @@ export function findCurrentUser(state: AuthState, userRepository: UserRepository
     return userRepository.findById(currentUserId);
 }
 
+export function isApiTokenBeingFetchedRightNow(state: AuthState): boolean {
+    return state.isFetchingApiToken;
+}
+
 export function findApiToken(state: AuthState): (null | string) {
     return state.apiToken;
 }
@@ -20,7 +24,7 @@ export function findApiTokenFromCookie(cookieStorage: CookieStorageInterface): (
     return cookieStorage.findCookieContent(API_TOKEN_COOKIE_NAME);
 }
 
-export function shouldRememberAuthByCookie(cookieStorage: CookieStorageInterface): boolean {
+export function shouldRememberCurrentUser(cookieStorage: CookieStorageInterface): boolean {
     const cookieContent = cookieStorage.findCookieContent(SHOULD_REMEMBER_AUTH_COOKIE_NAME);
     return !!cookieContent;
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
-import {createAuthenticateThunk} from "Common/Auth/Domain/Actions";
 import {store} from "SinglePageApp/App";
 import {PrimaryButton} from "Common/Layout/UI/Form/Buttons/PrimaryButton";
 import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/InputElements/TextField";
 import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
 import {createPasswordForgottenUrl} from "SinglePageApp/Routing/Domain/RouteFactory";
+import {createAuthenticateThunk} from "Common/Auth/Domain/AuthManager";
 
 export class Login extends React.Component {
     login() {
