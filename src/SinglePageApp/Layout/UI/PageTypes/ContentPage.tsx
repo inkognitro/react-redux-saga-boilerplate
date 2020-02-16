@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import {NavBar} from "SinglePageApp/Layout/UI/NavBar";
 import './ContentPage.scss';
 
 export type ContentPageProps = {
@@ -9,7 +8,7 @@ export type ContentPageProps = {
 export const ContentPage: FunctionComponent<ContentPageProps> = (props) => {
     return (
         <React.Fragment>
-            <NavBar />
+            INSERT NAVBAR HERE AGAIN!
             <div className={'container' + (props.topDividedContent ? ' content-page-content-container-top-divided' : '')}>
                 <div className="row">
                     <div className="col-sm">

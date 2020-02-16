@@ -1,4 +1,4 @@
-import {Request} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandling";
+import {Request} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandler";
 
 export type RequestHandlingState = {
     runningHttpRequests: Request[],

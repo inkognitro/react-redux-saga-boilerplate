@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Route, Switch} from "react-router";
-import {homeRoute, loginRoute, passwordForgottenRoute} from "SinglePageApp/Routing/Domain/RouteFactory";
+import {homeRoute, loginRoute, passwordForgottenRoute} from "SinglePageApp/Routing/Domain/RouteCreation";
 import {Home} from "SinglePageApp/Routing/UI/Home";
 import {Login} from "SinglePageApp/Routing/UI/AuthPages/Login";
 import {PwForgotten} from "SinglePageApp/Routing/UI/AuthPages/PwForgotten";

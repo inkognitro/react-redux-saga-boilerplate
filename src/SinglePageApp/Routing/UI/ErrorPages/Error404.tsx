@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Link} from 'Common/Layout/UI/Link/Link';
-import {createHomeRouteUrl} from "SinglePageApp/Routing/Domain/RouteFactory";
+import {createHomeRouteUrl} from "SinglePageApp/Routing/Domain/RouteCreation";
 import {ErrorPage} from "SinglePageApp/Layout/UI/PageTypes/ErrorPage";
 
 export type NotFoundErrorProps = {};

@@ -1,14 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import {connect, ConnectedProps } from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {findCurrentUser} from "Common/Auth/Domain/Selectors";
-import {RootState} from "SinglePageApp/App";
-import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/RouteFactory';
+import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/RouteCreation';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
 import './NavBar.scss';
 import {User} from "Common/EntityCache/Domain/User/UserRepository";
-import {createLogoutThunk} from "Common/Auth/Domain/AuthManager";
-import {AppDispatch} from "Common/types";
 
 export type RepresentationalNavBarProps = {
     currentUser: (User | null),
@@ -42,16 +38,16 @@ export const RepresentationalNavBar: FunctionComponent<RepresentationalNavBarPro
     );
 };
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = () => {
     return {
-        currentUser: findCurrentUser(state.auth, state.cache.userRepository),
+        currentUser: null,
     };
 };
 
 //@ts-ignore
-const mapDispatchToProps = (dispatch: AppDispatch) => {
+const mapDispatchToProps = () => {
     return {
-        onClickLogout: () => dispatch(createLogoutThunk()),
+        onClickLogout: () => console.log('logout'),
     };
 };
 

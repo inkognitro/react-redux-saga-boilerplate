@@ -4,7 +4,7 @@ import {PrimaryButton} from "Common/Layout/UI/Form/Buttons/PrimaryButton";
 import {TextField} from "Common/Layout/UI/Form/InputElements/TextField";
 import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
-import {createLoginRouteUrl} from "SinglePageApp/Routing/Domain/RouteFactory";
+import {createLoginRouteUrl} from "SinglePageApp/Routing/Domain/RouteCreation";
 
 export class PwForgotten extends React.Component {
     render() {

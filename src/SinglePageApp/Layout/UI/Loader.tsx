@@ -1,17 +1,20 @@
 import React, { FunctionComponent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import {RootState} from "SinglePageApp/App";
-import {isRequestRunningWithEnabledLoader} from "Common/RequestHandling/Domain/HttpRequestHandling/Selectors";
 import {Loader as CommonLoader, LoaderProps as CommonLoaderProps} from "Common/Layout/UI/Loader/Loader";
+import {HttpRequestHandlerInterface} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandler";
 
-const mapStateToProps = (state: RootState) => {
+export type LoaderProps = {
+    httpRequestHandler: HttpRequestHandlerInterface,
+};
+
+const mapStateToProps = ({}, props: LoaderProps) => {
     return {
-        isVisible: isRequestRunningWithEnabledLoader(state.requestHandling)
+        isVisible: false //props.httpRequestHandler.hasRunningRequestsWithEnabledLoader()
     };
 };
 
 const connector = connect(mapStateToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
+type PropsFromRedux = ConnectedProps<LoaderProps>;
 
 type GlobalLoaderProps = (PropsFromRedux & CommonLoaderProps);
 const GlobalLoader: FunctionComponent<GlobalLoaderProps> = (props) => (<CommonLoader {...props} />);

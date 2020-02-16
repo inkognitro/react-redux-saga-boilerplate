@@ -6,7 +6,7 @@ import {
     ExecutionSummary as GeneralExecutionSummary,
     HttpRequestHandlerInterface,
     RequestExecutionSettings as GeneralRequestExecutionSettings
-} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandling";
+} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandler";
 
 export enum API_ENDPOINT_URLS {
     AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate.json',

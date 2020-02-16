@@ -1,9 +1,10 @@
 import {
     RequestHandlingActions,
-    RequestHandlingActionTypes
+    RequestHandlingActionTypes, RequestHandlingState
 } from "Common/RequestHandling/Domain/HttpRequestHandling/Types";
 import {AppDispatch, AppThunk} from "Common/types";
 import uuidV4 from "uuid/v4";
+import {isRequestRunningWithEnabledLoader} from "Common/RequestHandling/Domain/HttpRequestHandling/Selectors";
 
 export enum RequestMethods {
     GET = 'GET',
@@ -100,16 +101,29 @@ export interface RequestDispatcher {
 }
 
 export interface HttpRequestHandlerInterface {
-    executeRequest(settings: RequestExecutionSettings): void,
+    executeRequest(settings: RequestExecutionSettings): void
+    hasRunningRequestsWithEnabledLoader(): boolean
 }
 
+type RequestHandlingStateSelector = () => RequestHandlingState;
+
 export class HttpRequestHandler implements HttpRequestHandlerInterface {
+    private readonly getRequestHandlingState: RequestHandlingStateSelector;
     private readonly dispatch: AppDispatch;
     private readonly requestDispatcher: RequestDispatcher;
 
-    constructor(dispatch: AppDispatch, requestDispatcher: RequestDispatcher) {
+    constructor(
+        getRequestHandlingState: RequestHandlingStateSelector,
+        dispatch: AppDispatch,
+        requestDispatcher: RequestDispatcher
+    ) {
+        this.getRequestHandlingState = getRequestHandlingState;
         this.dispatch = dispatch;
         this.requestDispatcher = requestDispatcher;
+    }
+
+    hasRunningRequestsWithEnabledLoader(): boolean {
+        return isRequestRunningWithEnabledLoader(this.getRequestHandlingState());
     }
 
     executeRequest(settings: RequestExecutionSettings): void {

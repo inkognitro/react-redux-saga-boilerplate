@@ -5,7 +5,7 @@ import {PrimaryButton} from "Common/Layout/UI/Form/Buttons/PrimaryButton";
 import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/InputElements/TextField";
 import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
-import {createPasswordForgottenUrl} from "SinglePageApp/Routing/Domain/RouteFactory";
+import {createPasswordForgottenUrl} from "SinglePageApp/Routing/Domain/RouteCreation";
 import {createAuthenticateThunk} from "Common/Auth/Domain/AuthManager";
 
 export class Login extends React.Component {

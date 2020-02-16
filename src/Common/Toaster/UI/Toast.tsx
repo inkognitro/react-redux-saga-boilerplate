@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Message} from "./Message";
 import {Power1, TimelineLite} from "gsap/gsap-core";
-import {Message, Toast} from "Common/Toaster/Domain/ToastRepository";
+import {Message as MessageData, Toast as ToastData} from "Common/Toaster/Domain/ToastRepository";
 
 function getToastClassName(type: string): string {
     let classNames = ['app-toast'];

@@ -3,7 +3,7 @@ import {
     ExecutionSummary,
     Request,
     RequestExecutionSettings, RequestMethods
-} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandling";
+} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandler";
 
 export class AxiosRequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void {

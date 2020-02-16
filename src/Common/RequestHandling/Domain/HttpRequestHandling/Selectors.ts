@@ -1,5 +1,5 @@
 import {RequestHandlingState} from "Common/RequestHandling/Domain/HttpRequestHandling/Types";
-import {ExecutionSummary} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandling";
+import {ExecutionSummary} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandler";
 
 export function isRequestRunningWithEnabledLoader(state: RequestHandlingState): boolean {
     const requestWithEnabledLoader = state.runningHttpRequests.find((request) => (request.isLoaderEnabled));
