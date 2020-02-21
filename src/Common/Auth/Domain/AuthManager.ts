@@ -19,13 +19,9 @@ import {
 
 export interface AuthManagerInterface {
     initializeCurrentUser(): void
-
     initializeCurrentUser(): void
-
     logoutCurrentUser(): void
-
     authenticate(settings: AuthenticateSettings): void
-
     findCurrentUser(): (null | User)
 }
 
@@ -63,12 +59,14 @@ export class AuthManager implements AuthManagerInterface {
         dispatch: AppDispatch,
         getAuthState: AuthStateSelector,
         userRepository: UserRepositoryInterface,
-        cookieStorage: CookieStorageInterface
+        cookieStorage: CookieStorageInterface,
+        authBackendService: AuthBackendService
     ) {
         this.dispatch = dispatch;
         this.getAuthState = getAuthState;
         this.userRepository = userRepository;
         this.cookieStorage = cookieStorage;
+        this.authBackendService = authBackendService;
     }
 
     public findCurrentUser(): User | null {

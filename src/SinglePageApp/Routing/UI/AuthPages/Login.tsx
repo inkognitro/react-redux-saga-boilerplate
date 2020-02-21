@@ -6,12 +6,45 @@ import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/InputElements/Tex
 import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
 import {createPasswordForgottenUrl} from "SinglePageApp/Routing/Domain/RouteCreation";
-import {createAuthenticateThunk} from "Common/Auth/Domain/AuthManager";
+import {AuthManager} from "Common/Auth/Domain/AuthManager";
+import {UserRepository} from "Common/EntityCache/Domain/User/UserRepository";
+import {BrowserCookieStorage} from "Common/CookieHandling/Infrastructure/BrowserCookieStorage";
+import {ApiAuthBackendService} from "Common/Auth/Infrastructure/ApiAuthBackendService";
+import {ApiHttpRequestManager} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
+import {HttpRequestManager} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
+import {ToastRepository} from "Common/Toaster/Domain/ToastRepository";
+import {AxiosRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosRequestDispatcher";
 
 export class Login extends React.Component {
+    private readonly authManager: AuthManager;
+
+    constructor(props: object) {
+        super(props);
+        const browserCookieStorage = new BrowserCookieStorage();
+        const userRepository = new UserRepository(store.dispatch, () => store.getState().cache.userRepository);
+        const toastRepository = new ToastRepository(store.dispatch, () => store.getState().toaster);
+        const httpRequestManager = new HttpRequestManager(
+            () => store.getState().requestHandling,
+            store.dispatch,
+            new AxiosRequestDispatcher()
+        );
+        const apiHttpRequestManager = new ApiHttpRequestManager(httpRequestManager, toastRepository);
+        this.authManager = new AuthManager(
+            store.dispatch,
+            () => store.getState().auth,
+            userRepository,
+            browserCookieStorage,
+            new ApiAuthBackendService(apiHttpRequestManager)
+        );
+    }
+
     login() {
-        //@ts-ignore
-        store.dispatch(createAuthenticateThunk('foo', 'bar', true));
+        this.authManager.authenticate({
+            shouldRemember: false,
+            isLoaderEnabled: true,
+            username: 'foo',
+            password: 'bar',
+        });
     }
 
     render() {

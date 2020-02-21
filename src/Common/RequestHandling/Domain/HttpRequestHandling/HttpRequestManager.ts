@@ -100,14 +100,14 @@ export interface RequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void
 }
 
-export interface HttpRequestHandlerInterface {
+export interface HttpRequestManagerInterface {
     executeRequest(settings: RequestExecutionSettings): void
     hasRunningRequestsWithEnabledLoader(): boolean
 }
 
 type RequestHandlingStateSelector = () => RequestHandlingState;
 
-export class HttpRequestHandler implements HttpRequestHandlerInterface {
+export class HttpRequestManager implements HttpRequestManagerInterface {
     private readonly getRequestHandlingState: RequestHandlingStateSelector;
     private readonly dispatch: AppDispatch;
     private readonly requestDispatcher: RequestDispatcher;

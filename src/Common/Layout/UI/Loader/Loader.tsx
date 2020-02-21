@@ -5,9 +5,11 @@ import {IconSizes, IconTypes} from "Common/Layout/UI/Icons/Icon";
 import {LoaderIconRotating} from "Common/Layout/UI/Icons/LoaderIconRotating";
 import './Loader.scss';
 
-export type LoaderProps = {
+export type LoaderState = {
     isVisible: boolean,
 };
+
+export type LoaderProps = (LoaderState);
 
 export class Loader extends Component<LoaderProps> {
     private fadeInAnimation: TimelineLite;

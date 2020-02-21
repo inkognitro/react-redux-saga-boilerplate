@@ -1,14 +1,19 @@
 import React, {FunctionComponent} from 'react';
 import {Toast} from './Toast';
-import './Toasts.scss';
 import {Toast as ToastData} from "Common/Toaster/Domain/ToastRepository";
+import './Toasts.scss';
 
-export type ToastsProps = {
+export type ToastsState = {
     toasts: ToastData[],
+}
+
+export type ToastsCallbacks = {
     onRemoveToast(toastId: string): void,
     onRemoveToastMessage(toastId: string, toastMessageId: string): void,
     onBlockToastForMessageReceiving(toastId: string): void,
 };
+
+export type ToastsProps = (ToastsState & ToastsCallbacks);
 
 export const Toasts: FunctionComponent<ToastsProps> = (props) => {
     return (

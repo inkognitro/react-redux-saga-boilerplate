@@ -1,20 +1,25 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
-import {createAddToastMessageThunk} from "Common/Toaster/Domain/Actions";
 import {store} from "SinglePageApp/App";
 import {getSecondsUntilExpiration} from "Common/Auth/Domain/JWTHandling";
-import {ToastTypes} from "Common/Toaster/Domain/ToastRepository";
+import {ToastRepository, ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
 
 const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmLTgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0.ZUwq2yWnT-H3fvpmUJwJkR3sG4aWQGMTo4tP8tNBHrc';
 
 export class Home extends React.Component {
+    private readonly toastRepository: ToastRepositoryInterface;
+
+    constructor(props: object) {
+        super(props);
+        this.toastRepository = new ToastRepository(store.dispatch, () => store.getState().toaster);
+    }
+
     addToast(type: ToastTypes) {
-        // @ts-ignore
-        store.dispatch(createAddToastMessageThunk({
-            type: type,
+        this.toastRepository.addToastMessage({
             content: 'foo',
-        }));
+            type: type
+        });
     }
 
     logJwtToken() {

@@ -4,9 +4,9 @@ import {
     createPostRequest as generalCreatePostRequest,
     createWithHeaderEnhancedHttpRequest,
     ExecutionSummary as GeneralExecutionSummary,
-    HttpRequestHandlerInterface,
+    HttpRequestManagerInterface,
     RequestExecutionSettings as GeneralRequestExecutionSettings
-} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandler";
+} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 
 export enum API_ENDPOINT_URLS {
     AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate.json',
@@ -21,11 +21,11 @@ export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {
     apiToken?: string
 });
 
-export class ApiHttpRequestHandler {
-    private httpRequestHandler: HttpRequestHandlerInterface;
+export class ApiHttpRequestManager {
+    private httpRequestHandler: HttpRequestManagerInterface;
     private readonly toastRepository: ToastRepositoryInterface;
 
-    constructor(httpRequestHandler: HttpRequestHandlerInterface, toastRepository: ToastRepositoryInterface) {
+    constructor(httpRequestHandler: HttpRequestManagerInterface, toastRepository: ToastRepositoryInterface) {
         this.httpRequestHandler = httpRequestHandler;
         this.toastRepository = toastRepository;
     }

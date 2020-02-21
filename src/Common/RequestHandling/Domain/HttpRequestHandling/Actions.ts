@@ -8,7 +8,7 @@ import {
     ExecutionSummary,
     Request,
     RequestMethods
-} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestHandler";
+} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 
 export type RequestExecutionSettings = {
     request: Request,

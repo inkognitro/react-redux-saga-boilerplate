@@ -5,16 +5,16 @@ import {
 } from "Common/Auth/Domain/AuthBackendService";
 import {
     API_ENDPOINT_URLS,
-    ApiHttpRequestHandler,
+    ApiHttpRequestManager,
     createGetRequest,
     ExecutionSummary
-} from "Common/RequestHandling/Domain/ApiHttpRequestHandling";
+} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
 import {getResponseBodyJson} from "Common/RequestHandling/Domain/HttpRequestHandling/Selectors";
 
 export class ApiAuthBackendService implements AuthBackendService {
-    private readonly apiHttpRequestHandler: ApiHttpRequestHandler;
+    private readonly apiHttpRequestHandler: ApiHttpRequestManager;
 
-    constructor(apiHttpRequestHandler: ApiHttpRequestHandler) {
+    constructor(apiHttpRequestHandler: ApiHttpRequestManager) {
         this.apiHttpRequestHandler = apiHttpRequestHandler;
     }
 

@@ -6,6 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: "app.js",
+        publicPath: "/"
     },
     module: {
         rules: [
@@ -33,7 +34,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
         }),
         new ForkTsCheckerWebpackPlugin()
     ]

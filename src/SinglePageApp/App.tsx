@@ -6,17 +6,31 @@ import {auth} from 'Common/Auth/Domain/Reducer';
 import {toaster} from 'Common/Toaster/Domain/Reducer';
 import {cache} from './EntityCache/Domain/Reducer';
 import thunkMiddleware from 'redux-thunk';
-import {Toaster} from "SinglePageApp/Layout/UI/Toaster";
-import 'SinglePageApp/App.scss';
-import {Loader} from "SinglePageApp/Layout/UI/Loader";
+import {Toaster} from "Common/Toaster/UI/Toaster";
 import {Router} from 'SinglePageApp/Routing/UI/Router';
+import {
+    HttpRequestManager,
+    HttpRequestManagerInterface
+} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
+import 'SinglePageApp/App.scss';
+import {AxiosRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosRequestDispatcher";
+import {ToastRepository, ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
+import {Loader} from "SinglePageApp/Layout/UI/Loader";
 
 const root = combineReducers({requestHandling, auth, cache, toaster});
 export type RootState = ReturnType<typeof root>;
+export const store = createStore(root, applyMiddleware(thunkMiddleware));
 
-const middleware = applyMiddleware(thunkMiddleware);
+const httpRequestManager: HttpRequestManagerInterface = new HttpRequestManager(
+    () => store.getState().requestHandling,
+    store.dispatch,
+    new AxiosRequestDispatcher()
+);
 
-export const store = createStore(root, middleware);
+const toastRepository: ToastRepositoryInterface = new ToastRepository(
+    store.dispatch,
+    () => store.getState().toaster
+);
 
 export class RootComponent extends Component {
     componentDidMount() {
@@ -28,8 +42,8 @@ export class RootComponent extends Component {
         return (
             <Provider store={store}>
                 <Router />
-                <Toaster />
-                <Loader httpRequestHandler={} />
+                <Toaster toastRepository={toastRepository} />
+                <Loader httpRequestManager={httpRequestManager} />
             </Provider>
         );
     }
