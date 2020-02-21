@@ -12,14 +12,14 @@ import {
 import {getResponseBodyJson} from "Common/RequestHandling/Domain/HttpRequestHandling/Selectors";
 
 export class ApiAuthBackendService implements AuthBackendService {
-    private readonly apiHttpRequestHandler: ApiHttpRequestManager;
+    private readonly apiHttpRequestManager: ApiHttpRequestManager;
 
-    constructor(apiHttpRequestHandler: ApiHttpRequestManager) {
-        this.apiHttpRequestHandler = apiHttpRequestHandler;
+    constructor(apiHttpRequestManager: ApiHttpRequestManager) {
+        this.apiHttpRequestManager = apiHttpRequestManager;
     }
 
     receiveAuthData(settings: ReceiveAuthDataSettings): void {
-        this.apiHttpRequestHandler.executeRequest({
+        this.apiHttpRequestManager.executeRequest({
             request: createGetRequest({
                 url: API_ENDPOINT_URLS.AUTH_AUTHENTICATE,
                 queryParameters: {
@@ -49,7 +49,7 @@ export class ApiAuthBackendService implements AuthBackendService {
     }
 
     receiveRefreshedAuthData(settings: ReceiveRefreshedAuthDataSettings): void {
-        this.apiHttpRequestHandler.executeRequest({
+        this.apiHttpRequestManager.executeRequest({
             apiToken: settings.apiToken,
             request: createGetRequest({
                 url: API_ENDPOINT_URLS.AUTH_REFRESH_TOKEN,
