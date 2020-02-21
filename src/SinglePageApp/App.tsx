@@ -3,21 +3,23 @@ import {Provider} from 'react-redux';
 import {Store} from 'redux'
 import {Toaster} from "Common/Toaster/UI/Toaster";
 import {Router} from 'SinglePageApp/Routing/UI/Router';
-import 'SinglePageApp/App.scss';
 import {Loader} from "SinglePageApp/Layout/UI/Loader";
 import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
+import {ApiHttpRequestManager} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
+import 'SinglePageApp/App.scss';
 
-export type Services = {
+export type AppServices = {
     store: Store
     authManager: AuthManagerInterface,
     toastRepository: ToastRepositoryInterface,
     httpRequestManager: HttpRequestManagerInterface,
+    apiHttpRequestManager: ApiHttpRequestManager,
 };
 
 export type RootComponentProps = {
-    services: Services,
+    services: AppServices,
 };
 
 export class RootComponent extends Component<RootComponentProps> {
@@ -29,7 +31,7 @@ export class RootComponent extends Component<RootComponentProps> {
     render() {
         return (
             <Provider store={this.props.services.store}>
-                <Router />
+                <Router services={this.props.services} />
                 <Toaster toastRepository={this.props.services.toastRepository} />
                 <Loader httpRequestManager={this.props.services.httpRequestManager} />
             </Provider>

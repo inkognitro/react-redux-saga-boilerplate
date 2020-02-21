@@ -12,7 +12,6 @@ export function requestHandling(state: RequestHandlingState = initialRequestHand
     if (action === undefined) {
         return state;
     }
-
     if (action.type === RequestHandlingActionTypes.SEND_REQUEST) {
         return Object.assign({}, state, {
             runningHttpRequests: [

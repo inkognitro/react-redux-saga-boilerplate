@@ -96,7 +96,7 @@ export function createWithHeaderEnhancedHttpRequest(request: Request, headerProp
     return Object.assign({}, request, {headers: newHeaders});
 }
 
-export interface RequestDispatcher {
+export interface HttpRequestDispatcherInterface {
     executeRequest(settings: RequestExecutionSettings): void
 }
 
@@ -105,17 +105,17 @@ export interface HttpRequestManagerInterface {
     hasRunningRequestsWithEnabledLoader(): boolean
 }
 
-type RequestHandlingStateSelector = () => RequestHandlingState;
+export type RequestHandlingStateSelector = () => RequestHandlingState;
 
 export class HttpRequestManager implements HttpRequestManagerInterface {
     private readonly getRequestHandlingState: RequestHandlingStateSelector;
     private readonly dispatch: AppDispatch;
-    private readonly requestDispatcher: RequestDispatcher;
+    private readonly requestDispatcher: HttpRequestDispatcherInterface;
 
     constructor(
         getRequestHandlingState: RequestHandlingStateSelector,
         dispatch: AppDispatch,
-        requestDispatcher: RequestDispatcher
+        requestDispatcher: HttpRequestDispatcherInterface
     ) {
         this.getRequestHandlingState = getRequestHandlingState;
         this.dispatch = dispatch;
@@ -131,7 +131,7 @@ export class HttpRequestManager implements HttpRequestManagerInterface {
     }
 }
 
-function createDispatchRequestThunk(settings: RequestExecutionSettings, requestDispatcher: RequestDispatcher): AppThunk {
+function createDispatchRequestThunk(settings: RequestExecutionSettings, requestDispatcher: HttpRequestDispatcherInterface): AppThunk {
     return function(dispatch: AppDispatch) {
         const extendedSettings = Object.assign({}, settings, {
             onSuccess: (executionSummary: ExecutionSummary) => {
@@ -148,7 +148,7 @@ function createDispatchRequestThunk(settings: RequestExecutionSettings, requestD
             },
         });
         dispatch(createSendRequestAction(extendedSettings.request));
-        requestDispatcher.executeRequest(settings);
+        requestDispatcher.executeRequest(extendedSettings);
     };
 }
 

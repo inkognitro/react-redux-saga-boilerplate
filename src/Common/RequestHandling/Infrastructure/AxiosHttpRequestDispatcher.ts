@@ -1,65 +1,32 @@
 import axios from 'axios';
 import {
-    RequestHandlingActions,
-    RequestHandlingActionTypes
-} from "Common/RequestHandling/Domain/HttpRequestHandling/Types";
-import {AppThunk} from "Common/types";
-import {
     ExecutionSummary,
-    Request,
-    RequestMethods
+    Request, HttpRequestDispatcherInterface,
+    RequestExecutionSettings, RequestMethods
 } from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 
-export type RequestExecutionSettings = {
-    request: Request,
-    onSuccess?(summary: ExecutionSummary): void,
-    onError?(summary: ExecutionSummary): void,
-};
-
-export function executeRequest(settings: RequestExecutionSettings): AppThunk {
-    return function(dispatch) {
-        const request = settings.request;
-        dispatch(createSendRequestAction(settings.request));
+export class AxiosHttpRequestDispatcher implements HttpRequestDispatcherInterface {
+    executeRequest(settings: RequestExecutionSettings): void {
         axios(createAxiosConfigFromExecutionSettings(settings))
             .then((response: AxiosResponse): void => {
-                dispatch(createCloseRequestAction(settings.request.id));
-                if(!settings.onSuccess) {
+                if (!settings.onSuccess) {
                     return;
                 }
-                const summary = createSummaryFromAxiosResponse(request, response);
+                const summary = createSummaryFromAxiosResponse(settings.request, response);
                 settings.onSuccess(summary);
             })
             .catch((error: AxiosError): void => {
-                dispatch(createCloseRequestAction(settings.request.id));
-                if(!error.request) {
+                if (!error.request) {
                     console.error(error);
                     return;
                 }
-                if(!settings.onError) {
+                if (!settings.onError) {
                     return;
                 }
-                const summary = createSummaryFromAxiosResponse(request, error.response);
+                const summary = createSummaryFromAxiosResponse(settings.request, error.response);
                 settings.onError(summary);
             });
-    };
-}
-
-function createSendRequestAction(request: Request): RequestHandlingActions {
-    return {
-        type: RequestHandlingActionTypes.SEND_REQUEST,
-        payload: {
-            request: request,
-        }
-    };
-}
-
-function createCloseRequestAction(requestId: string): RequestHandlingActions {
-    return {
-        type: RequestHandlingActionTypes.CLOSE_REQUEST,
-        payload: {
-            requestId: requestId,
-        }
-    };
+    }
 }
 
 function createAxiosConfigFromExecutionSettings (settings: RequestExecutionSettings): object {
