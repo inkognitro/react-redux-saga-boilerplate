@@ -1,45 +1,19 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
-import {store} from "SinglePageApp/App";
 import {PrimaryButton} from "Common/Layout/UI/Form/Buttons/PrimaryButton";
 import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/InputElements/TextField";
 import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
 import {createPasswordForgottenUrl} from "SinglePageApp/Routing/Domain/RouteCreation";
-import {AuthManager} from "Common/Auth/Domain/AuthManager";
-import {UserRepository} from "Common/EntityCache/Domain/User/UserRepository";
-import {BrowserCookieStorage} from "Common/CookieHandling/Infrastructure/BrowserCookieStorage";
-import {ApiAuthBackendService} from "Common/Auth/Infrastructure/ApiAuthBackendService";
-import {ApiHttpRequestManager} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
-import {HttpRequestManager} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
-import {ToastRepository} from "Common/Toaster/Domain/ToastRepository";
-import {AxiosRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosRequestDispatcher";
+import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 
-export class Login extends React.Component {
-    private readonly authManager: AuthManager;
+export type LoginProps = {
+    authManager: AuthManagerInterface
+};
 
-    constructor(props: object) {
-        super(props);
-        const browserCookieStorage = new BrowserCookieStorage();
-        const userRepository = new UserRepository(store.dispatch, () => store.getState().cache.userRepository);
-        const toastRepository = new ToastRepository(store.dispatch, () => store.getState().toaster);
-        const httpRequestManager = new HttpRequestManager(
-            () => store.getState().requestHandling,
-            store.dispatch,
-            new AxiosRequestDispatcher()
-        );
-        const apiHttpRequestManager = new ApiHttpRequestManager(httpRequestManager, toastRepository);
-        this.authManager = new AuthManager(
-            store.dispatch,
-            () => store.getState().auth,
-            userRepository,
-            browserCookieStorage,
-            new ApiAuthBackendService(apiHttpRequestManager)
-        );
-    }
-
+export class Login extends React.Component<LoginProps> {
     login() {
-        this.authManager.authenticate({
+        this.props.authManager.authenticate({
             shouldRemember: false,
             isLoaderEnabled: true,
             username: 'foo',

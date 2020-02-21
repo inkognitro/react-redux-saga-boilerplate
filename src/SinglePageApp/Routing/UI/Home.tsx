@@ -1,28 +1,24 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
-import {store} from "SinglePageApp/App";
 import {getSecondsUntilExpiration} from "Common/Auth/Domain/JWTHandling";
-import {ToastRepository, ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
+import {ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
 
-const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmLTgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0.ZUwq2yWnT-H3fvpmUJwJkR3sG4aWQGMTo4tP8tNBHrc';
+export type HomeProps = {
+    toastRepository: ToastRepositoryInterface,
+    getReduxState(): object,
+};
 
-export class Home extends React.Component {
-    private readonly toastRepository: ToastRepositoryInterface;
-
-    constructor(props: object) {
-        super(props);
-        this.toastRepository = new ToastRepository(store.dispatch, () => store.getState().toaster);
-    }
-
+export class Home extends React.Component<HomeProps> {
     addToast(type: ToastTypes) {
-        this.toastRepository.addToastMessage({
+        this.props.toastRepository.addToastMessage({
             content: 'foo',
             type: type
         });
     }
 
     logJwtToken() {
+        const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmLTgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0.ZUwq2yWnT-H3fvpmUJwJkR3sG4aWQGMTo4tP8tNBHrc';
         const secondsUntilExpiration = getSecondsUntilExpiration(jwt);
         console.log('secondsUntilExpiration');
         console.log(secondsUntilExpiration);
@@ -48,7 +44,7 @@ export class Home extends React.Component {
 
                 <br />
                 <h3>Redux</h3>
-                <div><FunctionalLink onClick={() => console.log(store.getState())}>print redux state</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => console.log(this.props.getReduxState())}>print redux state</FunctionalLink></div>
             </ContentPage>
         );
     }

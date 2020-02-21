@@ -22,16 +22,16 @@ export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {
 });
 
 export class ApiHttpRequestManager {
-    private httpRequestHandler: HttpRequestManagerInterface;
+    private httpRequestManager: HttpRequestManagerInterface;
     private readonly toastRepository: ToastRepositoryInterface;
 
-    constructor(httpRequestHandler: HttpRequestManagerInterface, toastRepository: ToastRepositoryInterface) {
-        this.httpRequestHandler = httpRequestHandler;
+    constructor(httpRequestManager: HttpRequestManagerInterface, toastRepository: ToastRepositoryInterface) {
+        this.httpRequestManager = httpRequestManager;
         this.toastRepository = toastRepository;
     }
 
     executeRequest(settings: RequestExecutionSettings): void {
-        this.httpRequestHandler.executeRequest(createGeneralRequestExecutionSettings(settings, this.toastRepository));
+        this.httpRequestManager.executeRequest(createGeneralRequestExecutionSettings(settings, this.toastRepository));
     }
 }
 

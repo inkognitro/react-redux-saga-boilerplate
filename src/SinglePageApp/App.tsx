@@ -1,38 +1,26 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {applyMiddleware, combineReducers, createStore} from 'redux'
-import {requestHandling} from 'Common/RequestHandling/Domain/HttpRequestHandling/Reducer';
-import {auth} from 'Common/Auth/Domain/Reducer';
-import {toaster} from 'Common/Toaster/Domain/Reducer';
-import {cache} from './EntityCache/Domain/Reducer';
-import thunkMiddleware from 'redux-thunk';
+import {Store} from 'redux'
 import {Toaster} from "Common/Toaster/UI/Toaster";
 import {Router} from 'SinglePageApp/Routing/UI/Router';
-import {
-    HttpRequestManager,
-    HttpRequestManagerInterface
-} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 import 'SinglePageApp/App.scss';
-import {AxiosRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosRequestDispatcher";
-import {ToastRepository, ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {Loader} from "SinglePageApp/Layout/UI/Loader";
+import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
+import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
+import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 
-const root = combineReducers({requestHandling, auth, cache, toaster});
-export type RootState = ReturnType<typeof root>;
-export const store = createStore(root, applyMiddleware(thunkMiddleware));
+export type Services = {
+    store: Store
+    authManager: AuthManagerInterface,
+    toastRepository: ToastRepositoryInterface,
+    httpRequestManager: HttpRequestManagerInterface,
+};
 
-const httpRequestManager: HttpRequestManagerInterface = new HttpRequestManager(
-    () => store.getState().requestHandling,
-    store.dispatch,
-    new AxiosRequestDispatcher()
-);
+export type RootComponentProps = {
+    services: Services,
+};
 
-const toastRepository: ToastRepositoryInterface = new ToastRepository(
-    store.dispatch,
-    () => store.getState().toaster
-);
-
-export class RootComponent extends Component {
+export class RootComponent extends Component<RootComponentProps> {
     componentDidMount() {
         //todo: initialize current user
         //todo: initialize refresh token interval!
@@ -40,10 +28,10 @@ export class RootComponent extends Component {
 
     render() {
         return (
-            <Provider store={store}>
+            <Provider store={this.props.services.store}>
                 <Router />
-                <Toaster toastRepository={toastRepository} />
-                <Loader httpRequestManager={httpRequestManager} />
+                <Toaster toastRepository={this.props.services.toastRepository} />
+                <Loader httpRequestManager={this.props.services.httpRequestManager} />
             </Provider>
         );
     }
