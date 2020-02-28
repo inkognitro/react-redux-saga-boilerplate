@@ -9,8 +9,8 @@ import {
 } from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 
 export enum API_ENDPOINT_URLS {
-    AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate.json',
-    AUTH_REFRESH_TOKEN = '//localhost:3000/auth/refreshtoken.json',
+    AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate',
+    AUTH_REFRESH = '//localhost:3000/auth/refresh',
 }
 
 export const createGetRequest = generalCreateGetRequest;

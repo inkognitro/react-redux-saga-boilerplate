@@ -23,7 +23,7 @@ export class ApiAuthBackendService implements AuthBackendService {
         this.apiHttpRequestManager.executeRequest({
             request: createPostRequest({
                 url: API_ENDPOINT_URLS.AUTH_AUTHENTICATE,
-                queryParameters: {
+                body: {
                     username: settings.username,
                     password: settings.password,
                 },
@@ -53,7 +53,7 @@ export class ApiAuthBackendService implements AuthBackendService {
         this.apiHttpRequestManager.executeRequest({
             apiToken: settings.apiToken,
             request: createGetRequest({
-                url: API_ENDPOINT_URLS.AUTH_REFRESH_TOKEN,
+                url: API_ENDPOINT_URLS.AUTH_REFRESH,
                 isLoaderEnabled: settings.isLoaderEnabled,
             }),
             onSuccess: (summary: ExecutionSummary): void => {
