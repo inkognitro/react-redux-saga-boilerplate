@@ -3,6 +3,7 @@ import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
 import {ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
+import {createRouteViewComponent} from "SinglePageApp/Routing/UI/RouteViewComponent";
 
 export type HomeProps = {
     authManager: AuthManagerInterface,
@@ -10,7 +11,7 @@ export type HomeProps = {
     getReduxState(): object,
 };
 
-export class Home extends React.Component<HomeProps> {
+class Home extends React.Component<HomeProps> {
     static createInitialState() {
         return {};
     }
@@ -61,3 +62,5 @@ export class Home extends React.Component<HomeProps> {
         );
     }
 }
+
+export const Foo = createRouteViewComponent(Home);

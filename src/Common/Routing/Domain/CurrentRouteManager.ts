@@ -4,12 +4,17 @@ import {getCurrentRouteState} from "Common/Routing/Domain/Selectors";
 import {createSetCurrentRouteAction, createSetCurrentRouteStateAction} from "Common/Routing/Domain/ActionCreation";
 
 export interface CurrentRouteManagerInterface {
-    setCurrentRoute(routeUrl: string, initialState: object): void
-    setCurrentRouteState(stateChanges: object): void
+    setCurrentRoute(settings: SetCurrentRouteSettings): void
+    setCurrentRouteState(stateChanges: object, callback?: () => void): void
     getCurrentRouteState(): object
 }
 
 export type RoutingStateSelector = () => RoutingState;
+
+export type SetCurrentRouteSettings = {
+    routeUrl: string,
+    initialState: object
+};
 
 export class CurrentRouteManager implements CurrentRouteManagerInterface {
     private readonly dispatch: AppDispatch;
@@ -22,13 +27,16 @@ export class CurrentRouteManager implements CurrentRouteManagerInterface {
         this.routeHistory = routeHistory;
     }
 
-    setCurrentRoute(routeUrl: string, initialState: object): void {
-        this.routeHistory.setCurrentRouteUrl(routeUrl);
-        this.dispatch(createSetCurrentRouteAction(initialState));
+    setCurrentRoute(settings: SetCurrentRouteSettings): void {
+        this.routeHistory.setCurrentRouteUrl(settings.routeUrl);
+        this.dispatch(createSetCurrentRouteAction(settings.initialState));
     }
 
-    setCurrentRouteState(stateChanges: object): void {
+    setCurrentRouteState(stateChanges: object, callback?: () => void): void {
         this.dispatch(createSetCurrentRouteStateAction(stateChanges));
+        if(callback) {
+            callback();
+        }
     }
 
     getCurrentRouteState(): object {

@@ -15,17 +15,21 @@ export const Router: FunctionComponent<RouterProps> = (props: RouterProps) => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path={homeRoute.routerUrl} component={Home}>
+                <Route exact path={homeRoute.routerUrl}>
                     <Home
                         toastRepository={props.services.toastRepository}
                         getReduxState={() => props.services.store.getState()}
                         authManager={props.services.authManager}
                     />
                 </Route>
-                <Route exact path={loginRoute.routerUrl} component={Login}>
-                    <Login authManager={props.services.authManager}/>
+                <Route exact path={loginRoute.routerUrl}>
+                    <Login
+                        authManager={props.services.authManager}
+                    />
                 </Route>
-                <Route path="*" component={NotFoundError}/>
+                <Route path="*">
+                    <NotFoundError />
+                </Route>
             </Switch>
         </BrowserRouter>
     );
