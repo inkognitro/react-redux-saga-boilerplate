@@ -19,7 +19,6 @@ import {
 
 export interface AuthManagerInterface {
     initializeCurrentUser(): void
-    initializeCurrentUser(): void
     logoutCurrentUser(): void
     authenticate(settings: AuthenticateSettings): void
     findCurrentUser(): (null | User)
@@ -181,6 +180,8 @@ export class AuthManager implements AuthManagerInterface {
         this.cookieStorage.removeCookie(API_TOKEN_COOKIE_NAME);
         if(currentUserSettings === null) {
             this.cookieStorage.removeCookie(SHOULD_REMEMBER_AUTH_COOKIE_NAME);
+            const action = createReceiveCurrentAuthUserDataAction(null, null);
+            this.dispatch(action);
             return;
         }
         this.userRepository.saveUserData(currentUserSettings.authData.user);
@@ -212,6 +213,7 @@ export class AuthManager implements AuthManagerInterface {
     }
 
     private saveShouldRememberCookieSetting(cookieStorage: CookieStorageInterface, shouldRemember: boolean): void {
+        cookieStorage.removeCookie(SHOULD_REMEMBER_AUTH_COOKIE_NAME);
         if (shouldRemember) {
             cookieStorage.setCookie({
                 name: SHOULD_REMEMBER_AUTH_COOKIE_NAME,
@@ -220,7 +222,6 @@ export class AuthManager implements AuthManagerInterface {
             });
             return;
         }
-        cookieStorage.removeCookie(SHOULD_REMEMBER_AUTH_COOKIE_NAME);
     }
 }
 

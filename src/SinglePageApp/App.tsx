@@ -24,8 +24,7 @@ export type RootComponentProps = {
 
 export class RootComponent extends Component<RootComponentProps> {
     componentDidMount() {
-        //todo: initialize current user
-        //todo: initialize refresh token interval!
+        this.props.services.authManager.initializeCurrentUser();
     }
 
     render() {

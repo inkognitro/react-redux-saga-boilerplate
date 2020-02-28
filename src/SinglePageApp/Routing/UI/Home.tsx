@@ -29,7 +29,10 @@ export class Home extends React.Component<HomeProps> {
 
     render() {
         return (
-            <ContentPage topDividedContent={true}>
+            <ContentPage
+                authManager={this.props.authManager}
+                topDividedContent={true}
+            >
                 <h1>Features</h1>
 
                 <br />

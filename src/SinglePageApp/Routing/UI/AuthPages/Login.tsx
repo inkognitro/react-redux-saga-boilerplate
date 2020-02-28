@@ -14,7 +14,7 @@ export type LoginProps = {
 export class Login extends React.Component<LoginProps> {
     login() {
         this.props.authManager.authenticate({
-            shouldRemember: false,
+            shouldRemember: true,
             isLoaderEnabled: true,
             username: 'foo',
             password: 'bar',
@@ -23,7 +23,10 @@ export class Login extends React.Component<LoginProps> {
 
     render() {
         return (
-            <ContentPage topDividedContent={true}>
+            <ContentPage
+                authManager={this.props.authManager}
+                topDividedContent={true}
+            >
                 <div className="col-sm-12 col-md-6 offset-md-3">
                     <Card title="Login">
                         <div className="card-text">

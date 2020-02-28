@@ -1,21 +1,26 @@
-import React, { FunctionComponent } from 'react';
+import React, {Component} from 'react';
+import {NavBar} from "SinglePageApp/Layout/UI/NavBar";
+import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import './ContentPage.scss';
 
 export type ContentPageProps = {
+    authManager: AuthManagerInterface,
     topDividedContent?: boolean,
 };
 
-export const ContentPage: FunctionComponent<ContentPageProps> = (props) => {
-    return (
-        <React.Fragment>
-            INSERT NAVBAR HERE AGAIN!
-            <div className={'container' + (props.topDividedContent ? ' content-page-content-container-top-divided' : '')}>
-                <div className="row">
-                    <div className="col-sm">
-                        {props.children}
+export class ContentPage extends Component<ContentPageProps> {
+    render() {
+        return (
+            <React.Fragment>
+                <NavBar authManager={this.props.authManager} />
+                <div className={'container' + (this.props.topDividedContent ? ' content-page-content-container-top-divided' : '')}>
+                    <div className="row">
+                        <div className="col-sm">
+                            {this.props.children}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </React.Fragment>
-    );
-};
+            </React.Fragment>
+        );
+    }
+}

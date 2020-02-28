@@ -7,6 +7,7 @@ import {
     API_ENDPOINT_URLS,
     ApiHttpRequestManager,
     createGetRequest,
+    createPostRequest,
     ExecutionSummary
 } from "Common/RequestHandling/Domain/ApiHttpRequestManager";
 import {getResponseBodyJson} from "Common/RequestHandling/Domain/HttpRequestHandling/Selectors";
@@ -20,7 +21,7 @@ export class ApiAuthBackendService implements AuthBackendService {
 
     receiveAuthData(settings: ReceiveAuthDataSettings): void {
         this.apiHttpRequestManager.executeRequest({
-            request: createGetRequest({
+            request: createPostRequest({
                 url: API_ENDPOINT_URLS.AUTH_AUTHENTICATE,
                 queryParameters: {
                     username: settings.username,

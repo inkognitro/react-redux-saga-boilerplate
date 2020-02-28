@@ -1,60 +1,66 @@
-import React, { FunctionComponent } from 'react'
-import {connect, ConnectedProps } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/RouteCreation';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
-import './NavBar.scss';
 import {User} from "Common/EntityCache/Domain/User/UserRepository";
+import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 
-export type RepresentationalNavBarProps = {
+type RepresentationalNavBarState = {
     currentUser: (User | null),
+};
+
+type RepresentationalNavBarCallbacks = {
     onClickLogout(): void,
 };
 
-function renderCurrentUserNavItem (props: RepresentationalNavBarProps) {
-    if(!props.currentUser) {
-        return;
+type RepresentationalNavBarProps = (RepresentationalNavBarState & RepresentationalNavBarCallbacks);
+
+class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
+    renderCurrentUserNavItem () {
+        if(!this.props.currentUser) {
+            return;
+        }
+        return (
+            <li className="nav-item">
+                <FunctionalLink onClick={() => this.props.onClickLogout()} className="nav-link">
+                    Logout {this.props.currentUser.username}
+                </FunctionalLink>
+            </li>
+        );
     }
-    return (
-        <li className="nav-item">
-            <FunctionalLink onClick={() => props.onClickLogout()} className="nav-link">
-                Logout {props.currentUser.username}
-            </FunctionalLink>
-        </li>
-    );
+
+    render() {
+        return (
+            <ul className="nav justify-content-center">
+                <li className="nav-item">
+                    <NavLink className="nav-link" to={createHomeRouteUrl()}>Home</NavLink>
+                </li>
+                {(this.props.currentUser ? null : (
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to={createLoginRouteUrl()}>Login</NavLink>
+                    </li>
+                ))}
+                {this.renderCurrentUserNavItem()}
+            </ul>
+        );
+    }
 }
 
-export const RepresentationalNavBar: FunctionComponent<RepresentationalNavBarProps> = (props) => {
-    return (
-        <ul className="nav justify-content-center">
-            <li className="nav-item">
-                <NavLink className="nav-link" to={createHomeRouteUrl()}>Home</NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink className="nav-link" to={createLoginRouteUrl()}>Login</NavLink>
-            </li>
-            {renderCurrentUserNavItem(props)}
-        </ul>
-    );
-};
-
-const mapStateToProps = () => {
+const mapStateToProps = ({}, props: NavBarProps): RepresentationalNavBarState => {
     return {
-        currentUser: null,
+        currentUser: props.authManager.findCurrentUser(),
     };
 };
 
-//@ts-ignore
-const mapDispatchToProps = () => {
+const mapDispatchToProps = ({}, props: NavBarProps): RepresentationalNavBarCallbacks => {
     return {
-        onClickLogout: () => console.log('logout'),
+        onClickLogout: (): void => props.authManager.logoutCurrentUser(),
     };
 };
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
+type NavBarProps = {
+    authManager: AuthManagerInterface,
+};
 
-type GlobalNavBarProps = (PropsFromRedux & RepresentationalNavBarProps);
-const GlobalNavBar: FunctionComponent<GlobalNavBarProps> = (props) => (<RepresentationalNavBar {...props} />);
-
-export const NavBar = connector(GlobalNavBar);
+export const NavBar = connect(mapStateToProps, mapDispatchToProps)(RepresentationalNavBar);
