@@ -12,6 +12,10 @@ export type LoginProps = {
 };
 
 export class Login extends React.Component<LoginProps> {
+    static createInitialState() {
+        return {};
+    }
+
     login() {
         this.props.authManager.authenticate({
             shouldRemember: true,

@@ -8,6 +8,7 @@ import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import {ApiHttpRequestManager} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
+import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
 import 'SinglePageApp/App.scss';
 
 export type AppServices = {
@@ -16,6 +17,7 @@ export type AppServices = {
     toastRepository: ToastRepositoryInterface,
     httpRequestManager: HttpRequestManagerInterface,
     apiHttpRequestManager: ApiHttpRequestManager,
+    currentRouteManager: CurrentRouteManagerInterface,
 };
 
 export type RootComponentProps = {

@@ -11,6 +11,10 @@ export type HomeProps = {
 };
 
 export class Home extends React.Component<HomeProps> {
+    static createInitialState() {
+        return {};
+    }
+
     addToast(type: ToastTypes) {
         this.props.toastRepository.addToastMessage({
             content: 'foo',

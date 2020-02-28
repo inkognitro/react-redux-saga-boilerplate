@@ -3,6 +3,7 @@ import {requestHandling} from 'Common/RequestHandling/Domain/HttpRequestHandling
 import {auth} from 'Common/Auth/Domain/Reducer';
 import {toaster} from 'Common/Toaster/Domain/Reducer';
 import {cache} from './EntityCache/Domain/Reducer';
+import {routing} from 'Common/Routing/Domain/Reducer';
 import thunkMiddleware from 'redux-thunk';
 import {
     HttpRequestManager,
@@ -17,13 +18,19 @@ import {AuthManager, AuthManagerInterface} from "Common/Auth/Domain/AuthManager"
 import {ApiAuthBackendService} from "Common/Auth/Infrastructure/ApiAuthBackendService";
 import {AppServices} from "SinglePageApp/App";
 import {CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage";
+import {
+    CurrentRouteManager,
+    CurrentRouteManagerInterface,
+    RouteHistoryInterface
+} from "Common/Routing/Domain/CurrentRouteManager";
+import {BrowserRouteHistory} from "Common/Routing/Infrastructure/BrowserRouteHistory";
 
 function addStoreService(services: Services): void {
     if(services.store) {
         return;
     }
     services.store = createStore(
-        combineReducers({requestHandling, auth, cache, toaster}),
+        combineReducers({requestHandling, auth, cache, toaster, routing}),
         applyMiddleware(thunkMiddleware)
     );
 }
@@ -133,6 +140,32 @@ function addAuthManagerService(services: Services): void {
     );
 }
 
+function addRouteHistoryService(services: Services): void {
+    if(services.routeHistory) {
+        return;
+    }
+    services.routeHistory = new BrowserRouteHistory();
+}
+
+function addCurrentRouteManagerService(services: Services): void {
+    if(services.currentRouteManager) {
+        return;
+    }
+    const store = services.store;
+    if(!store) {
+        throw new Error('services.store must be defined!');
+    }
+    const routeHistory = services.routeHistory;
+    if(!routeHistory) {
+        throw new Error('services.routeHistory must be defined!');
+    }
+    services.currentRouteManager = new CurrentRouteManager(
+        store.dispatch,
+        () => store.getState().routing,
+        routeHistory
+    );
+}
+
 export type Services = {
     store?: Store,
     authManager?: AuthManagerInterface,
@@ -142,6 +175,8 @@ export type Services = {
     userRepository?: UserRepositoryInterface,
     cookieStorage?: CookieStorageInterface,
     httpRequestDispatcher?: HttpRequestDispatcherInterface,
+    currentRouteManager?: CurrentRouteManagerInterface,
+    routeHistory?: RouteHistoryInterface,
 }
 
 export function createProdAppServices(): AppServices {
@@ -158,12 +193,15 @@ export function createWithMissingProdAppServices(services: Services): AppService
     addApiHttpRequestManagerService(services);
     addUserRepositoryService(services);
     addAuthManagerService(services);
+    addRouteHistoryService(services);
+    addCurrentRouteManagerService(services);
     if(
         !services.store
         || !services.authManager
         || !services.toastRepository
         || !services.apiHttpRequestManager
         || !services.httpRequestManager
+        || !services.currentRouteManager
     ) {
         throw new Error('Some properties of the services variable are missing!');
     }
@@ -172,6 +210,7 @@ export function createWithMissingProdAppServices(services: Services): AppService
         toastRepository: services.toastRepository,
         httpRequestManager: services.httpRequestManager,
         apiHttpRequestManager: services.apiHttpRequestManager,
-        authManager: services.authManager
+        authManager: services.authManager,
+        currentRouteManager: services.currentRouteManager,
     };
 }
