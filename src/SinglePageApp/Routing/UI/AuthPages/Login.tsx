@@ -4,18 +4,16 @@ import {PrimaryButton} from "Common/Layout/UI/Form/Buttons/PrimaryButton";
 import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/InputElements/TextField";
 import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
-import {createPasswordForgottenUrl} from "SinglePageApp/Routing/Domain/RouteCreation";
+import {createPasswordForgottenUrl} from "SinglePageApp/Routing/Domain/Routes";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
+import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
 
 export type LoginProps = {
+    currentRouteManager: CurrentRouteManagerInterface,
     authManager: AuthManagerInterface
 };
 
 export class Login extends React.Component<LoginProps> {
-    static createInitialState() {
-        return {};
-    }
-
     login() {
         this.props.authManager.authenticate({
             shouldRemember: true,
@@ -40,7 +38,10 @@ export class Login extends React.Component<LoginProps> {
                         </div>
                         <div className="card-text text-right">
                             <small className="text-muted">
-                                <Link url={createPasswordForgottenUrl()}>
+                                <Link
+                                    currentRouteManager={this.props.currentRouteManager}
+                                    url={createPasswordForgottenUrl()}
+                                >
                                     Did you forget your password?
                                 </Link>
                             </small>

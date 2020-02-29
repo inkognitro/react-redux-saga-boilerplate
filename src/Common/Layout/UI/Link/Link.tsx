@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {CurrentRouteManagerInterface, SetCurrentRouteSettings} from "Common/Routing/Domain/CurrentRouteManager";
+import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
 import './Link.scss';
 
 export type FunctionalLinkProps = {
@@ -26,14 +26,21 @@ export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) =>
 export type LinkProps = {
     currentRouteManager: CurrentRouteManagerInterface,
     className?: string
-    routeSettings: SetCurrentRouteSettings
+    url: string,
+    target?: string
 };
 
 export const Link: FunctionComponent<LinkProps> = (props) => {
     return (
         <FunctionalLink
             infoUrl={props.url}
-            onClick={() => props.currentRouteManager.setCurrentRoute()} //todo:
+            onClick={() => {
+                if(!props.target || props.target === '_self') {
+                    props.currentRouteManager.setCurrentRouteUrl(props.url);
+                    return;
+                }
+                window.open(props.url, props.target);
+            }}
         >
             {props.children}
         </FunctionalLink>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/RouteCreation';
+import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/Routes';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
 import {User} from "Common/EntityCache/Domain/User/UserRepository";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";

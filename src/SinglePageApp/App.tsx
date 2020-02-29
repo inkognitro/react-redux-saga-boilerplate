@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {Store} from 'redux'
 import {Toaster} from "Common/Toaster/UI/Toaster";
-import {Router} from 'SinglePageApp/Routing/UI/Router';
+import {render as renderRouter} from 'SinglePageApp/Routing/UI/Router';
 import {Loader} from "SinglePageApp/Layout/UI/Loader";
 import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
@@ -32,7 +32,7 @@ export class RootComponent extends Component<RootComponentProps> {
     render() {
         return (
             <Provider store={this.props.services.store}>
-                <Router services={this.props.services} />
+                {renderRouter(this.props.services, this.props.services.currentRouteManager.getHistory())}
                 <Toaster toastRepository={this.props.services.toastRepository} />
                 <Loader httpRequestManager={this.props.services.httpRequestManager} />
             </Provider>

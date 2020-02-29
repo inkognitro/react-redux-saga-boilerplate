@@ -1,36 +1,24 @@
-import React, {FunctionComponent} from 'react';
-import {Route, Switch} from "react-router";
-import {homeRoute, loginRoute} from "SinglePageApp/Routing/Domain/RouteCreation";
-import {Home} from "SinglePageApp/Routing/UI/Home";
-import {Login} from "SinglePageApp/Routing/UI/AuthPages/Login";
-import {NotFoundError} from "SinglePageApp/Routing/UI/ErrorPages/Error404";
-import {BrowserRouter} from "react-router-dom";
+import React from 'react';
+import {
+    render as renderCommonRouter, RouterSpecification,
+    RouteSpecification as CommonRouteSpecification
+} from "Common/Routing/UI/Router";
+import {NotFoundError} from "SinglePageApp/Routing/UI/NotFoundErrorPage";
 import {AppServices} from "SinglePageApp/App";
+import {routeSpecification as homeRouteSpecification} from "SinglePageApp/Routing/UI/Home";
+import {History} from 'history';
 
-export type RouterProps = {
-    services: AppServices
+export type RouteSpecification = CommonRouteSpecification<AppServices>;
+
+const routesSpecification: RouterSpecification<AppServices> = {
+    routeSpecifications: [
+        homeRouteSpecification,
+    ],
+    renderDefaultComponent: (services: AppServices) => (
+        <NotFoundError currentRouteManager={services.currentRouteManager} />
+    )
 };
 
-export const Router: FunctionComponent<RouterProps> = (props: RouterProps) => {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path={homeRoute.routerUrl}>
-                    <Home
-                        toastRepository={props.services.toastRepository}
-                        getReduxState={() => props.services.store.getState()}
-                        authManager={props.services.authManager}
-                    />
-                </Route>
-                <Route exact path={loginRoute.routerUrl}>
-                    <Login
-                        authManager={props.services.authManager}
-                    />
-                </Route>
-                <Route path="*">
-                    <NotFoundError />
-                </Route>
-            </Switch>
-        </BrowserRouter>
-    );
-};
+export function render(services: AppServices, history: History) {
+    return renderCommonRouter(services, routesSpecification, history);
+}

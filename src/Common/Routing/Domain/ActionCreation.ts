@@ -1,19 +1,19 @@
 import {RoutingActions, RoutingActionTypes} from "Common/Routing/Domain/Types";
 
-export function createSetCurrentRouteStateAction(stateChanges: object): RoutingActions {
+export function createApplyCurrentRouteStateChangesAction(stateChanges: object): RoutingActions {
     return {
-        type: RoutingActionTypes.SET_CURRENT_ROUTE_STATE,
+        type: RoutingActionTypes.APPLY_CURRENT_ROUTE_STATE_CHANGES,
         payload: {
             stateChanges: stateChanges
         }
     };
 }
 
-export function createSetCurrentRouteAction(initialState: object): RoutingActions {
+export function createSetCurrentRouteStateAction(state: object): RoutingActions {
     return {
-        type: RoutingActionTypes.SET_CURRENT_ROUTE,
+        type: RoutingActionTypes.SET_CURRENT_ROUTE_STATE,
         payload: {
-            initialState: initialState
+            state: state
         }
     };
 }

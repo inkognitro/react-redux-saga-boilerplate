@@ -11,13 +11,13 @@ export function routing(state: RoutingState = createInitialRoutingState(), actio
         return state;
     }
 
-    if (action.type === RoutingActionTypes.SET_CURRENT_ROUTE) {
+    if (action.type === RoutingActionTypes.SET_CURRENT_ROUTE_STATE) {
         return Object.assign({}, state, {
-            currentRouteState: action.payload.initialState,
+            currentRouteState: action.payload.state,
         });
     }
 
-    if (action.type === RoutingActionTypes.SET_CURRENT_ROUTE_STATE) {
+    if (action.type === RoutingActionTypes.APPLY_CURRENT_ROUTE_STATE_CHANGES) {
         const currentRouteState = (state.currentRouteState === null ? {} : state.currentRouteState);
         return Object.assign({}, state, {
             currentRouteState: Object.assign({}, currentRouteState, action.payload.stateChanges)

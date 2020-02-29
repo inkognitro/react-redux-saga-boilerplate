@@ -21,9 +21,9 @@ import {CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage
 import {
     CurrentRouteManager,
     CurrentRouteManagerInterface,
-    RouteHistoryInterface
+    RouteHistoryManagerInterface
 } from "Common/Routing/Domain/CurrentRouteManager";
-import {BrowserRouteHistory} from "Common/Routing/Infrastructure/BrowserRouteHistory";
+import {BrowserRouteHistoryManager} from "Common/Routing/Infrastructure/BrowserRouteHistoryManager";
 
 function addStoreService(services: Services): void {
     if(services.store) {
@@ -141,10 +141,10 @@ function addAuthManagerService(services: Services): void {
 }
 
 function addRouteHistoryService(services: Services): void {
-    if(services.routeHistory) {
+    if(services.routeHistoryManager) {
         return;
     }
-    services.routeHistory = new BrowserRouteHistory();
+    services.routeHistoryManager = new BrowserRouteHistoryManager();
 }
 
 function addCurrentRouteManagerService(services: Services): void {
@@ -155,9 +155,9 @@ function addCurrentRouteManagerService(services: Services): void {
     if(!store) {
         throw new Error('services.store must be defined!');
     }
-    const routeHistory = services.routeHistory;
+    const routeHistory = services.routeHistoryManager;
     if(!routeHistory) {
-        throw new Error('services.routeHistory must be defined!');
+        throw new Error('services.routeHistoryManager must be defined!');
     }
     services.currentRouteManager = new CurrentRouteManager(
         store.dispatch,
@@ -176,7 +176,7 @@ export type Services = {
     cookieStorage?: CookieStorageInterface,
     httpRequestDispatcher?: HttpRequestDispatcherInterface,
     currentRouteManager?: CurrentRouteManagerInterface,
-    routeHistory?: RouteHistoryInterface,
+    routeHistoryManager?: RouteHistoryManagerInterface,
 }
 
 export function createProdAppServices(): AppServices {
