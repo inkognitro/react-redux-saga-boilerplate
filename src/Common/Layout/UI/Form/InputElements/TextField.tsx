@@ -49,7 +49,7 @@ export class TextField extends Component<TextFieldProps> {
         if (this.props.onChange) {
             inputProps = Object.assign({}, inputProps, {
                 //@ts-ignore
-                onClick: (event) => this.props.onChange(event.target.value)
+                onChange: (event) => this.props.onChange(event.target.value)
             });
         }
         if (this.props.value) {

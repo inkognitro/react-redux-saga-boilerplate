@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
 import {ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
@@ -6,6 +6,8 @@ import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import {homeRouteUrlSpecification} from "SinglePageApp/Routing/Domain/Routes";
 import {RouteSpecification} from "SinglePageApp/Routing/UI/Router";
 import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
+import {TextField} from "Common/Layout/UI/Form/InputElements/TextField";
+import {createRouteViewComponent} from "SinglePageApp/Routing/UI/RouteViewComponent";
 
 export const routeSpecification: RouteSpecification = {
     urlSpecification: homeRouteUrlSpecification,
@@ -26,9 +28,10 @@ export type HomeProps = {
     getReduxState(): object,
 };
 
-export class Home extends React.Component<HomeProps> {
-    static createInitialState() {
-        return {};
+class RepresentationalHome extends Component<HomeProps> {
+    constructor(props: HomeProps) {
+        super(props);
+        props.currentRouteManager.setCurrentRouteState({foo: 'bar'});
     }
 
     addToast(type: ToastTypes) {
@@ -54,6 +57,16 @@ export class Home extends React.Component<HomeProps> {
                 topDividedContent={true}
             >
                 <h1>Features</h1>
+
+                <br />
+                <TextField
+                    label="Username"
+                    placeholder="e.g. songoku"
+                    value={this.props.currentRouteManager.getCurrentRouteState().foo}
+                    onChange={(value) => this.props.currentRouteManager.applyCurrentRouteStateChanges({
+                        foo: value
+                    })}
+                />
 
                 <br />
                 <h3>Routing</h3>
@@ -84,3 +97,5 @@ export class Home extends React.Component<HomeProps> {
         );
     }
 }
+
+const Home = createRouteViewComponent<{foo: string}>(RepresentationalHome);

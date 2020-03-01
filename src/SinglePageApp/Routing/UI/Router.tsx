@@ -3,7 +3,7 @@ import {
     render as renderCommonRouter, RouterSpecification,
     RouteSpecification as CommonRouteSpecification
 } from "Common/Routing/UI/Router";
-import {NotFoundError} from "SinglePageApp/Routing/UI/NotFoundErrorPage";
+import {NotFoundError} from "SinglePageApp/Routing/UI/NotFoundPage";
 import {AppServices} from "SinglePageApp/App";
 import {routeSpecification as homeRouteSpecification} from "SinglePageApp/Routing/UI/Home";
 import {History} from 'history';
