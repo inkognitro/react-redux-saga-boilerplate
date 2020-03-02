@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
 import {ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
@@ -7,18 +7,27 @@ import {homeRouteUrlSpecification} from "SinglePageApp/Routing/Domain/Routes";
 import {RouteSpecification} from "SinglePageApp/Routing/UI/Router";
 import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
 import {TextField} from "Common/Layout/UI/Form/InputElements/TextField";
-import {createRouteViewComponent} from "SinglePageApp/Routing/UI/RouteViewComponent";
+import {RouteViewComponent} from "Common/Routing/UI/Router";
 
 export const routeSpecification: RouteSpecification = {
     urlSpecification: homeRouteUrlSpecification,
     renderComponent: (services) => (
         <Home
+            initialRouteState={initialRouteState}
             currentRouteManager={services.currentRouteManager}
             authManager={services.authManager}
             getReduxState={() => services.store.getState()}
             toastRepository={services.toastRepository}
         />
     )
+};
+
+type RouteState = {
+    foo: 'bar'
+};
+
+const initialRouteState: RouteState = {
+    foo: 'bar',
 };
 
 export type HomeProps = {
@@ -28,12 +37,7 @@ export type HomeProps = {
     getReduxState(): object,
 };
 
-class RepresentationalHome extends Component<HomeProps> {
-    constructor(props: HomeProps) {
-        super(props);
-        props.currentRouteManager.setCurrentRouteState({foo: 'bar'});
-    }
-
+class Home extends RouteViewComponent<HomeProps, RouteState> {
     addToast(type: ToastTypes) {
         this.props.toastRepository.addToastMessage({
             content: 'foo',
@@ -62,8 +66,8 @@ class RepresentationalHome extends Component<HomeProps> {
                 <TextField
                     label="Username"
                     placeholder="e.g. songoku"
-                    value={this.props.currentRouteManager.getCurrentRouteState().foo}
-                    onChange={(value) => this.props.currentRouteManager.applyCurrentRouteStateChanges({
+                    value={this.getRouteState().foo}
+                    onChange={(value) => this.setRouteState({
                         foo: value
                     })}
                 />
@@ -97,5 +101,3 @@ class RepresentationalHome extends Component<HomeProps> {
         );
     }
 }
-
-const Home = createRouteViewComponent<{foo: string}>(RepresentationalHome);

@@ -1,7 +1,7 @@
-import React from 'react';
-import {Route, Switch, Router} from "react-router";
+import React, {Component} from 'react';
+import {Route, Router, Switch} from "react-router";
 import {History} from 'history';
-import {UrlSpecification} from "Common/Routing/Domain/CurrentRouteManager";
+import {CurrentRouteManagerInterface, UrlSpecification} from "Common/Routing/Domain/CurrentRouteManager";
 
 type RenderComponentDefinition<Services> = (services: Services) => JSX.Element;
 
@@ -35,4 +35,31 @@ export function render<Services>(services: Services, routesSpecification: Router
             </Switch>
         </Router>
     );
+}
+
+type RouteViewComponentProps<Props, RouteState> = (Props & {
+    currentRouteManager: CurrentRouteManagerInterface,
+    initialRouteState: RouteState,
+});
+
+export abstract class RouteViewComponent<Props, RouteState> extends Component<RouteViewComponentProps<Props, RouteState>> {
+    protected constructor(props: RouteViewComponentProps<Props, RouteState>) {
+        super(props);
+        //@ts-ignore
+        this.props.currentRouteManager.setCurrentRouteState(props.initialRouteState);
+    }
+
+    protected setRouteState(stateChanges: object): void {
+        this.props.currentRouteManager.applyCurrentRouteStateChanges(stateChanges);
+        this.forceUpdate();
+    }
+
+    protected getRouteState(): RouteState {
+        //@ts-ignore
+        return this.props.currentRouteManager.getCurrentRouteState();
+    }
+
+    componentWillUnmount(): void {
+        this.props.currentRouteManager.setCurrentRouteState({});
+    }
 }
