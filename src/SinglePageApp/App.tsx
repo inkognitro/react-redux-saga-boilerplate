@@ -4,7 +4,6 @@ import {Store} from 'redux'
 import {Toaster} from "Common/Toaster/UI/Toaster";
 import {render as renderRouter} from 'SinglePageApp/Routing/UI/Router';
 import {Loader} from "SinglePageApp/Layout/UI/Loader";
-import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import {ApiHttpRequestManager} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
@@ -14,7 +13,6 @@ import 'SinglePageApp/App.scss';
 export type AppServices = {
     store: Store
     authManager: AuthManagerInterface,
-    toastRepository: ToastRepositoryInterface,
     httpRequestManager: HttpRequestManagerInterface,
     apiHttpRequestManager: ApiHttpRequestManager,
     currentRouteManager: CurrentRouteManagerInterface,
@@ -33,7 +31,7 @@ export class RootComponent extends Component<RootComponentProps> {
         return (
             <Provider store={this.props.services.store}>
                 {renderRouter(this.props.services, this.props.services.currentRouteManager.getHistory())}
-                <Toaster toastRepository={this.props.services.toastRepository} />
+                <Toaster getToasterStateFromRootState={(state: object) => state.toaster} />
                 <Loader httpRequestManager={this.props.services.httpRequestManager} />
             </Provider>
         );

@@ -10,7 +10,6 @@ import {
     HttpRequestManagerInterface, HttpRequestDispatcherInterface
 } from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
 import {AxiosHttpRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosHttpRequestDispatcher";
-import {ToastRepository, ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {ApiHttpRequestManager} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
 import {BrowserCookieStorage} from "Common/CookieHandling/Infrastructure/BrowserCookieStorage";
 import {UserRepository, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
@@ -65,20 +64,6 @@ function addHttpRequestManagerService(services: Services): void {
     );
 }
 
-function addToastRepositoryService(services: Services): void {
-    if(services.toastRepository) {
-        return;
-    }
-    const store = services.store;
-    if(!store) {
-        throw new Error('services.store must be defined!');
-    }
-    services.toastRepository = new ToastRepository(
-        store.dispatch,
-        () => store.getState().toaster
-    );
-}
-
 function addApiHttpRequestManagerService(services: Services): void {
     if(services.apiHttpRequestManager) {
         return;
@@ -87,11 +72,7 @@ function addApiHttpRequestManagerService(services: Services): void {
     if(!httpRequestManager) {
         throw new Error('services.httpRequestManager must be defined!');
     }
-    const toastRepository = services.toastRepository;
-    if(!toastRepository) {
-        throw new Error('services.toastRepository must be defined!');
-    }
-    services.apiHttpRequestManager = new ApiHttpRequestManager(httpRequestManager, toastRepository);
+    services.apiHttpRequestManager = new ApiHttpRequestManager(httpRequestManager);
 }
 
 function addUserRepositoryService(services: Services): void {
@@ -174,7 +155,6 @@ export type Services = {
     store?: Store,
     authManager?: AuthManagerInterface,
     httpRequestManager?: HttpRequestManagerInterface,
-    toastRepository?: ToastRepositoryInterface,
     apiHttpRequestManager?: ApiHttpRequestManager,
     userRepository?: UserRepositoryInterface,
     cookieStorage?: CookieStorageInterface,
@@ -192,7 +172,6 @@ export function createWithMissingProdAppServices(services: Services): AppService
     addStoreService(services);
     addHttpRequestDispatcherService(services);
     addCookieStorageService(services);
-    addToastRepositoryService(services);
     addHttpRequestManagerService(services);
     addApiHttpRequestManagerService(services);
     addUserRepositoryService(services);
@@ -202,7 +181,6 @@ export function createWithMissingProdAppServices(services: Services): AppService
     if(
         !services.store
         || !services.authManager
-        || !services.toastRepository
         || !services.apiHttpRequestManager
         || !services.httpRequestManager
         || !services.currentRouteManager
@@ -211,7 +189,6 @@ export function createWithMissingProdAppServices(services: Services): AppService
     }
     return {
         store: services.store,
-        toastRepository: services.toastRepository,
         httpRequestManager: services.httpRequestManager,
         apiHttpRequestManager: services.apiHttpRequestManager,
         authManager: services.authManager,

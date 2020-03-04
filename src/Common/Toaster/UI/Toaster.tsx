@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
 import {Toasts, ToastsCallbacks, ToastsState} from 'Common/Toaster/UI/Toasts';
-import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {Dispatch} from "redux";
 import {createRemoveToastAction} from "Common/Toaster/Application/Command/RemoveToast";
 import {getToasts} from "Common/Toaster/Application/Query";
 import {ToasterState} from "Common/Toaster/Domain/Types";
+import {createRemoveToastMessageAction} from "Common/Toaster/Domain/Actions/RemoveToastMessageAction";
+import {createBlockToastForMessageReceivingAction} from "Common/Toaster/Application/Command/BlockToastForMessageReceiving";
 
-type ToasterStateByRootStateSelector<RootState> = (rootState: RootState) => ToasterState;
+type ToasterStateByRootStateSelector = (rootState: object) => ToasterState; //todo: solve with generics!
 
-const mapStateToProps<RootState> = (rootState: RootState, props: {getToasterStateFromRootState: ToasterStateByRootStateSelector<RootState>}): ToastsState => {
+const mapStateToProps = (rootState: object, props: {getToasterStateFromRootState: ToasterStateByRootStateSelector}): ToastsState => {
     return {
         toasts: getToasts(props.getToasterStateFromRootState(rootState)),
     };
@@ -17,13 +18,9 @@ const mapStateToProps<RootState> = (rootState: RootState, props: {getToasterStat
 const mapDispatchToProps = (dispatch: Dispatch): ToastsCallbacks => {
     return {
         onRemoveToast: (toastId: string) => dispatch(createRemoveToastAction(toastId)),
-        onRemoveToastMessage: (toastId: string, toastMessageId: string) => props.toastRepository.removeToastMessage(toastId, toastMessageId),
-        onBlockToastForMessageReceiving: (toastId: string) => props.toastRepository.blockToastForMessageReceiving(toastId),
+        onRemoveToastMessage: (toastId: string, toastMessageId: string) => dispatch(createRemoveToastMessageAction(toastId, toastMessageId)),
+        onBlockToastForMessageReceiving: (toastId: string) => dispatch(createBlockToastForMessageReceivingAction(toastId)),
     };
-};
-
-export type ToasterProps = {
-    toastRepository: ToastRepositoryInterface,
 };
 
 export const Toaster = connect(mapStateToProps, mapDispatchToProps)(Toasts);

@@ -1,7 +1,6 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
-import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import {homeRouteUrlSpecification} from "SinglePageApp/Routing/Domain/Routes";
 import {RouteSpecification} from "SinglePageApp/Routing/UI/Router";
@@ -19,7 +18,6 @@ export const routeSpecification: RouteSpecification = {
             currentRouteManager={services.currentRouteManager}
             authManager={services.authManager}
             getReduxState={() => services.store.getState()}
-            toastRepository={services.toastRepository}
         />
     )
 };
@@ -35,16 +33,12 @@ const initialRouteState: RouteState = {
 export type HomeProps = {
     currentRouteManager: CurrentRouteManagerInterface,
     authManager: AuthManagerInterface,
-    toastRepository: ToastRepositoryInterface,
     getReduxState(): object,
 };
 
 class Home extends RouteViewComponent<HomeProps, RouteState> {
     addToast(type: ToastTypes) {
-        this.props.toastRepository.addToastMessage({
-            content: 'foo',
-            type: type
-        });
+        console.log('add toast: ' + type);
     }
 
     login() {

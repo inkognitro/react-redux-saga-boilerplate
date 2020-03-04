@@ -1,4 +1,3 @@
-import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {
     createGetRequest as generalCreateGetRequest,
     createPostRequest as generalCreatePostRequest,
@@ -7,7 +6,6 @@ import {
     HttpRequestManagerInterface,
     RequestExecutionSettings as GeneralRequestExecutionSettings
 } from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
-import {ToastTypes} from "Common/Toaster/Domain/Types";
 
 export enum API_ENDPOINT_URLS {
     AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate',
@@ -24,29 +22,24 @@ export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {
 
 export class ApiHttpRequestManager {
     private httpRequestManager: HttpRequestManagerInterface;
-    private readonly toastRepository: ToastRepositoryInterface;
 
-    constructor(httpRequestManager: HttpRequestManagerInterface, toastRepository: ToastRepositoryInterface) {
+    constructor(httpRequestManager: HttpRequestManagerInterface) {
         this.httpRequestManager = httpRequestManager;
-        this.toastRepository = toastRepository;
     }
 
     executeRequest(settings: RequestExecutionSettings): void {
-        this.httpRequestManager.executeRequest(createGeneralRequestExecutionSettings(settings, this.toastRepository));
+        this.httpRequestManager.executeRequest(createGeneralRequestExecutionSettings(settings));
     }
 }
 
-function createGeneralRequestExecutionSettings(
-    settings: RequestExecutionSettings,
-    toastRepository: ToastRepositoryInterface
-): GeneralRequestExecutionSettings {
+function createGeneralRequestExecutionSettings(settings: RequestExecutionSettings,): GeneralRequestExecutionSettings {
     let generalSettings = {
         request: (settings.apiToken
                 ? createWithHeaderEnhancedHttpRequest(settings.request, 'X-API-TOKEN', settings.apiToken)
                 : settings.request
         ),
         onError: (summary: ExecutionSummary): void => {
-            dispatchToastErrorMessages(summary, toastRepository);
+            dispatchToastErrorMessages(summary);
             if (settings.onError) {
                 settings.onError(summary);
             }
@@ -60,12 +53,12 @@ function createGeneralRequestExecutionSettings(
     return generalSettings;
 }
 
-function dispatchToastErrorMessages(summary: ExecutionSummary, toastRepository: ToastRepositoryInterface): void {
+function dispatchToastErrorMessages(summary: ExecutionSummary): void {
     if (!summary.response) {
-        toastRepository.addToastMessage({
-            content: 'Could not connect to server.', //todo: translate,
-            type: ToastTypes.ERROR,
-        });
+        //toastRepository.addToastMessage({
+            //content: 'Could not connect to server.', //todo: translate,
+            //type: ToastTypes.ERROR,
+        //});
         return;
     }
     //todo: extend with not authorized error and so on..
