@@ -58,8 +58,4 @@ export abstract class RouteViewComponent<Props, RouteState> extends Component<Ro
         //@ts-ignore
         return this.props.currentRouteManager.getCurrentRouteState();
     }
-
-    componentWillUnmount(): void {
-        this.props.currentRouteManager.setCurrentRouteState({});
-    }
 }

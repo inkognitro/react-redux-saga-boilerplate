@@ -8,10 +8,11 @@ import {RouteSpecification} from "SinglePageApp/Routing/UI/Router";
 import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
 import {TextField} from "Common/Layout/UI/Form/InputElements/TextField";
 import {RouteViewComponent} from "Common/Routing/UI/Router";
+import {AppServices} from "SinglePageApp/App";
 
 export const routeSpecification: RouteSpecification = {
     urlSpecification: homeRouteUrlSpecification,
-    renderComponent: (services) => (
+    renderComponent: (services: AppServices) => (
         <Home
             initialRouteState={initialRouteState}
             currentRouteManager={services.currentRouteManager}
@@ -65,7 +66,7 @@ class Home extends RouteViewComponent<HomeProps, RouteState> {
                 <br />
                 <TextField
                     label="Username"
-                    placeholder="e.g. songoku"
+                    placeholder="e.g. songokuz"
                     value={this.getRouteState().foo}
                     onChange={(value) => this.setRouteState({
                         foo: value

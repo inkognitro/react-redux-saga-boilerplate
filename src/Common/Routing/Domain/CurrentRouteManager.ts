@@ -59,6 +59,30 @@ export class CurrentRouteManager implements CurrentRouteManagerInterface {
     public getCurrentRouteState(): object {
         return getCurrentRouteState(this.getRoutingState());
     }
+
+    /*
+    private isUrlMatching(urlSpecification: UrlSpecification, url: string): boolean {
+        const specificationUrlParts = urlSpecification.url.split('/');
+        const urlParts = url.split('/');
+        if(urlSpecification.shouldMatchExactly && specificationUrlParts.length !== urlParts.length) {
+            return false;
+        }
+        for(let index in urlParts) {
+            const urlSpecificationPart = urlParts[index];
+            if(urlSpecificationPart === undefined) {
+                return false;
+            }
+            const urlPart = urlParts[index];
+            if(urlSpecificationPart.length === 0 && urlPart.length > 0) {
+                return false;
+            }
+            if(urlSpecificationPart.charAt(0) !== ':' && urlPart !== urlSpecificationPart) {
+                return false;
+            }
+        }
+        return true;
+    }
+    */
 }
 
 export interface RouteHistoryManagerInterface {
@@ -71,6 +95,7 @@ export interface RouteHistoryManagerInterface {
 export type UrlSpecification = {
     url: string,
     shouldMatchExactly: boolean,
+    initialState: object
 };
 
 type RoutingStateSelector = () => RoutingState;
