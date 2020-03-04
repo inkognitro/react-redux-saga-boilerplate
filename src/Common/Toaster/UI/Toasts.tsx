@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Toast} from './Toast';
-import {Toast as ToastData} from "Common/Toaster/Domain/ToastRepository";
+import {Toast as ToastData} from "Common/Toaster/Domain/Types";
 import './Toasts.scss';
 
 export type ToastsState = {

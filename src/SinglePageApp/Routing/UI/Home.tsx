@@ -1,7 +1,7 @@
 import React from 'react';
 import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
-import {ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
+import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import {homeRouteUrlSpecification} from "SinglePageApp/Routing/Domain/Routes";
 import {RouteSpecification} from "SinglePageApp/Routing/UI/Router";
@@ -9,6 +9,7 @@ import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteMa
 import {TextField} from "Common/Layout/UI/Form/InputElements/TextField";
 import {RouteViewComponent} from "Common/Routing/UI/Router";
 import {AppServices} from "SinglePageApp/App";
+import {ToastTypes} from "Common/Toaster/Domain/Types";
 
 export const routeSpecification: RouteSpecification = {
     urlSpecification: homeRouteUrlSpecification,

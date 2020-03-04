@@ -1,8 +1,34 @@
-import {MessageToAdd, Toast} from "Common/Toaster/Domain/ToastRepository";
+import {AddMessageToPipelineAction} from "Common/Toaster/Domain/Actions/AddMessageToPipelineAction";
+import {MoveMessagesFromPipelineToToastAction} from "Common/Toaster/Domain/Actions/MoveMessagesFromPipelineToToastAction";
+import {BlockToastForMessageReceivingAction} from "Common/Toaster/Domain/Actions/BlockToastForMessageReceivingAction";
+import {RemoveToastMessageAction} from "Common/Toaster/Domain/Actions/RemoveToastMessageAction";
+import {RemoveToastAction} from "Common/Toaster/Domain/Actions/RemoveToastAction";
 
-export type ToasterState = {
-    messagesToAdd: MessageToAdd[],
-    toasts: Toast[],
+export enum ToastTypes {
+    INFO = 'info',
+    SUCCESS = 'success',
+    WARNING = 'warning',
+    ERROR = 'error',
+}
+
+export type MessageToAdd = {
+    id: string,
+    toastId: string,
+    type: ToastTypes,
+    content: string,
+};
+
+export type Message = {
+    id: string,
+    content: string,
+    isIntroAnimationEnabled: boolean,
+};
+
+export type Toast = {
+    id: string,
+    type: ToastTypes,
+    messages: Message[],
+    canReceiveMessages: boolean,
 };
 
 export enum ToasterActionTypes {
@@ -13,46 +39,15 @@ export enum ToasterActionTypes {
     REMOVE_TOAST_MESSAGE = 'REMOVE_TOAST_MESSAGE-8266728a-7572-48cb-9ff4-2e27071e1343',
 }
 
-type AddMessageToPipeline = {
-    type: ToasterActionTypes.ADD_MESSAGE_TO_PIPELINE,
-    payload: {
-        messageToAdd: MessageToAdd,
-    }
-};
-
-type MoveMessagesFromPipelineToToast = {
-    type: ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST,
-    payload: {
-        toastId: string,
-    }
-};
-
-type BlockToastForMessageReceiving = {
-    type: ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
-    payload: {
-        toastId: string,
-    }
-};
-
-type RemoveToastMessage = {
-    type: ToasterActionTypes.REMOVE_TOAST_MESSAGE,
-    payload: {
-        toastId: string,
-        toastMessageId: string,
-    }
-};
-
-type RemoveToast = {
-    type: ToasterActionTypes.REMOVE_TOAST,
-    payload: {
-        toastId: string,
-    }
-};
-
 export type ToasterActions = (
-    AddMessageToPipeline
-    | MoveMessagesFromPipelineToToast
-    | BlockToastForMessageReceiving
-    | RemoveToastMessage
-    | RemoveToast
+    AddMessageToPipelineAction
+    | MoveMessagesFromPipelineToToastAction
+    | BlockToastForMessageReceivingAction
+    | RemoveToastMessageAction
+    | RemoveToastAction
 );
+
+export type ToasterState = {
+    messagesToAdd: MessageToAdd[],
+    toasts: Toast[],
+};

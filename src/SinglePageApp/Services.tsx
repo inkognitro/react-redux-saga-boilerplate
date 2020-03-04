@@ -24,6 +24,7 @@ import {
     RouteHistoryManagerInterface
 } from "Common/Routing/Domain/CurrentRouteManager";
 import {BrowserRouteHistoryManager} from "Common/Routing/Infrastructure/BrowserRouteHistoryManager";
+import {createToasterMiddleware} from "Common/Toaster/Application/ToasterMiddleware";
 
 function addStoreService(services: Services): void {
     if(services.store) {
@@ -31,7 +32,10 @@ function addStoreService(services: Services): void {
     }
     services.store = createStore(
         combineReducers({requestHandling, auth, cache, toaster, routing}),
-        applyMiddleware(thunkMiddleware)
+        applyMiddleware(
+            createToasterMiddleware(),
+            thunkMiddleware
+        )
     );
 }
 

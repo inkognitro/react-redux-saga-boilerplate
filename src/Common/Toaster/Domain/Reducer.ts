@@ -1,44 +1,12 @@
-import {ToasterActions, ToasterActionTypes, ToasterState} from "./Types";
 import {v4 as uuidV4} from "uuid";
-import {Message, MessageToAdd, Toast, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
-
-function createInitialToastState(): Toast {
-    return {
-        id: uuidV4(),
-        type: ToastTypes.INFO,
-        messages: [],
-        canReceiveMessages: true,
-    };
-}
-
-function toastReducer(state: Toast = createInitialToastState(), action?: ToasterActions): Toast {
-    if (!action) {
-        return state;
-    }
-
-    if (action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
-        const toastId = action.payload.toastId;
-        if (toastId !== state.id) {
-            return state;
-        }
-        const messageId = action.payload.toastMessageId;
-        return Object.assign({}, state, {
-            messages: state.messages.filter((message) => (message.id !== messageId)),
-        });
-    }
-
-    if (action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
-        const toastId = action.payload.toastId;
-        if (toastId !== state.id) {
-            return state;
-        }
-        return Object.assign({}, state, {
-            canReceiveMessages: false,
-        });
-    }
-
-    return state;
-}
+import {
+    Message,
+    MessageToAdd,
+    Toast,
+    ToasterActions,
+    ToasterActionTypes,
+    ToasterState, ToastTypes
+} from "Common/Toaster/Domain/Types";
 
 const initialToasterState: ToasterState = {
     messagesToAdd: [],
@@ -92,6 +60,44 @@ export function toaster(state: ToasterState = initialToasterState, action?: Toas
         const toastId = action.payload.toastId;
         return Object.assign({}, state, {
             toasts: state.toasts.filter((storedToast) => (storedToast.id !== toastId))
+        });
+    }
+
+    return state;
+}
+
+function createInitialToastState(): Toast {
+    return {
+        id: uuidV4(),
+        type: ToastTypes.INFO,
+        messages: [],
+        canReceiveMessages: true,
+    };
+}
+
+function toastReducer(state: Toast = createInitialToastState(), action?: ToasterActions): Toast {
+    if (!action) {
+        return state;
+    }
+
+    if (action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
+        const toastId = action.payload.toastId;
+        if (toastId !== state.id) {
+            return state;
+        }
+        const messageId = action.payload.toastMessageId;
+        return Object.assign({}, state, {
+            messages: state.messages.filter((message) => (message.id !== messageId)),
+        });
+    }
+
+    if (action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
+        const toastId = action.payload.toastId;
+        if (toastId !== state.id) {
+            return state;
+        }
+        return Object.assign({}, state, {
+            canReceiveMessages: false,
         });
     }
 

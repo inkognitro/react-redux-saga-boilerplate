@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {CloseIcon} from "Common/Layout/UI/Icons/CloseIcon";
 import {IconSizes, IconTypes} from "Common/Layout/UI/Icons/Icon";
 import {TimelineLite, Power1} from 'gsap';
-import {Message as MessageData} from "Common/Toaster/Domain/ToastRepository";
+import {Message} from "Common/Toaster/Domain/Types";
 
 export type MessageProps = (MessageData & {
     shouldPlayOutroAnimationOnCloseClick: boolean,

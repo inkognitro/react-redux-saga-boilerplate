@@ -1,4 +1,4 @@
-import {ToastRepositoryInterface, ToastTypes} from "Common/Toaster/Domain/ToastRepository";
+import {ToastRepositoryInterface} from "Common/Toaster/Domain/ToastRepository";
 import {
     createGetRequest as generalCreateGetRequest,
     createPostRequest as generalCreatePostRequest,
@@ -7,6 +7,7 @@ import {
     HttpRequestManagerInterface,
     RequestExecutionSettings as GeneralRequestExecutionSettings
 } from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
+import {ToastTypes} from "Common/Toaster/Domain/Types";
 
 export enum API_ENDPOINT_URLS {
     AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate',
