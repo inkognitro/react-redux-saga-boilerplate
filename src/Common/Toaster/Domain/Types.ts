@@ -1,8 +1,8 @@
-import {AddMessageToPipelineAction} from "Common/Toaster/Domain/Actions/AddMessageToPipelineAction";
-import {MoveMessagesFromPipelineToToastAction} from "Common/Toaster/Domain/Actions/MoveMessagesFromPipelineToToastAction";
-import {BlockToastForMessageReceivingAction} from "Common/Toaster/Domain/Actions/BlockToastForMessageReceivingAction";
-import {RemoveToastMessageAction} from "Common/Toaster/Domain/Actions/RemoveToastMessageAction";
-import {RemoveToastAction} from "Common/Toaster/Domain/Actions/RemoveToastAction";
+import {MessageWasAddedToPipeline} from "Common/Toaster/Domain/Events/MessageWasAddedToPipeline";
+import {MessageWasMovedFromPipelineToToast} from "Common/Toaster/Domain/Events/MessageWasMovedFromPipelineToToast";
+import {ToastWasBlockedForMessageReceiving} from "Common/Toaster/Domain/Events/ToastWasBlockedForMessageReceiving";
+import {ToastMessageWasRemoved} from "Common/Toaster/Domain/Events/ToastMessageWasRemoved";
+import {ToastWasRemoved} from "Common/Toaster/Domain/Events/ToastWasRemoved";
 
 export enum ToastTypes {
     INFO = 'info',
@@ -31,20 +31,20 @@ export type Toast = {
     canReceiveMessages: boolean,
 };
 
-export enum ToasterActionTypes {
-    ADD_MESSAGE_TO_PIPELINE = 'ADD_MESSAGE_TO_PIPELINE-8266728a-7572-48cb-9ff4-2e27071e1343',
+export enum ToasterEventTypes {
+    MESSAGE_WAS_ADDED_TO_PIPELINE = 'ADD_MESSAGE_TO_PIPELINE-8266728a-7572-48cb-9ff4-2e27071e1343',
     MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST = 'MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
-    BLOCK_TOAST_FOR_MESSAGE_RECEIVING = 'BLOCK_TOAST_FOR_MESSAGE_RECEIVING-8266728a-7572-48cb-9ff4-2e27071e1343',
+    TOAST_WAS_BLOCKED_FOR_MESSAGE_RECEIVING = 'BLOCK_TOAST_FOR_MESSAGE_RECEIVING-8266728a-7572-48cb-9ff4-2e27071e1343',
     REMOVE_TOAST = 'REMOVE_TOAST-8266728a-7572-48cb-9ff4-2e27071e1343',
     REMOVE_TOAST_MESSAGE = 'REMOVE_TOAST_MESSAGE-8266728a-7572-48cb-9ff4-2e27071e1343',
 }
 
-export type ToasterActions = (
-    AddMessageToPipelineAction
-    | MoveMessagesFromPipelineToToastAction
-    | BlockToastForMessageReceivingAction
-    | RemoveToastMessageAction
-    | RemoveToastAction
+export type ToasterEvents = (
+    MessageWasAddedToPipeline
+    | MessageWasMovedFromPipelineToToast
+    | ToastWasBlockedForMessageReceiving
+    | ToastMessageWasRemoved
+    | ToastWasRemoved
 );
 
 export type ToasterState = {

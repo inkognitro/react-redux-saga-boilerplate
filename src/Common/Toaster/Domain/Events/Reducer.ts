@@ -3,8 +3,8 @@ import {
     Message,
     MessageToAdd,
     Toast,
-    ToasterActions,
-    ToasterActionTypes,
+    ToasterEvents,
+    ToasterEventTypes,
     ToasterState, ToastTypes
 } from "Common/Toaster/Domain/Types";
 
@@ -13,12 +13,12 @@ const initialToasterState: ToasterState = {
     toasts: []
 };
 
-export function toaster(state: ToasterState = initialToasterState, action?: ToasterActions): ToasterState {
+export function toaster(state: ToasterState = initialToasterState, action?: ToasterEvents): ToasterState {
     if (!action) {
         return state;
     }
 
-    if (action.type === ToasterActionTypes.ADD_MESSAGE_TO_PIPELINE) {
+    if (action.type === ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE) {
         return Object.assign({}, state, {
             messagesToAdd: [
                 action.payload.messageToAdd,
@@ -27,7 +27,7 @@ export function toaster(state: ToasterState = initialToasterState, action?: Toas
         });
     }
 
-    if (action.type === ToasterActionTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST) {
+    if (action.type === ToasterEventTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOAST) {
         const toastId = action.payload.toastId;
         const newToast = findUpdatedOrCreatedToastWithAddedMessages(state, toastId);
         if (!newToast) {
@@ -44,19 +44,19 @@ export function toaster(state: ToasterState = initialToasterState, action?: Toas
         });
     }
 
-    if (action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
+    if (action.type === ToasterEventTypes.TOAST_WAS_BLOCKED_FOR_MESSAGE_RECEIVING) {
         return Object.assign({}, state, {
             toasts: state.toasts.map((toast) => toastReducer(toast, action))
         });
     }
 
-    if (action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
+    if (action.type === ToasterEventTypes.REMOVE_TOAST_MESSAGE) {
         return Object.assign({}, state, {
             toasts: state.toasts.map((toast) => toastReducer(toast, action))
         });
     }
 
-    if (action.type === ToasterActionTypes.REMOVE_TOAST) {
+    if (action.type === ToasterEventTypes.REMOVE_TOAST) {
         const toastId = action.payload.toastId;
         return Object.assign({}, state, {
             toasts: state.toasts.filter((storedToast) => (storedToast.id !== toastId))
@@ -75,12 +75,12 @@ function createInitialToastState(): Toast {
     };
 }
 
-function toastReducer(state: Toast = createInitialToastState(), action?: ToasterActions): Toast {
+function toastReducer(state: Toast = createInitialToastState(), action?: ToasterEvents): Toast {
     if (!action) {
         return state;
     }
 
-    if (action.type === ToasterActionTypes.REMOVE_TOAST_MESSAGE) {
+    if (action.type === ToasterEventTypes.REMOVE_TOAST_MESSAGE) {
         const toastId = action.payload.toastId;
         if (toastId !== state.id) {
             return state;
@@ -91,7 +91,7 @@ function toastReducer(state: Toast = createInitialToastState(), action?: Toaster
         });
     }
 
-    if (action.type === ToasterActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
+    if (action.type === ToasterEventTypes.TOAST_WAS_BLOCKED_FOR_MESSAGE_RECEIVING) {
         const toastId = action.payload.toastId;
         if (toastId !== state.id) {
             return state;

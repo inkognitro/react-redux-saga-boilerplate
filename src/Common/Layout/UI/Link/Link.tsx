@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
 import './Link.scss';
 
 export type FunctionalLinkProps = {
@@ -24,7 +23,6 @@ export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) =>
 };
 
 export type LinkProps = {
-    currentRouteManager: CurrentRouteManagerInterface,
     className?: string
     url: string,
     target?: string
@@ -36,7 +34,7 @@ export const Link: FunctionComponent<LinkProps> = (props) => {
             infoUrl={props.url}
             onClick={() => {
                 if(!props.target || props.target === '_self') {
-                    props.currentRouteManager.setCurrentRouteUrl(props.url);
+                    console.log('open link'); //foo!
                     return;
                 }
                 window.open(props.url, props.target);

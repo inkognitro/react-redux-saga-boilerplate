@@ -1,6 +1,6 @@
-import {CommandActionTypes} from "Common/Toaster/Application/ToasterMiddleware";
+import {CommandActionTypes} from "Common/Toaster/Domain/ToasterMiddleware";
 import {Dispatch} from "redux";
-import {createRemoveToastMessageAction} from "Common/Toaster/Domain/Actions/RemoveToastMessageAction";
+import {createToastMessageWasRemoved} from "Common/Toaster/Domain/Events/ToastMessageWasRemoved";
 
 export type RemoveToastMessageAction = {
     type: CommandActionTypes.REMOVE_TOAST_MESSAGE,
@@ -21,5 +21,5 @@ export function createRemoveToastAction(toastId: string, messageId: string): Rem
 }
 
 export function handleRemoveToastMessageAction(toastId: string, messageId: string, dispatch: Dispatch): void {
-    dispatch(createRemoveToastMessageAction(toastId, messageId));
+    dispatch(createToastMessageWasRemoved(toastId, messageId));
 }

@@ -1,44 +1,21 @@
-import React from 'react';
-import {ContentPage} from 'SinglePageApp/Layout/UI/PageTypes/ContentPage';
+import React, {Component} from 'react';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
-import {homeRouteUrlSpecification} from "SinglePageApp/Routing/Domain/Routes";
-import {RouteSpecification} from "SinglePageApp/Routing/UI/Router";
-import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
-import {TextField} from "Common/Layout/UI/Form/InputElements/TextField";
-import {RouteViewComponent} from "Common/Routing/UI/Router";
-import {AppServices} from "SinglePageApp/App";
 import {ToastTypes} from "Common/Toaster/Domain/Types";
-
-export const routeSpecification: RouteSpecification = {
-    urlSpecification: homeRouteUrlSpecification,
-    renderComponent: (services: AppServices) => (
-        <Home
-            initialRouteState={initialRouteState}
-            currentRouteManager={services.currentRouteManager}
-            authManager={services.authManager}
-            getReduxState={() => services.store.getState()}
-        />
-    )
-};
-
-type RouteState = {
-    foo: 'bar'
-};
-
-const initialRouteState: RouteState = {
-    foo: 'bar',
-};
+import {Store} from "redux";
+import {createAddToastMessageCommand} from "Common/Toaster/Domain/Commands/AddToastMessage";
 
 export type HomeProps = {
-    currentRouteManager: CurrentRouteManagerInterface,
     authManager: AuthManagerInterface,
-    getReduxState(): object,
+    store: Store,
 };
 
-class Home extends RouteViewComponent<HomeProps, RouteState> {
+export class Home extends Component<HomeProps> {
     addToast(type: ToastTypes) {
-        console.log('add toast: ' + type);
+        this.props.store.dispatch(createAddToastMessageCommand({
+            content: 'foo',
+            type: type
+        }));
     }
 
     login() {
@@ -52,29 +29,13 @@ class Home extends RouteViewComponent<HomeProps, RouteState> {
 
     render() {
         return (
-            <ContentPage
-                authManager={this.props.authManager}
-                topDividedContent={true}
-            >
+            <div>
                 <h1>Features</h1>
-
-                <br />
-                <TextField
-                    label="Username"
-                    placeholder="e.g. songokuz"
-                    value={this.getRouteState().foo}
-                    onChange={(value) => this.setRouteState({
-                        foo: value
-                    })}
-                />
 
                 <br />
                 <h3>Routing</h3>
                 <div>
-                    <Link
-                        currentRouteManager={this.props.currentRouteManager}
-                        url="/some-page-which-does-not-exist"
-                    >
+                    <Link url="/some-page-which-does-not-exist">
                         go to non existing page
                     </Link>
                 </div>
@@ -92,8 +53,8 @@ class Home extends RouteViewComponent<HomeProps, RouteState> {
 
                 <br />
                 <h3>Redux</h3>
-                <div><FunctionalLink onClick={() => console.log(this.props.getReduxState())}>print redux state</FunctionalLink></div>
-            </ContentPage>
+                <div><FunctionalLink onClick={() => console.log(this.props.store.getState())}>print redux state</FunctionalLink></div>
+            </div>
         );
     }
 }

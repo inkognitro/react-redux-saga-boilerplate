@@ -1,9 +1,9 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux'
 import {requestHandling} from 'Common/RequestHandling/Domain/HttpRequestHandling/Reducer';
 import {auth} from 'Common/Auth/Domain/Reducer';
-import {toaster} from 'Common/Toaster/Domain/Reducer';
+import {toaster} from 'Common/Toaster/Domain/Events/Reducer';
 import {cache} from './EntityCache/Domain/Reducer';
-import {routing} from 'Common/Routing/Domain/Reducer';
+import {routing} from 'Common/Routing/Domain/EventReducer';
 import thunkMiddleware from 'redux-thunk';
 import {
     HttpRequestManager,
@@ -17,13 +17,8 @@ import {AuthManager, AuthManagerInterface} from "Common/Auth/Domain/AuthManager"
 import {ApiAuthBackendService} from "Common/Auth/Infrastructure/ApiAuthBackendService";
 import {AppServices} from "SinglePageApp/App";
 import {CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage";
-import {
-    CurrentRouteManager,
-    CurrentRouteManagerInterface,
-    RouteHistoryManagerInterface
-} from "Common/Routing/Domain/CurrentRouteManager";
-import {BrowserRouteHistoryManager} from "Common/Routing/Infrastructure/BrowserRouteHistoryManager";
-import {createToasterMiddleware} from "Common/Toaster/Application/ToasterMiddleware";
+import {createToasterMiddleware} from "Common/Toaster/Domain/ToasterMiddleware";
+import {createCommandBusMiddleware} from "Common/Routing/Domain/RoutingMiddleware";
 
 function addStoreService(services: Services): void {
     if(services.store) {
@@ -32,6 +27,7 @@ function addStoreService(services: Services): void {
     services.store = createStore(
         combineReducers({requestHandling, auth, cache, toaster, routing}),
         applyMiddleware(
+            createCommandBusMiddleware(),
             createToasterMiddleware(),
             thunkMiddleware
         )
@@ -125,32 +121,6 @@ function addAuthManagerService(services: Services): void {
     );
 }
 
-function addRouteHistoryService(services: Services): void {
-    if(services.routeHistoryManager) {
-        return;
-    }
-    services.routeHistoryManager = new BrowserRouteHistoryManager();
-}
-
-function addCurrentRouteManagerService(services: Services): void {
-    if(services.currentRouteManager) {
-        return;
-    }
-    const store = services.store;
-    if(!store) {
-        throw new Error('services.store must be defined!');
-    }
-    const routeHistory = services.routeHistoryManager;
-    if(!routeHistory) {
-        throw new Error('services.routeHistoryManager must be defined!');
-    }
-    services.currentRouteManager = new CurrentRouteManager(
-        store.dispatch,
-        () => store.getState().routing,
-        routeHistory
-    );
-}
-
 export type Services = {
     store?: Store,
     authManager?: AuthManagerInterface,
@@ -159,8 +129,6 @@ export type Services = {
     userRepository?: UserRepositoryInterface,
     cookieStorage?: CookieStorageInterface,
     httpRequestDispatcher?: HttpRequestDispatcherInterface,
-    currentRouteManager?: CurrentRouteManagerInterface,
-    routeHistoryManager?: RouteHistoryManagerInterface,
 }
 
 export function createProdAppServices(): AppServices {
@@ -176,14 +144,11 @@ export function createWithMissingProdAppServices(services: Services): AppService
     addApiHttpRequestManagerService(services);
     addUserRepositoryService(services);
     addAuthManagerService(services);
-    addRouteHistoryService(services);
-    addCurrentRouteManagerService(services);
     if(
         !services.store
         || !services.authManager
         || !services.apiHttpRequestManager
         || !services.httpRequestManager
-        || !services.currentRouteManager
     ) {
         throw new Error('Some properties of the services variable are missing!');
     }
@@ -192,6 +157,5 @@ export function createWithMissingProdAppServices(services: Services): AppService
         httpRequestManager: services.httpRequestManager,
         apiHttpRequestManager: services.apiHttpRequestManager,
         authManager: services.authManager,
-        currentRouteManager: services.currentRouteManager,
     };
 }

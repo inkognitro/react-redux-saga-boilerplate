@@ -1,5 +1,6 @@
-import {CommandActionTypes} from "Common/Toaster/Application/ToasterMiddleware";
+import {CommandActionTypes} from "Common/Toaster/Domain/ToasterMiddleware";
 import {Dispatch} from "redux";
+import {Command, createCommand} from "Common/BusMiddleware/CommandListenerMiddleware";
 
 export type BlockToastForMessageReceivingAction = {
     type: CommandActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
@@ -8,15 +9,15 @@ export type BlockToastForMessageReceivingAction = {
     }
 };
 
-export function createBlockToastForMessageReceivingAction(toastId: string): BlockToastForMessageReceivingAction {
-    return {
+export function createBlockToastForMessageReceivingCommand(toastId: string): Command<BlockToastForMessageReceivingAction> {
+    return createCommand({
         type: CommandActionTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
         payload: {
             toastId: toastId
         }
-    };
+    });
 }
 
 export function handleBlockToastForMessageReceivingAction(toastId: string, dispatch: Dispatch): void {
-    dispatch(createBlockToastForMessageReceivingAction(toastId));
+    dispatch(createBlockToastForMessageReceivingCommand(toastId));
 }
