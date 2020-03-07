@@ -1,8 +1,8 @@
-import {MessageWasAddedToPipeline} from "Common/Toaster/Domain/Events/MessageWasAddedToPipeline";
-import {MessageWasMovedFromPipelineToToast} from "Common/Toaster/Domain/Events/MessageWasMovedFromPipelineToToast";
-import {ToastWasBlockedForMessageReceiving} from "Common/Toaster/Domain/Events/ToastWasBlockedForMessageReceiving";
-import {ToastMessageWasRemoved} from "Common/Toaster/Domain/Events/ToastMessageWasRemoved";
-import {ToastWasRemoved} from "Common/Toaster/Domain/Events/ToastWasRemoved";
+import {MessageWasAddedToPipeline} from "Common/Toaster/Domain/Event/MessageWasAddedToPipeline";
+import {MessageWasMovedFromPipelineToToast} from "Common/Toaster/Domain/Event/MessageWasMovedFromPipelineToToast";
+import {ToastWasBlockedForMessageReceiving} from "Common/Toaster/Domain/Event/ToastWasBlockedForMessageReceiving";
+import {ToastMessageWasRemoved} from "Common/Toaster/Domain/Event/ToastMessageWasRemoved";
+import {ToastWasRemoved} from "Common/Toaster/Domain/Event/ToastWasRemoved";
 
 export enum ToastTypes {
     INFO = 'info',

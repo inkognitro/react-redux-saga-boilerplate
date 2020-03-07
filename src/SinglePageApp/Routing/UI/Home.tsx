@@ -3,7 +3,7 @@ import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
 import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {Store} from "redux";
-import {createAddToastMessageCommand} from "Common/Toaster/Domain/Commands/AddToastMessage";
+import {createAddToastMessageCommand} from "Common/Toaster/Domain/Command/AddToastMessage";
 
 export type HomeProps = {
     authManager: AuthManagerInterface,

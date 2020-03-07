@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import {Toaster as RepresentationalToaster, ToastsCallbacks, ToastsState} from 'Common/Toaster/UI/Toaster';
 import {Dispatch} from "redux";
-import {createRemoveToastCommand} from "Common/Toaster/Domain/Commands/RemoveToast";
+import {createRemoveToastCommand} from "Common/Toaster/Domain/Command/RemoveToast";
 import {getToasts} from "Common/Toaster/Domain/Query";
 import {ToasterState} from "Common/Toaster/Domain/Types";
-import {createToastMessageWasRemoved} from "Common/Toaster/Domain/Events/ToastMessageWasRemoved";
-import {createBlockToastForMessageReceivingCommand} from "Common/Toaster/Domain/Commands/BlockToastForMessageReceiving";
+import {createToastMessageWasRemoved} from "Common/Toaster/Domain/Event/ToastMessageWasRemoved";
+import {createBlockToastForMessageReceivingCommand} from "Common/Toaster/Domain/Command/BlockToastForMessageReceiving";
 
 //todo: Replace object with new type RootState!
 
