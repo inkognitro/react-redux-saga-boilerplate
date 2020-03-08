@@ -1,27 +1,23 @@
 import { connect } from 'react-redux'
 import {Toaster as RepresentationalToaster, ToastsCallbacks, ToastsState} from 'Common/Toaster/UI/Toaster';
 import {Dispatch} from "redux";
-import {createRemoveToastCommand} from "Common/Toaster/Domain/Command/RemoveToast";
+import {createRemoveToastCommandAction} from "Common/Toaster/Domain/Command/RemoveToast";
 import {getToasts} from "Common/Toaster/Domain/Query";
-import {ToasterState} from "Common/Toaster/Domain/Types";
 import {createToastMessageWasRemoved} from "Common/Toaster/Domain/Event/ToastMessageWasRemoved";
-import {createBlockToastForMessageReceivingCommand} from "Common/Toaster/Domain/Command/BlockToastForMessageReceiving";
+import {createBlockToastForMessageReceivingCommandAction} from "Common/Toaster/Domain/Command/BlockToastForMessageReceiving";
+import {RootState} from "SinglePageApp/AppBase/Store";
 
-//todo: Replace object with new type RootState!
-
-type ToasterStateByAppStateSelector = (rootState: object) => ToasterState;
-
-const mapStateToProps = (rootState: object, props: {getToasterStateFromAppState: ToasterStateByAppStateSelector}): ToastsState => {
+const mapStateToProps = (rootState: RootState): ToastsState => {
     return {
-        toasts: getToasts(props.getToasterStateFromAppState(rootState)),
+        toasts: getToasts(rootState.toaster),
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): ToastsCallbacks => {
     return {
-        onRemoveToast: (toastId: string) => dispatch(createRemoveToastCommand(toastId)),
+        onRemoveToast: (toastId: string) => dispatch(createRemoveToastCommandAction(toastId)),
         onRemoveToastMessage: (toastId: string, toastMessageId: string) => dispatch(createToastMessageWasRemoved(toastId, toastMessageId)),
-        onBlockToastForMessageReceiving: (toastId: string) => dispatch(createBlockToastForMessageReceivingCommand(toastId)),
+        onBlockToastForMessageReceiving: (toastId: string) => dispatch(createBlockToastForMessageReceivingCommandAction(toastId)),
     };
 };
 

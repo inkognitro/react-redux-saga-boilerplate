@@ -13,16 +13,17 @@ export interface ActionListenerFactory<Services> {
     create(services: Services): ActionListener
 }
 
-export interface ServicesFactory<Services> {
-    create(store: Store): Services
+export interface ServicesFactory<PresetServices, Services> {
+    create(presetServices: PresetServices, store: Store): Services
 }
 
-export function createMiddleware<Services>(
-    servicesFactory: ServicesFactory<Services>,
+export function createMiddleware<PresetServices, Services>(
+    presetServices: PresetServices,
+    servicesFactory: ServicesFactory<PresetServices, Services>,
     actionListenerFactories: ActionListenerFactory<Services>[]
 ): Middleware {
     return function initializeServices(store: Store) {
-        const services = servicesFactory.create(store);
+        const services = servicesFactory.create(presetServices, store);
         return function initializeActionListeners(next: Dispatch) {
             const actionListeners = actionListenerFactories.map(factory => factory.create(services));
             return function handleAction(action: Action) {

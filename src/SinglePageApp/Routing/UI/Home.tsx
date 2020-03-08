@@ -1,30 +1,19 @@
 import React, {Component} from 'react';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
-import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {Store} from "redux";
-import {createAddToastMessageCommand} from "Common/Toaster/Domain/Command/AddToastMessage";
+import {createAddToastMessageCommandAction} from "Common/Toaster/Domain/Command/AddToastMessage";
 
 export type HomeProps = {
-    authManager: AuthManagerInterface,
     store: Store,
 };
 
-export class Home extends Component<HomeProps> {
+export class Home extends Component<HomeProps> { //connect component directly with redux store!
     addToast(type: ToastTypes) {
-        this.props.store.dispatch(createAddToastMessageCommand({
+        this.props.store.dispatch(createAddToastMessageCommandAction({
             content: 'foo',
             type: type
         }));
-    }
-
-    login() {
-        this.props.authManager.authenticate({
-            shouldRemember: false,
-            isLoaderEnabled: true,
-            username: 'foo',
-            password: 'bar',
-        });
     }
 
     render() {
@@ -42,7 +31,6 @@ export class Home extends Component<HomeProps> {
 
                 <br />
                 <h3>Login</h3>
-                <div><FunctionalLink onClick={() => this.login()}>login</FunctionalLink></div>
 
                 <br />
                 <h3>Toasts</h3>
