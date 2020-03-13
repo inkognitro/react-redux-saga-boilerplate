@@ -16,7 +16,7 @@ export class CookieManager {
         this.eventBus = eventBus;
         this.cookieStorage = cookieStorage;
     }
-
+    
     public saveCookie(settings: SaveCookieSettings): void {
         const cookie = {
             name: settings.name,

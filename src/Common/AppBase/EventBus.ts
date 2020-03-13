@@ -1,8 +1,22 @@
 import {Action, Dispatch} from "redux";
+import {ListenerActionTypes} from "Common/AppBase/ActionListener";
+import {Command, CommandAction} from "Common/AppBase/CommandBus";
 
 export type Event<Type = any, Payload = any> = (Action<Type> & {
     payload: Payload
 });
+
+export type EventAction = (Action & {
+    event: Event
+});
+
+
+export function createEventAction(command: Command): CommandAction {
+    return {
+        type: ListenerActionTypes.EVENT,
+        command: command,
+    };
+}
 
 export interface EventBus {
     handle(event: Event): void

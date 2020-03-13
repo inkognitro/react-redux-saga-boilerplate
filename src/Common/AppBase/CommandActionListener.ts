@@ -18,7 +18,6 @@ export class CommandActionListener implements ActionListener {
     }
 
     handleAction(action: CommandAction): void {
-        //@ts-ignore
         const command: Command = action.command;
         this.commandHandlers.forEach((commandHandler) => {
             if(!commandHandler.getSupportedCommandTypes().includes(command.type)) {

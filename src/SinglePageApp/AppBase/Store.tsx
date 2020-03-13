@@ -3,6 +3,7 @@ import {toaster} from 'Common/Toaster/Domain/Event/Reducer';
 import {ActionListenerFactory, createMiddleware} from "Common/AppBase/ActionListener";
 import {AppServices, AppServicesFactory, AppPresetServicesFactory} from "SinglePageApp/AppBase/ServiceFactories/AppServices";
 import {CommandActionListenerFactory} from "SinglePageApp/AppBase/ServiceFactories/CommandActionListenerFactory";
+import {EventActionListenerFactory} from "SinglePageApp/AppBase/ServiceFactories/EventActionListenerFactory";
 
 const storeReducer = combineReducers({toaster});
 export type RootState = ReturnType<typeof storeReducer>;
@@ -13,6 +14,7 @@ export function createStore(
 ): Store {
     const actionListenerFactories: ActionListenerFactory<AppServices>[] = [
         new CommandActionListenerFactory(),
+        new EventActionListenerFactory(),
     ];
     const actionListenerMiddleware = createMiddleware(presetServicesFactory, servicesFactory, actionListenerFactories);
     return createReduxStore(
