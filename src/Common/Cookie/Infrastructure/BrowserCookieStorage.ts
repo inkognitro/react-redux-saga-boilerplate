@@ -1,6 +1,7 @@
-import {CookieSettings, CookieStorageInterface} from "Common/Cookie/Domain/CookieStorage";
+import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
+import {Cookie} from "Common/Cookie/Domain/Types";
 
-export class BrowserCookieStorage implements CookieStorageInterface {
+export class BrowserCookieStorage implements CookieStorage {
     findCookieContent(cookieName: string): (null | string) {
         var name = cookieName + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
@@ -17,7 +18,7 @@ export class BrowserCookieStorage implements CookieStorageInterface {
         return null;
     }
 
-    setCookie(settings: CookieSettings): void {
+    saveCookie(settings: Cookie): void {
         const expiresCookiePart = (settings.timeToLiveInDays ? createCookieExpires(settings.timeToLiveInDays) : '');
         document.cookie = settings.name + "=" + settings.content + ";" + expiresCookiePart + ";path=/";
     }

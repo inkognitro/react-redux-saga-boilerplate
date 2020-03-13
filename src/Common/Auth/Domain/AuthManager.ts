@@ -1,7 +1,7 @@
 import {AppDispatch, AppThunk} from "Common/types";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
 import {User, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
-import {CookieStorageInterface} from "Common/Cookie/Domain/CookieStorage";
+import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
 import {AuthBackendService, AuthData} from "Common/Auth/Domain/AuthBackendService";
 import {
     findApiToken,
@@ -51,14 +51,14 @@ export class AuthManager implements AuthManagerInterface {
     private readonly dispatch: AppDispatch;
     private readonly getAuthState: AuthStateSelector;
     private readonly userRepository: UserRepositoryInterface;
-    private readonly cookieStorage: CookieStorageInterface;
+    private readonly cookieStorage: CookieStorage;
     private readonly authBackendService: AuthBackendService;
 
     constructor(
         dispatch: AppDispatch,
         getAuthState: AuthStateSelector,
         userRepository: UserRepositoryInterface,
-        cookieStorage: CookieStorageInterface,
+        cookieStorage: CookieStorage,
         authBackendService: AuthBackendService
     ) {
         this.dispatch = dispatch;
@@ -209,13 +209,13 @@ export class AuthManager implements AuthManagerInterface {
                 timeToLiveInDays: apiTokenCookieTimeToLiveInDays
             });
         }
-        this.cookieStorage.setCookie(settings);
+        this.cookieStorage.saveCookie(settings);
     }
 
-    private saveShouldRememberCookieSetting(cookieStorage: CookieStorageInterface, shouldRemember: boolean): void {
+    private saveShouldRememberCookieSetting(cookieStorage: CookieStorage, shouldRemember: boolean): void {
         cookieStorage.removeCookie(SHOULD_REMEMBER_AUTH_COOKIE_NAME);
         if (shouldRemember) {
-            cookieStorage.setCookie({
+            cookieStorage.saveCookie({
                 name: SHOULD_REMEMBER_AUTH_COOKIE_NAME,
                 content: 'true',
                 timeToLiveInDays: apiTokenCookieTimeToLiveInDays,

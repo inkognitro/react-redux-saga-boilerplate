@@ -1,7 +1,9 @@
 import {CookieWasSaved} from "Common/Cookie/Domain/Event/CookieWasSaved";
 
 export type Cookie = {
-    //todo!
+    name: string,
+    content: string,
+    timeToLiveInDays?: number,
 };
 
 export enum CookieEventTypes {

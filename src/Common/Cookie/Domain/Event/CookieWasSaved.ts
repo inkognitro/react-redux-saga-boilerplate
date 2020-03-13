@@ -1,23 +1,15 @@
-import {v4 as uuidV4} from "uuid";
-import {MessageToAdd, ToasterEventTypes, ToastTypes} from "Common/Toaster/Domain/Types";
+import {Event} from 'Common/AppBase/EventBus';
+import {Cookie, CookieEventTypes} from 'Common/Cookie/Domain/Types';
 
-export function createCookieWasSaved(toastId: string, type: ToastTypes, content: string): CookieWasSaved {
+export function createCookieWasSaved(cookie: Cookie): CookieWasSaved {
     return {
-        type: ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
+        type: CookieEventTypes.COOKIE_WAS_SAVED,
         payload: {
-            messageToAdd: {
-                id: uuidV4(),
-                toastId: toastId,
-                type: type,
-                content: content,
-            },
+            cookie: cookie,
         }
     };
 }
 
-export type CookieWasSaved = {
-    type: ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
-    payload: {
-        messageToAdd: MessageToAdd,
-    }
-};
+export type CookieWasSaved = Event<CookieEventTypes.COOKIE_WAS_SAVED, {
+    cookie: Cookie,
+}>;

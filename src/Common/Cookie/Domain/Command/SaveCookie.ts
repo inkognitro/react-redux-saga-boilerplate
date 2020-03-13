@@ -1,21 +1,13 @@
 import {CommandTypes} from "Common/Cookie/Domain/Command/CommandHandler";
-import {CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
+import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
+import {SaveCookieSettings} from "Common/Cookie/Domain/CookieManager";
 
 export function createSaveCookieCommandAction(settings: SaveCookieSettings): CommandAction {
     const command: SaveCookie = {
-        typeId: CommandTypes.SAVE_COOKIE,
+        type: CommandTypes.SAVE_COOKIE,
         payload: settings,
     };
     return createCommandAction(command);
 }
 
-export type SaveCookie = {
-    typeId: CommandTypes.SAVE_COOKIE,
-    payload: SaveCookieSettings
-};
-
-type SaveCookieSettings = {
-    name: string,
-    content: string,
-    timeToLiveInDays?: number,
-};
+export type SaveCookie = Command<CommandTypes.SAVE_COOKIE, SaveCookieSettings>;

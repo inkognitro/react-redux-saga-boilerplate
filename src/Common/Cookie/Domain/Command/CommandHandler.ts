@@ -1,9 +1,13 @@
 import {CommandHandler} from "Common/AppBase/CommandActionListener";
 import {SaveCookie} from "Common/Cookie/Domain/Command/SaveCookie";
+import {CookieManager} from "Common/Cookie/Domain/CookieManager";
 
 export class CookieCommandHandler implements CommandHandler {
+    private readonly cookieManager: CookieManager;
 
-    constructor(cookieManager: CookieManager)
+    constructor(cookieManager: CookieManager) {
+        this.cookieManager = cookieManager;
+    }
 
     getSupportedCommandTypes(): string[] {
         return [
@@ -12,8 +16,8 @@ export class CookieCommandHandler implements CommandHandler {
     }
 
     handle(command: CookieCommands): void {
-        if(command.typeId === CommandTypes.SAVE_COOKIE) {
-
+        if(command.type === CommandTypes.SAVE_COOKIE) {
+            this.cookieManager.saveCookie(command.payload);
         }
     }
 }

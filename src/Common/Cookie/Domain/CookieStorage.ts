@@ -1,11 +1,7 @@
-export type CookieSettings = {
-    name: string,
-    content: string,
-    timeToLiveInDays?: number,
-};
+import {Cookie} from "Common/Cookie/Domain/Types";
 
-export interface CookieStorageInterface {
+export interface CookieStorage {
     findCookieContent(cookieName: string): (null | string)
-    setCookie(settings: CookieSettings): void
+    saveCookie(settings: Cookie): void
     removeCookie(cookieName: string): void
 }
