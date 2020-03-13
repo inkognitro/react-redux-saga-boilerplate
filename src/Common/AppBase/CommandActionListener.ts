@@ -1,24 +1,8 @@
 import {ActionListener, ListenerActionTypes} from "./ActionListener";
-import {Action} from "redux";
-
-export type Command = {
-    typeId: string,
-    payload: object
-};
-
-export type CommandAction = (Action & {
-    command: Command
-});
-
-export function createCommandAction(command: Command): CommandAction {
-    return {
-        type: ListenerActionTypes.COMMAND,
-        command: command,
-    };
-}
+import {Command, CommandAction} from "Common/AppBase/CommandBus";
 
 export interface CommandHandler {
-    getSupportedCommandTypeIds(): string[];
+    getSupportedCommandTypes(): string[];
     handle(command: Command): void
 }
 
@@ -33,14 +17,11 @@ export class CommandActionListener implements ActionListener {
         return [ListenerActionTypes.COMMAND];
     }
 
-    handleAction(action: Action): void {
-        if(action.type !== ListenerActionTypes.COMMAND) {
-            return;
-        }
+    handleAction(action: CommandAction): void {
         //@ts-ignore
         const command: Command = action.command;
         this.commandHandlers.forEach((commandHandler) => {
-            if(!commandHandler.getSupportedCommandTypeIds().includes(command.typeId)) {
+            if(!commandHandler.getSupportedCommandTypes().includes(command.type)) {
                 return;
             }
             commandHandler.handle(command);

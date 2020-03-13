@@ -1,5 +1,5 @@
 import {ActionListener, ActionListenerFactory} from "Common/AppBase/ActionListener";
-import {AppServices} from "SinglePageApp/AppBase/ServiceComposition/AppServices";
+import {AppServices} from "SinglePageApp/AppBase/ServiceFactories/AppServices";
 import {CommandActionListener, CommandHandler} from "Common/AppBase/CommandActionListener";
 import {ToasterCommandHandler} from "Common/Toaster/Domain/Command/CommandHandler";
 

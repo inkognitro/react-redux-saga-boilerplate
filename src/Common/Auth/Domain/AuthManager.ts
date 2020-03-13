@@ -1,7 +1,7 @@
 import {AppDispatch, AppThunk} from "Common/types";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
 import {User, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
-import {CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage";
+import {CookieStorageInterface} from "Common/Cookie/Domain/CookieStorage";
 import {AuthBackendService, AuthData} from "Common/Auth/Domain/AuthBackendService";
 import {
     findApiToken,

@@ -1,4 +1,4 @@
-import {CookieSettings, CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage";
+import {CookieSettings, CookieStorageInterface} from "Common/Cookie/Domain/CookieStorage";
 
 export class BrowserCookieStorage implements CookieStorageInterface {
     findCookieContent(cookieName: string): (null | string) {

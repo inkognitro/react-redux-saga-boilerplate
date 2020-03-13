@@ -1,4 +1,5 @@
 import {ToasterEventTypes} from "Common/Toaster/Domain/Types";
+import {Event} from "Common/AppBase/EventBus";
 
 export function createToastMessageWasRemoved(toastId: string, toastMessageId: string): ToastMessageWasRemoved {
     return {
@@ -10,10 +11,7 @@ export function createToastMessageWasRemoved(toastId: string, toastMessageId: st
     };
 }
 
-export type ToastMessageWasRemoved = {
-    type: ToasterEventTypes.REMOVE_TOAST_MESSAGE,
-    payload: {
-        toastId: string,
-        toastMessageId: string,
-    }
-};
+export type ToastMessageWasRemoved = Event<ToasterEventTypes.REMOVE_TOAST_MESSAGE, {
+    toastId: string,
+    toastMessageId: string,
+}>;

@@ -1,9 +1,9 @@
-import {CommandAction, createCommandAction} from "Common/AppBase/CommandActionListener";
-import {CommandTypeIds} from "Common/Toaster/Domain/Command/CommandHandler";
+import {CommandTypes} from "Common/Toaster/Domain/Command/CommandHandler";
+import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
 
 export function createRemoveToastCommandAction(toastId: string): CommandAction {
     const command: RemoveToast = {
-        typeId: CommandTypeIds.REMOVE_TOAST,
+        type: CommandTypes.REMOVE_TOAST,
         payload: {
             toastId: toastId
         }
@@ -11,9 +11,6 @@ export function createRemoveToastCommandAction(toastId: string): CommandAction {
     return createCommandAction(command);
 }
 
-export type RemoveToast = {
-    typeId: CommandTypeIds.REMOVE_TOAST,
-    payload: {
-        toastId: string,
-    }
-};
+export type RemoveToast = Command<CommandTypes.REMOVE_TOAST, {
+    toastId: string,
+}>;

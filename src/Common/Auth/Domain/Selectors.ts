@@ -1,4 +1,4 @@
-import {CookieStorageInterface} from "Common/CookieHandling/Domain/CookieStorage";
+import {CookieStorageInterface} from "Common/Cookie/Domain/CookieStorage";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
 import {User, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
 

@@ -12,32 +12,32 @@ export class ToasterCommandHandler implements CommandHandler {
         this.toaster = toaster;
     }
 
-    getSupportedCommandTypeIds(): string[] {
+    getSupportedCommandTypes(): string[] {
         return [
-            CommandTypeIds.ADD_TOAST_MESSAGE,
-            CommandTypeIds.REMOVE_TOAST_MESSAGE,
-            CommandTypeIds.REMOVE_TOAST,
-            CommandTypeIds.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
+            CommandTypes.ADD_TOAST_MESSAGE,
+            CommandTypes.REMOVE_TOAST_MESSAGE,
+            CommandTypes.REMOVE_TOAST,
+            CommandTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
         ];
     }
 
     handle(command: ToastCommands): void {
-        if(command.typeId === CommandTypeIds.ADD_TOAST_MESSAGE) {
+        if(command.type === CommandTypes.ADD_TOAST_MESSAGE) {
             this.toaster.addToastMessage({
                 type: command.payload.type,
                 content: command.payload.content,
             });
             return;
         }
-        if(command.typeId === CommandTypeIds.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
+        if(command.type === CommandTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING) {
             this.toaster.blockToastForMessageReceiving(command.payload.toastId);
             return;
         }
-        if(command.typeId === CommandTypeIds.REMOVE_TOAST) {
+        if(command.type === CommandTypes.REMOVE_TOAST) {
             this.toaster.removeToast(command.payload.toastId);
             return;
         }
-        if(command.typeId === CommandTypeIds.REMOVE_TOAST_MESSAGE) {
+        if(command.type === CommandTypes.REMOVE_TOAST_MESSAGE) {
             this.toaster.removeToastMessage(command.payload.toastId, command.payload.messageId);
             return;
         }
@@ -46,7 +46,7 @@ export class ToasterCommandHandler implements CommandHandler {
 
 type ToastCommands = (AddToastMessage | BlockToastForMessageReceiving | RemoveToast | RemoveToastMessage);
 
-export enum CommandTypeIds {
+export enum CommandTypes {
     ADD_TOAST_MESSAGE = 'ADD_TOAST_MESSAGE-804a1c85-690e-468f-bde7-74a2864bc11c',
     REMOVE_TOAST = 'REMOVE_TOAST-804a1c85-690e-468f-bde7-74a2864bc11c',
     BLOCK_TOAST_FOR_MESSAGE_RECEIVING = 'BLOCK_TOAST_FOR_MESSAGE_RECEIVING-804a1c85-690e-468f-bde7-74a2864bc11c',

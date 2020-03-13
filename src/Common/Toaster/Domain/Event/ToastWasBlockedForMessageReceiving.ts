@@ -1,4 +1,5 @@
 import {ToasterEventTypes} from "Common/Toaster/Domain/Types";
+import {Event} from "Common/AppBase/EventBus";
 
 export function createToastWasBlockedForMessageReceiving(toastId: string): ToastWasBlockedForMessageReceiving {
     return {
@@ -9,9 +10,6 @@ export function createToastWasBlockedForMessageReceiving(toastId: string): Toast
     };
 }
 
-export type ToastWasBlockedForMessageReceiving = {
-    type: ToasterEventTypes.TOAST_WAS_BLOCKED_FOR_MESSAGE_RECEIVING,
-    payload: {
-        toastId: string,
-    }
-};
+export type ToastWasBlockedForMessageReceiving = Event<ToasterEventTypes.TOAST_WAS_BLOCKED_FOR_MESSAGE_RECEIVING, {
+    toastId: string,
+}>;
