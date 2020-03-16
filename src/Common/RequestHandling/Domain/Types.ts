@@ -1,7 +1,7 @@
-import {RequestWasSent} from "Common/RequestHandling/Domain/Event/RequestWasSent";
-import {ResponseWasReceived} from "Common/RequestHandling/Domain/Event/ResponseWasReceived";
+import {HttpRequestWasSent} from "Common/RequestHandling/Domain/Event/HttpRequestWasSent";
+import {HttpResponseWasReceived} from "Common/RequestHandling/Domain/Event/HttpResponseWasReceived";
 
-export enum RequestMethods {
+export enum HttpRequestMethods {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
@@ -9,13 +9,13 @@ export enum RequestMethods {
     DELETE = 'DELETE',
 }
 
-export type Response = {
+export type HttpResponse = {
     statusCode: number,
     body: object,
 };
 
-export type Request = {
-    method: RequestMethods,
+export type HttpRequest = {
+    method: HttpRequestMethods,
     id: string,
     url: string,
     queryParameters?: object,
@@ -24,18 +24,18 @@ export type Request = {
     isLoaderEnabled?: boolean,
 };
 
-export type RequestResponse = {
-    request: Request,
-    response: (null | Response),
+export type HttpRequestResponse = {
+    request: HttpRequest,
+    response: (null | HttpResponse),
 };
 
 export type RequestHandlingState = {
-    runningHttpRequests: Request[],
+    runningHttpRequests: HttpRequest[],
 }
 
 export enum RequestHandlingEventTypes {
-    REQUEST_WAS_SENT = 'REQUEST_WAS_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
-    RESPONSE_WAS_RECEIVED = 'RESPONSE_WAS_RECEIVED-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_REQUEST_WAS_SENT = 'HTTP_REQUEST_WAS_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_RESPONSE_WAS_RECEIVED = 'HTTP_RESPONSE_WAS_RECEIVED-27fd0173-f640-46ce-8881-516cdf5c41fc',
 }
 
-export type RequestHandlingEvents = (RequestWasSent | ResponseWasReceived);
+export type RequestHandlingEvents = (HttpRequestWasSent | HttpResponseWasReceived);

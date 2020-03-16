@@ -1,4 +1,4 @@
-import {Request, RequestMethods} from "Common/RequestHandling/Domain/Types";
+import {HttpRequest, HttpRequestMethods} from "Common/RequestHandling/Domain/Types";
 import uuidV4 from "uuid/v4";
 
 type GetRequestCreationSettings = {
@@ -8,46 +8,52 @@ type GetRequestCreationSettings = {
     isLoaderEnabled?: boolean
 };
 
-export function createGetRequest(settings: GetRequestCreationSettings): Request {
+export function createGetRequest(settings: GetRequestCreationSettings): HttpRequest {
     return Object.assign({}, settings, {
-        method: RequestMethods.GET,
+        method: HttpRequestMethods.GET,
         id: uuidV4(),
         isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
 type PostRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
-export function createPostRequest(settings: PostRequestCreationSettings): Request {
+export function createPostRequest(settings: PostRequestCreationSettings): HttpRequest {
     return Object.assign({}, settings, {
-        method: RequestMethods.POST,
+        method: HttpRequestMethods.POST,
         id: uuidV4(),
         isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
 type PutRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
-export function createPutRequest(settings: PutRequestCreationSettings): Request {
+export function createPutRequest(settings: PutRequestCreationSettings): HttpRequest {
     return Object.assign({}, settings, {
-        method: RequestMethods.PUT,
+        method: HttpRequestMethods.PUT,
         id: uuidV4(),
         isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
 type PatchRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
-export function createPatchRequest(settings: PatchRequestCreationSettings): Request {
+export function createPatchRequest(settings: PatchRequestCreationSettings): HttpRequest {
     return Object.assign({}, settings, {
-        method: RequestMethods.PATCH,
+        method: HttpRequestMethods.PATCH,
         id: uuidV4(),
         isLoaderEnabled: settings.isLoaderEnabled,
     });
 }
 
 type DeleteRequestCreationSettings = (GetRequestCreationSettings & { body?: object });
-export function createDeleteRequest(settings: DeleteRequestCreationSettings): Request {
+export function createDeleteRequest(settings: DeleteRequestCreationSettings): HttpRequest {
     return Object.assign({}, settings, {
-        method: RequestMethods.DELETE,
+        method: HttpRequestMethods.DELETE,
         id: uuidV4(),
         isLoaderEnabled: settings.isLoaderEnabled,
     });
+}
+
+export function createWithHeaderEnhancedHttpRequest(request: HttpRequest, headerProperty: string, headerValue: string): HttpRequest {
+    const currentHeaders = (request.headers ? request.headers : {});
+    const newHeaders = Object.assign({}, currentHeaders, {[headerProperty]: headerValue});
+    return Object.assign({}, request, {headers: newHeaders});
 }

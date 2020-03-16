@@ -11,4 +11,3 @@ export function createSendHttpGetRequestCommandAction(settings: RequestExecution
 }
 
 export type SendHttpRequest = Command<CommandTypes.SEND_HTTP_REQUEST, RequestExecutionSettings>;
-

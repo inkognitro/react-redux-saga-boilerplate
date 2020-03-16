@@ -1,14 +1,14 @@
 import {
     createGetRequest as generalCreateGetRequest,
     createPostRequest as generalCreatePostRequest,
-    createWithHeaderEnhancedHttpRequest,
     HttpRequestManagerInterface, RequestExecutionSettings
 } from "Common/RequestHandling/Domain/HttpRequestManager";
-import {RequestResponse} from "Common/RequestHandling/Domain/Types";
+import {HttpRequestResponse} from "Common/RequestHandling/Domain/Types";
+import {createWithHeaderEnhancedHttpRequest} from "Common/RequestHandling/Domain/Command/RequestCreation";
 
-export enum API_ENDPOINT_URLS {
-    AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate',
-    AUTH_REFRESH = '//localhost:3000/auth/refresh',
+export enum ENDPOINT_URLS {
+    AUTH_AUTHENTICATE = '/auth/authenticate',
+    AUTH_REFRESH = '/auth/refresh',
 }
 
 export const createGetRequest = generalCreateGetRequest;

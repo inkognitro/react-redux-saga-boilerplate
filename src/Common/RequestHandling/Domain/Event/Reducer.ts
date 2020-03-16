@@ -13,7 +13,7 @@ export function requestHandling(state: RequestHandlingState = initialRequestHand
         return state;
     }
 
-    if (action.type === RequestHandlingEventTypes.REQUEST_WAS_SENT) {
+    if (action.type === RequestHandlingEventTypes.HTTP_REQUEST_WAS_SENT) {
         return Object.assign({}, state, {
             runningHttpRequests: [
                 action.payload.request,
@@ -22,7 +22,7 @@ export function requestHandling(state: RequestHandlingState = initialRequestHand
         });
     }
 
-    if (action.type === RequestHandlingEventTypes.RESPONSE_WAS_RECEIVED) {
+    if (action.type === RequestHandlingEventTypes.HTTP_RESPONSE_WAS_RECEIVED) {
         return Object.assign({}, state, {
             runningHttpRequests: state.runningHttpRequests.filter(
                 (request) => (request.id !== action.payload.requestResponse.request.id)

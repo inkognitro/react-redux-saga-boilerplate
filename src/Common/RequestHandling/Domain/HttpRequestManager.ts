@@ -1,14 +1,8 @@
-import {Request, RequestResponse} from "Common/RequestHandling/Domain/Types";
+import {HttpRequest, HttpRequestResponse} from "Common/RequestHandling/Domain/Types";
 import {CommandBus} from "Common/AppBase/CommandBus";
 import {EventBus} from "Common/AppBase/EventBus";
-import {createRequestWasSent} from "Common/RequestHandling/Domain/Event/RequestWasSent";
-import {createResponseWasReceived} from "Common/RequestHandling/Domain/Event/ResponseWasReceived";
-
-export function createWithHeaderEnhancedHttpRequest(request: Request, headerProperty: string, headerValue: string): Request {
-    const currentHeaders = (request.headers ? request.headers : {});
-    const newHeaders = Object.assign({}, currentHeaders, {[headerProperty]: headerValue});
-    return Object.assign({}, request, {headers: newHeaders});
-}
+import {createRequestWasSent} from "Common/RequestHandling/Domain/Event/HttpRequestWasSent";
+import {createResponseWasReceived} from "Common/RequestHandling/Domain/Event/HttpResponseWasReceived";
 
 export interface HttpRequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void
@@ -31,13 +25,13 @@ export class HttpRequestManager {
 
     executeRequest(settings: RequestExecutionSettings): void {
         const extendedSettings = Object.assign({}, settings, {
-            onSuccess: (requestResponse: RequestResponse) => {
+            onSuccess: (requestResponse: HttpRequestResponse) => {
                 this.eventBus.handle(createResponseWasReceived(requestResponse));
                 if(settings.onSuccess) {
                     settings.onSuccess(requestResponse);
                 }
             },
-            onError: (requestResponse: RequestResponse) => {
+            onError: (requestResponse: HttpRequestResponse) => {
                 this.eventBus.handle(createResponseWasReceived(requestResponse));
                 if(settings.onError) {
                     settings.onError(requestResponse);
@@ -50,7 +44,7 @@ export class HttpRequestManager {
 }
 
 export type RequestExecutionSettings = {
-    request: Request,
-    onSuccess?(summary: RequestResponse): void,
-    onError?(summary: RequestResponse): void,
+    request: HttpRequest,
+    onSuccess?(summary: HttpRequestResponse): void,
+    onError?(summary: HttpRequestResponse): void,
 };

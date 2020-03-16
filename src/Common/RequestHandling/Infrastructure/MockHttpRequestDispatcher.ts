@@ -1,5 +1,5 @@
 import {HttpRequestDispatcher, RequestExecutionSettings} from "Common/RequestHandling/Domain/HttpRequestManager";
-import {RequestResponse} from "Common/RequestHandling/Domain/Types";
+import {HttpRequestResponse} from "Common/RequestHandling/Domain/Types";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void {
@@ -9,7 +9,7 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
             if (!settings.onSuccess) {
                 return;
             }
-            const summary: RequestResponse = {
+            const summary: HttpRequestResponse = {
                 request: settings.request,
                 response: {
                     statusCode: 200,

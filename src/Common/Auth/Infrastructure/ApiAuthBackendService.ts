@@ -4,12 +4,12 @@ import {
     ReceiveRefreshedAuthDataSettings
 } from "Common/Auth/Domain/AuthBackendService";
 import {
-    API_ENDPOINT_URLS,
+    ENDPOINT_URLS,
     ApiHttpRequestManager,
     createGetRequest,
     createPostRequest,
     ExecutionSummary
-} from "Common/ApiV1Services/ApiHttpRequestManager";
+} from "Common/ApiV1Services/Domain/ApiHttpRequestManager";
 import {getResponseBodyJson} from "Common/RequestHandling/Domain/Query";
 
 export class ApiAuthBackendService implements AuthBackendService {
@@ -22,7 +22,7 @@ export class ApiAuthBackendService implements AuthBackendService {
     receiveAuthData(settings: ReceiveAuthDataSettings): void {
         this.apiHttpRequestManager.executeRequest({
             request: createPostRequest({
-                url: API_ENDPOINT_URLS.AUTH_AUTHENTICATE,
+                url: ENDPOINT_URLS.AUTH_AUTHENTICATE,
                 body: {
                     username: settings.username,
                     password: settings.password,
@@ -53,7 +53,7 @@ export class ApiAuthBackendService implements AuthBackendService {
         this.apiHttpRequestManager.executeRequest({
             apiToken: settings.apiToken,
             request: createGetRequest({
-                url: API_ENDPOINT_URLS.AUTH_REFRESH,
+                url: ENDPOINT_URLS.AUTH_REFRESH,
                 isLoaderEnabled: settings.isLoaderEnabled,
             }),
             onSuccess: (summary: ExecutionSummary): void => {

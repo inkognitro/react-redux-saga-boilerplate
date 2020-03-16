@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {HttpRequestDispatcher, RequestExecutionSettings} from "Common/RequestHandling/Domain/HttpRequestManager";
-import {RequestResponse, Request, RequestMethods} from "Common/RequestHandling/Domain/Types";
+import {HttpRequestResponse, HttpRequest, HttpRequestMethods} from "Common/RequestHandling/Domain/Types";
 
 export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void {
@@ -44,17 +44,17 @@ function createAxiosConfigFromExecutionSettings (settings: RequestExecutionSetti
     return config;
 }
 
-function getAxiosRequestMethodByRequest(request: Request): string {
-    if(request.method === RequestMethods.GET) {
+function getAxiosRequestMethodByRequest(request: HttpRequest): string {
+    if(request.method === HttpRequestMethods.GET) {
         return 'get';
     }
-    if(request.method === RequestMethods.POST) {
+    if(request.method === HttpRequestMethods.POST) {
         return 'post';
     }
     throw new Error('Method "' + request.method + '" not supported!');
 }
 
-function createSummaryFromAxiosResponse (request: Request, axiosResponse?: AxiosResponse): RequestResponse {
+function createSummaryFromAxiosResponse (request: HttpRequest, axiosResponse?: AxiosResponse): HttpRequestResponse {
     return {
         request: request,
         response: (!axiosResponse ? null : {
