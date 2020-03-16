@@ -1,7 +1,8 @@
-import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
+import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {Cookie} from "Common/Cookie/Domain/Types";
+import {CookieReader} from "Common/Cookie/Domain/CookieReader";
 
-export class BrowserCookieStorage implements CookieStorage {
+export class BrowserCookieStorage implements CookieWriter, CookieReader {
     findCookieContent(cookieName: string): (null | string) {
         var name = cookieName + "=";
         var decodedCookie = decodeURIComponent(document.cookie);

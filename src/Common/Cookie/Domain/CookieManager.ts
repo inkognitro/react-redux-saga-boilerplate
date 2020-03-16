@@ -1,6 +1,8 @@
 import {EventBus} from "Common/AppBase/EventBus";
 import {createCookieWasSaved} from "Common/Cookie/Domain/Event/CookieWasSaved";
-import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
+import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
+import {CookieReader} from "Common/Cookie/Domain/CookieReader";
+import {createCookieWasRemoved} from "Common/Cookie/Domain/Event/CookieWasRemoved";
 
 export type SaveCookieSettings = {
     name: string,
@@ -10,11 +12,13 @@ export type SaveCookieSettings = {
 
 export class CookieManager {
     private readonly eventBus: EventBus;
-    private readonly cookieStorage: CookieStorage;
+    private readonly cookieWriter: CookieWriter;
+    private readonly cookieReader: CookieReader;
 
-    constructor(eventBus: EventBus, cookieStorage: CookieStorage) {
+    constructor(eventBus: EventBus, cookieWriter: CookieWriter, cookieReader: CookieReader) {
         this.eventBus = eventBus;
-        this.cookieStorage = cookieStorage;
+        this.cookieWriter = cookieWriter;
+        this.cookieReader = cookieReader;
     }
     
     public saveCookie(settings: SaveCookieSettings): void {
@@ -23,7 +27,16 @@ export class CookieManager {
             content: settings.content,
             timeToLiveInDays: settings.timeToLiveInDays,
         };
-        this.cookieStorage.saveCookie(cookie);
+        this.cookieWriter.saveCookie(cookie);
         this.eventBus.handle(createCookieWasSaved(cookie));
+    }
+
+    public removeCookie(cookieName: string): void {
+        const existingCookie = this.cookieReader.findCookieContent(cookieName);
+        if(existingCookie === null) {
+            return;
+        }
+        this.cookieWriter.removeCookie(cookieName);
+        this.eventBus.handle(createCookieWasRemoved(cookieName));
     }
 }

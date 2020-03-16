@@ -1,7 +1,7 @@
 import {AppDispatch, AppThunk} from "Common/types";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
 import {User, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
-import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
+import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {AuthBackendService, AuthData} from "Common/Auth/Domain/AuthBackendService";
 import {
     findApiToken,
@@ -51,14 +51,14 @@ export class AuthManager implements AuthManagerInterface {
     private readonly dispatch: AppDispatch;
     private readonly getAuthState: AuthStateSelector;
     private readonly userRepository: UserRepositoryInterface;
-    private readonly cookieStorage: CookieStorage;
+    private readonly cookieStorage: CookieWriter;
     private readonly authBackendService: AuthBackendService;
 
     constructor(
         dispatch: AppDispatch,
         getAuthState: AuthStateSelector,
         userRepository: UserRepositoryInterface,
-        cookieStorage: CookieStorage,
+        cookieStorage: CookieWriter,
         authBackendService: AuthBackendService
     ) {
         this.dispatch = dispatch;
@@ -212,7 +212,7 @@ export class AuthManager implements AuthManagerInterface {
         this.cookieStorage.saveCookie(settings);
     }
 
-    private saveShouldRememberCookieSetting(cookieStorage: CookieStorage, shouldRemember: boolean): void {
+    private saveShouldRememberCookieSetting(cookieStorage: CookieWriter, shouldRemember: boolean): void {
         cookieStorage.removeCookie(SHOULD_REMEMBER_AUTH_COOKIE_NAME);
         if (shouldRemember) {
             cookieStorage.saveCookie({

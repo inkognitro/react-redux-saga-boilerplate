@@ -1,4 +1,4 @@
-import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
+import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
 import {User, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
 
@@ -20,11 +20,11 @@ export function findApiToken(state: AuthState): (null | string) {
     return state.apiToken;
 }
 
-export function findApiTokenFromCookie(cookieStorage: CookieStorage): (null | string) {
+export function findApiTokenFromCookie(cookieStorage: CookieWriter): (null | string) {
     return cookieStorage.findCookieContent(API_TOKEN_COOKIE_NAME);
 }
 
-export function shouldRememberCurrentUser(cookieStorage: CookieStorage): boolean {
+export function shouldRememberCurrentUser(cookieStorage: CookieWriter): boolean {
     const cookieContent = cookieStorage.findCookieContent(SHOULD_REMEMBER_AUTH_COOKIE_NAME);
     return !!cookieContent;
 }
