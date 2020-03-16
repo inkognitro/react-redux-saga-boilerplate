@@ -9,8 +9,8 @@ import {
     createGetRequest,
     createPostRequest,
     ExecutionSummary
-} from "Common/RequestHandling/Domain/ApiHttpRequestManager";
-import {getResponseBodyJson} from "Common/RequestHandling/Domain/HttpRequestHandling/Selectors";
+} from "Common/ApiV1Services/ApiHttpRequestManager";
+import {getResponseBodyJson} from "Common/RequestHandling/Domain/Query";
 
 export class ApiAuthBackendService implements AuthBackendService {
     private readonly apiHttpRequestManager: ApiHttpRequestManager;

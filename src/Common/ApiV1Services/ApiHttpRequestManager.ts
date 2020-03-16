@@ -2,10 +2,9 @@ import {
     createGetRequest as generalCreateGetRequest,
     createPostRequest as generalCreatePostRequest,
     createWithHeaderEnhancedHttpRequest,
-    ExecutionSummary as GeneralExecutionSummary,
-    HttpRequestManagerInterface,
-    RequestExecutionSettings as GeneralRequestExecutionSettings
-} from "Common/RequestHandling/Domain/HttpRequestHandling/HttpRequestManager";
+    HttpRequestManagerInterface, RequestExecutionSettings
+} from "Common/RequestHandling/Domain/HttpRequestManager";
+import {RequestResponse} from "Common/RequestHandling/Domain/Types";
 
 export enum API_ENDPOINT_URLS {
     AUTH_AUTHENTICATE = '//localhost:3000/auth/authenticate',
