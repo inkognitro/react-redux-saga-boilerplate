@@ -6,6 +6,8 @@ import {
     AppPresetServices,
     AppPresetServicesFactory
 } from "SinglePageApp/AppBase/ServiceFactories/AppServices";
+import {CommandBus} from "Common/AppBase/CommandBus";
+import {EventBus} from "Common/AppBase/EventBus";
 
 export class ProdAppPresetServicesFactory implements AppPresetServicesFactory {
     create(_: Store): AppPresetServices {
@@ -15,15 +17,37 @@ export class ProdAppPresetServicesFactory implements AppPresetServicesFactory {
 
 export class ProdAppServicesFactory implements AppServicesFactory {
     create(presetServices: AppPresetServices, store: Store): AppServices {
-        return {
-            toaster: createToaster(presetServices, store),
-        };
+        let partialAppServices = {...presetServices};
+        partialAppServices = {...partialAppServices, commandBus: createCommandBus(partialAppServices, store)};
+        partialAppServices = {...partialAppServices, eventBus: createEventBus(partialAppServices, store)};
+        partialAppServices = {...partialAppServices, toaster: createToaster(partialAppServices)};
+
+        //@ts-ignore
+        return partialAppServices;
     }
 }
 
-function createToaster(presetServices: AppPresetServices, store: Store): Toaster {
+function createToaster(presetServices: AppPresetServices): Toaster {
     if(presetServices.toaster) {
         return presetServices.toaster;
     }
-    return new Toaster(store.dispatch);
+    const eventBus = presetServices.eventBus;
+    if(!eventBus) {
+        throw new Error('eventBus must already be initialized!');
+    }
+    return new Toaster(eventBus);
+}
+
+function createCommandBus(presetServices: AppPresetServices, store: Store): CommandBus {
+    if(presetServices.commandBus) {
+        return presetServices.commandBus;
+    }
+    return new CommandBus(store.dispatch);
+}
+
+function createEventBus(presetServices: AppPresetServices, store: Store): EventBus {
+    if(presetServices.eventBus) {
+        return presetServices.eventBus;
+    }
+    return new EventBus(store.dispatch);
 }
