@@ -1,6 +1,6 @@
 import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
-import {CommandTypes} from "Common/EntityCache/Domain/User/Command/CommandHandler";
-import {User} from "Common/EntityCache/Domain/User/Types";
+import {CommandTypes} from "Common/UserManagement/Domain/UserRepository/Command/CommandHandler";
+import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 
 export function createSendHttpGetRequestAction(user: User): CommandAction {
     const command: UpdateUser = {

@@ -1,4 +1,4 @@
-import {UserRepositoryState, UserRepositoryEventTypes, UserRepositoryEvent} from "Common/EntityCache/Domain/User/Types";
+import {UserRepositoryState, UserRepositoryEventTypes, UserRepositoryEvent} from "Common/UserManagement/Domain/UserRepository/Types";
 
 const initialUserRepositoryState: UserRepositoryState = {
     users: [],

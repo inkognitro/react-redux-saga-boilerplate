@@ -1,6 +1,6 @@
 import {CommandHandler} from "Common/AppBase/CommandActionListener";
-import {UpdateUser} from "Common/EntityCache/Domain/User/Command/UpdateUser";
-import {UserRepository} from "Common/EntityCache/Domain/User/UserRepository";
+import {UpdateUser} from "Common/UserManagement/Domain/UserRepository/Command/UpdateUser";
+import {UserRepository} from "Common/UserManagement/Domain/UserRepository/UserRepository";
 
 export class RequestCommandHandler implements CommandHandler {
     private readonly userRepository: UserRepository;

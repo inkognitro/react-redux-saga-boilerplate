@@ -1,5 +1,5 @@
 import {HttpRequestWasSent} from "Common/RequestHandling/Domain/Event/HttpRequestWasSent";
-import {HttpResponseWasReceived} from "Common/RequestHandling/Domain/Event/HttpResponseWasReceived";
+import {HttpRequestWasFinished} from "Common/RequestHandling/Domain/Event/HttpRequestWasFinished";
 
 export enum HttpRequestMethods {
     GET = 'GET',
@@ -35,7 +35,7 @@ export type RequestHandlingState = {
 
 export enum RequestHandlingEventTypes {
     HTTP_REQUEST_WAS_SENT = 'HTTP_REQUEST_WAS_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
-    HTTP_RESPONSE_WAS_RECEIVED = 'HTTP_RESPONSE_WAS_RECEIVED-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_REQUEST_WAS_FINISHED = 'HTTP_REQUEST_WAS_FINISHED-27fd0173-f640-46ce-8881-516cdf5c41fc',
 }
 
-export type RequestHandlingEvent = (HttpRequestWasSent | HttpResponseWasReceived);
+export type RequestHandlingEvent = (HttpRequestWasSent | HttpRequestWasFinished);

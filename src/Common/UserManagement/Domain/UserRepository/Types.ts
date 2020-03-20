@@ -1,4 +1,4 @@
-import {UserWasUpdated} from "Common/EntityCache/Domain/User/Event/UserWasUpdated";
+import {UserWasUpdated} from "Common/UserManagement/Domain/UserRepository/Event/UserWasUpdated";
 
 type OptionalUserData = Partial<{
 

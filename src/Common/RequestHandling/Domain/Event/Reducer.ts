@@ -22,7 +22,7 @@ export function requestHandling(state: RequestHandlingState = initialRequestHand
         });
     }
 
-    if (event.type === RequestHandlingEventTypes.HTTP_RESPONSE_WAS_RECEIVED) {
+    if (event.type === RequestHandlingEventTypes.HTTP_REQUEST_WAS_FINISHED) {
         return Object.assign({}, state, {
             runningHttpRequests: state.runningHttpRequests.filter(
                 (request) => (request.id !== event.payload.requestResponse.request.id)

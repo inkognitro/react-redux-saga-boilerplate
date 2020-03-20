@@ -1,7 +1,7 @@
 import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
-import {UserRepository} from "Common/EntityCache/Domain/User/UserRepository";
-import {User} from "Common/EntityCache/Domain/User/Types";
+import {UserRepository} from "Common/UserManagement/Domain/UserRepository/UserRepository";
+import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 
 //todo: use reselect library for performance optimization
 

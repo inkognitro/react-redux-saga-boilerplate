@@ -2,7 +2,7 @@ import {HttpRequest, HttpRequestResponse} from "Common/RequestHandling/Domain/Ty
 import {CommandBus} from "Common/AppBase/CommandBus";
 import {EventBus} from "Common/AppBase/EventBus";
 import {createRequestWasSent} from "Common/RequestHandling/Domain/Event/HttpRequestWasSent";
-import {createResponseWasReceived} from "Common/RequestHandling/Domain/Event/HttpResponseWasReceived";
+import {createResponseWasReceived} from "Common/RequestHandling/Domain/Event/HttpRequestWasFinished";
 
 export interface HttpRequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void

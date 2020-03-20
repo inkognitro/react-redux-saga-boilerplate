@@ -1,12 +1,17 @@
 import {applyMiddleware, combineReducers, createStore as createReduxStore, Store} from 'redux'
 import {toaster} from 'Common/Toaster/Domain/Event/Reducer';
 import {requestHandling} from 'Common/RequestHandling/Domain/Event/Reducer';
+import {userRepository} from "Common/UserManagement/Domain/UserRepository/Event/Reducer";
 import {ActionListenerFactory, createMiddleware} from "Common/AppBase/ActionListener";
 import {AppServices, AppServicesFactory, AppPresetServicesFactory} from "./ServiceFactories/AppServices";
 import {CommandActionListenerFactory} from "./ServiceFactories/CommandActionListenerFactory";
 import {EventActionListenerFactory} from "./ServiceFactories/EventActionListenerFactory";
 
-const storeReducer = combineReducers({toaster, requestHandling});
+const storeReducer = combineReducers({
+    toaster,
+    requestHandling,
+    userRepository
+});
 export type RootState = ReturnType<typeof storeReducer>;
 
 export function createStore(

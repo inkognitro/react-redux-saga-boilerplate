@@ -1,6 +1,6 @@
-import {User} from "Common/EntityCache/Domain/User/Types";
+import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 import {EventBus} from "Common/AppBase/EventBus";
-import {createUserWasUpdated} from "Common/EntityCache/Domain/User/Event/UserWasUpdated";
+import {createUserWasUpdated} from "Common/UserManagement/Domain/UserRepository/Event/UserWasUpdated";
 
 export interface UserRepository {
     updateUser(userData: User): void
