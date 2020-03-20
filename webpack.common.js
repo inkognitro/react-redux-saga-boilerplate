@@ -28,7 +28,7 @@ module.exports = {
     resolve: {
         alias: {
             Common: path.resolve(__dirname, './src/Common'),
-            SinglePageApp: path.resolve(__dirname, './src/SinglePageApp'),
+            SinglePageApp: path.resolve(__dirname, './src/Apps/SinglePageApp'),
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
