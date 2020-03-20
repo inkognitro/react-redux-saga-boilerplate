@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestManager";
+import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestHandler";
 import {Loader as PresentationalLoader, LoaderState as PresentationalLoaderState} from "Common/Layout/UI/Loader/Loader";
 
 export type LoaderProps = {

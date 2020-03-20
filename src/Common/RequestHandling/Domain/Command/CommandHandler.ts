@@ -1,11 +1,11 @@
 import {CommandHandler} from "Common/AppBase/CommandActionListener";
-import {HttpRequestManager} from "Common/RequestHandling/Domain/HttpRequestManager";
+import {HttpRequestHandler} from "Common/RequestHandling/Domain/HttpRequestHandler";
 import {SendHttpRequest} from "Common/RequestHandling/Domain/Command/SendHttpRequest";
 
 export class RequestCommandHandler implements CommandHandler {
-    private readonly httpRequestManager: HttpRequestManager;
+    private readonly httpRequestManager: HttpRequestHandler;
 
-    constructor(httpRequestManager: HttpRequestManager) {
+    constructor(httpRequestManager: HttpRequestHandler) {
         this.httpRequestManager = httpRequestManager;
     }
 

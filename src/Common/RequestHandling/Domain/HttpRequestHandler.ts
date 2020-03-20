@@ -8,7 +8,7 @@ export interface HttpRequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void
 }
 
-export class HttpRequestManager {
+export class HttpRequestHandler {
     private readonly commandBus: CommandBus;
     private readonly eventBus: EventBus;
     private readonly requestDispatcher: HttpRequestDispatcher;

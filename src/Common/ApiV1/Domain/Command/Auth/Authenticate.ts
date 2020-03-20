@@ -1,5 +1,5 @@
 import {Command} from "Common/AppBase/CommandBus";
-import {CommandTypes} from "Common/ApiV1/Domain/CommandHandler";
+import {CommandTypes} from "Common/ApiV1/Domain/Command/CommandHandler";
 
 export function createAuthenticate(settings: AuthenticateSettings): Authenticate {
     return {

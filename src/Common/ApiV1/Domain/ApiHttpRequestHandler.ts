@@ -1,26 +1,21 @@
 import {
     createGetRequest as generalCreateGetRequest,
     createPostRequest as generalCreatePostRequest,
-    HttpRequestManagerInterface, RequestExecutionSettings
-} from "Common/RequestHandling/Domain/HttpRequestManager";
-import {HttpRequestResponse} from "Common/RequestHandling/Domain/Types";
-import {createWithHeaderEnhancedHttpRequest} from "Common/RequestHandling/Domain/Command/RequestCreation";
-
-export enum ENDPOINT_URLS {
-    AUTH_AUTHENTICATE = '/auth/authenticate',
-    AUTH_REFRESH = '/auth/refresh',
-}
+    createWithHeaderEnhancedHttpRequest
+} from "Common/RequestHandling/Domain/Command/RequestCreation";
+import {HttpRequestHandler} from "Common/RequestHandling/Domain/HttpRequestHandler";
+import {HttpRequestResponse as GeneralHttpRequestResponse} from "Common/RequestHandling/Domain/Types";
 
 export const createGetRequest = generalCreateGetRequest;
 export const createPostRequest = generalCreatePostRequest;
 
-export type ExecutionSummary = GeneralExecutionSummary;
+export type ExecutionSummary = GeneralHttpRequestResponse;
 export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {
     apiToken?: string
 });
 
-export class ApiHttpRequestManager {
-    private httpRequestManager: HttpRequestManagerInterface;
+export class ApiHttpRequestHandler {
+    private httpRequestManager: HttpRequestHandler;
 
     constructor(httpRequestManager: HttpRequestManagerInterface) {
         this.httpRequestManager = httpRequestManager;

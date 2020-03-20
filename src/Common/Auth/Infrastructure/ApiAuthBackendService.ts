@@ -9,7 +9,7 @@ import {
     createGetRequest,
     createPostRequest,
     ExecutionSummary
-} from "Common/ApiV1/Domain/RequestHandler";
+} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {getResponseBodyJson} from "Common/RequestHandling/Domain/Query";
 
 export class ApiAuthBackendService implements AuthBackendService {
