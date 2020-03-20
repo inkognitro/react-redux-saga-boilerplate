@@ -1,4 +1,4 @@
-import {User} from "Common/EntityCache/Domain/User/UserRepository";
+import {User} from "Common/EntityCache/Domain/User/Types";
 
 type callbackSettings = {
     onSuccess?(authData: AuthData): void,

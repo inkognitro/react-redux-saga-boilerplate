@@ -1,6 +1,6 @@
 import {AppDispatch, AppThunk} from "Common/types";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
-import {User, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
+import {UserRepository} from "Common/EntityCache/Domain/User/UserRepository";
 import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {AuthBackendService, AuthData} from "Common/Auth/Domain/AuthBackendService";
 import {
@@ -16,6 +16,7 @@ import {
     createReceiveCurrentAuthUserDataAction,
     createStartApiTokenFetchAction
 } from "Common/Auth/Domain/ActionCreation";
+import {User} from "Common/EntityCache/Domain/User/Types";
 
 export interface AuthManagerInterface {
     initializeCurrentUser(): void
@@ -50,14 +51,14 @@ type CurrentUserSettings = {
 export class AuthManager implements AuthManagerInterface {
     private readonly dispatch: AppDispatch;
     private readonly getAuthState: AuthStateSelector;
-    private readonly userRepository: UserRepositoryInterface;
+    private readonly userRepository: UserRepository;
     private readonly cookieStorage: CookieWriter;
     private readonly authBackendService: AuthBackendService;
 
     constructor(
         dispatch: AppDispatch,
         getAuthState: AuthStateSelector,
-        userRepository: UserRepositoryInterface,
+        userRepository: UserRepository,
         cookieStorage: CookieWriter,
         authBackendService: AuthBackendService
     ) {

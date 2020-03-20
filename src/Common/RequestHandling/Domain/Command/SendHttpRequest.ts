@@ -2,7 +2,7 @@ import {Command, CommandAction, createCommandAction} from "Common/AppBase/Comman
 import {CommandTypes} from "Common/RequestHandling/Domain/Command/CommandHandler";
 import {RequestExecutionSettings} from "Common/RequestHandling/Domain/HttpRequestManager";
 
-export function createSendHttpGetRequestCommandAction(settings: RequestExecutionSettings): CommandAction {
+export function createSendHttpGetRequestAction(settings: RequestExecutionSettings): CommandAction {
     const command: SendHttpRequest = {
         type: CommandTypes.SEND_HTTP_REQUEST,
         payload: settings,

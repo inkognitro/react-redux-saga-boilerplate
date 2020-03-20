@@ -1,7 +1,7 @@
 import {CommandTypes} from "Common/Toaster/Domain/Command/CommandHandler";
 import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
 
-export function createBlockToastForMessageReceivingCommandAction(toastId: string): CommandAction {
+export function createBlockToastForMessageReceivingAction(toastId: string): CommandAction {
     const command: BlockToastForMessageReceiving = {
         type: CommandTypes.BLOCK_TOAST_FOR_MESSAGE_RECEIVING,
         payload: {

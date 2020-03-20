@@ -1,10 +1,11 @@
 import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
-import {User, UserRepositoryInterface} from "Common/EntityCache/Domain/User/UserRepository";
+import {UserRepository} from "Common/EntityCache/Domain/User/UserRepository";
+import {User} from "Common/EntityCache/Domain/User/Types";
 
 //todo: use reselect library for performance optimization
 
-export function findCurrentUser(state: AuthState, userRepository: UserRepositoryInterface): (null | User) {
+export function findCurrentUser(state: AuthState, userRepository: UserRepository): (null | User) {
     const currentUserId = state.currentUserId;
     if (!currentUserId) {
         return null;

@@ -1,5 +1,5 @@
 import {
-    RequestHandlingEvents,
+    RequestHandlingEvent,
     RequestHandlingEventTypes,
     RequestHandlingState
 } from "Common/RequestHandling/Domain/Types";
@@ -8,24 +8,24 @@ const initialRequestHandilngState: RequestHandlingState = {
     runningHttpRequests: [],
 };
 
-export function requestHandling(state: RequestHandlingState = initialRequestHandilngState, action?: RequestHandlingEvents): RequestHandlingState {
-    if (action === undefined) {
+export function requestHandling(state: RequestHandlingState = initialRequestHandilngState, event?: RequestHandlingEvent): RequestHandlingState {
+    if (event === undefined) {
         return state;
     }
 
-    if (action.type === RequestHandlingEventTypes.HTTP_REQUEST_WAS_SENT) {
+    if (event.type === RequestHandlingEventTypes.HTTP_REQUEST_WAS_SENT) {
         return Object.assign({}, state, {
             runningHttpRequests: [
-                action.payload.request,
+                event.payload.request,
                 ...state.runningHttpRequests,
             ]
         });
     }
 
-    if (action.type === RequestHandlingEventTypes.HTTP_RESPONSE_WAS_RECEIVED) {
+    if (event.type === RequestHandlingEventTypes.HTTP_RESPONSE_WAS_RECEIVED) {
         return Object.assign({}, state, {
             runningHttpRequests: state.runningHttpRequests.filter(
-                (request) => (request.id !== action.payload.requestResponse.request.id)
+                (request) => (request.id !== event.payload.requestResponse.request.id)
             ),
         });
     }

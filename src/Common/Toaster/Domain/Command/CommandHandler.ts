@@ -21,7 +21,7 @@ export class ToasterCommandHandler implements CommandHandler {
         ];
     }
 
-    handle(command: ToastCommands): void {
+    handle(command: SupportedCommand): void {
         if(command.type === CommandTypes.ADD_TOAST_MESSAGE) {
             this.toaster.addToastMessage({
                 type: command.payload.type,
@@ -44,7 +44,7 @@ export class ToasterCommandHandler implements CommandHandler {
     }
 }
 
-type ToastCommands = (AddToastMessage | BlockToastForMessageReceiving | RemoveToast | RemoveToastMessage);
+type SupportedCommand = (AddToastMessage | BlockToastForMessageReceiving | RemoveToast | RemoveToastMessage);
 
 export enum CommandTypes {
     ADD_TOAST_MESSAGE = 'ADD_TOAST_MESSAGE-804a1c85-690e-468f-bde7-74a2864bc11c',

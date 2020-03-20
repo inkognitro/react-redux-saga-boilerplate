@@ -1,4 +1,5 @@
 import {CookieWasSaved} from "Common/Cookie/Domain/Event/CookieWasSaved";
+import {CookieWasRemoved} from "Common/Cookie/Domain/Event/CookieWasRemoved";
 
 export type Cookie = {
     name: string,
@@ -11,6 +12,4 @@ export enum CookieEventTypes {
     COOKIE_WAS_REMOVED = 'COOKIE_WAS_REMOVED-9266728a-7572-48cb-9ff4-2e27071e1343',
 }
 
-export type CookieEvents = (
-    CookieWasSaved
-);
+export type CookieEvent = (CookieWasSaved | CookieWasRemoved);

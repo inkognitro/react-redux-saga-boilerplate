@@ -1,35 +1,19 @@
-import {AppDispatch} from "Common/types";
-import {UserRepositoryState} from "Common/EntityCache/Domain/User/Types";
-import {createReceiveUserDataAction} from "Common/EntityCache/Domain/User/Actions";
-import {findUserById} from "Common/EntityCache/Domain/User/Selectors";
+import {User} from "Common/EntityCache/Domain/User/Types";
+import {EventBus} from "Common/AppBase/EventBus";
+import {createUserWasUpdated} from "Common/EntityCache/Domain/User/Event/UserWasUpdated";
 
-export type User = {
-    id: string,
-    username?: string,
-};
-
-export interface UserRepositoryInterface {
-    saveUserData(userData: User): void
-    findById(userId: string): (null | User)
+export interface UserRepository {
+    updateUser(userData: User): void
 }
 
-type UserRepositoryStateSelector = () => UserRepositoryState;
+export class UserRepository implements UserRepository {
+    private readonly eventBus: EventBus;
 
-export class UserRepository implements UserRepositoryInterface {
-    private readonly dispatch: AppDispatch;
-    private readonly getUserRepositoryState: UserRepositoryStateSelector;
-
-    constructor(dispatch: AppDispatch, getUserRepositoryState: UserRepositoryStateSelector) {
-        this.dispatch = dispatch;
-        this.getUserRepositoryState = getUserRepositoryState;
+    constructor(eventBus: EventBus) {
+        this.eventBus = eventBus;
     }
 
-    saveUserData(userData: User): void {
-        const action = createReceiveUserDataAction(userData);
-        this.dispatch(action);
-    }
-
-    findById(userId: string): (null | User) {
-        return findUserById(this.getUserRepositoryState(), userId);
+    updateUser(user: User): void {
+        this.eventBus.handle(createUserWasUpdated(user));
     }
 }

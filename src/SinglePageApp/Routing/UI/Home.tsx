@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {Store} from "redux";
-import {createAddToastMessageCommandAction} from "Common/Toaster/Domain/Command/AddToastMessage";
+import {createAddToastMessageAction} from "Common/Toaster/Domain/Command/AddToastMessage";
 
 export type HomeProps = {
     store: Store,
@@ -10,7 +10,7 @@ export type HomeProps = {
 
 export class Home extends Component<HomeProps> { //connect component directly with redux store!
     addToast(type: ToastTypes) {
-        this.props.store.dispatch(createAddToastMessageCommandAction({
+        this.props.store.dispatch(createAddToastMessageAction({
             content: 'foo',
             type: type
         }));

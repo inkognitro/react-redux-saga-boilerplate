@@ -39,7 +39,7 @@ export enum ToasterEventTypes {
     REMOVE_TOAST_MESSAGE = 'REMOVE_TOAST_MESSAGE-8266728a-7572-48cb-9ff4-2e27071e1343',
 }
 
-export type ToasterEvents = (
+export type ToasterEvent = (
     MessageWasAddedToPipeline
     | MessageWasMovedFromPipelineToToast
     | ToastWasBlockedForMessageReceiving

@@ -38,4 +38,4 @@ export enum RequestHandlingEventTypes {
     HTTP_RESPONSE_WAS_RECEIVED = 'HTTP_RESPONSE_WAS_RECEIVED-27fd0173-f640-46ce-8881-516cdf5c41fc',
 }
 
-export type RequestHandlingEvents = (HttpRequestWasSent | HttpResponseWasReceived);
+export type RequestHandlingEvent = (HttpRequestWasSent | HttpResponseWasReceived);

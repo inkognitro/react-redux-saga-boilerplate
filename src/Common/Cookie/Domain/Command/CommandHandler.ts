@@ -1,6 +1,7 @@
 import {CommandHandler} from "Common/AppBase/CommandActionListener";
 import {SaveCookie} from "Common/Cookie/Domain/Command/SaveCookie";
 import {CookieManager} from "Common/Cookie/Domain/CookieManager";
+import {RemoveCookie} from "Common/Cookie/Domain/Command/RemoveCookie";
 
 export class CookieCommandHandler implements CommandHandler {
     private readonly cookieManager: CookieManager;
@@ -16,17 +17,19 @@ export class CookieCommandHandler implements CommandHandler {
         ];
     }
 
-    handle(command: CookieCommands): void {
+    handle(command: SupportedCommand): void {
         if(command.type === CommandTypes.SAVE_COOKIE) {
             this.cookieManager.saveCookie(command.payload);
+            return;
         }
+
         if(command.type === CommandTypes.REMOVE_COOKIE) {
-            this.cookieManager.r(command.payload);
+            this.cookieManager.removeCookie(command.payload.cookieName);
         }
     }
 }
 
-type CookieCommands = (SaveCookie);
+type SupportedCommand = (SaveCookie | RemoveCookie);
 
 export enum CommandTypes {
     SAVE_COOKIE = 'SAVE_COOKIE-d12895c4-7a9c-423d-b01d-c4be1d770468',
