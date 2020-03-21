@@ -10,7 +10,7 @@ import {
     shouldRememberCurrentUser
 } from "Common/Auth/DomainOld/Selectors";
 import {apiTokenCookieTimeToLiveInDays, triggerApiTokenRefreshBeforeExpirationInSeconds} from "Common/config";
-import {getSecondsUntilExpiration} from "Common/Auth/DomainOld/JWTHandling";
+import {getSecondsUntilExpiration} from "Common/Auth/Domain/JWTHandling";
 import {
     createEndApiTokenFetchAction,
     createReceiveCurrentAuthUserDataAction,

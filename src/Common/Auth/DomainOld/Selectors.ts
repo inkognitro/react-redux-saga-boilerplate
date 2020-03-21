@@ -19,7 +19,7 @@ export function isApiTokenBeingFetchedRightNow(state: AuthState): boolean {
 }
 
 export function findApiToken(state: AuthState): (null | string) {
-    return state.apiToken;
+    return state.currentUserAuthToken;
 }
 
 export function findApiTokenFromCookie(cookieStorage: CookieWriter): (null | string) {

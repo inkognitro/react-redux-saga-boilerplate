@@ -1,7 +1,7 @@
 import {AuthState, AuthStateSelector} from "Common/Auth/Domain/Types";
 
 function findCurrentAuthToken(state: AuthState): (null | string) {
-    return state.apiToken;
+    return state.currentUserAuthToken;
 }
 
 export class CurrentAuthTokenReader {
