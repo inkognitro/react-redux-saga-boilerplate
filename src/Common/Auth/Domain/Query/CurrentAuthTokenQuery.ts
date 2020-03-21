@@ -1,7 +1,10 @@
 import {AuthState, AuthStateSelector} from "Common/Auth/Domain/Types";
 
 function findCurrentAuthToken(state: AuthState): (null | string) {
-    return state.currentUserAuthToken;
+    if(state.currentAuthUser) {
+        return state.currentAuthUser.token;
+    }
+    return null;
 }
 
 export class CurrentAuthTokenReader {

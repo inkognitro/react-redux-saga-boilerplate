@@ -18,10 +18,6 @@ export function isApiTokenBeingFetchedRightNow(state: AuthState): boolean {
     return state.isFetchingApiToken;
 }
 
-export function findApiToken(state: AuthState): (null | string) {
-    return state.currentUserAuthToken;
-}
-
 export function findApiTokenFromCookie(cookieStorage: CookieWriter): (null | string) {
     return cookieStorage.findCookieContent(API_TOKEN_COOKIE_NAME);
 }

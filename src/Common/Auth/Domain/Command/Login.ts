@@ -4,14 +4,14 @@ import {CommandTypes} from "Common/Auth/Domain/Command/CommandHandler";
 type AuthenticateSettings = {
     username: string,
     password: string,
-    isLoaderEnabled: boolean,
+    shouldRemember: boolean,
 };
 
-export function createAuthenticate(settings: AuthenticateSettings): Authenticate {
+export function createLogin(settings: AuthenticateSettings): Login {
     return {
-        type: CommandTypes.AUTHENTICATE,
+        type: CommandTypes.LOGIN,
         payload: settings,
     };
 }
 
-export type Authenticate = Command<CommandTypes.AUTHENTICATE, AuthenticateSettings>;
+export type Login = Command<CommandTypes.LOGIN, AuthenticateSettings>;
