@@ -10,7 +10,10 @@ import {
     HttpRequestHandler,
     RequestExecutionSettings as GeneralRequestExecutionSettings
 } from "Common/RequestHandling/Domain/HttpRequestHandler";
-import {HttpRequestResponse as GeneralHttpRequestResponse} from "Common/RequestHandling/Domain/Types";
+import {
+    HttpRequestResponse as GeneralHttpRequestResponse,
+    SuccessHttpRequestResponse as GeneralSuccessHttpRequestResponse
+} from "Common/RequestHandling/Domain/Types";
 import {BasicResponseBody} from "Common/ApiV1/Domain/Types";
 import {Translator} from "Common/Translator/Domain/Translator";
 import {COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID} from "Common/Translator/Domain/Translation/en";
@@ -25,9 +28,10 @@ export const createPutRequest = generalCreatePutRequest;
 export const createPostRequest = generalCreatePostRequest;
 export const createDeleteRequest = generalCreateDeleteRequest;
 
-export type RequestResponse = GeneralHttpRequestResponse<BasicResponseBody>;
+export type SuccessHttpRequestResponse<AdditionalResponseBody = {}> = GeneralSuccessHttpRequestResponse<(BasicResponseBody & AdditionalResponseBody)>;
+export type HttpRequestResponse = GeneralHttpRequestResponse<BasicResponseBody>;
 export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {
-    apiToken?: string
+    apiToken?: string,
 });
 
 export class ApiHttpRequestHandler {
@@ -51,28 +55,28 @@ export class ApiHttpRequestHandler {
 
     private createGeneralRequestExecutionSettings(settings: RequestExecutionSettings): GeneralRequestExecutionSettings
     {
-        let generalSettings = {
+        return {
             request: (
                 settings.apiToken
                     ? createWithHeaderEnhancedHttpRequest(settings.request, 'X-API-TOKEN', settings.apiToken)
                     : settings.request
             ),
-            onError: (requestResponse: RequestResponse): void => {
+            onSuccess:  (requestResponse): void => {
+                this.showRequestResponseMessages(requestResponse);
+                if (settings.onSuccess) {
+                    settings.onSuccess(requestResponse);
+                }
+            },
+            onError: (requestResponse): void => {
                 this.showRequestResponseMessages(requestResponse);
                 if (settings.onError) {
                     settings.onError(requestResponse);
                 }
-            }
+            },
         };
-        if (settings.onSuccess) {
-            generalSettings = Object.assign({}, generalSettings, {
-                onSuccess: settings.onSuccess
-            });
-        }
-        return generalSettings;
     }
 
-    private showRequestResponseMessages(requestResponse: RequestResponse): void {
+    private showRequestResponseMessages(requestResponse: HttpRequestResponse): void {
         if (!requestResponse.response) {
             const foundTranslatedText = this.translator.findTranslatedText(COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID);
             const content = (foundTranslatedText ? foundTranslatedText : 'Could not connect to server.');

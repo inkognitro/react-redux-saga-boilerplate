@@ -3,14 +3,14 @@ import {CommandTypes} from "Common/ApiV1/Domain/Command/CommandHandler";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 import {BasicResponseBody} from "Common/ApiV1/Domain/Types";
 
-export function createAuthenticate(settings: AuthenticateSettings): Authenticate {
+export function createRefreshToken(settings: RefreshTokenSettings): RefreshToken {
     return {
-        type: CommandTypes.AUTHENTICATE,
+        type: CommandTypes.REFRESH_TOKEN,
         payload: settings,
-    };
+};
 }
 
-export type Authenticate = Command<CommandTypes.AUTHENTICATE, AuthenticateSettings>;
+export type RefreshToken = Command<CommandTypes.REFRESH_TOKEN, RefreshTokenSettings>;
 
 type SuccessResult = {
     token: string,
@@ -19,9 +19,8 @@ type SuccessResult = {
 
 type ErrorResult = BasicResponseBody;
 
-type AuthenticateSettings = {
-    username: string,
-    password: string,
+type RefreshTokenSettings = {
+    token: string,
     isLoaderEnabled: boolean,
     onSuccess?(result: SuccessResult): void,
     onError?(result?: ErrorResult): void,

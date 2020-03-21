@@ -1,7 +1,7 @@
 import {Event} from 'Common/AppBase/EventBus';
 import {RequestHandlingEventTypes, HttpRequestResponse} from "Common/RequestHandling/Domain/Types";
 
-export function createResponseWasReceived(requestResponse: HttpRequestResponse): HttpRequestWasFinished {
+export function createHttpRequestWasFinished(requestResponse: HttpRequestResponse): HttpRequestWasFinished {
     return {
         type: RequestHandlingEventTypes.HTTP_REQUEST_WAS_FINISHED,
         payload: {

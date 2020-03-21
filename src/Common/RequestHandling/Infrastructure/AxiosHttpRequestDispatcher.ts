@@ -9,8 +9,8 @@ export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {
                 if (!settings.onSuccess) {
                     return;
                 }
-                const summary = createSummaryFromAxiosResponse(settings.request, response);
-                settings.onSuccess(summary);
+                const requestResponse = createRequestResponseFromAxiosResponse(settings.request, response);
+                settings.onSuccess(requestResponse);
             })
             .catch((error: AxiosError): void => {
                 if (!error.request) {
@@ -20,8 +20,8 @@ export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {
                 if (!settings.onError) {
                     return;
                 }
-                const summary = createSummaryFromAxiosResponse(settings.request, error.response);
-                settings.onError(summary);
+                const requestResponse = createRequestResponseFromAxiosResponse(settings.request, error.response);
+                settings.onError(requestResponse);
             });
     }
 }
@@ -54,7 +54,7 @@ function getAxiosRequestMethodByRequest(request: HttpRequest): string {
     throw new Error('Method "' + request.method + '" not supported!');
 }
 
-function createSummaryFromAxiosResponse (request: HttpRequest, axiosResponse?: AxiosResponse): HttpRequestResponse {
+function createRequestResponseFromAxiosResponse (request: HttpRequest, axiosResponse?: AxiosResponse): HttpRequestResponse {
     return {
         request: request,
         response: (!axiosResponse ? null : {

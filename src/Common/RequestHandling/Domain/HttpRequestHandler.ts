@@ -1,8 +1,8 @@
-import {HttpRequest, HttpRequestResponse} from "Common/RequestHandling/Domain/Types";
+import {HttpRequest, HttpRequestResponse, SuccessHttpRequestResponse} from "Common/RequestHandling/Domain/Types";
 import {CommandBus} from "Common/AppBase/CommandBus";
 import {EventBus} from "Common/AppBase/EventBus";
 import {createRequestWasSent} from "Common/RequestHandling/Domain/Event/HttpRequestWasSent";
-import {createResponseWasReceived} from "Common/RequestHandling/Domain/Event/HttpRequestWasFinished";
+import {createHttpRequestWasFinished} from "Common/RequestHandling/Domain/Event/HttpRequestWasFinished";
 
 export interface HttpRequestDispatcher {
     executeRequest(settings: RequestExecutionSettings): void
@@ -25,14 +25,14 @@ export class HttpRequestHandler {
 
     executeRequest(settings: RequestExecutionSettings): void {
         const extendedSettings = Object.assign({}, settings, {
-            onSuccess: (requestResponse: HttpRequestResponse) => {
-                this.eventBus.handle(createResponseWasReceived(requestResponse));
+            onSuccess: (requestResponse: SuccessHttpRequestResponse) => {
+                this.eventBus.handle(createHttpRequestWasFinished(requestResponse));
                 if(settings.onSuccess) {
                     settings.onSuccess(requestResponse);
                 }
             },
             onError: (requestResponse: HttpRequestResponse) => {
-                this.eventBus.handle(createResponseWasReceived(requestResponse));
+                this.eventBus.handle(createHttpRequestWasFinished(requestResponse));
                 if(settings.onError) {
                     settings.onError(requestResponse);
                 }
@@ -45,6 +45,6 @@ export class HttpRequestHandler {
 
 export type RequestExecutionSettings = {
     request: HttpRequest,
-    onSuccess?(summary: HttpRequestResponse): void,
-    onError?(summary: HttpRequestResponse): void,
+    onSuccess?(requestResponse: SuccessHttpRequestResponse): void,
+    onError?(requestResponse: HttpRequestResponse): void,
 };
