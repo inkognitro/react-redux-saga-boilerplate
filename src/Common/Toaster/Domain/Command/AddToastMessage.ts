@@ -3,11 +3,14 @@ import {CommandTypes} from "Common/Toaster/Domain/Command/CommandHandler";
 import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
 
 export function createAddToastMessageAction(settings: Payload): CommandAction {
-    const command: AddToastMessage = {
+    return createCommandAction(createAddToastMessage(settings));
+}
+
+export function createAddToastMessage(settings: Payload): AddToastMessage {
+    return {
         type: CommandTypes.ADD_TOAST_MESSAGE,
         payload: settings,
     };
-    return createCommandAction(command);
 }
 
 export type AddToastMessage = Command<CommandTypes.ADD_TOAST_MESSAGE, Payload>;

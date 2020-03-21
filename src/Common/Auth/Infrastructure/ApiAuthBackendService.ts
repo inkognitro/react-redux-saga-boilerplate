@@ -10,7 +10,7 @@ import {
     createPostRequest,
     RequestResponse
 } from "Common/ApiV1/Domain/ApiHttpRequestHandler";
-import {getResponseBodyJson} from "Common/RequestHandling/Domain/Query";
+import {getResponseBodyJson} from "Common/RequestHandling/Domain/Selection";
 
 export class ApiAuthBackendService implements AuthBackendService {
     private readonly apiHttpRequestManager: ApiHttpRequestManager;

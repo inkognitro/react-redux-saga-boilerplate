@@ -1,5 +1,5 @@
 import {ToastTypes} from "Common/Toaster/Domain/Types";
-import {getCommonToastIdByType} from "Common/Toaster/Domain/Query";
+import {getCommonToastIdByType} from "Common/Toaster/Domain/Selection";
 import {createMessageWasAddedToPipeline} from "Common/Toaster/Domain/Event/MessageWasAddedToPipeline";
 import {createMessageWasMovedFromPipelineToToast} from "Common/Toaster/Domain/Event/MessageWasMovedFromPipelineToToast";
 import {createToastWasBlockedForMessageReceiving} from "Common/Toaster/Domain/Event/ToastWasBlockedForMessageReceiving";

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import {Toaster as RepresentationalToaster, ToastsCallbacks, ToastsState} from 'Common/Toaster/UI/Toaster';
 import {Dispatch} from "redux";
 import {createRemoveToastAction} from "Common/Toaster/Domain/Command/RemoveToast";
-import {getToasts} from "Common/Toaster/Domain/Query";
+import {getToasts} from "Common/Toaster/Domain/Selection";
 import {createBlockToastForMessageReceivingAction} from "Common/Toaster/Domain/Command/BlockToastForMessageReceiving";
 import {RootState} from "../../AppBase/Store";
 import {createRemoveToastMessageAction} from "Common/Toaster/Domain/Command/RemoveToastMessage";
