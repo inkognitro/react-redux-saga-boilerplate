@@ -1,41 +1,48 @@
 import {
     createGetRequest as generalCreateGetRequest,
     createPostRequest as generalCreatePostRequest,
+    createPatchRequest as generalCreatePatchRequest,
     createWithHeaderEnhancedHttpRequest
 } from "Common/RequestHandling/Domain/Command/RequestCreation";
-import {HttpRequestHandler} from "Common/RequestHandling/Domain/HttpRequestHandler";
+import {
+    HttpRequestHandler,
+    RequestExecutionSettings as GeneralRequestExecutionSettings
+} from "Common/RequestHandling/Domain/HttpRequestHandler";
 import {HttpRequestResponse as GeneralHttpRequestResponse} from "Common/RequestHandling/Domain/Types";
+import {BasicResponseBody} from "Common/ApiV1/Domain/Types";
 
 export const createGetRequest = generalCreateGetRequest;
 export const createPostRequest = generalCreatePostRequest;
+export const createPatchRequest = generalCreatePatchRequest;
 
-export type ExecutionSummary = GeneralHttpRequestResponse;
+export type RequestResponse = GeneralHttpRequestResponse<BasicResponseBody>;
 export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {
-    apiToken?: string
+    authToken?: string
 });
 
 export class ApiHttpRequestHandler {
-    private httpRequestManager: HttpRequestHandler;
+    private httpRequestHandler: HttpRequestHandler;
 
-    constructor(httpRequestManager: HttpRequestManagerInterface) {
-        this.httpRequestManager = httpRequestManager;
+    constructor(httpRequestHandler: HttpRequestHandler) {
+        this.httpRequestHandler = httpRequestHandler;
     }
 
     executeRequest(settings: RequestExecutionSettings): void {
-        this.httpRequestManager.executeRequest(createGeneralRequestExecutionSettings(settings));
+        this.httpRequestHandler.executeRequest(createGeneralRequestExecutionSettings(settings));
     }
 }
 
-function createGeneralRequestExecutionSettings(settings: RequestExecutionSettings,): GeneralRequestExecutionSettings {
+function createGeneralRequestExecutionSettings(settings: RequestExecutionSettings): GeneralRequestExecutionSettings {
     let generalSettings = {
-        request: (settings.apiToken
-                ? createWithHeaderEnhancedHttpRequest(settings.request, 'X-API-TOKEN', settings.apiToken)
+        request: (
+            settings.authToken
+                ? createWithHeaderEnhancedHttpRequest(settings.request, 'X-API-TOKEN', settings.authToken)
                 : settings.request
         ),
-        onError: (summary: ExecutionSummary): void => {
-            dispatchToastErrorMessages(summary);
+        onError: (requestResponse: RequestResponse): void => {
+            showRequestResponseMessages(requestResponse);
             if (settings.onError) {
-                settings.onError(summary);
+                settings.onError(requestResponse);
             }
         }
     };
@@ -47,8 +54,8 @@ function createGeneralRequestExecutionSettings(settings: RequestExecutionSetting
     return generalSettings;
 }
 
-function dispatchToastErrorMessages(summary: ExecutionSummary): void {
-    if (!summary.response) {
+function showRequestResponseMessages(requestResponse: RequestResponse): void {
+    if (!requestResponse.response) {
         //toastRepository.addToastMessage({
             //content: 'Could not connect to server.', //todo: translate,
             //type: ToastTypes.ERROR,
@@ -57,3 +64,5 @@ function dispatchToastErrorMessages(summary: ExecutionSummary): void {
     }
     //todo: extend with not authorized error and so on..
 }
+
+function showToastMessageByRequestResponseMessage =

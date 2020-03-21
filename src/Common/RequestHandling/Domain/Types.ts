@@ -9,9 +9,9 @@ export enum HttpRequestMethods {
     DELETE = 'DELETE',
 }
 
-export type HttpResponse = {
+export type HttpResponse<ResponseBody = object> = {
     statusCode: number,
-    body: object,
+    body: ResponseBody,
 };
 
 export type HttpRequest = {
@@ -24,9 +24,9 @@ export type HttpRequest = {
     isLoaderEnabled?: boolean,
 };
 
-export type HttpRequestResponse = {
+export type HttpRequestResponse<ResponseBody = object> = {
     request: HttpRequest,
-    response: (null | HttpResponse),
+    response: (null | HttpResponse<ResponseBody>),
 };
 
 export type RequestHandlingState = {

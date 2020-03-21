@@ -8,7 +8,7 @@ import {
     ApiHttpRequestManager,
     createGetRequest,
     createPostRequest,
-    ExecutionSummary
+    RequestResponse
 } from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {getResponseBodyJson} from "Common/RequestHandling/Domain/Query";
 
@@ -29,7 +29,7 @@ export class ApiAuthBackendService implements AuthBackendService {
                 },
                 isLoaderEnabled: settings.isLoaderEnabled,
             }),
-            onSuccess: (summary: ExecutionSummary): void => {
+            onSuccess: (summary: RequestResponse): void => {
                 if(!settings.onSuccess) {
                     return;
                 }
@@ -56,7 +56,7 @@ export class ApiAuthBackendService implements AuthBackendService {
                 url: ENDPOINT_URLS.AUTH_REFRESH,
                 isLoaderEnabled: settings.isLoaderEnabled,
             }),
-            onSuccess: (summary: ExecutionSummary): void => {
+            onSuccess: (summary: RequestResponse): void => {
                 if(!settings.onSuccess) {
                     return;
                 }

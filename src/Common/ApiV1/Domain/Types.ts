@@ -1,9 +1,9 @@
-export type BasicResponse = {
+export type BasicResponseBody = {
     generalMessages?: Message[],
     fieldMessages?: FieldMessage[],
 };
 
-export type ReadResponse<Data = any> = (BasicResponse & {
+export type ReadResponseBody<Data = any> = (BasicResponseBody & {
     data: Data,
 });
 
@@ -17,8 +17,11 @@ export enum MessageTypes {
 export type Message = {
     id: string,
     type: MessageTypes,
-    translationKey: string,
-    translation: string,
+    translationId: string,
+    defaultText: string,
+    placeholders?: {
+        [key: string]: string;
+    },
 };
 
 export type FieldMessage = {
