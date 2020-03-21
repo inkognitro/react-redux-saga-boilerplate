@@ -1,13 +1,12 @@
 import {ApiHttpRequestHandler, createPostRequest, HttpRequestResponse, SuccessHttpRequestResponse} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {Authenticate} from "Common/ApiV1/Domain/Command/Auth/Authenticate";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
+import {ReadResponseBody} from "Common/ApiV1/Domain/Types";
 
-type AdditionalSuccessResponseBody = {
-    data: {
-        token: string,
-        user: User
-    }
-};
+type SuccessResponseBody = ReadResponseBody<{
+    token: string,
+    user: User
+}>;
 
 export class AuthenticateHandler {
     private readonly requestHandler: ApiHttpRequestHandler;
@@ -28,7 +27,7 @@ export class AuthenticateHandler {
         });
         this.requestHandler.executeRequest({
             request: request,
-            onSuccess(requestResponse: SuccessHttpRequestResponse<AdditionalSuccessResponseBody>): void {
+            onSuccess(requestResponse: SuccessHttpRequestResponse<SuccessResponseBody>): void {
                 if(command.payload.onSuccess) {
                     command.payload.onSuccess({
                         token: requestResponse.response.body.data.token,

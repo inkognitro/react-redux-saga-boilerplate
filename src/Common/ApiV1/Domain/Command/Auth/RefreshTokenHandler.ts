@@ -1,13 +1,12 @@
 import {ApiHttpRequestHandler, createPostRequest, HttpRequestResponse, SuccessHttpRequestResponse} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 import {RefreshToken} from "Common/ApiV1/Domain/Command/Auth/RefreshToken";
+import {ReadResponseBody} from "Common/ApiV1/Domain/Types";
 
-type AdditionalSuccessResponseBody = {
-    data: {
-        token: string,
-        user: User
-    }
-};
+type SuccessResponseBody = ReadResponseBody<{
+    token: string,
+    user: User
+}>;
 
 export class RefreshTokenHandler {
     private readonly requestHandler: ApiHttpRequestHandler;
@@ -20,14 +19,11 @@ export class RefreshTokenHandler {
     {
         const request = createPostRequest({
             url: '/auth/refreshtoken',
-            body: {
-                token: command.payload.token,
-            },
             isLoaderEnabled: command.payload.isLoaderEnabled
         });
         this.requestHandler.executeRequest({
             request: request,
-            onSuccess(requestResponse: SuccessHttpRequestResponse<AdditionalSuccessResponseBody>): void {
+            onSuccess(requestResponse: SuccessHttpRequestResponse<SuccessResponseBody>): void {
                 if(command.payload.onSuccess) {
                     command.payload.onSuccess({
                         token: requestResponse.response.body.data.token,

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {createHomeRouteUrl, createLoginRouteUrl} from '../../Routing/Domain/Routes';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
-import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
+import {AuthManagerInterface} from "Common/Auth/DomainOld/AuthManager";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 
 type RepresentationalNavBarState = {

@@ -1,4 +1,5 @@
-import {AuthActions, AuthActionTypes, AuthState} from "./Types";
+import {AuthActions, AuthActionTypes} from "./Types";
+import {AuthState} from "Common/Auth/Domain/Types";
 
 const initialAuthState: AuthState = {
     isFetchingApiToken: false,

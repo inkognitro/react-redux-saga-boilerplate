@@ -5,7 +5,7 @@ import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/InputElements/Tex
 import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
 import {createPasswordForgottenUrl, loginRouteUrlSpecification} from "../../Domain/Routes";
-import {AuthManagerInterface} from "Common/Auth/Domain/AuthManager";
+import {AuthManagerInterface} from "Common/Auth/DomainOld/AuthManager";
 import {CurrentRouteManagerInterface} from "Common/RoutingWIP/Domain/CurrentRouteManager";
 import {RouteSpecification} from "../Router";
 import {AppServices} from "../../../App";

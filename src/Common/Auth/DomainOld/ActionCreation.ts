@@ -1,4 +1,4 @@
-import {AuthActions, AuthActionTypes} from "Common/Auth/Domain/Types";
+import {AuthActions, AuthActionTypes} from "Common/Auth/DomainOld/Types";
 
 export function createReceiveCurrentAuthUserDataAction(apiToken: (null | string), userId: (null | string)): AuthActions {
     return {

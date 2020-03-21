@@ -1,9 +1,9 @@
 import {
+    createDeleteRequest as generalCreateDeleteRequest,
     createGetRequest as generalCreateGetRequest,
     createPatchRequest as generalCreatePatchRequest,
-    createPutRequest as generalCreatePutRequest,
     createPostRequest as generalCreatePostRequest,
-    createDeleteRequest as generalCreateDeleteRequest,
+    createPutRequest as generalCreatePutRequest,
     createWithHeaderEnhancedHttpRequest
 } from "Common/RequestHandling/Domain/Command/RequestCreation";
 import {
@@ -11,16 +11,17 @@ import {
     RequestExecutionSettings as GeneralRequestExecutionSettings
 } from "Common/RequestHandling/Domain/HttpRequestHandler";
 import {
+    HttpRequest,
     HttpRequestResponse as GeneralHttpRequestResponse,
     SuccessHttpRequestResponse as GeneralSuccessHttpRequestResponse
 } from "Common/RequestHandling/Domain/Types";
-import {BasicResponseBody} from "Common/ApiV1/Domain/Types";
-import {Translator} from "Common/Translator/Domain/Translator";
+import {BasicResponseBody, MessageTypes} from "Common/ApiV1/Domain/Types";
 import {COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID} from "Common/Translator/Domain/Translation/en";
 import {createAddToastMessage} from "Common/Toaster/Domain/Command/AddToastMessage";
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {CommandBus} from "Common/AppBase/CommandBus";
-import {getToastTypeByMessageType} from "Common/ApiV1/Domain/Selection";
+import {TranslatedTextReader} from "Common/Translator/Domain/Query/TranslatedTextQuery";
+import {CurrentAuthTokenReader} from "Common/Auth/Domain/Query/CurrentAuthTokenQuery";
 
 export const createGetRequest = generalCreateGetRequest;
 export const createPatchRequest = generalCreatePatchRequest;
@@ -28,25 +29,26 @@ export const createPutRequest = generalCreatePutRequest;
 export const createPostRequest = generalCreatePostRequest;
 export const createDeleteRequest = generalCreateDeleteRequest;
 
-export type SuccessHttpRequestResponse<AdditionalResponseBody = {}> = GeneralSuccessHttpRequestResponse<(BasicResponseBody & AdditionalResponseBody)>;
+export type SuccessHttpRequestResponse<ResponseBody = BasicResponseBody> = GeneralSuccessHttpRequestResponse<ResponseBody>;
 export type HttpRequestResponse = GeneralHttpRequestResponse<BasicResponseBody>;
-export type RequestExecutionSettings = (GeneralRequestExecutionSettings & {
-    apiToken?: string,
-});
+export type RequestExecutionSettings = GeneralRequestExecutionSettings;
 
 export class ApiHttpRequestHandler {
     private commandBus: CommandBus;
     private httpRequestHandler: HttpRequestHandler;
-    private translator: Translator;
+    private currentAuthTokenReader: CurrentAuthTokenReader;
+    private translatedTextReader: TranslatedTextReader;
 
     constructor(
         commandBus: CommandBus,
         httpRequestHandler: HttpRequestHandler,
-        translator: Translator
+        currentAuthTokenReader: CurrentAuthTokenReader,
+        translatedTextReader: TranslatedTextReader
     ) {
         this.commandBus = commandBus;
         this.httpRequestHandler = httpRequestHandler;
-        this.translator = translator;
+        this.currentAuthTokenReader = currentAuthTokenReader;
+        this.translatedTextReader = translatedTextReader;
     }
 
     public executeRequest(settings: RequestExecutionSettings): void {
@@ -56,11 +58,7 @@ export class ApiHttpRequestHandler {
     private createGeneralRequestExecutionSettings(settings: RequestExecutionSettings): GeneralRequestExecutionSettings
     {
         return {
-            request: (
-                settings.apiToken
-                    ? createWithHeaderEnhancedHttpRequest(settings.request, 'X-API-TOKEN', settings.apiToken)
-                    : settings.request
-            ),
+            request: this.getWithAuthTokenEnhancedRequest(settings.request),
             onSuccess:  (requestResponse): void => {
                 this.showRequestResponseMessages(requestResponse);
                 if (settings.onSuccess) {
@@ -78,7 +76,9 @@ export class ApiHttpRequestHandler {
 
     private showRequestResponseMessages(requestResponse: HttpRequestResponse): void {
         if (!requestResponse.response) {
-            const foundTranslatedText = this.translator.findTranslatedText(COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID);
+            const foundTranslatedText = this.translatedTextReader.find({
+                translationId: COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID
+            });
             const content = (foundTranslatedText ? foundTranslatedText : 'Could not connect to server.');
             const command = createAddToastMessage({
                 type: ToastTypes.ERROR,
@@ -93,7 +93,9 @@ export class ApiHttpRequestHandler {
         }
         generalMessages.forEach((message) => {
             const toastType = getToastTypeByMessageType(message.type);
-            const foundTranslatedText = this.translator.findTranslatedText(message.translationId);
+            const foundTranslatedText = this.translatedTextReader.find({
+                translationId: message.translationId
+            });
             const content = (foundTranslatedText ? foundTranslatedText : message.defaultText);
             const command = createAddToastMessage({
                 type: toastType,
@@ -102,4 +104,27 @@ export class ApiHttpRequestHandler {
             this.commandBus.handle(command);
         });
     }
+
+    private getWithAuthTokenEnhancedRequest(request: HttpRequest): HttpRequest
+    {
+        const token = this.currentAuthTokenReader.find();
+        if(!token) {
+            return request;
+        }
+        const headerProperty = 'X-API-TOKEN';
+        return createWithHeaderEnhancedHttpRequest(request, headerProperty, token);
+    }
+}
+
+export function getToastTypeByMessageType(messageType: MessageTypes) {
+    if (messageType === MessageTypes.ERROR) {
+        return ToastTypes.ERROR
+    }
+    if (messageType === MessageTypes.SUCCESS) {
+        return ToastTypes.SUCCESS
+    }
+    if (messageType === MessageTypes.WARNING) {
+        return ToastTypes.WARNING
+    }
+    return ToastTypes.INFO;
 }

@@ -2,7 +2,7 @@ import {
     AuthBackendService,
     ReceiveAuthDataSettings,
     ReceiveRefreshedAuthDataSettings
-} from "Common/Auth/Domain/AuthBackendService";
+} from "Common/Auth/DomainOld/AuthBackendService";
 import {
     ENDPOINT_URLS,
     ApiHttpRequestManager,

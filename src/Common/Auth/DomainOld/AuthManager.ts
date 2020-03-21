@@ -1,22 +1,23 @@
 import {AppDispatch, AppThunk} from "Common/types";
-import {API_TOKEN_COOKIE_NAME, AuthState, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/Domain/Types";
+import {API_TOKEN_COOKIE_NAME, SHOULD_REMEMBER_AUTH_COOKIE_NAME} from "Common/Auth/DomainOld/Types";
 import {UserRepository} from "Common/UserManagement/Domain/UserRepository/UserRepository";
 import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
-import {AuthBackendService, AuthData} from "Common/Auth/Domain/AuthBackendService";
+import {AuthBackendService, AuthData} from "Common/Auth/DomainOld/AuthBackendService";
 import {
     findApiToken,
     findApiTokenFromCookie, findCurrentUser,
     isApiTokenBeingFetchedRightNow,
     shouldRememberCurrentUser
-} from "Common/Auth/Domain/Selectors";
+} from "Common/Auth/DomainOld/Selectors";
 import {apiTokenCookieTimeToLiveInDays, triggerApiTokenRefreshBeforeExpirationInSeconds} from "Common/config";
-import {getSecondsUntilExpiration} from "Common/Auth/Domain/JWTHandling";
+import {getSecondsUntilExpiration} from "Common/Auth/DomainOld/JWTHandling";
 import {
     createEndApiTokenFetchAction,
     createReceiveCurrentAuthUserDataAction,
     createStartApiTokenFetchAction
-} from "Common/Auth/Domain/ActionCreation";
+} from "Common/Auth/DomainOld/ActionCreation";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
+import {AuthState} from "Common/Auth/Domain/Types";
 
 export interface AuthManagerInterface {
     initializeCurrentUser(): void

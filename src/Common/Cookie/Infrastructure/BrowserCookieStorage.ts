@@ -1,6 +1,6 @@
 import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {Cookie} from "Common/Cookie/Domain/Types";
-import {CookieReader} from "Common/Cookie/Domain/CookieReader";
+import {CookieReader} from "Common/Cookie/Domain/Query/CookieReader";
 
 export class BrowserCookieStorage implements CookieWriter, CookieReader {
     findCookieContent(cookieName: string): (null | string) {
