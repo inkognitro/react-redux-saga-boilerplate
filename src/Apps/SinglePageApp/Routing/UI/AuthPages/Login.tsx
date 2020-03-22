@@ -6,10 +6,10 @@ import {Card} from "Common/Layout/UI/Card/Card";
 import {Link} from "Common/Layout/UI/Link/Link";
 import {createPasswordForgottenUrl, loginRouteUrlSpecification} from "../../Domain/Routes";
 import {AuthManagerInterface} from "Common/Authentication/DomainOld/AuthManager";
-import {CurrentRouteManagerInterface} from "Common/RoutingWIP/Domain/CurrentRouteManager";
+import {CurrentRouteManagerInterface} from "Common/Routing/Domain/CurrentRouteManager";
 import {RouteSpecification} from "../Router";
 import {AppServices} from "../../../App";
-import {RouteViewComponent} from "Common/RoutingWIP/UI/Router";
+import {RouteViewComponent} from "Common/Routing/UI/Router";
 
 export const routeSpecification: RouteSpecification = {
     urlSpecification: loginRouteUrlSpecification,

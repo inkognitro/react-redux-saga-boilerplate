@@ -1,4 +1,4 @@
-import {UrlSpecification} from "Common/RoutingWIP/Domain/CurrentRouteManager";
+import {UrlSpecification} from "Common/Routing/Domain/CurrentRouteManager";
 
 export const homeRouteUrlSpecification: UrlSpecification = {
     url: '/',

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     render as renderCommonRouter, RouterSpecification,
     RouteSpecification as CommonRouteSpecification
-} from "Common/RoutingWIP/UI/Router";
+} from "Common/Routing/UI/Router";
 import {NotFoundError} from "./NotFoundPage";
 import {AppServices} from "../../App";
 import {routeSpecification as homeRouteSpecification} from "./Home";

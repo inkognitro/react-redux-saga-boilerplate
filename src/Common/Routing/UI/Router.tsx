@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route, Router, Switch} from "react-router";
 import {History} from 'history';
-import {CurrentRouteManagerInterface, UrlSpecification} from "Common/RoutingWIP/Domain/CurrentRouteManager";
+import {CurrentRouteManagerInterface, UrlSpecification} from "Common/Routing/Domain/CurrentRouteManager";
 
 type RenderComponentDefinition<Services> = (services: Services) => JSX.Element;
 

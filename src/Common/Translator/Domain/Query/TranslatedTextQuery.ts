@@ -1,6 +1,4 @@
-import {TranslatorState} from "Common/Translator/Domain/Types";
-
-export type TranslatorStateSelector = () => TranslatorState;
+import {TranslatorState, TranslatorStateSelector} from "Common/Translator/Domain/Types";
 
 export function findTranslatedText( //todo: create selector with reselect library (performance)
     state: TranslatorState,
