@@ -1,10 +1,13 @@
 import {UrlWasChanged} from "Common/Routing/Domain/Events/UrlWasChanged";
+import {RouteWasAdded} from "Common/Routing/Domain/Events/RouteWasAdded";
+import {RedirectWasAdded} from "Common/Routing/Domain/Events/RedirectWasAdded";
 
 export type RoutingStateSelector = () => RoutingState;
 
 export type RoutingState = {
     redirects: Redirect[],
     routes: Route[],
+    currentRouteData: any,
 };
 
 export type Redirect = {
@@ -24,4 +27,4 @@ export enum RoutingEventTypes {
     ROUTE_WAS_ADDED = 'ROUTE_WAS_ADDED-6c0f7c81-d248-45a0-9813-187c90e42254',
 }
 
-export type RoutingEvent = (UrlWasChanged);
+export type RoutingEvent = (UrlWasChanged | RouteWasAdded | RedirectWasAdded);
