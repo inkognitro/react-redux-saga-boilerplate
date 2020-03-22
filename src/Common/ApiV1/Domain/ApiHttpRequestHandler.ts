@@ -33,6 +33,8 @@ export type SuccessHttpRequestResponse<ResponseBody = BasicResponseBody> = Gener
 export type HttpRequestResponse = GeneralHttpRequestResponse<BasicResponseBody>;
 export type RequestExecutionSettings = GeneralRequestExecutionSettings;
 
+export const apiV1BaseUrl = '//localhost:9000';
+
 export class ApiHttpRequestHandler {
     private commandBus: CommandBus;
     private httpRequestHandler: HttpRequestHandler;

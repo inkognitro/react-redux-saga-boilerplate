@@ -34,5 +34,9 @@ export function auth (state: AuthState = initialAuthState, event?: AuthEvent): A
         return {...state, currentAuthUser: null, isAuthenticationRunning: false};
     }
 
+    if(event.type === AuthEventTypes.USER_WAS_LOGGED_OUT) {
+        return {...state, currentAuthUser: null};
+    }
+
     return state;
 }

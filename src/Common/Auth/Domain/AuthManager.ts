@@ -19,22 +19,81 @@ import {
 } from "Common/ApiV1/Domain/Command/Auth/RefreshToken";
 import {createUserAuthenticationWasRefreshed} from "Common/Auth/Domain/Event/UserAuthenticationWasRefreshed";
 import {createUserAuthenticationRefreshFailed} from "Common/Auth/Domain/Event/UserAuthenticationRefreshFailed";
+import {CookieContentReader} from "Common/Cookie/Domain/Query/CookieContentQuery";
+import {IsAuthenticationRunningQuery} from "Common/Auth/Domain/Query/IsAuthenticationRunningQuery";
+import {getSecondsUntilExpiration} from "Common/Auth/Domain/JWTHandling";
 
 const authTokenCookieName = 'authToken';
 const authTokenCookieTimeToLiveInDays = 14;
+const authRefreshBeforeExpirationInSeconds = 60;
 
 export class AuthManager {
     private readonly commandBus: CommandBus;
     private readonly eventBus: EventBus;
-    private readonly currentAuthUserReader: CurrentAuthUserReader
+    private readonly currentAuthUserReader: CurrentAuthUserReader;
+    private readonly cookieContentReader: CookieContentReader;
+    private readonly isAuthenticationRunningQuery: IsAuthenticationRunningQuery;
+    private refreshAuthenticationInterval: (null | number);
 
-    constructor(commandBus: CommandBus, eventBus: EventBus, currentAuthUserReader: CurrentAuthUserReader) {
+    constructor(
+        commandBus: CommandBus,
+        eventBus: EventBus,
+        currentAuthUserReader: CurrentAuthUserReader,
+        cookieContentReader: CookieContentReader,
+        isAuthenticationRunningQuery: IsAuthenticationRunningQuery
+    ) {
         this.commandBus = commandBus;
         this.eventBus = eventBus;
         this.currentAuthUserReader = currentAuthUserReader;
+        this.cookieContentReader = cookieContentReader;
+        this.isAuthenticationRunningQuery = isAuthenticationRunningQuery;
+        this.refreshAuthenticationInterval = null;
     }
-    
-    public refreshAuthentication(refreshSettings: RefreshAuthenticationSettings): void {
+
+    public initializeCurrentUser(): void
+    {
+        const authToken = this.cookieContentReader.find(authTokenCookieName);
+        if(authToken === null) {
+            return;
+        }
+        const shouldRemember = true;
+        this.refreshAuthentication({
+            shouldRemember: shouldRemember,
+            isLoaderEnabled: true,
+        });
+        this.setRefreshAuthenticationInterval(shouldRemember);
+    }
+
+    private clearRefreshAuthenticationInterval(): void {
+        if(this.refreshAuthenticationInterval !== null) {
+            clearInterval(this.refreshAuthenticationInterval);
+        }
+    }
+
+    private setRefreshAuthenticationInterval(shouldRemember: boolean): void
+    {
+        this.clearRefreshAuthenticationInterval();
+        //@ts-ignore
+        this.refreshAuthenticationInterval = setInterval(() => {
+            const authUser = this.currentAuthUserReader.find();
+            const shouldRefresh = (
+                authUser
+                && authRefreshBeforeExpirationInSeconds > getSecondsUntilExpiration(authUser.token)
+                && this.isAuthenticationRunningQuery.execute()
+            );
+            if(shouldRefresh) {
+                this.refreshAuthentication({
+                    isLoaderEnabled: false,
+                    shouldRemember: shouldRemember
+                });
+            }
+        }, 10000);
+    }
+
+    private refreshAuthentication(refreshSettings: RefreshAuthenticationSettings): void {
+        if(this.isAuthenticationRunningQuery.execute()) {
+            return;
+        }
         const currentAuthUser = this.currentAuthUserReader.find();
         if(!currentAuthUser) {
             return;
@@ -63,6 +122,9 @@ export class AuthManager {
     }
 
     public login(loginSettings: LoginSettings): void {
+        if(this.isAuthenticationRunningQuery.execute()) {
+            return;
+        }
         const command = createAuthenticate({
             username: loginSettings.username,
             password: loginSettings.password,
@@ -73,6 +135,7 @@ export class AuthManager {
                     token: result.token,
                     user: result.user,
                 }));
+                this.setRefreshAuthenticationInterval(loginSettings.shouldRemember);
                 if(loginSettings.onSuccess) {
                     loginSettings.onSuccess();
                 }
@@ -91,6 +154,7 @@ export class AuthManager {
         if(!this.currentAuthUserReader.find()) {
             return;
         }
+        this.clearRefreshAuthenticationInterval();
         this.removeAuthenticationCookie();
         this.commandBus.handle(createRemoveCookie(authTokenCookieName));
         this.commandBus.handle(createUserWasLoggedOut());

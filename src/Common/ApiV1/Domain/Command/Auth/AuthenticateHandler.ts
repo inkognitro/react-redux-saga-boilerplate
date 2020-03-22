@@ -1,4 +1,10 @@
-import {ApiHttpRequestHandler, createPostRequest, HttpRequestResponse, SuccessHttpRequestResponse} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
+import {
+    ApiHttpRequestHandler,
+    apiV1BaseUrl,
+    createPostRequest,
+    HttpRequestResponse,
+    SuccessHttpRequestResponse
+} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {Authenticate} from "Common/ApiV1/Domain/Command/Auth/Authenticate";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 import {ReadResponseBody} from "Common/ApiV1/Domain/Types";
@@ -18,7 +24,7 @@ export class AuthenticateHandler {
     handle(command: Authenticate): void
     {
         const request = createPostRequest({
-            url: '/auth/authenticate',
+            url: apiV1BaseUrl + '/auth/authenticate',
             body: {
                 username: command.payload.username,
                 password: command.payload.password,

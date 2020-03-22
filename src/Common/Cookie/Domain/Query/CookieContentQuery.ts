@@ -4,14 +4,14 @@ export type CookieContentQuery = {
     cookieName: string,
 };
 
-export class CookieContentSelector {
+export class CookieContentReader {
     private readonly cookieReader: CookieReader;
 
     constructor(cookieReader: CookieReader) {
         this.cookieReader = cookieReader;
     }
 
-    find(query: CookieContentQuery): (null | string) {
-        return this.cookieReader.findCookieContent(query.cookieName);
+    find(cookieName: string): (null | string) {
+        return this.cookieReader.findCookieContent(cookieName);
     }
 }

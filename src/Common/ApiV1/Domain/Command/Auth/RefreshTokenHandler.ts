@@ -1,4 +1,10 @@
-import {ApiHttpRequestHandler, createPostRequest, HttpRequestResponse, SuccessHttpRequestResponse} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
+import {
+    ApiHttpRequestHandler,
+    apiV1BaseUrl,
+    createPostRequest,
+    HttpRequestResponse,
+    SuccessHttpRequestResponse
+} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 import {RefreshToken} from "Common/ApiV1/Domain/Command/Auth/RefreshToken";
 import {ReadResponseBody} from "Common/ApiV1/Domain/Types";
@@ -18,7 +24,7 @@ export class RefreshTokenHandler {
     handle(command: RefreshToken): void
     {
         const request = createPostRequest({
-            url: '/auth/refreshtoken',
+            url: apiV1BaseUrl + '/auth/refreshtoken',
             isLoaderEnabled: command.payload.isLoaderEnabled,
             body: {
                 token: command.payload.token
