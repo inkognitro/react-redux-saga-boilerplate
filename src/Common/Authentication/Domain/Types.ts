@@ -1,11 +1,11 @@
-import {User} from "Common/UserManagement/Domain/UserRepository/Types";
-import {UserAuthenticationRefreshFailed} from "Common/Auth/Domain/Event/UserAuthenticationRefreshFailed";
-import {UserAuthenticationRefreshWasStarted} from "Common/Auth/Domain/Event/UserAuthenticationRefreshWasStarted";
-import {UserLoginFailed} from "Common/Auth/Domain/Event/UserLoginFailed";
-import {UserAuthenticationWasRefreshed} from "Common/Auth/Domain/Event/UserAuthenticationWasRefreshed";
-import {UserLoginWasStarted} from "Common/Auth/Domain/Event/UserLoginWasStarted";
-import {UserWasLoggedIn} from "Common/Auth/Domain/Event/UserWasLoggedIn";
-import {UserWasLoggedOut} from "Common/Auth/Domain/Event/UserWasLoggedOut";
+import {UserAuthenticationRefreshFailed} from "Common/Authentication/Domain/Event/UserAuthenticationRefreshFailed";
+import {UserAuthenticationRefreshWasStarted} from "Common/Authentication/Domain/Event/UserAuthenticationRefreshWasStarted";
+import {UserLoginFailed} from "Common/Authentication/Domain/Event/UserLoginFailed";
+import {UserAuthenticationWasRefreshed} from "Common/Authentication/Domain/Event/UserAuthenticationWasRefreshed";
+import {UserLoginWasStarted} from "Common/Authentication/Domain/Event/UserLoginWasStarted";
+import {UserWasLoggedIn} from "Common/Authentication/Domain/Event/UserWasLoggedIn";
+import {UserWasLoggedOut} from "Common/Authentication/Domain/Event/UserWasLoggedOut";
+import {User} from "Common/Model/Domain/User/User";
 
 export type AuthUser = {
     token: string,

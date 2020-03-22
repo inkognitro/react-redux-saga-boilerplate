@@ -5,23 +5,23 @@ import {
     ErrorResult as AuthenticateErrorResult,
     SuccessResult as AuthenticateSuccessResult
 } from "Common/ApiV1/Domain/Command/Auth/Authenticate";
-import {createUserWasLoggedIn} from "Common/Auth/Domain/Event/UserWasLoggedIn";
-import {createUserLoginFailed} from "Common/Auth/Domain/Event/UserLoginFailed";
+import {createUserWasLoggedIn} from "Common/Authentication/Domain/Event/UserWasLoggedIn";
+import {createUserLoginFailed} from "Common/Authentication/Domain/Event/UserLoginFailed";
 import {createSaveCookie} from "Common/Cookie/Domain/Command/SaveCookie";
 import {SaveCookieSettings} from "Common/Cookie/Domain/CookieManager";
 import {createRemoveCookie} from "Common/Cookie/Domain/Command/RemoveCookie";
-import {CurrentAuthUserReader} from "Common/Auth/Domain/Query/CurrentAuthUserQuery";
-import {createUserWasLoggedOut} from "Common/Auth/Domain/Event/UserWasLoggedOut";
+import {CurrentAuthUserReader} from "Common/Authentication/Domain/Query/CurrentAuthUserQuery";
+import {createUserWasLoggedOut} from "Common/Authentication/Domain/Event/UserWasLoggedOut";
 import {
     createRefreshAuthentication,
     SuccessResult as RefreshAuthenticationSuccessResult,
     ErrorResult as RefreshAuthenticationErrorResult
 } from "Common/ApiV1/Domain/Command/Auth/RefreshAuthentication";
-import {createUserAuthenticationWasRefreshed} from "Common/Auth/Domain/Event/UserAuthenticationWasRefreshed";
-import {createUserAuthenticationRefreshFailed} from "Common/Auth/Domain/Event/UserAuthenticationRefreshFailed";
+import {createUserAuthenticationWasRefreshed} from "Common/Authentication/Domain/Event/UserAuthenticationWasRefreshed";
+import {createUserAuthenticationRefreshFailed} from "Common/Authentication/Domain/Event/UserAuthenticationRefreshFailed";
 import {CookieContentReader} from "Common/Cookie/Domain/Query/CookieContentQuery";
-import {IsAuthenticationRunningQuery} from "Common/Auth/Domain/Query/IsAuthenticationRunningQuery";
-import {getSecondsUntilExpiration} from "Common/Auth/Domain/JWTHandling";
+import {IsAuthenticationRunningQuery} from "Common/Authentication/Domain/Query/IsAuthenticationRunningQuery";
+import {getSecondsUntilExpiration} from "Common/Authentication/Domain/JWTHandling";
 
 const authTokenCookieName = 'authToken';
 const authTokenCookieTimeToLiveInDays = 14;

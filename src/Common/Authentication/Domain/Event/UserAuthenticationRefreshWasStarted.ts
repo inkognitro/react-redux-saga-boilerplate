@@ -1,5 +1,5 @@
 import {Event} from "Common/AppBase/EventBus";
-import {AuthEventTypes} from "Common/Auth/Domain/Types";
+import {AuthEventTypes} from "Common/Authentication/Domain/Types";
 
 export function createUserAuthenticationRefreshWasStarted(): UserAuthenticationRefreshWasStarted {
     return {

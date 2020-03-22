@@ -1,4 +1,4 @@
-import {AuthState, AuthStateSelector} from "Common/Auth/Domain/Types";
+import {AuthState, AuthStateSelector} from "Common/Authentication/Domain/Types";
 
 function isAuthenticationRunning(state: AuthState): boolean {
     return state.isAuthenticationRunning;

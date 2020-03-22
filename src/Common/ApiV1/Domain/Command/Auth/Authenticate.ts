@@ -1,7 +1,7 @@
 import {Command} from "Common/AppBase/CommandBus";
 import {CommandTypes} from "Common/ApiV1/Domain/Command/CommandHandler";
-import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 import {BasicResponseBody} from "Common/ApiV1/Domain/Types";
+import {User} from "Common/Model/Domain/User/User";
 
 export function createAuthenticate(settings: AuthenticateSettings): Authenticate {
     return {

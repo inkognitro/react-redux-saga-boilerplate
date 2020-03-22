@@ -21,7 +21,7 @@ import {createAddToastMessage} from "Common/Toaster/Domain/Command/AddToastMessa
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {CommandBus} from "Common/AppBase/CommandBus";
 import {TranslatedTextReader} from "Common/Translator/Domain/Query/TranslatedTextQuery";
-import {CurrentAuthUserReader} from "Common/Auth/Domain/Query/CurrentAuthUserQuery";
+import {CurrentAuthUserReader} from "Common/Authentication/Domain/Query/CurrentAuthUserQuery";
 
 export const createGetRequest = generalCreateGetRequest;
 export const createPatchRequest = generalCreatePatchRequest;

@@ -1,4 +1,4 @@
-import {AuthEvent, AuthEventTypes, AuthState} from "Common/Auth/Domain/Types";
+import {AuthEvent, AuthEventTypes, AuthState} from "Common/Authentication/Domain/Types";
 
 const initialAuthState: AuthState = {
     isAuthenticationRunning: false,

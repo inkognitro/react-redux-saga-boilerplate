@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {NavBar} from "../NavBar";
-import {AuthManagerInterface} from "Common/Auth/DomainOld/AuthManager";
+import {AuthManagerInterface} from "Common/Authentication/DomainOld/AuthManager";
 import './ContentPage.scss';
 
 export type ContentPageProps = {
