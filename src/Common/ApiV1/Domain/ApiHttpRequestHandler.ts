@@ -21,7 +21,7 @@ import {createAddToastMessage} from "Common/Toaster/Domain/Command/AddToastMessa
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {CommandBus} from "Common/AppBase/CommandBus";
 import {TranslatedTextReader} from "Common/Translator/Domain/Query/TranslatedTextQuery";
-import {CurrentAuthTokenReader} from "Common/Auth/Domain/Query/CurrentAuthTokenQuery";
+import {CurrentAuthUserReader} from "Common/Auth/Domain/Query/CurrentAuthUserQuery";
 
 export const createGetRequest = generalCreateGetRequest;
 export const createPatchRequest = generalCreatePatchRequest;
@@ -36,18 +36,18 @@ export type RequestExecutionSettings = GeneralRequestExecutionSettings;
 export class ApiHttpRequestHandler {
     private commandBus: CommandBus;
     private httpRequestHandler: HttpRequestHandler;
-    private currentAuthTokenReader: CurrentAuthTokenReader;
+    private currentAuthUserReader: CurrentAuthUserReader;
     private translatedTextReader: TranslatedTextReader;
 
     constructor(
         commandBus: CommandBus,
         httpRequestHandler: HttpRequestHandler,
-        currentAuthTokenReader: CurrentAuthTokenReader,
+        currentAuthUserReader: CurrentAuthUserReader,
         translatedTextReader: TranslatedTextReader
     ) {
         this.commandBus = commandBus;
         this.httpRequestHandler = httpRequestHandler;
-        this.currentAuthTokenReader = currentAuthTokenReader;
+        this.currentAuthUserReader = currentAuthUserReader;
         this.translatedTextReader = translatedTextReader;
     }
 
@@ -107,12 +107,12 @@ export class ApiHttpRequestHandler {
 
     private getWithAuthTokenEnhancedRequest(request: HttpRequest): HttpRequest
     {
-        const token = this.currentAuthTokenReader.find();
-        if(!token) {
+        const authUser = this.currentAuthUserReader.find();
+        if(!authUser) {
             return request;
         }
         const headerProperty = 'X-API-TOKEN';
-        return createWithHeaderEnhancedHttpRequest(request, headerProperty, token);
+        return createWithHeaderEnhancedHttpRequest(request, headerProperty, authUser.token);
     }
 }
 

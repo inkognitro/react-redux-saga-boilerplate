@@ -10,19 +10,19 @@ export function auth (state: AuthState = initialAuthState, event?: AuthEvent): A
         return state;
     }
 
-    if(event.type === AuthEventTypes.USER_AUTHENTICATION_WAS_TRIGGERED) {
+    if(event.type === AuthEventTypes.USER_LOGIN_WAS_STARTED) {
         return {...state, isAuthenticationRunning: true};
     }
 
-    if(event.type === AuthEventTypes.USER_WAS_AUTHENTICATED) {
+    if(event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {
         return {...state, currentAuthUser: event.payload.authUser, isAuthenticationRunning: false};
     }
 
-    if(event.type === AuthEventTypes.USER_AUTHENTICATION_FAILED) {
+    if(event.type === AuthEventTypes.USER_LOGIN_FAILED) {
         return {...state, currentAuthUser: null, isAuthenticationRunning: false};
     }
 
-    if(event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_TRIGGERED) {
+    if(event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_STARTED) {
         return {...state, isAuthenticationRunning: true};
     }
 

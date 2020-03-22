@@ -19,7 +19,7 @@ export class ApiV1CommandHandler implements CommandHandler {
     getSupportedCommandTypes(): string[] {
         return [
             CommandTypes.AUTHENTICATE,
-            CommandTypes.REFRESH_TOKEN,
+            CommandTypes.REFRESH_AUTHENTICATION,
         ];
     }
 
@@ -28,7 +28,7 @@ export class ApiV1CommandHandler implements CommandHandler {
             this.authenticateHandler.handle(command);
             return;
         }
-        if(command.type === CommandTypes.REFRESH_TOKEN) {
+        if(command.type === CommandTypes.REFRESH_AUTHENTICATION) {
             this.refreshTokenHandler.handle(command);
             return;
         }
@@ -42,5 +42,5 @@ type SupportedCommand = (
 
 export enum CommandTypes {
     AUTHENTICATE = 'AUTHENTICATE-f66c7029-a6c4-433a-97b0-7ce46e36e443',
-    REFRESH_TOKEN = 'REFRESH_TOKEN-f66c7029-a6c4-433a-97b0-7ce46e36e443',
+    REFRESH_AUTHENTICATION = 'REFRESH_AUTHENTICATION-f66c7029-a6c4-433a-97b0-7ce46e36e443',
 }

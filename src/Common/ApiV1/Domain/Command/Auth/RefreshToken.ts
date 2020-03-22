@@ -3,23 +3,23 @@ import {CommandTypes} from "Common/ApiV1/Domain/Command/CommandHandler";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
 import {BasicResponseBody} from "Common/ApiV1/Domain/Types";
 
-export function createRefreshToken(settings: RefreshTokenSettings): RefreshToken {
+export function createRefreshAuthentication(settings: RefreshAuthenticationSettings): RefreshToken {
     return {
-        type: CommandTypes.REFRESH_TOKEN,
+        type: CommandTypes.REFRESH_AUTHENTICATION,
         payload: settings,
-};
+    };
 }
 
-export type RefreshToken = Command<CommandTypes.REFRESH_TOKEN, RefreshTokenSettings>;
+export type RefreshToken = Command<CommandTypes.REFRESH_AUTHENTICATION, RefreshAuthenticationSettings>;
 
-type SuccessResult = {
+export type SuccessResult = {
     token: string,
     user: User
 };
 
-type ErrorResult = BasicResponseBody;
+export type ErrorResult = BasicResponseBody;
 
-type RefreshTokenSettings = {
+type RefreshAuthenticationSettings = {
     token: string,
     isLoaderEnabled: boolean,
     onSuccess?(result: SuccessResult): void,

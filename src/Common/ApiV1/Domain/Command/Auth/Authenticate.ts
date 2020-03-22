@@ -12,12 +12,12 @@ export function createAuthenticate(settings: AuthenticateSettings): Authenticate
 
 export type Authenticate = Command<CommandTypes.AUTHENTICATE, AuthenticateSettings>;
 
-type SuccessResult = {
+export type SuccessResult = {
     token: string,
     user: User
 };
 
-type ErrorResult = BasicResponseBody;
+export type ErrorResult = BasicResponseBody;
 
 type AuthenticateSettings = {
     username: string,

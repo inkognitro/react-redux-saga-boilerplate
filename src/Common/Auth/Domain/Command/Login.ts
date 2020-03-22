@@ -1,17 +1,12 @@
 import {Command} from "Common/AppBase/CommandBus";
 import {CommandTypes} from "Common/Auth/Domain/Command/CommandHandler";
+import {LoginSettings} from "Common/Auth/Domain/AuthManager";
 
-type AuthenticateSettings = {
-    username: string,
-    password: string,
-    shouldRemember: boolean,
-};
-
-export function createLogin(settings: AuthenticateSettings): Login {
+export function createLogin(settings: LoginSettings): Login {
     return {
         type: CommandTypes.LOGIN,
         payload: settings,
     };
 }
 
-export type Login = Command<CommandTypes.LOGIN, AuthenticateSettings>;
+export type Login = Command<CommandTypes.LOGIN, LoginSettings>;

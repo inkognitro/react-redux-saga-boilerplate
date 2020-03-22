@@ -19,7 +19,10 @@ export class RefreshTokenHandler {
     {
         const request = createPostRequest({
             url: '/auth/refreshtoken',
-            isLoaderEnabled: command.payload.isLoaderEnabled
+            isLoaderEnabled: command.payload.isLoaderEnabled,
+            body: {
+                token: command.payload.token
+            }
         });
         this.requestHandler.executeRequest({
             request: request,

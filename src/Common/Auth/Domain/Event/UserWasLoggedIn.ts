@@ -1,15 +1,15 @@
 import {Event} from "Common/AppBase/EventBus";
 import {AuthEventTypes, AuthUser} from "Common/Auth/Domain/Types";
 
-export function createUserWasAuthenticated(authUser: AuthUser): UserWasAuthenticated {
+export function createUserWasLoggedIn(authUser: AuthUser): UserWasLoggedIn {
     return {
-        type: AuthEventTypes.USER_WAS_AUTHENTICATED,
+        type: AuthEventTypes.USER_WAS_LOGGED_IN,
         payload: {
             authUser: authUser
         }
     };
 }
 
-export type UserWasAuthenticated = Event<AuthEventTypes.USER_WAS_AUTHENTICATED, {
+export type UserWasLoggedIn = Event<AuthEventTypes.USER_WAS_LOGGED_IN, {
     authUser: AuthUser,
 }>;
