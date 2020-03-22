@@ -6,7 +6,7 @@ import {
     SuccessHttpRequestResponse
 } from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {User} from "Common/UserManagement/Domain/UserRepository/Types";
-import {RefreshToken} from "Common/ApiV1/Domain/Command/Auth/RefreshToken";
+import {RefreshAuthentication} from "Common/ApiV1/Domain/Command/Auth/RefreshAuthentication";
 import {ReadResponseBody} from "Common/ApiV1/Domain/Types";
 
 type SuccessResponseBody = ReadResponseBody<{
@@ -14,17 +14,17 @@ type SuccessResponseBody = ReadResponseBody<{
     user: User
 }>;
 
-export class RefreshTokenHandler {
+export class RefreshAuthenticationHandler {
     private readonly requestHandler: ApiHttpRequestHandler;
 
     constructor(requestHandler: ApiHttpRequestHandler) {
         this.requestHandler = requestHandler;
     }
 
-    handle(command: RefreshToken): void
+    handle(command: RefreshAuthentication): void
     {
         const request = createPostRequest({
-            url: apiV1BaseUrl + '/auth/refreshtoken',
+            url: apiV1BaseUrl + '/auth/refresh',
             isLoaderEnabled: command.payload.isLoaderEnabled,
             body: {
                 token: command.payload.token

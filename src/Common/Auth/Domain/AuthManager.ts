@@ -16,7 +16,7 @@ import {
     createRefreshAuthentication,
     SuccessResult as RefreshAuthenticationSuccessResult,
     ErrorResult as RefreshAuthenticationErrorResult
-} from "Common/ApiV1/Domain/Command/Auth/RefreshToken";
+} from "Common/ApiV1/Domain/Command/Auth/RefreshAuthentication";
 import {createUserAuthenticationWasRefreshed} from "Common/Auth/Domain/Event/UserAuthenticationWasRefreshed";
 import {createUserAuthenticationRefreshFailed} from "Common/Auth/Domain/Event/UserAuthenticationRefreshFailed";
 import {CookieContentReader} from "Common/Cookie/Domain/Query/CookieContentQuery";

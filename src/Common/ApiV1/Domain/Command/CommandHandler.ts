@@ -1,19 +1,17 @@
 import {CommandHandler} from "Common/AppBase/CommandActionListener";
 import {Authenticate} from "Common/ApiV1/Domain/Command/Auth/Authenticate";
 import {AuthenticateHandler} from "Common/ApiV1/Domain/Command/Auth/AuthenticateHandler";
-import {RefreshTokenHandler} from "Common/ApiV1/Domain/Command/Auth/RefreshTokenHandler";
-import {RefreshToken} from "Common/ApiV1/Domain/Command/Auth/RefreshToken";
+import {RefreshAuthenticationHandler} from "Common/ApiV1/Domain/Command/Auth/RefreshAuthenticationHandler";
+import {RefreshAuthentication} from "Common/ApiV1/Domain/Command/Auth/RefreshAuthentication";
+import {ApiHttpRequestHandler} from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 
 export class ApiV1CommandHandler implements CommandHandler {
     private readonly authenticateHandler: AuthenticateHandler;
-    private readonly refreshTokenHandler: RefreshTokenHandler;
+    private readonly refreshAuthenticationHandler: RefreshAuthenticationHandler;
 
-    constructor(
-        authenticateHandler: AuthenticateHandler,
-        refreshTokenHandler: RefreshTokenHandler
-    ) {
-        this.authenticateHandler = authenticateHandler;
-        this.refreshTokenHandler = refreshTokenHandler;
+    constructor(apiHttpRequestHandler: ApiHttpRequestHandler) {
+        this.authenticateHandler = new AuthenticateHandler(apiHttpRequestHandler);
+        this.refreshAuthenticationHandler = new RefreshAuthenticationHandler(apiHttpRequestHandler);
     }
 
     getSupportedCommandTypes(): string[] {
@@ -29,7 +27,7 @@ export class ApiV1CommandHandler implements CommandHandler {
             return;
         }
         if(command.type === CommandTypes.REFRESH_AUTHENTICATION) {
-            this.refreshTokenHandler.handle(command);
+            this.refreshAuthenticationHandler.handle(command);
             return;
         }
     }
@@ -37,7 +35,7 @@ export class ApiV1CommandHandler implements CommandHandler {
 
 type SupportedCommand = (
     Authenticate
-    | RefreshToken
+    | RefreshAuthentication
 );
 
 export enum CommandTypes {
