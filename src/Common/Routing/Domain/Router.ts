@@ -1,37 +1,37 @@
 import {Redirect, Route} from "Common/Routing/Domain/Types";
-import {Reducer, Store} from "redux";
+import {Action, Reducer} from "redux";
 import {HistoryManager} from "Common/Routing/Domain/HistoryManager";
 import {EventBus} from "Common/AppBase/EventBus";
 import {createRedirectWasAdded} from "Common/Routing/Domain/Events/RedirectWasAdded";
 import {createRouteWasAdded} from "Common/Routing/Domain/Events/RouteWasAdded";
-import {createUrlWasChanged} from "Common/Routing/Domain/Events/UrlWasChanged";
+import {createCurrentUrlWasChanged} from "Common/Routing/Domain/Events/CurrentUrlWasChanged";
 import {ByRedirectInfluencedUrlQuery} from "Common/Routing/Domain/Query/ByRedirectInfluencedUrlQuery";
 import {RouteByUrlQuery} from "Common/Routing/Domain/Query/RouteByUrlQuery";
+import {CurrentRouteDataReducer} from "Common/Routing/Domain/Events/Reducer";
 
-export class Router {
-    private readonly store: Store;
+export class Router implements CurrentRouteDataReducer {
     private readonly eventBus: EventBus;
     private readonly byRedirectInfluencedUrlQuery: ByRedirectInfluencedUrlQuery;
     private readonly routeByUrlQuery: RouteByUrlQuery;
     private readonly historyManager: HistoryManager;
-    private readonly defaultReducer: Reducer;
+    private readonly defaultRouteDataReducer: Reducer;
     private readonly routeUrlSchemaToReducerMapping: {
         [urlSchema: string]: Reducer;
     };
+    private currentRouteDataReducer: Reducer;
 
     constructor(
-        store: Store,
         eventBus: EventBus,
         byRedirectInfluencedUrlQuery: ByRedirectInfluencedUrlQuery,
         routeByUrlQuery: RouteByUrlQuery,
         historyManager: HistoryManager,
     ) {
-        this.store = store;
         this.eventBus = eventBus;
         this.byRedirectInfluencedUrlQuery = byRedirectInfluencedUrlQuery;
         this.routeByUrlQuery = routeByUrlQuery;
         this.historyManager = historyManager;
-        this.defaultReducer = () => null;
+        this.defaultRouteDataReducer = () => null;
+        this.currentRouteDataReducer = this.defaultRouteDataReducer;
         this.routeUrlSchemaToReducerMapping = {};
         this.setOnChangeUrlCallback();
     }
@@ -57,15 +57,19 @@ export class Router {
             this.historyManager.openUrlInTarget(urlToUse, target);
         }
         if(target === '_self') { //todo: should reducer be replaced before url change!?
-            this.setCurrentRouteReducer(urlToUse);
-            this.eventBus.handle(createUrlWasChanged(urlToUse));
+            this.setCurrentRouteDataReducer(urlToUse);
+            this.eventBus.handle(createCurrentUrlWasChanged(urlToUse));
         }
     }
 
-    private setCurrentRouteReducer(url: string): void
+    private setCurrentRouteDataReducer(url: string): void
     {
-        const reducer = this.getRouteReducerByUrl(url);
-        //todo replace reducers!
+        this.currentRouteDataReducer = this.getRouteReducerByUrl(url);
+    }
+
+    public reduce(state: (undefined | any), action: Action): Reducer
+    {
+        return this.currentRouteDataReducer(state, action);
     }
 
     private getRouteReducerByUrl(url: string): Reducer
@@ -74,7 +78,7 @@ export class Router {
         if(route && this.routeUrlSchemaToReducerMapping[route.urlSchema]) {
             return this.routeUrlSchemaToReducerMapping[route.urlSchema];
         }
-        return this.defaultReducer;
+        return this.defaultRouteDataReducer;
     }
 
     public addRedirect(redirect: Redirect): void
