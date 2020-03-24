@@ -1,61 +1,40 @@
-import React, {Component} from 'react';
-import {Route, Router, Switch} from "react-router";
+import React, {Component, FunctionComponent} from 'react';
+import {Route as ReactRoute, Router as ReactRouter, Switch} from "react-router";
 import {History} from 'history';
-import {CurrentRouteManagerInterface, UrlSpecification} from "Common/Routing/Domain/CurrentRouteManager";
+import {Route as RouteData} from "Common/Routing/Domain/Types";
 
-type RenderComponentDefinition<Services> = (services: Services) => JSX.Element;
-
-export type RouteSpecification<Services> = {
-    urlSpecification: UrlSpecification,
-    renderComponent: RenderComponentDefinition<Services>,
+export type RouteComponent<Props = object> = {
+    route: RouteData,
+    component: Component<Props>,
 };
 
-export type RouterSpecification<Services> = {
-    routeSpecifications: RouteSpecification<Services>[],
-    renderDefaultComponent: RenderComponentDefinition<Services>
+export type RouterSpecification<DefaultComponentProps = any> = {
+    routeComponents: RouteComponent[],
+    defaultComponent: Component<DefaultComponentProps>
 };
 
-export function render<Services>(services: Services, routesSpecification: RouterSpecification<Services>, history: History) {
-    const routes = routesSpecification.routeSpecifications.map((routeSpecification) => (
-        <Route
-            key={routeSpecification.urlSpecification.url}
-            path={routeSpecification.urlSpecification.url}
-            exact={routeSpecification.urlSpecification.shouldMatchExactly}
-        >
-            {routeSpecification.renderComponent(services)}
-        </Route>
-    ));
+export type RepresentationalRouterProps = {
+    history: History,
+    routerSpecification: RouterSpecification
+};
+
+export const Router: FunctionComponent<RepresentationalRouterProps> = (props) => {
     return (
-        <Router history={history}>
+        <ReactRouter history={props.history}>
             <Switch>
-                {routes}
-                <Route key="5f857a7f-2452-4dd5-9cfb-f8c89c69260a" path="*">
-                    {routesSpecification.renderDefaultComponent(services)}
-                </Route>
+                {props.routerSpecification.routeComponents.map((routeComponent) => (
+                    <ReactRoute
+                        key={routeComponent.route.urlSchema}
+                        path={routeComponent.route.urlSchema}
+                        exact={routeComponent.route.urlMustMatchExactly}
+                    >
+                        {routeComponent.component}
+                    </ReactRoute>
+                ))}
+                <ReactRoute key="5f857a7f-2452-4dd5-9cfb-f8c89c69260a" path="*">
+                    {props.routerSpecification.defaultComponent}
+                </ReactRoute>
             </Switch>
-        </Router>
+        </ReactRouter>
     );
-}
-
-type RouteViewComponentProps<Props, RouteState> = (Props & {
-    currentRouteManager: CurrentRouteManagerInterface,
-    initialRouteState: RouteState,
-});
-
-export abstract class RouteViewComponent<Props, RouteState> extends Component<RouteViewComponentProps<Props, RouteState>> {
-    protected constructor(props: RouteViewComponentProps<Props, RouteState>) {
-        super(props);
-        //@ts-ignore
-        this.props.currentRouteManager.setCurrentRouteState(props.initialRouteState);
-    }
-
-    protected setRouteState(stateChanges: object): void {
-        this.props.currentRouteManager.applyCurrentRouteStateChanges(stateChanges);
-        this.forceUpdate();
-    }
-
-    protected getRouteState(): RouteState {
-        //@ts-ignore
-        return this.props.currentRouteManager.getCurrentRouteState();
-    }
-}
+};

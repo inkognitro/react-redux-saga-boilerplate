@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     render as renderCommonRouter, RouterSpecification,
-    RouteSpecification as CommonRouteSpecification
+    RouteComponent as CommonRouteSpecification
 } from "Common/Routing/UI/Router";
 import {NotFoundError} from "./NotFoundPage";
 import {AppServices} from "../../App";

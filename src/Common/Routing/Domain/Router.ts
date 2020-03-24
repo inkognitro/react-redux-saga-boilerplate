@@ -30,7 +30,7 @@ export class Router implements CurrentRouteDataReducer {
         this.byRedirectInfluencedUrlQuery = byRedirectInfluencedUrlQuery;
         this.routeByUrlQuery = routeByUrlQuery;
         this.historyManager = historyManager;
-        this.defaultRouteDataReducer = () => null;
+        this.defaultRouteDataReducer = () => {};
         this.currentRouteDataReducer = this.defaultRouteDataReducer;
         this.routeUrlSchemaToReducerMapping = {};
         this.setOnChangeUrlCallback();

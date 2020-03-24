@@ -1,17 +1,19 @@
 import React, { FunctionComponent } from 'react';
+import {Dispatch} from "redux";
+import {connect} from "react-redux";
+import {createOpenUrl} from "Common/Routing/Domain/Commands/OpenUrl";
 import './Link.scss';
 
-export type FunctionalLinkProps = {
-    onClick(): void,
-    className?: string,
-    infoUrl?: string,
+type FunctionalLinkProps = {
+    url?: string,
+    onClick: () => void,
 };
 
 export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) => {
     return (
         <a
-            href={(props.infoUrl ? props.infoUrl : '')}
-            className={props.className}
+            className="app-link"
+            href={(props.url ? props.url : '#')}
             onClick={(event) => {
                 event.preventDefault();
                 props.onClick();
@@ -22,25 +24,30 @@ export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) =>
     );
 };
 
+export enum Targets {
+    SELF = '_self',
+    BLANK = '_blank',
+}
+
 export type LinkProps = {
-    className?: string
     url: string,
-    target?: string
+    target?: (string | Targets)
+    shouldReplaceCurrentUrl?: boolean
 };
 
-export const Link: FunctionComponent<LinkProps> = (props) => {
-    return (
-        <FunctionalLink
-            infoUrl={props.url}
-            onClick={() => {
-                if(!props.target || props.target === '_self') {
-                    console.log('open link'); //foo!
-                    return;
-                }
-                window.open(props.url, props.target);
-            }}
-        >
-            {props.children}
-        </FunctionalLink>
-    );
+const mapStateToProps = () => {};
+
+const mapDispatchToProps = (dispatch: Dispatch, props: LinkProps) => {
+    return {
+        url: props.url,
+        onClick: () => dispatch(
+            createOpenUrl({
+                url: props.url,
+                target: props.target,
+                shouldReplaceCurrentUrl: props.shouldReplaceCurrentUrl,
+            })
+        ),
+    };
 };
+
+export const Link = connect(mapStateToProps, mapDispatchToProps)(FunctionalLink);
