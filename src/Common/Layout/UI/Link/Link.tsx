@@ -32,7 +32,17 @@ export enum Targets {
 export type LinkProps = {
     url: string,
     target?: (string | Targets)
-    shouldReplaceCurrentUrl?: boolean
+};
+
+export const Link: FunctionComponent<LinkProps> = (props) => {
+    return (
+        <FunctionalLink
+            url={props.url}
+            onClick={() => window.open(props.url, (props.target ? props.target : '_self'))}
+        >
+            {props.children}
+        </FunctionalLink>
+    );
 };
 
 const mapStateToProps = () => {};
@@ -44,10 +54,9 @@ const mapDispatchToProps = (dispatch: Dispatch, props: LinkProps) => {
             createOpenUrl({
                 url: props.url,
                 target: props.target,
-                shouldReplaceCurrentUrl: props.shouldReplaceCurrentUrl,
             })
         ),
     };
 };
 
-export const Link = connect(mapStateToProps, mapDispatchToProps)(FunctionalLink);
+export const RouterLink = connect(mapStateToProps, mapDispatchToProps)(FunctionalLink);
