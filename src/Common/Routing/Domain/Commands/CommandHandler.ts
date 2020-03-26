@@ -1,37 +1,37 @@
 import {CommandHandler} from "Common/AppBase/CommandActionListener";
-import {AddRoute} from "Common/Routing/Domain/Commands/AddRoute";
-import {AddRedirect} from "Common/Routing/Domain/Commands/AddRedirect";
 import {OpenUrl} from "Common/Routing/Domain/Commands/OpenUrl";
+import {Router} from "Common/Routing/Domain/Router";
+import {AddRedirect} from "Common/Routing/Domain/Commands/AddRedirect";
 
 export class RoutingCommandHandler implements CommandHandler {
+    private readonly router: Router;
+
+    constructor(router: Router) {
+        this.router = router;
+    }
+
     getSupportedCommandTypes(): string[] {
         return [
-            CommandTypes.ADD_ROUTE,
-            CommandTypes.ADD_REDIRECT,
             CommandTypes.OPEN_URL,
+            CommandTypes.ADD_REDIRECT,
         ];
     }
 
     handle(command: SupportedCommand): void {
-        if(command.type === CommandTypes.ADD_ROUTE) {
-            //todo
+        if(command.type === CommandTypes.OPEN_URL) {
+            this.router.openUrl(command.payload);
             return;
         }
         if(command.type === CommandTypes.ADD_REDIRECT) {
-            //todo
-            return;
-        }
-        if(command.type === CommandTypes.OPEN_URL) {
-            //todo
+            this.router.addRedirect(command.payload.redirect);
             return;
         }
     }
 }
 
-type SupportedCommand = (AddRoute | AddRedirect | OpenUrl);
+type SupportedCommand = (OpenUrl | AddRedirect);
 
 export enum CommandTypes {
-    ADD_ROUTE = 'ADD_ROUTE-33ca8d0f-20f8-439e-b34f-fdd6859316c4',
-    ADD_REDIRECT = 'ADD_REDIRECT-33ca8d0f-20f8-439e-b34f-fdd6859316c4',
     OPEN_URL = 'OPEN_URL-33ca8d0f-20f8-439e-b34f-fdd6859316c4',
+    ADD_REDIRECT = 'ADD_REDIRECT-33ca8d0f-20f8-439e-b34f-fdd6859316c4',
 }

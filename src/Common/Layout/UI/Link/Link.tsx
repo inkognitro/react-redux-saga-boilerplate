@@ -31,7 +31,8 @@ export enum Targets {
 
 export type LinkProps = {
     url: string,
-    target?: (string | Targets)
+    target?: (string | Targets),
+    children: any
 };
 
 export const Link: FunctionComponent<LinkProps> = (props) => {

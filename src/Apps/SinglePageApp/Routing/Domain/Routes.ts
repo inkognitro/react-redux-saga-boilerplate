@@ -1,23 +1,21 @@
-import {UrlSpecification} from "Common/Routing/Domain/CurrentRouteManager";
+import {Route} from "Common/Routing/Domain/Types";
+import {RouterSpecification} from "Common/Routing/UI/Router";
+import {NotFound} from "SinglePageApp/Routing/UI/NotFound";
 
-export const homeRouteUrlSpecification: UrlSpecification = {
-    url: '/',
-    shouldMatchExactly: true,
-};
-
-export const loginRouteUrlSpecification: UrlSpecification = {
-    url: '/auth/login',
-    shouldMatchExactly: true,
+export const homeRoute: Route = {
+    urlSchema: '/',
+    urlMustMatchExactly: true,
 };
 
 export const createHomeRouteUrl = (): string => {
-    return homeRouteUrlSpecification.url;
+    return homeRoute.urlSchema;
+};
+
+export const loginRoute: Route = {
+    urlSchema: '/auth/login',
+    urlMustMatchExactly: true,
 };
 
 export const createLoginRouteUrl = (): string => {
-    return loginRouteUrlSpecification.url;
-};
-
-export const createPasswordForgottenUrl = (): string => {
-    return 'auth/pwforgotten';
+    return loginRoute.urlSchema;
 };

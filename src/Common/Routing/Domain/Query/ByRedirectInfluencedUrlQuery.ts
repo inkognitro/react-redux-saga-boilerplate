@@ -1,14 +1,35 @@
 import {RoutingState, RoutingStateSelector} from "Common/Routing/Domain/Types";
-import {isUrlMatching} from "Common/Routing/Domain/Router";
+import {isUrlMatchingRoute} from "Common/Routing/Domain/Query/UrlMatchesRouteQuery";
 
-export function getByRedirectInfluencedUrl(state: RoutingState, url: string): string {
+function getByRedirectInfluencedUrl(state: RoutingState, url: string): string {
+    let alreadyFoundRedirectUrls: string[] = [];
+    let urlToGo = url;
+    let foundRedirectUrl = findRedirectUrlForUrl(state, urlToGo);
+    while(foundRedirectUrl !== null) {
+        foundRedirectUrl = findRedirectUrlForUrl(state, urlToGo);
+        if(foundRedirectUrl === null) {
+            continue;
+        }
+        if(alreadyFoundRedirectUrls.includes(foundRedirectUrl)) {
+            console.error(
+                'Infinite redirect loop with url "' + urlToGo + '"!'
+                + ' Returned base url "' + url + '" instead.'
+            );
+            return url;
+        }
+        alreadyFoundRedirectUrls.push(foundRedirectUrl);
+    }
+    return urlToGo;
+}
+
+function findRedirectUrlForUrl(state: RoutingState, url: string): (null | string) {
     for(let index in state.redirects) {
         const redirect = state.redirects[index];
-        if(isUrlMatching(redirect.fromRoute, redirect.toUrl)) {
+        if(isUrlMatchingRoute(url, redirect.fromRoute)) {
             return redirect.toUrl;
         }
     }
-    return url;
+    return null;
 }
 
 export class ByRedirectInfluencedUrlQuery {

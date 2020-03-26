@@ -1,10 +1,10 @@
 import {Route, RoutingState, RoutingStateSelector} from "Common/Routing/Domain/Types";
-import {isUrlMatching} from "Common/Routing/Domain/Router";
+import {isUrlMatchingRoute} from "Common/Routing/Domain/Query/UrlMatchesRouteQuery";
 
 export function findRouteByUrl(state: RoutingState, url: string): (null | Route) {
     for(let index in state.routes) {
         const route = state.routes[index];
-        if(isUrlMatching(route, url)) {
+        if(isUrlMatchingRoute(url, route)) {
             return route;
         }
     }

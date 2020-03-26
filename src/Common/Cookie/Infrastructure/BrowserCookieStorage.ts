@@ -4,16 +4,17 @@ import {CookieReader} from "Common/Cookie/Domain/Query/CookieReader";
 
 export class BrowserCookieStorage implements CookieWriter, CookieReader {
     findCookieContent(cookieName: string): (null | string) {
-        var name = cookieName + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieFragments = decodedCookie.split(';');
+        let cookieFragment = null;
+        for (let index = 0; index < cookieFragments.length; index++) {
+            cookieFragment = cookieFragments[index];
+            while (cookieFragment.charAt(0) === ' ') {
+                cookieFragment = cookieFragment.substring(1);
             }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
+            if (cookieFragment.indexOf(name) === 0) {
+                return cookieFragment.substring(name.length, cookieFragment.length);
             }
         }
         return null;

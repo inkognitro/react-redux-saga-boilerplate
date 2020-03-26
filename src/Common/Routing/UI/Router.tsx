@@ -1,16 +1,17 @@
 import React, {Component, FunctionComponent} from 'react';
 import {Route as ReactRoute, Router as ReactRouter, Switch} from "react-router";
 import {History} from 'history';
-import {Route as RouteData} from "Common/Routing/Domain/Types";
+import {Redirect, Route as RouteData} from "Common/Routing/Domain/Types";
 
-export type RouteComponent<Props = object> = {
+export type RouteComponent = {
     route: RouteData,
-    component: Component<Props>,
+    component: (Component | FunctionComponent),
 };
 
-export type RouterSpecification<DefaultComponentProps = any> = {
+export type RouterSpecification = {
+    redirects: Redirect[],
     routeComponents: RouteComponent[],
-    defaultComponent: Component<DefaultComponentProps>
+    defaultComponent: (Component | FunctionComponent)
 };
 
 export type RepresentationalRouterProps = {
