@@ -1,5 +1,4 @@
-import {Redirect, Route} from "Common/Routing/Domain/Types";
-import {Reducer} from "redux";
+import {Redirect} from "Common/Routing/Domain/Types";
 import {HistoryManager} from "Common/Routing/Domain/HistoryManager";
 import {EventBus} from "Common/AppBase/EventBus";
 import {createCurrentUrlWasChanged} from "Common/Routing/Domain/Events/CurrentUrlWasChanged";
@@ -52,11 +51,6 @@ export class Router {
         this.eventBus.handle(createRedirectWasAdded(redirect));
     }
 }
-
-export type AddRouteSettings = {
-    route: Route,
-    reducer: Reducer
-};
 
 export type OpenUrlSettings = {
     url: string,

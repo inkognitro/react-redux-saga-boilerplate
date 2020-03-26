@@ -1,8 +1,8 @@
 import React from 'react';
-import {RouterSpecification} from "Common/Routing/UI/Router";
+import {Specification} from "Common/Routing/UI/Router";
 import {NotFound} from "SinglePageApp/Routing/UI/NotFound";
 
-const routerSpecification: RouterSpecification = {
+const routerSpecification: Specification = {
     routeComponents: [
 
     ],

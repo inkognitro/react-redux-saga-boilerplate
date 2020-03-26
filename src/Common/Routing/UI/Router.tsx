@@ -8,22 +8,22 @@ export type RouteComponent = {
     component: (Component | FunctionComponent),
 };
 
-export type RouterSpecification = {
+export type Specification = {
     redirects: Redirect[],
     routeComponents: RouteComponent[],
     defaultComponent: (Component | FunctionComponent)
 };
 
-export type RepresentationalRouterProps = {
+export type RouterProps = {
     history: History,
-    routerSpecification: RouterSpecification
+    specification: Specification
 };
 
-export const Router: FunctionComponent<RepresentationalRouterProps> = (props) => {
+export const Router: FunctionComponent<RouterProps> = (props) => {
     return (
         <ReactRouter history={props.history}>
             <Switch>
-                {props.routerSpecification.routeComponents.map((routeComponent) => (
+                {props.specification.routeComponents.map((routeComponent) => (
                     <ReactRoute
                         key={routeComponent.route.urlSchema}
                         path={routeComponent.route.urlSchema}
@@ -33,7 +33,7 @@ export const Router: FunctionComponent<RepresentationalRouterProps> = (props) =>
                     </ReactRoute>
                 ))}
                 <ReactRoute key="5f857a7f-2452-4dd5-9cfb-f8c89c69260a" path="*">
-                    {props.routerSpecification.defaultComponent}
+                    {props.specification.defaultComponent}
                 </ReactRoute>
             </Switch>
         </ReactRouter>
