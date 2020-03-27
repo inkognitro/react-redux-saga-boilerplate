@@ -26,17 +26,21 @@ to build the app in the *dist* folder, run:
 ## Architecture and features
 1. Every state variable is in the redux store
 2. Business Logic in redux middleware: dispatching actions from react components via commands (custom middleware, redux-saga like)
-3. Basic authentication with [JWT](http://jwt.io) - with remember me flag: Ideally the authentication server responds with the [jwtSecret]-httpOnly-cookie and [jwtHeader].[jwtPayload] in the response body, to be protected against XSS and CSRF attacks.
-4. Integrated toasts (redux)
+3. Basic [JWT](http://jwt.io) authentication:
+    - with remember me flag
+    - ideally the authentication server responds with the [jwtSecret]-httpOnly-cookie and [jwtHeader].[jwtPayload] in the response body, to be protected against XSS and CSRF attacks.
+4. Toasts integration
     - multiple messages per toast
     - message waiting pipeline for running animations (async visibility of toast messages)
-5. Sass support
-6. Abstracted request handling with [axios](http://npmjs.com/package/axios) library in the background
-7. Loader according to running requests
+5. Sass integration
+6. Request handling integration
+    - [axios](http://npmjs.com/package/axios) library in the background
+7. Loader integration:
+    - according to running requests
 8. UTC datetime handling
 9. Basic form components
-10. Integration of Bootstrap 4
-11. Integration of Material Icons
+10. Bootstrap 4 integration
+11. Material Icons integration
   
 ## Open todos (in progress)
 1. Initialize current url reducer
