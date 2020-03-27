@@ -28,17 +28,11 @@ export function createMiddleware<Services>(
         return function initializeActionListeners(next: Dispatch) {
             const actionListeners = actionListenerFactories.map(factory => factory.create(services));
             return function handleAction(action: Action) {
-
-                console.log('action');
-                console.log(action);
-
-                for(let index in actionListeners) {
-                    const actionListener = actionListeners[index];
-                    if(!actionListener.getActionTypesToListen().includes(action.type)) {
-                        continue;
+                actionListeners.forEach((listener) => {
+                    if(listener.getActionTypesToListen().includes(action.type)) {
+                        listener.handleAction(action);;
                     }
-                    actionListener.handleAction(action);
-                }
+                });
                 return next(action);
             }
         }

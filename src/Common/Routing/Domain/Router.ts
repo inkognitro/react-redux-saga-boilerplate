@@ -33,9 +33,6 @@ export class Router {
 
     public openUrl(settings: OpenUrlSettings, mustTriggerHistoryManager: boolean = true): void
     {
-        console.log('settings');
-        console.log(settings);
-
         const urlToUse = this.byRedirectInfluencedUrlQuery.get(settings.url);
         const target = (!settings.target ? '_self' : settings.target);
         if(mustTriggerHistoryManager && target === '_self') {

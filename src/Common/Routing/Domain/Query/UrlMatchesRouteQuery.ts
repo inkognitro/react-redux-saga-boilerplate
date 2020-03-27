@@ -6,12 +6,15 @@ export function isUrlMatchingRoute(url: string, route: Route): boolean {
     if(urlParts.slice(-1)[0] === '/') {
         urlParts.pop();
     }
+
     if(route.urlMustMatchExactly && urlSchemaParts.length !== urlParts.length) {
         return false;
     }
+
     if(urlSchemaParts.length > urlParts.length) {
         return false;
     }
+
     for(let index in urlParts) {
         const urlSchemaPart = urlSchemaParts[index];
         if(urlSchemaPart === undefined) {

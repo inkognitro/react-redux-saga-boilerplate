@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FunctionalLink, Link} from 'Common/Layout/UI/Link/Link';
+import {FunctionalLink, RouterLink} from 'Common/Layout/UI/Link/Link';
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {Dispatch} from "redux";
 import {createAddToastMessageAction} from "Common/Toaster/Domain/Command/AddToastMessage";
@@ -32,9 +32,9 @@ class PresentationalHome extends Component<HomeProps> {
                 <br />
                 <h3>Routing</h3>
                 <div>
-                    <Link url="/some-page-which-does-not-exist">
+                    <RouterLink url="/some-page-which-does-not-exist">
                         go to non existing page
-                    </Link>
+                    </RouterLink>
                 </div>
 
                 <br />

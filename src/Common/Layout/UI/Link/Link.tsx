@@ -29,28 +29,17 @@ export enum Targets {
     BLANK = '_blank',
 }
 
-export type LinkProps = {
+export type RouterLinkProps = {
     url: string,
     target?: (string | Targets),
     children: any
-};
-
-export const Link: FunctionComponent<LinkProps> = (props) => {
-    return (
-        <FunctionalLink
-            url={props.url}
-            onClick={() => window.open(props.url, (props.target ? props.target : '_self'))}
-        >
-            {props.children}
-        </FunctionalLink>
-    );
 };
 
 const mapStateToProps = () => {
     return {};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch, props: LinkProps) => {
+const mapDispatchToProps = (dispatch: Dispatch, props: RouterLinkProps) => {
     return {
         url: props.url,
         onClick: () => dispatch(
