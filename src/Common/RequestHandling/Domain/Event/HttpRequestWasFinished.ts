@@ -1,5 +1,5 @@
-import {Event} from 'Common/AppBase/EventBus';
 import {RequestHandlingEventTypes, HttpRequestResponse} from "Common/RequestHandling/Domain/Types";
+import {Event} from "Common/Bootstrap/Event";
 
 export function createHttpRequestWasFinished(requestResponse: HttpRequestResponse): HttpRequestWasFinished {
     return {

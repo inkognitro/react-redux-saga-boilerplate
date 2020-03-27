@@ -1,5 +1,5 @@
 import {CommandTypes} from "Common/Toaster/Domain/Command/CommandHandler";
-import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
+import {Command, CommandAction, createCommandAction} from "Common/Bootstrap/Command";
 
 export function createRemoveToastMessageAction(toastId: string, messageId: string): CommandAction {
     const command: RemoveToastMessage = {

@@ -1,5 +1,5 @@
-import {Event} from "Common/AppBase/EventBus";
 import {AuthEventTypes, AuthUser} from "Common/Authentication/Domain/Types";
+import {Event} from "Common/Bootstrap/Event";
 
 export function createUserWasLoggedIn(authUser: AuthUser): UserWasLoggedIn {
     return {

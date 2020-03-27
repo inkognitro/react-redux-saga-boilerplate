@@ -1,5 +1,5 @@
 import {ToasterEventTypes} from "Common/Toaster/Domain/Types";
-import {Event} from "Common/AppBase/EventBus";
+import {Event} from "Common/Bootstrap/Event";
 
 export function createToastMessageWasRemoved(toastId: string, toastMessageId: string): ToastMessageWasRemoved {
     return {

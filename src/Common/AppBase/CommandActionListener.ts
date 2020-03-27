@@ -1,5 +1,6 @@
-import {ActionListener, ListenerActionTypes} from "./ActionListener";
-import {Command, CommandAction} from "Common/AppBase/CommandBus";
+import {ActionListener} from "./ActionListener";
+import {ListenerActionTypes} from "Common/Bootstrap/Action";
+import {Command, CommandAction} from "Common/Bootstrap/Command";
 
 export interface CommandHandler {
     getSupportedCommandTypes(): string[];

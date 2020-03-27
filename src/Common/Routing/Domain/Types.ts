@@ -1,6 +1,6 @@
-import {Event} from "Common/AppBase/EventBus";
 import {CurrentUrlWasChanged} from "Common/Routing/Domain/Event/CurrentUrlWasChanged";
 import {RedirectWasAdded} from "Common/Routing/Domain/Event/RedirectWasAdded";
+import {Event} from "Common/Bootstrap/Event";
 
 export type RoutingStateSelector = () => RoutingState;
 

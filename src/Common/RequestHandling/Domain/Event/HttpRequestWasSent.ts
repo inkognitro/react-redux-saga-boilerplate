@@ -1,5 +1,5 @@
-import {Event} from 'Common/AppBase/EventBus';
 import {HttpRequest, RequestHandlingEventTypes} from "Common/RequestHandling/Domain/Types";
+import {Event} from "Common/Bootstrap/Event";
 
 export function createRequestWasSent(request: HttpRequest): HttpRequestWasSent {
     return {

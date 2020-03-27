@@ -1,6 +1,6 @@
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {CommandTypes} from "Common/Toaster/Domain/Command/CommandHandler";
-import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
+import {Command, CommandAction, createCommandAction} from "Common/Bootstrap/Command";
 
 export function createAddToastMessageAction(settings: Payload): CommandAction {
     return createCommandAction(createAddToastMessage(settings));

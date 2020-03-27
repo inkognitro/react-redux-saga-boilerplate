@@ -1,5 +1,5 @@
 import {RoutingEventTypes} from "Common/Routing/Domain/Types";
-import {Event} from "Common/AppBase/EventBus";
+import {Event} from "Common/Bootstrap/Event";
 
 export function createCurrentUrlWasChanged(url: string): CurrentUrlWasChanged {
     return {

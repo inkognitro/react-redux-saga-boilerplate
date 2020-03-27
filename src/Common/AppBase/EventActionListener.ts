@@ -1,5 +1,6 @@
-import {ActionListener, ListenerActionTypes} from "./ActionListener";
-import {Event, EventAction} from "Common/AppBase/EventBus";
+import {ActionListener} from "./ActionListener";
+import {ListenerActionTypes} from "Common/Bootstrap/Action";
+import {Event, EventAction} from "Common/Bootstrap/Event";
 
 export interface EventListener {
     getSupportedEventTypes(): string[];

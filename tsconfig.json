@@ -10,6 +10,7 @@
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {
+      "Bootstrap/*": ["./Bootstrap/*"],
       "Common/*": ["./Common/*"],
       "SinglePageApp/*": ["./Apps/SinglePageApp/*"]
     },

@@ -1,5 +1,5 @@
-import {Event} from 'Common/AppBase/EventBus';
 import {CookieEventTypes} from 'Common/Cookie/Domain/Types';
+import {Event} from "Common/Bootstrap/Event";
 
 export function createCookieWasRemoved(cookieName: string): CookieWasRemoved {
     return {

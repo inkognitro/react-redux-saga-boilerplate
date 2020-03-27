@@ -1,6 +1,6 @@
-import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
 import {CommandTypes} from "Common/RequestHandling/Domain/Command/CommandHandler";
 import {RequestExecutionSettings} from "Common/RequestHandling/Domain/HttpRequestHandler";
+import {Command, CommandAction, createCommandAction} from "Common/Bootstrap/Command";
 
 export function createSendHttpGetRequestAction(settings: RequestExecutionSettings): CommandAction {
     const command: SendHttpRequest = {

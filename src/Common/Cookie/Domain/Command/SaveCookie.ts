@@ -1,6 +1,6 @@
 import {CommandTypes} from "Common/Cookie/Domain/Command/CommandHandler";
-import {Command} from "Common/AppBase/CommandBus";
 import {SaveCookieSettings} from "Common/Cookie/Domain/CookieManager";
+import {Command} from "Common/Bootstrap/Command";
 
 export function createSaveCookie(settings: SaveCookieSettings): SaveCookie {
     return {

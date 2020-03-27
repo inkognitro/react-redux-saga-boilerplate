@@ -1,5 +1,5 @@
-import {Event} from 'Common/AppBase/EventBus';
 import {MessageToAdd, ToasterEventTypes} from "Common/Toaster/Domain/Types";
+import {Event} from "Common/Bootstrap/Event";
 
 export function createMessageWasAddedToPipeline(messageToAdd: MessageToAdd): MessageWasAddedToPipeline {
     return {

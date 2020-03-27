@@ -1,5 +1,5 @@
-import {Command} from "Common/AppBase/CommandBus";
 import {CommandTypes} from "Common/Authentication/Domain/Command/CommandHandler";
+import {Command} from "Common/Bootstrap/Command";
 
 export function createLogout(): Logout {
     return {

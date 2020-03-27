@@ -1,6 +1,6 @@
-import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
 import {CommandTypes} from "Common/Routing/Domain/Commands/CommandHandler";
 import {OpenUrlSettings} from "Common/Routing/Domain/Router";
+import {Command, CommandAction, createCommandAction} from "Common/Bootstrap/Command";
 
 export function createOpenUrlAction(settings: OpenUrlSettings): CommandAction {
     return createCommandAction(createOpenUrl(settings));

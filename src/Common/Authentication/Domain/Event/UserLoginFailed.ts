@@ -1,5 +1,5 @@
-import {Event} from "Common/AppBase/EventBus";
 import {AuthEventTypes} from "Common/Authentication/Domain/Types";
+import {Event} from "Common/Bootstrap/Event";
 
 export function createUserLoginFailed(): UserLoginFailed {
     return {

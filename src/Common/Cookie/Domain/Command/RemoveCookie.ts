@@ -1,5 +1,5 @@
 import {CommandTypes} from "Common/Cookie/Domain/Command/CommandHandler";
-import {Command} from "Common/AppBase/CommandBus";
+import {Command} from "Common/Bootstrap/Command";
 
 export function createRemoveCookie(name: string): RemoveCookie {
     return {

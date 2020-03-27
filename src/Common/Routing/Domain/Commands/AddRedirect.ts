@@ -1,6 +1,6 @@
-import {Command} from "Common/AppBase/CommandBus";
 import {CommandTypes} from "Common/Routing/Domain/Commands/CommandHandler";
 import {Redirect} from "Common/Routing/Domain/Types";
+import {Command} from "Common/Bootstrap/Command";
 
 export function createAddRedirect(redirect: Redirect): AddRedirect {
     return {

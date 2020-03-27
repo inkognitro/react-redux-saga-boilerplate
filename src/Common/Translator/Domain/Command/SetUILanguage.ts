@@ -1,6 +1,6 @@
 import {LanguageIds} from "Common/Translator/Domain/Types";
-import {Command, CommandAction, createCommandAction} from "Common/AppBase/CommandBus";
 import {CommandTypes} from "Common/Translator/Domain/Command/CommandHandler";
+import {Command, CommandAction, createCommandAction} from "Common/Bootstrap/Command";
 
 export function createSetUILanguageAction(languageId: LanguageIds): CommandAction {
     return createCommandAction(createSetUILanguage(languageId));

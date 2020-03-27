@@ -1,20 +1,5 @@
-import {Action, Dispatch} from "redux";
-import {ListenerActionTypes} from "Common/AppBase/ActionListener";
-
-export type Command<Type = any, Payload = any> = (Action<Type> & {
-    payload: Payload
-});
-
-export type CommandAction = (Action & {
-    command: Command
-});
-
-export function createCommandAction(command: Command): CommandAction {
-    return {
-        type: ListenerActionTypes.COMMAND,
-        command: command,
-    };
-}
+import {Dispatch} from "redux";
+import {Command, createCommandAction} from "Common/Bootstrap/Command";
 
 export interface CommandBus {
     handle(command: Command): void
