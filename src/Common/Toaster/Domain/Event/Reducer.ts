@@ -13,7 +13,7 @@ const initialToasterState: ToasterState = {
     toasts: []
 };
 
-export function toaster(state: ToasterState = initialToasterState, event?: ToasterEvent): ToasterState {
+export function toasterReducer(state: ToasterState = initialToasterState, event?: ToasterEvent): ToasterState {
     if (!event) {
         return state;
     }

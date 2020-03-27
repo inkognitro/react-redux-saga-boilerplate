@@ -1,17 +1,16 @@
-import React, {Component, FunctionComponent} from 'react';
+import React, {ComponentType, FunctionComponent} from 'react';
 import {Route as ReactRoute, Router as ReactRouter, Switch} from "react-router";
 import {History} from 'history';
-import {Redirect, Route as RouteData} from "Common/Routing/Domain/Types";
+import {Route as RouteData} from "Common/Routing/Domain/Types";
 
 export type RouteComponent = {
     route: RouteData,
-    component: (Component | FunctionComponent),
+    component: ComponentType,
 };
 
 export type Specification = {
-    redirects: Redirect[],
     routeComponents: RouteComponent[],
-    defaultComponent: (Component | FunctionComponent)
+    defaultComponent: ComponentType
 };
 
 export type RouterProps = {
@@ -28,9 +27,8 @@ export const Router: FunctionComponent<RouterProps> = (props) => {
                         key={routeComponent.route.urlSchema}
                         path={routeComponent.route.urlSchema}
                         exact={routeComponent.route.urlMustMatchExactly}
-                    >
-                        {routeComponent.component}
-                    </ReactRoute>
+                        component={routeComponent.component}
+                     />
                 ))}
                 <ReactRoute key="5f857a7f-2452-4dd5-9cfb-f8c89c69260a" path="*">
                     {props.specification.defaultComponent}

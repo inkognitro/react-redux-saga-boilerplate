@@ -5,36 +5,36 @@ const initialAuthState: AuthState = {
     currentAuthUser: null,
 };
 
-export function auth (state: AuthState = initialAuthState, event?: AuthEvent): AuthState {
-    if(!event) {
+export function authenticationReducer(state: AuthState = initialAuthState, event?: AuthEvent): AuthState {
+    if (!event) {
         return state;
     }
 
-    if(event.type === AuthEventTypes.USER_LOGIN_WAS_STARTED) {
+    if (event.type === AuthEventTypes.USER_LOGIN_WAS_STARTED) {
         return {...state, isAuthenticationRunning: true};
     }
 
-    if(event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {
+    if (event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {
         return {...state, currentAuthUser: event.payload.authUser, isAuthenticationRunning: false};
     }
 
-    if(event.type === AuthEventTypes.USER_LOGIN_FAILED) {
+    if (event.type === AuthEventTypes.USER_LOGIN_FAILED) {
         return {...state, currentAuthUser: null, isAuthenticationRunning: false};
     }
 
-    if(event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_STARTED) {
+    if (event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_STARTED) {
         return {...state, isAuthenticationRunning: true};
     }
 
-    if(event.type === AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED) {
+    if (event.type === AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED) {
         return {...state, currentAuthUser: event.payload.authUser, isAuthenticationRunning: false};
     }
 
-    if(event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED) {
+    if (event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED) {
         return {...state, currentAuthUser: null, isAuthenticationRunning: false};
     }
 
-    if(event.type === AuthEventTypes.USER_WAS_LOGGED_OUT) {
+    if (event.type === AuthEventTypes.USER_WAS_LOGGED_OUT) {
         return {...state, currentAuthUser: null};
     }
 

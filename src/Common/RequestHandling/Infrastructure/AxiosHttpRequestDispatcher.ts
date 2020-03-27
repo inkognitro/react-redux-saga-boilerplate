@@ -10,6 +10,7 @@ export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {
                     return;
                 }
                 const requestResponse = createRequestResponseFromAxiosResponse(settings.request, response);
+                //@ts-ignore
                 settings.onSuccess(requestResponse);
             })
             .catch((error: AxiosError): void => {
@@ -57,7 +58,7 @@ function getAxiosRequestMethodByRequest(request: HttpRequest): string {
 function createRequestResponseFromAxiosResponse (request: HttpRequest, axiosResponse?: AxiosResponse): HttpRequestResponse {
     return {
         request: request,
-        response: (!axiosResponse ? null : {
+        response: (!axiosResponse ? undefined : {
             statusCode: axiosResponse.status,
             body: axiosResponse.data,
         })

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
-import {createOpenUrl} from "Common/Routing/Domain/Commands/OpenUrl";
+import {createOpenUrlAction} from "Common/Routing/Domain/Commands/OpenUrl";
 import './Link.scss';
 
 type FunctionalLinkProps = {
@@ -46,13 +46,15 @@ export const Link: FunctionComponent<LinkProps> = (props) => {
     );
 };
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => {
+    return {};
+};
 
 const mapDispatchToProps = (dispatch: Dispatch, props: LinkProps) => {
     return {
         url: props.url,
         onClick: () => dispatch(
-            createOpenUrl({
+            createOpenUrlAction({
                 url: props.url,
                 target: props.target,
             })

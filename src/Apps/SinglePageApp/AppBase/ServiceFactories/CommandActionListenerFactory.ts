@@ -2,6 +2,7 @@ import {ActionListener, ActionListenerFactory} from "Common/AppBase/ActionListen
 import {AppServices} from "./AppServices";
 import {CommandActionListener, CommandHandler} from "Common/AppBase/CommandActionListener";
 import {ToasterCommandHandler} from "Common/Toaster/Domain/Command/CommandHandler";
+import {RoutingCommandHandler} from "Common/Routing/Domain/Commands/CommandHandler";
 
 export class CommandActionListenerFactory implements ActionListenerFactory<AppServices> {
     public create(services: AppServices): ActionListener {
@@ -12,5 +13,6 @@ export class CommandActionListenerFactory implements ActionListenerFactory<AppSe
 function createCommandHandlers(services: AppServices): CommandHandler[] {
     return [
         new ToasterCommandHandler(services.toaster),
+        new RoutingCommandHandler(services.router),
     ];
 }

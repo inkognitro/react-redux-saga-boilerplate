@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {createHomeRouteUrl, createLoginRouteUrl} from '../../Routing/Domain/Routes';
+import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/Routes';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
-import {AuthManagerInterface} from "Common/Authentication/DomainOld/AuthManager";
 import {User} from "Common/Model/Domain/User/User";
+import {RootState} from "SinglePageApp/AppBase/Store";
 
 type RepresentationalNavBarState = {
     currentUser: (User | null),
@@ -23,7 +23,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
         }
         return (
             <li className="nav-item">
-                <FunctionalLink onClick={() => this.props.onClickLogout()} className="nav-link">
+                <FunctionalLink onClick={() => this.props.onClickLogout()}>
                     Logout {this.props.currentUser.username}
                 </FunctionalLink>
             </li>
@@ -47,20 +47,16 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
     }
 }
 
-const mapStateToProps = ({}, props: NavBarProps): RepresentationalNavBarState => {
+const mapStateToProps = (_: RootState): RepresentationalNavBarState => {
     return {
-        currentUser: props.authManager.findCurrentUser(),
+        currentUser: null //findCurrentAuthUser(state.authentication),
     };
 };
 
-const mapDispatchToProps = ({}, props: NavBarProps): RepresentationalNavBarCallbacks => {
+const mapDispatchToProps = ({}): RepresentationalNavBarCallbacks => {
     return {
-        onClickLogout: (): void => props.authManager.logoutCurrentUser(),
+        onClickLogout: (): void => console.log('logout'),
     };
-};
-
-type NavBarProps = {
-    authManager: AuthManagerInterface,
 };
 
 export const NavBar = connect(mapStateToProps, mapDispatchToProps)(RepresentationalNavBar);

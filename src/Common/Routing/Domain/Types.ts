@@ -1,14 +1,13 @@
 import {Event} from "Common/AppBase/EventBus";
-import {CurrentUrlWasChanged} from "Common/Routing/Domain/Events/CurrentUrlWasChanged";
-import {RedirectWasAdded} from "Common/Routing/Domain/Events/RedirectWasAdded";
-import {Reducer} from "redux";
+import {CurrentUrlWasChanged} from "Common/Routing/Domain/Event/CurrentUrlWasChanged";
+import {RedirectWasAdded} from "Common/Routing/Domain/Event/RedirectWasAdded";
 
 export type RoutingStateSelector = () => RoutingState;
 
-export type RoutingState = {
+export type RoutingState<CurrentRouteState = any> = {
     redirects: Redirect[],
     routes: Route[],
-    currentRouteData: any,
+    currentRouteData: CurrentRouteState,
 };
 
 export type Redirect = {
@@ -19,7 +18,6 @@ export type Redirect = {
 export type Route = {
     urlSchema: string,
     urlMustMatchExactly: boolean,
-    reducer: Reducer
 };
 
 export enum RoutingEventTypes {

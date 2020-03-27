@@ -1,6 +1,4 @@
 import {Route} from "Common/Routing/Domain/Types";
-import {Specification} from "Common/Routing/UI/Router";
-import {NotFound} from "SinglePageApp/Routing/UI/NotFound";
 
 export const homeRoute: Route = {
     urlSchema: '/',

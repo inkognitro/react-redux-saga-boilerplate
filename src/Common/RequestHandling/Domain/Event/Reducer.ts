@@ -4,11 +4,11 @@ import {
     RequestHandlingState
 } from "Common/RequestHandling/Domain/Types";
 
-const initialRequestHandilngState: RequestHandlingState = {
+const initialRequestHandlingState: RequestHandlingState = {
     runningHttpRequests: [],
 };
 
-export function requestHandling(state: RequestHandlingState = initialRequestHandilngState, event?: RequestHandlingEvent): RequestHandlingState {
+export function requestHandlingReducer(state: RequestHandlingState = initialRequestHandlingState, event?: RequestHandlingEvent): RequestHandlingState {
     if (event === undefined) {
         return state;
     }

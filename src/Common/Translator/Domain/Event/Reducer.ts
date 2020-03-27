@@ -1,5 +1,4 @@
-import {ToasterEvent} from "Common/Toaster/Domain/Types";
-import {LanguageIds, TranslatorEventTypes, TranslatorState} from "Common/Translator/Domain/Types";
+import {LanguageIds, TranslatorEvent, TranslatorEventTypes, TranslatorState} from "Common/Translator/Domain/Types";
 import {translationIdToTranslationMapping} from "Common/Translator/Domain/Translation/en";
 
 const initialTranslatorState: TranslatorState = {
@@ -7,7 +6,7 @@ const initialTranslatorState: TranslatorState = {
     translations: translationIdToTranslationMapping
 };
 
-export function translator(state: TranslatorState = initialTranslatorState, event?: ToasterEvent): TranslatorState {
+export function translator(state: TranslatorState = initialTranslatorState, event?: TranslatorEvent): TranslatorState {
     if (!event) {
         return state;
     }

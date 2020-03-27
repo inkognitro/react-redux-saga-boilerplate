@@ -26,7 +26,7 @@ export type HttpRequest = {
 
 export type HttpRequestResponse<ResponseBody = object> = {
     request: HttpRequest,
-    response: HttpResponse<ResponseBody>,
+    response?: HttpResponse<ResponseBody>,
 };
 
 export type SuccessHttpRequestResponse<ResponseBody = object> = Required<HttpRequestResponse<ResponseBody>>;

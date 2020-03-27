@@ -3,6 +3,9 @@ import {Route} from "Common/Routing/Domain/Types";
 export function isUrlMatchingRoute(url: string, route: Route): boolean {
     const urlSchemaParts = route.urlSchema.split('/');
     const urlParts = url.split('/');
+    if(urlParts.slice(-1)[0] === '/') {
+        urlParts.pop();
+    }
     if(route.urlMustMatchExactly && urlSchemaParts.length !== urlParts.length) {
         return false;
     }

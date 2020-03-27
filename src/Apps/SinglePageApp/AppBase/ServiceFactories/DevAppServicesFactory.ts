@@ -1,20 +1,11 @@
 import {Store} from "redux";
-import {
-    AppPresetServices,
-    AppPresetServicesFactory,
-    AppServices,
-    AppServicesFactory
-} from "./AppServices";
-import {ProdAppServicesFactory} from "./ProdAppServicesFactory";
+import {AppServices, AppServicesFactory} from "./AppServices";
+import {ProdAppServicesFactory, prodPresetServices} from "./ProdAppServicesFactory";
 
-export class DevPresetServicesFactory implements AppPresetServicesFactory {
-    create(_: Store): AppPresetServices {
-        return {};
-    }
-}
+export const devPresetServices: Partial<AppServices> = prodPresetServices;
 
 export class DevAppServicesFactory implements AppServicesFactory {
-    create(presetServices: AppPresetServices, store: Store): AppServices {
+    create(presetServices: Partial<AppServices>, store: Store): AppServices {
         const prodAppServicesFactory = new ProdAppServicesFactory();
         return prodAppServicesFactory.create(presetServices, store);
     }

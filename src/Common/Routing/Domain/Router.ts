@@ -1,9 +1,9 @@
 import {Redirect} from "Common/Routing/Domain/Types";
 import {HistoryManager} from "Common/Routing/Domain/HistoryManager";
 import {EventBus} from "Common/AppBase/EventBus";
-import {createCurrentUrlWasChanged} from "Common/Routing/Domain/Events/CurrentUrlWasChanged";
+import {createCurrentUrlWasChanged} from "Common/Routing/Domain/Event/CurrentUrlWasChanged";
 import {ByRedirectInfluencedUrlQuery} from "Common/Routing/Domain/Query/ByRedirectInfluencedUrlQuery";
-import {createRedirectWasAdded} from "Common/Routing/Domain/Events/RedirectWasAdded";
+import {createRedirectWasAdded} from "Common/Routing/Domain/Event/RedirectWasAdded";
 
 export class Router {
     private readonly eventBus: EventBus;
@@ -33,6 +33,9 @@ export class Router {
 
     public openUrl(settings: OpenUrlSettings, mustTriggerHistoryManager: boolean = true): void
     {
+        console.log('settings');
+        console.log(settings);
+
         const urlToUse = this.byRedirectInfluencedUrlQuery.get(settings.url);
         const target = (!settings.target ? '_self' : settings.target);
         if(mustTriggerHistoryManager && target === '_self') {

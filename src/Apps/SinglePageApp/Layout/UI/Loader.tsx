@@ -1,14 +1,11 @@
 import {connect} from "react-redux";
-import {HttpRequestManagerInterface} from "Common/RequestHandling/Domain/HttpRequestHandler";
 import {Loader as PresentationalLoader, LoaderState as PresentationalLoaderState} from "Common/Layout/UI/Loader/Loader";
+import {RootState} from "SinglePageApp/AppBase/Store";
+import {isHttpRequestRunningWithEnabledLoader} from "Common/RequestHandling/Domain/Query/IsHttpRequestRunningWithEnabledLoaderQuery";
 
-export type LoaderProps = {
-    httpRequestManager: HttpRequestManagerInterface
-};
-
-const mapStateToProps = ({}, props: LoaderProps): PresentationalLoaderState => {
+const mapStateToProps = (state: RootState): PresentationalLoaderState => {
     return {
-        isVisible: props.httpRequestManager.hasRunningRequestsWithEnabledLoader(),
+        isVisible: isHttpRequestRunningWithEnabledLoader(state.requestHandling),
     };
 };
 

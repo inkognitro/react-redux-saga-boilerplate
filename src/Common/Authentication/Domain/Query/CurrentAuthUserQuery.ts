@@ -1,6 +1,6 @@
 import {AuthState, AuthStateSelector, AuthUser} from "Common/Authentication/Domain/Types";
 
-function findCurrentAuthUser(state: AuthState): (null | AuthUser) {
+export function findCurrentAuthUser(state: AuthState): (null | AuthUser) {
     if(state.currentAuthUser) {
         return state.currentAuthUser;
     }

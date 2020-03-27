@@ -14,25 +14,24 @@ export interface ActionListenerFactory<Services> {
     create(services: Services): ActionListener
 }
 
-export interface ServicesFactory<PresetServices, Services> {
-    create(presetServices: PresetServices, store: Store): Services
+export interface ServicesFactory<Services> {
+    create(presetServices: Partial<Services>, store: Store): Services
 }
 
-export interface PresetServicesFactory<PresetServices> {
-    create(store: Store): PresetServices
-}
-
-export function createMiddleware<PresetServices, Services>(
-    presetServicesFactory: PresetServicesFactory<PresetServices>,
-    servicesFactory: ServicesFactory<PresetServices, Services>,
+export function createMiddleware<Services>(
+    presetServices: Partial<Services>,
+    servicesFactory: ServicesFactory<Services>,
     actionListenerFactories: ActionListenerFactory<Services>[]
 ): Middleware {
     return function initializeServices(store: Store) {
-        const presetServices = presetServicesFactory.create(store);
         const services = servicesFactory.create(presetServices, store);
         return function initializeActionListeners(next: Dispatch) {
             const actionListeners = actionListenerFactories.map(factory => factory.create(services));
             return function handleAction(action: Action) {
+
+                console.log('action');
+                console.log(action);
+
                 for(let index in actionListeners) {
                     const actionListener = actionListeners[index];
                     if(!actionListener.getActionTypesToListen().includes(action.type)) {

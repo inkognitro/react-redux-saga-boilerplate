@@ -1,13 +1,16 @@
-import {PresetServicesFactory, ServicesFactory} from "Common/AppBase/ActionListener";
+import {ServicesFactory} from "Common/AppBase/ActionListener";
 import {Toaster} from "Common/Toaster/Domain/Toaster";
 import {CommandBus} from "Common/AppBase/CommandBus";
 import {EventBus} from "Common/AppBase/EventBus";
+import {History} from "history";
+import {Router} from "Common/Routing/Domain/Router";
 
 export type AppServices = {
+    history: History,
     commandBus: CommandBus,
     eventBus: EventBus
     toaster: Toaster,
+    router: Router,
 };
-export type AppPresetServices = Partial<AppServices>;
-export interface AppServicesFactory extends ServicesFactory<AppPresetServices, AppServices> {}
-export interface AppPresetServicesFactory extends PresetServicesFactory<AppPresetServices> {}
+
+export interface AppServicesFactory extends ServicesFactory<AppServices> {}
