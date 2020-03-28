@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 import {createHomeRouteUrl, createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/Routes';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
 import {User} from "Common/Model/Domain/User/User";
-import {RootState} from "SinglePageApp/AppBase/Store";
+import {RootState} from "SinglePageApp/Bootstrap/Store";
 
 type RepresentationalNavBarState = {
     currentUser: (User | null),

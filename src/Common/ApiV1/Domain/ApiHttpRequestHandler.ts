@@ -19,7 +19,7 @@ import {BasicResponseBody, MessageTypes} from "Common/ApiV1/Domain/Types";
 import {COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID} from "Common/Translator/Domain/Translation/en";
 import {createAddToastMessage} from "Common/Toaster/Domain/Command/AddToastMessage";
 import {ToastTypes} from "Common/Toaster/Domain/Types";
-import {CommandBus} from "Common/AppBase/CommandBus";
+import {CommandBus} from "Common/Bootstrap/CommandBus";
 import {TranslatedTextReader} from "Common/Translator/Domain/Query/TranslatedTextQuery";
 import {CurrentAuthUserReader} from "Common/Authentication/Domain/Query/CurrentAuthUserQuery";
 

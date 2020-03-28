@@ -1,4 +1,4 @@
-import {CommandHandler} from "Common/AppBase/CommandActionListener";
+import {CommandHandler} from "Common/Bootstrap/CommandActionListener";
 import {OpenUrl} from "Common/Routing/Domain/Commands/OpenUrl";
 import {Router} from "Common/Routing/Domain/Router";
 import {AddRedirect} from "Common/Routing/Domain/Commands/AddRedirect";

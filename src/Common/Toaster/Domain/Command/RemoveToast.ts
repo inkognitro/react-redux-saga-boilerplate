@@ -1,14 +1,23 @@
-import {CommandTypes} from "Common/Toaster/Domain/Command/CommandHandler";
-import {Command, CommandAction, createCommandAction} from "Common/Bootstrap/Command";
+import {Command} from "Common/Bootstrap/Command";
+import {put, takeEvery} from "@redux-saga/core/effects";
+import {createToastWasRemoved} from "Common/Toaster/Domain/Event/ToastWasRemoved";
+import {CommandTypes} from "Common/Toaster/Domain/Toaster";
 
-export function createRemoveToastAction(toastId: string): CommandAction {
-    const command: RemoveToast = {
+function* handleRemoveToast(command: RemoveToast): Generator {
+    yield put(createToastWasRemoved(command.payload.toastId));
+}
+
+export function* watchRemoveToast() {
+    yield takeEvery(CommandTypes.ADD_TOAST_MESSAGE, handleRemoveToast)
+}
+
+export function createRemoveToast(toastId: string): RemoveToast {
+    return {
         type: CommandTypes.REMOVE_TOAST,
         payload: {
             toastId: toastId
         }
     };
-    return createCommandAction(command);
 }
 
 export type RemoveToast = Command<CommandTypes.REMOVE_TOAST, {

@@ -8,7 +8,17 @@ import {RequestHandlingState} from "Common/RequestHandling/Domain/Types";
 import {RoutingState} from "Common/Routing/Domain/Types";
 import {homeRouteReducer} from "SinglePageApp/Routing/Home/Home";
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from "SinglePageApp/AppBase/RootSaga";
+import {all, call} from "@redux-saga/core/effects";
+import {toasterSaga} from "Common/Toaster/Domain/Toaster";
+import {createBrowserHistory, History} from 'history';
+
+export const browserHistory: History = createBrowserHistory();
+
+function* rootSaga() {
+    yield all([
+        call(toasterSaga),
+    ])
+}
 
 const routingReducerManager = new RoutingReducerManager([
     homeRouteReducer
@@ -33,6 +43,6 @@ export function createStore(): Store {
         storeReducer,
         applyMiddleware(sagaMiddleware)
     );
-    sagaMiddleware.run(rootSaga);
+    sagaMiddleware.run(rootSaga); //todo: return {sagaMiddleware, store} instead!
     return store;
 }

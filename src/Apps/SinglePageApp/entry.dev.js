@@ -2,12 +2,9 @@ import React from 'react';
 import {render} from 'react-dom'
 import { hot } from 'react-hot-loader/root';
 import {RootComponent} from './App';
-import {DevAppServicesFactory, devPresetServices} from "./AppBase/ServiceFactories/DevAppServicesFactory";
-import {createStore} from "./AppBase/Store";
+import {browserHistory, createStore} from "./Bootstrap/Store";
 const HotReloadedApp = hot(RootComponent);
 
-const servicesFactory = new DevAppServicesFactory();
-const store = createStore(servicesFactory, devPresetServices);
-
+const store = createStore();
 const appContainer = document.getElementById('app');
-render(<HotReloadedApp history={devPresetServices.history} store={store} />, appContainer);
+render(<HotReloadedApp history={browserHistory} store={store} />, appContainer);

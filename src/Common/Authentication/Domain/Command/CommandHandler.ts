@@ -1,4 +1,4 @@
-import {CommandHandler} from "Common/AppBase/CommandActionListener";
+import {CommandHandler} from "Common/Bootstrap/CommandActionListener";
 import {Login} from "Common/Authentication/Domain/Command/Login";
 import {Logout} from "Common/Authentication/Domain/Command/Logout";
 import {InitializeCurrentUser} from "Common/Authentication/Domain/Command/InitializeCurrentUser";

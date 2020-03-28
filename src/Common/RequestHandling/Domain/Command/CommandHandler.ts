@@ -1,4 +1,4 @@
-import {CommandHandler} from "Common/AppBase/CommandActionListener";
+import {CommandHandler} from "Common/Bootstrap/CommandActionListener";
 import {HttpRequestHandler} from "Common/RequestHandling/Domain/HttpRequestHandler";
 import {SendHttpRequest} from "Common/RequestHandling/Domain/Command/SendHttpRequest";
 

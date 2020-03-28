@@ -1,5 +1,5 @@
-import {CommandBus} from "Common/AppBase/CommandBus";
-import {EventBus} from "Common/AppBase/EventBus";
+import {CommandBus} from "Common/Bootstrap/CommandBus";
+import {EventBus} from "Common/Bootstrap/EventBus";
 import {
     createAuthenticate,
     ErrorResult as AuthenticateErrorResult,

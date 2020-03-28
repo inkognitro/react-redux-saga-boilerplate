@@ -1,6 +1,6 @@
 import {Redirect} from "Common/Routing/Domain/Types";
 import {HistoryManager} from "Common/Routing/Domain/HistoryManager";
-import {EventBus} from "Common/AppBase/EventBus";
+import {EventBus} from "Common/Bootstrap/EventBus";
 import {createCurrentUrlWasChanged} from "Common/Routing/Domain/Event/CurrentUrlWasChanged";
 import {ByRedirectInfluencedUrlQuery} from "Common/Routing/Domain/Query/ByRedirectInfluencedUrlQuery";
 import {createRedirectWasAdded} from "Common/Routing/Domain/Event/RedirectWasAdded";

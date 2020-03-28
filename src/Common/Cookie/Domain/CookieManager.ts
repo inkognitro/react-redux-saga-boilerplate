@@ -1,4 +1,4 @@
-import {EventBus} from "Common/AppBase/EventBus";
+import {EventBus} from "Common/Bootstrap/EventBus";
 import {createCookieWasSaved} from "Common/Cookie/Domain/Event/CookieWasSaved";
 import {CookieWriter} from "Common/Cookie/Domain/CookieWriter";
 import {createCookieWasRemoved} from "Common/Cookie/Domain/Event/CookieWasRemoved";

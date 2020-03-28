@@ -1,4 +1,4 @@
-import {CommandHandler} from "Common/AppBase/CommandActionListener";
+import {CommandHandler} from "Common/Bootstrap/CommandActionListener";
 import {Authenticate} from "Common/ApiV1/Domain/Command/Auth/Authenticate";
 import {AuthenticateHandler} from "Common/ApiV1/Domain/Command/Auth/AuthenticateHandler";
 import {RefreshAuthenticationHandler} from "Common/ApiV1/Domain/Command/Auth/RefreshAuthenticationHandler";

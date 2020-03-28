@@ -1,6 +1,6 @@
 import {HttpRequest, HttpRequestResponse, SuccessHttpRequestResponse} from "Common/RequestHandling/Domain/Types";
-import {CommandBus} from "Common/AppBase/CommandBus";
-import {EventBus} from "Common/AppBase/EventBus";
+import {CommandBus} from "Common/Bootstrap/CommandBus";
+import {EventBus} from "Common/Bootstrap/EventBus";
 import {createRequestWasSent} from "Common/RequestHandling/Domain/Event/HttpRequestWasSent";
 import {createHttpRequestWasFinished} from "Common/RequestHandling/Domain/Event/HttpRequestWasFinished";
 

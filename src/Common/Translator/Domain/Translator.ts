@@ -1,4 +1,4 @@
-import {EventBus} from "Common/AppBase/EventBus";
+import {EventBus} from "Common/Bootstrap/EventBus";
 import {LanguageIds} from "Common/Translator/Domain/Types";
 import {createUILanguageWasSet} from "Common/Translator/Domain/Event/UILanguageWasSet";
 import {translationIdToTranslationMapping} from "Common/Translator/Domain/Translation/en";

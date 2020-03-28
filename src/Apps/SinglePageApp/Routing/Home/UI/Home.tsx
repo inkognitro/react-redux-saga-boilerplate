@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {FunctionalLink, RouterLink} from 'Common/Layout/UI/Link/Link';
 import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {Dispatch} from "redux";
-import {createAddToastMessageAction} from "Common/Toaster/Domain/Command/AddToastMessage";
+import {createAddToastMessage} from "Common/Toaster/Domain/Command/AddToastMessage";
 import {connect} from "react-redux";
-import {RootState} from "SinglePageApp/AppBase/Store";
+import {RootState} from "SinglePageApp/Bootstrap/Store";
 import {HomeState} from "SinglePageApp/Routing/Home/Domain/Types";
 
 type HomeComponentState = (HomeState & {
@@ -64,7 +64,7 @@ const mapStateToProps = (state: RootState<HomeState>): HomeComponentState => {
 
 const mapDispatchToProps = (dispatch: Dispatch): HomeComponentCallbacks => {
     return {
-        onAddToast: (type: ToastTypes) => dispatch(createAddToastMessageAction({
+        onAddToast: (type: ToastTypes) => dispatch(createAddToastMessage({
             content: 'foo',
             type: type
         })),

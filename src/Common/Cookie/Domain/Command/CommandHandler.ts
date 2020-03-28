@@ -1,4 +1,4 @@
-import {CommandHandler} from "Common/AppBase/CommandActionListener";
+import {CommandHandler} from "Common/Bootstrap/CommandActionListener";
 import {SaveCookie} from "Common/Cookie/Domain/Command/SaveCookie";
 import {CookieManager} from "Common/Cookie/Domain/CookieManager";
 import {RemoveCookie} from "Common/Cookie/Domain/Command/RemoveCookie";

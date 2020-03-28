@@ -1,4 +1,4 @@
-import {CommandHandler} from "Common/AppBase/CommandActionListener";
+import {CommandHandler} from "Common/Bootstrap/CommandActionListener";
 import {Translator} from "Common/Translator/Domain/Translator";
 import {SetUILanguage} from "Common/Translator/Domain/Command/SetUILanguage";
 
