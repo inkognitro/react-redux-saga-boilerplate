@@ -5,7 +5,7 @@ export function createMessageWasAddedToPipeline(messageToAdd: MessageToAdd): Mes
     return {
         type: ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
         payload: {
-            messageToAdd: messageToAdd
+            messageToAdd: messageToAdd,
         }
     };
 }

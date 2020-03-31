@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {FunctionalLink, RouterLink} from 'Common/Layout/UI/Link/Link';
-import {ToastTypes} from "Common/Toaster/Domain/Types";
+import {ToastTypes} from "Common/ToasterOld/Domain/Types";
 import {Dispatch} from "redux";
-import {createAddToastMessage} from "Common/Toaster/Domain/Command/AddToastMessage";
+import {createAddToastMessage} from "Common/ToasterOld/Domain/Command/AddToastMessage";
 import {connect} from "react-redux";
 import {RootState} from "SinglePageApp/Bootstrap/Store";
 import {HomeState} from "SinglePageApp/Routing/Home/Domain/Types";

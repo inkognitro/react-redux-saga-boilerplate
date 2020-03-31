@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
-import {Toaster as RepresentationalToaster, ToastsCallbacks, ToastsState} from 'Common/Toaster/UI/Toaster';
+import {Toaster as RepresentationalToaster, ToastsCallbacks, ToastsState} from 'Common/ToasterOld/UI/Toaster';
 import {Dispatch} from "redux";
 import {RootState} from "SinglePageApp/Bootstrap/Store";
-import {createRemoveToast} from "Common/Toaster/Domain/Command/RemoveToast";
-import {createBlockToastForMessageReceiving} from "Common/Toaster/Domain/Command/BlockToastForMessageReceiving";
-import {createRemoveToastMessage} from "Common/Toaster/Domain/Command/RemoveToastMessage";
-import {getToasts} from "Common/Toaster/Domain/Query/ToastsQuery";
+import {createRemoveToast} from "Common/ToasterOld/Domain/Command/RemoveToast";
+import {createBlockToastForMessageReceiving} from "Common/ToasterOld/Domain/Command/BlockToastForMessageReceiving";
+import {createRemoveToastMessage} from "Common/ToasterOld/Domain/Command/RemoveToastMessage";
+import {getToasts} from "Common/ToasterOld/Domain/Query/ToastsQuery";
 
 const mapStateToProps = (rootState: RootState): ToastsState => {
     return {

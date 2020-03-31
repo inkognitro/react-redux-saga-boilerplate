@@ -1,23 +1,21 @@
 import {applyMiddleware, combineReducers, createStore as createReduxStore, Store} from 'redux'
-import {toasterReducer} from 'Common/Toaster/Domain/Event/Reducer';
+import {toasterReducer} from 'Common/ToasterOld/Domain/Event/Reducer';
 import {requestHandlingReducer} from 'Common/RequestHandling/Domain/Event/Reducer';
 import {authenticationReducer} from "Common/Authentication/Domain/Event/Reducer";
 import {ReducerManager as RoutingReducerManager} from 'Common/Routing/Domain/Event/Reducer';
-import {ToasterState} from "Common/Toaster/Domain/Types";
+import {ToasterState} from "Common/ToasterOld/Domain/Types";
 import {RequestHandlingState} from "Common/RequestHandling/Domain/Types";
 import {RoutingState} from "Common/Routing/Domain/Types";
 import {homeRouteReducer} from "SinglePageApp/Routing/Home/Home";
 import createSagaMiddleware from 'redux-saga';
-import {all, call} from "@redux-saga/core/effects";
-import {toasterSaga} from "Common/Toaster/Domain/Toaster";
+import {spawn} from "@redux-saga/core/effects";
+import {toasterSaga} from "Common/ToasterOld/Domain/Toaster";
 import {createBrowserHistory, History} from 'history';
 
 export const browserHistory: History = createBrowserHistory();
 
-function* rootSaga() {
-    yield all([
-        call(toasterSaga),
-    ])
+function* rootSaga(): Generator {
+    yield spawn(toasterSaga);
 }
 
 const routingReducerManager = new RoutingReducerManager([

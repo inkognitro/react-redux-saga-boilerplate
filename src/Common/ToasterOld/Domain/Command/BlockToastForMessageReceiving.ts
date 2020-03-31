@@ -1,7 +1,7 @@
 import {Command} from "Common/Bootstrap/Command";
-import {CommandTypes} from "Common/Toaster/Domain/Toaster";
+import {CommandTypes} from "Common/ToasterOld/Domain/Toaster";
 import {put, takeEvery} from "@redux-saga/core/effects";
-import {createToastWasBlockedForMessageReceiving} from "Common/Toaster/Domain/Event/ToastWasBlockedForMessageReceiving";
+import {createToastWasBlockedForMessageReceiving} from "Common/ToasterOld/Domain/Event/ToastWasBlockedForMessageReceiving";
 
 function* handleBlockToastForMessageReceiving(command: BlockToastForMessageReceiving): Generator {
     yield put(createToastWasBlockedForMessageReceiving(command.payload.toastId));

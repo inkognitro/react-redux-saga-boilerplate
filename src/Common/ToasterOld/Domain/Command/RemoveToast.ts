@@ -1,7 +1,7 @@
 import {Command} from "Common/Bootstrap/Command";
 import {put, takeEvery} from "@redux-saga/core/effects";
-import {createToastWasRemoved} from "Common/Toaster/Domain/Event/ToastWasRemoved";
-import {CommandTypes} from "Common/Toaster/Domain/Toaster";
+import {createToastWasRemoved} from "Common/ToasterOld/Domain/Event/ToastWasRemoved";
+import {CommandTypes} from "Common/ToasterOld/Domain/Toaster";
 
 function* handleRemoveToast(command: RemoveToast): Generator {
     yield put(createToastWasRemoved(command.payload.toastId));

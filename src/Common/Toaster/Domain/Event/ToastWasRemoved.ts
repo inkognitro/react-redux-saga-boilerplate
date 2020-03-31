@@ -3,13 +3,13 @@ import {Event} from "Common/Bootstrap/Event";
 
 export function createToastWasRemoved(toastId: string): ToastWasRemoved {
     return {
-        type: ToasterEventTypes.REMOVE_TOAST,
+        type: ToasterEventTypes.TOAST_WAS_REMOVED,
         payload: {
             toastId: toastId,
         }
     };
 }
 
-export type ToastWasRemoved = Event<ToasterEventTypes.REMOVE_TOAST, {
+export type ToastWasRemoved = Event<ToasterEventTypes.TOAST_WAS_REMOVED, {
     toastId: string,
 }>;
