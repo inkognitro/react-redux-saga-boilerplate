@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {CloseIcon} from "Common/Layout/UI/Icons/CloseIcon";
 import {IconSizes, IconTypes} from "Common/Layout/UI/Icons/Icon";
 import {TimelineLite, Power1} from 'gsap';
-import {Message as MessageData} from "Common/ToasterOld/Domain/Types";
+import {Message as MessageData} from "Common/Toaster/Domain/Types";
 
 export type MessageProps = (MessageData & {
-    shouldPlayOutroAnimationOnCloseClick: boolean,
+    message: MessageData,
     onRemove(): void
 });
 
@@ -27,21 +27,25 @@ export class Message extends Component<MessageProps> {
         this.outroAnimation.to(this.message,  {x: '-100%', duration: 0.4, ease: Power1.easeIn});
         this.outroAnimation.to(this.message,  {height: 0, duration: 0.15});
         this.outroAnimation.set(this.message,  {display: 'none'});
+        if(this.introAnimation !== null) {
+            this.introAnimation.pause();
+        }
         this.outroAnimation.play();
     }
 
     componentDidMount() {
-        if(this.props.isIntroAnimationEnabled) {
+        if(this.props.message.isIntroAnimationRunning) {
             this.playIntroAnimation();
         }
     }
 
-    close() {
-        if(this.props.shouldPlayOutroAnimationOnCloseClick) {
+    componentDidUpdate(prevProps: MessageProps) {
+        if(
+            this.props.message.isOutroAnimationRunning
+            && prevProps.message.isOutroAnimationRunning !== this.props.message.isOutroAnimationRunning
+        ) {
             this.playOutroAnimation();
-            return;
         }
-        this.props.onRemove();
     }
 
     render() {
@@ -49,7 +53,7 @@ export class Message extends Component<MessageProps> {
             <div ref={(element: HTMLDivElement) => this.message = element} className="app-toast-message">
                 <div className="app-toast-message-content">
                     <CloseIcon
-                        onClick={() => this.close()}
+                        onClick={() => this.props.onRemove()}
                         type={IconTypes.SECONDARY}
                         size={IconSizes.SM}
                         className="app-toast-message-close-icon"

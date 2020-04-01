@@ -1,30 +1,26 @@
 import React, {FunctionComponent} from 'react';
 import {Toast} from './Toast';
-import {Toast as ToastData} from "Common/ToasterOld/Domain/Types";
+import {Toast as ToastData} from "Common/Toaster/Domain/Types";
 import './Toaster.scss';
 
-export type ToastsState = {
+export type ToasterState = {
     toasts: ToastData[],
 }
 
-export type ToastsCallbacks = {
-    onRemoveToast(toastId: string): void,
-    onRemoveToastMessage(toastId: string, toastMessageId: string): void,
-    onBlockToastForMessageReceiving(toastId: string): void,
+export type ToasterCallbacks = {
+    onRemoveMessage(messageId: string): void,
 };
 
-export type ToastsProps = (ToastsState & ToastsCallbacks);
+export type ToasterProps = (ToasterState & ToasterCallbacks);
 
-export const Toaster: FunctionComponent<ToastsProps> = (props) => {
+export const Toaster: FunctionComponent<ToasterProps> = (props) => {
     return (
         <div className="app-toasts">
-            {props.toasts.map((toastData: ToastData) => (
+            {props.toasts.map((toast: ToastData) => (
                 <Toast
-                    {...toastData}
-                    key={toastData.id}
-                    onRemove={() => props.onRemoveToast(toastData.id)}
-                    onRemoveMessage={(messageId: string) => props.onRemoveToastMessage(toastData.id, messageId)}
-                    onBlockMessageReceiving={() => props.onBlockToastForMessageReceiving(toastData.id)}
+                    key={toast.id}
+                    toast={toast}
+                    onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
                 />
             ))}
         </div>
