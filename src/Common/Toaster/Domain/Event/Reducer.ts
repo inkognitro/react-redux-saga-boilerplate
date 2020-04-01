@@ -1,4 +1,4 @@
-import {ToasterEvent, ToasterState} from "Common/Toaster/Domain/Types";
+import {ToasterEvent, ToasterEventTypes, ToasterState} from "Common/Toaster/Domain/Types";
 
 const initialToasterState: ToasterState = {
     messagesToAdd: [],
@@ -8,6 +8,15 @@ const initialToasterState: ToasterState = {
 export function toasterReducer(state: ToasterState = initialToasterState, event?: ToasterEvent): ToasterState {
     if (!event) {
         return state;
+    }
+
+    if (event.type === ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE) {
+        return Object.assign({}, state, {
+            messagesToAdd: [
+                ...state.messagesToAdd,
+                event.payload.messageToAdd
+            ],
+        });
     }
 
     return state;
