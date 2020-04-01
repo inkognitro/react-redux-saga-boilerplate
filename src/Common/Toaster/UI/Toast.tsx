@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Message} from "./Message";
+import {Message} from "Common/Toaster/UI/Message";
 import {Power1, TimelineLite} from "gsap/gsap-core";
 import {Message as MessageData, Toast as ToastData, ToastTypes} from "Common/Toaster/Domain/Types";
 

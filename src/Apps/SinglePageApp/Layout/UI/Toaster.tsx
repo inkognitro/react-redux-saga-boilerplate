@@ -1,23 +1,19 @@
 import { connect } from 'react-redux'
-import {Toaster as RepresentationalToaster, ToastsCallbacks, ToastsState} from 'Common/ToasterOld/UI/Toaster';
+import {Toaster as RepresentationalToaster, ToasterCallbacks, ToasterState} from 'Common/Toaster/UI/Toaster';
 import {Dispatch} from "redux";
 import {RootState} from "SinglePageApp/Bootstrap/Store";
-import {createRemoveToast} from "Common/ToasterOld/Domain/Command/RemoveToast";
-import {createBlockToastForMessageReceiving} from "Common/ToasterOld/Domain/Command/BlockToastForMessageReceiving";
-import {createRemoveToastMessage} from "Common/ToasterOld/Domain/Command/RemoveToastMessage";
-import {getToasts} from "Common/ToasterOld/Domain/Query/ToastsQuery";
+import {createRemoveMessage} from "Common/Toaster/Domain/Command/RemoveMessage";
+import {getAllToasts} from "Common/Toaster/Domain/Query/ToastQuery";
 
-const mapStateToProps = (rootState: RootState): ToastsState => {
+const mapStateToProps = (rootState: RootState): ToasterState => {
     return {
-        toasts: getToasts(rootState.toaster),
+        toasts: getAllToasts(rootState.toaster),
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): ToastsCallbacks => {
+const mapDispatchToProps = (dispatch: Dispatch): ToasterCallbacks => {
     return {
-        onRemoveToast: (toastId: string) => dispatch(createRemoveToast(toastId)),
-        onRemoveToastMessage: (toastId: string, toastMessageId: string) => dispatch(createRemoveToastMessage(toastId, toastMessageId)),
-        onBlockToastForMessageReceiving: (toastId: string) => dispatch(createBlockToastForMessageReceiving(toastId)),
+        onRemoveMessage: (messageId: string) => dispatch(createRemoveMessage(messageId)),
     };
 };
 

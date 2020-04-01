@@ -17,8 +17,8 @@ import {
 } from "Common/RequestHandling/Domain/Types";
 import {BasicResponseBody, MessageTypes} from "Common/ApiV1/Domain/Types";
 import {COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID} from "Common/Translator/Domain/Translation/en";
-import {createAddToastMessage} from "Common/ToasterOld/Domain/Command/AddToastMessage";
-import {ToastTypes} from "Common/ToasterOld/Domain/Types";
+import {createShowMessage} from "Common/Toaster/Domain/Command/ShowMessage";
+import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {CommandBus} from "Common/Bootstrap/CommandBus";
 import {TranslatedTextReader} from "Common/Translator/Domain/Query/TranslatedTextQuery";
 import {CurrentAuthUserReader} from "Common/Authentication/Domain/Query/CurrentAuthUserQuery";
@@ -82,7 +82,7 @@ export class ApiHttpRequestHandler {
                 translationId: COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID
             });
             const content = (foundTranslatedText ? foundTranslatedText : 'Could not connect to server.');
-            const command = createAddToastMessage({
+            const command = createShowMessage({
                 type: ToastTypes.ERROR,
                 content: content
             });

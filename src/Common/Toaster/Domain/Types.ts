@@ -16,26 +16,26 @@ export enum ToastTypes {
 }
 
 export type MessageToAdd = {
-    id: string,
     toastType: ToastTypes,
+    mustBeShownInSeparateToast: boolean,
     message: Message,
 };
 
 export type Message = {
     id: string,
-    canBeClosed: boolean,
-    automaticCloseDelayInMs?: number,
+    canBeClosedManually: boolean,
+    automaticCloseDelayInMs: (null | number),
     content: string,
-    isIntroAnimationRunning: boolean,
-    isOutroAnimationRunning: boolean,
+    isIntroAnimationRunning?: boolean,
+    isOutroAnimationRunning?: boolean,
 };
 
 export type Toast = {
     id: string,
     type: ToastTypes,
     messages: Message[],
-    isIntroAnimationRunning: boolean,
-    isOutroAnimationRunning: boolean,
+    isIntroAnimationRunning?: boolean,
+    isOutroAnimationRunning?: boolean,
 };
 
 export enum ToasterEventTypes {
@@ -66,3 +66,5 @@ export type ToasterState = {
     messagesToAdd: MessageToAdd[],
     toasts: Toast[],
 };
+
+export type ToasterStateSelector<State = any> = (state: State) => ToasterState

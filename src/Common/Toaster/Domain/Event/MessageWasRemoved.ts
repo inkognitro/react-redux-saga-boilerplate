@@ -1,7 +1,7 @@
 import {ToasterEventTypes} from "Common/Toaster/Domain/Types";
 import {Event} from "Common/Bootstrap/Event";
 
-export function createMessageWasAddedToPipeline(messageId: string): MessageWasRemoved {
+export function createMessageWasRemoved(messageId: string): MessageWasRemoved {
     return {
         type: ToasterEventTypes.MESSAGE_WAS_REMOVED,
         payload: {
