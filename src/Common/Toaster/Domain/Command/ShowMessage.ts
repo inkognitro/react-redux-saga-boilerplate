@@ -9,11 +9,6 @@ import {createMessageWasAddedToPipeline} from "Common/Toaster/Domain/Event/Messa
 import {createMoveMessagesFromPipelineToToasts} from "Common/Toaster/Domain/Command/MoveMessagesFromPipelineToToasts";
 
 export function createWatchShowMessageSaga(toasterStateSelector: ToasterStateSelector): GeneratorFunction {
-    const getToasterState = function(): ToasterState {
-        //@ts-ignore
-        return select(toasterStateSelector);
-    };
-
     const createAutomaticCloseDelayInMs = function(settings: Payload): (null | number) {
         if(settings.automaticCloseDelayInMs === null) {
             return null;
@@ -32,7 +27,8 @@ export function createWatchShowMessageSaga(toasterStateSelector: ToasterStateSel
     };
 
     const handleShowMessage = function* (command: ShowMessage): Generator {
-        const toasterState = getToasterState();
+        //@ts-ignore
+        const toasterState: ToasterState = yield select(toasterStateSelector);
         if(command.payload.id && findToastByMessageId(toasterState, command.payload.id)) {
             return;
         }

@@ -19,7 +19,7 @@ export function findMessageToAddByMessageId(state: ToasterState, messageId: stri
     return null;
 }
 
-export function getNonRemovingMessagesInToast(state: ToasterState, toastId: string): (null | Message[]) {
+export function getNonRemovingMessagesInToast(state: ToasterState, toastId: string): Message[] {
     const toast = state.toasts.find((toast) => (toast.id === toastId));
     if(!toast) {
         return [];

@@ -27,7 +27,7 @@ export class Message extends Component<MessageProps> {
         this.outroAnimation.to(this.message,  {x: '-100%', duration: 0.4, ease: Power1.easeIn});
         this.outroAnimation.to(this.message,  {height: 0, duration: 0.15});
         this.outroAnimation.set(this.message,  {display: 'none'});
-        if(this.introAnimation !== null) {
+        if(this.introAnimation) {
             this.introAnimation.pause();
         }
         this.outroAnimation.play();

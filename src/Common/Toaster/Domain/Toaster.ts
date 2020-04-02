@@ -1,5 +1,5 @@
 import {spawn} from "@redux-saga/core/effects";
-import {watchRemoveMessage} from "Common/Toaster/Domain/Command/RemoveMessage";
+import {createWatchRemoveMessageSaga} from "Common/Toaster/Domain/Command/RemoveMessage";
 import {createWatchShowMessageSaga} from "Common/Toaster/Domain/Command/ShowMessage";
 import {createWatchMoveMessagesFromPipelineToToastsSaga} from "Common/Toaster/Domain/Command/MoveMessagesFromPipelineToToasts";
 import {ToasterStateSelector} from "Common/Toaster/Domain/Types";
@@ -11,11 +11,9 @@ export enum ToasterCommandTypes {
 }
 
 export function createToasterSaga(toasterStateSelector: ToasterStateSelector): () => Generator {
-    const watchShowMessage = createWatchShowMessageSaga(toasterStateSelector);
-    const watchMoveMessagesFromPipelineToToasts = createWatchMoveMessagesFromPipelineToToastsSaga(toasterStateSelector);
     return function* toasterSaga() {
-        yield spawn(watchRemoveMessage);
-        yield spawn(watchShowMessage);
-        yield spawn(watchMoveMessagesFromPipelineToToasts);
+        yield spawn(createWatchShowMessageSaga(toasterStateSelector));
+        yield spawn(createWatchMoveMessagesFromPipelineToToastsSaga(toasterStateSelector));
+        yield spawn(createWatchRemoveMessageSaga(toasterStateSelector));
     }
 }

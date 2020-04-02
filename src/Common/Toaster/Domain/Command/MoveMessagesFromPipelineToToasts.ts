@@ -16,10 +16,6 @@ export function createWatchMoveMessagesFromPipelineToToastsSaga(
 ): GeneratorFunction {
     const getToastsToMerge = function(toasterState: ToasterState): Toast[] {
         let toastsToMerge: Toast[] = [];
-
-        console.log('toasterState');
-        console.log(toasterState);
-
         toasterState.messagesToAdd.forEach((messageToAdd) => {
             const toastId = (messageToAdd.mustBeShownInSeparateToast
                     ? uuidV4() : getCommonToastIdByType(messageToAdd.toastType)
@@ -77,10 +73,6 @@ export function createWatchMoveMessagesFromPipelineToToastsSaga(
     const handleMoveMessagesFromPipelineToToasts = function* (command: MoveMessagesFromPipelineToToasts): Generator {
         //@ts-ignore
         const toasterState: ToasterState = yield select(toasterStateSelector);
-
-        console.log('toasterState');
-        console.log(toasterState);
-
         const toastsToMerge = getToastsToMerge(toasterState);
         let functionMustBeReExecuted = false;
         for(let index in toastsToMerge) {

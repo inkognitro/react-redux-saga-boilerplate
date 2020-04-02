@@ -26,7 +26,7 @@ export class Toast extends Component<ToastProps> {
         this.outroAnimation = new TimelineLite({paused: true});
         this.outroAnimation.to(this.toastElement, {opacity: 0, y: 25, marginTop: 0, duration: 0.4, ease: Power1.easeIn});
         this.outroAnimation.to(this.toastWrapperElement, {height: 0, duration: 0.15});
-        if(this.introAnimation !== null) {
+        if(this.introAnimation) {
             this.introAnimation.pause();
         }
         this.outroAnimation.play();
