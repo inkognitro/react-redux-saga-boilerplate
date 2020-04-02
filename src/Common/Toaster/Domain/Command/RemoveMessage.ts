@@ -3,7 +3,7 @@ import {takeEvery} from "@redux-saga/core/effects";
 import {ToasterCommandTypes} from "Common/Toaster/Domain/Toaster";
 
 function* handleRemoveMessage(_: RemoveMessage): Generator {
-
+    console.log('handleRemoveMessage'); //todo!
 }
 
 export function* watchRemoveMessage() {

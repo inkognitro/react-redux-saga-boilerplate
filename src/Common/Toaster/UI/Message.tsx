@@ -58,7 +58,7 @@ export class Message extends Component<MessageProps> {
                         size={IconSizes.SM}
                         className="app-toast-message-close-icon"
                     />
-                    {this.props.content}
+                    {this.props.message.content}
                 </div>
             </div>
         );

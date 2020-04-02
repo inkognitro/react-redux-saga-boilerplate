@@ -24,7 +24,7 @@ export function createWatchShowMessageSaga(toasterStateSelector: ToasterStateSel
         return 3000;
     };
 
-    const createCanBeClosed = function(settings: Payload): boolean {
+    const createCanBeClosedManually = function(settings: Payload): boolean {
         if(settings.canBeClosedManually) {
             return true;
         }
@@ -46,7 +46,7 @@ export function createWatchShowMessageSaga(toasterStateSelector: ToasterStateSel
                 id: (command.payload.id ? command.payload.id : uuidV4()),
                 content: command.payload.content,
                 automaticCloseDelayInMs: createAutomaticCloseDelayInMs(command.payload),
-                canBeClosedManually: createCanBeClosed(command.payload),
+                canBeClosedManually: createCanBeClosedManually(command.payload),
             }
         };
         yield put(createMessageWasAddedToPipeline(messageToAdd));

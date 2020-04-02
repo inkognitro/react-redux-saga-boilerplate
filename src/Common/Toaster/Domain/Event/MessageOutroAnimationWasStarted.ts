@@ -1,7 +1,7 @@
 import {ToasterEventTypes} from "Common/Toaster/Domain/Types";
 import {Event} from "Common/Bootstrap/Event";
 
-export function createMessageIntroAnimationsWereFinished(messageId: string): MessageOutroAnimationWasStarted {
+export function createMessageOutroAnimationWasStarted(messageId: string): MessageOutroAnimationWasStarted {
     return {
         type: ToasterEventTypes.MESSAGE_OUTRO_ANIMATION_WAS_STARTED,
         payload: {
