@@ -1,4 +1,4 @@
-import {TranslatorState, TranslatorStateSelector} from "Common/Translator/Domain/Types";
+import {TranslatorState} from "Common/Translator/Domain/Types";
 
 export function findTranslatedText( //todo: create selector with reselect library (performance)
     state: TranslatorState,
@@ -26,15 +26,3 @@ export type TranslatedTextQuery = {
     translationId: string,
     placeholders?: Placeholders,
 };
-
-export class TranslatedTextReader {
-    private readonly getTranslatorState: TranslatorStateSelector;
-
-    constructor(getTranslatorState: TranslatorStateSelector) {
-        this.getTranslatorState = getTranslatorState;
-    }
-
-    public find(query: TranslatedTextQuery): (null | string) {
-        return findTranslatedText(this.getTranslatorState(), query);
-    }
-}

@@ -12,7 +12,7 @@ export function translator(state: TranslatorState = initialTranslatorState, even
     }
 
     if(event.type === TranslatorEventTypes.UI_LANGUAGE_WAS_SET) {
-
+        //todo: set translations
     }
 
     return state;

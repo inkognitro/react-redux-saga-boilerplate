@@ -1,11 +1,12 @@
-import {Redirect} from "Common/Routing/Domain/Types";
-import {HistoryManager} from "Common/Routing/Domain/HistoryManager";
+import {Redirect} from "Common/Router/Domain/Types";
+import {HistoryManager} from "Common/Router/Domain/HistoryManager";
 import {EventBus} from "Common/Bootstrap/EventBus";
-import {createCurrentUrlWasChanged} from "Common/Routing/Domain/Event/CurrentUrlWasChanged";
-import {ByRedirectInfluencedUrlQuery} from "Common/Routing/Domain/Query/ByRedirectInfluencedUrlQuery";
-import {createRedirectWasAdded} from "Common/Routing/Domain/Event/RedirectWasAdded";
+import {createCurrentUrlWasChanged} from "Common/Router/Domain/Event/CurrentUrlWasChanged";
+import {ByRedirectInfluencedUrlQuery} from "Common/Router/Domain/Query/UrlQuery";
+import {createRedirectWasAdded} from "Common/Router/Domain/Event/RedirectsWereAdded";
+import {OpenUrlSettings} from "Common/Router/Domain/Commands/OpenUrl";
 
-export class Router {
+export class RouterOld {
     private readonly eventBus: EventBus;
     private readonly byRedirectInfluencedUrlQuery: ByRedirectInfluencedUrlQuery;
     private readonly historyManager: HistoryManager;
@@ -52,8 +53,3 @@ export class Router {
     }
 }
 
-export type OpenUrlSettings = {
-    url: string,
-    target?: string,
-    shouldReplaceCurrentUrl?: boolean,
-};

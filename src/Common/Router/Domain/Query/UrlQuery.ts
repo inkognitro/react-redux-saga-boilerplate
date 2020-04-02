@@ -1,7 +1,7 @@
-import {RoutingState, RoutingStateSelector} from "Common/Routing/Domain/Types";
-import {isUrlMatchingRoute} from "Common/Routing/Domain/Query/UrlMatchesRouteQuery";
+import {RouterState} from "Common/Router/Domain/Types";
+import {isUrlMatchingRoute} from "Common/Router/Domain/Query/UrlMatchesRouteQuery";
 
-function getByRedirectInfluencedUrl(state: RoutingState, url: string): string {
+export function getByRedirectInfluencedUrl(state: RouterState, url: string): string {
     let alreadyFoundRedirectUrls: string[] = [];
     let urlToGo = url;
     let foundRedirectUrl = findRedirectUrlForUrl(state, urlToGo);
@@ -22,7 +22,7 @@ function getByRedirectInfluencedUrl(state: RoutingState, url: string): string {
     return urlToGo;
 }
 
-function findRedirectUrlForUrl(state: RoutingState, url: string): (null | string) {
+function findRedirectUrlForUrl(state: RouterState, url: string): (null | string) {
     for(let index in state.redirects) {
         const redirect = state.redirects[index];
         if(isUrlMatchingRoute(url, redirect.fromRoute)) {
@@ -30,16 +30,4 @@ function findRedirectUrlForUrl(state: RoutingState, url: string): (null | string
         }
     }
     return null;
-}
-
-export class ByRedirectInfluencedUrlQuery {
-    private readonly getRoutingState: RoutingStateSelector;
-
-    constructor(getRoutingState: RoutingStateSelector) {
-        this.getRoutingState = getRoutingState;
-    }
-
-    public get(url: string): string {
-        return getByRedirectInfluencedUrl(this.getRoutingState(), url);
-    }
 }

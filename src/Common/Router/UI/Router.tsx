@@ -1,7 +1,7 @@
 import React, {ComponentType, FunctionComponent} from 'react';
 import {Route as ReactRoute, Router as ReactRouter, Switch} from "react-router";
 import {History} from 'history';
-import {Route as RouteData} from "Common/Routing/Domain/Types";
+import {Route as RouteData} from "Common/Router/Domain/Types";
 
 export type RouteComponent = {
     route: RouteData,

@@ -1,20 +1,11 @@
-import {EventBus} from "Common/Bootstrap/EventBus";
-import {LanguageIds} from "Common/Translator/Domain/Types";
-import {createUILanguageWasSet} from "Common/Translator/Domain/Event/UILanguageWasSet";
-import {translationIdToTranslationMapping} from "Common/Translator/Domain/Translation/en";
+import {ToasterStateSelector} from "Common/Toaster/Domain/Types";
 
-export class Translator {
-    private readonly eventBus: EventBus;
+export enum TranslatorCommandTypes {
+    SET_UI_LANGUAGE = 'SET_UI_LANGUAGE-42486f3c-e848-4371-810e-5c55d3cce2a6',
+}
 
-    constructor(eventBus: EventBus) {
-        this.eventBus = eventBus;
-    }
+export function createTranslatorSaga(toasterStateSelector: ToasterStateSelector): () => Generator {
+    return function* translatorSaga() {
 
-    setUiLanguage(languageId: LanguageIds): void {
-        if (languageId === LanguageIds.EN) {
-            this.eventBus.handle(createUILanguageWasSet(languageId, translationIdToTranslationMapping));
-            return;
-        }
-        throw new Error('languageId "' + languageId + '" is not supported');
     }
 }

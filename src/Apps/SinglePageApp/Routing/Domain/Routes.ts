@@ -1,4 +1,4 @@
-import {Route} from "Common/Routing/Domain/Types";
+import {Route} from "Common/Router/Domain/Types";
 
 export const homeRoute: Route = {
     urlSchema: '/',

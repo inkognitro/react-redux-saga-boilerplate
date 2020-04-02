@@ -1,9 +1,9 @@
 import {applyMiddleware, combineReducers, createStore as createReduxStore, Store} from 'redux'
 import {requestHandlingReducer} from 'Common/RequestHandling/Domain/Event/Reducer';
 import {authenticationReducer} from "Common/Authentication/Domain/Event/Reducer";
-import {ReducerManager as RoutingReducerManager} from 'Common/Routing/Domain/Event/Reducer';
+import {ReducerManager as RoutingReducerManager} from 'Common/Router/Domain/Event/Reducer';
 import {RequestHandlingState} from "Common/RequestHandling/Domain/Types";
-import {RoutingState} from "Common/Routing/Domain/Types";
+import {RouterState} from "Common/Router/Domain/Types";
 import {homeRouteReducer} from "SinglePageApp/Routing/Home/Home";
 import createSagaMiddleware from 'redux-saga';
 import {spawn} from "@redux-saga/core/effects";
@@ -35,7 +35,7 @@ const storeReducer = combineReducers({
 export type RootState<CurrentRouteState = any> = {
     toaster: ToasterState,
     requestHandling: RequestHandlingState,
-    routing: RoutingState<CurrentRouteState>,
+    routing: RouterState<CurrentRouteState>,
 };
 
 export function createStore(): Store {

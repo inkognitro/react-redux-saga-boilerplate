@@ -1,6 +1,6 @@
-import {Route, RoutingEvent, RoutingEventTypes, RoutingState} from "Common/Routing/Domain/Types";
+import {Route, RouterEvent, RouterEventTypes, RouterState} from "Common/Router/Domain/Types";
 import {Reducer} from "redux";
-import {isUrlMatchingRoute} from "Common/Routing/Domain/Query/UrlMatchesRouteQuery";
+import {isUrlMatchingRoute} from "Common/Router/Domain/Query/UrlMatchesRouteQuery";
 
 export class ReducerManager {
     private readonly routeReducers: RouteReducer[];
@@ -14,7 +14,7 @@ export class ReducerManager {
         this.reduce = this.reduce.bind(this);
     }
 
-    public reduce(passedDownState: (RoutingState | undefined), event: RoutingEvent): RoutingState {
+    public reduce(passedDownState: (RouterState | undefined), event: RouterEvent): RouterState {
         const state = (passedDownState ? passedDownState : this.createInitialRoutingState());
         if (!event) {
             return {
@@ -22,17 +22,17 @@ export class ReducerManager {
                 currentRouteData: this.currentRouteReducer(state.currentRouteData, event),
             };
         }
-        if (event.type === RoutingEventTypes.REDIRECT_WAS_ADDED) {
+        if (event.type === RouterEventTypes.REDIRECTS_WERE_ADDED) {
             return {
                 ...state,
                 redirects: [
                     ...state.redirects,
-                    event.payload.redirect,
+                    ...event.payload.redirects,
                 ],
                 currentRouteData: this.currentRouteReducer(state.currentRouteData, event),
             };
         }
-        if (event.type === RoutingEventTypes.CURRENT_URL_WAS_CHANGED) {
+        if (event.type === RouterEventTypes.CURRENT_URL_WAS_CHANGED) {
             this.setCurrentRouteReducerByUrl(event.payload.url);
             return {
                 ...state,
@@ -45,7 +45,7 @@ export class ReducerManager {
         };
     }
 
-    private createInitialRoutingState(): RoutingState {
+    private createInitialRoutingState(): RouterState {
         return {
             redirects: [],
             routes: this.routeReducers.map((routeReducer) => (routeReducer.route)),

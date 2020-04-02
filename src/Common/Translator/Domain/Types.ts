@@ -1,9 +1,6 @@
 import {UILanguageWasSet} from "Common/Translator/Domain/Event/UILanguageWasSet";
 
-export type Translation = {
-    id: string,
-    text: string,
-};
+export type TranslatorStateSelector<State = any> = (state: State) => TranslatorState
 
 export enum LanguageIds {
     EN = 'en',
@@ -21,5 +18,3 @@ export enum TranslatorEventTypes {
 }
 
 export type TranslatorEvent = (UILanguageWasSet);
-
-export type TranslatorStateSelector = () => TranslatorState;

@@ -1,4 +1,4 @@
-import {Route} from "Common/Routing/Domain/Types";
+import {Route} from "Common/Router/Domain/Types";
 
 export function isUrlMatchingRoute(url: string, route: Route): boolean {
     const urlSchemaParts = route.urlSchema.split('/');

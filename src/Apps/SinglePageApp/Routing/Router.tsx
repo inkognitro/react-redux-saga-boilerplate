@@ -1,4 +1,4 @@
-import {Specification, Router as CommonRouter} from "Common/Routing/UI/Router";
+import {Specification, Router as CommonRouter} from "Common/Router/UI/Router";
 import {NotFound} from "SinglePageApp/Routing/NotFound";
 import {homeRouteComponent} from "SinglePageApp/Routing/Home/Home";
 import React, {FunctionComponent} from "react";
