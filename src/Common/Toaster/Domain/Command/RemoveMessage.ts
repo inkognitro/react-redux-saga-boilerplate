@@ -20,6 +20,9 @@ export function createWatchRemoveMessageSaga(toasterStateSelector: ToasterStateS
         }
         const nonRemovingMessages = getNonRemovingMessagesInToast(toasterState, toast.id);
         if(nonRemovingMessages.length === 1) {
+            if(nonRemovingMessages[0].id !== messageIdToRemove) {
+                return;
+            }
             yield put(createToastOutroAnimationWasStarted(toast.id));
             yield delay(800);
             yield put(createToastWasRemoved(toast.id));

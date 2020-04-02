@@ -10,13 +10,13 @@ import {createMoveMessagesFromPipelineToToasts} from "Common/Toaster/Domain/Comm
 
 export function createWatchShowMessageSaga(toasterStateSelector: ToasterStateSelector): GeneratorFunction {
     const createAutomaticCloseDelayInMs = function(settings: Payload): (null | number) {
-        if(settings.automaticCloseDelayInMs === null) {
-            return null;
+        if(settings.automaticCloseDelayInMs !== undefined) {
+            return settings.automaticCloseDelayInMs;
         }
-        if (settings.toastType === ToastTypes.WARNING || settings.toastType === ToastTypes.ERROR) {
-            return null;
+        if (settings.toastType === ToastTypes.SUCCESS) {
+            return 3000;
         }
-        return 3000;
+        return null;
     };
 
     const createCanBeClosedManually = function(settings: Payload): boolean {
