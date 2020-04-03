@@ -1,8 +1,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 
-# React Redux Typescript Boilerplate - Under construction!!!
-Frontend boilerplate with time travelling through react and redux, written in TypeScript.
+# React Redux Boilerplate (WIP)
+Frontend boilerplate realized in [react](https://reactjs.org/) combined with [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
+Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
  
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
@@ -23,7 +24,7 @@ to build the app in the *dist* folder, run:
 
     npm run build
     
-## Architecture and features
+## Features
 1. Every state variable is in the redux store
 2. Business Logic in redux middleware: dispatching actions from react components via commands (custom middleware, redux-saga like)
 3. Basic [JWT](http://jwt.io) authentication:
@@ -43,11 +44,51 @@ to build the app in the *dist* folder, run:
 11. Material Icons integration
   
 ## Open todos (in progress)
-1. Initialize current url reducer
-2. Integration of component testing with enzyme
-3. Integration of logic testing with jest
-2. Correct configuration for at least IE11 support
+1. Integration of component testing with enzyme
+2. Integration of logic testing with jest
+3. Correct configuration for at least IE11 support
+
+## Architecture (whys and whats)
+Architectures in general: MVC vs. Flux vs. Redux:
+https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences, 2020-04-03
+
+Redux makes modularity and maintainability a breeze giving you full control over every action happening until the runtime of your app.
+
+It works like a charm with Domain Driven Design by providing a pattern to encapsulate view from business logic and its general bus for actions (e.g. commands, events).
+
+Common libraries for redux with async actions are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
+The target was to create a highly sustainable frontend boilerplate, also for large teams.
+
+To be specific, the criterias were: readable code, steep learning curve, documentation, community support, easy testing.
+
+So [redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out early: Code gets really messy over time, testing is going to be hell.
+Crawl through some articles and blogs on your own or try it out. No further discussions here about [redux-thunk](https://www.npmjs.com/package/redux-thunk) at this point.
+
+So the two favorites were redux-saga and redux-observable.
+Following comparison will give you the final hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
+
+**redux-observable**:
+- (+) easy testing (error prone if you don't know exactly what you are doing..)
+- (+) RxJs observable is a widespread technology
+- (-) really hard to learn in comparison to redux-saga
+- (+) documentation
+- (+) no callback hell
+
+**redux-saga**:
+- (+) easy-testing
+- (+) steep learning curve
+- (+) big community
+- (+) documentation
+- (+) no callback hell
+- (+) more control with yield over async await
+
+**own redux middleware**:
+- (+) full control 
+- (-) head around testing and possibly mocking everything on your own
+- (-) error prone
+- (-) no community, no documentation
+
+[Read a really good article about this.](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
 
 ## Appreciation
-Many thanks to [Dan Abramov](http://github.com/gaearon) for his contributions in the JS world, especially with react and [redux](http://redux.js.org/).
-It is and has always been a pleasure to learn from him.
+Many thanks to [Dan Abramov](http://github.com/gaearon), it is and has always been a pleasure to learn from him.
