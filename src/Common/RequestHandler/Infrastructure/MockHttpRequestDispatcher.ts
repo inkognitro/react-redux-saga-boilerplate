@@ -1,4 +1,4 @@
-import {HttpRequestDispatcher, RequestExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestHandler";
+import {HttpRequestDispatcher, RequestExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestHandlerOld";
 import {SuccessHttpRequestResponse} from "Common/RequestHandler/Domain/Types";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {

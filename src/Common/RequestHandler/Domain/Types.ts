@@ -18,10 +18,10 @@ export type HttpRequest = {
     method: HttpRequestMethods,
     id: string,
     url: string,
-    queryParameters?: object,
-    headers?: object,
-    body?: object,
-    isLoaderEnabled?: boolean,
+    queryParameters: object,
+    headers: object,
+    body: (undefined | object),
+    isLoaderEnabled: boolean,
 };
 
 export type HttpRequestResponse<ResponseBody = object> = {
@@ -31,13 +31,15 @@ export type HttpRequestResponse<ResponseBody = object> = {
 
 export type SuccessHttpRequestResponse<ResponseBody = object> = Required<HttpRequestResponse<ResponseBody>>;
 
-export type RequestHandlingState = {
+export type RequestHandlerState = {
     runningHttpRequests: HttpRequest[],
 }
 
-export enum RequestHandlingEventTypes {
+export enum RequestHandlerEventTypes {
     HTTP_REQUEST_WAS_SENT = 'HTTP_REQUEST_WAS_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
     HTTP_REQUEST_WAS_FINISHED = 'HTTP_REQUEST_WAS_FINISHED-27fd0173-f640-46ce-8881-516cdf5c41fc',
 }
 
-export type RequestHandlingEvent = (HttpRequestWasSent | HttpRequestWasFinished);
+export type RequestHandlerEvent = (HttpRequestWasSent | HttpRequestWasFinished);
+
+export type RequestHandlerStateSelector<State = any> = (state: State) => RequestHandlerState

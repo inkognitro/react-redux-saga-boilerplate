@@ -7,7 +7,7 @@ import {
 } from "Common/ApiV1/Domain/ApiHttpRequestHandler";
 import {Authenticate} from "Common/ApiV1/Domain/Command/Auth/Authenticate";
 import {ReadResponseBody} from "Common/ApiV1/Domain/Types";
-import {User} from "Common/Model/Domain/User/User";
+import {User} from "Common/Model/Domain/User";
 
 type SuccessResponseBody = ReadResponseBody<{
     token: string,

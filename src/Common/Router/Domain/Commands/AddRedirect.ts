@@ -1,6 +1,6 @@
 import {RouterCommandTypes} from "Common/Router/Domain/Router";
 import {Redirect, RouterState, RouterStateSelector} from "Common/Router/Domain/Types";
-import {Command} from "Common/Bootstrap/Command";
+import {Command} from "Common/Bootstrap/Domain/Command";
 import {select, takeEvery, put} from "@redux-saga/core/effects";
 import {findRedirectByExactRoute} from "Common/Router/Domain/Query/RedirectQuery";
 import {createRedirectsWereAdded} from "Common/Router/Domain/Event/RedirectsWereAdded";

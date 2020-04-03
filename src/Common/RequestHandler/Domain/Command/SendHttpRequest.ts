@@ -1,13 +1,14 @@
-import {CommandTypes} from "Common/RequestHandler/Domain/Command/CommandHandler";
-import {RequestExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestHandler";
-import {Command, CommandAction, createCommandAction} from "Common/Bootstrap/Command";
+import {HttpRequestHandlerCommandTypes} from "Common/RequestHandler/Domain/HttpRequestHandler";
+import {RequestExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestHandlerOld";
+import {Command} from "Common/Bootstrap/Domain/Command";
 
-export function createSendHttpGetRequestAction(settings: RequestExecutionSettings): CommandAction {
-    const command: SendHttpRequest = {
-        type: CommandTypes.SEND_HTTP_REQUEST,
+
+
+export function createSendHttpGetRequest(settings: RequestExecutionSettings): SendHttpRequest {
+    return {
+        type: HttpRequestHandlerCommandTypes.SEND_HTTP_REQUEST,
         payload: settings,
     };
-    return createCommandAction(command);
 }
 
-export type SendHttpRequest = Command<CommandTypes.SEND_HTTP_REQUEST, RequestExecutionSettings>;
+export type SendHttpRequest = Command<HttpRequestHandlerCommandTypes.SEND_HTTP_REQUEST, RequestExecutionSettings>;

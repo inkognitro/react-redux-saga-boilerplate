@@ -1,5 +1,5 @@
 import {RouterEventTypes} from "Common/Router/Domain/Types";
-import {Event} from "Common/Bootstrap/Event";
+import {Event} from "Common/Bootstrap/Domain/Event";
 
 export function createCurrentUrlWasChanged(url: string): CurrentUrlWasChanged {
     return {

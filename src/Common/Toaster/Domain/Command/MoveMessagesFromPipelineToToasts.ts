@@ -1,4 +1,4 @@
-import {Command} from "Common/Bootstrap/Command";
+import {Command} from "Common/Bootstrap/Domain/Command";
 import {delay, put, select, takeEvery, spawn, fork} from "@redux-saga/core/effects";
 import {ToasterCommandTypes} from "Common/Toaster/Domain/Toaster";
 import {Message, Toast, ToasterState, ToasterStateSelector} from "Common/Toaster/Domain/Types";

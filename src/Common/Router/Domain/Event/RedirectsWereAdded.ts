@@ -1,5 +1,5 @@
 import {Redirect, RouterEventTypes} from "Common/Router/Domain/Types";
-import {Event} from "Common/Bootstrap/Event";
+import {Event} from "Common/Bootstrap/Domain/Event";
 
 export function createRedirectsWereAdded(redirects: Redirect[]): RedirectsWereAdded {
     return {

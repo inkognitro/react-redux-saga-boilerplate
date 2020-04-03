@@ -5,11 +5,11 @@ import {
     createPostRequest as generalCreatePostRequest,
     createPutRequest as generalCreatePutRequest,
     createWithHeaderEnhancedHttpRequest
-} from "Common/RequestHandler/Domain/Command/RequestCreation";
+} from "Common/RequestHandler/Domain/Command/RequestFactory";
 import {
-    HttpRequestHandler,
+    HttpRequestHandlerOld,
     RequestExecutionSettings as GeneralRequestExecutionSettings
-} from "Common/RequestHandler/Domain/HttpRequestHandler";
+} from "Common/RequestHandler/Domain/HttpRequestHandlerOld";
 import {
     HttpRequest,
     HttpRequestResponse as GeneralHttpRequestResponse,
@@ -37,13 +37,13 @@ export const apiV1BaseUrl = '//localhost:9000';
 
 export class ApiHttpRequestHandler {
     private commandBus: CommandBus;
-    private httpRequestHandler: HttpRequestHandler;
+    private httpRequestHandler: HttpRequestHandlerOld;
     private currentAuthUserReader: CurrentAuthUserReader;
     private translatedTextReader: TranslatedTextReader;
 
     constructor(
         commandBus: CommandBus,
-        httpRequestHandler: HttpRequestHandler,
+        httpRequestHandler: HttpRequestHandlerOld,
         currentAuthUserReader: CurrentAuthUserReader,
         translatedTextReader: TranslatedTextReader
     ) {

@@ -1,5 +1,5 @@
 import {AuthEventTypes, AuthUser} from "Common/Authentication/Domain/Types";
-import {Event} from "Common/Bootstrap/Event";
+import {Event} from "Common/Bootstrap/Domain/Event";
 
 export function createUserAuthenticationWasRefreshed(authUser: AuthUser): UserAuthenticationWasRefreshed {
     return {

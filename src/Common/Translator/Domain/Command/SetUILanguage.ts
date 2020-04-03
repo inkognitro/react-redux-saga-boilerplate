@@ -5,7 +5,7 @@ import {
     TranslatorStateSelector
 } from "Common/Translator/Domain/Types";
 import {TranslatorCommandTypes} from "Common/Translator/Domain/Translator";
-import {Command} from "Common/Bootstrap/Command";
+import {Command} from "Common/Bootstrap/Domain/Command";
 import {put, select, takeEvery} from "@redux-saga/core/effects";
 import {createUILanguageWasSet} from "Common/Translator/Domain/Event/UILanguageWasSet";
 import {getCurrentLanguageId} from "Common/Translator/Domain/Query/LanguageIdQuery";

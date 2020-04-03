@@ -1,5 +1,5 @@
 import {LanguageIds, TranslationIdToTranslationMapping, TranslatorEventTypes} from "Common/Translator/Domain/Types";
-import {Event} from "Common/Bootstrap/Event";
+import {Event} from "Common/Bootstrap/Domain/Event";
 
 export function createUILanguageWasSet(
     languageId: LanguageIds,

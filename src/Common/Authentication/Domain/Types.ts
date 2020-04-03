@@ -5,7 +5,7 @@ import {UserAuthenticationWasRefreshed} from "Common/Authentication/Domain/Event
 import {UserLoginWasStarted} from "Common/Authentication/Domain/Event/UserLoginWasStarted";
 import {UserWasLoggedIn} from "Common/Authentication/Domain/Event/UserWasLoggedIn";
 import {UserWasLoggedOut} from "Common/Authentication/Domain/Event/UserWasLoggedOut";
-import {User} from "Common/Model/Domain/User/User";
+import {User} from "Common/Model/Domain/User";
 
 export type AuthUser = {
     token: string,

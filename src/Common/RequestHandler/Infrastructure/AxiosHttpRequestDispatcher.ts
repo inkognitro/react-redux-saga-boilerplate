@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {HttpRequestDispatcher, RequestExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestHandler";
+import {HttpRequestDispatcher, RequestExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestHandlerOld";
 import {HttpRequestResponse, HttpRequest, HttpRequestMethods} from "Common/RequestHandler/Domain/Types";
 
 export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {

@@ -1,5 +1,5 @@
 import {Toast, ToasterEventTypes} from "Common/Toaster/Domain/Types";
-import {Event} from "Common/Bootstrap/Event";
+import {Event} from "Common/Bootstrap/Domain/Event";
 
 export function createToastWasAdded(toast: Toast): ToastWasAdded {
     return {

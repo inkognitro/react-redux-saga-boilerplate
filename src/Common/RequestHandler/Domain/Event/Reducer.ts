@@ -1,19 +1,19 @@
 import {
-    RequestHandlingEvent,
-    RequestHandlingEventTypes,
-    RequestHandlingState
+    RequestHandlerEvent,
+    RequestHandlerEventTypes,
+    RequestHandlerState
 } from "Common/RequestHandler/Domain/Types";
 
-const initialRequestHandlingState: RequestHandlingState = {
+const initialRequestHandlingState: RequestHandlerState = {
     runningHttpRequests: [],
 };
 
-export function requestHandlingReducer(state: RequestHandlingState = initialRequestHandlingState, event?: RequestHandlingEvent): RequestHandlingState {
+export function requestHandlingReducer(state: RequestHandlerState = initialRequestHandlingState, event?: RequestHandlerEvent): RequestHandlerState {
     if (event === undefined) {
         return state;
     }
 
-    if (event.type === RequestHandlingEventTypes.HTTP_REQUEST_WAS_SENT) {
+    if (event.type === RequestHandlerEventTypes.HTTP_REQUEST_WAS_SENT) {
         return Object.assign({}, state, {
             runningHttpRequests: [
                 event.payload.request,
@@ -22,7 +22,7 @@ export function requestHandlingReducer(state: RequestHandlingState = initialRequ
         });
     }
 
-    if (event.type === RequestHandlingEventTypes.HTTP_REQUEST_WAS_FINISHED) {
+    if (event.type === RequestHandlerEventTypes.HTTP_REQUEST_WAS_FINISHED) {
         return Object.assign({}, state, {
             runningHttpRequests: state.runningHttpRequests.filter(
                 (request) => (request.id !== event.payload.requestResponse.request.id)

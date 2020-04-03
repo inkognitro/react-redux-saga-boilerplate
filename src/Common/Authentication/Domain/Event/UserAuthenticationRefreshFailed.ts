@@ -1,5 +1,5 @@
 import {AuthEventTypes} from "Common/Authentication/Domain/Types";
-import {Event} from "Common/Bootstrap/Event";
+import {Event} from "Common/Bootstrap/Domain/Event";
 
 export function createUserAuthenticationRefreshFailed(): UserAuthenticationRefreshFailed {
     return {
