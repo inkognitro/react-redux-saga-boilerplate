@@ -25,23 +25,17 @@ to build the app in the *dist* folder, run:
     npm run build
     
 ## Features
-1. Every state variable is in the redux store
-2. Business Logic in redux middleware: dispatching actions from react components via commands (custom middleware, redux-saga like)
-3. Basic [JWT](http://jwt.io) authentication:
+1. Basic [JWT](http://jwt.io) authentication:
     - with remember me flag
     - ideally the authentication server responds with the [jwtSecret]-httpOnly-cookie and [jwtHeader].[jwtPayload] in the response body, to be protected against XSS and CSRF attacks.
-4. Toasts integration
+2. Toasts integration
     - multiple messages per toast
-    - message waiting pipeline for running animations (async visibility of toast messages)
-5. Sass integration
-6. Request handling integration
-    - [axios](http://npmjs.com/package/axios) library in the background
-7. Loader integration:
-    - according to running requests
-8. UTC datetime handling
-9. Basic form components
-10. Bootstrap 4 integration
-11. Material Icons integration
+    - pipelined messages considering running toast animations (async visibility of toasts)
+3. Bootstrap 4 integration, [material icons](http://material.io/resources/icons/) integration + SASS support
+4. Request handling with [axios](http://npmjs.com/package/axios) library in the background
+5. Loader integration according to running requests
+6. UTC datetime handling with [moment](http://momentjs.com) in the background 
+7. Basic form components
   
 ## Open todos (in progress)
 1. Integration of component testing with enzyme
