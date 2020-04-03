@@ -5,16 +5,16 @@ import {
     createPostRequest as generalCreatePostRequest,
     createPutRequest as generalCreatePutRequest,
     createWithHeaderEnhancedHttpRequest
-} from "Common/RequestHandling/Domain/Command/RequestCreation";
+} from "Common/RequestHandler/Domain/Command/RequestCreation";
 import {
     HttpRequestHandler,
     RequestExecutionSettings as GeneralRequestExecutionSettings
-} from "Common/RequestHandling/Domain/HttpRequestHandler";
+} from "Common/RequestHandler/Domain/HttpRequestHandler";
 import {
     HttpRequest,
     HttpRequestResponse as GeneralHttpRequestResponse,
     SuccessHttpRequestResponse as GeneralSuccessHttpRequestResponse
-} from "Common/RequestHandling/Domain/Types";
+} from "Common/RequestHandler/Domain/Types";
 import {BasicResponseBody, MessageTypes} from "Common/ApiV1/Domain/Types";
 import {COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID} from "Common/Translator/Domain/Translation/en";
 import {createShowMessage} from "Common/Toaster/Domain/Command/ShowMessage";
