@@ -49,10 +49,9 @@ to build the app in the *dist* folder, run:
 3. Correct configuration for at least IE11 support
 
 ## Architecture (whys and whats)
-Architectures in general: MVC vs. Flux vs. Redux:
-https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences, 2020-04-03
+Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
 
-Redux makes modularity and maintainability a breeze giving you full control over every action happening until the runtime of your app.
+Redux makes modularity and maintainability a breeze giving you full control over every action happening until the runtime of your frontend app.
 
 It works like a charm with Domain Driven Design by providing a pattern to encapsulate view from business logic and its general bus for actions (e.g. commands, events).
 
