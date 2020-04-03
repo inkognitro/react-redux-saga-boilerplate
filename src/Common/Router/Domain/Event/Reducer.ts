@@ -22,6 +22,13 @@ export class ReducerManager {
                 currentRouteData: this.currentRouteReducer(state.currentRouteData, event),
             };
         }
+        if (event.type === RouterEventTypes.ROUTER_WAS_INITIALIZED) {
+            this.setCurrentRouteReducerByUrl(event.payload.url);
+            return {
+                ...state,
+                currentRouteData: this.currentRouteReducer(undefined, event)
+            };
+        }
         if (event.type === RouterEventTypes.REDIRECTS_WERE_ADDED) {
             return {
                 ...state,

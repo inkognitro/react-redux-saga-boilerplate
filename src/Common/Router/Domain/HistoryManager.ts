@@ -1,8 +1,8 @@
 export interface HistoryManager {
     getCurrentUrl(): string
-    openUrlInTarget(url: string, target: string): void
+    openUrlInOtherTarget(url: string, target: string): void
     changeCurrentUrl(url: string, replaceCurrentUrl: boolean): void
-    setOnChangeUrlCallback(onChangeUrlCallback: OnChangeUrlCallback): void
+    getOnChangeCurrentUrlPromise(): Promise<string>
 }
 
 export type OnChangeUrlCallback = (url: string) => void;

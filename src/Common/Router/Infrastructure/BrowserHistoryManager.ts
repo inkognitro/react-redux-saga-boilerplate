@@ -8,7 +8,7 @@ export class BrowserHistoryManager implements HistoryManager {
         this.history = history;
     }
 
-    openUrlInTarget(url: string, target: string): void {
+    openUrlInOtherTarget(url: string, target: string): void {
         window.open(url, target);
     }
 
@@ -24,7 +24,9 @@ export class BrowserHistoryManager implements HistoryManager {
         return this.history.location.pathname;
     }
 
-    setOnChangeUrlCallback(onChangeUrlCallback: (url: string) => void): void {
-        this.history.listen((location) => onChangeUrlCallback(location.pathname));
+    getOnChangeCurrentUrlPromise(): Promise<string> {
+        return new Promise((resolve) => {
+            this.history.listen((location) => resolve(location.pathname));
+        });
     }
 }

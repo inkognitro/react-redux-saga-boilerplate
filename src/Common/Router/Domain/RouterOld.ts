@@ -29,7 +29,7 @@ export class RouterOld {
             target: '_self',
             shouldReplaceCurrentUrl: false
         }, mustTriggerHistoryManager);
-        this.historyManager.setOnChangeUrlCallback(onChangeUrlCallback);
+        this.historyManager.setOnChangeCurrentUrlCallback(onChangeUrlCallback);
     }
 
     public openUrl(settings: OpenUrlSettings, mustTriggerHistoryManager: boolean = true): void

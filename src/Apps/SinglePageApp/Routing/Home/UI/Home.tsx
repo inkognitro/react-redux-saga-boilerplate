@@ -57,7 +57,7 @@ class PresentationalHome extends Component<HomeProps> {
 
 const mapStateToProps = (state: RootState<HomeState>): HomeComponentState => {
     return {
-        ...state.routing.currentRouteData,
+        ...state.router.currentRouteData,
         reduxState: state,
     };
 };

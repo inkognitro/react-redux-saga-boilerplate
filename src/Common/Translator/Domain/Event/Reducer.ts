@@ -6,13 +6,17 @@ const initialTranslatorState: TranslatorState = {
     translations: translationIdToTranslationMapping
 };
 
-export function translator(state: TranslatorState = initialTranslatorState, event?: TranslatorEvent): TranslatorState {
+export function translatorReducer(state: TranslatorState = initialTranslatorState, event?: TranslatorEvent): TranslatorState {
     if (!event) {
         return state;
     }
 
     if(event.type === TranslatorEventTypes.UI_LANGUAGE_WAS_SET) {
-        //todo: set translations
+        return {
+            ...state,
+            currentLanguageId: event.payload.languageId,
+            translations: event.payload.translationIdToTranslationMapping,
+        };
     }
 
     return state;
