@@ -7,9 +7,8 @@ import {
 } from "Common/ApiV1/Domain/Command/Auth/Authenticate";
 import {createUserWasLoggedIn} from "Common/Authentication/Domain/Event/UserWasLoggedIn";
 import {createUserLoginFailed} from "Common/Authentication/Domain/Event/UserLoginFailed";
-import {createSaveCookie} from "Common/CookieManager/Domain/Command/SaveCookie";
-import {SaveCookieSettings} from "Common/CookieManager/Domain/CookieManagerOld";
-import {createRemoveCookie} from "Common/CookieManager/Domain/Command/RemoveCookie";
+import {createSaveCookie, SaveCookieSettings} from "Common/Cookie/Domain/Command/SaveCookie";
+import {createRemoveCookie} from "Common/Cookie/Domain/Command/RemoveCookie";
 import {CurrentAuthUserReader} from "Common/Authentication/Domain/Query/CurrentAuthUserQuery";
 import {createUserWasLoggedOut} from "Common/Authentication/Domain/Event/UserWasLoggedOut";
 import {
@@ -19,7 +18,7 @@ import {
 } from "Common/ApiV1/Domain/Command/Auth/RefreshAuthentication";
 import {createUserAuthenticationWasRefreshed} from "Common/Authentication/Domain/Event/UserAuthenticationWasRefreshed";
 import {createUserAuthenticationRefreshFailed} from "Common/Authentication/Domain/Event/UserAuthenticationRefreshFailed";
-import {CookieContentReader} from "Common/CookieManager/Domain/Query/CookieQuery";
+import {CookieContentReader} from "Common/Cookie/Domain/Query/CookieQuery";
 import {IsAuthenticationRunningQuery} from "Common/Authentication/Domain/Query/IsAuthenticationRunningQuery";
 import {getSecondsUntilExpiration} from "Common/Authentication/Domain/JWTHandling";
 

@@ -1,5 +1,5 @@
-import {CookieWasSaved} from "Common/CookieManager/Domain/Event/CookieWasSaved";
-import {CookieWasRemoved} from "Common/CookieManager/Domain/Event/CookieWasRemoved";
+import {CookieWasSaved} from "Common/Cookie/Domain/Event/CookieWasSaved";
+import {CookieWasRemoved} from "Common/Cookie/Domain/Event/CookieWasRemoved";
 
 export type Cookie = {
     name: string,

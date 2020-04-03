@@ -1,5 +1,5 @@
-import {CookieStorage} from "Common/CookieManager/Domain/CookieStorage";
-import {Cookie} from "Common/CookieManager/Domain/Types";
+import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
+import {Cookie} from "Common/Cookie/Domain/Types";
 
 export class BrowserCookieStorage implements CookieStorage {
     findCookieContent(cookieName: string): (null | string) {

@@ -13,6 +13,8 @@ import {createTranslatorSaga} from "Common/Translator/Domain/Translator";
 import {translatorReducer} from "Common/Translator/Domain/Event/Reducer";
 import {createRouterSaga} from "Common/Router/Domain/Router";
 import {BrowserHistoryManager} from "Common/Router/Infrastructure/BrowserHistoryManager";
+import {createCookieSaga} from "Common/Cookie/Domain/Cookie";
+import {BrowserCookieStorage} from "Common/Cookie/Infrastructure/BrowserCookieStorage";
 
 const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
 const toasterSaga = createToasterSaga(toasterStateSelector);
@@ -25,10 +27,14 @@ const historyManager = new BrowserHistoryManager(browserHistory);
 const routerStateSelector: RouterStateSelector = (state: RootState) => state.router;
 const routerSaga = createRouterSaga(routerStateSelector, historyManager);
 
+const cookieStorage = new BrowserCookieStorage();
+const cookieSaga = createCookieSaga(cookieStorage);
+
 function* rootSaga(): Generator {
     yield spawn(toasterSaga);
     yield spawn(translatorSaga);
     yield spawn(routerSaga);
+    yield spawn(cookieSaga);
 }
 
 const routingReducerManager = new RoutingReducerManager([

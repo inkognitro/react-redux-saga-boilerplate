@@ -1,4 +1,4 @@
-import {Cookie, CookieEventTypes} from 'Common/CookieManager/Domain/Types';
+import {Cookie, CookieEventTypes} from 'Common/Cookie/Domain/Types';
 import {Event} from "Common/Bootstrap/Event";
 
 export function createCookieWasSaved(cookie: Cookie): CookieWasSaved {

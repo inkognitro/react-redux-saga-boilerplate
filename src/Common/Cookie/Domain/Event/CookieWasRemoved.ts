@@ -1,4 +1,4 @@
-import {CookieEventTypes} from 'Common/CookieManager/Domain/Types';
+import {CookieEventTypes} from 'Common/Cookie/Domain/Types';
 import {Event} from "Common/Bootstrap/Event";
 
 export function createCookieWasRemoved(cookieName: string): CookieWasRemoved {
