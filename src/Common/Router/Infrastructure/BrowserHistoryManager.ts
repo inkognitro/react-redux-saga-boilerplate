@@ -6,6 +6,7 @@ export class BrowserHistoryManager implements HistoryManager {
 
     constructor(history: History) {
         this.history = history;
+        this.getOnChangeCurrentUrlPromise = this.getOnChangeCurrentUrlPromise.bind(this);
     }
 
     openUrlInOtherTarget(url: string, target: string): void {

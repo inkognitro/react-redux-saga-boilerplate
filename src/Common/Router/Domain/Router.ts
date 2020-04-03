@@ -19,7 +19,6 @@ export function createRouterSaga(
             const url = yield call(historyManager.getOnChangeCurrentUrlPromise);
             //@ts-ignore
             put(createCurrentUrlWasChanged(url));
-            console.log('url:', url); //todo: remove
         }
     };
     const initializeRouterSaga = function* (): Generator {
