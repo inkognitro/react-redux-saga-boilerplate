@@ -37,11 +37,11 @@ to build the app in the *dist* folder, run:
 6. UTC datetime handling with [moment](http://momentjs.com) in the background 
 7. Basic form components
   
-## Open todos (in progress)
-1. Saga Conversion of "CommonWIP" packages
+## Open todos (WIP)
+1. Refactoring to saga of "CommonWIP" packages
 2. Performance optimization by not running all sagas concurrently
-3. Integration of logic testing with probably with jest but tbd definitely
-4. Integration of component testing with enzyme
+3. Integration of logic testing (probably) with jest
+4. Integration of react component testing with enzyme
 5. Correct configuration for at least IE11 support
 
 ## Architecture (whys and whats)
