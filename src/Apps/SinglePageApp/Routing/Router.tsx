@@ -1,8 +1,8 @@
 import {Specification, Router as CommonRouter} from "Common/Router/UI/Router";
 import {NotFound} from "SinglePageApp/Routing/NotFound";
-import {homeRouteComponent} from "SinglePageApp/Routing/Home/Home";
 import React, {FunctionComponent} from "react";
 import {History} from 'history';
+import {homeRouteComponent} from "SinglePageApp/Routing/UI/Home/Home";
 
 const specification: Specification = {
     routeComponents: [

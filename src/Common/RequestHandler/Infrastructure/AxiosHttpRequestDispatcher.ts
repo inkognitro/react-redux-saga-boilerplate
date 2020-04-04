@@ -1,34 +1,27 @@
 import axios from 'axios';
-import {HttpRequestDispatcher, RequestExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestHandlerOld";
 import {HttpRequestResponse, HttpRequest, HttpRequestMethods} from "Common/RequestHandler/Domain/Types";
+import {HttpRequestDispatcher} from "Common/RequestHandler/Domain/HttpRequestDispatcher";
 
 export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {
-    executeRequest(settings: RequestExecutionSettings): void {
-        axios(createAxiosConfigFromExecutionSettings(settings))
-            .then((response: AxiosResponse): void => {
-                if (!settings.onSuccess) {
-                    return;
-                }
-                const requestResponse = createRequestResponseFromAxiosResponse(settings.request, response);
-                //@ts-ignore
-                settings.onSuccess(requestResponse);
-            })
-            .catch((error: AxiosError): void => {
-                if (!error.request) {
-                    console.error(error);
-                    return;
-                }
-                if (!settings.onError) {
-                    return;
-                }
-                const requestResponse = createRequestResponseFromAxiosResponse(settings.request, error.response);
-                settings.onError(requestResponse);
-            });
+    executeRequest(request: HttpRequest): Promise<HttpRequestResponse> {
+        return new Promise((resolve) => {
+            axios(createAxiosConfigFromExecutionSettings(request))
+                .then((response: AxiosResponse): void => {
+                    const requestResponse = createRequestResponseFromAxiosResponse(request, response);
+                    resolve(requestResponse);
+                })
+                .catch((error: AxiosError): void => {
+                    if (!error.request) {
+                        console.error('Wrong axios configuration!', error);
+                    }
+                    const requestResponse = createRequestResponseFromAxiosResponse(request, error.response);
+                    resolve(requestResponse);
+                });
+        });
     }
 }
 
-function createAxiosConfigFromExecutionSettings (settings: RequestExecutionSettings): object {
-    const request = settings.request;
+function createAxiosConfigFromExecutionSettings (request: HttpRequest): object {
     let config = {
         method: getAxiosRequestMethodByRequest(request),
         url: request.url,

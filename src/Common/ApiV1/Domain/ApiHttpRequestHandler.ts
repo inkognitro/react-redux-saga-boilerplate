@@ -7,8 +7,7 @@ import {
     createWithHeaderEnhancedHttpRequest
 } from "Common/RequestHandler/Domain/Command/RequestFactory";
 import {
-    HttpRequestHandlerOld,
-    RequestExecutionSettings as GeneralRequestExecutionSettings
+    HttpRequestHandlerOld
 } from "Common/RequestHandler/Domain/HttpRequestHandlerOld";
 import {
     HttpRequest,
@@ -22,6 +21,7 @@ import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {CommandBus} from "Common/Bootstrap/CommandBus";
 import {TranslatedTextReader} from "Common/Translator/Domain/Query/TranslatedTextQuery";
 import {CurrentAuthUserReader} from "Common/Authentication/Domain/Query/CurrentAuthUserQuery";
+import {ExecutionSettings} from "Common/RequestHandler/Domain/HttpRequestDispatcher";
 
 export const createGetRequest = generalCreateGetRequest;
 export const createPatchRequest = generalCreatePatchRequest;

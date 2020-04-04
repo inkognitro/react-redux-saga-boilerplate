@@ -1,7 +1,6 @@
 import {applyMiddleware, combineReducers, createStore as createReduxStore, Store} from 'redux';
 import {ReducerManager as RoutingReducerManager} from 'Common/Router/Domain/Event/Reducer';
 import {RouterState, RouterStateSelector} from "Common/Router/Domain/Types";
-import {homeRouteReducer} from "SinglePageApp/Routing/Home/Home";
 import createSagaMiddleware from 'redux-saga';
 import {spawn} from "@redux-saga/core/effects";
 import {createBrowserHistory, History} from 'history';
@@ -15,6 +14,7 @@ import {createRouterSaga} from "Common/Router/Domain/Router";
 import {BrowserHistoryManager} from "Common/Router/Infrastructure/BrowserHistoryManager";
 import {createCookieSaga} from "Common/Cookie/Domain/Cookie";
 import {BrowserCookieStorage} from "Common/Cookie/Infrastructure/BrowserCookieStorage";
+import {homeRouteReducer} from "SinglePageApp/Routing/Domain/Home/Types";
 
 const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
 const toasterSaga = createToasterSaga(toasterStateSelector);

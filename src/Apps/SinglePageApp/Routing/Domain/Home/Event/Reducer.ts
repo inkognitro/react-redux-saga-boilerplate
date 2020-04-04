@@ -1,4 +1,4 @@
-import {HomeState} from "SinglePageApp/Routing/Home/Domain/Types";
+import {HomeState} from "SinglePageApp/Routing/Domain/Home/Types";
 import {Action} from "redux";
 
 const initialHomeState: HomeState = {

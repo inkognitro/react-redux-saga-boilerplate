@@ -5,7 +5,9 @@ import {Dispatch} from "redux";
 import {createShowMessage} from "Common/Toaster/Domain/Command/ShowMessage";
 import {connect} from "react-redux";
 import {RootState} from "SinglePageApp/Bootstrap/Store";
-import {HomeState} from "SinglePageApp/Routing/Home/Domain/Types";
+import {HomeState} from "SinglePageApp/Routing/Domain/Home/Types";
+import {RouteComponent} from "Common/Router/UI/Router";
+import {homeRoute} from "SinglePageApp/Routing/Domain/Routes";
 
 type HomeComponentState = (HomeState & {
     reduxState: RootState
@@ -15,12 +17,8 @@ type HomeComponentCallbacks = {
     onAddToast: (type: ToastTypes) => void,
 };
 
-type HomeProps = (
-    HomeComponentCallbacks
-    & HomeComponentState
-);
-
-class PresentationalHome extends Component<HomeProps> {
+type HomeProps = (HomeComponentCallbacks & HomeComponentState);
+class Home extends Component<HomeProps> {
     render() {
         return (
             <div>
@@ -71,4 +69,7 @@ const mapDispatchToProps = (dispatch: Dispatch): HomeComponentCallbacks => {
     };
 };
 
-export const Home = connect(mapStateToProps, mapDispatchToProps)(PresentationalHome);
+export const homeRouteComponent: RouteComponent = {
+    route: homeRoute,
+    component: connect(mapStateToProps, mapDispatchToProps)(Home),
+};

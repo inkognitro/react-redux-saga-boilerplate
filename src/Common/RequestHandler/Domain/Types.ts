@@ -1,5 +1,9 @@
 import {HttpRequestWasSent} from "Common/RequestHandler/Domain/Event/HttpRequestWasSent";
-import {HttpRequestWasFinished} from "Common/RequestHandler/Domain/Event/HttpRequestWasFinished";
+import {HttpErrorResponseWasReceived} from "Common/RequestHandler/Domain/Event/HttpErrorResponseWasReceived";
+import {HttpRequestFailed} from "Common/RequestHandler/Domain/Event/HttpRequestFailed";
+import {HttpRequestWasCancelled} from "Common/RequestHandler/Domain/Event/HttpRequestWasCancelled";
+import {HttpRequestWasNotSent} from "Common/RequestHandler/Domain/Event/HttpRequestWasNotSent";
+import {HttpSuccessResponseWasReceived} from "Common/RequestHandler/Domain/Event/HttpSuccessResponseWasReceived";
 
 export enum HttpRequestMethods {
     GET = 'GET',
@@ -37,9 +41,20 @@ export type RequestHandlerState = {
 
 export enum RequestHandlerEventTypes {
     HTTP_REQUEST_WAS_SENT = 'HTTP_REQUEST_WAS_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
-    HTTP_REQUEST_WAS_FINISHED = 'HTTP_REQUEST_WAS_FINISHED-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_REQUEST_WAS_NOT_SENT = 'HTTP_REQUEST_WAS_NOT_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_SUCCESS_RESPONSE_WAS_RECEIVED = 'HTTP_SUCCESS_RESPONSE_WAS_RECEIVED-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_ERROR_RESPONSE_WAS_RECEIVED = 'HTTP_ERROR_RESPONSE_WAS_RECEIVED-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_REQUEST_FAILED = 'HTTP_REQUEST_FAILED-27fd0173-f640-46ce-8881-516cdf5c41fc',
+    HTTP_REQUEST_WAS_CANCELLED = 'HTTP_REQUEST_WAS_CANCELLED-27fd0173-f640-46ce-8881-516cdf5c41fc',
 }
 
-export type RequestHandlerEvent = (HttpRequestWasSent | HttpRequestWasFinished);
+export type RequestHandlerEvent = (
+    HttpRequestWasSent
+    | HttpRequestWasNotSent
+    | HttpSuccessResponseWasReceived
+    | HttpErrorResponseWasReceived
+    | HttpRequestFailed
+    | HttpRequestWasCancelled
+);
 
 export type RequestHandlerStateSelector<State = any> = (state: State) => RequestHandlerState

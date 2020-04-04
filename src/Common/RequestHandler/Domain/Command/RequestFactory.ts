@@ -2,24 +2,11 @@ import {HttpRequest, HttpRequestMethods} from "Common/RequestHandler/Domain/Type
 import uuidV4 from "uuid/v4";
 
 type GetRequestCreationSettings = {
-    id?: string,
     url: string,
     queryParameters?: object,
     headers?: object,
     isLoaderEnabled?: boolean
 };
-
-function createHttpRequest(settings: (GetRequestCreationSettings & {body?: object}), method: HttpRequestMethods): HttpRequest {
-    return {
-        method: method,
-        id: (settings.id ? settings.id : uuidV4()),
-        url: settings.url,
-        queryParameters: (settings.queryParameters ? settings.queryParameters : {}),
-        headers: (settings.headers ? settings.headers : {}),
-        isLoaderEnabled: (settings.isLoaderEnabled ? settings.isLoaderEnabled : false),
-        body: (settings.body ? settings.body : undefined),
-    };
-}
 
 export function createGetRequest(settings: GetRequestCreationSettings): HttpRequest {
     return createHttpRequest(settings, HttpRequestMethods.GET);
@@ -52,5 +39,17 @@ export function createWithHeaderEnhancedHttpRequest(request: HttpRequest, header
             ...request.headers,
             [headerProperty]: headerValue
         },
+    };
+}
+
+function createHttpRequest(settings: (GetRequestCreationSettings & {body?: object}), method: HttpRequestMethods): HttpRequest {
+    return {
+        id: uuidV4(),
+        method: method,
+        url: settings.url,
+        queryParameters: (settings.queryParameters ? settings.queryParameters : {}),
+        headers: (settings.headers ? settings.headers : {}),
+        isLoaderEnabled: (settings.isLoaderEnabled ? settings.isLoaderEnabled : false),
+        body: (settings.body ? settings.body : undefined),
     };
 }
