@@ -40,11 +40,13 @@ class Home extends Component<HomeProps> {
 
                 <br />
                 <h3>Login</h3>
+                WIP
+                <br />
 
                 <br />
                 <h3>Toasts</h3>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.SUCCESS, this.props.toastContent)}>add a success toast message</FunctionalLink> (is being closed after 3 seconds)</div>
                 <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.INFO, this.props.toastContent)}>add an info toast message</FunctionalLink></div>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.SUCCESS, this.props.toastContent)}>add a success toast message</FunctionalLink></div>
                 <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.WARNING, this.props.toastContent)}>add a warning toast message</FunctionalLink></div>
                 <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.ERROR, this.props.toastContent)}>add an error toast message</FunctionalLink></div>
 

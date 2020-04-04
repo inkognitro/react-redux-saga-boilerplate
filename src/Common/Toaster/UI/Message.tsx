@@ -48,16 +48,25 @@ export class Message extends Component<MessageProps> {
         }
     }
 
+    renderCloseIcon() {
+        if(!this.props.message.canBeClosedManually) {
+            return null;
+        }
+        return (
+            <CloseIcon
+                onClick={() => this.props.onRemove()}
+                type={IconTypes.SECONDARY}
+                size={IconSizes.SM}
+                className="app-toast-message-close-icon"
+            />
+        );
+    }
+
     render() {
         return (
             <div ref={(element: HTMLDivElement) => this.message = element} className="app-toast-message">
                 <div className="app-toast-message-content">
-                    <CloseIcon
-                        onClick={() => this.props.onRemove()}
-                        type={IconTypes.SECONDARY}
-                        size={IconSizes.SM}
-                        className="app-toast-message-close-icon"
-                    />
+                    {this.renderCloseIcon()}
                     {this.props.message.content}
                 </div>
             </div>
