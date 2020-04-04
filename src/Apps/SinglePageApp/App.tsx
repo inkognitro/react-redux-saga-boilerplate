@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import {Store} from 'redux'
 import {Toaster} from "./Layout/UI/Toaster";
 import {History} from 'history';
-import {Router} from "SinglePageApp/Routing/Router";
+import {Router} from "SinglePageApp/Routing/UI/Router";
 import './App.scss';
 
 export type RootComponentProps = {

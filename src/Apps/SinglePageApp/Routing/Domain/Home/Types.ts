@@ -1,11 +1,10 @@
-import {RouteReducer} from "Common/Router/Domain/Event/Reducer";
-import {homeRoute} from "SinglePageApp/Routing/Domain/Routes";
-import {homeReducer} from "SinglePageApp/Routing/Domain/Home/Event/Reducer";
+import {RootState} from "SinglePageApp/Bootstrap/Store";
+import {LeakReduxState} from "SinglePageApp/Routing/Domain/Home/Command/LeakReduxState";
 
 export type HomeState = {
     foo: string,
 };
-export const homeRouteReducer: RouteReducer = {
-    route: homeRoute,
-    reducer: homeReducer,
-};
+
+export type HomeEvent = (LeakReduxState);
+
+export type HomeStateSelector = (state: RootState) => HomeState;

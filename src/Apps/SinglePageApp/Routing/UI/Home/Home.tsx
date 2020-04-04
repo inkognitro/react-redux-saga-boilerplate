@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {RootState} from "SinglePageApp/Bootstrap/Store";
 import {HomeState} from "SinglePageApp/Routing/Domain/Home/Types";
 import {RouteComponent} from "Common/Router/UI/Router";
-import {homeRoute} from "SinglePageApp/Routing/Domain/Routes";
+import {homeRoute} from "SinglePageApp/Routing/Domain/Home/Home";
 
 type HomeComponentState = (HomeState & {
     reduxState: RootState
@@ -53,9 +53,9 @@ class Home extends Component<HomeProps> {
     }
 }
 
-const mapStateToProps = (state: RootState<HomeState>): HomeComponentState => {
+const mapStateToProps = (state: RootState): HomeComponentState => {
     return {
-        ...state.router.currentRouteData,
+        ...state.routing,
         reduxState: state,
     };
 };

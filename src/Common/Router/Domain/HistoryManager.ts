@@ -4,5 +4,3 @@ export interface HistoryManager {
     changeCurrentUrl(url: string, replaceCurrentUrl: boolean): void
     getOnChangeCurrentUrlPromise(): Promise<string>
 }
-
-export type OnChangeUrlCallback = (url: string) => void;

@@ -38,9 +38,11 @@ to build the app in the *dist* folder, run:
 7. Basic form components
   
 ## Open todos (in progress)
-1. Integration of component testing with enzyme
-2. Integration of logic testing with jest
-3. Correct configuration for at least IE11 support
+1. Saga Conversion of "CommonWIP" packages
+2. Performance optimization by not running all sagas concurrently
+3. Integration of logic testing with probably with jest but tbd definitely
+4. Integration of component testing with enzyme
+5. Correct configuration for at least IE11 support
 
 ## Architecture (whys and whats)
 Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).

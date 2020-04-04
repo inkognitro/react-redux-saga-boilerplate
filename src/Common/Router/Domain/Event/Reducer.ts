@@ -1,86 +1,26 @@
-import {Route, RouterEvent, RouterEventTypes, RouterState} from "Common/Router/Domain/Types";
-import {Reducer} from "redux";
-import {isUrlMatchingRoute} from "Common/Router/Domain/Query/UrlMatchesRouteQuery";
+import {RouterEvent, RouterEventTypes, RouterState} from "Common/Router/Domain/Types";
 
-export class ReducerManager {
-    private readonly routeReducers: RouteReducer[];
-    private readonly defaultCurrentRouteReducer: Reducer;
-    private currentRouteReducer: Reducer;
+const initialRouterState: RouterState = {
+    redirects: [],
+    routes: [],
+};
 
-    public constructor(routeReducers: RouteReducer[]) {
-        this.routeReducers = routeReducers;
-        this.defaultCurrentRouteReducer = () => null;
-        this.currentRouteReducer = this.defaultCurrentRouteReducer;
-        this.reduce = this.reduce.bind(this);
+export function routerReducer(state: RouterState = initialRouterState, event?: RouterEvent): RouterState {
+    if (!event) {
+        return state;
     }
-
-    public reduce(passedDownState: (RouterState | undefined), event: RouterEvent): RouterState {
-        const state = (passedDownState ? passedDownState : this.createInitialRoutingState());
-        if (!event) {
-            return {
-                ...state,
-                currentRouteData: this.currentRouteReducer(state.currentRouteData, event),
-            };
-        }
-        if (event.type === RouterEventTypes.ROUTER_WAS_INITIALIZED) {
-            this.setCurrentRouteReducerByUrl(event.payload.url);
-            return {
-                ...state,
-                currentRouteData: this.currentRouteReducer(undefined, event)
-            };
-        }
-        if (event.type === RouterEventTypes.REDIRECTS_WERE_ADDED) {
-            return {
-                ...state,
-                redirects: [
-                    ...state.redirects,
-                    ...event.payload.redirects,
-                ],
-                currentRouteData: this.currentRouteReducer(state.currentRouteData, event),
-            };
-        }
-        if (event.type === RouterEventTypes.CURRENT_URL_WAS_CHANGED) {
-            this.setCurrentRouteReducerByUrl(event.payload.url);
-            return {
-                ...state,
-                currentRouteData: this.currentRouteReducer(undefined, event)
-            };
-        }
+    if (event.type === RouterEventTypes.ROUTER_WAS_EXTENDED) {
         return {
             ...state,
-            currentRouteData: this.currentRouteReducer(state.currentRouteData, event),
+            redirects: [
+                ...state.redirects,
+                ...event.payload.redirects,
+            ],
+            routes: [
+                ...state.routes,
+                ...event.payload.routes,
+            ],
         };
     }
-
-    private createInitialRoutingState(): RouterState {
-        return {
-            redirects: [],
-            routes: this.routeReducers.map((routeReducer) => (routeReducer.route)),
-            currentRouteData: undefined
-        };
-    }
-
-    private setCurrentRouteReducerByUrl(url: string): void {
-        const routeReducer = this.findRouteReducerByUrl(url);
-        if(routeReducer !== null) {
-            this.currentRouteReducer = routeReducer.reducer;
-            return;
-        }
-        this.currentRouteReducer = this.defaultCurrentRouteReducer;
-    }
-
-    private findRouteReducerByUrl(url: string): (null | RouteReducer) {
-        for(let index in this.routeReducers) {
-            const routeReducer = this.routeReducers[index];
-            if(isUrlMatchingRoute(url, routeReducer.route)) {
-                return routeReducer;
-            }
-        }
-        return null;
-    }
+    return state;
 }
-
-export type RouteReducer = {
-    route: Route,
-    reducer: Reducer
-};

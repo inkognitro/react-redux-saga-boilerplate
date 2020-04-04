@@ -10,3 +10,13 @@ export function findRouteByUrl(state: RouterState, url: string): (null | Route) 
     }
     return null;
 }
+
+export function findStoredRoute(state: RouterState, route: Route): (null | Route) {
+    for(let index in state.routes) {
+        const storedRoute = state.routes[index];
+        if(storedRoute.urlMustMatchExactly === route.urlMustMatchExactly && storedRoute.urlSchema === route.urlSchema) {
+            return route;
+        }
+    }
+    return null;
+}

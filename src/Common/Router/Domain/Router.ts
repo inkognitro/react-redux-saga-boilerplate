@@ -4,11 +4,11 @@ import {HistoryManager} from "Common/Router/Domain/HistoryManager";
 import {createWatchOpenUrlSaga} from "Common/Router/Domain/Commands/OpenUrl";
 import {createRouterWasInitialized} from "Common/Router/Domain/Event/RouterWasInitialized";
 import {createCurrentUrlWasChanged} from "Common/Router/Domain/Event/CurrentUrlWasChanged";
-import {createWatchAddRedirectsSaga} from "Common/Router/Domain/Commands/AddRedirect";
+import {createWatchExtendRouterSaga} from "Common/Router/Domain/Commands/ExtendRouter";
 
 export enum RouterCommandTypes {
     OPEN_URL = 'OPEN_URL-33ca8d0f-20f8-439e-b34f-fdd6859316c4',
-    ADD_REDIRECTS = 'ADD_REDIRECTS-33ca8d0f-20f8-439e-b34f-fdd6859316c4',
+    EXTEND_ROUTER = 'EXTEND_ROUTER-33ca8d0f-20f8-439e-b34f-fdd6859316c4',
 }
 
 export function createRouterSaga(
@@ -29,6 +29,6 @@ export function createRouterSaga(
         yield call(initializeRouterSaga);
         yield spawn(watchCurrentUrlChange);
         yield spawn(createWatchOpenUrlSaga(routerStateSelector, historyManager));
-        yield spawn(createWatchAddRedirectsSaga(routerStateSelector));
+        yield spawn(createWatchExtendRouterSaga(routerStateSelector));
     }
 }
