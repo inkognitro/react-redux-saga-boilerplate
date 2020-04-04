@@ -14,7 +14,11 @@ import {BrowserHistoryManager} from "Common/Router/Infrastructure/BrowserHistory
 import {createCookieSaga} from "Common/Cookie/Domain/Cookie";
 import {BrowserCookieStorage} from "Common/Cookie/Infrastructure/BrowserCookieStorage";
 import {routerReducer} from "Common/Router/Domain/Event/Reducer";
-import {routingReducer} from "SinglePageApp/Routing/Domain/Routing";
+import {createRoutingSaga, routingReducer} from "SinglePageApp/Routing/Domain/Routing";
+import {requestHandlerReducer} from "Common/RequestHandler/Domain/Event/Reducer";
+import {createRequestHandlerSaga} from "Common/RequestHandler/Domain/RequestHandler";
+import {RequestHandlerStateSelector} from "Common/RequestHandler/Domain/Types";
+import {AxiosHttpRequestDispatcher} from "Common/RequestHandler/Infrastructure/AxiosHttpRequestDispatcher";
 
 const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
 const toasterSaga = createToasterSaga(toasterStateSelector);
@@ -30,16 +34,25 @@ const routerSaga = createRouterSaga(routerStateSelector, historyManager);
 const cookieStorage = new BrowserCookieStorage();
 const cookieSaga = createCookieSaga(cookieStorage);
 
+const httpRequestDispatcher = new AxiosHttpRequestDispatcher();
+const requestHandlerStateSelector: RequestHandlerStateSelector = (state: RootState) => state.requestHandler;
+const requestHandlerSaga = createRequestHandlerSaga(requestHandlerStateSelector, httpRequestDispatcher);
+
+const routingSaga = createRoutingSaga();
+
 function* rootSaga(): Generator {
-    yield spawn(toasterSaga);
     yield spawn(translatorSaga);
-    yield spawn(routerSaga);
+    yield spawn(toasterSaga);
     yield spawn(cookieSaga);
+    yield spawn(requestHandlerSaga);
+    yield spawn(routerSaga);
+    yield spawn(routingSaga);
 }
 
 const rootReducer = combineReducers({
     translator: translatorReducer,
     toaster: toasterReducer,
+    requestHandler: requestHandlerReducer,
     router: routerReducer,
     routing: routingReducer,
 });

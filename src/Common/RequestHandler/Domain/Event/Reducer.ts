@@ -15,7 +15,10 @@ const eventTypesForRunningHttpRequestsRemoval = [
     RequestHandlerEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED,
 ];
 
-export function requestHandlingReducer(state: RequestHandlerState = initialRequestHandlingState, event?: RequestHandlerEvent): RequestHandlerState {
+export function requestHandlerReducer(
+    state: RequestHandlerState = initialRequestHandlingState,
+    event?: RequestHandlerEvent
+): RequestHandlerState {
     if (!event) {
         return state;
     }

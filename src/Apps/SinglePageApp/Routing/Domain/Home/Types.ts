@@ -1,10 +1,11 @@
-import {RootState} from "SinglePageApp/Bootstrap/Store";
-import {LeakReduxState} from "SinglePageApp/Routing/Domain/Home/Command/LeakReduxState";
+import {PartialStateWasChanged} from "SinglePageApp/Routing/Domain/Home/Event/PartialStateWasChanged";
 
 export type HomeState = {
-    foo: string,
+    toastContent: string,
 };
 
-export type HomeEvent = (LeakReduxState);
+export enum HomeEventTypes {
+    PARTIAL_STATE_WAS_CHANGED = 'PARTIAL_STATE_WAS_CHANGED-a8e50935-b646-4051-a727-f393c658d1e6',
+}
 
-export type HomeStateSelector = (state: RootState) => HomeState;
+export type HomeEvent = (PartialStateWasChanged);

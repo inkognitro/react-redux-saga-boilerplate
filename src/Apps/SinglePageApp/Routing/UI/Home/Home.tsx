@@ -8,24 +8,27 @@ import {RootState} from "SinglePageApp/Bootstrap/Store";
 import {HomeState} from "SinglePageApp/Routing/Domain/Home/Types";
 import {RouteComponent} from "Common/Router/UI/Router";
 import {homeRoute} from "SinglePageApp/Routing/Domain/Home/Home";
+import {ContentPage} from "SinglePageApp/Layout/UI/PageTypes/ContentPage";
+import {createLeakReduxState} from "SinglePageApp/Routing/Domain/Home/Command/LeakReduxState";
+import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/TextField";
+import {createChangePartialState} from "SinglePageApp/Routing/Domain/Home/Command/ChangePartialState";
+import {FormGroup} from "Common/Layout/UI/Form/FormGroup";
+import {Label} from "Common/Layout/UI/Form/Label";
 
-type HomeComponentState = (HomeState & {
-    reduxState: RootState
-});
-
-type HomeComponentCallbacks = {
-    onAddToast: (type: ToastTypes) => void,
+type HomeCallbacks = {
+    onAddToast: (type: ToastTypes, content: string) => void,
+    onClickLeakReduxState: () => void,
+    onChangeState: (state: Partial<HomeState>) => void,
 };
 
-type HomeProps = (HomeComponentCallbacks & HomeComponentState);
+type HomeProps = (HomeState & HomeCallbacks);
 class Home extends Component<HomeProps> {
     render() {
         return (
-            <div>
+            <ContentPage>
                 <h1>Features</h1>
 
                 <br />
-                foo: {this.props.foo}
 
                 <br />
                 <h3>Routing</h3>
@@ -40,32 +43,42 @@ class Home extends Component<HomeProps> {
 
                 <br />
                 <h3>Toasts</h3>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.INFO)}>add an info toast message</FunctionalLink></div>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.SUCCESS)}>add a success toast message</FunctionalLink></div>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.WARNING)}>add a warning toast message</FunctionalLink></div>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.ERROR)}>add an error toast message</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.INFO, this.props.toastContent)}>add an info toast message</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.SUCCESS, this.props.toastContent)}>add a success toast message</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.WARNING, this.props.toastContent)}>add a warning toast message</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.ERROR, this.props.toastContent)}>add an error toast message</FunctionalLink></div>
+
+                <br />
+                <FormGroup>
+                    <Label title={'Toast content: ' + this.props.toastContent} formElementId="toastContentTextField" />
+                    <TextField
+                        id="toastContentTextField"
+                        type={TextFieldTypes.TEXT}
+                        value={this.props.toastContent}
+                        onChange={(text) => this.props.onChangeState({toastContent: text})}
+                    />
+                </FormGroup>
 
                 <br />
                 <h3>Redux</h3>
-                <div><FunctionalLink onClick={() => console.log(this.props.reduxState)}>print redux state</FunctionalLink></div>
-            </div>
+                <div><FunctionalLink onClick={this.props.onClickLeakReduxState}>leak redux state in console</FunctionalLink></div>
+            </ContentPage>
         );
     }
 }
 
-const mapStateToProps = (state: RootState): HomeComponentState => {
-    return {
-        ...state.routing,
-        reduxState: state,
-    };
+const mapStateToProps = (state: RootState): HomeState => {
+    return state.routing.home;
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): HomeComponentCallbacks => {
+const mapDispatchToProps = (dispatch: Dispatch): HomeCallbacks => {
     return {
-        onAddToast: (type: ToastTypes) => dispatch(createShowMessage({
-            content: 'foo',
+        onAddToast: (type: ToastTypes, content: string) => dispatch(createShowMessage({
+            content: content,
             toastType: type,
         })),
+        onClickLeakReduxState: () => dispatch(createLeakReduxState()),
+        onChangeState: (state: Partial<HomeState>) => dispatch(createChangePartialState(state)),
     };
 };
 

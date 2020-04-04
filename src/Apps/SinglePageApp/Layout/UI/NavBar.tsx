@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {createLoginRouteUrl} from 'SinglePageApp/Routing/Domain/Routing';
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
 import {User} from "Common/Model/Domain/User";
 import {RootState} from "SinglePageApp/Bootstrap/Store";
@@ -39,7 +38,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
                 </li>
                 {(this.props.currentUser ? null : (
                     <li className="nav-item">
-                        <NavLink className="nav-link" to={createLoginRouteUrl()}>Login</NavLink>
+                        <NavLink className="nav-link" to="foo">Login</NavLink>
                     </li>
                 ))}
                 {this.renderCurrentUserNavItem()}
@@ -50,7 +49,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
 
 const mapStateToProps = (_: RootState): RepresentationalNavBarState => {
     return {
-        currentUser: null //findCurrentAuthUser(state.authentication),
+        currentUser: null
     };
 };
 

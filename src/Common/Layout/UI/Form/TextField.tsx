@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {CommonInputElementProps} from "Common/Layout/UI/Form/InputElements/InputElement";
-import uuidV4 from 'uuid/v4';
 import {ErrorIcon} from "Common/Layout/UI/Icons/ErrorIcon";
 import {IconSizes, IconTypes} from "Common/Layout/UI/Icons/Icon";
 
@@ -10,54 +8,35 @@ export enum TextFieldTypes {
     PASSWORD = 'password',
 }
 
-export type TextFieldProps = (CommonInputElementProps & {
+export type TextFieldProps = {
+    id?: string,
     isDisabled?: boolean
     onChange?(value: string): void,
     placeholder?: string,
-    type?: TextFieldTypes,
-    value?: string,
+    type: TextFieldTypes,
+    value: string,
     errorMessage?: (Component | string),
-});
+};
 
 export class TextField extends Component<TextFieldProps> {
-    private readonly id: string;
-
-    constructor(props: TextFieldProps) {
-        super(props);
-        this.id = uuidV4();
-    }
-
-    renderLabel() {
-        if (!this.props.label) {
-            return null;
-        }
-        return (
-            <label htmlFor={this.id}>
-                {this.props.label}
-            </label>
-        );
-    }
-
     createInputProps() {
-        const type = (this.props.type ? this.props.type : TextFieldTypes.TEXT);
         let inputProps = {
-            id: this.id,
+            id: this.props.id,
             placeholder: this.props.placeholder,
             className: 'form-control',
-            type: type,
+            type: this.props.type,
         };
         if (this.props.onChange) {
-            inputProps = Object.assign({}, inputProps, {
+            inputProps = {
+                ...inputProps,
                 //@ts-ignore
                 onChange: (event) => this.props.onChange(event.target.value)
-            });
+            };
         }
-        if (this.props.value) {
-            inputProps = Object.assign({}, inputProps, {
-                value: this.props.value
-            });
-        }
-        return inputProps;
+        return {
+            ...inputProps,
+            value: this.props.value
+        };
     }
 
     renderErrorMessage() {
@@ -73,11 +52,10 @@ export class TextField extends Component<TextFieldProps> {
 
     render() {
         return (
-            <div className="form-group">
-                {this.renderLabel()}
+            <React.Fragment>
                 <input {...this.createInputProps()} />
                 {this.renderErrorMessage()}
-            </div>
+            </React.Fragment>
         );
     }
 }

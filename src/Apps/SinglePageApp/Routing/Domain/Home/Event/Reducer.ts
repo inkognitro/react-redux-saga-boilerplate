@@ -1,12 +1,18 @@
-import {HomeEvent, HomeState} from "SinglePageApp/Routing/Domain/Home/Types";
+import {HomeEvent, HomeEventTypes, HomeState} from "SinglePageApp/Routing/Domain/Home/Types";
 
 const initialHomeState: HomeState = {
-    foo: 'bar',
+    toastContent: 'Hi there :)',
 };
 
 export function homeReducer(state: HomeState = initialHomeState, event?: HomeEvent): HomeState {
     if (event === undefined) {
         return state;
+    }
+    if (event.type === HomeEventTypes.PARTIAL_STATE_WAS_CHANGED) {
+        return {
+            ...state,
+            ...event.payload,
+        };
     }
     return state;
 }
