@@ -1,4 +1,4 @@
-import {apiV1BaseUrl, ApiV1CommandTypes} from "Common/ApiV1WIP/Domain/Http/ApiV1";
+import {apiV1BaseUrl, ApiV1CommandTypes} from "Common/ApiV1WIP/Domain/Http/ApiV1Http";
 import {BasicResponseBody, ReadResponseBody} from "Common/ApiV1WIP/Domain/Http/Types";
 import {User} from "Common/Model/Domain/User";
 import {Command} from "Common/Bootstrap/Domain/Command";
