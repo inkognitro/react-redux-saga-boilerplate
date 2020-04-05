@@ -2,9 +2,9 @@ import {CommandBus} from "Common/Bootstrap/CommandBus";
 import {EventBus} from "Common/Bootstrap/EventBus";
 import {
     createAuthenticate,
-    ErrorResult as AuthenticateErrorResult,
-    SuccessResult as AuthenticateSuccessResult
-} from "Common/ApiV1WIP/Domain/Command/Auth/Authenticate";
+    ErrorData as AuthenticateErrorResult,
+    ReadResponseBody as AuthenticateSuccessResult
+} from "Common/ApiV1WIP/Domain/Http/Command/Auth/Authenticate";
 import {createUserWasLoggedIn} from "Common/AuthenticationWIP/Domain/Event/UserWasLoggedIn";
 import {createUserLoginFailed} from "Common/AuthenticationWIP/Domain/Event/UserLoginFailed";
 import {createSaveCookie, SaveCookieSettings} from "Common/Cookie/Domain/Command/SaveCookie";
@@ -15,7 +15,7 @@ import {
     createRefreshAuthentication,
     SuccessResult as RefreshAuthenticationSuccessResult,
     ErrorResult as RefreshAuthenticationErrorResult
-} from "Common/ApiV1WIP/Domain/Command/Auth/RefreshAuthentication";
+} from "Common/ApiV1WIP/Domain/Http/Command/Auth/RefreshAuthentication";
 import {createUserAuthenticationWasRefreshed} from "Common/AuthenticationWIP/Domain/Event/UserAuthenticationWasRefreshed";
 import {createUserAuthenticationRefreshFailed} from "Common/AuthenticationWIP/Domain/Event/UserAuthenticationRefreshFailed";
 import {CookieContentReader} from "Common/Cookie/Domain/Query/CookieQuery";

@@ -15,10 +15,10 @@ import {createCookieSaga} from "Common/Cookie/Domain/Cookie";
 import {BrowserCookieStorage} from "Common/Cookie/Infrastructure/BrowserCookieStorage";
 import {routerReducer} from "Common/Router/Domain/Event/Reducer";
 import {createRoutingSaga, routingReducer} from "SinglePageApp/Routing/Domain/Routing";
-import {requestHandlerReducer} from "Common/RequestHandler/Domain/Event/Reducer";
-import {createRequestHandlerSaga} from "Common/RequestHandler/Domain/RequestHandler";
-import {RequestHandlerStateSelector} from "Common/RequestHandler/Domain/Types";
-import {AxiosHttpRequestDispatcher} from "Common/RequestHandler/Infrastructure/AxiosHttpRequestDispatcher";
+import {requestHandlerReducer} from "Common/RequestHandling/Domain/Http/Event/Reducer";
+import {createRequestHandlerSaga} from "Common/RequestHandling/Domain/Http/RequestHandler";
+import {RequestHandlerStateSelector} from "Common/RequestHandling/Domain/Http/Types";
+import {AxiosHttpRequestDispatcher} from "Common/RequestHandling/Infrastructure/Http/AxiosHttpRequestDispatcher";
 
 const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
 const toasterSaga = createToasterSaga(toasterStateSelector);
