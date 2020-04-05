@@ -1,10 +1,10 @@
 import {HttpRequestHandlerCommandTypes} from "Common/RequestHandler/Domain/RequestHandler";
 import {Command} from "Common/Bootstrap/Domain/Command";
 import {HttpRequestDispatcher} from "Common/RequestHandler/Domain/HttpRequestDispatcher";
-import {call, put, select, takeEvery, cancelled} from "@redux-saga/core/effects";
+import {call, cancelled, put, select, takeEvery} from "@redux-saga/core/effects";
 import {
     HttpRequest,
-    HttpRequestResponse, HttpResponse,
+    HttpRequestResponse,
     RequestHandlerState,
     RequestHandlerStateSelector,
 } from "Common/RequestHandler/Domain/Types";
@@ -20,12 +20,12 @@ export function createWatchSendHttpRequestSaga(
     requestHandlerStateSelector: RequestHandlerStateSelector,
     requestDispatcher: HttpRequestDispatcher
 ): GeneratorFunction {
-    const handleSendHttpRequest = function* (command: SendHttpRequest): Generator<unknown, (null | HttpResponse)> {
+    const handleSendHttpRequest = function* (command: SendHttpRequest): Generator {
         //@ts-ignore
         const requestHandlerState: RequestHandlerState = yield select(requestHandlerStateSelector);
         if(findRunningHttpRequestById(requestHandlerState, command.payload.request.id)) {
             put(createHttpRequestWasNotSent(command.payload.request, Reasons.REQUEST_WITH_SAME_ID_IS_ALREADY_RUNNING));
-            return null;
+            return;
         }
         yield put(createRequestWasSent(command.payload.request));
         try {
@@ -33,14 +33,14 @@ export function createWatchSendHttpRequestSaga(
             const requestResponse: HttpRequestResponse = yield call(requestDispatcher.executeRequest, command.payload);
             if (!requestResponse.response) {
                 yield put(createHttpRequestFailed(requestResponse.request));
-                return null;
+                return;
             }
             if (requestResponse.response.statusCode !== 200) {
                 yield put(createHttpErrorResponseWasReceived(requestResponse.request, requestResponse.response));
-                return requestResponse.response;
+                return;
             }
             yield put(createHttpSuccessResponseWasReceived(requestResponse.request, requestResponse.response));
-            return requestResponse.response;
+            return;
         } finally {
             if (yield cancelled()) {
                 yield put(createHttpRequestWasCancelled(command.payload.request));
@@ -53,7 +53,7 @@ export function createWatchSendHttpRequestSaga(
     }
 }
 
-export function createSendHttpGetRequest(request: HttpRequest): SendHttpRequest {
+export function createSendHttpRequest(request: HttpRequest): SendHttpRequest {
     return {
         type: HttpRequestHandlerCommandTypes.SEND_HTTP_REQUEST,
         payload: {request},

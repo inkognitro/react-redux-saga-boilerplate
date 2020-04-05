@@ -1,4 +1,4 @@
-import {CommandTypes} from "Common/ApiV1WIP/Domain/Command/CommandHandler";
+import {CommandTypes} from "Common/ApiV1WIP/Domain/ApiV1";
 import {BasicResponseBody} from "Common/ApiV1WIP/Domain/Types";
 import {User} from "Common/Model/Domain/User";
 import {Command} from "Common/Bootstrap/Domain/Command";
