@@ -6,3 +6,7 @@ export function findCurrentAuthUser(state: AuthState): (null | AuthUser) {
     }
     return null;
 }
+
+export function isAuthenticationRunning(state: AuthState): boolean {
+    return state.isAuthenticationRunning;
+}
