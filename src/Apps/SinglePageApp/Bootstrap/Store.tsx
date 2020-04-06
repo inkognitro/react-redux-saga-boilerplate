@@ -19,6 +19,8 @@ import {requestHandlerReducer} from "Common/RequestHandling/Domain/Base/Http/Eve
 import {HttpStateSelector} from "Common/RequestHandling/Domain/Base/Http/Types";
 import {AxiosHttpRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosHttpRequestDispatcher";
 import {createRequestHandlingSaga} from "Common/RequestHandling/Domain/RequestHandling";
+import {AuthStateSelector} from "Common/AuthenticationWIP/Domain/Types";
+import {authenticationReducer} from "Common/AuthenticationWIP/Domain/Event/Reducer";
 
 const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
 const toasterSaga = createToasterSaga(toasterStateSelector);
@@ -36,9 +38,12 @@ const cookieSaga = createCookieSaga(cookieStorage);
 
 const httpRequestDispatcher = new AxiosHttpRequestDispatcher();
 const httpStateSelector: HttpStateSelector = (state: RootState) => state.requestHandler;
+const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
 const requestHandlingSaga = createRequestHandlingSaga(
     httpStateSelector,
-    httpRequestDispatcher
+    httpRequestDispatcher,
+    authStateSelector,
+    translatorStateSelector
 );
 
 const routingSaga = createRoutingSaga();
@@ -58,6 +63,7 @@ const rootReducer = combineReducers({
     requestHandler: requestHandlerReducer,
     router: routerReducer,
     routing: routingReducer,
+    authentication: authenticationReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
