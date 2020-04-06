@@ -1,17 +1,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-
 # React Redux Boilerplate (WIP)
 Frontend boilerplate realized in [react](https://reactjs.org/) combined with [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
 Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
 
-To be open for time travelling e.g. by injecting a previous redux state, no "redux-saga-flow" was used in this project.
-
-[Understand (not used) saga flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html) (search for "loginFlow").
-
-I think it is important that the application behaves the same at any time. Think of it as an immutable app behaviour.
-One sees some parallels with immutable code: Open for extension closed for modification.
- 
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
 2. Clone or download this repository
@@ -90,7 +82,7 @@ Following comparison will give you the final hint why [redux-saga](http://redux-
 - (-) error prone
 - (-) no community, no documentation
 
-[Read a really good article about this.](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
+Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html) (search for "loginFlow").
 
 ## Appreciation
 Many thanks to [Dan Abramov](http://github.com/gaearon), it is and has always been a pleasure to learn from him.
