@@ -4,6 +4,13 @@
 # React Redux Boilerplate (WIP)
 Frontend boilerplate realized in [react](https://reactjs.org/) combined with [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
 Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
+
+To be open for time travelling e.g. by injecting a previous redux state, no "redux-saga-flow" was used in this project.
+
+[Understand (not used) saga flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html) (search for "loginFlow").
+
+I think it is important that the application behaves the same at any time. Think of it as an immutable app behaviour.
+One sees some parallels with immutable code: Open for extension closed for modification.
  
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
