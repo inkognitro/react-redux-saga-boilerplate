@@ -13,20 +13,21 @@ import {CurrentAuthUserReader} from "Common/AuthenticationWIP/Domain/Query/Curre
 import {createUserWasLoggedOut} from "Common/AuthenticationWIP/Domain/Event/UserWasLoggedOut";
 import {
     createRefreshAuthentication,
-    SuccessResult as RefreshAuthenticationSuccessResult,
-    ErrorResult as RefreshAuthenticationErrorResult
+    ErrorResult as RefreshAuthenticationErrorResult,
+    SuccessResult as RefreshAuthenticationSuccessResult
 } from "Common/RequestHandling/Domain/ApiV1/Http/Command/Auth/RefreshAuthentication";
 import {createUserAuthenticationWasRefreshed} from "Common/AuthenticationWIP/Domain/Event/UserAuthenticationWasRefreshed";
 import {createUserAuthenticationRefreshFailed} from "Common/AuthenticationWIP/Domain/Event/UserAuthenticationRefreshFailed";
 import {CookieContentReader} from "Common/Cookie/Domain/Query/CookieQuery";
 import {IsAuthenticationRunningQuery} from "Common/AuthenticationWIP/Domain/Query/IsAuthenticationRunningQuery";
 import {getSecondsUntilExpiration} from "Common/AuthenticationWIP/Domain/JWTHandling";
+import {LoginSettings} from "Common/AuthenticationWIP/Domain/Command/Login";
 
 const authTokenCookieName = 'authToken';
 const authTokenCookieTimeToLiveInDays = 14;
 const authRefreshBeforeExpirationInSeconds = 60;
 
-export class AuthManager {
+export class AuthenticationOld {
     private readonly commandBus: CommandBus;
     private readonly eventBus: EventBus;
     private readonly currentAuthUserReader: CurrentAuthUserReader;
@@ -174,14 +175,6 @@ export class AuthManager {
         this.commandBus.handle(createRemoveCookie(authTokenCookieName));
     }
 }
-
-export type LoginSettings = {
-    username: string,
-    password: string,
-    shouldRemember: boolean,
-    onSuccess?(): void,
-    onError?(): void,
-};
 
 export type RefreshAuthenticationSettings = {
     isLoaderEnabled: boolean,
