@@ -15,10 +15,10 @@ import {createCookieSaga} from "Common/Cookie/Domain/Cookie";
 import {BrowserCookieStorage} from "Common/Cookie/Infrastructure/BrowserCookieStorage";
 import {routerReducer} from "Common/Router/Domain/Event/Reducer";
 import {createRoutingSaga, routingReducer} from "SinglePageApp/Routing/Domain/Routing";
-import {requestHandlerReducer} from "Common/RequestHandling/Domain/Http/Event/Reducer";
-import {createRequestHandlerSaga} from "Common/RequestHandling/Domain/Http/RequestHandler";
-import {RequestHandlerStateSelector} from "Common/RequestHandling/Domain/Http/Types";
-import {AxiosHttpRequestDispatcher} from "Common/RequestHandling/Infrastructure/Http/AxiosHttpRequestDispatcher";
+import {requestHandlerReducer} from "Common/RequestHandling/Domain/Base/Http/Event/Reducer";
+import {HttpStateSelector} from "Common/RequestHandling/Domain/Base/Http/Types";
+import {AxiosHttpRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosHttpRequestDispatcher";
+import {createRequestHandlingSaga} from "Common/RequestHandling/Domain/RequestHandling";
 
 const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
 const toasterSaga = createToasterSaga(toasterStateSelector);
@@ -35,8 +35,11 @@ const cookieStorage = new BrowserCookieStorage();
 const cookieSaga = createCookieSaga(cookieStorage);
 
 const httpRequestDispatcher = new AxiosHttpRequestDispatcher();
-const requestHandlerStateSelector: RequestHandlerStateSelector = (state: RootState) => state.requestHandler;
-const requestHandlerSaga = createRequestHandlerSaga(requestHandlerStateSelector, httpRequestDispatcher);
+const httpStateSelector: HttpStateSelector = (state: RootState) => state.requestHandler;
+const requestHandlingSaga = createRequestHandlingSaga(
+    httpStateSelector,
+    httpRequestDispatcher
+);
 
 const routingSaga = createRoutingSaga();
 
@@ -44,7 +47,7 @@ function* rootSaga(): Generator {
     yield spawn(translatorSaga);
     yield spawn(toasterSaga);
     yield spawn(cookieSaga);
-    yield spawn(requestHandlerSaga);
+    yield spawn(requestHandlingSaga);
     yield spawn(routerSaga);
     yield spawn(routingSaga);
 }

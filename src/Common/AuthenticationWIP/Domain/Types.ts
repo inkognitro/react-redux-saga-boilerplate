@@ -37,4 +37,4 @@ export type AuthEvent = (
     | UserWasLoggedOut
 );
 
-export type AuthStateSelector = () => AuthState;
+export type AuthStateSelector<State = any> = (state: State) => AuthState

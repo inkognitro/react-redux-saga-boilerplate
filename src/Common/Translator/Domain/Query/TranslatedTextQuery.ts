@@ -1,12 +1,23 @@
 import {TranslatorState} from "Common/Translator/Domain/Types";
 
-export function getTranslatedText( //todo: create selector with reselect library (performance)
+export function getTranslatedText(
+    state: TranslatorState,
+    query: TranslatedTextQuery
+): string {
+    const translation = findTranslatedText(state, query);
+    if (translation === null) {
+        return query.translationId;
+    }
+    return translation;
+}
+
+export function findTranslatedText( //todo: create selector with reselect library (performance)
     state: TranslatorState,
     query: TranslatedTextQuery
 ): (null | string) {
     let translation = state.translations[query.translationId];
     if (translation === undefined) {
-        return query.translationId;
+        return null;
     }
     if(!query.placeholders) {
         return translation;
