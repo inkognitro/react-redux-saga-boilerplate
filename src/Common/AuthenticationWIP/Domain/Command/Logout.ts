@@ -1,11 +1,11 @@
-import {CommandTypes} from "Common/AuthenticationWIP/Domain/Authentication";
+import {AuthCommandTypes} from "Common/AuthenticationWIP/Domain/Authentication";
 import {Command} from "Common/Bootstrap/Domain/Command";
 
 export function createLogout(): Logout {
     return {
-        type: CommandTypes.LOGOUT,
+        type: AuthCommandTypes.LOGOUT,
         payload: undefined,
     };
 }
 
-export type Logout = Command<CommandTypes.LOGOUT>;
+export type Logout = Command<AuthCommandTypes.LOGOUT>;

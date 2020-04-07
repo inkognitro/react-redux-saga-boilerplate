@@ -1,8 +1,8 @@
 import {spawn} from "@redux-saga/core/effects";
 import {createWatchRemoveMessageSaga} from "Common/Toaster/Domain/Command/RemoveMessage";
 import {createWatchShowMessageSaga} from "Common/Toaster/Domain/Command/ShowMessage";
-import {createWatchMoveMessagesFromPipelineToToastsSaga} from "Common/Toaster/Domain/Command/MoveMessagesFromPipelineToToasts";
 import {ToasterStateSelector} from "Common/Toaster/Domain/Types";
+import {createWatchMoveMessagesFromPipelineToToastsSaga} from "Common/Toaster/Domain/Command/MoveMessagesFromPipelineToToasts";
 
 export enum ToasterCommandTypes {
     SHOW_MESSAGE = 'SHOW_MESSAGE-8266728a-7572-48cb-9ff4-2e27071e1343',

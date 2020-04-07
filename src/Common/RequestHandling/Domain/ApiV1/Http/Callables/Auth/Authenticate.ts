@@ -1,41 +1,60 @@
-import {apiV1BaseUrl, ApiV1CommandTypes} from "Common/RequestHandling/Domain/ApiV1/Http/ApiV1Http";
-import {BasicResponseBody, ReadResponseBody} from "Common/RequestHandling/Domain/ApiV1/Http/Types";
+import {apiV1BaseUrl} from "Common/RequestHandling/Domain/ApiV1/Http/ApiV1Http";
+import {ReadResponseBody} from "Common/RequestHandling/Domain/ApiV1/Http/Types";
 import {User} from "Common/Model/Domain/User";
-import {Command} from "Common/Bootstrap/Domain/Command";
 import {call, put} from "@redux-saga/core/effects";
 import {createPostRequest} from "Common/RequestHandling/Domain/Base/Http/Command/RequestFactory";
 import {HttpRequest, HttpResponse} from "Common/RequestHandling/Domain/Base/Http/Types";
 import {createSendHttpRequest} from "Common/RequestHandling/Domain/ApiV1/Http/Command/SendHttpRequest";
 import {findHttpResponse} from "Common/RequestHandling/Domain/Base/Http/Callables/HttpResponse";
 
-export type AuthenticateResponse = HttpResponse<(ReadResponseBody<SuccessData> | BasicResponseBody)>;
+type AuthenticateResponse = HttpResponse<ReadResponseBody<{
+    token: string,
+    user: User
+}>>;
 
-export function* handleAuthenticate(command: Authenticate): Generator<unknown, (null | AuthenticateResponse)> {
+export enum ResponseDataTypes {
+    SUCCESS = 'success',
+    ERROR = 'error',
+}
+
+export function* authenticate(settings: AuthenticateSettings): Generator<unknown, (null | ResponseData)> {
     const request: HttpRequest = createPostRequest({
         url: apiV1BaseUrl + '/auth/authenticate',
         body: {
-            username: command.payload.username,
-            password: command.payload.password,
+            username: settings.username,
+            password: settings.password,
         },
-        isLoaderEnabled: command.payload.isLoaderEnabled,
+        isLoaderEnabled: settings.isLoaderEnabled,
     });
     yield put(createSendHttpRequest(request));
     //@ts-ignore
-    return yield call(findHttpResponse, request);
-}
-
-export function createAuthenticate(settings: AuthenticateSettings): Authenticate {
+    const response: AuthenticateResponse = yield call(findHttpResponse, request);
+    if(!response) {
+        return null;
+    }
+    if(response.statusCode === 200) {
+        return {
+            type: ResponseDataTypes.SUCCESS,
+            token: response.body.data.token,
+            user: response.body.data.user,
+        };
+    }
+    //@ts-ignore
     return {
-        type: ApiV1CommandTypes.AUTHENTICATE,
-        payload: settings,
+        type: ResponseDataTypes.ERROR,
     };
 }
 
-export type Authenticate = Command<ApiV1CommandTypes.AUTHENTICATE, AuthenticateSettings>;
+export type ResponseData = (ErrorData | SuccessData);
 
-export type SuccessData = {
+type SuccessData = {
+    type: ResponseDataTypes.SUCCESS,
     token: string,
-    user: User
+    user: User,
+};
+
+type ErrorData = {
+    type: ResponseDataTypes.ERROR,
 };
 
 type AuthenticateSettings = {

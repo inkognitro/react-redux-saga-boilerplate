@@ -1,27 +1,36 @@
 import {Command} from "Common/Bootstrap/Domain/Command";
-import {delay, put, select, takeEvery, spawn, fork} from "@redux-saga/core/effects";
 import {ToasterCommandTypes} from "Common/Toaster/Domain/Toaster";
 import {Message, Toast, ToasterState, ToasterStateSelector} from "Common/Toaster/Domain/Types";
-import {findToastById} from "Common/Toaster/Domain/Query/ToastQuery";
+import uuidV4 from "uuid/v4";
 import {getCommonToastIdByType} from "Common/Toaster/Domain/Query/CommonToastIdByTypeQuery";
-import uuidV4 from 'uuid/v4';
+import {delay, fork, put, select, spawn, takeEvery} from "@redux-saga/core/effects";
+import {createRemoveMessage} from "Common/Toaster/Domain/Command/RemoveMessage";
+import {findToastById} from "Common/Toaster/Domain/Query/ToastQuery";
 import {createToastWasAdded} from "Common/Toaster/Domain/Event/ToastWasAdded";
 import {createToastIntroAnimationWasFinished} from "Common/Toaster/Domain/Event/ToastIntroAnimationWasFinished";
-import {createRemoveMessage} from "Common/Toaster/Domain/Command/RemoveMessage";
 import {createMessagesWereAddedToToast} from "Common/Toaster/Domain/Event/MessagesWereAddedToToast";
 import {createMessageIntroAnimationsWereFinished} from "Common/Toaster/Domain/Event/MessageIntroAnimationsWereFinished";
+
+export function createMoveMessagesFromPipelineToToasts(): MoveMessagesFromPipelineToToasts {
+    return {
+        type: ToasterCommandTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOASTS,
+        payload: undefined,
+    };
+}
+
+export type MoveMessagesFromPipelineToToasts = Command<ToasterCommandTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOASTS>;
 
 export function createWatchMoveMessagesFromPipelineToToastsSaga(
     toasterStateSelector: ToasterStateSelector
 ): GeneratorFunction {
-    const getToastsToMerge = function(toasterState: ToasterState): Toast[] {
+    const getToastsToMerge = function (toasterState: ToasterState): Toast[] {
         let toastsToMerge: Toast[] = [];
         toasterState.messagesToAdd.forEach((messageToAdd) => {
             const toastId = (messageToAdd.mustBeShownInSeparateToast
                     ? uuidV4() : getCommonToastIdByType(messageToAdd.toastType)
             );
             const foundToastIndex = toastsToMerge.findIndex((toast) => (toast.id === toastId));
-            if(foundToastIndex !== -1) {
+            if (foundToastIndex !== -1) {
                 const toast = toastsToMerge[foundToastIndex];
                 toastsToMerge[foundToastIndex] = Object.assign({}, toast, {
                     messages: [
@@ -41,7 +50,7 @@ export function createWatchMoveMessagesFromPipelineToToastsSaga(
     };
 
     const startAutomaticMessageCloseTimer = function* (message: Message): Generator {
-        if(!message.automaticCloseDelayInMs) {
+        if (!message.automaticCloseDelayInMs) {
             return;
         }
         yield delay(message.automaticCloseDelayInMs);
@@ -49,7 +58,7 @@ export function createWatchMoveMessagesFromPipelineToToastsSaga(
     };
 
     const startAutomaticMessageCloseTimers = function* (messages: Message[]): Generator {
-        for(let index in messages) {
+        for (let index in messages) {
             const message = messages[index];
             yield spawn(startAutomaticMessageCloseTimer, message);
         }
@@ -57,7 +66,7 @@ export function createWatchMoveMessagesFromPipelineToToastsSaga(
 
     const handleMoveMessagesFromPipelineToToast = function* (toasterState: ToasterState, toastToMerge: Toast): Generator {
         const storedToast = findToastById(toasterState, toastToMerge.id);
-        if(!storedToast) {
+        if (!storedToast) {
             yield put(createToastWasAdded(toastToMerge));
             yield delay(800);
             yield put(createToastIntroAnimationWasFinished(toastToMerge.id));
@@ -75,11 +84,11 @@ export function createWatchMoveMessagesFromPipelineToToastsSaga(
         const toasterState: ToasterState = yield select(toasterStateSelector);
         const toastsToMerge = getToastsToMerge(toasterState);
         let functionMustBeReExecuted = false;
-        for(let index in toastsToMerge) {
+        for (let index in toastsToMerge) {
             const toastToMerge = toastsToMerge[index];
             yield spawn(handleMoveMessagesFromPipelineToToast, toasterState, toastToMerge);
         }
-        if(functionMustBeReExecuted) {
+        if (functionMustBeReExecuted) {
             yield delay(500);
             yield spawn(handleMoveMessagesFromPipelineToToasts, command);
         }
@@ -92,12 +101,3 @@ export function createWatchMoveMessagesFromPipelineToToastsSaga(
         );
     }
 }
-
-export function createMoveMessagesFromPipelineToToasts(): MoveMessagesFromPipelineToToasts {
-    return {
-        type: ToasterCommandTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOASTS,
-        payload: undefined,
-    };
-}
-
-export type MoveMessagesFromPipelineToToasts = Command<ToasterCommandTypes.MOVE_MESSAGES_FROM_PIPELINE_TO_TOASTS>;

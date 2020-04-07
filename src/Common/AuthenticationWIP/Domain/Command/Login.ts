@@ -1,16 +1,16 @@
-import {CommandTypes} from "Common/AuthenticationWIP/Domain/Authentication";
+import {AuthCommandTypes} from "Common/AuthenticationWIP/Domain/Authentication";
 import {Command} from "Common/Bootstrap/Domain/Command";
 
-export function createLogin(settings: Payload): Login {
+export function createLogin(settings: LoginSettings): Login {
     return {
-        type: CommandTypes.LOGIN,
+        type: AuthCommandTypes.LOGIN,
         payload: settings,
     };
 }
 
-export type Login = Command<CommandTypes.LOGIN, Payload>;
+export type Login = Command<AuthCommandTypes.LOGIN, LoginSettings>;
 
-type Payload = {
+export type LoginSettings = {
     username: string,
     password: string,
     shouldRemember: boolean,

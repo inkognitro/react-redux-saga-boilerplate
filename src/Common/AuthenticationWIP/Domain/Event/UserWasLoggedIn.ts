@@ -1,15 +1,13 @@
 import {AuthEventTypes, AuthUser} from "Common/AuthenticationWIP/Domain/Types";
 import {Event} from "Common/Bootstrap/Domain/Event";
 
-export function createUserWasLoggedIn(payload: Payload): UserWasLoggedIn {
+export function createUserWasLoggedIn(authUser: AuthUser): UserWasLoggedIn {
     return {
         type: AuthEventTypes.USER_WAS_LOGGED_IN,
-        payload: payload
+        payload: {authUser}
     };
 }
 
-export type UserWasLoggedIn = Event<AuthEventTypes.USER_WAS_LOGGED_IN, Payload>;
-
-type Payload = {
+export type UserWasLoggedIn = Event<AuthEventTypes.USER_WAS_LOGGED_IN, {
     authUser: AuthUser,
-};
+}>;

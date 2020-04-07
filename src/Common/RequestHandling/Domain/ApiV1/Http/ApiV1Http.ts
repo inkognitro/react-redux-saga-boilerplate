@@ -3,7 +3,6 @@ import {createSendHttpRequestSaga} from "Common/RequestHandling/Domain/ApiV1/Htt
 import {AuthStateSelector} from "Common/AuthenticationWIP/Domain/Types";
 
 export enum ApiV1CommandTypes {
-    AUTHENTICATE = 'AUTHENTICATE-47406dac-1dc9-4831-a20a-ac917a944ddb',
     SEND_HTTP_REQUEST = 'SEND_HTTP_REQUEST-47406dac-1dc9-4831-a20a-ac917a944ddb',
 }
 

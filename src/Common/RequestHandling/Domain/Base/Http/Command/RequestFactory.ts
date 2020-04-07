@@ -2,6 +2,7 @@ import {HttpRequest, HttpRequestMethods} from "Common/RequestHandling/Domain/Bas
 import uuidV4 from "uuid/v4";
 
 type GetRequestCreationSettings = {
+    id?: string,
     url: string,
     queryParameters?: object,
     headers?: object,
@@ -44,7 +45,7 @@ export function createWithHeaderEnhancedHttpRequest(request: HttpRequest, header
 
 function createHttpRequest(settings: (GetRequestCreationSettings & {body?: object}), method: HttpRequestMethods): HttpRequest {
     return {
-        id: uuidV4(),
+        id: (settings.id ? settings.id : uuidV4()),
         method: method,
         url: settings.url,
         queryParameters: (settings.queryParameters ? settings.queryParameters : {}),

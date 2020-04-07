@@ -1,11 +1,11 @@
-import {CommandTypes} from "Common/AuthenticationWIP/Domain/Authentication";
+import {AuthCommandTypes} from "Common/AuthenticationWIP/Domain/Authentication";
 import {Command} from "Common/Bootstrap/Domain/Command";
 
 export function createInitializeCurrentUser(): InitializeCurrentUser {
     return {
-        type: CommandTypes.INITIALIZE_CURRENT_USER,
+        type: AuthCommandTypes.INITIALIZE_CURRENT_USER,
         payload: undefined,
     };
 }
 
-export type InitializeCurrentUser = Command<CommandTypes.INITIALIZE_CURRENT_USER>;
+export type InitializeCurrentUser = Command<AuthCommandTypes.INITIALIZE_CURRENT_USER>;

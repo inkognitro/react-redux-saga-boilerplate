@@ -82,7 +82,7 @@ Following comparison will give you the final hint why [redux-saga](http://redux-
 - (-) error prone
 - (-) no community, no documentation
 
-Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html) (search for "loginFlow").
+Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html) (search for "authenticationFlow").
 
 ## Appreciation
 Many thanks to [Dan Abramov](http://github.com/gaearon), it is and has always been a pleasure to learn from him.
