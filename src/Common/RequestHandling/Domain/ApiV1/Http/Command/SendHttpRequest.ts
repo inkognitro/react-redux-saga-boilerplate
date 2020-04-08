@@ -1,6 +1,6 @@
 import {ApiV1CommandTypes} from "Common/RequestHandling/Domain/ApiV1/Http/ApiV1Http";
 import {Command} from "Common/Bus/Domain/Command";
-import {select, takeEvery} from "@redux-saga/core/effects";
+import {select, takeEvery, put} from "@redux-saga/core/effects";
 import {createWithHeaderEnhancedHttpRequest} from "Common/RequestHandling/Domain/Base/Http/Command/RequestFactory";
 import {HttpRequest} from "Common/RequestHandling/Domain/Base/Http/Types";
 import {createSendHttpRequest as createCommonSendHttpRequest} from "Common/RequestHandling/Domain/Base/Http/Command/SendHttpRequest";
@@ -21,9 +21,9 @@ export function createSendHttpRequestSaga(authStateSelector: AuthStateSelector):
         yield takeEvery(ApiV1CommandTypes.SEND_HTTP_REQUEST, function* (command: SendHttpRequest): Generator {
             //@ts-ignore
             const authState: AuthState = yield select(authStateSelector);
-            const apiV1Request = getWithAuthTokenEnhancedRequest(authState, command.payload.request);
+            const request = getWithAuthTokenEnhancedRequest(authState, command.payload.request);
             //@ts-ignore
-            return yield put(createCommonSendHttpRequest(apiV1Request), request);
+            return yield put(createCommonSendHttpRequest(request));
         });
     }
 }

@@ -21,6 +21,7 @@ import {createRequestHandlingSaga} from "Common/RequestHandling/Domain/RequestHa
 import {AuthStateSelector} from "Common/AuthenticationWIP/Domain/Types";
 import {authenticationReducer} from "Common/AuthenticationWIP/Domain/Event/Reducer";
 import {HttpRequestDispatcher} from "Common/RequestHandling/Domain/Base/Http/HttpRequestDispatcher";
+import {createAuthenticationSaga} from "Common/AuthenticationWIP/Domain/Authentication";
 
 type AppServices = {
     store: Store,
@@ -68,8 +69,11 @@ function createRootSaga(history: History, httpRequestDispatcher: HttpRequestDisp
 
     const cookieStorage = new BrowserCookieStorage();
     const cookieSaga = createCookieSaga(cookieStorage);
-    const httpStateSelector: HttpStateSelector = (state: RootState) => state.requestHandler;
+
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
+    const authenticationSaga = createAuthenticationSaga(authStateSelector);
+
+    const httpStateSelector: HttpStateSelector = (state: RootState) => state.requestHandler;
     const requestHandlingSaga = createRequestHandlingSaga(
         httpStateSelector,
         httpRequestDispatcher,
@@ -83,6 +87,7 @@ function createRootSaga(history: History, httpRequestDispatcher: HttpRequestDisp
         yield spawn(translatorSaga);
         yield spawn(toasterSaga);
         yield spawn(cookieSaga);
+        yield spawn(authenticationSaga);
         yield spawn(requestHandlingSaga);
         yield spawn(routerSaga);
         yield spawn(routingSaga);

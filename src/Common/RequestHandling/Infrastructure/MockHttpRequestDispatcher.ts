@@ -22,12 +22,7 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
             },
         };
         return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({
-                    request: request,
-                    response: response,
-                });
-            }, 2000);
+            setTimeout(() => resolve({request, response}), 2000);
         });
     }
 }

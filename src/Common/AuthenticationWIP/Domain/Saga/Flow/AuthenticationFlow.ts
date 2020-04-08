@@ -15,7 +15,6 @@ import {findCurrentAuthUser} from "Common/AuthenticationWIP/Domain/Query/Current
 import {createUserLoginWasCancelled} from "Common/AuthenticationWIP/Domain/Event/UserLoginWasCancelled";
 import {createSaveCookie} from "Common/Cookie/Domain/Command/SaveCookie";
 
-
 const authTokenCookieName = 'authUser';
 const authTokenCookieTimeToLiveInDays = 14;
 //const authRefreshBeforeExpirationInSeconds = 60; //todo use for authentication refresh!
@@ -50,6 +49,7 @@ export function createAuthenticationFlow(authStateSelector: AuthStateSelector): 
                     timeToLiveInDays: (command.payload.shouldRemember ? authTokenCookieTimeToLiveInDays : undefined),
                 }));
                 yield put(createUserWasLoggedIn(authUser));
+                yield fork(handleAutomaticAuthenticationRefresh, command.payload.shouldRemember); //todo: check task must be defined explicitly
                 return;
             }
             if(responseData.type === ResponseDataTypes.ERROR) {

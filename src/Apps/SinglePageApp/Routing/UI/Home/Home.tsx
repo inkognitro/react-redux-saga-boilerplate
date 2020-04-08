@@ -14,8 +14,10 @@ import {TextField, TextFieldTypes} from "Common/Layout/UI/Form/TextField";
 import {createChangePartialState} from "SinglePageApp/Routing/Domain/Home/Command/ChangePartialState";
 import {FormGroup} from "Common/Layout/UI/Form/FormGroup";
 import {Label} from "Common/Layout/UI/Form/Label";
+import {createLogin} from "Common/AuthenticationWIP/Domain/Command/Login";
 
 type HomeCallbacks = {
+    onClickLogin: () => void,
     onAddToast: (type: ToastTypes, content: string) => void,
     onClickLeakReduxState: () => void,
     onChangeState: (state: Partial<HomeState>) => void,
@@ -39,8 +41,10 @@ class Home extends Component<HomeProps> {
                 </div>
 
                 <br />
-                <h3>Login</h3>
-                WIP
+                <h3>Authentication</h3>
+                <FunctionalLink onClick={this.props.onClickLogin}>
+                    Login
+                </FunctionalLink>
                 <br />
 
                 <br />
@@ -75,6 +79,11 @@ const mapStateToProps = (state: RootState): HomeState => {
 
 const mapDispatchToProps = (dispatch: Dispatch): HomeCallbacks => {
     return {
+        onClickLogin: () => dispatch(createLogin({
+            username: 'sonGoku',
+            password: '1234',
+            shouldRemember: false,
+        })),
         onAddToast: (type: ToastTypes, content: string) => dispatch(createShowMessage({
             content: content,
             toastType: type,

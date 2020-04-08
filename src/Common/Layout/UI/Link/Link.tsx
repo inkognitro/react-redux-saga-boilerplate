@@ -7,12 +7,13 @@ import './Link.scss';
 type FunctionalLinkProps = {
     url?: string,
     onClick: () => void,
+    className?: string,
 };
 
 export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) => {
     return (
         <a
-            className="app-link"
+            className={'app-link' + (props.className ? ' ' + props.className : '')}
             href={(props.url ? props.url : '#')}
             onClick={(event) => {
                 event.preventDefault();

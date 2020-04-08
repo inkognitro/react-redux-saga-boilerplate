@@ -30,7 +30,10 @@ export function createWatchSendHttpRequestSaga(
         yield put(createRequestWasSent(command.payload.request));
         try {
             //@ts-ignore
-            const requestResponse: HttpRequestResponse = yield call(requestDispatcher.executeRequest, command.payload);
+            const requestResponse: HttpRequestResponse = yield call(
+                requestDispatcher.executeRequest,
+                command.payload.request
+            );
             if (!requestResponse.response) {
                 yield put(createHttpRequestFailed(requestResponse.request));
                 return;
