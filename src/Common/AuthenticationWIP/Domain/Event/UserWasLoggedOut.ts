@@ -1,13 +1,11 @@
-import {AuthEventTypes, AuthUser} from "Common/AuthenticationWIP/Domain/Types";
+import {AuthEventTypes} from "Common/AuthenticationWIP/Domain/Types";
 import {Event} from "Common/Bootstrap/Domain/Event";
 
-export function createUserWasLoggedOut(authUser: AuthUser): UserWasLoggedOut {
+export function createUserWasLoggedOut(): UserWasLoggedOut {
     return {
         type: AuthEventTypes.USER_WAS_LOGGED_OUT,
-        payload: {authUser}
+        payload: undefined
     };
 }
 
-export type UserWasLoggedOut = Event<AuthEventTypes.USER_WAS_LOGGED_OUT, {
-    authUser: AuthUser,
-}>;
+export type UserWasLoggedOut = Event<AuthEventTypes.USER_WAS_LOGGED_OUT>;

@@ -1,4 +1,4 @@
-import {call, cancel, cancelled, fork, put, select, take} from "@redux-saga/core/effects";
+import {call, cancel, cancelled, fork, put, select, take, delay} from "@redux-saga/core/effects";
 import {Login} from "Common/AuthenticationWIP/Domain/Command/Login";
 import {AuthCommandTypes} from "Common/AuthenticationWIP/Domain/Authentication";
 import {
@@ -21,8 +21,16 @@ const authTokenCookieTimeToLiveInDays = 14;
 //const authRefreshBeforeExpirationInSeconds = 60; //todo use for authentication refresh!
 
 export function createAuthenticationFlow(authStateSelector: AuthStateSelector): GeneratorFunction {
-    function* handleLogin(command: Login) {
+    function* handleAutomaticAuthenticationRefresh(shouldRemember: boolean): Generator {
+        while(true) {
+            yield delay(5000);
+            console.log('handleAutomaticAuthenticationRefresh'); //todo: remove!
+        }
+    }
+
+    function* handleLogin(command: Login): Generator {
         try {
+            //@ts-ignore
             const responseData: ResponseData = yield call(authenticate,{
                 username: command.payload.username,
                 password: command.payload.password,
@@ -59,22 +67,25 @@ export function createAuthenticationFlow(authStateSelector: AuthStateSelector): 
         while (true) {
             //@ts-ignore
             const command: Login = yield take([AuthCommandTypes.LOGIN]);
-            const task = yield fork(handleLogin, command);
+            const loginTask = yield fork(handleLogin, command);
             //@ts-ignore
-            const action: Action = yield take([AuthEventTypes.USER_LOGIN_FAILED, AuthCommandTypes.LOGOUT]);
+            const action: Action = yield take([
+                AuthEventTypes.USER_LOGIN_FAILED,
+                AuthCommandTypes.LOGOUT
+            ]);
             if(action.type === AuthEventTypes.USER_LOGIN_FAILED) {
                 continue;
             }
             if(action.type === AuthCommandTypes.LOGOUT) {
                 //@ts-ignore
-                yield cancel(task);
+                yield cancel(loginTask);
                 //@ts-ignore
                 const authState: AuthState = yield select(authStateSelector);
                 const authUser = findCurrentAuthUser(authState);
                 if(!authUser) {
                     continue;
                 }
-                yield put(createUserWasLoggedOut(authUser));
+                yield put(createUserWasLoggedOut());
             }
         }
     }
