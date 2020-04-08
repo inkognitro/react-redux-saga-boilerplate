@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
 import {User} from "Common/Model/Domain/User";
-import {RootState} from "SinglePageApp/Bootstrap/Store";
+import {RootState} from "SinglePageApp/Bootstrap/AppServicesFactory";
 import {createHomeRouteUrl} from "SinglePageApp/Routing/Domain/Home/Home";
 
 type RepresentationalNavBarState = {

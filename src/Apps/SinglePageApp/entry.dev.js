@@ -2,9 +2,15 @@ import React from 'react';
 import {render} from 'react-dom'
 import { hot } from 'react-hot-loader/root';
 import {RootComponent} from './App';
-import {browserHistory, createStore} from "./Bootstrap/Store";
+import {createAppServices} from "SinglePageApp/Bootstrap/AppServicesFactory";
+import {MockHttpRequestDispatcher} from "Common/RequestHandling/Infrastructure/MockHttpRequestDispatcher";
 const HotReloadedApp = hot(RootComponent);
 
-const store = createStore();
-const appContainer = document.getElementById('app');
-render(<HotReloadedApp history={browserHistory} store={store} />, appContainer);
+const httpRequestDispatcher = new MockHttpRequestDispatcher();
+const appServices = createAppServices(httpRequestDispatcher);
+appServices.sagaMiddleware.run(appServices.rootSaga);
+
+render(
+    <HotReloadedApp history={appServices.history} store={appServices.store} />,
+    document.getElementById('app')
+);

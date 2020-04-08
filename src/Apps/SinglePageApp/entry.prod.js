@@ -1,8 +1,14 @@
 import React from 'react';
 import {render} from 'react-dom'
 import {RootComponent} from './App';
-import {createStore, browserHistory} from "./Bootstrap/Store";
+import {createAppServices} from "./Bootstrap/AppServicesFactory";
+import {AxiosHttpRequestDispatcher} from "Common/RequestHandling/Infrastructure/AxiosHttpRequestDispatcher";
 
-const store = createStore();
-const appContainer = document.getElementById('app');
-render(<RootComponent history={browserHistory} store={store} />, appContainer);
+const httpRequestDispatcher = new AxiosHttpRequestDispatcher();
+const appServices = createAppServices(httpRequestDispatcher);
+appServices.sagaMiddleware.run(appServices.rootSaga);
+
+render(
+    <RootComponent history={browserHistory} store={store} />,
+    document.getElementById('app')
+);

@@ -13,7 +13,7 @@ export type RootComponentProps = {
 };
 
 export class RootComponent extends Component<RootComponentProps> {
-    render() { //todo: insert loader again!
+    render() {
         return (
             <Provider store={this.props.store}>
                 <Router history={this.props.history} />

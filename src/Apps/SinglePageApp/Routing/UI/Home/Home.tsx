@@ -4,7 +4,7 @@ import {ToastTypes} from "Common/Toaster/Domain/Types";
 import {Dispatch} from "redux";
 import {createShowMessage} from "Common/Toaster/Domain/Command/ShowMessage";
 import {connect} from "react-redux";
-import {RootState} from "SinglePageApp/Bootstrap/Store";
+import {RootState} from "SinglePageApp/Bootstrap/AppServicesFactory";
 import {HomeState} from "SinglePageApp/Routing/Domain/Home/Types";
 import {RouteComponent} from "Common/Router/UI/Router";
 import {homeRoute} from "SinglePageApp/Routing/Domain/Home/Home";
