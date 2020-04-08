@@ -1,5 +1,5 @@
 import {HttpRequest, RequestHandlerEventTypes} from "Common/RequestHandling/Domain/Base/Http/Types";
-import {Event} from "Common/Bootstrap/Domain/Event";
+import {Event} from "Common/Bus/Domain/Event";
 
 export enum Reasons {
     REQUEST_WITH_SAME_ID_IS_ALREADY_RUNNING = 'requestWithSameIdIsAlreadyRunning',

@@ -1,4 +1,4 @@
-import {Event} from "Common/Bootstrap/Domain/Event";
+import {Event} from "Common/Bus/Domain/Event";
 import {ApiV1HttpEventTypes} from "Common/RequestHandling/Domain/ApiV1/Http/Types";
 import {HttpRequest} from "Common/RequestHandling/Domain/Base/Http/Types";
 

@@ -1,5 +1,5 @@
 import {HttpRequestHandlerCommandTypes} from "Common/RequestHandling/Domain/Base/Http/Http";
-import {Command} from "Common/Bootstrap/Domain/Command";
+import {Command} from "Common/Bus/Domain/Command";
 import {HttpRequestDispatcher} from "Common/RequestHandling/Domain/Base/Http/HttpRequestDispatcher";
 import {call, cancelled, put, select, takeEvery} from "@redux-saga/core/effects";
 import {

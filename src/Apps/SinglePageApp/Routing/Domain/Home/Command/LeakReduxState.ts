@@ -1,4 +1,4 @@
-import {Command} from "Common/Bootstrap/Domain/Command";
+import {Command} from "Common/Bus/Domain/Command";
 import {select, takeEvery} from "@redux-saga/core/effects";
 import {HomeCommandTypes} from "SinglePageApp/Routing/Domain/Home/Home";
 

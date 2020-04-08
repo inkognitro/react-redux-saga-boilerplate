@@ -1,5 +1,5 @@
 import {CookieCommandTypes} from "Common/Cookie/Domain/Cookie";
-import {Command} from "Common/Bootstrap/Domain/Command";
+import {Command} from "Common/Bus/Domain/Command";
 import {CookieStorage} from "Common/Cookie/Domain/CookieStorage";
 import {put, takeEvery} from "@redux-saga/core/effects";
 import {createCookieWasRemoved} from "Common/Cookie/Domain/Event/CookieWasRemoved";

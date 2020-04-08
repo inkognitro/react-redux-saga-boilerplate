@@ -3,7 +3,7 @@ import {
     HttpRequest,
     HttpResponse
 } from "Common/RequestHandling/Domain/Base/Http/Types";
-import {Event} from "Common/Bootstrap/Domain/Event";
+import {Event} from "Common/Bus/Domain/Event";
 
 export function createHttpSuccessResponseWasReceived(
     request: HttpRequest,

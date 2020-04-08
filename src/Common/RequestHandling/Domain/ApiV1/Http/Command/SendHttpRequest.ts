@@ -1,5 +1,5 @@
 import {ApiV1CommandTypes} from "Common/RequestHandling/Domain/ApiV1/Http/ApiV1Http";
-import {Command} from "Common/Bootstrap/Domain/Command";
+import {Command} from "Common/Bus/Domain/Command";
 import {select, takeEvery} from "@redux-saga/core/effects";
 import {createWithHeaderEnhancedHttpRequest} from "Common/RequestHandling/Domain/Base/Http/Command/RequestFactory";
 import {HttpRequest} from "Common/RequestHandling/Domain/Base/Http/Types";

@@ -1,5 +1,5 @@
 import {RouterCommandTypes} from "Common/Router/Domain/Router";
-import {Command} from "Common/Bootstrap/Domain/Command";
+import {Command} from "Common/Bus/Domain/Command";
 import {select, takeEvery} from "@redux-saga/core/effects";
 import {RouterState, RouterStateSelector} from "Common/Router/Domain/Types";
 import {getByRedirectInfluencedUrl} from "Common/Router/Domain/Query/UrlQuery";

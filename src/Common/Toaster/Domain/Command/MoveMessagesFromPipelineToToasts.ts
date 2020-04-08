@@ -1,4 +1,4 @@
-import {Command} from "Common/Bootstrap/Domain/Command";
+import {Command} from "Common/Bus/Domain/Command";
 import {ToasterCommandTypes} from "Common/Toaster/Domain/Toaster";
 import {Message, Toast, ToasterState, ToasterStateSelector} from "Common/Toaster/Domain/Types";
 import uuidV4 from "uuid/v4";

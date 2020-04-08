@@ -1,4 +1,4 @@
-import {Event} from "Common/Bootstrap/Domain/Event";
+import {Event} from "Common/Bus/Domain/Event";
 import {HomeEventTypes, HomeState} from "../Types";
 
 export function createPartialStateWasChanged(state: Partial<HomeState>): PartialStateWasChanged {
