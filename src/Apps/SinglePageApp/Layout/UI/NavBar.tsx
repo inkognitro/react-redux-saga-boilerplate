@@ -2,12 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {FunctionalLink} from "Common/Layout/UI/Link/Link";
-import {User} from "Common/Model/Domain/User";
 import {RootState} from "SinglePageApp/Bootstrap/AppServicesFactory";
 import {createHomeRouteUrl} from "SinglePageApp/Routing/Domain/Home/Home";
+import {findCurrentAuthUser} from "Common/AuthenticationWIP/Domain/Query/CurrentAuthUserQuery";
+import {AuthUser} from "Common/AuthenticationWIP/Domain/Types";
 
 type RepresentationalNavBarState = {
-    currentUser: (User | null),
+    currentUser: (AuthUser | null),
 };
 
 type RepresentationalNavBarCallbacks = {
@@ -24,7 +25,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
         return (
             <li className="nav-item">
                 <FunctionalLink onClick={() => this.props.onClickLogout()}>
-                    Logout {this.props.currentUser.username}
+                    Logout {this.props.currentUser.user.username}
                 </FunctionalLink>
             </li>
         );
@@ -47,9 +48,9 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
     }
 }
 
-const mapStateToProps = (_: RootState): RepresentationalNavBarState => {
+const mapStateToProps = (state: RootState): RepresentationalNavBarState => {
     return {
-        currentUser: null
+        currentUser: findCurrentAuthUser(state.authentication)
     };
 };
 
