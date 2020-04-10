@@ -50,16 +50,15 @@ Redux makes modularity and maintainability a breeze giving you full control over
 
 It works like a charm with Domain Driven Design by providing a pattern to encapsulate view from business logic and its general bus for actions (e.g. commands, events).
 
-Common libraries for redux with async actions are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
-The target was to create a highly sustainable frontend boilerplate, also for large teams.
-
+Common libraries for redux async actions are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
+The target was to create a highly maintainable frontend boilerplate.
 To be specific, the criterias were: readable code, steep learning curve, documentation, community support, easy testing.
 
-So [redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out early: Code gets really messy over time, testing is going to be hell.
-Crawl through some articles and blogs on your own or try it out. No further discussions here about [redux-thunk](https://www.npmjs.com/package/redux-thunk) at this point.
+[Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out early: Code gets really messy over time, testing is going to be hell.
+Crawl through some articles and blogs on your own or try it out. No further discussions here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
 
-So the two favorites were redux-saga and redux-observable.
-Following comparison will give you the final hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
+The two favorites were redux-saga and redux-observable.
+Following comparison will give a hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
 
 **redux-observable**:
 - (+) easy testing (error prone if you don't know exactly what you are doing..)
@@ -82,7 +81,7 @@ Following comparison will give you the final hint why [redux-saga](http://redux-
 - (-) error prone
 - (-) no community, no documentation
 
-Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html) (search for "authenticationFlow").
+Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
 
 ## Appreciation
 Many thanks to [Dan Abramov](http://github.com/gaearon), it is and has always been a pleasure to learn from him.
