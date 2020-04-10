@@ -12,7 +12,7 @@ export function createTextFieldState(partialInitialState: Partial<TextFieldState
     };
     return {
         ...state,
-        initialStatePart: partialInitialState
+        ...partialInitialState
     };
 }
 

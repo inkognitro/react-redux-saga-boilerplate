@@ -54,7 +54,7 @@ class Home extends Component<HomeProps> {
 
                 <br />
                 <FormGroup>
-                    <Label title={'Toast content: ' + this.props.toastContentTextField} formElementId="toastContentTextField" />
+                    <Label title={'Toast content: ' + this.props.toastContentTextField.value} formElementId="toastContentTextField" />
                     <TextField data={this.props.toastContentTextField} />
                 </FormGroup>
 

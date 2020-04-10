@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import {Message, MessageTypes} from "Common/Domain/Form/Element/Types";
+import {Message as MessageData, MessageTypes} from "Common/Domain/Form/Element/Types";
 import {ErrorIcon} from "Common/UI/Base/Icon/ErrorIcon";
 import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
 
 export type MessageProps = {
-    message: Message,
+    message: MessageData,
 };
 
 const Message: FC<MessageProps> = (props) => {
@@ -23,7 +23,7 @@ const Message: FC<MessageProps> = (props) => {
 };
 
 export type MessagesProps = {
-    messages: Message[],
+    messages: MessageData[],
 };
 
 export const Messages: FC<MessagesProps> = (props) => {
