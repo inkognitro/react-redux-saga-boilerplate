@@ -25,7 +25,7 @@ const authTokenCookieTimeToLiveInDays = 14;
 //const authRefreshBeforeExpirationInSeconds = 60; //todo use for authentication refresh!
 
 export function createAuthenticationFlow(authStateSelector: AuthStateSelector): () => Generator {
-    function* handleAutomaticAuthenticationRefresh(shouldRemember: boolean): Generator {
+    function* handleAutomaticAuthenticationRefresh(_: boolean): Generator {
         while(true) {
             yield delay(5000);
             console.log('handleAutomaticAuthenticationRefresh'); //todo: remove!
