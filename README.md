@@ -55,7 +55,7 @@ The target was to create a highly maintainable frontend boilerplate.
 To be specific, the criterias were: readable code, steep learning curve, documentation, community support, easy testing.
 
 [Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out early: Code gets really messy over time, testing is going to be hell.
-Crawl through some articles and blogs on your own or try it out. No further discussions here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
+Crawl through some articles and blogs on your own or try it out. No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
 
 The two favorites were redux-saga and redux-observable.
 Following comparison will give a hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
