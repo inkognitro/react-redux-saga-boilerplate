@@ -10,10 +10,10 @@ import {RouteComponent} from "Common/UI/Router/Router";
 import {homeRoute} from "../../../Domain/Routing/Home/Home";
 import {ContentPage} from "../../Base/PageTypes/ContentPage";
 import {createLeakReduxState} from "../../../Domain/Routing/Home/Command/LeakReduxState";
-import {TextField, TextFieldTypes} from "Common/UI/Base/Form/TextField";
+import {TextField, TextFieldTypes} from "Common/UI/Form/TextField";
 import {createChangePartialState} from "../../../Domain/Routing/Home/Command/ChangePartialState";
-import {FormGroup} from "Common/UI/Base/Form/FormGroup";
-import {Label} from "Common/UI/Base/Form/Label";
+import {FormGroup} from "Common/UI/Form/FormGroup";
+import {Label} from "Common/UI/Form/Label";
 import {createLogin} from "Common/Domain/Authentication/Command/Login";
 
 type HomeCallbacks = {
