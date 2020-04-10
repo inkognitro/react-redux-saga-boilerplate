@@ -1,7 +1,8 @@
 import {PartialStateWasChanged} from "./Event/PartialStateWasChanged";
+import {TextFieldState} from "Common/Domain/Form/Element/TextField/Types";
 
 export type HomeState = {
-    toastContent: string,
+    toastContentTextField: TextFieldState,
 };
 
 export enum HomeEventTypes {

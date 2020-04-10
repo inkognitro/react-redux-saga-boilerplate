@@ -1,18 +1,10 @@
-import {HomeEvent, HomeEventTypes, HomeState} from "../Types";
+import {
+    createTextFieldReducer,
+    createTextFieldState,
+} from "Common/Domain/Form/Element/TextField/Event/Reducer";
+import {combineReducers, Reducer} from "redux";
+import {HomeState} from "SinglePageApp/Domain/Routing/Home/Types";
 
-const initialHomeState: HomeState = {
-    toastContent: 'Hi there :)',
-};
-
-export function homeReducer(state: HomeState = initialHomeState, event?: HomeEvent): HomeState {
-    if (event === undefined) {
-        return state;
-    }
-    if (event.type === HomeEventTypes.PARTIAL_STATE_WAS_CHANGED) {
-        return {
-            ...state,
-            ...event.payload,
-        };
-    }
-    return state;
-}
+export const homeReducer: Reducer<HomeState> = combineReducers({
+    toastContentTextField: createTextFieldReducer(createTextFieldState({value: 'Hi there :)'}))
+});

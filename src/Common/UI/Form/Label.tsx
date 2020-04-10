@@ -1,10 +1,10 @@
-import React, {FunctionComponent} from 'react';
+import React, {FC} from 'react';
 
 export type LabelProps = {
     title: string
     formElementId?: string
 };
 
-export const Label: FunctionComponent<LabelProps> = (props) => {
+export const Label: FC<LabelProps> = (props) => {
     return (<label htmlFor={props.formElementId}>{props.title}</label>);
 };
