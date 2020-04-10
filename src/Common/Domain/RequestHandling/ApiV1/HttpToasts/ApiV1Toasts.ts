@@ -15,8 +15,8 @@ const apiV1EventTypesToWatch = [
 
 type ApiV1Event = (ApiV1HttpConnectionFailed | ApiV1HttpResponseWasReceived)
 
-export function createApiV1HttpToastsSaga(translatorStateSelector: TranslatorStateSelector): () => Generator {
-    return function* watchApiV1Events(): Generator {
+export function createApiV1HttpToastsFlow(translatorStateSelector: TranslatorStateSelector): () => Generator {
+    return function* (): Generator {
         yield takeEvery(apiV1EventTypesToWatch, function * (event: ApiV1Event) {
             //@ts-ignore
             const translatorState: TranslatorState = select(translatorStateSelector);

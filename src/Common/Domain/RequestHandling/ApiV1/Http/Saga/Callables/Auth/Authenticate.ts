@@ -5,7 +5,7 @@ import {call, put} from "@redux-saga/core/effects";
 import {createPostRequest} from "Common/Domain/RequestHandling/Base/Http/Command/RequestFactory";
 import {HttpRequest, HttpResponse} from "Common/Domain/RequestHandling/Base/Http/Types";
 import {createSendHttpRequest} from "Common/Domain/RequestHandling/ApiV1/Http/Command/SendHttpRequest";
-import {findHttpResponse} from "Common/Domain/RequestHandling/Base/Http/Callables/HttpResponse";
+import {receiveHttpResponse} from "Common/Domain/RequestHandling/Base/Http/Saga/Callables/HttpResponseReceiving";
 
 type AuthenticateResponse = HttpResponse<ReadResponseBody<{
     token: string,
@@ -28,7 +28,7 @@ export function* authenticate(settings: AuthenticateSettings): Generator<unknown
     });
     yield put(createSendHttpRequest(request));
     //@ts-ignore
-    const response: AuthenticateResponse = yield call(findHttpResponse, request);
+    const response: AuthenticateResponse = yield call(receiveHttpResponse, request);
     if(!response) {
         return null;
     }

@@ -22,7 +22,7 @@ type HttpRequestExecutionEndingEvent = (
     | HttpRequestWasCancelled
 );
 
-export function* findHttpResponse(request: HttpRequest): Generator<unknown, (null | HttpResponse)> {
+export function* receiveHttpResponse(request: HttpRequest): Generator<unknown, (null | HttpResponse)> {
     let requestId = null;
     let event = null;
     while (requestId !== request.id) {

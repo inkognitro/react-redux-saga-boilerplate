@@ -1,5 +1,5 @@
-import {AuthCommandTypes} from "Common/Domain/Authentication/Authentication";
 import {Command} from "Common/Domain/Bus/Command";
+import {AuthCommandTypes} from "Common/Domain/Authentication/Types";
 
 export function createLogin(settings: LoginSettings): Login {
     return {

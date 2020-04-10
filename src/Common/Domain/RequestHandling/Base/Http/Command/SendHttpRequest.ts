@@ -1,9 +1,8 @@
-import {HttpRequestHandlerCommandTypes} from "Common/Domain/RequestHandling/Base/Http/Http";
 import {Command} from "Common/Domain/Bus/Command";
 import {HttpRequestDispatcher} from "Common/Domain/RequestHandling/Base/Http/HttpRequestDispatcher";
 import {call, cancelled, put, select, takeEvery} from "@redux-saga/core/effects";
 import {
-    HttpRequest,
+    HttpRequest, HttpRequestHandlerCommandTypes,
     HttpRequestResponse,
     HttpState,
     HttpStateSelector,
@@ -16,7 +15,7 @@ import {createHttpRequestWasNotSent, Reasons} from "Common/Domain/RequestHandlin
 import {createHttpRequestFailed} from "Common/Domain/RequestHandling/Base/Http/Event/HttpRequestFailed";
 import {createHttpRequestWasCancelled} from "Common/Domain/RequestHandling/Base/Http/Event/HttpRequestWasCancelled";
 
-export function createWatchSendHttpRequestSaga(
+export function createWatchSendHttpRequestFlow(
     httpStateSelector: HttpStateSelector,
     requestDispatcher: HttpRequestDispatcher
 ): GeneratorFunction {
@@ -51,7 +50,7 @@ export function createWatchSendHttpRequestSaga(
         }
     };
 
-    return <GeneratorFunction>function* watchSendHttpRequestSaga(): Generator {
+    return <GeneratorFunction>function* (): Generator {
         yield takeEvery(HttpRequestHandlerCommandTypes.SEND_HTTP_REQUEST, handleSendHttpRequest);
     }
 }

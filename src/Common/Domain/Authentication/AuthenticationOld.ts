@@ -4,7 +4,7 @@ import {
     createAuthenticate,
     ErrorData as AuthenticateErrorResult,
     ReadResponseBody as AuthenticateSuccessResult
-} from "Common/Domain/RequestHandling/ApiV1/Http/Callables/Auth/Authenticate";
+} from "Common/Domain/RequestHandling/ApiV1/Http/Saga/Callables/Auth/Authenticate";
 import {createUserWasLoggedIn} from "Common/Domain/Authentication/Event/UserWasLoggedIn";
 import {createUserLoginFailed} from "Common/Domain/Authentication/Event/UserLoginFailed";
 import {createSaveCookie, SaveCookieSettings} from "Common/Domain/Cookie/Command/SaveCookie";

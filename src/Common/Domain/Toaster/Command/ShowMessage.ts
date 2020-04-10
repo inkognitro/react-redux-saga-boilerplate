@@ -1,70 +1,16 @@
 import {Command} from "Common/Domain/Bus/Command";
-import {select, takeEvery, put, delay} from "@redux-saga/core/effects";
-import {ToasterCommandTypes} from "Common/Domain/Toaster/Toaster";
-import {MessageToAdd, ToasterState, ToasterStateSelector, ToastTypes} from "Common/Domain/Toaster/Types";
-import uuidV4 from 'uuid/v4';
-import {findToastByMessageId} from "Common/Domain/Toaster/Query/ToastQuery";
-import {findMessageToAddByMessageId} from "Common/Domain/Toaster/Query/MessageQuery";
-import {createMessageWasAddedToPipeline} from "Common/Domain/Toaster/Event/MessageWasAddedToPipeline";
-import {createMoveMessagesFromPipelineToToasts} from "Common/Domain/Toaster/Command/MoveMessagesFromPipelineToToasts";
+import {ToasterCommandTypes, ToastTypes} from "Common/Domain/Toaster/Types";
 
-export function createWatchShowMessageSaga(toasterStateSelector: ToasterStateSelector): GeneratorFunction {
-    const createAutomaticCloseDelayInMs = function(settings: Payload): (null | number) {
-        if(settings.automaticCloseDelayInMs !== undefined) {
-            return settings.automaticCloseDelayInMs;
-        }
-        if (settings.toastType === ToastTypes.SUCCESS) {
-            return 3000;
-        }
-        return null;
-    };
-
-    const createCanBeClosedManually = function(settings: Payload): boolean {
-        if(settings.canBeClosedManually) {
-            return true;
-        }
-        return (settings.toastType !== ToastTypes.SUCCESS);
-    };
-
-    const handleShowMessage = function* (command: ShowMessage): Generator {
-        //@ts-ignore
-        const toasterState: ToasterState = yield select(toasterStateSelector);
-        if(command.payload.id && findToastByMessageId(toasterState, command.payload.id)) {
-            return;
-        }
-        if(command.payload.id && findMessageToAddByMessageId(toasterState, command.payload.id)) {
-            return;
-        }
-        const messageToAdd: MessageToAdd = {
-            toastType: (command.payload.toastType ? command.payload.toastType : ToastTypes.INFO),
-            mustBeShownInSeparateToast: !!command.payload.mustBeShownInSeparateToast,
-            message: {
-                id: (command.payload.id ? command.payload.id : uuidV4()),
-                content: command.payload.content,
-                automaticCloseDelayInMs: createAutomaticCloseDelayInMs(command.payload),
-                canBeClosedManually: createCanBeClosedManually(command.payload),
-            }
-        };
-        yield put(createMessageWasAddedToPipeline(messageToAdd));
-        yield delay(200);
-        yield put(createMoveMessagesFromPipelineToToasts());
-    };
-
-    return <GeneratorFunction>function* watchShowMessage(): Generator {
-        yield takeEvery(ToasterCommandTypes.SHOW_MESSAGE, handleShowMessage);
-    }
-}
-
-export function createShowMessage(settings: Payload): ShowMessage {
+export function createShowMessage(settings: ShowMessageSettings): ShowMessage {
     return {
         type: ToasterCommandTypes.SHOW_MESSAGE,
         payload: settings,
     };
 }
 
-export type ShowMessage = Command<ToasterCommandTypes.SHOW_MESSAGE, Payload>;
+export type ShowMessage = Command<ToasterCommandTypes.SHOW_MESSAGE, ShowMessageSettings>;
 
-type Payload = {
+export type ShowMessageSettings = {
     id?: string,
     toastType: ToastTypes,
     content: string,
