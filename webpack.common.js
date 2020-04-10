@@ -27,9 +27,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            Bootstrap: path.resolve(__dirname, './src/Bootstrap'),
             Common: path.resolve(__dirname, './src/Common'),
-            SinglePageApp: path.resolve(__dirname, './src/Apps/SinglePageApp'),
+            SinglePageApp: path.resolve(__dirname, './src/SinglePageApp'),
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
