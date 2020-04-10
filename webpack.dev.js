@@ -5,7 +5,7 @@ const commonConfig = require('./webpack.common');
 module.exports = merge(commonConfig, {
     mode: "development",
     devtool: 'inline-source-map',
-    entry: path.resolve(__dirname, './src/Apps/SinglePageApp/entry.dev.js'),
+    entry: path.resolve(__dirname, './src/SinglePageApp/entry.dev.js'),
     devServer: {
         historyApiFallback: true,
         contentBase: './dist',

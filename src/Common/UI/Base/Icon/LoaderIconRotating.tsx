@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Power1, TimelineLite} from "gsap/gsap-core";
-import {LoaderIcon, LoaderIconProps} from "Common/UI/Base/Icons/LoaderIcon";
-import 'Common/UI/Base/Icons/LoaderIconRotating.scss';
+import {LoaderIcon, LoaderIconProps} from "Common/UI/Base/Icon/LoaderIcon";
+import 'Common/UI/Base/Icon/LoaderIconRotating.scss';
 
 export type LoaderIconRotatingProps = LoaderIconProps;
 

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {AlignedArea, horizontalAligns, verticalAligns} from "Common/UI/Base/AlignedArea/AlignedArea";
 import {TimelineLite} from "gsap/gsap-core";
-import {IconSizes, IconTypes} from "Common/UI/Base/Icons/Icon";
-import {LoaderIconRotating} from "Common/UI/Base/Icons/LoaderIconRotating";
+import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
+import {LoaderIconRotating} from "Common/UI/Base/Icon/LoaderIconRotating";
 import './Loader.scss';
 
 export type LoaderState = {

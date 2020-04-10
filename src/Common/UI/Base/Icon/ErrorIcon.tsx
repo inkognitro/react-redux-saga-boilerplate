@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {CommonIconProps, createBaseIconProps} from "Common/UI/Base/Icons/Icon";
+import {CommonIconProps, createBaseIconProps} from "Common/UI/Base/Icon/Icon";
 import MaterialErrorIcon from '@material-ui/icons/Error';
 export type ErrorIconProps = CommonIconProps;
 

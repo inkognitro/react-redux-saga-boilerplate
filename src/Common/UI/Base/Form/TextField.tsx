@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {ErrorIcon} from "Common/UI/Base/Icons/ErrorIcon";
-import {IconSizes, IconTypes} from "Common/UI/Base/Icons/Icon";
+import {ErrorIcon} from "Common/UI/Base/Icon/ErrorIcon";
+import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
 
 export enum TextFieldTypes {
     TEXT = 'text',

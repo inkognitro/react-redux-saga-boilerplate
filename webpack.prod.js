@@ -4,5 +4,5 @@ const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
     mode: "production",
-    entry: path.resolve(__dirname, './src/Apps/SinglePageApp/entry.prod.js')
+    entry: path.resolve(__dirname, './src/SinglePageApp/entry.prod.js')
 });
