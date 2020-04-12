@@ -28,7 +28,6 @@ type HomeProps = (HomeStateProps & HomeCallbackProps);
 
 class Home extends Component<HomeProps> {
     render() {
-        console.log('Home::render');
         return (
             <ContentPage>
                 <h1>Features</h1>
