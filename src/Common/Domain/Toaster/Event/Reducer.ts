@@ -1,11 +1,12 @@
 import {ToasterEvent, ToasterEventTypes, ToasterState} from "Common/Domain/Toaster/Types";
+import {Reducer} from "redux";
 
 const initialToasterState: ToasterState = {
     messagesToAdd: [],
     toasts: [],
 };
 
-export function toasterReducer(state: ToasterState = initialToasterState, event?: ToasterEvent): ToasterState {
+export const toasterReducer: Reducer<ToasterState, ToasterEvent> = function(state: ToasterState = initialToasterState, event?: ToasterEvent): ToasterState {
     if (!event) {
         return state;
     }
