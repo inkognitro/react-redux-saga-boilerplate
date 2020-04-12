@@ -2,11 +2,12 @@ import {Specification, Router as CommonRouter} from "Common/UI/Router/Router";
 import {NotFound} from "./NotFound";
 import React, {FunctionComponent} from "react";
 import {History} from 'history';
-import {homeRouteComponent} from "./Home/Home";
+import {Home} from "./Home/Home";
+import {homeRoute} from "SinglePageApp/Domain/Routing/Home/Home";
 
 const specification: Specification = {
     routeComponents: [
-        homeRouteComponent,
+        {route: homeRoute, component: Home},
     ],
     defaultComponent: NotFound,
 };

@@ -8,8 +8,8 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
+    "@babel/plugin-transform-regenerator",
     "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread",
-    "react-hot-loader/babel"
+    "@babel/proposal-object-rest-spread"
   ]
 }

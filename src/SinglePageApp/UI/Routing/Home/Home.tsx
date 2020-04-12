@@ -5,8 +5,6 @@ import {Dispatch} from "redux";
 import {createShowMessage} from "Common/Domain/Toaster/Command/ShowMessage";
 import {connect} from "react-redux";
 import {RootState} from "../../../ServicesFactory";
-import {RouteComponent} from "Common/UI/Router/Router";
-import {homeRoute} from "../../../Domain/Routing/Home/Home";
 import {ContentPage} from "../../Base/PageTypes/ContentPage";
 import {createLeakReduxState} from "../../../Domain/Routing/Home/Command/LeakReduxState";
 import {FormGroup} from "Common/UI/Form/FormGroup";
@@ -14,19 +12,19 @@ import {Label} from "Common/UI/Form/Label";
 import {createLogin} from "Common/Domain/Authentication/Command/Login";
 import {TextField} from "Common/UI/Form/Element/TextField";
 
-type HomeCallbackProps = {
+type DumbHomeCallbackProps = {
     onClickLogin: () => void,
     onAddToast: (type: ToastTypes, content: string) => void,
     onClickLeakReduxState: () => void,
 };
 
-type HomeStateProps = {
+type DumbHomeStateProps = {
     toastContent: string,
 };
 
-type HomeProps = (HomeStateProps & HomeCallbackProps);
+type DumbHomeProps = (DumbHomeStateProps & DumbHomeCallbackProps);
 
-class Home extends Component<HomeProps> {
+class DumbHome extends Component<DumbHomeProps> {
     render() {
         return (
             <ContentPage>
@@ -70,13 +68,13 @@ class Home extends Component<HomeProps> {
     }
 }
 
-const mapStateToProps = (state: RootState): HomeStateProps => {
+const mapStateToProps = (state: RootState): DumbHomeStateProps => {
     return {
         toastContent: state.routing.home.toastContentField.value,
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): HomeCallbackProps => {
+const mapDispatchToProps = (dispatch: Dispatch): DumbHomeCallbackProps => {
     return {
         onClickLogin: () => dispatch(createLogin({
             username: 'sonGoku',
@@ -91,7 +89,4 @@ const mapDispatchToProps = (dispatch: Dispatch): HomeCallbackProps => {
     };
 };
 
-export const homeRouteComponent: RouteComponent = {
-    route: homeRoute,
-    component: connect(mapStateToProps, mapDispatchToProps)(Home),
-};
+export const Home = connect(mapStateToProps, mapDispatchToProps)(DumbHome);

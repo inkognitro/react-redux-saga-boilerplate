@@ -30,9 +30,11 @@ export const Router: FunctionComponent<RouterProps> = (props) => {
                         component={routeComponent.component}
                      />
                 ))}
-                <ReactRoute key="5f857a7f-2452-4dd5-9cfb-f8c89c69260a" path="*">
-                    {props.specification.defaultComponent}
-                </ReactRoute>
+                <ReactRoute
+                    key="5f857a7f-2452-4dd5-9cfb-f8c89c69260a"
+                    path="*"
+                    component={props.specification.defaultComponent}
+                />
             </Switch>
         </ReactRouter>
     );
