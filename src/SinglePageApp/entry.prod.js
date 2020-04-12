@@ -6,9 +6,7 @@ import {AxiosHttpRequestDispatcher} from "Common/Infrastructure/RequestHandling/
 
 const httpRequestDispatcher = new AxiosHttpRequestDispatcher();
 const appServices = createAppServices(httpRequestDispatcher);
-appServices.sagaMiddleware.run(appServices.rootSaga);
-
 render(
-    <RootComponent history={browserHistory} store={store} />,
+    <RootComponent history={appServices.history} store={appServices.store} />,
     document.getElementById('app')
 );

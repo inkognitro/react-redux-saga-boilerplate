@@ -24,21 +24,46 @@ import {HttpRequestDispatcher} from "Common/Domain/RequestHandling/Base/Http/Htt
 import {createAuthenticationFlow} from "Common/Domain/Authentication/Authentication";
 import {RoutingState} from "SinglePageApp/Domain/Routing/Types";
 
+interface SagaTask {
+    cancel(): void
+}
+
 type AppServices = {
     store: Store,
     history: History,
+    httpRequestDispatcher: HttpRequestDispatcher,
     sagaMiddleware: SagaMiddleware,
-    rootSaga: () => Generator,
+    rootSagaTask: SagaTask,
+}
+
+let currentServices: (null | AppServices) = null;
+export function createHotReloadedAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
+    if(currentServices === null) {
+        currentServices = createAppServices(httpRequestDispatcher);
+        return currentServices;
+    }
+    currentServices.rootSagaTask.cancel();
+    const newRootSaga = createRootSaga(currentServices.history, currentServices.httpRequestDispatcher);
+    const newRootSagaTask = currentServices.sagaMiddleware.run(newRootSaga);
+    return {
+        ...currentServices,
+        //@ts-ignore
+        rootSagaTask: newRootSagaTask,
+    };
 }
 
 export function createAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
     const history: History = createBrowserHistory();
     const sagaMiddleware = createSagaMiddleware();
+    const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
+    const rootSaga = createRootSaga(history, httpRequestDispatcher);
+    const rootSagaTask: SagaTask = sagaMiddleware.run(rootSaga);
     return {
-        store: createReduxStore(rootReducer, applyMiddleware(sagaMiddleware)),
+        store: store,
         history: history,
-        rootSaga: createRootSaga(history, httpRequestDispatcher),
+        httpRequestDispatcher: httpRequestDispatcher,
         sagaMiddleware: sagaMiddleware,
+        rootSagaTask: rootSagaTask,
     };
 }
 
@@ -62,7 +87,7 @@ export type RootState = {
 
 type SagaMiddleware = (Middleware & {
     run(rootSaga: () => Generator): void
-})
+});
 
 function createRootSaga(history: History, httpRequestDispatcher: HttpRequestDispatcher): () => Generator {
     const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
