@@ -1,4 +1,4 @@
-import {HttpRequest, HttpResponse, RequestHandlerEventTypes} from "Common/Domain/RequestHandling/Base/Http/Types";
+import {HttpRequest, HttpResponse, HttpEventTypes} from "Common/Domain/RequestHandling/Base/Http/Types";
 import {take} from "@redux-saga/core/effects";
 import {HttpRequestWasNotSent} from "Common/Domain/RequestHandling/Base/Http/Event/HttpRequestWasNotSent";
 import {HttpSuccessResponseWasReceived} from "Common/Domain/RequestHandling/Base/Http/Event/HttpSuccessResponseWasReceived";
@@ -7,11 +7,11 @@ import {HttpRequestFailed} from "Common/Domain/RequestHandling/Base/Http/Event/H
 import {HttpRequestWasCancelled} from "Common/Domain/RequestHandling/Base/Http/Event/HttpRequestWasCancelled";
 
 const httpRequestExecutionEndingEventTypes = [
-    RequestHandlerEventTypes.HTTP_REQUEST_WAS_NOT_SENT,
-    RequestHandlerEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED,
-    RequestHandlerEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED,
-    RequestHandlerEventTypes.HTTP_REQUEST_FAILED,
-    RequestHandlerEventTypes.HTTP_REQUEST_WAS_CANCELLED,
+    HttpEventTypes.HTTP_REQUEST_WAS_NOT_SENT,
+    HttpEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED,
+    HttpEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED,
+    HttpEventTypes.HTTP_REQUEST_FAILED,
+    HttpEventTypes.HTTP_REQUEST_WAS_CANCELLED,
 ];
 
 type HttpRequestExecutionEndingEvent = (
@@ -32,10 +32,10 @@ export function* receiveHttpResponse(request: HttpRequest): Generator<unknown, (
     }
     //@ts-ignore
     const eventToUse: HttpRequestExecutionEndingEvent = event;
-    if (eventToUse.type === RequestHandlerEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED) {
+    if (eventToUse.type === HttpEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED) {
         return eventToUse.payload.response;
     }
-    if (eventToUse.type === RequestHandlerEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED) {
+    if (eventToUse.type === HttpEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED) {
         return eventToUse.payload.response;
     }
     return null;

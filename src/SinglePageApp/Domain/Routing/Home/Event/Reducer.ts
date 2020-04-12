@@ -6,5 +6,5 @@ import {combineReducers, Reducer} from "redux";
 import {HomeState} from "SinglePageApp/Domain/Routing/Home/Types";
 
 export const homeReducer: Reducer<HomeState> = combineReducers({
-    toastContentTextField: createTextFieldReducer(createTextFieldState({value: 'Hi there :)'}))
+    toastContentField: createTextFieldReducer(createTextFieldState({value: 'Hi there :)'}))
 });

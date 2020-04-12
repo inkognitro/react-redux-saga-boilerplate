@@ -5,7 +5,7 @@ import {isHttpRequestRunningWithEnabledLoader} from "Common/Domain/RequestHandli
 
 const mapStateToProps = (state: RootState): PresentationalLoaderState => {
     return {
-        isVisible: isHttpRequestRunningWithEnabledLoader(state.requestHandler),
+        isVisible: isHttpRequestRunningWithEnabledLoader(state.http),
     };
 };
 

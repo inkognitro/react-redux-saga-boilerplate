@@ -1,29 +1,29 @@
 import {
-    RequestHandlerEvent,
-    RequestHandlerEventTypes,
+    HttpEvent,
+    HttpEventTypes,
     HttpState
 } from "Common/Domain/RequestHandling/Base/Http/Types";
 
-const initialRequestHandlingState: HttpState = {
+const initialHttpState: HttpState = {
     runningHttpRequests: [],
 };
 
 const eventTypesForRunningHttpRequestsRemoval = [
-    RequestHandlerEventTypes.HTTP_REQUEST_WAS_CANCELLED,
-    RequestHandlerEventTypes.HTTP_REQUEST_FAILED,
-    RequestHandlerEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED,
-    RequestHandlerEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED,
+    HttpEventTypes.HTTP_REQUEST_WAS_CANCELLED,
+    HttpEventTypes.HTTP_REQUEST_FAILED,
+    HttpEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED,
+    HttpEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED,
 ];
 
-export function requestHandlerReducer(
-    state: HttpState = initialRequestHandlingState,
-    event?: RequestHandlerEvent
+export function httpReducer(
+    state: HttpState = initialHttpState,
+    event?: HttpEvent
 ): HttpState {
     if (!event) {
         return state;
     }
 
-    if (event.type === RequestHandlerEventTypes.HTTP_REQUEST_WAS_SENT) {
+    if (event.type === HttpEventTypes.HTTP_REQUEST_WAS_SENT) {
         return {
             ...state,
             runningHttpRequests: [

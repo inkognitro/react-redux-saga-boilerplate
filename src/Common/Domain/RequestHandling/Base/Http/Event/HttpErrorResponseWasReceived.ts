@@ -1,5 +1,5 @@
 import {
-    RequestHandlerEventTypes,
+    HttpEventTypes,
     HttpRequest,
     HttpResponse
 } from "Common/Domain/RequestHandling/Base/Http/Types";
@@ -10,12 +10,12 @@ export function createHttpErrorResponseWasReceived(
     response: HttpResponse
 ): HttpErrorResponseWasReceived {
     return {
-        type: RequestHandlerEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED,
+        type: HttpEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED,
         payload: {request, response}
     };
 }
 
-export type HttpErrorResponseWasReceived<ResponseBody = any> = Event<RequestHandlerEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED, {
+export type HttpErrorResponseWasReceived<ResponseBody = any> = Event<HttpEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED, {
     request: HttpRequest,
     response: HttpResponse<ResponseBody>,
 }>;

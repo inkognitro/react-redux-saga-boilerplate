@@ -5,7 +5,6 @@ import {Dispatch} from "redux";
 import {createShowMessage} from "Common/Domain/Toaster/Command/ShowMessage";
 import {connect} from "react-redux";
 import {RootState} from "../../../ServicesFactory";
-import {HomeState} from "../../../Domain/Routing/Home/Types";
 import {RouteComponent} from "Common/UI/Router/Router";
 import {homeRoute} from "../../../Domain/Routing/Home/Home";
 import {ContentPage} from "../../Base/PageTypes/ContentPage";
@@ -15,15 +14,21 @@ import {Label} from "Common/UI/Form/Label";
 import {createLogin} from "Common/Domain/Authentication/Command/Login";
 import {TextField} from "Common/UI/Form/Element/TextField";
 
-type HomeCallbacks = {
+type HomeCallbackProps = {
     onClickLogin: () => void,
     onAddToast: (type: ToastTypes, content: string) => void,
     onClickLeakReduxState: () => void,
 };
 
-type HomeProps = (HomeState & HomeCallbacks);
+type HomeStateProps = {
+    toastContent: string,
+};
+
+type HomeProps = (HomeStateProps & HomeCallbackProps);
+
 class Home extends Component<HomeProps> {
     render() {
+        console.log('Home::render');
         return (
             <ContentPage>
                 <h1>Features</h1>
@@ -47,15 +52,15 @@ class Home extends Component<HomeProps> {
 
                 <br />
                 <h3>Toasts</h3>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.SUCCESS, this.props.toastContentTextField.value)}>add a success toast message</FunctionalLink> (is being closed after 3 seconds)</div>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.INFO, this.props.toastContentTextField.value)}>add an info toast message</FunctionalLink></div>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.WARNING, this.props.toastContentTextField.value)}>add a warning toast message</FunctionalLink></div>
-                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.ERROR, this.props.toastContentTextField.value)}>add an error toast message</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.SUCCESS, this.props.toastContent)}>add a success toast message</FunctionalLink> (is being closed after 3 seconds)</div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.INFO, this.props.toastContent)}>add an info toast message</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.WARNING, this.props.toastContent)}>add a warning toast message</FunctionalLink></div>
+                <div><FunctionalLink onClick={() => this.props.onAddToast(ToastTypes.ERROR, this.props.toastContent)}>add an error toast message</FunctionalLink></div>
 
                 <br />
                 <FormGroup>
-                    <Label title={'Toast content: ' + this.props.toastContentTextField.value} formElementId="toastContentTextField" />
-                    <TextField data={this.props.toastContentTextField} />
+                    <Label title={'Toast content: ' + this.props.toastContent} formElementId="toastContentTextField" />
+                    <TextField stateSelector={(state: RootState) => state.routing.home.toastContentField} />
                 </FormGroup>
 
                 <br />
@@ -66,11 +71,13 @@ class Home extends Component<HomeProps> {
     }
 }
 
-const mapStateToProps = (state: RootState): HomeState => {
-    return state.routing.home;
+const mapStateToProps = (state: RootState): HomeStateProps => {
+    return {
+        toastContent: state.routing.home.toastContentField.value,
+    };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): HomeCallbacks => {
+const mapDispatchToProps = (dispatch: Dispatch): HomeCallbackProps => {
     return {
         onClickLogin: () => dispatch(createLogin({
             username: 'sonGoku',

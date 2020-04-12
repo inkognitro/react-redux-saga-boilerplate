@@ -1,4 +1,4 @@
-import {HttpRequest, RequestHandlerEventTypes} from "Common/Domain/RequestHandling/Base/Http/Types";
+import {HttpRequest, HttpEventTypes} from "Common/Domain/RequestHandling/Base/Http/Types";
 import {Event} from "Common/Domain/Bus/Event";
 
 export enum Reasons {
@@ -7,7 +7,7 @@ export enum Reasons {
 
 export function createHttpRequestWasNotSent(request: HttpRequest, reason: Reasons): HttpRequestWasNotSent {
     return {
-        type: RequestHandlerEventTypes.HTTP_REQUEST_WAS_NOT_SENT,
+        type: HttpEventTypes.HTTP_REQUEST_WAS_NOT_SENT,
         payload: {
             request: request,
             reason: reason
@@ -15,7 +15,7 @@ export function createHttpRequestWasNotSent(request: HttpRequest, reason: Reason
     };
 }
 
-export type HttpRequestWasNotSent = Event<RequestHandlerEventTypes.HTTP_REQUEST_WAS_NOT_SENT, {
+export type HttpRequestWasNotSent = Event<HttpEventTypes.HTTP_REQUEST_WAS_NOT_SENT, {
     request: HttpRequest,
     reason: Reasons,
 }>;

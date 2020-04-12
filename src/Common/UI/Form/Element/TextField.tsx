@@ -45,9 +45,9 @@ const DumbTextField: FC<DumbTextFieldProps> = (props) => {
     );
 };
 
-const mapStateToProps = (_: object, props: {data: TextFieldState}): {data: TextFieldState} => {
+const mapStateToProps = (rootState: object, props: {stateSelector: (rootState: object) => TextFieldState}): {data: TextFieldState} => {
     return {
-        data: props.data,
+        data: props.stateSelector(rootState),
     };
 };
 
@@ -58,7 +58,5 @@ const mapDispatchToProps = (dispatch: Dispatch): DumbTextFieldCallbacks => {
         ),
     };
 };
-
-//todo: performance optimization with reselect!
 
 export const TextField = connect(mapStateToProps, mapDispatchToProps)(DumbTextField);

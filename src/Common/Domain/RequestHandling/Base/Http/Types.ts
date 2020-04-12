@@ -39,7 +39,7 @@ export type HttpState = {
     runningHttpRequests: HttpRequest[],
 }
 
-export enum RequestHandlerEventTypes {
+export enum HttpEventTypes {
     HTTP_REQUEST_WAS_SENT = 'HTTP_REQUEST_WAS_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
     HTTP_REQUEST_WAS_NOT_SENT = 'HTTP_REQUEST_WAS_NOT_SENT-27fd0173-f640-46ce-8881-516cdf5c41fc',
     HTTP_SUCCESS_RESPONSE_WAS_RECEIVED = 'HTTP_SUCCESS_RESPONSE_WAS_RECEIVED-27fd0173-f640-46ce-8881-516cdf5c41fc',
@@ -48,7 +48,7 @@ export enum RequestHandlerEventTypes {
     HTTP_REQUEST_WAS_CANCELLED = 'HTTP_REQUEST_WAS_CANCELLED-27fd0173-f640-46ce-8881-516cdf5c41fc',
 }
 
-export type RequestHandlerEvent = (
+export type HttpEvent = (
     HttpRequestWasSent
     | HttpRequestWasNotSent
     | HttpSuccessResponseWasReceived
