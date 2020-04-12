@@ -4,10 +4,10 @@ import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
 import {TimelineLite, Power1} from 'gsap';
 import {Message as MessageData} from "Common/Domain/Toaster/Types";
 
-export type MessageProps = (MessageData & {
+export type MessageProps = {
     message: MessageData,
     onRemove(): void
-});
+};
 
 export class Message extends Component<MessageProps> {
     private message: HTMLDivElement;
