@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore as createReduxStore, Middleware, Store} from 'redux';
+import {applyMiddleware, combineReducers, createStore as createReduxStore, Store} from 'redux';
 import {RouterState, RouterStateSelector} from "Common/Domain/Router/Types";
 import createSagaMiddleware from 'redux-saga';
 import {spawn} from "@redux-saga/core/effects";
@@ -24,16 +24,10 @@ import {HttpRequestDispatcher} from "Common/Domain/RequestHandling/Base/Http/Htt
 import {createAuthenticationFlow} from "Common/Domain/Authentication/Authentication";
 import {RoutingState} from "SinglePageApp/Domain/Routing/Types";
 
-interface SagaTask {
-    cancel(): void
-}
-
 type AppServices = {
     store: Store,
     history: History,
     httpRequestDispatcher: HttpRequestDispatcher,
-    sagaMiddleware: SagaMiddleware,
-    rootSagaTask: SagaTask,
 }
 
 let currentServices: (null | AppServices) = null;
@@ -42,14 +36,7 @@ export function createHotReloadedAppServices(httpRequestDispatcher: HttpRequestD
         currentServices = createAppServices(httpRequestDispatcher);
         return currentServices;
     }
-    currentServices.rootSagaTask.cancel();
-    const newRootSaga = createRootSaga(currentServices.history, currentServices.httpRequestDispatcher);
-    const newRootSagaTask = currentServices.sagaMiddleware.run(newRootSaga);
-    return {
-        ...currentServices,
-        //@ts-ignore
-        rootSagaTask: newRootSagaTask,
-    };
+    return currentServices;
 }
 
 export function createAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
@@ -57,13 +44,11 @@ export function createAppServices(httpRequestDispatcher: HttpRequestDispatcher):
     const sagaMiddleware = createSagaMiddleware();
     const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
     const rootSaga = createRootSaga(history, httpRequestDispatcher);
-    const rootSagaTask: SagaTask = sagaMiddleware.run(rootSaga);
+    sagaMiddleware.run(rootSaga);
     return {
         store: store,
         history: history,
         httpRequestDispatcher: httpRequestDispatcher,
-        sagaMiddleware: sagaMiddleware,
-        rootSagaTask: rootSagaTask,
     };
 }
 
@@ -84,10 +69,6 @@ export type RootState = {
     routing: RoutingState,
     authentication: AuthState,
 };
-
-type SagaMiddleware = (Middleware & {
-    run(rootSaga: () => Generator): void
-});
 
 function createRootSaga(history: History, httpRequestDispatcher: HttpRequestDispatcher): () => Generator {
     const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
