@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const path = require('path');
 const commonConfig = require('./webpack.common');
@@ -6,10 +5,10 @@ const commonConfig = require('./webpack.common');
 module.exports = merge(commonConfig, {
     mode: "development",
     devtool: 'inline-source-map',
-    entry: path.resolve(__dirname, './src/SinglePageApp/entry.dev.js'),
+    entry: path.resolve(__dirname, './entry.dev.js'),
     devServer: {
         historyApiFallback: true,
-        contentBase: './dist',
+        contentBase: './dist/SinglePageApp',
         compress: true,
         port: 9000,
         hot: true
@@ -19,8 +18,4 @@ module.exports = merge(commonConfig, {
             'react-dom': '@hot-loader/react-dom',
         },
     },
-    "plugins": [
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-    ]
 });

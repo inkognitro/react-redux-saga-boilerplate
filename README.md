@@ -16,12 +16,12 @@ Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://
 ## Development mode
 to run the app with hot module reloading at *//localhost:9000*, run:
 
-    npm run start
+    npm run start-spa
 
 ## Production mode
 to build the app in the *dist* folder, run:
 
-    npm run build
+    npm run build-spa
     
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:

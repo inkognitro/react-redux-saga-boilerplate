@@ -1,13 +1,7 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: "app.js",
-        publicPath: "/"
-    },
     module: {
         rules: [
             {
@@ -33,9 +27,6 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-        }),
         new ForkTsCheckerWebpackPlugin()
     ]
 };

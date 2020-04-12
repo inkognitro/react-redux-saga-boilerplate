@@ -8,8 +8,8 @@
     "url": "git://github.com/inkognitro/boilerplateFrontendReactRedux.git"
   },
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "start-spa": "webpack-dev-server --config src/SinglePageApp/Bootstrap/webpack.dev.js",
+    "build-spa": "webpack --config src/SinglePageApp/Bootstrap/webpack.prod.js",
     "check-types": "tsc"
   },
   "devDependencies": {
