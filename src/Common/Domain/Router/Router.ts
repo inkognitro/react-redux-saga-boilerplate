@@ -12,15 +12,15 @@ export function createRouterFlow(
 ): () => Generator {
     const watchCurrentUrlChange = function* (): Generator {
         while(true) {
-            const url = yield call(historyManager.getOnChangeCurrentUrlPromise);
             //@ts-ignore
+            const url: string = yield call(historyManager.getOnChangeCurrentUrlPromise);
             put(createCurrentUrlWasChanged(url));
         }
     };
     const initializeRouter = function* (): Generator {
         yield put(createRouterWasInitialized(historyManager.getCurrentUrl()));
     };
-    return function* routerFlow() {
+    return function* () {
         yield call(initializeRouter);
         yield spawn(watchCurrentUrlChange);
         yield spawn(createWatchOpenUrlFlow(routerStateSelector, historyManager));
