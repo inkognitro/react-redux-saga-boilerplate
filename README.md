@@ -37,11 +37,10 @@ to build the app in the *dist* folder, run:
 7. Basic form components
   
 ## Open todos (WIP)
-1. Refactoring to saga of "CommonWIP" packages
+1. Flows finalization for authentication package
 2. Performance optimization by not running all sagas concurrently
 3. Integration of logic testing (probably) with jest
 4. Integration of react component testing with enzyme
-5. Correct configuration for at least IE11 support
 
 ## Architecture (whys and whats)
 Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
