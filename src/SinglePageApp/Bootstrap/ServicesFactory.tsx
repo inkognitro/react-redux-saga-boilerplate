@@ -14,7 +14,7 @@ import {BrowserHistoryManager} from "Common/Infrastructure/Router/BrowserHistory
 import {createCookieFlow} from "Common/Domain/Cookie/Cookie";
 import {BrowserCookieStorage} from "Common/Infrastructure/Cookie/BrowserCookieStorage";
 import {routerReducer} from "Common/Domain/Router/Event/Reducer";
-import {createRoutingSaga, routingReducer} from "./Domain/Routing/Routing";
+import {createRoutingSaga, routingReducer} from "../Domain/Routing/Routing";
 import {httpReducer} from "Common/Domain/RequestHandling/Base/Http/Event/Reducer";
 import {HttpState, HttpStateSelector} from "Common/Domain/RequestHandling/Base/Http/Types";
 import {createRequestHandlingFlow} from "Common/Domain/RequestHandling/RequestHandling";

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import {Toaster as RepresentationalToaster, ToasterCallbacks, ToasterState} from 'Common/UI/Toaster/Toaster';
 import {Dispatch} from "redux";
-import {RootState} from "../../ServicesFactory";
+import {RootState} from "SinglePageApp/Bootstrap/ServicesFactory";
 import {createRemoveMessage} from "Common/Domain/Toaster/Command/RemoveMessage";
 import {getAllToasts} from "Common/Domain/Toaster/Query/ToastQuery";
 

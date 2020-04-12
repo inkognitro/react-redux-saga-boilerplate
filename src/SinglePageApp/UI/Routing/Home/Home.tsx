@@ -4,7 +4,7 @@ import {ToastTypes} from "Common/Domain/Toaster/Types";
 import {Dispatch} from "redux";
 import {createShowMessage} from "Common/Domain/Toaster/Command/ShowMessage";
 import {connect} from "react-redux";
-import {RootState} from "../../../ServicesFactory";
+import {RootState} from "../../../Bootstrap/ServicesFactory";
 import {ContentPage} from "../../Base/PageTypes/ContentPage";
 import {createLeakReduxState} from "../../../Domain/Routing/Home/Command/LeakReduxState";
 import {FormGroup} from "Common/UI/Form/FormGroup";

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {FunctionalLink} from "Common/UI/Base/Link/Link";
-import {RootState} from "../../ServicesFactory";
+import {RootState} from "SinglePageApp/Bootstrap/ServicesFactory";
 import {createHomeRouteUrl} from "../../Domain/Routing/Home/Home";
 import {findCurrentAuthUser} from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import {AuthUser} from "Common/Domain/Authentication/Types";
