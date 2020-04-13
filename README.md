@@ -14,12 +14,12 @@ Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://
    - or: to build the app for production
 
 ## Development mode
-to run the app with hot module reloading at *//localhost:9000*, run:
+To run the app with hot module reloading at *//localhost:9000*, run:
 
     npm run start-spa
 
 ## Production mode
-to build the app in the *dist* folder, run:
+To build the app in the *dist* folder, run:
 
     npm run build-spa
     
@@ -83,13 +83,16 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
 
 ##Testing
-Tests are organized as follow, and always need the `.test.ts` suffix:
-- Unit tests are integrated directly next to the tested file. For example the unit test for `foo/bar/baz.ts is` is `/foo/bar/baz.unit.test.ts`.
+To execute the tests, run:
+
+    npm run test
+
+Tests are organized as follow (file suffix `.test.ts` required):
+- Unit tests are integrated directly next to the tested file. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
 - Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Command/ShowMessage.int.test.ts`.
-- Integration tests for behaviour over multiple modules should be placed in the roots `tests` directory (e.g. `/tests/bar/baz.int.test.ts`).
+- Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[projectDirectory]/tests/Common/Foo/Bar.int.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
-
 Read [another smart article about testing structure](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850).
 
 ## Appreciation
