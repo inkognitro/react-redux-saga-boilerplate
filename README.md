@@ -36,6 +36,7 @@ To build the app in the *dist* folder, run:
 6. UTC datetime handling with [moment](http://momentjs.com) in the background 
 7. Basic form components
 8. Integrated testing library is [jest](http://jestjs.io). Saga business logic can be tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan) using jest.
+9. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc` in root directory.
   
 ## Open todos (WIP)
 1. Authentication package saga flow finalization
