@@ -1,11 +1,11 @@
 {
-  "name": "boilerplate-frontend-react",
+  "name": "react-redux-saga-boilerplate",
   "version": "0.0.1",
-  "description": "react boilerplate starter project",
+  "description": "Frontend boilerplate realized in react combined with redux and redux-saga. Written in TypeScript. Built with webpack.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/inkognitro/boilerplateFrontendReactRedux.git"
+    "url": "git://github.com/inkognitro/react-redux-saga-boilerplate.git"
   },
   "scripts": {
     "start-spa": "webpack-dev-server --config src/SinglePageApp/Bootstrap/webpack.dev.js",
@@ -22,6 +22,8 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.7.2",
     "@hot-loader/react-dom": "^16.11.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.3.0",
     "fork-ts-checker-webpack-plugin": "^3.1.0",
@@ -32,6 +34,7 @@
     "redux-saga-test-plan": "^4.0.0-rc.3",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
+    "ts-jest": "^25.3.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
