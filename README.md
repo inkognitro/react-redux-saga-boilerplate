@@ -82,7 +82,7 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 
 Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
 
-##Testing
+## Testing
 To execute the tests, run:
 
     npm run test
