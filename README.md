@@ -36,7 +36,7 @@ To build the app in the *dist* folder, run:
 6. UTC datetime handling with [moment](http://momentjs.com) in the background 
 7. Basic form components
 8. Integrated testing library is [jest](http://jestjs.io). Saga business logic can be tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan) using jest.
-9. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc` in root directory.
+9. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
   
 ## Open todos (WIP)
 1. Authentication package saga flow finalization
@@ -91,7 +91,7 @@ To execute the tests, run:
 Tests are organized as follow (file suffix `.test.ts` required):
 - Unit tests are integrated directly next to the tested file. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
 - Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Command/ShowMessage.int.test.ts`.
-- Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[projectDirectory]/tests/Common/Foo/Bar.int.test.ts`).
+- Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.int.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
 Read [another smart article about testing structure](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850).
