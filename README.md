@@ -95,5 +95,10 @@ Tests are organized as follow (file suffix `.test.ts` required):
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
 Read [another smart article about testing structure](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850).
 
+**Something to ponder**: While practising TDD I think not only is it painful to write snapshot tests but also useless.
+However in my opinion tests are here to develop faster and especially to prevent unwanted bugs.
+Snapshot tests are expected to fail with every UI change.
+Have a look at [this article](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
+
 ## Appreciation
 Many thanks to [Dan Abramov](http://github.com/gaearon), it is and has always been a pleasure to learn from him.
