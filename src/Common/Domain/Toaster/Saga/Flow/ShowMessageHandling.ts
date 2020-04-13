@@ -5,13 +5,13 @@ import {
     ToasterStateSelector,
     ToastTypes
 } from "Common/Domain/Toaster/Types";
-import {delay, put, select, takeEvery} from "@redux-saga/core/effects";
+import {delay, put, select, takeEvery, fork} from "@redux-saga/core/effects";
 import {findToastByMessageId} from "Common/Domain/Toaster/Query/ToastQuery";
 import {findMessageToAddByMessageId} from "Common/Domain/Toaster/Query/MessageQuery";
 import uuidV4 from "uuid/v4";
 import {createMessageWasAddedToPipeline} from "Common/Domain/Toaster/Event/MessageWasAddedToPipeline";
-import {createMoveMessagesFromPipelineToToasts} from "Common/Domain/Toaster/Command/MoveMessagesFromPipelineToToasts";
 import {ShowMessageSettings, ShowMessage} from "Common/Domain/Toaster/Command/ShowMessage";
+import {moveMessagesFromPipelineToToasts} from "Common/Domain/Toaster/Saga/Callables/MoveMessagesFromPipelineToToasts";
 
 export function createWatchShowMessageFlow(toasterStateSelector: ToasterStateSelector): GeneratorFunction {
     const createAutomaticCloseDelayInMs = function (settings: ShowMessageSettings): (null | number) {
@@ -52,7 +52,7 @@ export function createWatchShowMessageFlow(toasterStateSelector: ToasterStateSel
         };
         yield put(createMessageWasAddedToPipeline(messageToAdd));
         yield delay(200);
-        yield put(createMoveMessagesFromPipelineToToasts());
+        yield fork(moveMessagesFromPipelineToToasts, toasterStateSelector);
     };
 
     return <GeneratorFunction>function* (): Generator {
