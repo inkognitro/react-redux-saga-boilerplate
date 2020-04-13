@@ -62,5 +62,17 @@
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",
     "uuid": "^3.4.0"
+  },
+  "jest": {
+    "roots": ["<rootDir>/src", "<rootDir>/tests"],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.tsx?$",
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+    "moduleNameMapper": {
+      "Common/(.*)": "<rootDir>/src/Common/$1",
+      "SinglePageApp/(.*)": "<rootDir>/src/SinglePageApp/$1"
+    }
   }
 }
