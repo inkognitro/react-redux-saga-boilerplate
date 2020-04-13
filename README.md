@@ -90,7 +90,7 @@ To execute the tests, run:
 
 Tests are organized as follow (file suffix `.test.ts` required):
 - Unit tests are integrated directly next to the tested file. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Command/ShowMessage.int.test.ts`.
+- Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.int.test.ts`.
 - Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.int.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.

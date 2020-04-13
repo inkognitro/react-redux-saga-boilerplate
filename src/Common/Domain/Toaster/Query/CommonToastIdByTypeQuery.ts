@@ -1,6 +1,6 @@
 import {ToastTypes} from "Common/Domain/Toaster/Types";
 
-enum CommonToastIds {
+export enum CommonToastIds {
     INFO = '5011d2e7-ce60-4186-bbee-bf3e8ab57c3b',
     SUCCESS = 'fb02626d-b3f7-4589-b880-ae468d763f7f',
     WARNING = '9210671f-37da-4258-90e5-dc6faf6ba87a',

@@ -65,7 +65,7 @@ function* handleMoveMessagesFromPipelineToToast(toasterState: ToasterState, toas
     yield fork(startAutomaticMessageCloseTimers, toastToMerge.messages);
 }
 
-export function* moveMessagesFromPipelineToToasts(toasterStateSelector: ToasterStateSelector): Generator {
+export function* moveMessagesFromPipelineToToastsHandling(toasterStateSelector: ToasterStateSelector): Generator {
     //@ts-ignore
     const toasterState: ToasterState = yield select(toasterStateSelector);
     const toastsToMerge = getToastsToMerge(toasterState);
@@ -76,6 +76,6 @@ export function* moveMessagesFromPipelineToToasts(toasterStateSelector: ToasterS
     }
     if (functionMustBeReExecuted) {
         yield delay(500);
-        yield fork(moveMessagesFromPipelineToToasts, toasterStateSelector);
+        yield fork(moveMessagesFromPipelineToToastsHandling, toasterStateSelector);
     }
 }
