@@ -2,7 +2,7 @@
   "compilerOptions": {
     "jsx": "react",
     "lib": ["dom", "esnext"],
-    "module": "esnext",
+    "module": "commonjs",
     "esModuleInterop": true,
     "outDir": "./dist/",
     "sourceMap": true,

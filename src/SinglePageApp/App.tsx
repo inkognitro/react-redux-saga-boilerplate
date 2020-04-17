@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {Store} from 'redux'
+import {Store} from 'redux';
 import {Toaster} from "./UI/Base/Toaster";
 import {History} from 'history';
 import {Router} from "./UI/Routing/Router";
