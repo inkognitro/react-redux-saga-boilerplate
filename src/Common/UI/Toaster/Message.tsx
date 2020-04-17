@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {CloseIcon} from "Common/UI/Base/Icon/CloseIcon";
 import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
+//@ts-ignore: no type support for gsap
 import {TimelineLite, Power1} from 'gsap';
 import {Message as MessageData} from "Common/Domain/Toaster/Types";
 

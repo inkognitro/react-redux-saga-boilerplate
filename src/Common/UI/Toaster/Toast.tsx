@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Message} from "Common/UI/Toaster/Message";
+//@ts-ignore: no type support for gsap
 import {Power1, TimelineLite} from "gsap";
 import {Message as MessageData, Toast as ToastData, ToastTypes} from "Common/Domain/Toaster/Types";
 
