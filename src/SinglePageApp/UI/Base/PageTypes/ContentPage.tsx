@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {NavBar} from "../NavBar";
-import './ContentPage.scss';
 
 export type ContentPageProps = {
     topDividedContent?: boolean,

@@ -1,5 +1,3 @@
-import './Icon.scss';
-
 export enum IconTypes {
     INFO = 'info',
     SUCCESS = 'success',

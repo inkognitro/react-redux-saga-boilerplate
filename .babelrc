@@ -8,6 +8,8 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-export-namespace-from",
     "@babel/plugin-transform-regenerator",
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread"

@@ -1,7 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Toast} from './Toast';
 import {Toast as ToastData} from "Common/Domain/Toaster/Types";
-import './Toaster.scss';
 
 export type ToasterState = {
     toasts: ToastData[],

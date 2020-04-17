@@ -3,7 +3,6 @@ import {AlignedArea, horizontalAligns, verticalAligns} from "Common/UI/Base/Alig
 import {TimelineLite} from "gsap/gsap-core";
 import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
 import {LoaderIconRotating} from "Common/UI/Base/Icon/LoaderIconRotating";
-import './Loader.scss';
 
 export type LoaderState = {
     isVisible: boolean,

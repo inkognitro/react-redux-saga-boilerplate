@@ -5,7 +5,6 @@ import {Toaster} from "./UI/Base/Toaster";
 import {History} from 'history';
 import {Router} from "./UI/Routing/Router";
 import {Loader} from "./UI/Base/Loader";
-import './App.scss';
 
 export type RootComponentProps = {
     store: Store,

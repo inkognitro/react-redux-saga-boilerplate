@@ -1,5 +1,4 @@
 import React, {FunctionComponent} from 'react';
-import './AlignedArea.scss';
 
 export enum verticalAligns {
     TOP = 'top',

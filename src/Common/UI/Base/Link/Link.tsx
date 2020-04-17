@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {createOpenUrl} from "Common/Domain/Router/Commands/OpenUrl";
-import './Link.scss';
 
 type FunctionalLinkProps = {
     url?: string,
