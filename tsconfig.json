@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
+    "jsx": "react",
+    "lib": ["dom", "esnext"],
+    "module": "esnext",
+    "esModuleInterop": true,
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "module": "commonjs",
     "target": "es6",
-    "jsx": "react",
     "baseUrl": "./src",
     "paths": {
       "Common/*": ["./Common/*"],
