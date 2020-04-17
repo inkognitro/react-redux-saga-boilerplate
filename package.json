@@ -11,6 +11,8 @@
     "start-spa": "webpack-dev-server --config src/SinglePageApp/Bootstrap/webpack.dev.js",
     "build-spa": "webpack --config src/SinglePageApp/Bootstrap/webpack.prod.js",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors",
     "check-types": "tsc"
   },
   "devDependencies": {
@@ -22,6 +24,7 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.7.2",
     "@hot-loader/react-dom": "^16.11.0",
+    "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.3.0",
@@ -65,20 +68,15 @@
     "uuid": "^3.4.0"
   },
   "jest": {
-    "roots": [
-      "<rootDir>/src",
-      "<rootDir>/tests"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.tsx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx"
-    ],
+    "setupFiles": ["<rootDir>/enzyme.config.js"],
+    "roots": ["<rootDir>/src", "<rootDir>/tests"],
+    "coverageDirectory": "coverage",
+    "clearMocks": true,
+    "transform": {"^.+\\.(j|t)sx?$": "ts-jest"},
+    "testPathIgnorePatterns": ["\\\\node_modules\\\\"],
+    "transformIgnorePatterns": ["<rootDir>/node_modules/"],
+    "testRegex": ".+\\.test\\.(j|t)sx?$",
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
     "moduleNameMapper": {
       "Common/(.*)": "<rootDir>/src/Common/$1",
       "SinglePageApp/(.*)": "<rootDir>/src/SinglePageApp/$1"
