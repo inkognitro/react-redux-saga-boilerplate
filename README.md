@@ -30,16 +30,18 @@ To build the app in the *dist* folder, run:
 2. Toasts integration
     - multiple messages per toast
     - pipelined messages considering running toast animations (async visibility of toasts)
-3. Bootstrap 4 integration, [material icons](http://material.io/resources/icons/) integration + SASS support
-4. Request handling with [axios](http://npmjs.com/package/axios) library in the background
-5. Loader integration according to running requests
-6. UTC datetime handling with [moment](http://momentjs.com) in the background 
-7. Basic form components
-8. Integrated testing library is [jest](http://jestjs.io). Saga business logic can be tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan) using jest.
-9. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
+3. Bootstrap 4 integration, [material icons](http://material.io/resources/icons/) integration
+4. Styling with [styled-components](http://styled-components.com/)
+5. Request handling with [axios](http://npmjs.com/package/axios) library in the background
+6. Loader integration according to running requests
+7. UTC datetime handling with [moment](http://momentjs.com) in the background 
+8. Basic form components
+9. Integrated testing library is [jest](http://jestjs.io). Saga business logic can be tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan) using jest.
+10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
   
 ## Open todos (WIP)
 1. Authentication package saga flow finalization
+2. Realisation of styles with styled-components instead of SASS to be open for snapshot tests or e.g. chromatic.
 2. Performance optimization by not running all sagas concurrently
 3. Integrate enzyme for react component testing
 
@@ -90,8 +92,8 @@ To execute the tests, run:
 
 Tests are organized as follow (file suffix `.test.ts` required):
 - Unit tests are integrated directly next to the tested file. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.int.test.ts`.
-- Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.int.test.ts`).
+- Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
+- Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.integration.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
 Read [another smart article about testing structure](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850).
