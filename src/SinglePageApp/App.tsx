@@ -6,8 +6,8 @@ import {History} from 'history';
 import {Router} from "./UI/Routing/Router";
 import {Loader} from "./UI/Base/Loader";
 import {ThemeProvider} from 'styled-components';
-
-const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./App.scss');
+import {baseTheme} from "Common/UI/Theme";
+import 'SinglePageApp/UI/App.scss';
 
 export type RootComponentProps = {
     store: Store,
@@ -17,7 +17,7 @@ export type RootComponentProps = {
 export class RootComponent extends Component<RootComponentProps> {
     render() {
         return (
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={baseTheme}>
                 <StoreProvider store={this.props.store}>
                     <Router history={this.props.history} />
                     <Toaster />

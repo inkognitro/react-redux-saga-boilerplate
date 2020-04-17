@@ -39,8 +39,8 @@ export function* authenticate(settings: AuthenticateSettings): Generator<unknown
             user: response.body.data.user,
         };
     }
-    //@ts-ignore
     return {
+        //@ts-ignore
         type: ResponseDataTypes.ERROR,
     };
 }
