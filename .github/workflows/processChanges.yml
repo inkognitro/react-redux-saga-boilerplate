@@ -10,14 +10,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: install packages
+      run: |
+        npm install
+        echo packages installed
     - name: build single page app
       run: |
         npm run build:spa
-        echo build succeeded 
+        echo build successfully created 
         
   create-badges:
     runs-on: ubuntu-latest
     steps:
+    - name: install packages
+      run: |
+        npm install
+        echo packages installed
     - name: create test coverage badges
       run: |
         npm run test:badges
