@@ -5,7 +5,7 @@ Frontend boilerplate realized in [react](https://reactjs.org/) combined with [re
 Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
 
 ## Motivation
-Sometimes it is hard to deliver good quality software due to economical time pressure.
+Sometimes it is hard to deliver good quality software due to economic time pressure.
 With this project I try to provide a best practise frontend boilerplate so save nerves of developers,
 clients, company owners and to close the circle, the gods on earth, again: the developers.
    
