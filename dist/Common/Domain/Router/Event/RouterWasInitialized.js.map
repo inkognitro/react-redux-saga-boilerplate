@@ -1,1 +1,0 @@
-{"version":3,"file":"RouterWasInitialized.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Router/Event/RouterWasInitialized.ts"],"names":[],"mappings":";;AAAA,sDAA4D;AAG5D,SAAgB,0BAA0B,CAAC,GAAW;IAClD,OAAO;QACH,IAAI,EAAE,wBAAgB,CAAC,sBAAsB;QAC7C,OAAO,EAAE;YACL,GAAG,EAAE,GAAG;SACX;KACJ,CAAC;AACN,CAAC;AAPD,gEAOC"}

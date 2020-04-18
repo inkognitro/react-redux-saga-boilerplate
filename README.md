@@ -2,10 +2,10 @@
 
 `test coverage is going to be improved in the next few days`
 
-![TestCoverage](coverage/badge-branches.svg)
-![TestCoverage](coverage/badge-functions.svg)
-![TestCoverage](coverage/badge-lines.svg)
-![TestCoverage](coverage/badge-statements.svg)
+![TestCoverageBranches](coverage/badge-branches.svg)
+![TestCoverageFunctions](coverage/badge-functions.svg)
+![TestCoverageLines](coverage/badge-lines.svg)
+![TestCoverageStatements](coverage/badge-statements.svg)
 
 # React Redux Boilerplate (WIP)
 Frontend boilerplate realized in [react](https://reactjs.org/) combined with [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).

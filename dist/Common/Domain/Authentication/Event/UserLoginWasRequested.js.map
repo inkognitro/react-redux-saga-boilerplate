@@ -1,1 +1,0 @@
-{"version":3,"file":"UserLoginWasRequested.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Authentication/Event/UserLoginWasRequested.ts"],"names":[],"mappings":";;AAAA,8DAAkE;AAGlE,SAAgB,yBAAyB,CAAC,OAAgB;IACtD,OAAO;QACH,IAAI,EAAE,sBAAc,CAAC,wBAAwB;QAC7C,OAAO,EAAE,OAAO;KACnB,CAAC;AACN,CAAC;AALD,8DAKC"}

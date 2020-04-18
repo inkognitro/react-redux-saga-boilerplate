@@ -1,1 +1,0 @@
-{"version":3,"file":"ApiV1HttpConnectionFailed.js","sourceRoot":"","sources":["../../../../../../../src/Common/Domain/RequestHandling/ApiV1/Http/Event/ApiV1HttpConnectionFailed.ts"],"names":[],"mappings":";;AACA,0EAAmF;AAGnF,SAAgB,+BAA+B,CAAC,OAAoB;IAChE,OAAO;QACH,IAAI,EAAE,2BAAmB,CAAC,6BAA6B;QACvD,OAAO,EAAE,EAAC,OAAO,EAAC;KACrB,CAAC;AACN,CAAC;AALD,0EAKC"}

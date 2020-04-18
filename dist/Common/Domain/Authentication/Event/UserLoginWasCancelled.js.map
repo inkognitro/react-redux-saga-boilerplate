@@ -1,1 +1,0 @@
-{"version":3,"file":"UserLoginWasCancelled.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Authentication/Event/UserLoginWasCancelled.ts"],"names":[],"mappings":";;AAAA,8DAAkE;AAIlE,SAAgB,2BAA2B,CAAC,aAA4B;IACpE,OAAO;QACH,IAAI,EAAE,sBAAc,CAAC,wBAAwB;QAC7C,OAAO,EAAE,EAAC,aAAa,EAAC;KAC3B,CAAC;AACN,CAAC;AALD,kEAKC"}

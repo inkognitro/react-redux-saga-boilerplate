@@ -1,1 +1,0 @@
-{"version":3,"file":"ToastOutroAnimationWasStarted.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Toaster/Event/ToastOutroAnimationWasStarted.ts"],"names":[],"mappings":";;AAAA,uDAA8D;AAG9D,SAAgB,mCAAmC,CAAC,OAAe;IAC/D,OAAO;QACH,IAAI,EAAE,yBAAiB,CAAC,iCAAiC;QACzD,OAAO,EAAE;YACL,OAAO,EAAE,OAAO;SACnB;KACJ,CAAC;AACN,CAAC;AAPD,kFAOC"}

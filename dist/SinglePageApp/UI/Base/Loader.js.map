@@ -1,1 +1,0 @@
-{"version":3,"file":"Loader.js","sourceRoot":"","sources":["../../../../src/SinglePageApp/UI/Base/Loader.tsx"],"names":[],"mappings":";;AAAA,6CAAoC;AACpC,kDAA+G;AAE/G,qGAAqH;AAErH,MAAM,eAAe,GAAG,CAAC,KAAgB,EAA6B,EAAE;IACpE,OAAO;QACH,SAAS,EAAE,wDAAqC,CAAC,KAAK,CAAC,IAAI,CAAC;KAC/D,CAAC;AACN,CAAC,CAAC;AAEW,QAAA,MAAM,GAAG,qBAAO,CAAC,eAAe,CAAC,CAAC,eAAoB,CAAC,CAAC"}

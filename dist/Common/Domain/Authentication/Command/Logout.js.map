@@ -1,1 +1,0 @@
-{"version":3,"file":"Logout.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Authentication/Command/Logout.ts"],"names":[],"mappings":";;AACA,8DAAoE;AAEpE,SAAgB,YAAY;IACxB,OAAO;QACH,IAAI,EAAE,wBAAgB,CAAC,MAAM;QAC7B,OAAO,EAAE,SAAS;KACrB,CAAC;AACN,CAAC;AALD,oCAKC"}

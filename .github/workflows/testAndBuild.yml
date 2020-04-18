@@ -17,8 +17,8 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
-        npm run build:spa
         npm run test:badges
+        npm run build:spa
       env:
         CI: true
     - name: Commit files

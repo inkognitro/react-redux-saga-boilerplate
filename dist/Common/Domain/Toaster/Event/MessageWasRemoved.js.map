@@ -1,1 +1,0 @@
-{"version":3,"file":"MessageWasRemoved.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Toaster/Event/MessageWasRemoved.ts"],"names":[],"mappings":";;AAAA,uDAA8D;AAG9D,SAAgB,uBAAuB,CAAC,SAAiB;IACrD,OAAO;QACH,IAAI,EAAE,yBAAiB,CAAC,mBAAmB;QAC3C,OAAO,EAAE;YACL,SAAS,EAAE,SAAS;SACvB;KACJ,CAAC;AACN,CAAC;AAPD,0DAOC"}

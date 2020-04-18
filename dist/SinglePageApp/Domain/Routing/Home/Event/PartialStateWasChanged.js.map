@@ -1,1 +1,0 @@
-{"version":3,"file":"PartialStateWasChanged.js","sourceRoot":"","sources":["../../../../../../src/SinglePageApp/Domain/Routing/Home/Event/PartialStateWasChanged.ts"],"names":[],"mappings":";;AACA,oCAAmD;AAEnD,SAAgB,4BAA4B,CAAC,KAAyB;IAClE,OAAO;QACH,IAAI,EAAE,sBAAc,CAAC,yBAAyB;QAC9C,OAAO,EAAE,KAAK;KACjB,CAAC;AACN,CAAC;AALD,oEAKC"}

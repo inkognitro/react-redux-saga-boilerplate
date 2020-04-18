@@ -1,1 +1,0 @@
-{"version":3,"file":"UserWasLoggedOut.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Authentication/Event/UserWasLoggedOut.ts"],"names":[],"mappings":";;AAAA,8DAAkE;AAGlE,SAAgB,sBAAsB;IAClC,OAAO;QACH,IAAI,EAAE,sBAAc,CAAC,mBAAmB;QACxC,OAAO,EAAE,SAAS;KACrB,CAAC;AACN,CAAC;AALD,wDAKC"}

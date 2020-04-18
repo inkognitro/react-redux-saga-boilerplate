@@ -1,1 +1,0 @@
-{"version":3,"file":"InitializeCurrentUser.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Authentication/Command/InitializeCurrentUser.ts"],"names":[],"mappings":";;AACA,8DAAoE;AAEpE,SAAgB,2BAA2B;IACvC,OAAO;QACH,IAAI,EAAE,wBAAgB,CAAC,uBAAuB;QAC9C,OAAO,EAAE,SAAS;KACrB,CAAC;AACN,CAAC;AALD,kEAKC"}
