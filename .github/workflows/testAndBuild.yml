@@ -24,7 +24,7 @@ jobs:
     - name: Commit files
       run: |
         echo ${{ github.ref }}
-        git add .
+        git add -A
         git config --local user.email "action@github.com"
         git config --local user.name "testAndBuild workflow"
         git commit -m "CI: Automated push" -a | exit 0
