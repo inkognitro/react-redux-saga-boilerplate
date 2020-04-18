@@ -30,7 +30,7 @@ To build the app in the *dist* folder, run:
 2. Toasts integration
     - multiple messages per toast
     - pipelined messages considering running toast animations (async visibility of toasts)
-3. Bootstrap 4 integration, [material icons](http://material.io/resources/icons/) integration
+3. Bootstrap 4 SCSS and [material icons](http://material.io/resources/icons/) integration
 4. Styling with [styled-components](http://styled-components.com/)
 5. Request handling with [axios](http://npmjs.com/package/axios) library in the background
 6. Loader integration according to running requests
@@ -40,10 +40,9 @@ To build the app in the *dist* folder, run:
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
   
 ## Open todos (WIP)
-1. Authentication package saga flow finalization
-2. Realisation of styles with styled-components instead of SASS to be open for snapshot tests or e.g. chromatic.
-2. Performance optimization by not running all sagas concurrently
-3. Integrate enzyme for react component testing
+1. Authentication package saga flow finalization.
+2. Realisation of styles with styled-components instead of SASS.
+3. Performance optimization by not running all sagas concurrently.
 
 ## Architecture (whys and whats)
 Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
