@@ -1,5 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/inkognitro/react-redux-saga-boilerplate/blob/master/LICENSE.md)
 
+`test coverage is going to be improved in the next few days`
+
 ![TestCoverage](coverage/badge-branches.svg)
 ![TestCoverage](coverage/badge-functions.svg)
 ![TestCoverage](coverage/badge-lines.svg)
@@ -33,10 +35,17 @@ To build the app in the *dist* folder, run:
 
     npm run build:spa
     
+## Open todos (WIP)
+1. Test coverage
+2. Authentication package saga flow
+3. Performance optimization by not running all sagas concurrently.
+4. Linting with eslint.
+    
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:
     - with remember me flag
     - ideally the authentication server responds with the [jwtSecret]-httpOnly-cookie and [jwtHeader].[jwtPayload] in the response body, to be protected against XSS and CSRF attacks.
+    - simulated with a mocked http request dispatcher in development mode
 2. Toasts integration
     - multiple messages per toast
     - pipelined messages considering running toast animations (async visibility of toasts)
@@ -48,12 +57,6 @@ To build the app in the *dist* folder, run:
 8. Basic form components
 9. Prepared testing (see Testing section below)
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
-  
-## Open todos (WIP)
-1. Authentication package saga flow finalization.
-2. Realisation of styles with styled-components instead of SASS.
-3. Performance optimization by not running all sagas concurrently.
-4. Linting with eslint.
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
