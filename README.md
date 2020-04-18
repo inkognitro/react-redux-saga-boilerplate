@@ -4,6 +4,11 @@
 Frontend boilerplate realized in [react](https://reactjs.org/) combined with [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
 Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
 
+## Motivation
+Sometimes it is hard to deliver good quality software due to economical time pressure.
+With this project I try to provide a best practise frontend boilerplate so save nerves of developers,
+clients, company owners and to close the circle, the gods on earth, again: the developers.
+   
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
 2. Clone or download this repository
@@ -44,7 +49,19 @@ To build the app in the *dist* folder, run:
 2. Realisation of styles with styled-components instead of SASS.
 3. Performance optimization by not running all sagas concurrently.
 
-## Architecture (whys and whats)
+## Architecture
+
+### General
+The architecture is divided in three layers:
+1. Domain: This is the source of truth layer. It holds your business logic, manages your app state and async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. But never couple it to specific implementations (e.g. browser cookies or browser history).
+2. Infrastructure: This is the layer where the specific implementations live in. E.g BrowserCookieStorage for a browser environment.
+3. UI: In this layer all UI components live in. Could also be named WebUI layer.
+
+By the way, if you strictly continue isolating these layers,
+this project could also be extended with an additional UI layer
+for mobile development (e.g. [react-native](https://reactnative.dev/)) and reused business logic.
+
+### Architecture decisions
 Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
 
 Redux makes modularity and maintainability a breeze giving you full control over every action happening during the runtime of your frontend app.
