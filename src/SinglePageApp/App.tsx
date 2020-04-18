@@ -4,6 +4,10 @@ import {Store} from 'redux';
 import {History} from 'history';
 import {ThemedApp} from "SinglePageApp/UI/ThemedApp";
 import 'bootstrap/scss/bootstrap.scss';
+import {CSSPlugin} from "gsap/CSSPlugin";
+
+//@ts-ignore
+const plugins = [ CSSPlugin ]; //without this line, CSSPlugin is being dropped by webpack through tree shaking and multiple animations with gsap do not work properly
 
 export type RootComponentProps = {
     store: Store,

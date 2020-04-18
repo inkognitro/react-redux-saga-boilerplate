@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {AlignedArea, horizontalAligns, verticalAligns} from "Common/UI/Base/AlignedArea";
-import {TimelineLite} from "gsap/gsap-core";
+import {TimelineLite} from "gsap";
 import {IconSizes, IconTypes} from "Common/UI/Icon/Icon";
 import styled from "styled-components";
 import {LoaderIcon} from "Common/UI/Icon/LoaderIcon";

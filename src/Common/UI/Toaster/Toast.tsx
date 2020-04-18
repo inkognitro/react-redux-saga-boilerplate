@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Message} from "Common/UI/Toaster/Message";
-import {Power1, TimelineLite} from "gsap";
+import { Power1, TimelineLite }  from "gsap";
 import {Message as MessageData, Toast as ToastData, ToastTypes} from "Common/Domain/Toaster/Types";
 import styled from "styled-components";
 import {StyledComponentProps} from "Common/UI/Design/Types";
