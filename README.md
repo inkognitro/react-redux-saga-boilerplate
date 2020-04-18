@@ -108,7 +108,7 @@ Read a [really good article](https://shift.infinite.red/redux-observable-epics-v
 ## Testing
 Integrated test runner is [jest](http://jestjs.io) (developed by facebook).
 Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
-React components are tested with [enzyme](https://enzymejs.github.io/enzyme/).
+React components are tested with [enzyme](https://enzymejs.github.io/enzyme/) (developed by Airbnb).
 
 To execute the tests, run:
 
