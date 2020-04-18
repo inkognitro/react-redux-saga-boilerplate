@@ -8,25 +8,21 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
     steps:
-    - name: install packages
-      run: |
-        npm install
-        echo packages installed
-    - name: build single page app
-      run: |
-        npm run build:spa
-        echo build successfully created 
-        
-  create-badges:
-    runs-on: ubuntu-latest
-    steps:
-    - name: install packages
-      run: |
-        npm install
-        echo packages installed
-    - name: create test coverage badges
-      run: |
-        npm run test:badges
-        echo test coverage badgets created
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run build:spa
+    - run: npm run test:badges
+      env:
+        CI: true
