@@ -48,6 +48,7 @@ To build the app in the *dist* folder, run:
 1. Authentication package saga flow finalization.
 2. Realisation of styles with styled-components instead of SASS.
 3. Performance optimization by not running all sagas concurrently.
+4. Linting with eslint.
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
