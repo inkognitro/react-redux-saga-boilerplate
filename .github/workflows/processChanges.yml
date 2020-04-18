@@ -15,7 +15,7 @@ jobs:
         npm run build:spa
         echo build succeeded 
         
-  create badges:
+  create-badges:
     runs-on: ubuntu-latest
     steps:
     - name: create test coverage badges
