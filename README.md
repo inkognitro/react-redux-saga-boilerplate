@@ -62,7 +62,7 @@ One picture says more than thousand words:
 ![DDD info graphic](https://miro.medium.com/max/1262/1*P2p84f7XhW0LiLgZvxBSxw.png)
 (source: [https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9))
 
-By the way, if you strictly continue isolating these layers, this project could also be extended with an additional "NativeUI" layer
+By the way, if you strictly continue separating these layers, this project could also be extended with an additional "NativeUI" layer
 for mobile devices (e.g. with [react-native](https://reactnative.dev/)). Already written business logic then can be reused from the domain layer.
 
 ### Evaluation: whys and whats
