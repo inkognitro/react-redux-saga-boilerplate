@@ -21,12 +21,12 @@ clients, company owners and to close the circle, for me the gods on earth, again
 ## Development mode
 To run the app with hot module reloading at *//localhost:9000*, run:
 
-    npm run start-spa
+    npm run start:spa
 
 ## Production mode
 To build the app in the *dist* folder, run:
 
-    npm run build-spa
+    npm run build:spa
     
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:

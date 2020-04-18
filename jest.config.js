@@ -25,5 +25,8 @@ module.exports = {
     "moduleNameMapper": {
         "Common/(.*)": "<rootDir>/src/Common/$1",
         "SinglePageApp/(.*)": "<rootDir>/src/SinglePageApp/$1"
-    }
+    },
+    "coverageReporters": [
+        "json-summary"
+    ]
 };

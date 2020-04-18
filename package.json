@@ -8,11 +8,12 @@
     "url": "git://github.com/inkognitro/react-redux-saga-boilerplate.git"
   },
   "scripts": {
-    "start-spa": "webpack-dev-server --config src/SinglePageApp/Bootstrap/webpack.dev.js",
-    "build-spa": "webpack --config src/SinglePageApp/Bootstrap/webpack.prod.js",
+    "start:spa": "webpack-dev-server --config src/SinglePageApp/Bootstrap/webpack.dev.js",
+    "build:spa": "webpack --config src/SinglePageApp/Bootstrap/webpack.prod.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
+    "test:badges": "npm run test:coverage && jest-coverage-badges",
     "check-types": "tsc"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "fork-ts-checker-webpack-plugin": "^3.1.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.3.0",
+    "jest-coverage-badges": "^1.1.2",
     "node-sass": "^4.13.1",
     "react-hot-loader": "^4.12.20",
     "redux-saga-test-plan": "^4.0.0-rc.3",
