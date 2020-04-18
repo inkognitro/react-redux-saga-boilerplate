@@ -23,6 +23,8 @@ import {authenticationReducer} from "Common/Domain/Authentication/Event/Reducer"
 import {HttpRequestDispatcher} from "Common/Domain/RequestHandling/Base/Http/HttpRequestDispatcher";
 import {createAuthenticationFlow} from "Common/Domain/Authentication/Authentication";
 import {RoutingState} from "SinglePageApp/Domain/Routing/Types";
+import {designReducer} from "Common/Domain/Design/Event/Reducer";
+import {DesignState} from "Common/Domain/Design/Types";
 
 type AppServices = {
     store: Store,
@@ -53,6 +55,7 @@ export function createAppServices(httpRequestDispatcher: HttpRequestDispatcher):
 }
 
 const rootReducer = combineReducers({
+    design: designReducer,
     translator: translatorReducer,
     toaster: toasterReducer,
     http: httpReducer,
@@ -62,6 +65,7 @@ const rootReducer = combineReducers({
 });
 
 export type RootState = {
+    design: DesignState,
     translator: TranslatorState,
     toaster: ToasterState,
     http: HttpState,
