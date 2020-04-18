@@ -1,8 +1,6 @@
-name: Test and build
+name: Build and deploy
 
-on:
-  push:
-    branches: [master]
+on: [push]
 
 jobs:
   build:
@@ -18,9 +16,9 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: npm install, build, and test
       run: |
-		- npm install
-		- npm run test:badges
-		- npm run build:spa
+        npm install
+        npm run build:spa
+        npm run test:badges
       env:
         CI: true
     - name: Commit files
@@ -28,8 +26,8 @@ jobs:
         echo ${{ github.ref }}
         git add .
         git config --local user.email "action@github.com"
-        git config --local user.name "Github"
-        git commit -m "ci: autmated build push" -a | exit 0
+        git config --local user.name "testAndBuild workflow"
+        git commit -m "CI: Automated push" -a | exit 0
     - name: Push changes
       if: github.ref == 'refs/heads/master'
       uses: ad-m/github-push-action@master
