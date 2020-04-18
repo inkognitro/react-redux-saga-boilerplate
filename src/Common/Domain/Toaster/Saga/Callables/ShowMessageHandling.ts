@@ -33,6 +33,9 @@ export function* handleShowMessage(toasterStateSelector: ToasterStateSelector, c
     if (command.payload.id && findMessageToAddByMessageId(toasterState, command.payload.id)) {
         return;
     }
+    if (!command.payload.content) {
+        return;
+    }
     const messageToAdd: MessageToAdd = {
         toastType: (command.payload.toastType ? command.payload.toastType : ToastTypes.INFO),
         mustBeShownInSeparateToast: !!command.payload.mustBeShownInSeparateToast,
