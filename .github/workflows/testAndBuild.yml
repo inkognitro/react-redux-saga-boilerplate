@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: '12.x'
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-    - name: npm install, build, and test
+    - name: install packages, test and build
       run: |
         npm install
         npm run test:badges
