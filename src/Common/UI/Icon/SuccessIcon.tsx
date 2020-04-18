@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import {CommonIconProps, createBaseIconProps} from "Common/UI/Base/Icon/Icon";
+import {CommonIconProps, createBaseIconProps, createStyledIcon} from "Common/UI/Icon/Icon";
 import DoneIcon from '@material-ui/icons/Done';
-
 export type SuccessIconProps = CommonIconProps;
+
+const StyledDoneIcon = createStyledIcon(DoneIcon);
 
 export const SuccessIcon: FunctionComponent<SuccessIconProps> = (props) => {
     const baseIconProps = createBaseIconProps(props);
-    return (<DoneIcon {...baseIconProps} />);
+    return (<StyledDoneIcon {...baseIconProps} />);
 };

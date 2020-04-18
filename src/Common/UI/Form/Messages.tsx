@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Message as MessageData, MessageTypes} from "Common/Domain/Form/Element/Types";
-import {ErrorIcon} from "Common/UI/Base/Icon/ErrorIcon";
-import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
+import {ErrorIcon} from "Common/UI/Icon/ErrorIcon";
+import {IconSizes, IconTypes} from "Common/UI/Icon/Icon";
 
 export type MessageProps = {
     message: MessageData,

@@ -1,8 +1,19 @@
 import React, {Component} from 'react';
-import {AlignedArea, horizontalAligns, verticalAligns} from "Common/UI/Base/AlignedArea/AlignedArea";
+import {AlignedArea, horizontalAligns, verticalAligns} from "Common/UI/Base/AlignedArea";
 import {TimelineLite} from "gsap/gsap-core";
-import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
-import {LoaderIconRotating} from "Common/UI/Base/Icon/LoaderIconRotating";
+import {IconSizes, IconTypes} from "Common/UI/Icon/Icon";
+import styled from "styled-components";
+import {LoaderIcon} from "Common/UI/Icon/LoaderIcon";
+
+const StyledLoaderDiv = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+`;
 
 export type LoaderState = {
     isVisible: boolean,
@@ -46,11 +57,11 @@ export class Loader extends Component<LoaderProps> {
 
     render() {
         return (
-            <div ref={(element: HTMLDivElement) => this.loader = element} className="app-loader">
+            <StyledLoaderDiv ref={(element: HTMLDivElement) => this.loader = element}>
                 <AlignedArea horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.MIDDLE}>
-                    <LoaderIconRotating size={IconSizes.LG} type={IconTypes.WHITE} />
+                    <LoaderIcon size={IconSizes.LG} type={IconTypes.WHITE} />
                 </AlignedArea>
-            </div>
+            </StyledLoaderDiv>
         );
     }
 }

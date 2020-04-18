@@ -2,6 +2,17 @@ import React, { FunctionComponent } from 'react';
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {createOpenUrl} from "Common/Domain/Router/Commands/OpenUrl";
+import styled from "styled-components";
+import {StyledComponentProps} from "Common/UI/Design/Types";
+
+const StyledLink = styled.a`
+    color: $colorInteractive;
+    text-decoration: none;
+    &:hover, &:active, &:focus {
+        color: ${(props: StyledComponentProps) => props.theme.colorInteracting};
+        text-decoration: underline;
+    }
+`;
 
 type FunctionalLinkProps = {
     url?: string,
@@ -11,8 +22,8 @@ type FunctionalLinkProps = {
 
 export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) => {
     return (
-        <a
-            className={'app-link' + (props.className ? ' ' + props.className : '')}
+        <StyledLink
+            className={props.className}
             href={(props.url ? props.url : '#')}
             onClick={(event) => {
                 event.preventDefault();
@@ -20,7 +31,7 @@ export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (props) =>
             }}
         >
             {props.children}
-        </a>
+        </StyledLink>
     );
 };
 

@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import {NavBar} from "../NavBar";
 
-export type ContentPageProps = {
-    topDividedContent?: boolean,
-};
-
-export class ContentPage extends Component<ContentPageProps> {
+export class ContentPage extends Component {
     render() {
         return (
             <React.Fragment>
                 <NavBar />
-                <div className={'container' + (this.props.topDividedContent ? ' content-page-content-container-top-divided' : '')}>
+                <div className="container">
                     <div className="row">
                         <div className="col-sm">
                             {this.props.children}

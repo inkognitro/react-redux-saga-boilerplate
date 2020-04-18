@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FunctionalLink, RouterLink} from 'Common/UI/Base/Link/Link';
+import {FunctionalLink, RouterLink} from 'Common/UI/Base/Link';
 import {ToastTypes} from "Common/Domain/Toaster/Types";
 import {Dispatch} from "redux";
 import {createShowMessage} from "Common/Domain/Toaster/Command/ShowMessage";
