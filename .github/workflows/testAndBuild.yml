@@ -1,0 +1,37 @@
+name: Test and build
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: npm install, build, and test
+      run: |
+		- npm install
+		- npm run test:badges
+		- npm run build:spa
+      env:
+        CI: true
+    - name: Commit files
+      run: |
+        echo ${{ github.ref }}
+        git add .
+        git config --local user.email "action@github.com"
+        git config --local user.name "Github"
+        git commit -m "ci: autmated build push" -a | exit 0
+    - name: Push changes
+      if: github.ref == 'refs/heads/master'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
