@@ -36,7 +36,7 @@ To build the app in the *dist* folder, run:
 6. Loader integration according to running requests
 7. UTC datetime handling with [moment](http://momentjs.com) in the background 
 8. Basic form components
-9. Integrated testing library is [jest](http://jestjs.io). Saga business logic can be tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan) using jest.
+9. Prepared testing (see Testing section below)
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
   
 ## Open todos (WIP)
@@ -47,7 +47,7 @@ To build the app in the *dist* folder, run:
 ## Architecture (whys and whats)
 Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
 
-Redux makes modularity and maintainability a breeze giving you full control over every action happening until the runtime of your frontend app.
+Redux makes modularity and maintainability a breeze giving you full control over every action happening during the runtime of your frontend app.
 
 It works like a charm with Domain Driven Design by providing a pattern to encapsulate view from business logic and its general bus for actions (e.g. commands, events).
 
@@ -82,25 +82,30 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 - (-) error prone
 - (-) no community, no documentation
 
-Read a [really good article about this](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
+Read a [really good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) about this or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
 
 ## Testing
+Integrated test runner is [jest](http://jestjs.io).
+Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
+React components are tested with [enzyme](https://enzymejs.github.io/enzyme/).
+
 To execute the tests, run:
 
     npm run test
 
 Tests are organized as follow (file suffix `.test.ts` required):
-- Unit tests are integrated directly next to the tested file. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
+- Unit tests are integrated directly next to tested files. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
 - Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
 - Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.integration.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
-Read [another smart article about testing structure](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850).
+Read another [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
 
 **Something to ponder**: While practising TDD I think not only is it painful to write snapshot tests but also useless.
 However in my opinion tests are here to develop faster and especially to prevent unwanted bugs.
 Snapshot tests are expected to fail with every UI change.
-Have a look at [this article](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
+Probably snapshot tests are not entirely bad but not really useful while development.
+Read this [amusing article](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
 
 ## Appreciation
 Many thanks to [Dan Abramov](http://github.com/gaearon), it is and has always been a pleasure to learn from him.
