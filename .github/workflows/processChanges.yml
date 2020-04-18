@@ -1,0 +1,24 @@
+name: Process changes
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: build single page app
+      run: |
+        npm run build:spa
+        echo build succeeded 
+        
+  create badges:
+    runs-on: ubuntu-latest
+    steps:
+    - name: create test coverage badges
+      run: |
+        npm run test:badges
+        echo test coverage badgets created
