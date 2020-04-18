@@ -2,6 +2,22 @@ import React, {Component} from 'react';
 import {Message} from "Common/UI/Toaster/Message";
 import {Power1, TimelineLite} from "gsap";
 import {Message as MessageData, Toast as ToastData, ToastTypes} from "Common/Domain/Toaster/Types";
+import styled from "styled-components";
+import {StyledComponentProps} from "Common/UI/Design/Types";
+import {createBoxShadowCss} from "Common/UI/Design/StyleFactory";
+
+const StyledToast = styled.div`
+    margin-top: 20px;
+    background-color: white;
+    margin-right: 20px;
+    border-top: 3px solid ${(props: StyledComponentProps) => props.theme.colorPrimary};
+    overflow: hidden;
+    ${createBoxShadowCss()}
+    &.info { border-color: ${(props: StyledComponentProps) => props.theme.colorInfo}; }
+    &.success { border-color: ${(props: StyledComponentProps) => props.theme.colorSuccess}; }
+    &.warning { border-color: ${(props: StyledComponentProps) => props.theme.colorWarning}; }
+    &.error { border-color: ${(props: StyledComponentProps) => props.theme.colorError}; }
+`;
 
 export type ToastProps = {
     toast: ToastData,
@@ -47,24 +63,26 @@ export class Toast extends Component<ToastProps> {
         }
     }
 
-    createToastClassName(): string {
-        let classNames = ['app-toast'];
+    createToastTypeClassName(): string {
         if(this.props.toast.type === ToastTypes.SUCCESS) {
-            classNames.push('app-toast-success');
-        } else if(this.props.toast.type === ToastTypes.WARNING) {
-            classNames.push('app-toast-warning');
-        } else if(this.props.toast.type === ToastTypes.ERROR) {
-            classNames.push('app-toast-error');
-        } else {
-            classNames.push('app-toast-info');
+            return 'success';
         }
-        return classNames.join(' ');
+        if(this.props.toast.type === ToastTypes.WARNING) {
+            return 'warning';
+        }
+        if(this.props.toast.type === ToastTypes.ERROR) {
+            return 'error';
+        }
+        return 'info';
     }
 
     render() {
         return (
             <div ref={(element: HTMLDivElement) => this.toastWrapperElement = element} className="app-toast-wrapper">
-                <div ref={(element: HTMLDivElement) => this.toastElement = element} className={this.createToastClassName()}>
+                <StyledToast
+                    ref={(element: HTMLDivElement) => this.toastElement = element}
+                    className={this.createToastTypeClassName()}
+                >
                     {this.props.toast.messages.map((message: MessageData) => (
                         <Message
                             key={message.id}
@@ -72,7 +90,7 @@ export class Toast extends Component<ToastProps> {
                             onRemove={() => this.props.onRemoveMessage(message.id)}
                         />
                     ))}
-                </div>
+                </StyledToast>
             </div>
         );
     }

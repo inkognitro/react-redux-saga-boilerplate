@@ -3,6 +3,30 @@ import {CloseIcon} from "Common/UI/Base/Icon/CloseIcon";
 import {IconSizes, IconTypes} from "Common/UI/Base/Icon/Icon";
 import {TimelineLite, Power1} from 'gsap';
 import {Message as MessageData} from "Common/Domain/Toaster/Types";
+import styled from "styled-components";
+import {StyledComponentProps} from "Common/UI/Design/Types";
+
+const StyledMessage = styled.div`
+    position: relative;
+    background-color: white;
+    width: 250px;
+    border-bottom: 1px solid ${(props: StyledComponentProps) => props.theme.colorSmoothLineOnWhite};
+    
+    &:last-child { border-bottom: 0; }
+`;
+
+const StyledMessageContent = styled.div`
+    overflow: hidden;
+    width: 100%;
+    padding: 15px 20px 15px 20px;
+`;
+
+const StyledCloseIcon = styled(CloseIcon)`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+`;
 
 export type MessageProps = {
     message: MessageData,
@@ -53,23 +77,22 @@ export class Message extends Component<MessageProps> {
             return null;
         }
         return (
-            <CloseIcon
+            <StyledCloseIcon
                 onClick={() => this.props.onRemove()}
                 type={IconTypes.SECONDARY}
                 size={IconSizes.SM}
-                className="app-toast-message-close-icon"
             />
         );
     }
 
     render() {
         return (
-            <div ref={(element: HTMLDivElement) => this.message = element} className="app-toast-message">
-                <div className="app-toast-message-content">
+            <StyledMessage ref={(element: HTMLDivElement) => this.message = element}>
+                <StyledMessageContent>
                     {this.renderCloseIcon()}
                     {this.props.message.content}
-                </div>
-            </div>
+                </StyledMessageContent>
+            </StyledMessage>
         );
     }
 }

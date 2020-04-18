@@ -1,17 +1,17 @@
 import { connect } from 'react-redux'
-import {Toaster as RepresentationalToaster, ToasterCallbacks, ToasterState} from 'Common/UI/Toaster/Toaster';
+import {Toaster as RepresentationalToaster, ToasterComponentCallbacks, ToasterComponentState} from 'Common/UI/Toaster/Toaster';
 import {Dispatch} from "redux";
 import {RootState} from "SinglePageApp/Bootstrap/ServicesFactory";
 import {createRemoveMessage} from "Common/Domain/Toaster/Command/RemoveMessage";
 import {getAllToasts} from "Common/Domain/Toaster/Query/ToastQuery";
 
-const mapStateToProps = (rootState: RootState): ToasterState => {
+const mapStateToProps = (rootState: RootState): ToasterComponentState => {
     return {
         toasts: getAllToasts(rootState.toaster),
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): ToasterCallbacks => {
+const mapDispatchToProps = (dispatch: Dispatch): ToasterComponentCallbacks => {
     return {
         onRemoveMessage: (messageId: string) => dispatch(createRemoveMessage(messageId)),
     };

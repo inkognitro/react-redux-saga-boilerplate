@@ -4,7 +4,7 @@ export function getTheme(state: DesignState): Theme {
     return state.theme;
 }
 
-const defaultTheme = {
+const defaultTheme: Theme = {
     colorText: '#212529',
     colorPrimary: '#007bff',
     colorSecondary: '#b3c2cf',
@@ -14,7 +14,7 @@ const defaultTheme = {
     colorError: '#dc3545',
     colorInteractive: '#007bff',
     colorInteracting: '#007bff',
-    colorSmoothLineOnWhite: '#007bff',
+    colorSmoothLineOnWhite: '#ededed',
 };
 
 export function getDefaultTheme(): Theme {

@@ -1,20 +1,28 @@
 import React, {FunctionComponent} from 'react';
 import {Toast} from './Toast';
 import {Toast as ToastData} from "Common/Domain/Toaster/Types";
+import styled from "styled-components";
 
-export type ToasterState = {
+const StyledToastsContainer = styled.div`
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 0;
+`;
+
+export type ToasterComponentState = {
     toasts: ToastData[],
 }
 
-export type ToasterCallbacks = {
+export type ToasterComponentCallbacks = {
     onRemoveMessage(messageId: string): void,
 };
 
-export type ToasterProps = (ToasterState & ToasterCallbacks);
+export type ToasterProps = (ToasterComponentState & ToasterComponentCallbacks);
 
 export const Toaster: FunctionComponent<ToasterProps> = (props) => {
     return (
-        <div className="app-toasts">
+        <StyledToastsContainer>
             {props.toasts.map((toast: ToastData) => (
                 <Toast
                     key={toast.id}
@@ -22,6 +30,6 @@ export const Toaster: FunctionComponent<ToasterProps> = (props) => {
                     onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
                 />
             ))}
-        </div>
+        </StyledToastsContainer>
     );
 };
