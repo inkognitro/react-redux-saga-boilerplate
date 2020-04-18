@@ -104,7 +104,7 @@ Read another [smart article](https://medium.com/@JeffLombardJr/organizing-tests-
 **Something to ponder**: While practising TDD I think not only is it painful to write snapshot tests but also useless.
 However in my opinion tests are here to develop faster and especially to prevent unwanted bugs.
 Snapshot tests are expected to fail with every UI change.
-Probably snapshot tests are not entirely bad but not really useful while development.
+Probably snapshot tests are not entirely bad but not really useful during development process.
 Read this [amusing article](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
 
 ## Appreciation
