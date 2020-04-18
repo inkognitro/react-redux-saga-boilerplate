@@ -68,7 +68,9 @@ So the architecture was divided in three layers:
 3. **UI Layer**: In this layer all web UI components live in.
 
 One picture says more than thousand words:
+
 ![DDD info graphic](https://miro.medium.com/max/1262/1*P2p84f7XhW0LiLgZvxBSxw.png)
+
 (source: [https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9))
 
 By the way, if you strictly continue separating these layers, this project could also be extended with an additional "NativeUI" layer
