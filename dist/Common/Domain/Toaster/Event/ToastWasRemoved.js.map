@@ -1,0 +1,1 @@
+{"version":3,"file":"ToastWasRemoved.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Toaster/Event/ToastWasRemoved.ts"],"names":[],"mappings":";;AAAA,uDAA8D;AAG9D,SAAgB,qBAAqB,CAAC,OAAe;IACjD,OAAO;QACH,IAAI,EAAE,yBAAiB,CAAC,iBAAiB;QACzC,OAAO,EAAE;YACL,OAAO,EAAE,OAAO;SACnB;KACJ,CAAC;AACN,CAAC;AAPD,sDAOC"}

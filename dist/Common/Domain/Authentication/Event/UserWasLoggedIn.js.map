@@ -1,0 +1,1 @@
+{"version":3,"file":"UserWasLoggedIn.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Authentication/Event/UserWasLoggedIn.ts"],"names":[],"mappings":";;AAAA,8DAA4E;AAG5E,SAAgB,qBAAqB,CAAC,QAAkB;IACpD,OAAO;QACH,IAAI,EAAE,sBAAc,CAAC,kBAAkB;QACvC,OAAO,EAAE,EAAC,QAAQ,EAAC;KACtB,CAAC;AACN,CAAC;AALD,sDAKC"}

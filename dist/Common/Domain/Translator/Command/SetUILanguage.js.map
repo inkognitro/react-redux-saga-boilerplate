@@ -1,0 +1,1 @@
+{"version":3,"file":"SetUILanguage.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Translator/Command/SetUILanguage.ts"],"names":[],"mappings":";;AAAA,0DAAmF;AAGnF,SAAgB,mBAAmB,CAAC,UAAuB;IACvD,OAAO;QACH,IAAI,EAAE,8BAAsB,CAAC,eAAe;QAC5C,OAAO,EAAE;YACL,UAAU,EAAE,UAAU;SACzB;KACJ,CAAC;AACN,CAAC;AAPD,kDAOC"}

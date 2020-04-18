@@ -1,0 +1,1 @@
+{"version":3,"file":"RemoveMessage.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Toaster/Command/RemoveMessage.ts"],"names":[],"mappings":";;AACA,uDAAgE;AAEhE,SAAgB,mBAAmB,CAAC,SAAiB;IACjD,OAAO;QACH,IAAI,EAAE,2BAAmB,CAAC,cAAc;QACxC,OAAO,EAAE;YACL,SAAS,EAAE,SAAS;SACvB;KACJ,CAAC;AACN,CAAC;AAPD,kDAOC"}

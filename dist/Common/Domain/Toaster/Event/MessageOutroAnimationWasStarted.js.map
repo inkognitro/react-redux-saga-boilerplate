@@ -1,0 +1,1 @@
+{"version":3,"file":"MessageOutroAnimationWasStarted.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Toaster/Event/MessageOutroAnimationWasStarted.ts"],"names":[],"mappings":";;AAAA,uDAA8D;AAG9D,SAAgB,qCAAqC,CAAC,SAAiB;IACnE,OAAO;QACH,IAAI,EAAE,yBAAiB,CAAC,mCAAmC;QAC3D,OAAO,EAAE;YACL,SAAS,EAAE,SAAS;SACvB;KACJ,CAAC;AACN,CAAC;AAPD,sFAOC"}

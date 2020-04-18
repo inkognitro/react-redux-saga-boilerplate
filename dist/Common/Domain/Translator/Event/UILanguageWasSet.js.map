@@ -1,0 +1,1 @@
+{"version":3,"file":"UILanguageWasSet.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Translator/Event/UILanguageWasSet.ts"],"names":[],"mappings":";;AAAA,0DAAoH;AAGpH,SAAgB,sBAAsB,CAClC,UAAuB,EACvB,iCAAoE;IAEpE,OAAO;QACH,IAAI,EAAE,4BAAoB,CAAC,mBAAmB;QAC9C,OAAO,EAAE;YACL,UAAU,EAAE,UAAU;YACtB,iCAAiC,EAAE,iCAAiC;SACvE;KACJ,CAAC;AACN,CAAC;AAXD,wDAWC"}

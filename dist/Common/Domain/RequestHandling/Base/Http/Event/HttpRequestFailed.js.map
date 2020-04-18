@@ -1,0 +1,1 @@
+{"version":3,"file":"HttpRequestFailed.js","sourceRoot":"","sources":["../../../../../../../src/Common/Domain/RequestHandling/Base/Http/Event/HttpRequestFailed.ts"],"names":[],"mappings":";;AAAA,yEAA0F;AAG1F,SAAgB,uBAAuB,CAAC,OAAoB;IACxD,OAAO;QACH,IAAI,EAAE,sBAAc,CAAC,mBAAmB;QACxC,OAAO,EAAE,EAAC,OAAO,EAAC;KACrB,CAAC;AACN,CAAC;AALD,0DAKC"}

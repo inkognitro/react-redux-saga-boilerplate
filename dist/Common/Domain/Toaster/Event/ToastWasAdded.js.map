@@ -1,0 +1,1 @@
+{"version":3,"file":"ToastWasAdded.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Toaster/Event/ToastWasAdded.ts"],"names":[],"mappings":";;AAAA,uDAAqE;AAGrE,SAAgB,mBAAmB,CAAC,KAAY;IAC5C,OAAO;QACH,IAAI,EAAE,yBAAiB,CAAC,eAAe;QACvC,OAAO,EAAE;YACL,KAAK,EAAE,KAAK;SACf;KACJ,CAAC;AACN,CAAC;AAPD,kDAOC"}

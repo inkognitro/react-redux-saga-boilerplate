@@ -1,0 +1,1 @@
+{"version":3,"file":"ExtendRouter.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Router/Commands/ExtendRouter.ts"],"names":[],"mappings":";;AAAA,sDAA+E;AAG/E,SAAgB,kBAAkB,CAAC,MAAe,EAAE,SAAqB;IACrE,OAAO;QACH,IAAI,EAAE,0BAAkB,CAAC,aAAa;QACtC,OAAO,EAAE,EAAC,MAAM,EAAE,SAAS,EAAC;KAC/B,CAAC;AACN,CAAC;AALD,gDAKC"}

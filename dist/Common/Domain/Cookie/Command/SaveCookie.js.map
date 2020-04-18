@@ -1,0 +1,1 @@
+{"version":3,"file":"SaveCookie.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Cookie/Command/SaveCookie.ts"],"names":[],"mappings":";;AACA,sDAAsE;AAEtE,SAAgB,gBAAgB,CAAC,MAAc;IAC3C,OAAO;QACH,IAAI,EAAE,0BAAkB,CAAC,WAAW;QACpC,OAAO,EAAE;YACL,MAAM,EAAE,MAAM;SACjB;KACJ,CAAC;AACN,CAAC;AAPD,4CAOC"}

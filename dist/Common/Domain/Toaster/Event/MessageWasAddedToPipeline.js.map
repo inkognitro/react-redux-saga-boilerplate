@@ -1,0 +1,1 @@
+{"version":3,"file":"MessageWasAddedToPipeline.js","sourceRoot":"","sources":["../../../../../src/Common/Domain/Toaster/Event/MessageWasAddedToPipeline.ts"],"names":[],"mappings":";;AAAA,uDAA4E;AAG5E,SAAgB,+BAA+B,CAAC,YAA0B;IACtE,OAAO;QACH,IAAI,EAAE,yBAAiB,CAAC,6BAA6B;QACrD,OAAO,EAAE;YACL,YAAY,EAAE,YAAY;SAC7B;KACJ,CAAC;AACN,CAAC;AAPD,0EAOC"}

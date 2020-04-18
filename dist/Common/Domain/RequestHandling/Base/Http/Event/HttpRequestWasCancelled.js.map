@@ -1,0 +1,1 @@
+{"version":3,"file":"HttpRequestWasCancelled.js","sourceRoot":"","sources":["../../../../../../../src/Common/Domain/RequestHandling/Base/Http/Event/HttpRequestWasCancelled.ts"],"names":[],"mappings":";;AAAA,yEAA0F;AAG1F,SAAgB,6BAA6B,CAAC,OAAoB;IAC9D,OAAO;QACH,IAAI,EAAE,sBAAc,CAAC,0BAA0B;QAC/C,OAAO,EAAE,EAAC,OAAO,EAAC;KACrB,CAAC;AACN,CAAC;AALD,sEAKC"}
