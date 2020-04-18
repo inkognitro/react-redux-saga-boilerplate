@@ -50,32 +50,36 @@ To build the app in the *dist* folder, run:
 3. Performance optimization by not running all sagas concurrently.
 
 ## Architecture
-
-### General
-The architecture is divided in three layers:
-1. Domain: This is the source of truth layer. It holds your business logic, manages your app state and async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. But never couple it to specific implementations (e.g. browser cookies or browser history).
-2. Infrastructure: This is the layer where the specific implementations live in. E.g BrowserCookieStorage for a browser environment.
-3. UI: In this layer all UI components live in. Could also be named WebUI layer.
-
-By the way, if you strictly continue isolating these layers,
-this project could also be extended with an additional UI layer
-for mobile development (e.g. [react-native](https://reactnative.dev/)) and reused business logic.
-
-### Architecture decisions
-Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
-
-Redux makes modularity and maintainability a breeze giving you full control over every action happening during the runtime of your frontend app.
-
-It works like a charm with Domain Driven Design by providing a pattern to encapsulate view from business logic and its general bus for actions (e.g. commands, events).
-
-Common libraries for redux async actions are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
 The target was to create a highly maintainable frontend boilerplate.
 To be specific, the criterias were: readable code, steep learning curve, documentation, community support, easy testing.
 
-[Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out early: Code gets really messy over time, testing is going to be hell.
-Crawl through some articles and blogs on your own or try it out. No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
+So the architecture was divided in three layers:
+1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
+2. **Infrastructure Layer**: This is the layer where the specific implementations live in (e.g browser cookie storage for browser environments).
+3. **UI Layer**: In this layer all web UI components live in.
 
-The two favorites were redux-saga and redux-observable.
+One picture says more than thousand words:
+![DDD info graphic](https://miro.medium.com/max/1262/1*P2p84f7XhW0LiLgZvxBSxw.png)
+(source: [https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9))
+
+By the way, if you strictly continue isolating these layers, this project could also be extended with an additional "NativeUI" layer
+for mobile devices (e.g. with [react-native](https://reactnative.dev/)). Already written business logic then can be reused from the domain layer.
+
+### Evaluation: whys and whats
+Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
+
+Redux was taken because it makes modularity and maintainability a breeze giving you full control over every action happening during the runtime of your frontend app.
+It works like a charm with DDD (Domain Driven Design) by providing a pattern to encapsulate view from business logic with its general bus for actions (e.g. commands, events).
+
+The master question was to find the king solution for writing sync and async business logic.
+Common redux libraries for that are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
+
+[Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out quite early:
+Code gets really messy over time, testing is going to be hell.
+Crawl through some articles and blogs on your own or try it out.
+No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
+
+The two favorites obviously were redux-saga and redux-observable.
 Following comparison will give a hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
 
 **redux-observable**:
@@ -99,10 +103,10 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 - (-) error prone
 - (-) no community, no documentation
 
-Read a [really good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) about this or understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
+Read a [really good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) about this and understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
 
 ## Testing
-Integrated test runner is [jest](http://jestjs.io).
+Integrated test runner is [jest](http://jestjs.io) (developed by facebook).
 Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
 React components are tested with [enzyme](https://enzymejs.github.io/enzyme/).
 
