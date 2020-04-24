@@ -13,8 +13,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:lint": "eslint ./src --ext .ts,.tsx",
+    "test:types": "tsc",
     "ci:lint": "tsc --noEmit && eslint ./src --ext .ts,.tsx --quiet --fix",
-    "ci:types": "tsc",
     "ci:coverage": "jest --coverage --colors && jest-coverage-badges"
   },
   "devDependencies": {
