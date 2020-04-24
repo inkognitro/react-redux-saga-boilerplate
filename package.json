@@ -14,8 +14,10 @@
     "test:watch": "jest --watch",
     "test:lint": "eslint ./src --ext .ts,.tsx",
     "test:types": "tsc",
+    "ci": "npm run ci:lint && npm run ci:coverage && npm run ci:build",
     "ci:lint": "tsc --noEmit && eslint ./src --ext .ts,.tsx --quiet --fix",
-    "ci:coverage": "jest --coverage --colors && jest-coverage-badges"
+    "ci:coverage": "jest --coverage --colors && jest-coverage-badges",
+    "ci:build": "npm run build:spa"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
