@@ -1,6 +1,6 @@
 import {
-  TextFieldEvent,
-  TextFieldState,
+    TextFieldEvent,
+    TextFieldState,
 } from "Common/Domain/Form/Element/TextField/Types";
 
 export type Message = {

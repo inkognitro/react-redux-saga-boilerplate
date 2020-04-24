@@ -3,12 +3,12 @@ import { DesignState } from "Common/Domain/Design/Types";
 import { getDefaultTheme } from "Common/Domain/Design/Query/ThemeQuery";
 
 const initialDesignState: DesignState = {
-  theme: getDefaultTheme(),
+    theme: getDefaultTheme(),
 };
 
 export function designReducer(
-  state: DesignState = initialDesignState,
-  _: Action
+    state: DesignState = initialDesignState,
+    _: Action,
 ): DesignState {
-  return state;
+    return state;
 }

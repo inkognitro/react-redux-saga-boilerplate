@@ -1,27 +1,27 @@
 import {
-  RouterEvent,
-  RouterEventTypes,
-  RouterState,
+    RouterEvent,
+    RouterEventTypes,
+    RouterState,
 } from "Common/Domain/Router/Types";
 
 const initialRouterState: RouterState = {
-  redirects: [],
-  routes: [],
+    redirects: [],
+    routes: [],
 };
 
 export function routerReducer(
-  state: RouterState = initialRouterState,
-  event?: RouterEvent
+    state: RouterState = initialRouterState,
+    event?: RouterEvent,
 ): RouterState {
-  if (!event) {
+    if (!event) {
+        return state;
+    }
+    if (event.type === RouterEventTypes.ROUTER_WAS_EXTENDED) {
+        return {
+            ...state,
+            redirects: [...state.redirects, ...event.payload.redirects],
+            routes: [...state.routes, ...event.payload.routes],
+        };
+    }
     return state;
-  }
-  if (event.type === RouterEventTypes.ROUTER_WAS_EXTENDED) {
-    return {
-      ...state,
-      redirects: [...state.redirects, ...event.payload.redirects],
-      routes: [...state.routes, ...event.payload.routes],
-    };
-  }
-  return state;
 }

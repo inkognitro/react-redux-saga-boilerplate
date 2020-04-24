@@ -14,10 +14,8 @@ export type RootComponentProps = {
   history: History;
 };
 
-export const RootComponent: FC<RootComponentProps> = (props) => {
-  return (
+export const RootComponent: FC<RootComponentProps> = (props) => (
     <StoreProvider store={props.store}>
-      <ThemedApp history={props.history} />
+        <ThemedApp history={props.history} />
     </StoreProvider>
-  );
-};
+);

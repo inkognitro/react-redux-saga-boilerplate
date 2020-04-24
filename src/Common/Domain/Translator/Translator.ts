@@ -3,9 +3,9 @@ import { TranslatorStateSelector } from "Common/Domain/Translator/Types";
 import { createWatchSetUILanguageFlow } from "Common/Domain/Translator/Saga/Flow/SetUILanguageHandling";
 
 export function createTranslatorFlow(
-  translatorStateSelector: TranslatorStateSelector
+    translatorStateSelector: TranslatorStateSelector,
 ): () => Generator {
-  return function* () {
-    yield spawn(createWatchSetUILanguageFlow(translatorStateSelector));
-  };
+    return function* () {
+        yield spawn(createWatchSetUILanguageFlow(translatorStateSelector));
+    };
 }

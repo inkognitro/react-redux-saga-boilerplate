@@ -4,10 +4,10 @@ import { createWatchRemoveMessageFlow } from "Common/Domain/Toaster/Saga/Flow/Re
 import { createWatchShowMessageFlow } from "Common/Domain/Toaster/Saga/Flow/ShowMessageHandling";
 
 export function createToasterFlow(
-  toasterStateSelector: ToasterStateSelector
+    toasterStateSelector: ToasterStateSelector,
 ): () => Generator {
-  return function* toasterFlow() {
-    yield spawn(createWatchShowMessageFlow(toasterStateSelector));
-    yield spawn(createWatchRemoveMessageFlow(toasterStateSelector));
-  };
+    return function* toasterFlow() {
+        yield spawn(createWatchShowMessageFlow(toasterStateSelector));
+        yield spawn(createWatchRemoveMessageFlow(toasterStateSelector));
+    };
 }

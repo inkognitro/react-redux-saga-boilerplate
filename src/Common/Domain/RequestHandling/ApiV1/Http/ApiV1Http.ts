@@ -9,9 +9,9 @@ export enum ApiV1CommandTypes {
 export const apiV1BaseUrl = "//localhost:9000";
 
 export function createApiV1HttpFlow(
-  authStateSelector: AuthStateSelector
+    authStateSelector: AuthStateSelector,
 ): () => Generator {
-  return function* (): Generator {
-    yield spawn(createSendHttpRequestFlow(authStateSelector));
-  };
+    return function* (): Generator {
+        yield spawn(createSendHttpRequestFlow(authStateSelector));
+    };
 }

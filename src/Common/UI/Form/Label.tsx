@@ -5,6 +5,4 @@ export type LabelProps = {
   formElementId?: string;
 };
 
-export const Label: FC<LabelProps> = (props) => {
-  return <label htmlFor={props.formElementId}>{props.title}</label>;
-};
+export const Label: FC<LabelProps> = (props) => <label htmlFor={props.formElementId}>{props.title}</label>;

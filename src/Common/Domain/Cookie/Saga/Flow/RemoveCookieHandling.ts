@@ -5,17 +5,17 @@ import { CookieCommandTypes } from "Common/Domain/Cookie/Types";
 import { RemoveCookie } from "Common/Domain/Cookie/Command/RemoveCookie";
 
 export function createWatchRemoveCookieFlow(
-  cookieStorage: CookieStorage
+    cookieStorage: CookieStorage,
 ): GeneratorFunction {
-  const handleRemoveCookie = function* (command: RemoveCookie): Generator {
-    if (!cookieStorage.findCookieContent(command.payload.cookieName)) {
-      return;
-    }
-    cookieStorage.removeCookie(command.payload.cookieName);
-    yield put(createCookieWasRemoved(command.payload.cookieName));
-  };
+    const handleRemoveCookie = function* (command: RemoveCookie): Generator {
+        if (!cookieStorage.findCookieContent(command.payload.cookieName)) {
+            return;
+        }
+        cookieStorage.removeCookie(command.payload.cookieName);
+        yield put(createCookieWasRemoved(command.payload.cookieName));
+    };
 
-  return <GeneratorFunction>function* (): Generator {
-    yield takeEvery(CookieCommandTypes.REMOVE_COOKIE, handleRemoveCookie);
-  };
+    return <GeneratorFunction> function* (): Generator {
+        yield takeEvery(CookieCommandTypes.REMOVE_COOKIE, handleRemoveCookie);
+    };
 }

@@ -15,24 +15,20 @@ type DumbThemedAppProps = {
   history: History;
 };
 
-const DumbThemedApp: FC<DumbThemedAppProps> = (props) => {
-  return (
+const DumbThemedApp: FC<DumbThemedAppProps> = (props) => (
     <ThemeProvider theme={props.theme}>
-      <Router history={props.history} />
-      <Toaster />
-      <Loader />
+        <Router history={props.history} />
+        <Toaster />
+        <Loader />
     </ThemeProvider>
-  );
-};
+);
 
 const mapStateToProps = (
-  rootState: RootState,
-  props: { history: History }
-): DumbThemedAppProps => {
-  return {
+    rootState: RootState,
+    props: { history: History },
+): DumbThemedAppProps => ({
     theme: getTheme(rootState.design),
     history: props.history,
-  };
-};
+});
 
 export const ThemedApp = connect(mapStateToProps)(DumbThemedApp);

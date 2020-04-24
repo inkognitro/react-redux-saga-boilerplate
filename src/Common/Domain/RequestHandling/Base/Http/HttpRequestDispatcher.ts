@@ -1,6 +1,6 @@
 import {
-  HttpRequest,
-  HttpRequestResponse,
+    HttpRequest,
+    HttpRequestResponse,
 } from "Common/Domain/RequestHandling/Base/Http/Types";
 
 export interface HttpRequestDispatcher {

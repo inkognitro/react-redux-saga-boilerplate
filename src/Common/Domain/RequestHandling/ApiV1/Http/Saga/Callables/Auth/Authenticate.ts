@@ -4,8 +4,8 @@ import { User } from "Common/Domain/Model/User";
 import { call, put } from "@redux-saga/core/effects";
 import { createPostRequest } from "Common/Domain/RequestHandling/Base/Http/Command/RequestFactory";
 import {
-  HttpRequest,
-  HttpResponse,
+    HttpRequest,
+    HttpResponse,
 } from "Common/Domain/RequestHandling/Base/Http/Types";
 import { createSendHttpRequest } from "Common/Domain/RequestHandling/ApiV1/Http/Command/SendHttpRequest";
 import { receiveHttpResponse } from "Common/Domain/RequestHandling/Base/Http/Saga/Callables/HttpResponseReceiving";
@@ -23,36 +23,36 @@ export enum ResponseDataTypes {
 }
 
 export function* authenticate(
-  settings: AuthenticateSettings
+    settings: AuthenticateSettings,
 ): Generator<unknown, null | ResponseData> {
-  const request: HttpRequest = createPostRequest({
-    url: `${apiV1BaseUrl}/auth/authenticate`,
-    body: {
-      username: settings.username,
-      password: settings.password,
-    },
-    isLoaderEnabled: settings.isLoaderEnabled,
-  });
-  yield put(createSendHttpRequest(request));
-  // @ts-ignore
-  const response: AuthenticateResponse = yield call(
-    receiveHttpResponse,
-    request
-  );
-  if (!response) {
-    return null;
-  }
-  if (response.statusCode === 200) {
-    return {
-      type: ResponseDataTypes.SUCCESS,
-      token: response.body.data.token,
-      user: response.body.data.user,
-    };
-  }
-  return {
+    const request: HttpRequest = createPostRequest({
+        url: `${apiV1BaseUrl}/auth/authenticate`,
+        body: {
+            username: settings.username,
+            password: settings.password,
+        },
+        isLoaderEnabled: settings.isLoaderEnabled,
+    });
+    yield put(createSendHttpRequest(request));
     // @ts-ignore
-    type: ResponseDataTypes.ERROR,
-  };
+    const response: AuthenticateResponse = yield call(
+        receiveHttpResponse,
+        request,
+    );
+    if (!response) {
+        return null;
+    }
+    if (response.statusCode === 200) {
+        return {
+            type: ResponseDataTypes.SUCCESS,
+            token: response.body.data.token,
+            user: response.body.data.user,
+        };
+    }
+    return {
+    // @ts-ignore
+        type: ResponseDataTypes.ERROR,
+    };
 }
 
 export type ResponseData = ErrorData | SuccessData;

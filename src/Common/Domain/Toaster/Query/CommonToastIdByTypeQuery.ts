@@ -8,17 +8,17 @@ export enum CommonToastIds {
 }
 
 export function getCommonToastIdByType(type: ToastTypes): string {
-  if (type === ToastTypes.INFO) {
-    return CommonToastIds.INFO;
-  }
-  if (type === ToastTypes.SUCCESS) {
-    return CommonToastIds.SUCCESS;
-  }
-  if (type === ToastTypes.WARNING) {
-    return CommonToastIds.WARNING;
-  }
-  if (type === ToastTypes.ERROR) {
-    return CommonToastIds.ERROR;
-  }
-  throw new Error(`toast type "${type}" not supported`);
+    if (type === ToastTypes.INFO) {
+        return CommonToastIds.INFO;
+    }
+    if (type === ToastTypes.SUCCESS) {
+        return CommonToastIds.SUCCESS;
+    }
+    if (type === ToastTypes.WARNING) {
+        return CommonToastIds.WARNING;
+    }
+    if (type === ToastTypes.ERROR) {
+        return CommonToastIds.ERROR;
+    }
+    throw new Error(`toast type "${type}" not supported`);
 }

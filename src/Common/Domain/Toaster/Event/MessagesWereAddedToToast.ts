@@ -2,16 +2,16 @@ import { Message, ToasterEventTypes } from "Common/Domain/Toaster/Types";
 import { Event } from "Common/Domain/Bus/Event";
 
 export function createMessagesWereAddedToToast(
-  toastId: string,
-  messages: Message[]
+    toastId: string,
+    messages: Message[],
 ): MessagesWereAddedToToast {
-  return {
-    type: ToasterEventTypes.MESSAGES_WERE_ADDED_TO_TOAST,
-    payload: {
-      toastId,
-      messages,
-    },
-  };
+    return {
+        type: ToasterEventTypes.MESSAGES_WERE_ADDED_TO_TOAST,
+        payload: {
+            toastId,
+            messages,
+        },
+    };
 }
 
 export type MessagesWereAddedToToast = Event<

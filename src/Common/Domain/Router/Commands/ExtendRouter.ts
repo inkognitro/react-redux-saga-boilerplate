@@ -1,18 +1,18 @@
 import {
-  Redirect,
-  Route,
-  RouterCommandTypes,
+    Redirect,
+    Route,
+    RouterCommandTypes,
 } from "Common/Domain/Router/Types";
 import { Command } from "Common/Domain/Bus/Command";
 
 export function createAddRedirects(
-  routes: Route[],
-  redirects: Redirect[]
+    routes: Route[],
+    redirects: Redirect[],
 ): ExtendRouter {
-  return {
-    type: RouterCommandTypes.EXTEND_ROUTER,
-    payload: { routes, redirects },
-  };
+    return {
+        type: RouterCommandTypes.EXTEND_ROUTER,
+        payload: { routes, redirects },
+    };
 }
 
 export type ExtendRouter = Command<

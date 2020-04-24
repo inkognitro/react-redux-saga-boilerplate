@@ -3,10 +3,10 @@ import { Command } from "Common/Domain/Bus/Command";
 import { HttpRequest } from "Common/Domain/RequestHandling/Base/Http/Types";
 
 export function createSendHttpRequest(request: HttpRequest): SendHttpRequest {
-  return {
-    type: ApiV1CommandTypes.SEND_HTTP_REQUEST,
-    payload: { request },
-  };
+    return {
+        type: ApiV1CommandTypes.SEND_HTTP_REQUEST,
+        payload: { request },
+    };
 }
 
 export type SendHttpRequest = Command<

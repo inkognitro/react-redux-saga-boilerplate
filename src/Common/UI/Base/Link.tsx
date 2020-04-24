@@ -23,21 +23,19 @@ type FunctionalLinkProps = {
 };
 
 export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (
-  props
-) => {
-  return (
+    props,
+) => (
     <StyledLink
-      className={props.className}
-      href={props.url ? props.url : "#"}
-      onClick={(event) => {
-        event.preventDefault();
-        props.onClick();
-      }}
+        className={props.className}
+        href={props.url ? props.url : "#"}
+        onClick={(event) => {
+            event.preventDefault();
+            props.onClick();
+        }}
     >
-      {props.children}
+        {props.children}
     </StyledLink>
-  );
-};
+);
 
 export type RouterLinkProps = {
   url: string;
@@ -45,19 +43,14 @@ export type RouterLinkProps = {
   children: any;
 };
 
-const mapStateToProps = () => {
-  return {};
-};
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch: Dispatch, props: RouterLinkProps) => {
-  return {
+const mapDispatchToProps = (dispatch: Dispatch, props: RouterLinkProps) => ({
     url: props.url,
-    onClick: () =>
-      dispatch(createOpenUrl({ url: props.url, target: props.target })),
-  };
-};
+    onClick: () => dispatch(createOpenUrl({ url: props.url, target: props.target })),
+});
 
 export const RouterLink = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps,
 )(FunctionalLink);

@@ -4,10 +4,10 @@ import { createWatchRemoveCookieFlow } from "Common/Domain/Cookie/Saga/Flow/Remo
 import { createWatchSaveCookieFlow } from "Common/Domain/Cookie/Saga/Flow/SaveCookieHandling";
 
 export function createCookieFlow(
-  cookieStorage: CookieStorage
+    cookieStorage: CookieStorage,
 ): () => Generator {
-  return function* routerSaga() {
-    yield spawn(createWatchRemoveCookieFlow(cookieStorage));
-    yield spawn(createWatchSaveCookieFlow(cookieStorage));
-  };
+    return function* routerSaga() {
+        yield spawn(createWatchRemoveCookieFlow(cookieStorage));
+        yield spawn(createWatchSaveCookieFlow(cookieStorage));
+    };
 }

@@ -8,14 +8,14 @@ import { HttpRequestDispatcher } from "Common/Domain/RequestHandling/Base/Http/H
 import { AuthStateSelector } from "Common/Domain/Authentication/Types";
 
 export function createRequestHandlingFlow(
-  httpStateSelector: HttpStateSelector,
-  httpRequestDispatcher: HttpRequestDispatcher,
-  authStateSelector: AuthStateSelector,
-  translatorStateSelector: TranslatorStateSelector
+    httpStateSelector: HttpStateSelector,
+    httpRequestDispatcher: HttpRequestDispatcher,
+    authStateSelector: AuthStateSelector,
+    translatorStateSelector: TranslatorStateSelector,
 ): () => Generator {
-  return function* (): Generator {
-    yield spawn(createHttpFlow(httpStateSelector, httpRequestDispatcher));
-    yield spawn(createApiV1HttpFlow(authStateSelector));
-    yield spawn(createApiV1HttpToastsFlow(translatorStateSelector));
-  };
+    return function* (): Generator {
+        yield spawn(createHttpFlow(httpStateSelector, httpRequestDispatcher));
+        yield spawn(createApiV1HttpFlow(authStateSelector));
+        yield spawn(createApiV1HttpToastsFlow(translatorStateSelector));
+    };
 }

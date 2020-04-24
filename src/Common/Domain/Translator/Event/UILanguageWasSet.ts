@@ -1,21 +1,21 @@
 import {
-  LanguageIds,
-  TranslationIdToTranslationMapping,
-  TranslatorEventTypes,
+    LanguageIds,
+    TranslationIdToTranslationMapping,
+    TranslatorEventTypes,
 } from "Common/Domain/Translator/Types";
 import { Event } from "Common/Domain/Bus/Event";
 
 export function createUILanguageWasSet(
-  languageId: LanguageIds,
-  translationIdToTranslationMapping: TranslationIdToTranslationMapping
+    languageId: LanguageIds,
+    translationIdToTranslationMapping: TranslationIdToTranslationMapping,
 ): UILanguageWasSet {
-  return {
-    type: TranslatorEventTypes.UI_LANGUAGE_WAS_SET,
-    payload: {
-      languageId,
-      translationIdToTranslationMapping,
-    },
-  };
+    return {
+        type: TranslatorEventTypes.UI_LANGUAGE_WAS_SET,
+        payload: {
+            languageId,
+            translationIdToTranslationMapping,
+        },
+    };
 }
 
 export type UILanguageWasSet = Event<

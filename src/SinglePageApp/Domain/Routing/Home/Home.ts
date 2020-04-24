@@ -9,17 +9,15 @@ export enum HomeCommandTypes {
 }
 
 export function createHomeSaga(): () => Generator {
-  return function* homeSaga() {
-    yield spawn(createWatchLeakReduxStateSaga());
-    yield spawn(createChangePartialStateSaga());
-  };
+    return function* homeSaga() {
+        yield spawn(createWatchLeakReduxStateSaga());
+        yield spawn(createChangePartialStateSaga());
+    };
 }
 
 export const homeRoute: Route = {
-  urlSchema: "/",
-  urlMustMatchExactly: true,
+    urlSchema: "/",
+    urlMustMatchExactly: true,
 };
 
-export const createHomeRouteUrl = (): string => {
-  return homeRoute.urlSchema;
-};
+export const createHomeRouteUrl = (): string => homeRoute.urlSchema;

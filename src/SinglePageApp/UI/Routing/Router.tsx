@@ -6,14 +6,12 @@ import { Home } from "./Home/Home";
 import { NotFound } from "./NotFound";
 
 const specification: Specification = {
-  routeComponents: [{ route: homeRoute, component: Home }],
-  defaultComponent: NotFound,
+    routeComponents: [{ route: homeRoute, component: Home }],
+    defaultComponent: NotFound,
 };
 
 type RouterProps = {
   history: History;
 };
 
-export const Router: FunctionComponent<RouterProps> = (props) => {
-  return <CommonRouter specification={specification} history={props.history} />;
-};
+export const Router: FunctionComponent<RouterProps> = (props) => <CommonRouter specification={specification} history={props.history} />;

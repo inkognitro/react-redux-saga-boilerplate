@@ -1,17 +1,17 @@
 import { Event } from "Common/Domain/Bus/Event";
 import {
-  TextFieldEventTypes,
-  TextFieldState,
+    TextFieldEventTypes,
+    TextFieldState,
 } from "Common/Domain/Form/Element/TextField/Types";
 
 export function createTextFieldStateWasChanged(
-  id: string,
-  stateChanges: Partial<TextFieldState>
+    id: string,
+    stateChanges: Partial<TextFieldState>,
 ): TextFieldStateWasChanged {
-  return {
-    type: TextFieldEventTypes.TEXT_FIELD_STATE_WAS_CHANGED,
-    payload: { id, stateChanges },
-  };
+    return {
+        type: TextFieldEventTypes.TEXT_FIELD_STATE_WAS_CHANGED,
+        payload: { id, stateChanges },
+    };
 }
 
 export type TextFieldStateWasChanged = Event<

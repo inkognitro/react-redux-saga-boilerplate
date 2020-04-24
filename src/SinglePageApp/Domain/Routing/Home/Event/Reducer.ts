@@ -1,12 +1,12 @@
 import {
-  createTextFieldReducer,
-  createTextFieldState,
+    createTextFieldReducer,
+    createTextFieldState,
 } from "Common/Domain/Form/Element/TextField/Event/Reducer";
 import { combineReducers, Reducer } from "redux";
 import { HomeState } from "SinglePageApp/Domain/Routing/Home/Types";
 
 export const homeReducer: Reducer<HomeState> = combineReducers({
-  toastContentField: createTextFieldReducer(
-    createTextFieldState({ value: "Hi there :)" })
-  ),
+    toastContentField: createTextFieldReducer(
+        createTextFieldState({ value: "Hi there :)" }),
+    ),
 });

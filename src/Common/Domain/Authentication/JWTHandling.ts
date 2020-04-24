@@ -1,6 +1,6 @@
 import {
-  createUtcDateTimeStringFromUtcTimestamp,
-  getUtcDateTimeMinusNowInSeconds,
+    createUtcDateTimeStringFromUtcTimestamp,
+    getUtcDateTimeMinusNowInSeconds,
 } from "Common/Domain/DateTimeHandling";
 
 type Payload = {
@@ -11,25 +11,25 @@ type Payload = {
 };
 
 export function getSecondsUntilExpiration(jwt: string): number {
-  const expirationUtcDateTime = getExpirationUTCDateTime(jwt);
-  return getUtcDateTimeMinusNowInSeconds(expirationUtcDateTime);
+    const expirationUtcDateTime = getExpirationUTCDateTime(jwt);
+    return getUtcDateTimeMinusNowInSeconds(expirationUtcDateTime);
 }
 
 function getExpirationUTCDateTime(jwt: string): string {
-  const payload = getPayloadFromToken(jwt);
-  const expirationUtcTimestamp = payload.exp;
-  return createUtcDateTimeStringFromUtcTimestamp(expirationUtcTimestamp);
+    const payload = getPayloadFromToken(jwt);
+    const expirationUtcTimestamp = payload.exp;
+    return createUtcDateTimeStringFromUtcTimestamp(expirationUtcTimestamp);
 }
 
 function getPayloadFromToken(jwt: string): Payload {
-  const base64Payload = getBase64Payload(jwt);
-  return JSON.parse(atob(base64Payload));
+    const base64Payload = getBase64Payload(jwt);
+    return JSON.parse(atob(base64Payload));
 }
 
 function getBase64Payload(jwt: string): string {
-  return getCleanBase64String(jwt.split(".")[1]);
+    return getCleanBase64String(jwt.split(".")[1]);
 }
 
 function getCleanBase64String(base64JwtPart: string): string {
-  return base64JwtPart.replace("-", "+").replace("_", "/");
+    return base64JwtPart.replace("-", "+").replace("_", "/");
 }

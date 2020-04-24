@@ -34,10 +34,8 @@ export type CommonIconProps = {
   onClick?(): void;
 };
 
-export function createStyledIcon(
-  component: ComponentType
-): StyledComponent<ComponentType, any> {
-  return styled(component)`
+export function createStyledIcon(component: ComponentType): StyledComponent<ComponentType, any> {
+    return styled(component)`
     color: ${(props: StyledComponentProps) => props.theme.colorText};
     font-size: 24px !important;
 
@@ -106,62 +104,62 @@ type IconProps = {
   onClick?(): void;
 };
 
-export function createBaseIconProps(commonProps: CommonIconProps): IconProps {
-  let props = {
-    className: createBaseClassNames(commonProps),
-  };
-  if (commonProps.onClick) {
-    props = { ...props, onClick: commonProps.onClick };
-  }
-  return props;
+function createBaseClassNames(props: CommonIconProps): string {
+    const classNames = [];
+
+    if (props.type === IconTypes.INFO) {
+        classNames.push("style-info");
+    } else if (props.type === IconTypes.SUCCESS) {
+        classNames.push("style-success");
+    } else if (props.type === IconTypes.WARNING) {
+        classNames.push("style-warning");
+    } else if (props.type === IconTypes.ERROR) {
+        classNames.push("style-error");
+    } else if (props.type === IconTypes.INTERACTIVE) {
+        classNames.push("style-interactive");
+    } else if (props.type === IconTypes.SECONDARY) {
+        classNames.push("style-secondary");
+    } else if (props.type === IconTypes.WHITE) {
+        classNames.push("style-white");
+    }
+
+    if (props.size === IconSizes.XS) {
+        classNames.push("size-xs");
+    } else if (props.size === IconSizes.SM) {
+        classNames.push("size-sm");
+    } else if (props.size === IconSizes.MD) {
+        classNames.push("size-md");
+    } else if (props.size === IconSizes.LG) {
+        classNames.push("size-lg");
+    } else if (props.size === IconSizes.XL) {
+        classNames.push("size-xl");
+    }
+
+    if (props.verticalAlign === VerticalAligns.TOP) {
+        classNames.push("vertical-align-top");
+    } else if (props.verticalAlign === VerticalAligns.BOTTOM) {
+        classNames.push("vertical-align-bottom");
+    } else {
+        classNames.push("vertical-align-center");
+    }
+
+    if (props.onClick) {
+        classNames.push("clickable");
+    }
+
+    if (props.className) {
+        classNames.push(props.className);
+    }
+
+    return classNames.join(" ");
 }
 
-function createBaseClassNames(props: CommonIconProps): string {
-  const classNames = [];
-
-  if (props.type === IconTypes.INFO) {
-    classNames.push("style-info");
-  } else if (props.type === IconTypes.SUCCESS) {
-    classNames.push("style-success");
-  } else if (props.type === IconTypes.WARNING) {
-    classNames.push("style-warning");
-  } else if (props.type === IconTypes.ERROR) {
-    classNames.push("style-error");
-  } else if (props.type === IconTypes.INTERACTIVE) {
-    classNames.push("style-interactive");
-  } else if (props.type === IconTypes.SECONDARY) {
-    classNames.push("style-secondary");
-  } else if (props.type === IconTypes.WHITE) {
-    classNames.push("style-white");
-  }
-
-  if (props.size === IconSizes.XS) {
-    classNames.push("size-xs");
-  } else if (props.size === IconSizes.SM) {
-    classNames.push("size-sm");
-  } else if (props.size === IconSizes.MD) {
-    classNames.push("size-md");
-  } else if (props.size === IconSizes.LG) {
-    classNames.push("size-lg");
-  } else if (props.size === IconSizes.XL) {
-    classNames.push("size-xl");
-  }
-
-  if (props.verticalAlign === VerticalAligns.TOP) {
-    classNames.push("vertical-align-top");
-  } else if (props.verticalAlign === VerticalAligns.BOTTOM) {
-    classNames.push("vertical-align-bottom");
-  } else {
-    classNames.push("vertical-align-center");
-  }
-
-  if (props.onClick) {
-    classNames.push("clickable");
-  }
-
-  if (props.className) {
-    classNames.push(props.className);
-  }
-
-  return classNames.join(" ");
+export function createBaseIconProps(commonProps: CommonIconProps): IconProps {
+    let props: Partial<IconProps> = {
+        className: createBaseClassNames(commonProps),
+    };
+    if (commonProps.onClick) {
+        props = { ...props, onClick: commonProps.onClick };
+    }
+    return props;
 }

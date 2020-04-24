@@ -1,8 +1,8 @@
 import {
-  applyMiddleware,
-  combineReducers,
-  createStore as createReduxStore,
-  Store,
+    applyMiddleware,
+    combineReducers,
+    createStore as createReduxStore,
+    Store,
 } from "redux";
 import { RouterState, RouterStateSelector } from "Common/Domain/Router/Types";
 import createSagaMiddleware from "redux-saga";
@@ -10,13 +10,13 @@ import { spawn } from "@redux-saga/core/effects";
 import { createBrowserHistory, History } from "history";
 import { createToasterFlow } from "Common/Domain/Toaster/Toaster";
 import {
-  ToasterState,
-  ToasterStateSelector,
+    ToasterState,
+    ToasterStateSelector,
 } from "Common/Domain/Toaster/Types";
 import { toasterReducer } from "Common/Domain/Toaster/Event/Reducer";
 import {
-  TranslatorState,
-  TranslatorStateSelector,
+    TranslatorState,
+    TranslatorStateSelector,
 } from "Common/Domain/Translator/Types";
 import { createTranslatorFlow } from "Common/Domain/Translator/Translator";
 import { translatorReducer } from "Common/Domain/Translator/Event/Reducer";
@@ -27,13 +27,13 @@ import { BrowserCookieStorage } from "Common/Infrastructure/Cookie/BrowserCookie
 import { routerReducer } from "Common/Domain/Router/Event/Reducer";
 import { httpReducer } from "Common/Domain/RequestHandling/Base/Http/Event/Reducer";
 import {
-  HttpState,
-  HttpStateSelector,
+    HttpState,
+    HttpStateSelector,
 } from "Common/Domain/RequestHandling/Base/Http/Types";
 import { createRequestHandlingFlow } from "Common/Domain/RequestHandling/RequestHandling";
 import {
-  AuthState,
-  AuthStateSelector,
+    AuthState,
+    AuthStateSelector,
 } from "Common/Domain/Authentication/Types";
 import { authenticationReducer } from "Common/Domain/Authentication/Event/Reducer";
 import { HttpRequestDispatcher } from "Common/Domain/RequestHandling/Base/Http/HttpRequestDispatcher";
@@ -50,67 +50,67 @@ type AppServices = {
 };
 
 const rootReducer = combineReducers({
-  design: designReducer,
-  translator: translatorReducer,
-  toaster: toasterReducer,
-  http: httpReducer,
-  router: routerReducer,
-  routing: routingReducer,
-  authentication: authenticationReducer,
+    design: designReducer,
+    translator: translatorReducer,
+    toaster: toasterReducer,
+    http: httpReducer,
+    router: routerReducer,
+    routing: routingReducer,
+    authentication: authenticationReducer,
 });
 
 function createRootSaga(
     history: History,
     httpRequestDispatcher: HttpRequestDispatcher,
 ): () => Generator {
-  const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
-  const toasterSaga = createToasterFlow(toasterStateSelector);
+    const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
+    const toasterSaga = createToasterFlow(toasterStateSelector);
 
-  const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
-  const translatorSaga = createTranslatorFlow(translatorStateSelector);
+    const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
+    const translatorSaga = createTranslatorFlow(translatorStateSelector);
 
-  const historyManager = new BrowserHistoryManager(history);
-  const routerStateSelector: RouterStateSelector = (state: RootState) => state.router;
-  const routerSaga = createRouterFlow(routerStateSelector, historyManager);
+    const historyManager = new BrowserHistoryManager(history);
+    const routerStateSelector: RouterStateSelector = (state: RootState) => state.router;
+    const routerSaga = createRouterFlow(routerStateSelector, historyManager);
 
-  const cookieStorage = new BrowserCookieStorage();
-  const cookieSaga = createCookieFlow(cookieStorage);
+    const cookieStorage = new BrowserCookieStorage();
+    const cookieSaga = createCookieFlow(cookieStorage);
 
-  const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
-  const authenticationSaga = createAuthenticationFlow(authStateSelector);
+    const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
+    const authenticationSaga = createAuthenticationFlow(authStateSelector);
 
-  const httpStateSelector: HttpStateSelector = (state: RootState) => state.http;
-  const requestHandlingSaga = createRequestHandlingFlow(
-      httpStateSelector,
-      httpRequestDispatcher,
-      authStateSelector,
-      translatorStateSelector
-  );
+    const httpStateSelector: HttpStateSelector = (state: RootState) => state.http;
+    const requestHandlingSaga = createRequestHandlingFlow(
+        httpStateSelector,
+        httpRequestDispatcher,
+        authStateSelector,
+        translatorStateSelector,
+    );
 
-  const routingSaga = createRoutingSaga();
+    const routingSaga = createRoutingSaga();
 
-  return function* rootSaga(): Generator {
-    yield spawn(translatorSaga);
-    yield spawn(toasterSaga);
-    yield spawn(cookieSaga);
-    yield spawn(authenticationSaga);
-    yield spawn(requestHandlingSaga);
-    yield spawn(routerSaga);
-    yield spawn(routingSaga);
-  };
+    return function* rootSaga(): Generator {
+        yield spawn(translatorSaga);
+        yield spawn(toasterSaga);
+        yield spawn(cookieSaga);
+        yield spawn(authenticationSaga);
+        yield spawn(requestHandlingSaga);
+        yield spawn(routerSaga);
+        yield spawn(routingSaga);
+    };
 }
 
 export function createAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
-  const history: History = createBrowserHistory();
-  const sagaMiddleware = createSagaMiddleware();
-  const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
-  const rootSaga = createRootSaga(history, httpRequestDispatcher);
-  sagaMiddleware.run(rootSaga);
-  return {
-    store,
-    history,
-    httpRequestDispatcher,
-  };
+    const history: History = createBrowserHistory();
+    const sagaMiddleware = createSagaMiddleware();
+    const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
+    const rootSaga = createRootSaga(history, httpRequestDispatcher);
+    sagaMiddleware.run(rootSaga);
+    return {
+        store,
+        history,
+        httpRequestDispatcher,
+    };
 }
 
 export type RootState = {
@@ -125,11 +125,11 @@ export type RootState = {
 
 let currentServices: null | AppServices = null;
 export function createHotReloadedAppServices(
-    httpRequestDispatcher: HttpRequestDispatcher
+    httpRequestDispatcher: HttpRequestDispatcher,
 ): AppServices {
-  if (currentServices === null) {
-    currentServices = createAppServices(httpRequestDispatcher);
+    if (currentServices === null) {
+        currentServices = createAppServices(httpRequestDispatcher);
+        return currentServices;
+    }
     return currentServices;
-  }
-  return currentServices;
 }

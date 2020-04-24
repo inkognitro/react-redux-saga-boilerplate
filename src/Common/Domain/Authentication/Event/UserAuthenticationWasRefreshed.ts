@@ -2,13 +2,13 @@ import { AuthEventTypes, AuthUser } from "Common/Domain/Authentication/Types";
 import { Event } from "Common/Domain/Bus/Event";
 
 export function createUserAuthenticationWasRefreshed(
-  authUser: AuthUser,
-  previousAuthUser: AuthUser
+    authUser: AuthUser,
+    previousAuthUser: AuthUser,
 ): UserAuthenticationWasRefreshed {
-  return {
-    type: AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED,
-    payload: { authUser, previousAuthUser },
-  };
+    return {
+        type: AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED,
+        payload: { authUser, previousAuthUser },
+    };
 }
 
 export type UserAuthenticationWasRefreshed = Event<
