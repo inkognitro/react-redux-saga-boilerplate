@@ -1,30 +1,16 @@
-import React, { Component } from "react";
+import React, { FC } from "react";
 
 export type CardProps = {
-  title?: Component | string;
-  footer?: Component | string;
+  title?: JSX.Element;
+  footer?: JSX.Element;
   className?: string;
 };
 
-export class Card extends Component<CardProps> {
-  renderTitle() {
-    if (!this.props.title) {
-      return null;
-    }
-    return <h5 className="card-title">{this.props.title}</h5>;
-  }
-
-  render() {
-    return (
-      <div
-        className={`card${
-          this.props.className ? ` ${this.props.className}` : ""
-        }`}
+export const Card: FC<CardProps> = ({ className, title, children }) => ( // todo: insert footer as well
+    <div className={`card${className ? ` ${className}` : ''}`}>
         <div className="card-body">
-              {this.renderTitle()}
-              {this.props.children}
+            {(title ? (<h5 className="card-title">{title}</h5>) : null)}
+            {children}
         </div>
-      </div>
-    );
-  }
-}
+    </div>
+);

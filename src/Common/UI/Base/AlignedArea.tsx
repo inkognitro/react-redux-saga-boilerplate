@@ -8,18 +8,6 @@ const StyledAlignedAreaDiv = styled.div`
   width: 100%;
 `;
 
-type StyledAlignedAreaContentProps = StyledComponentProps & {
-  verticalAlign?: string;
-  horizontalAlign?: string;
-};
-
-const StyledAlignedAreaContent = styled.div<StyledAlignedAreaContentProps>`
-    display: table-cell;
-    horizontal-align: ${(props) =>
-      props.horizontalAlign || horizontalAligns.LEFT}
-    vertical-align: ${(props) => props.verticalAlign || verticalAligns.TOP}
-`;
-
 export enum verticalAligns {
   TOP = "top",
   MIDDLE = "middle",
@@ -32,19 +20,29 @@ export enum horizontalAligns {
   RIGHT = "right",
 }
 
+type StyledAlignedAreaContentProps = StyledComponentProps & {
+  verticalAlign?: string;
+  horizontalAlign?: string;
+};
+
+const StyledAlignedAreaContent = styled.div<StyledAlignedAreaContentProps>`
+    display: table-cell;
+    horizontal-align: ${(props) => props.horizontalAlign || horizontalAligns.LEFT}
+    vertical-align: ${(props) => props.verticalAlign || verticalAligns.TOP}
+`;
+
 export type VerticalAlignAreaProps = {
   horizontalAlign?: horizontalAligns;
   verticalAlign?: verticalAligns;
 };
 
-export const AlignedArea: FC<VerticalAlignAreaProps> = (props) => {
-  return (
+export const AlignedArea: FC<VerticalAlignAreaProps> = ({ horizontalAlign, verticalAlign, children }) => (
     <StyledAlignedAreaDiv>
-      <StyledAlignedAreaContent
-        horizontalAlign={props.horizontalAlign}
-        verticalAlign={props.verticalAlign}
-        {props.children}
-      </StyledAlignedAreaContent>
+        <StyledAlignedAreaContent
+            horizontalAlign={horizontalAlign}
+            verticalAlign={verticalAlign}
+        >
+            {children}
+        </StyledAlignedAreaContent>
     </StyledAlignedAreaDiv>
-  );
-};
+);
