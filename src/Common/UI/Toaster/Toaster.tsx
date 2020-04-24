@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
-import {Toast as ToastData} from "Common/Domain/Toaster/Types";
-import styled from "styled-components";
-import {Toast} from './Toast';
+import React, {FC} from 'react';
+import {Toast as ToastData} from 'Common/Domain/Toaster/Types';
+import styled from 'styled-components';
+import { Toast } from 'Common/UI/Toaster/Toast';
 
 const StyledToastsContainer = styled.div`
   position: fixed;
@@ -20,15 +20,15 @@ export type ToasterComponentCallbacks = {
 
 export type ToasterProps = ToasterComponentState & ToasterComponentCallbacks;
 
-export const Toaster: FunctionComponent<ToasterProps> = (props) => {
+export const Toaster: FC<ToasterProps> = (props) => {
+  const { toasts } = props;
   return (
-      <StyledToastsContainer>
-          {props.toasts.map((toast: ToastData) => (
-              <Toast
-                  key={toast.id}
-                  toast={toast}
-                  onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
-          }
+    <StyledToastsContainer>
+      {toasts.map((toast: ToastData) => (
+        <Toast
+          key={toast.id}
+          toast={toast}
+          onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
         />
       ))}
     </StyledToastsContainer>
