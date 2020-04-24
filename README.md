@@ -40,6 +40,7 @@ To build the app in the *dist* folder, run:
 2. Authentication package saga flow
 3. Performance optimization by not running all sagas concurrently.
 4. Linting with eslint.
+5. Use react hooks instead of class components
     
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:

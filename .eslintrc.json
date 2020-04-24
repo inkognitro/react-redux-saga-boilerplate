@@ -1,16 +1,19 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 6,
+    "project": "tsconfig.json"
   },
   "env": {
-    "node": true
+    "browser": true
   },
   "extends": [
     "airbnb-typescript",
+    "airbnb/hooks",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "react/react-in-jsx-scope": "off",
     "no-console": "off"
   },
   "plugins": [
