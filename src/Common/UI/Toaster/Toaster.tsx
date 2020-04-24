@@ -11,26 +11,28 @@ const StyledToastsContainer = styled.div`
 `;
 
 export type ToasterComponentState = {
-  toasts: ToastData[];
+    toasts: ToastData[];
 };
 
 export type ToasterComponentCallbacks = {
-  onRemoveMessage(messageId: string): void;
+    onRemoveMessage(messageId: string): void;
 };
 
 export type ToasterProps = ToasterComponentState & ToasterComponentCallbacks;
 
 export const Toaster: FC<ToasterProps> = (props) => {
-  const { toasts } = props;
-  return (
-    <StyledToastsContainer>
-      {toasts.map((toast: ToastData) => (
-        <Toast
-          key={toast.id}
-          toast={toast}
-          onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
-        />
-      ))}
-    </StyledToastsContainer>
-  );
+    const { toasts } = props;
+    return (
+        <React.Fragment>
+            <StyledToastsContainer>
+                {toasts.map((toast: ToastData) => (
+                    <Toast
+                        key={toast.id}
+                        toast={toast}
+                        onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
+                    />
+                ))}
+            </StyledToastsContainer>
+        </React.Fragment>
+    );
 };
