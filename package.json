@@ -12,10 +12,10 @@
     "build:spa": "webpack --config src/SinglePageApp/Bootstrap/webpack.prod.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors",
-    "test:badges": "npm run test:coverage && jest-coverage-badges",
-    "check-types": "tsc",
-    "lint": "eslint . --ext .ts,.tsx"
+    "test:lint": "eslint ./src --ext .ts,.tsx",
+    "ci:lint": "tsc --noEmit && eslint ./src --ext .ts,.tsx --quiet --fix",
+    "ci:types": "tsc",
+    "ci:coverage": "jest --coverage --colors && jest-coverage-badges"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
