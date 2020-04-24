@@ -1,15 +1,20 @@
-import {MessageToAdd, ToasterEventTypes} from "Common/Domain/Toaster/Types";
-import {Event} from "Common/Domain/Bus/Event";
+import { MessageToAdd, ToasterEventTypes } from "Common/Domain/Toaster/Types";
+import { Event } from "Common/Domain/Bus/Event";
 
-export function createMessageWasAddedToPipeline(messageToAdd: MessageToAdd): MessageWasAddedToPipeline {
-    return {
-        type: ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
-        payload: {
-            messageToAdd: messageToAdd,
-        }
-    };
+export function createMessageWasAddedToPipeline(
+  messageToAdd: MessageToAdd
+): MessageWasAddedToPipeline {
+  return {
+    type: ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
+    payload: {
+      messageToAdd,
+    },
+  };
 }
 
-export type MessageWasAddedToPipeline = Event<ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE, {
-    messageToAdd: MessageToAdd,
-}>;
+export type MessageWasAddedToPipeline = Event<
+  ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
+  {
+    messageToAdd: MessageToAdd;
+  }
+>;

@@ -1,5 +1,8 @@
-import {HttpRequest, HttpRequestResponse} from "Common/Domain/RequestHandling/Base/Http/Types";
+import {
+  HttpRequest,
+  HttpRequestResponse,
+} from "Common/Domain/RequestHandling/Base/Http/Types";
 
 export interface HttpRequestDispatcher {
-    executeRequest(request: HttpRequest): Promise<HttpRequestResponse>
+  executeRequest(request: HttpRequest): Promise<HttpRequestResponse>;
 }

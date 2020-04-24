@@ -1,15 +1,18 @@
-import {RouterEventTypes} from "Common/Domain/Router/Types";
-import {Event} from "Common/Domain/Bus/Event";
+import { RouterEventTypes } from "Common/Domain/Router/Types";
+import { Event } from "Common/Domain/Bus/Event";
 
 export function createRouterWasInitialized(url: string): RouterWasInitialized {
-    return {
-        type: RouterEventTypes.ROUTER_WAS_INITIALIZED,
-        payload: {
-            url: url,
-        }
-    };
+  return {
+    type: RouterEventTypes.ROUTER_WAS_INITIALIZED,
+    payload: {
+      url,
+    },
+  };
 }
 
-export type RouterWasInitialized = Event<RouterEventTypes.ROUTER_WAS_INITIALIZED, {
-    url: string,
-}>;
+export type RouterWasInitialized = Event<
+  RouterEventTypes.ROUTER_WAS_INITIALIZED,
+  {
+    url: string;
+  }
+>;

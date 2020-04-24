@@ -1,13 +1,19 @@
-import {TextFieldEvent, TextFieldState} from "Common/Domain/Form/Element/TextField/Types";
+import {
+  TextFieldEvent,
+  TextFieldState,
+} from "Common/Domain/Form/Element/TextField/Types";
 
 export type Message = {
-    id: string,
-    type: MessageTypes,
-    content: string,
+  id: string;
+  type: MessageTypes;
+  content: string;
 };
 
 export enum MessageTypes {
-    ERROR = 'error',
+  ERROR = "error",
 }
 
-export type FormElementReducer<State> = (state: State, event?: TextFieldEvent) => TextFieldState;
+export type FormElementReducer<State> = (
+  state: State,
+  event?: TextFieldEvent
+) => TextFieldState;

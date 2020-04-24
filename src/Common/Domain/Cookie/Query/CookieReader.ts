@@ -1,3 +1,3 @@
 export interface CookieReader {
-    findCookieContent(cookieName: string): (null | string)
+  findCookieContent(cookieName: string): null | string;
 }

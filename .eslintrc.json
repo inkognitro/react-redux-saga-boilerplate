@@ -16,6 +16,7 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "react/prop-types": "off"
   }
 }

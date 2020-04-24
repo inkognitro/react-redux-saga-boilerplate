@@ -1,15 +1,18 @@
-import {Toast, ToasterEventTypes} from "Common/Domain/Toaster/Types";
-import {Event} from "Common/Domain/Bus/Event";
+import { Toast, ToasterEventTypes } from "Common/Domain/Toaster/Types";
+import { Event } from "Common/Domain/Bus/Event";
 
 export function createToastWasAdded(toast: Toast): ToastWasAdded {
-    return {
-        type: ToasterEventTypes.TOAST_WAS_ADDED,
-        payload: {
-            toast: toast,
-        }
-    };
+  return {
+    type: ToasterEventTypes.TOAST_WAS_ADDED,
+    payload: {
+      toast,
+    },
+  };
 }
 
-export type ToastWasAdded = Event<ToasterEventTypes.TOAST_WAS_ADDED, {
-    toast: Toast,
-}>;
+export type ToastWasAdded = Event<
+  ToasterEventTypes.TOAST_WAS_ADDED,
+  {
+    toast: Toast;
+  }
+>;

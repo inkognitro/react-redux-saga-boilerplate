@@ -1,5 +1,5 @@
-import {Theme} from "Common/Domain/Design/Types";
+import { Theme } from "Common/Domain/Design/Types";
 
 export type StyledComponentProps = {
-    theme: Theme
+  theme: Theme;
 };

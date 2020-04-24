@@ -1,98 +1,120 @@
-import React, {Component} from 'react';
-import {CloseIcon} from "Common/UI/Icon/CloseIcon";
-import {IconSizes, IconTypes} from "Common/UI/Icon/Icon";
-import {TimelineLite, Power1} from 'gsap';
-import {Message as MessageData} from "Common/Domain/Toaster/Types";
+import React, { Component } from "react";
+import { CloseIcon } from "Common/UI/Icon/CloseIcon";
+import { IconSizes, IconTypes } from "Common/UI/Icon/Icon";
+import { TimelineLite, Power1 } from "gsap";
+import { Message as MessageData } from "Common/Domain/Toaster/Types";
 import styled from "styled-components";
-import {StyledComponentProps} from "Common/UI/Design/Types";
+import { StyledComponentProps } from "Common/UI/Design/Types";
 
 const StyledMessage = styled.div`
-    position: relative;
-    background-color: white;
-    width: 250px;
-    border-bottom: 1px solid ${(props: StyledComponentProps) => props.theme.colorSmoothLineOnWhite};
-    
-    &:last-child { border-bottom: 0; }
+  position: relative;
+  background-color: white;
+  width: 250px;
+  border-bottom: 1px solid
+    ${(props: StyledComponentProps) => props.theme.colorSmoothLineOnWhite};
+
+  &:last-child {
+    border-bottom: 0;
+  }
 `;
 
 const StyledMessageContent = styled.div`
-    overflow: hidden;
-    width: 100%;
-    padding: 15px 20px 15px 20px;
+  overflow: hidden;
+  width: 100%;
+  padding: 15px 20px 15px 20px;
 `;
 
 const StyledCloseIcon = styled(CloseIcon)`
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 `;
 
 export type MessageProps = {
-    message: MessageData,
-    onRemove(): void
+  message: MessageData;
+  onRemove(): void;
 };
 
 export class Message extends Component<MessageProps> {
-    private message: HTMLDivElement;
-    private introAnimation: TimelineLite;
-    private outroAnimation: TimelineLite;
+  private message: HTMLDivElement;
 
-    playIntroAnimation() {
-        this.introAnimation = new TimelineLite({paused: true});
-        this.introAnimation.fromTo(this.message, {height: 0}, {height: 'auto', duration: 0.3});
-        this.introAnimation.fromTo(this.message, {x: '100%'}, {x: '0%', duration: 0.8, ease: Power1.easeOut});
-        this.introAnimation.set(this.message, {height: ''});
-        this.introAnimation.play();
-    }
+  private introAnimation: TimelineLite;
 
-    playOutroAnimation() {
-        this.outroAnimation = new TimelineLite({paused: true, onComplete: this.props.onRemove});
-        this.outroAnimation.to(this.message,  {x: '-100%', duration: 0.4, ease: Power1.easeIn});
-        this.outroAnimation.to(this.message,  {height: 0, duration: 0.15});
-        this.outroAnimation.set(this.message,  {display: 'none'});
-        if(this.introAnimation) {
-            this.introAnimation.pause();
-        }
-        this.outroAnimation.play();
-    }
+  private outroAnimation: TimelineLite;
 
-    componentDidMount() {
-        if(this.props.message.isIntroAnimationRunning) {
-            this.playIntroAnimation();
-        }
-    }
+  playIntroAnimation() {
+    this.introAnimation = new TimelineLite({ paused: true });
+    this.introAnimation.fromTo(
+      this.message,
+      { height: 0 },
+      { height: "auto", duration: 0.3 }
+    );
+    this.introAnimation.fromTo(
+      this.message,
+      { x: "100%" },
+      { x: "0%", duration: 0.8, ease: Power1.easeOut }
+    );
+    this.introAnimation.set(this.message, { height: "" });
+    this.introAnimation.play();
+  }
 
-    componentDidUpdate(prevProps: MessageProps) {
-        if(
-            this.props.message.isOutroAnimationRunning
-            && prevProps.message.isOutroAnimationRunning !== this.props.message.isOutroAnimationRunning
-        ) {
-            this.playOutroAnimation();
-        }
+  playOutroAnimation() {
+    this.outroAnimation = new TimelineLite({
+      paused: true,
+      onComplete: this.props.onRemove,
+    });
+    this.outroAnimation.to(this.message, {
+      x: "-100%",
+      duration: 0.4,
+      ease: Power1.easeIn,
+    });
+    this.outroAnimation.to(this.message, { height: 0, duration: 0.15 });
+    this.outroAnimation.set(this.message, { display: "none" });
+    if (this.introAnimation) {
+      this.introAnimation.pause();
     }
+    this.outroAnimation.play();
+  }
 
-    renderCloseIcon() {
-        if(!this.props.message.canBeClosedManually) {
-            return null;
-        }
-        return (
-            <StyledCloseIcon
-                onClick={() => this.props.onRemove()}
-                type={IconTypes.SECONDARY}
-                size={IconSizes.SM}
-            />
-        );
+  componentDidMount() {
+    if (this.props.message.isIntroAnimationRunning) {
+      this.playIntroAnimation();
     }
+  }
 
-    render() {
-        return (
-            <StyledMessage ref={(element: HTMLDivElement) => this.message = element}>
-                <StyledMessageContent>
-                    {this.renderCloseIcon()}
-                    {this.props.message.content}
-                </StyledMessageContent>
-            </StyledMessage>
-        );
+  componentDidUpdate(prevProps: MessageProps) {
+    if (
+      this.props.message.isOutroAnimationRunning &&
+      prevProps.message.isOutroAnimationRunning !==
+        this.props.message.isOutroAnimationRunning
+    ) {
+      this.playOutroAnimation();
     }
+  }
+
+  renderCloseIcon() {
+    if (!this.props.message.canBeClosedManually) {
+      return null;
+    }
+    return (
+      <StyledCloseIcon
+        onClick={() => this.props.onRemove()}
+        type={IconTypes.SECONDARY}
+        size={IconSizes.SM}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <StyledMessage
+        ref={(element: HTMLDivElement) => (this.message = element)}
+        <StyledMessageContent>
+              {this.renderCloseIcon()}
+              {this.props.message.content}
+        </StyledMessageContent>
+      </StyledMessage>
+    );
+  }
 }
