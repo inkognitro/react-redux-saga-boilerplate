@@ -1,7 +1,7 @@
-import React, {FC} from 'react';
-import {Toast as ToastData} from 'Common/Domain/Toaster/Types';
-import styled from 'styled-components';
-import { Toast } from 'Common/UI/Toaster/Toast';
+import React, { FC } from "react";
+import { Toast as ToastData } from "Common/Domain/Toaster/Types";
+import styled from "styled-components";
+import { Toast } from "Common/UI/Toaster/Toast";
 
 const StyledToastsContainer = styled.div`
   position: fixed;

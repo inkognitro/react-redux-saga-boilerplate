@@ -17,7 +17,7 @@ jobs:
     - name: install packages, test and build
       run: |
         npm install
-        npm run test:badges
+        npm run ci
         npm run build:spa
       env:
         CI: true

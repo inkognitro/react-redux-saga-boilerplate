@@ -49,32 +49,6 @@ type AppServices = {
   httpRequestDispatcher: HttpRequestDispatcher;
 };
 
-let currentServices: null | AppServices = null;
-export function createHotReloadedAppServices(
-  httpRequestDispatcher: HttpRequestDispatcher
-): AppServices {
-  if (currentServices === null) {
-    currentServices = createAppServices(httpRequestDispatcher);
-    return currentServices;
-  }
-  return currentServices;
-}
-
-export function createAppServices(
-  httpRequestDispatcher: HttpRequestDispatcher
-): AppServices {
-  const history: History = createBrowserHistory();
-  const sagaMiddleware = createSagaMiddleware();
-  const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
-  const rootSaga = createRootSaga(history, httpRequestDispatcher);
-  sagaMiddleware.run(rootSaga);
-  return {
-    store,
-    history,
-    httpRequestDispatcher,
-  };
-}
-
 const rootReducer = combineReducers({
   design: designReducer,
   translator: translatorReducer,
@@ -85,46 +59,32 @@ const rootReducer = combineReducers({
   authentication: authenticationReducer,
 });
 
-export type RootState = {
-  design: DesignState;
-  translator: TranslatorState;
-  toaster: ToasterState;
-  http: HttpState;
-  router: RouterState;
-  routing: RoutingState;
-  authentication: AuthState;
-};
-
 function createRootSaga(
-  history: History,
-  httpRequestDispatcher: HttpRequestDispatcher
+    history: History,
+    httpRequestDispatcher: HttpRequestDispatcher,
 ): () => Generator {
-  const toasterStateSelector: ToasterStateSelector = (state: RootState) =>
-    state.toaster;
+  const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
   const toasterSaga = createToasterFlow(toasterStateSelector);
 
-  const translatorStateSelector: TranslatorStateSelector = (state: RootState) =>
-    state.translator;
+  const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
   const translatorSaga = createTranslatorFlow(translatorStateSelector);
 
   const historyManager = new BrowserHistoryManager(history);
-  const routerStateSelector: RouterStateSelector = (state: RootState) =>
-    state.router;
+  const routerStateSelector: RouterStateSelector = (state: RootState) => state.router;
   const routerSaga = createRouterFlow(routerStateSelector, historyManager);
 
   const cookieStorage = new BrowserCookieStorage();
   const cookieSaga = createCookieFlow(cookieStorage);
 
-  const authStateSelector: AuthStateSelector = (state: RootState) =>
-    state.authentication;
+  const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
   const authenticationSaga = createAuthenticationFlow(authStateSelector);
 
   const httpStateSelector: HttpStateSelector = (state: RootState) => state.http;
   const requestHandlingSaga = createRequestHandlingFlow(
-    httpStateSelector,
-    httpRequestDispatcher,
-    authStateSelector,
-    translatorStateSelector
+      httpStateSelector,
+      httpRequestDispatcher,
+      authStateSelector,
+      translatorStateSelector
   );
 
   const routingSaga = createRoutingSaga();
@@ -138,4 +98,38 @@ function createRootSaga(
     yield spawn(routerSaga);
     yield spawn(routingSaga);
   };
+}
+
+export function createAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
+  const history: History = createBrowserHistory();
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
+  const rootSaga = createRootSaga(history, httpRequestDispatcher);
+  sagaMiddleware.run(rootSaga);
+  return {
+    store,
+    history,
+    httpRequestDispatcher,
+  };
+}
+
+export type RootState = {
+  design: DesignState;
+  translator: TranslatorState;
+  toaster: ToasterState;
+  http: HttpState;
+  router: RouterState;
+  routing: RoutingState;
+  authentication: AuthState;
+};
+
+let currentServices: null | AppServices = null;
+export function createHotReloadedAppServices(
+    httpRequestDispatcher: HttpRequestDispatcher
+): AppServices {
+  if (currentServices === null) {
+    currentServices = createAppServices(httpRequestDispatcher);
+    return currentServices;
+  }
+  return currentServices;
 }
