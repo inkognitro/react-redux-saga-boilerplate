@@ -10,13 +10,12 @@
   "extends": [
     "airbnb-typescript",
     "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "no-console": "off"
-  },
-  "plugins": [
-    "@typescript-eslint"
-  ]
+  }
 }
