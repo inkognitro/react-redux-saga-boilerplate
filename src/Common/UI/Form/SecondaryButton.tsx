@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 export type SecondaryButtonProps = {
   onClick?(): void;
@@ -6,22 +6,19 @@ export type SecondaryButtonProps = {
 };
 
 function createContentClassName(props: SecondaryButtonProps) {
-  const classNames = ["btn", "btn-secondary"];
-  if (props.isDisabled) {
-    classNames.push("disabled");
-  }
-  return classNames.join(" ");
+    const classNames = ["btn", "btn-secondary"];
+    if (props.isDisabled) {
+        classNames.push("disabled");
+    }
+    return classNames.join(" ");
 }
 
-export const SecondaryButton: FunctionComponent<SecondaryButtonProps> = (
-  props
-) => {
-  return (
+export const SecondaryButton: FC<SecondaryButtonProps> = (props) => (
     <button
-      type="button"
-      className={createContentClassName(props)}
-      onClick={props.onClick}
-      {props.children}
+        type="button"
+        className={createContentClassName(props)}
+        onClick={props.onClick}
+    >
+        {props.children}
     </button>
-  );
-};
+);

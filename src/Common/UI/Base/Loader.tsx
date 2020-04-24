@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {
-  AlignedArea,
-  horizontalAligns,
-  verticalAligns,
+    AlignedArea,
+    horizontalAligns,
+    verticalAligns,
 } from "Common/UI/Base/AlignedArea";
 import { TimelineLite } from "gsap";
 import { IconSizes, IconTypes } from "Common/UI/Icon/Icon";
@@ -31,51 +31,50 @@ export class Loader extends Component<LoaderProps> {
   private loader: HTMLDivElement;
 
   componentDidMount() {
-    this.createFadeInAnimation();
-    this.triggerAnimationBehaviour(null);
+      this.createFadeInAnimation();
+      this.triggerAnimationBehaviour(null);
   }
 
   componentDidUpdate(prevProps: LoaderProps): void {
-    this.triggerAnimationBehaviour(prevProps);
+      this.triggerAnimationBehaviour(prevProps);
   }
 
   playAnimationAccordingToVisibility(isVisible: boolean): void {
-    if (isVisible) {
-      this.fadeInAnimation.play();
-      return;
-    }
-    this.fadeInAnimation.reverse();
+      if (isVisible) {
+          this.fadeInAnimation.play();
+          return;
+      }
+      this.fadeInAnimation.reverse();
   }
 
   triggerAnimationBehaviour(prevProps: null | LoaderProps): void {
-    if (prevProps && prevProps.isVisible === this.props.isVisible) {
-      return;
-    }
-    this.playAnimationAccordingToVisibility(this.props.isVisible);
+      if (prevProps && prevProps.isVisible === this.props.isVisible) {
+          return;
+      }
+      this.playAnimationAccordingToVisibility(this.props.isVisible);
   }
 
   createFadeInAnimation() {
-    this.fadeInAnimation = new TimelineLite({ paused: true });
-    this.fadeInAnimation.fromTo(
-      this.loader,
-      { display: "none" },
-      { display: "block", duration: 0.01 }
-    );
-    this.fadeInAnimation.fromTo(
-      this.loader,
-      { opacity: 0 },
-      { delay: 0.5, opacity: 1, duration: 0.25 }
-    );
+      this.fadeInAnimation = new TimelineLite({ paused: true });
+      this.fadeInAnimation.fromTo(
+          this.loader,
+          { display: "none" },
+          { display: "block", duration: 0.01 },
+      );
+      this.fadeInAnimation.fromTo(
+          this.loader,
+          { opacity: 0 },
+          { delay: 0.5, opacity: 1, duration: 0.25 },
+      );
   }
 
   render() {
-    return (
-      <StyledLoaderDiv
-        ref={(element: HTMLDivElement) => (this.loader = element)}
-        <AlignedArea horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.MIDDLE}>
-              <LoaderIcon size={IconSizes.LG} type={IconTypes.WHITE} />
-        </AlignedArea>
-      </StyledLoaderDiv>
-    );
+      return (
+          <StyledLoaderDiv ref={(element: HTMLDivElement) => (this.loader = element)}>
+              <AlignedArea horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.MIDDLE}>
+                  <LoaderIcon size={IconSizes.LG} type={IconTypes.WHITE} />
+              </AlignedArea>
+          </StyledLoaderDiv>
+      );
   }
 }
