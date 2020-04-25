@@ -27,7 +27,7 @@ clients, company owners and to close the circle, for me the gods on earth, again
    - or: to build the app for production (see "Production mode")
 7. Continuous integration (optional): Add `npm run ci` script, automated git commit and push
    
-##Configure eslint
+## Configure eslint
 Before you start coding, I recommend configuring your IDE to support the given `.eslintrc.json`,
 for not being stuck on failing tests during continuous integration tasks.
 If you do not know what eslint is, read the [docs](https://eslint.org/) or [google it](https://www.google.com/search?q=what+is+eslint%3F).
