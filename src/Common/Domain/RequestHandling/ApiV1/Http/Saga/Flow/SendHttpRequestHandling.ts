@@ -5,9 +5,11 @@ import {
 import { HttpRequest } from "Common/Domain/RequestHandling/Base/Http/Types";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { createWithHeaderEnhancedHttpRequest } from "Common/Domain/RequestHandling/Base/Http/Command/RequestFactory";
-import { put, select, takeEvery } from "@redux-saga/core/effects";
+import { put, select, takeEvery } from "redux-saga/effects";
 import { ApiV1CommandTypes } from "Common/Domain/RequestHandling/ApiV1/Http/ApiV1Http";
-import { createSendHttpRequest as createCommonSendHttpRequest } from "Common/Domain/RequestHandling/Base/Http/Command/SendHttpRequest";
+import {
+    createSendHttpRequest as createCommonSendHttpRequest,
+} from "Common/Domain/RequestHandling/Base/Http/Command/SendHttpRequest";
 import { SendHttpRequest } from "Common/Domain/RequestHandling/ApiV1/Http/Command/SendHttpRequest";
 
 export function createSendHttpRequestFlow(
@@ -29,7 +31,7 @@ export function createSendHttpRequestFlow(
         );
     }
 
-    return <GeneratorFunction> function* (): Generator {
+    return function* (): Generator {
         yield takeEvery(ApiV1CommandTypes.SEND_HTTP_REQUEST, function* (
             command: SendHttpRequest,
         ): Generator {

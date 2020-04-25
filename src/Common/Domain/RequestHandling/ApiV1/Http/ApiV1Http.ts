@@ -1,4 +1,4 @@
-import { spawn } from "@redux-saga/core/effects";
+import { spawn } from "redux-saga/effects";
 import { AuthStateSelector } from "Common/Domain/Authentication/Types";
 import { createSendHttpRequestFlow } from "Common/Domain/RequestHandling/ApiV1/Http/Saga/Flow/SendHttpRequestHandling";
 

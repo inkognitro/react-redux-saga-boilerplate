@@ -5,7 +5,7 @@ export type SecondaryButtonProps = {
   isDisabled?: boolean;
 };
 
-function createContentClassName(props: SecondaryButtonProps) {
+function createContentClassName(props: SecondaryButtonProps): string {
     const classNames = ["btn", "btn-secondary"];
     if (props.isDisabled) {
         classNames.push("disabled");

@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 
 export type ErrorPageProps = {};
 
-export const ErrorPage: FunctionComponent<ErrorPageProps> = (props) => (
+export const ErrorPage: FC<ErrorPageProps> = (props) => (
     <div className="container">
         <div className="row">
             <div className="col-sm">{props.children}</div>

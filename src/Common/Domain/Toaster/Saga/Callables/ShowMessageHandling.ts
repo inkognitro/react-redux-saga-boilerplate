@@ -10,12 +10,14 @@ import {
 } from "Common/Domain/Toaster/Types";
 import {
     delay, fork, put, select,
-} from "@redux-saga/core/effects";
+} from "redux-saga/effects";
 import { findToastByMessageId } from "Common/Domain/Toaster/Query/ToastQuery";
 import { findMessageToAddByMessageId } from "Common/Domain/Toaster/Query/MessageQuery";
 import uuidV4 from "uuid/v4";
 import { createMessageWasAddedToPipeline } from "Common/Domain/Toaster/Event/MessageWasAddedToPipeline";
-import { moveMessagesFromPipelineToToastsHandling } from "Common/Domain/Toaster/Saga/Callables/MoveMessagesFromPipelineToToastsHandling";
+import {
+    moveMessagesFromPipelineToToastsHandling,
+} from "Common/Domain/Toaster/Saga/Callables/MoveMessagesFromPipelineToToastsHandling";
 
 function createAutomaticCloseDelayInMs(
     settings: ShowMessageSettings,

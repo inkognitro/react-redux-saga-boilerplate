@@ -1,5 +1,5 @@
 import { RouterStateSelector } from "Common/Domain/Router/Types";
-import { call, put, spawn } from "@redux-saga/core/effects";
+import { call, put, spawn } from "redux-saga/effects";
 import { HistoryManager } from "Common/Domain/Router/HistoryManager";
 import { createRouterWasInitialized } from "Common/Domain/Router/Event/RouterWasInitialized";
 import { createCurrentUrlWasChanged } from "Common/Domain/Router/Event/CurrentUrlWasChanged";
@@ -22,7 +22,7 @@ export function createRouterFlow(
     const initializeRouter = function* (): Generator {
         yield put(createRouterWasInitialized(historyManager.getCurrentUrl()));
     };
-    return function* () {
+    return function* (): Generator {
         yield call(initializeRouter);
         yield spawn(watchCurrentUrlChange);
         yield spawn(createWatchOpenUrlFlow(routerStateSelector, historyManager));

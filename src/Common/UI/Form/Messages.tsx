@@ -32,11 +32,10 @@ export const Messages: FC<MessagesProps> = (props) => {
         return null;
     }
     return (
-        <>
+        <React.Fragment>
             {props.messages.map((message) => (
                 <Message key={message.id} message={message} />
             ))}
-            ))}
-        </>
+        </React.Fragment>
     );
 };

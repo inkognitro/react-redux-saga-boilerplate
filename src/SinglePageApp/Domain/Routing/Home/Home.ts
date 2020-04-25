@@ -1,4 +1,4 @@
-import { spawn } from "@redux-saga/core/effects";
+import { spawn } from "redux-saga/effects";
 import { Route } from "Common/Domain/Router/Types";
 import { createWatchLeakReduxStateSaga } from "./Command/LeakReduxState";
 import { createChangePartialStateSaga } from "./Command/ChangePartialState";
@@ -9,7 +9,7 @@ export enum HomeCommandTypes {
 }
 
 export function createHomeSaga(): () => Generator {
-    return function* homeSaga() {
+    return function* homeSaga(): Generator {
         yield spawn(createWatchLeakReduxStateSaga());
         yield spawn(createChangePartialStateSaga());
     };

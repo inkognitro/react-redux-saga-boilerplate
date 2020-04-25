@@ -7,7 +7,8 @@ import "bootstrap/scss/bootstrap.scss";
 import { CSSPlugin } from "gsap/CSSPlugin";
 
 // @ts-ignore
-const plugins = [CSSPlugin]; // without this line, CSSPlugin is being dropped by webpack through tree shaking and multiple animations with gsap do not work properly
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const plugins = [CSSPlugin]; // needed to make sure CSSPlugin is not being dropped by webpack through tree shaking
 
 export type RootComponentProps = {
   store: Store;

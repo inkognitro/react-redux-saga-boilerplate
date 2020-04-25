@@ -1,4 +1,4 @@
-import { takeEvery, put, select } from "@redux-saga/core/effects";
+import { takeEvery, put, select } from "redux-saga/effects";
 import {
     ApiV1HttpEventTypes,
     MessageTypes,
@@ -32,7 +32,7 @@ export function createApiV1HttpToastsFlow(
                 const content = findTranslatedText(translatorState, {
                     translationId: COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID,
                 });
-                put(
+                yield put(
                     createShowMessage({
                         id: COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID,
                         toastType: ToastTypes.ERROR,
@@ -51,7 +51,7 @@ export function createApiV1HttpToastsFlow(
                     translationId: message.translationId,
                     placeholders: message.placeholders,
                 });
-                put(
+                yield put(
                     createShowMessage({
                         id: message.id,
                         toastType: getToastTypeByMessageType(message.type),

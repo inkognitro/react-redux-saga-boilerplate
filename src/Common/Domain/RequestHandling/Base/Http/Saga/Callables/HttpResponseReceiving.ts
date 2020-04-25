@@ -3,7 +3,7 @@ import {
     HttpResponse,
     HttpEventTypes,
 } from "Common/Domain/RequestHandling/Base/Http/Types";
-import { take } from "@redux-saga/core/effects";
+import { take } from "redux-saga/effects";
 import { HttpRequestWasNotSent } from "Common/Domain/RequestHandling/Base/Http/Event/HttpRequestWasNotSent";
 import { HttpSuccessResponseWasReceived } from "Common/Domain/RequestHandling/Base/Http/Event/HttpSuccessResponseWasReceived";
 import { HttpErrorResponseWasReceived } from "Common/Domain/RequestHandling/Base/Http/Event/HttpErrorResponseWasReceived";

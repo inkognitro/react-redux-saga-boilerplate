@@ -6,7 +6,7 @@ import {
 } from "redux";
 import { RouterState, RouterStateSelector } from "Common/Domain/Router/Types";
 import createSagaMiddleware from "redux-saga";
-import { spawn } from "@redux-saga/core/effects";
+import { spawn } from "redux-saga/effects";
 import { createBrowserHistory, History } from "history";
 import { createToasterFlow } from "Common/Domain/Toaster/Toaster";
 import {

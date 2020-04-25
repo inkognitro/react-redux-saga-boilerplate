@@ -1,5 +1,5 @@
 import { Specification, Router as CommonRouter } from "Common/UI/Router/Router";
-import React, { FunctionComponent } from "react";
+import React, { FC } from "react";
 import { History } from "history";
 import { homeRoute } from "SinglePageApp/Domain/Routing/Home/Home";
 import { Home } from "./Home/Home";
@@ -14,4 +14,4 @@ type RouterProps = {
   history: History;
 };
 
-export const Router: FunctionComponent<RouterProps> = (props) => <CommonRouter specification={specification} history={props.history} />;
+export const Router: FC<RouterProps> = (props) => <CommonRouter specification={specification} history={props.history} />;

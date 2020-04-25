@@ -8,7 +8,7 @@ import uuidV4 from "uuid/v4";
 import { getCommonToastIdByType } from "Common/Domain/Toaster/Query/CommonToastIdByTypeQuery";
 import {
     delay, fork, put, select, spawn,
-} from "@redux-saga/core/effects";
+} from "redux-saga/effects";
 import { createRemoveMessage } from "Common/Domain/Toaster/Command/RemoveMessage";
 import { findToastById } from "Common/Domain/Toaster/Query/ToastQuery";
 import { createToastWasAdded } from "Common/Domain/Toaster/Event/ToastWasAdded";

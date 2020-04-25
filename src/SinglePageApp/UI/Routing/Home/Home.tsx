@@ -45,24 +45,24 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
         <br />
         <h3>Toasts</h3>
         <div>
-            <FunctionalLink onClick={() => props.onAddToast(ToastTypes.SUCCESS, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContent)}>
                 add a success toast message
             </FunctionalLink>
             {' '}
             (is being closed after 3 seconds)
         </div>
         <div>
-            <FunctionalLink onClick={() => props.onAddToast(ToastTypes.INFO, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContent)}>
                 add an info toast message
             </FunctionalLink>
         </div>
         <div>
-            <FunctionalLink onClick={() => props.onAddToast(ToastTypes.WARNING, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContent)}>
                 add a warning toast message
             </FunctionalLink>
         </div>
         <div>
-            <FunctionalLink onClick={() => props.onAddToast(ToastTypes.ERROR, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContent)}>
                 add an error toast message
             </FunctionalLink>
         </div>

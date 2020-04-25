@@ -5,7 +5,7 @@ import {
     RouterState,
     RouterStateSelector,
 } from "Common/Domain/Router/Types";
-import { put, select, takeEvery } from "@redux-saga/core/effects";
+import { put, select, takeEvery } from "redux-saga/effects";
 import { findRedirectByExactRoute } from "Common/Domain/Router/Query/RedirectQuery";
 import { findStoredRoute } from "Common/Domain/Router/Query/RouteQuery";
 import { createRouterWasExtended } from "Common/Domain/Router/Event/RouterWasExtended";
@@ -13,11 +13,9 @@ import { ExtendRouter } from "Common/Domain/Router/Commands/ExtendRouter";
 
 export function createWatchExtendRouterFlow(
     routerStateSelector: RouterStateSelector,
-): GeneratorFunction {
-    return <GeneratorFunction> function* (): Generator {
-        yield takeEvery(RouterCommandTypes.EXTEND_ROUTER, function* (
-            command: ExtendRouter,
-        ): Generator {
+): () => Generator {
+    return function* (): Generator {
+        yield takeEvery(RouterCommandTypes.EXTEND_ROUTER, function* (command: ExtendRouter): Generator {
             // @ts-ignore
             const routerState: RouterState = yield select(routerStateSelector);
             const redirectsToAdd: Redirect[] = [];

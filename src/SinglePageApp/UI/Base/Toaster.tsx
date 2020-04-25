@@ -14,7 +14,9 @@ const mapStateToProps = (rootState: RootState): ToasterComponentState => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): ToasterComponentCallbacks => ({
-    onRemoveMessage: (messageId: string) => dispatch(createRemoveMessage(messageId)),
+    onRemoveMessage: (messageId: string): void => {
+        dispatch(createRemoveMessage(messageId));
+    },
 });
 
 export const Toaster = connect(

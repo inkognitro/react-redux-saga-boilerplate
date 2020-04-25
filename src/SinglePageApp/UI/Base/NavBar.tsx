@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, {Component, ReactNode} from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FunctionalLink } from "Common/UI/Base/Link";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { AuthUser } from "Common/Domain/Authentication/Types";
-import { createHomeRouteUrl } from "../../Domain/Routing/Home/Home";
+import { createHomeRouteUrl } from "SinglePageApp/Domain/Routing/Home/Home";
 
 type RepresentationalNavBarState = {
   currentUser: AuthUser | null;
@@ -18,7 +18,7 @@ type RepresentationalNavBarCallbacks = {
 type RepresentationalNavBarProps = (RepresentationalNavBarState & RepresentationalNavBarCallbacks);
 
 class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
-    renderAuthLink() {
+    renderAuthLink(): ReactNode {
         if (this.props.currentUser) {
             return (
                 <li className="nav-item">
@@ -35,7 +35,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
         );
     }
 
-    render() {
+    render(): ReactNode {
         return (
             <ul className="nav justify-content-center">
                 <li className="nav-item">

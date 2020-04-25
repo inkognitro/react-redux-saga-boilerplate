@@ -58,7 +58,9 @@ const mapStateToProps = (
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DumbTextFieldCallbacks => ({
-    onChange: (textFieldId: string, textFieldState: TextFieldState) => dispatch(createTextFieldStateWasChanged(textFieldId, textFieldState)),
+    onChange: (textFieldId: string, textFieldState: TextFieldState) => dispatch(
+        createTextFieldStateWasChanged(textFieldId, textFieldState),
+    ),
 });
 
 export const TextField = connect(

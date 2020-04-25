@@ -6,7 +6,7 @@ import {
     put,
     select,
     takeEvery,
-} from "@redux-saga/core/effects";
+} from "redux-saga/effects";
 import {
     HttpRequest,
     HttpRequestHandlerCommandTypes,
@@ -15,7 +15,9 @@ import {
     HttpStateSelector,
 } from "Common/Domain/RequestHandling/Base/Http/Types";
 import { createRequestWasSent } from "Common/Domain/RequestHandling/Base/Http/Event/HttpRequestWasSent";
-import { createHttpSuccessResponseWasReceived } from "Common/Domain/RequestHandling/Base/Http/Event/HttpSuccessResponseWasReceived";
+import {
+    createHttpSuccessResponseWasReceived,
+} from "Common/Domain/RequestHandling/Base/Http/Event/HttpSuccessResponseWasReceived";
 import { createHttpErrorResponseWasReceived } from "Common/Domain/RequestHandling/Base/Http/Event/HttpErrorResponseWasReceived";
 import { findRunningHttpRequestById } from "Common/Domain/RequestHandling/Base/Http/Query/HttpRequestQuery";
 import {
@@ -28,7 +30,7 @@ import { createHttpRequestWasCancelled } from "Common/Domain/RequestHandling/Bas
 export function createWatchSendHttpRequestFlow(
     httpStateSelector: HttpStateSelector,
     requestDispatcher: HttpRequestDispatcher,
-): GeneratorFunction {
+): () => Generator {
     const handleSendHttpRequest = function* (
         command: SendHttpRequest,
     ): Generator {
@@ -77,7 +79,7 @@ export function createWatchSendHttpRequestFlow(
         }
     };
 
-    return <GeneratorFunction> function* (): Generator {
+    return function* (): Generator {
         yield takeEvery(
             HttpRequestHandlerCommandTypes.SEND_HTTP_REQUEST,
             handleSendHttpRequest,

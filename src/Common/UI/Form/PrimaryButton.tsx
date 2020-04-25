@@ -5,7 +5,7 @@ export type PrimaryButtonProps = {
   isDisabled?: boolean;
 };
 
-function createContentClassName(props: PrimaryButtonProps) {
+function createContentClassName(props: PrimaryButtonProps): string {
     const classNames = ["btn", "btn-primary"];
     if (props.isDisabled) {
         classNames.push("disabled");

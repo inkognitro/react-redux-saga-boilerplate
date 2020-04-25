@@ -5,15 +5,13 @@ import {
     TranslatorState,
     TranslatorStateSelector,
 } from "Common/Domain/Translator/Types";
-import { put, select, takeEvery } from "@redux-saga/core/effects";
+import { put, select, takeEvery } from "redux-saga/effects";
 import { getCurrentLanguageId } from "Common/Domain/Translator/Query/LanguageIdQuery";
 import { translationIdToTranslationMapping } from "Common/Domain/Translator/Translation/en";
 import { createUILanguageWasSet } from "Common/Domain/Translator/Event/UILanguageWasSet";
 import { SetUILanguage } from "Common/Domain/Translator/Command/SetUILanguage";
 
-export function createWatchSetUILanguageFlow(
-    translatorStateSelector: TranslatorStateSelector,
-): GeneratorFunction {
+export function createWatchSetUILanguageFlow(translatorStateSelector: TranslatorStateSelector): () => Generator {
     const handleSetUILanguage = function* (command: SetUILanguage): Generator {
     // @ts-ignore
         const translatorState: TranslatorState = yield select(
@@ -33,7 +31,7 @@ export function createWatchSetUILanguageFlow(
         );
     };
 
-    return <GeneratorFunction> function* (): Generator {
+    return function* (): Generator {
         yield takeEvery(
             TranslatorCommandTypes.SET_UI_LANGUAGE,
             handleSetUILanguage,

@@ -3,7 +3,7 @@ import {
     Route as ReactRoute,
     Router as ReactRouter,
     Switch,
-} from "react-router";
+} from "react-router-dom";
 import { History } from "history";
 import { Route as RouteData } from "Common/Domain/Router/Types";
 

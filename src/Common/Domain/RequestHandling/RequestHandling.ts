@@ -1,4 +1,4 @@
-import { spawn } from "@redux-saga/core/effects";
+import { spawn } from "redux-saga/effects";
 import { TranslatorStateSelector } from "Common/Domain/Translator/Types";
 import { createApiV1HttpFlow } from "Common/Domain/RequestHandling/ApiV1/Http/ApiV1Http";
 import { createApiV1HttpToastsFlow } from "Common/Domain/RequestHandling/ApiV1/HttpToasts/ApiV1Toasts";

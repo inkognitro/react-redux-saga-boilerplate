@@ -7,7 +7,7 @@ import {
     put,
     select,
     take,
-} from "@redux-saga/core/effects";
+} from "redux-saga/effects";
 import {
     AuthCommandTypes,
     AuthEventTypes,
@@ -36,10 +36,10 @@ const authTokenCookieTimeToLiveInDays = 14;
 export function createAuthenticationFlow(
     authStateSelector: AuthStateSelector,
 ): () => Generator {
-    function* handleAutomaticAuthenticationRefresh(_: boolean): Generator {
+    function* handleAutomaticAuthenticationRefresh(shouldRemember: boolean): Generator {
         while (true) {
             yield delay(5000);
-            console.log("handleAutomaticAuthenticationRefresh"); // todo: remove!
+            console.log(`handleAutomaticAuthenticationRefresh: ${shouldRemember}`); // todo: remove!
         }
     }
 
@@ -86,7 +86,7 @@ export function createAuthenticationFlow(
         }
     }
 
-    return <GeneratorFunction> function* (): Generator {
+    return function* (): Generator {
         while (true) {
             // @ts-ignore
             const command: Login = yield take([AuthCommandTypes.LOGIN]);

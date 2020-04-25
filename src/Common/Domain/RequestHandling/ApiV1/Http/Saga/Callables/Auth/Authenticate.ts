@@ -1,7 +1,7 @@
 import { apiV1BaseUrl } from "Common/Domain/RequestHandling/ApiV1/Http/ApiV1Http";
 import { ReadResponseBody } from "Common/Domain/RequestHandling/ApiV1/Http/Types";
 import { User } from "Common/Domain/Model/User";
-import { call, put } from "@redux-saga/core/effects";
+import { call, put } from "redux-saga/effects";
 import { createPostRequest } from "Common/Domain/RequestHandling/Base/Http/Command/RequestFactory";
 import {
     HttpRequest,

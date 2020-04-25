@@ -1,10 +1,10 @@
 import { combineReducers, Reducer } from "redux";
-import { spawn } from "@redux-saga/core/effects";
+import { spawn } from "redux-saga/effects";
 import { homeReducer } from "./Home/Event/Reducer";
 import { createHomeSaga } from "./Home/Home";
 
 export function createRoutingSaga(): () => Generator {
-    return function* routingSaga() {
+    return function* routingSaga(): Generator {
         yield spawn(createHomeSaga());
     };
 }
