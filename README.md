@@ -21,9 +21,22 @@ clients, company owners and to close the circle, for me the gods on earth, again
 2. Clone or download this repository
 3. Open console and move into project folder
 4. Run *npm install*
+5. Configure eslint (optional, see "Configure eslint")
 5. Follow the steps below to
-   - either: serve the app for development mode
-   - or: to build the app for production
+   - either: serve the app for development mode (see "Development mode")
+   - or: to build the app for production (see "Production mode")
+   
+##Configure eslint
+Before you start coding, I recommend configuring your IDE to support the given `.eslintrc.json`,
+for not being stuck on failing tests during continuous integration tasks.
+If you do not know what eslint is, read the [docs](https://eslint.org/) or [google it](https://www.google.com/search?q=what+is+eslint%3F).
+However see below to see eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
+
+Automatic detection of `.eslintrc.json` in the project folder:
+![esLintAutomaticDetection](./docs/esLintAutomaticDetection.png)
+
+Replace `Strg + Alt + L` shortcut with eslint fix:
+![esLintKeymapShortcut](./docs/esLintKeymapShortcut.png)
 
 ## Development mode
 To run the app with hot module reloading at *//localhost:9000*, run:
@@ -39,9 +52,8 @@ To build the app in the *dist* folder, run:
 1. Test coverage
 2. Authentication package saga flow
 3. Performance optimization by not running all sagas concurrently.
-4. Linting with eslint.
-5. Use react hooks instead of class components
-    
+4. Use react [hooks instead](https://reactjs.org/docs/hooks-intro.html) of class components: 
+  
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:
     - with remember me flag
@@ -70,16 +82,16 @@ So the architecture was divided in three layers:
 
 One picture says more than thousand words:
 
-![DDD info graphic](https://miro.medium.com/max/1262/1*P2p84f7XhW0LiLgZvxBSxw.png)
-
-(source: [https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9))
+![DDD info graphic](./docs/architecture.png)
 
 By the way, if you strictly continue separating these layers, this project could also be extended with an additional "NativeUI" layer
 for mobile devices (e.g. with [react-native](https://reactnative.dev/)). Already written business logic then can be reused from the domain layer.
+Below you find some "good to know to understand" articles:
+
+- ["MVC vs Flux vs Redux – The Real Differences"](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences)
+- ["Command vs. Event in Domain Driven Design"](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9)
 
 ### Evaluation: whys and whats
-Architectures in general: [MVC vs. Flux vs. Redux](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
-
 Redux was taken because it makes modularity and maintainability a breeze giving you full control over every action happening during the runtime of your frontend app.
 It works like a charm with DDD (Domain Driven Design) by providing a pattern to encapsulate view from business logic with its general bus for actions (e.g. commands, events).
 
