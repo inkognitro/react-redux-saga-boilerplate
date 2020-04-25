@@ -33,6 +33,7 @@
     "no-restricted-syntax": "off",
     "no-shadow": "off",
     "no-plusplus": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   }
 }

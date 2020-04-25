@@ -70,7 +70,7 @@ export class Loader extends Component<LoaderProps> {
 
   render() {
       return (
-          <StyledLoaderDiv ref={(element: HTMLDivElement) => (this.loader = element)}>
+          <StyledLoaderDiv ref={(element: HTMLDivElement) => { this.loader = element; }}>
               <AlignedArea horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.MIDDLE}>
                   <LoaderIcon size={IconSizes.LG} type={IconTypes.WHITE} />
               </AlignedArea>

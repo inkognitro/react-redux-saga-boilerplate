@@ -4,9 +4,7 @@ import { HomeCommandTypes } from "SinglePageApp/Domain/Routing/Home/Home";
 
 export function createWatchLeakReduxStateSaga(): () => Generator {
     return function* watchLeakReduxState(): Generator {
-        yield takeEvery(HomeCommandTypes.LEAK_REDUX_STATE, function* (
-            _: LeakReduxState,
-        ): Generator {
+        yield takeEvery(HomeCommandTypes.LEAK_REDUX_STATE, function* (): Generator {
             const state = yield select();
             console.log(state);
         });

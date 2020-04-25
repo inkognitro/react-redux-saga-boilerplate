@@ -1,4 +1,4 @@
-import React, {Component, ReactNode} from "react";
+import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FunctionalLink } from "Common/UI/Base/Link";
