@@ -22,9 +22,10 @@ clients, company owners and to close the circle, for me the gods on earth, again
 3. Open console and move into project folder
 4. Run *npm install*
 5. Configure eslint (optional, see "Configure eslint")
-5. Follow the steps below to
+6. Follow the steps below to
    - either: serve the app for development mode (see "Development mode")
    - or: to build the app for production (see "Production mode")
+7. Continuous integration (optional): Add `npm run ci` script, automated git commit and push
    
 ##Configure eslint
 Before you start coding, I recommend configuring your IDE to support the given `.eslintrc.json`,
