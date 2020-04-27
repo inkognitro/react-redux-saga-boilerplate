@@ -14,7 +14,7 @@ Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
 With this project I try to provide a best practise frontend boilerplate to save nerves of developers
-in the short term and those of clients, company owners, supervisors and finally developers in the long term.
+in the short term and those of clients, company owners, supervisors and finally again those of developers also in the long term.
    
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
