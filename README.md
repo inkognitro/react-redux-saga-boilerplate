@@ -74,7 +74,7 @@ To build the app in the *dist* folder, run:
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
-To be specific, the criterias were: readable code, steep learning curve, documentation, community support, easy testing.
+To be specific, the criterias were: readable code, flat learning curve, documentation, community support, easy testing.
 
 So the architecture was divided in three layers:
 1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
