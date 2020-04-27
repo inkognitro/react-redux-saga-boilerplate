@@ -14,7 +14,7 @@ Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
 With this project I try to provide a best practise frontend boilerplate to save nerves of developers,
-clients, company owners and to close the circle, for me the gods on earth, again: the developers.
+clients, company owners or supervisors who are stressing the devs again ;)
    
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
@@ -31,7 +31,7 @@ clients, company owners and to close the circle, for me the gods on earth, again
 Before you start coding, I recommend configuring your IDE to support the given `.eslintrc.json`,
 for not being stuck on failing tests during continuous integration tasks.
 If you do not know what eslint is, read the [docs](https://eslint.org/) or [google it](https://www.google.com/search?q=what+is+eslint%3F).
-However see below to see eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
+However see below the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
 
 Automatic detection of `.eslintrc.json` in the project folder:
 ![esLintAutomaticDetection](./docs/esLintAutomaticDetection.png)
