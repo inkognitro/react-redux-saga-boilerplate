@@ -11,8 +11,8 @@ Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://
 
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
-With this project I try to provide a best practise frontend boilerplate to save nerves of developers,
-clients, company owners and to close the circle, for me the gods on earth, again: the developers.
+With this project I try to provide a best practise frontend boilerplate to save nerves of developers
+in the short term and those of clients, company owners, supervisors and finally again those of developers also in the long term.
    
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
@@ -29,7 +29,7 @@ clients, company owners and to close the circle, for me the gods on earth, again
 Before you start coding, I recommend configuring your IDE to support the given `.eslintrc.json`,
 for not being stuck on failing tests during continuous integration tasks.
 If you do not know what eslint is, read the [docs](https://eslint.org/) or [google it](https://www.google.com/search?q=what+is+eslint%3F).
-However see below to see eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
+However see below the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
 
 Automatic detection of `.eslintrc.json` in the project folder:
 ![esLintAutomaticDetection](./docs/esLintAutomaticDetection.png)
@@ -72,7 +72,7 @@ To build the app in the *dist* folder, run:
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
-To be specific, the criterias were: readable code, steep learning curve, documentation, community support, easy testing.
+To be specific, the criterias were: readable code, flat learning curve, documentation, community support, easy testing.
 
 So the architecture was divided in three layers:
 1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
