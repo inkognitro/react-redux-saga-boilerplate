@@ -1,5 +1,3 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/inkognitro/react-redux-saga-boilerplate/blob/master/LICENSE.md)
-
 `test coverage is going to be improved in the next few days`
 
 ![TestCoverageBranches](coverage/badge-branches.svg)
