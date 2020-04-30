@@ -129,7 +129,7 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 
 Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
 about this and understand saga's [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
-But keep in mind: Whenever you apply the saga's flow principle, time travelling with an injected
+But keep in mind: Whenever you apply saga's flow principle, time travelling with an injected
 redux state could get tricky. Imagine, with the "login flow" example before, the current user is already given in the injected state,
 then saga is not listening for a "logout" action yet.
 
@@ -145,11 +145,11 @@ To execute the tests, run:
 Tests are organized as follow:
 - The file suffix `.test.ts` is required
 - A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- A integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
+- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
 - Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.integration.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
-Read another [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
+Read an [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
 
 I think, because snapshot tests are expected to fail with every UI change, they are completely useless for TDD.
 In my opinion, tests are here to develop faster and especially to prevent unwanted bugs.
