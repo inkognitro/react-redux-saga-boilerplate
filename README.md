@@ -14,24 +14,23 @@ Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
 With this project I try to provide a best practise frontend boilerplate to save nerves of developers
-in the short term and those of clients, company owners, supervisors and finally again those of developers also in the long term.
+and other stakeholders.
    
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
 2. Clone or download this repository
 3. Open console and move into project folder
 4. Run *npm install*
-5. Configure eslint (optional, see "Configure eslint")
+5. Configure eslint (optional, see "Configure eslint" section)
 6. Follow the steps below to
-   - either: serve the app for development mode (see "Development mode")
-   - or: to build the app for production (see "Production mode")
-7. Continuous integration (optional): Add `npm run ci` script, automated git commit and push
+   - either: serve the app for development mode (see "Development mode" section)
+   - or: to build the app for production (see "Production mode" section)
+7. Continuous integration (optional): Execute `npm run ci` to automatically test and build the app for every push on your project repository.
    
 ## Configure eslint
-Before you start coding, I recommend configuring your IDE to support the given `.eslintrc.json`,
-for not being stuck on failing tests during continuous integration tasks.
-If you do not know what eslint is, read the [docs](https://eslint.org/) or [google it](https://www.google.com/search?q=what+is+eslint%3F).
-However see below the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
+To prevent errors during continuous integration, I recommend configuring your IDE to support the given `.eslintrc.json`. 
+If you don't know about eslint, you probably find the answer [here](https://eslint.org/).
+However, below you can see the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
 
 Automatic detection of `.eslintrc.json` in the project folder:
 ![esLintAutomaticDetection](./docs/esLintAutomaticDetection.png)
@@ -50,10 +49,10 @@ To build the app in the *dist* folder, run:
     npm run build:spa
     
 ## Open todos (WIP)
-1. Test coverage
-2. Authentication package saga flow
-3. Performance optimization by not running all sagas concurrently.
-4. Use react [hooks instead](https://reactjs.org/docs/hooks-intro.html) of class components: 
+1. Finalization of authentication module
+2. Test coverage
+3. (Concurrent saga performance analysis)
+4. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:
@@ -71,10 +70,11 @@ To build the app in the *dist* folder, run:
 8. Basic form components
 9. Prepared testing (see Testing section below)
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
+11. Linting with Airbnb presets
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
-To be specific, the criterias were: readable code, flat learning curve, documentation, community support, easy testing.
+To be specific, the criteria was: readable code, flat learning curve, documentation, large community, easy testing.
 
 So the architecture was divided in three layers:
 1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
@@ -85,62 +85,65 @@ One picture says more than thousand words:
 
 ![DDD info graphic](./docs/architecture.png)
 
-By the way, if you strictly continue separating these layers, this project could also be extended with an additional "NativeUI" layer
+By the way, if you strictly continue to separate these layers, this project could also be extended with an additional "NativeUI" layer
 for mobile devices (e.g. with [react-native](https://reactnative.dev/)). Already written business logic then can be reused from the domain layer.
-Below you find some "good to know to understand" articles:
+Below you find some articles which hopefully help you to understand the bird's eye view of the architecture:
 
 - ["MVC vs Flux vs Redux – The Real Differences"](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences)
 - ["Command vs. Event in Domain Driven Design"](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9)
 
 ### Evaluation: whys and whats
-Redux was taken because it makes modularity and maintainability a breeze giving you full control over every action happening during the runtime of your frontend app.
-It works like a charm with DDD (Domain Driven Design) by providing a pattern to encapsulate view from business logic with its general bus for actions (e.g. commands, events).
+Redux was chosen because it makes modularity and maintainability a breeze while giving you full control over every action which is happening during the runtime of your frontend app.
+It works like a charm with Domain Driven Design (DDD) by providing a pattern to encapsulate the view from the business logic with its general bus for actions (e.g. commands, events).
 
-The master question was to find the king solution for writing sync and async business logic.
-Common redux libraries for that are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
+Nevertheless redux only handles synchronous data flow and therefore it was required to find a solution for sync and async business logic handling.
+Most common redux libraries for this are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
 
 [Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out quite early:
-Code gets really messy over time, testing is going to be hell.
-Crawl through some articles and blogs on your own or try it out.
-No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
+The code gets really messy over time. Most people end up in a callback hell and therefore testing is also not that easy.
+One would crawl through some articles or give it a try. No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
 
 The two favorites obviously were redux-saga and redux-observable.
 Following comparison will give a hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
 
 **redux-observable**:
-- (+) easy testing (error prone if you don't know exactly what you are doing..)
+- (+) easy testing (error prone if you don't know exactly what you are doing)
 - (+) RxJs observable is a widespread technology
-- (-) really hard to learn in comparison to redux-saga
+- (-) relatively hard to learn
 - (+) documentation
 - (+) no callback hell
 
 **redux-saga**:
 - (+) easy-testing
-- (+) steep learning curve
-- (+) big community
+- (+) flat learning curve
+- (+) large community
 - (+) documentation
 - (+) no callback hell
 - (+) more control with yield over async await
 
 **own redux middleware**:
 - (+) full control 
-- (-) head around testing and possibly mocking everything on your own
+- (-) head around testing and probably mocking everything
 - (-) error prone
 - (-) no community, no documentation
 
-Read a [really good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda) about this and understand sagas' [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
+Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
+about this and understand saga's [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
+But keep in mind: Whenever you apply the saga's flow principle, time travelling with an injected
+redux state could get tricky. Imagine, with the "login flow" example before, the current user is already given in the injected state,
+then saga is not listening for a "logout" action yet.
 
 ## Testing
-Integrated test runner is [jest](http://jestjs.io) (developed by facebook).
+The integrated test runner is [jest](http://jestjs.io).
 Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
-React components are tested with [enzyme](https://enzymejs.github.io/enzyme/) (developed by Airbnb).
+React components are tested with [enzyme](https://enzymejs.github.io/enzyme/).
 
 To execute the tests, run:
 
     npm run test
 
 Tests are organized as follow (file suffix `.test.ts` required):
-- Unit tests are integrated directly next to tested files. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
+- Unit tests are placed next to the tested file. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
 - Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
 - Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.integration.test.ts`).
 
@@ -150,8 +153,8 @@ Read another [smart article](https://medium.com/@JeffLombardJr/organizing-tests-
 **Something to ponder**: While practising TDD I think not only is it painful to write snapshot tests but also useless.
 However in my opinion tests are here to develop faster and especially to prevent unwanted bugs.
 Snapshot tests are expected to fail with every UI change.
-Probably snapshot tests are not entirely bad but not really useful during development process.
+They are probably not entirely bad but not really useful during development process.
 Read this [amusing article](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
 
 ## Appreciation
-Many thanks to [Dan Abramov](http://github.com/gaearon), it is and has always been a pleasure to learn from him.
+Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).
