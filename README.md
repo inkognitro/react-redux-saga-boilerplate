@@ -96,7 +96,7 @@ Below you find some articles which hopefully help you to understand the bird's e
 Redux was chosen because it makes modularity and maintainability a breeze while giving you full control over every action which is happening during the runtime of your frontend app.
 It works like a charm with Domain Driven Design (DDD) by providing a pattern to encapsulate the view from the business logic with its general bus for actions (e.g. commands, events).
 
-Nevertheless redux only handles synchronous data flow and therefore it was required to find a solution for sync and async business logic handling.
+Nevertheless redux only handles synchronous data flow and therefore it was required to find a solution for handling sync and async business logic.
 Most common redux libraries for this are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
 
 [Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out quite early:
