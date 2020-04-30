@@ -142,19 +142,18 @@ To execute the tests, run:
 
     npm run test
 
-Tests are organized as follow (file suffix `.test.ts` required):
-- Unit tests are placed next to the tested file. For example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- Integration tests for encapsulated module behaviour (e.g. toaster), are placed inside the module folder. As an example: `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
+Tests are organized as follow:
+- The file suffix `.test.ts` is required
+- A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
+- A integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
 - Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.integration.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
 Read another [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
 
-**Something to ponder**: While practising TDD I think not only is it painful to write snapshot tests but also useless.
-However in my opinion tests are here to develop faster and especially to prevent unwanted bugs.
-Snapshot tests are expected to fail with every UI change.
-They are probably not entirely bad but not really useful during development process.
-Read this [amusing article](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
+I think, because snapshot tests are expected to fail with every UI change, they are completely useless for TDD.
+In my opinion, tests are here to develop faster and especially to prevent unwanted bugs.
+Similar thoughts [here](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
 
 ## Appreciation
 Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).
