@@ -130,8 +130,8 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
 about this and understand saga's [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
 But keep in mind: Whenever you apply saga's flow principle, time travelling with an injected
-redux state could get tricky. Imagine, with the "login flow" example before, the current user is already given in the injected state,
-then saga is not listening for a "logout" action yet.
+redux state could get tricky. With the previous "login flow" example, imagine the current user is already given in the injected state
+and the saga is not listening for a "logout" action yet.
 
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
