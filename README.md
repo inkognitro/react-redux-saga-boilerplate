@@ -133,8 +133,8 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
 about this and understand saga's [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
 But keep in mind: Whenever you apply saga's flow principle, time travelling with an injected
-redux state could get tricky. Imagine, with the "login flow" example before, the current user is already given in the injected state,
-then saga is not listening for a "logout" action yet.
+redux state could get tricky. With the previous "login flow" example, imagine the current user is already given in the injected state
+and the saga is not listening for a "logout" action yet.
 
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
@@ -151,7 +151,7 @@ Tests are organized as follow:
 - An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
-Read an [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
+Read a [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
 
 I think, because snapshot tests are expected to fail with every UI change, they are completely useless for TDD.
 In my opinion, tests are here to develop faster and especially to prevent unwanted bugs.
