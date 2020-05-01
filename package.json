@@ -16,8 +16,7 @@
     "test:types": "tsc",
     "ci": "npm run ci:lint && npm run ci:coverage && npm run ci:build",
     "ci:lint": "tsc --noEmit && eslint ./src --ext .ts,.tsx --quiet --fix",
-    "ci:coverage": "jest --coverage --colors && jest-coverage-badges input \"./docs/coverage\" output \"./docs/coverage\"",
-    "ci:coverage:temp": "make-coverage-badge --output-path \"./docs/readme/badgeTestCoverage.svg\" --report-path \"./docs/coverage/coverage-summary.json\"",
+    "ci:coverage": "jest --coverage --colors && make-coverage-badge --output-path \"./docs/readme/badgeTestCoverage.svg\" --report-path \"./docs/coverage/coverage-summary.json\"",
     "ci:build": "npm run build:spa"
   },
   "devDependencies": {
