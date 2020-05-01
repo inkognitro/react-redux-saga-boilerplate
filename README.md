@@ -16,6 +16,7 @@ To fully understand this project you should be familiar with the technologies be
 - [redux (with react)](https://egghead.io/courses/getting-started-with-redux)
 - [redux-saga](https://redux-saga.js.org/)
 - [jest](https://jestjs.io/docs/en/getting-started) (unit testing)
+- [enzyme](https://enzymejs.github.io/enzyme/) (react component testing)
 - [redux-saga-test-plan](https://survivejs.com/blog/redux-saga-test-plan-interview/) (integration testing)
 - [eslint](https://eslint.org/docs/user-guide/getting-started) (code linting)
    
