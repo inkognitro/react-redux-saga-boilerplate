@@ -1,11 +1,11 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/inkognitro/react-redux-saga-boilerplate/blob/master/LICENSE.md)
+[![License: MIT](docs/readme/licenseMIT.svg)](https://github.com/inkognitro/react-redux-saga-boilerplate/blob/master/LICENSE.md)
 
 `test coverage is going to be improved in the next few days`
 
-![TestCoverageBranches](coverage/badge-branches.svg)
-![TestCoverageFunctions](coverage/badge-functions.svg)
-![TestCoverageLines](coverage/badge-lines.svg)
-![TestCoverageStatements](coverage/badge-statements.svg)
+![TestCoverageBranches](docs/coverage/badge-branches.svg)
+![TestCoverageFunctions](docs/coverage/badge-functions.svg)
+![TestCoverageLines](docs/coverage/badge-lines.svg)
+![TestCoverageStatements](docs/coverage/badge-statements.svg)
 
 # React Redux Boilerplate (WIP)
 Frontend boilerplate realized in [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
@@ -42,10 +42,10 @@ If you don't know about eslint, you probably find the answer [here](https://esli
 However, below you can see the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
 
 Automatic detection of `.eslintrc.json` in the project folder:
-![esLintAutomaticDetection](./docs/esLintAutomaticDetection.png)
+![esLintAutomaticDetection](docs/readme/esLintAutomaticDetection.png)
 
 Replace `Strg + Alt + L` shortcut with eslint fix:
-![esLintKeymapShortcut](./docs/esLintKeymapShortcut.png)
+![esLintKeymapShortcut](docs/readme/esLintKeymapShortcut.png)
 
 ## Development mode
 To run the app with hot module reloading at *//localhost:9000*, run:
@@ -92,7 +92,7 @@ So the architecture was divided in three layers:
 
 One picture says more than thousand words:
 
-![DDD info graphic](./docs/architecture.png)
+![DDD info graphic](docs/readme/architecture.png)
 
 By the way, if you strictly continue to separate these layers, this project could also be extended with an additional "NativeUI" layer
 for mobile devices (e.g. with [react-native](https://reactnative.dev/)). Already written business logic then can be reused from the domain layer.
