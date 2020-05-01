@@ -5,9 +5,7 @@ module.exports = {
     ],
     "roots": [
         "<rootDir>/src",
-        "<rootDir>/tests"
     ],
-    "coverageDirectory": "<rootDir>/docs/coverage",
     "clearMocks": true,
     "transform": {
         "^.+\\.tsx?$": "ts-jest"
@@ -26,6 +24,7 @@ module.exports = {
         "Common/(.*)": "<rootDir>/src/Common/$1",
         "SinglePageApp/(.*)": "<rootDir>/src/SinglePageApp/$1"
     },
+    "coverageDirectory": "<rootDir>/docs/coverage",
     "coverageReporters": [
         "json-summary"
     ]

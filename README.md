@@ -8,13 +8,22 @@
 ![TestCoverageStatements](coverage/badge-statements.svg)
 
 # React Redux Boilerplate (WIP)
-Frontend boilerplate realized in [react](https://reactjs.org/) combined with [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
+Frontend boilerplate realized in [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
 Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
 
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
 With this project I try to provide a best practise frontend boilerplate to save nerves of developers
 and other stakeholders.
+
+## Knowledge base
+To fully understand this project you should be familiar with the technologies below.
+- [react](https://reactjs.org/docs/getting-started.html)
+- [redux (with react)](https://egghead.io/courses/getting-started-with-redux)
+- [redux-saga](https://redux-saga.js.org/)
+- [jest](https://jestjs.io/docs/en/getting-started) (unit testing)
+- [redux-saga-test-plan](https://survivejs.com/blog/redux-saga-test-plan-interview/) (integration testing)
+- [eslint](https://eslint.org/docs/user-guide/getting-started) (code linting)
    
 ## Installation
 1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
@@ -146,7 +155,6 @@ Tests are organized as follow:
 - The file suffix `.test.ts` is required
 - A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
 - An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
-- Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.integration.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
 Read an [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
