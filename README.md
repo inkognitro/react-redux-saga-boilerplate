@@ -149,7 +149,7 @@ Tests are organized as follow:
 - Integration tests for behaviour over multiple modules should be placed in the `tests` directory (e.g. `[rootDir]/tests/Common/Foo/Bar.integration.test.ts`).
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
-Read an [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
+Read a [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
 
 I think, because snapshot tests are expected to fail with every UI change, they are completely useless for TDD.
 In my opinion, tests are here to develop faster and especially to prevent unwanted bugs.
