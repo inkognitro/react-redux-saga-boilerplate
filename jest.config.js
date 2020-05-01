@@ -7,7 +7,7 @@ module.exports = {
         "<rootDir>/src",
         "<rootDir>/tests"
     ],
-    "coverageDirectory": "coverage",
+    "coverageDirectory": "<rootDir>/docs/coverage",
     "clearMocks": true,
     "transform": {
         "^.+\\.tsx?$": "ts-jest"
