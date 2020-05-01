@@ -1,11 +1,5 @@
-[![License: MIT](docs/readme/licenseMIT.svg)](https://github.com/inkognitro/react-redux-saga-boilerplate/blob/master/LICENSE.md)
-
-`test coverage is going to be improved in the next few days`
-
-![TestCoverageBranches](docs/coverage/badge-branches.svg)
-![TestCoverageFunctions](docs/coverage/badge-functions.svg)
-![TestCoverageLines](docs/coverage/badge-lines.svg)
-![TestCoverageStatements](docs/coverage/badge-statements.svg)
+[![BadgeMITLicense: MIT](docs/readme/badgeMITLicense.svg)](LICENSE.md)
+![BadgeTestCoverage](docs/readme/badgeTestCoverage.svg)
 
 # React Redux Boilerplate (WIP)
 Frontend boilerplate realized in [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).

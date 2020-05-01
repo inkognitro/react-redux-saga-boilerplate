@@ -17,6 +17,7 @@
     "ci": "npm run ci:lint && npm run ci:coverage && npm run ci:build",
     "ci:lint": "tsc --noEmit && eslint ./src --ext .ts,.tsx --quiet --fix",
     "ci:coverage": "jest --coverage --colors && jest-coverage-badges input \"./docs/coverage\" output \"./docs/coverage\"",
+    "ci:coverage:temp": "make-coverage-badge --output-path \"./docs/readme/badgeTestCoverage.svg\" --report-path \"./docs/coverage/coverage-summary.json\"",
     "ci:build": "npm run build:spa"
   },
   "devDependencies": {
@@ -54,7 +55,7 @@
     "fork-ts-checker-webpack-plugin": "^3.1.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.3.0",
-    "jest-coverage-badges": "^1.1.2",
+    "make-coverage-badge": "^1.2.0",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.5",
     "react-hot-loader": "^4.12.20",
