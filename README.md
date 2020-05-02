@@ -91,7 +91,7 @@ One picture says more than thousand words:
 
 By the way, if you strictly continue to separate these layers, the UI layer could also be separated into a "WebUI"  and "NativeUI" layer
 for mobile devices (e.g. with [react-native](https://reactnative.dev/)). Already written business logic then can be reused from the domain layer.
-Below you find some articles which hopefully help you to understand the bird's eye view of the architecture:
+Below you find some articles which help you to understand the bird's eye view of the architecture:
 
 - ["MVC vs Flux vs Redux – The Real Differences"](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences)
 - ["Command vs. Event in Domain Driven Design"](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9)
