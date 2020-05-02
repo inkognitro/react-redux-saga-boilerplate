@@ -89,7 +89,7 @@ One picture says more than thousand words:
 
 ![DDD info graphic](docs/readme/architecture.png)
 
-By the way, if you strictly continue to separate these layers, this project could also be extended with an additional "NativeUI" layer
+By the way, if you strictly continue to separate these layers, the UI layer could also be separated into a "WebUI"  and "NativeUI" layer
 for mobile devices (e.g. with [react-native](https://reactnative.dev/)). Already written business logic then can be reused from the domain layer.
 Below you find some articles which hopefully help you to understand the bird's eye view of the architecture:
 
