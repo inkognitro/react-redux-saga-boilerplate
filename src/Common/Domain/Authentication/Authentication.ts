@@ -29,62 +29,14 @@ import { Action } from "redux";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { createUserWasLoggedOut } from "Common/Domain/Authentication/Event/UserWasLoggedOut";
 
-const authTokenCookieName = "authUser";
-const authTokenCookieTimeToLiveInDays = 14;
+export const authTokenCookieName = "authUser";
+export const authTokenCookieTimeToLiveInDays = 14;
 // const authRefreshBeforeExpirationInSeconds = 60; //todo use for authentication refresh!
 
 export function createAuthenticationFlow(
     authStateSelector: AuthStateSelector,
 ): () => Generator {
-    function* handleAutomaticAuthenticationRefresh(shouldRemember: boolean): Generator {
-        while (true) {
-            yield delay(5000);
-            console.log(`handleAutomaticAuthenticationRefresh: ${shouldRemember}`); // todo: remove!
-        }
-    }
 
-    function* handleLogin(command: Login): Generator {
-        try {
-            // @ts-ignore
-            const responseData: ResponseData = yield call(authenticate, {
-                username: command.payload.username,
-                password: command.payload.password,
-                isLoaderEnabled: true,
-            });
-            if (!responseData) {
-                yield put(createUserLoginFailed(command.payload));
-            }
-            if (responseData.type === ResponseDataTypes.SUCCESS) {
-                const authUser: AuthUser = {
-                    token: responseData.token,
-                    user: responseData.user,
-                };
-                yield put(
-                    createSaveCookie({
-                        name: authTokenCookieName,
-                        content: JSON.stringify(authUser),
-                        timeToLiveInDays: command.payload.shouldRemember
-                            ? authTokenCookieTimeToLiveInDays
-                            : undefined,
-                    }),
-                );
-                yield put(createUserWasLoggedIn(authUser));
-                yield fork(
-                    handleAutomaticAuthenticationRefresh,
-                    command.payload.shouldRemember,
-                ); // todo: check task must be defined explicitly
-                return;
-            }
-            if (responseData.type === ResponseDataTypes.ERROR) {
-                yield put(createUserLoginFailed(command.payload));
-                return;
-            }
-        } finally {
-            if (yield cancelled()) {
-                yield put(createUserLoginWasCancelled(command.payload));
-            }
-        }
-    }
 
     return function* (): Generator {
         while (true) {

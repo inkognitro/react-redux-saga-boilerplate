@@ -1,5 +1,5 @@
-import { TextFieldState } from "Common/Domain/Form/Element/TextField/Types";
 import { PartialStateWasChanged } from "SinglePageApp/Domain/Routing/Home/Event/PartialStateWasChanged";
+import {TextFieldState} from "Common/Domain/FormElement/Types";
 
 export type HomeState = {
   toastContentField: TextFieldState;

@@ -1,7 +1,7 @@
 import {
     createTextFieldReducer,
     createTextFieldState,
-} from "Common/Domain/Form/Element/TextField/Event/Reducer";
+} from "Common/Domain/FormElement/TextField/Event/Reducer";
 import { combineReducers, Reducer } from "redux";
 import { HomeState } from "SinglePageApp/Domain/Routing/Home/Types";
 
