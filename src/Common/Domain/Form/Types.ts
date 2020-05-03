@@ -16,13 +16,3 @@ export type FormState = {
         [name: string]: FormElementState,
     }
 };
-
-/*
-export const exampleFormState = createFormState({
-    id: 'loginForm1',
-    elementPresetsByName: {
-        username: createTextFieldState(),
-        password: createPasswordFieldState(),
-    },
-});
-*/
