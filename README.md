@@ -76,6 +76,9 @@ To build the app in the *dist* folder, run:
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
 11. Linting with Airbnb presets
 
+## Modules
+- [Common/Domain/Form/README.md](./src/Common/Form/README.md)
+
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
 To be specific, the criteria was: readable code, flat learning curve, documentation, large community, easy testing.
