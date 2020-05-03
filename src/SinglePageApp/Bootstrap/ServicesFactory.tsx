@@ -41,6 +41,7 @@ import { createAuthenticationFlow } from "Common/Domain/Authentication/Authentic
 import { RoutingState } from "SinglePageApp/Domain/Routing/Types";
 import { designReducer } from "Common/Domain/Design/Event/Reducer";
 import { DesignState } from "Common/Domain/Design/Types";
+import { createFormElementsFlow } from "Common/Domain/FormElements/FormElements";
 import { createRoutingSaga, routingReducer } from "../Domain/Routing/Routing";
 
 type AppServices = {
@@ -76,6 +77,8 @@ function createRootSaga(
     const cookieStorage = new BrowserCookieStorage();
     const cookieSaga = createCookieFlow(cookieStorage);
 
+    const formElementsSaga = createFormElementsFlow();
+
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
     const authenticationSaga = createAuthenticationFlow(authStateSelector);
 
@@ -93,6 +96,7 @@ function createRootSaga(
         yield spawn(translatorSaga);
         yield spawn(toasterSaga);
         yield spawn(cookieSaga);
+        yield spawn(formElementsSaga);
         yield spawn(authenticationSaga);
         yield spawn(requestHandlingSaga);
         yield spawn(routerSaga);

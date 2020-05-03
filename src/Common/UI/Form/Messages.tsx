@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import {
     Message as MessageData,
     MessageTypes,
-} from "Common/Domain/FormElement/DeprecatedTypes";
+} from "Common/Domain/FormElements/DeprecatedTypes";
 import { ErrorIcon } from "Common/UI/Icon/ErrorIcon";
 import { IconSizes, IconTypes } from "Common/UI/Icon/Icon";
 

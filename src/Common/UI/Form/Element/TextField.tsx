@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import {
     Types,
-} from "Common/Domain/FormElement/TextField/Types";
+} from "Common/Domain/FormElements/TextField/Types";
 import { Messages } from "Common/UI/Form/Messages";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { createTextFieldStateWasChanged } from "Common/Domain/FormElement/TextField/Event/TextFieldStateWasChanged";
-import {TextFieldState} from "Common/Domain/FormElement/Types";
+import { createTextFieldStateWasChanged } from "Common/Domain/FormElements/TextField/Event/TextFieldStateWasChanged";
+import {TextFieldState} from "Common/Domain/FormElements/Types";
 
 function createHtmlInputTypeByTextFieldType(type: Types): string {
     if (type === Types.PASSWORD) {

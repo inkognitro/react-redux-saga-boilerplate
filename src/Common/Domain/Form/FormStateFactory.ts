@@ -1,7 +1,4 @@
-import { FormState } from "Common/Domain/Form/Types";
-import { FormElementState } from "Common/Domain/FormElement/Types";
-
-type FormElementCreationSettings = Partial<FormElementState>;
+import { FormElementState } from "Common/Domain/FormElements/Types";
 
 export type FormCreationSettings = {
     id?: string,
@@ -10,15 +7,12 @@ export type FormCreationSettings = {
     },
 };
 
-export function createForm(settings: FormCreationSettings): FormState {
-
-}
-
-export const exampleForm = createForm({
+/*
+export const exampleFormState = createFormState({
     id: 'loginForm1',
     elementPresetsByName: {
-        username: {
-            type:
-        },
-    }
+        username: createTextFieldState(),
+        password: createPasswordFieldState(),
+    },
 });
+*/
