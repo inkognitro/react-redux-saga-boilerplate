@@ -1,8 +1,8 @@
-# Form module
+# Form
 This module provides a standardized way to create and use forms.
 
 ## Internal dependencies
-To use the form module, the saga flow for `Common/Domain/FormElements/FormElements.ts` must be installed.
+Requires saga flow from `Common/Domain/FormElements/FormElements.ts`.
 
 ## Usage
 ```javascript
