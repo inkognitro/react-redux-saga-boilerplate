@@ -1,5 +1,8 @@
 import { Event } from "Common/Domain/Bus/Event";
-import { FormElementEventTypes, MultipleFormElementStateChanges } from "Common/Domain/FormElements/Types";
+import {
+    FormElementEventTypes,
+    MultipleFormElementStateChanges
+} from "Common/Domain/FormElements/Types";
 
 export function createFormElementStateWereChanged(
     multipleStateChanges: MultipleFormElementStateChanges,

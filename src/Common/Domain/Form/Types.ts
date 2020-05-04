@@ -10,9 +10,11 @@ export enum FormEventTypes {
 export type FormEvent = (FormWasSetToRunningRequestMode | FormWasSetToNoRunningRequestMode);
 
 export type FormState = {
-    id: string,
-    isRequestRunning: boolean,
-    elementsByName: {
-        [name: string]: FormElementState,
-    }
+    id: string
+    isRequestRunning: boolean
+    elementsByName: FormElementsByName
+};
+
+export type FormElementsByName = {
+    [name: string]: FormElementState
 };

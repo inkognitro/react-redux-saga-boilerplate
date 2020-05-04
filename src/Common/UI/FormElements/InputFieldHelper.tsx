@@ -1,32 +1,31 @@
 import React, { FC } from "react";
-import {
-    Types,
-} from "Common/Domain/FormElements/TextField/Types";
+import { FormElementTypes ,TextFieldState } from "Common/Domain/FormElements/Types";
 import { Messages } from "Common/UI/Form/Messages";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { createTextFieldStateWasChanged } from "Common/Domain/FormElements/TextField/Event/TextFieldStateWasChanged";
-import {TextFieldState} from "Common/Domain/FormElements/Types";
 
-function createHtmlInputTypeByTextFieldType(type: Types): string {
-    if (type === Types.PASSWORD) {
+function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
+    if (type === FormElementTypes.TEXT) {
+        return "text";
+    }
+    if (type === FormElementTypes.PASSWORD) {
         return "password";
     }
-    if (type === Types.EMAIL) {
+    if (type === FormElementTypes.EMAIL) {
         return "email";
     }
-    return "text";
+    throw new Error(`Form element type "${type}" not supported!`);
 }
 
-type DumbTextFieldCallbacks = {
-  onChange(textFieldId: string, state: TextFieldState): void;
+type DumbTextFieldCallbacks<InputFieldState> = {
+  onChange(formElementId: string, state: InputFieldState): void;
 };
 
-type DumbTextFieldProps = DumbTextFieldCallbacks & {
-  data: TextFieldState;
+type DumbInputFieldProps<InputFieldState> = DumbTextFieldCallbacks<InputFieldState> & {
+  data: InputFieldState;
 };
 
-const DumbTextField: FC<DumbTextFieldProps> = (props) => {
+const DumbInputField: FC<DumbInputFieldProps> = (props) => {
     const onChange = props.data.readOnly
         ? undefined
         : (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +35,7 @@ const DumbTextField: FC<DumbTextFieldProps> = (props) => {
             });
         };
     return (
-        <>
+        <React.Fragment>
             <input
                 id={props.data.id}
                 className="form-control"
@@ -46,7 +45,7 @@ const DumbTextField: FC<DumbTextFieldProps> = (props) => {
                 readOnly={props.data.readOnly}
             />
             <Messages messages={props.data.messages} />
-        </>
+        </React.Fragment>
     );
 };
 
@@ -63,7 +62,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DumbTextFieldCallbacks => ({
     ),
 });
 
-export const TextField = connect(
+export const InputFieldHelper = connect(
     mapStateToProps,
     mapDispatchToProps,
 )(DumbTextField);

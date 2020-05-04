@@ -1,17 +1,17 @@
 import { Event } from "Common/Domain/Bus/Event";
-import { FormElementEventTypes } from "Common/Domain/FormElements/Types";
+import {FormElementEventTypes, FormElementState} from "Common/Domain/FormElements/Types";
 
 export function createFormElementStateWasChanged(
-    formElementId: string,
+    formElement: FormElementState,
     stateChanges: object,
-): FormElementStateWasChanged<object> {
+): FormElementStateWasChanged {
     return {
         type: FormElementEventTypes.FORM_ELEMENT_STATE_WAS_CHANGED,
-        payload: { formElementId, stateChanges },
+        payload: { formElement, stateChanges },
     };
 }
 
-export type FormElementStateWasChanged<FormElementState = object> = Event<FormElementEventTypes.FORM_ELEMENT_STATE_WAS_CHANGED, {
-    formElementId: string,
+export type FormElementStateWasChanged = Event<FormElementEventTypes.FORM_ELEMENT_STATE_WAS_CHANGED, {
+    formElement: FormElementState,
     stateChanges: Partial<FormElementState>;
 }>;

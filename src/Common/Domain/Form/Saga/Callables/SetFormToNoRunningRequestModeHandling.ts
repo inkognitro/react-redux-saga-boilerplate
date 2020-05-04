@@ -17,7 +17,7 @@ export function* handleSetFormToNoRunningRequestMode(
         const formElementBeforeRunningRequestMode: FormElementState = formBeforeRunningRequestMode.elementsByName[name];
         if (!formElementBeforeRunningRequestMode.readOnly && formElement.readOnly) {
             multipleFormElementStateChanges.push({
-                formElementId: formElement.id,
+                formElement,
                 stateChanges: {
                     readOnly: false,
                 },

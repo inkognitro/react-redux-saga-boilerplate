@@ -13,7 +13,7 @@ export function* handleSetFormToRunningRequestMode(form: FormState): Generator {
         const formElement: FormElementState = form.elementsByName[name];
         if (!formElement.readOnly) {
             multipleFormElementStateChanges.push({
-                formElementId: formElement.id,
+                formElement,
                 stateChanges: {
                     readOnly: true,
                 },

@@ -5,6 +5,7 @@ This module provides a standardized way to create and use forms.
 Requires saga flow from `Common/Domain/FormElements/FormElements.ts`.
 
 ## Usage
+Following code snipped could be used in a package.
 ```javascript
 import { createFormState } from "Common/Domain/Form/FormStateFactory";
 import {

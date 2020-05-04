@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { FormGroup } from "Common/UI/Form/FormGroup";
 import { Label } from "Common/UI/Form/Label";
 import { createLogin } from "Common/Domain/Authentication/Command/Login";
-import { TextField } from "Common/UI/Form/Element/TextField";
+import { InputFieldHelper } from "Common/UI/FormElements/InputFieldHelper";
 import { createLeakReduxState } from "../../../Domain/Routing/Home/Command/LeakReduxState";
 import { ContentPage } from "../../Base/PageTypes/ContentPage";
 import { RootState } from "../../../Bootstrap/ServicesFactory";
@@ -70,7 +70,7 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
         <br />
         <FormGroup>
             <Label title={`Toast content: ${props.toastContent}`} formElementId="toastContentTextField" />
-            <TextField stateSelector={(state: RootState) => state.routing.home.toastContentField} />
+            <InputFieldHelper stateSelector={(state: RootState) => state.routing.home.toastContentField} />
         </FormGroup>
 
         <br />
