@@ -4,7 +4,7 @@ import { FormElementState, MultipleFormElementStateChanges } from "Common/Domain
 import { createChangeFormElementStates } from "Common/Domain/FormElements/Command/ChangeFormElementStates";
 import { createFormWasSetToNoRunningRequestMode } from "Common/Domain/Form/Event/FormWasSetToNoRunningRequestMode";
 
-export function* handleSetFormToNoRunningRequestMode(
+export function* setFormToNoRunningRequestMode(
     formBeforeRunningRequestMode: FormState,
     form: FormState,
 ): Generator {

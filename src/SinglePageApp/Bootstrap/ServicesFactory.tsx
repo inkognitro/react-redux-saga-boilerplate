@@ -42,6 +42,7 @@ import { RoutingState } from "SinglePageApp/Domain/Routing/Types";
 import { designReducer } from "Common/Domain/Design/Event/Reducer";
 import { DesignState } from "Common/Domain/Design/Types";
 import { createFormElementsFlow } from "Common/Domain/FormElements/FormElements";
+import { createFormFlow } from "Common/Domain/Form/Form";
 import { createRoutingSaga, routingReducer } from "../Domain/Routing/Routing";
 
 type AppServices = {
@@ -79,6 +80,8 @@ function createRootSaga(
 
     const formElementsSaga = createFormElementsFlow();
 
+    const formSaga = createFormFlow();
+
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
     const authenticationSaga = createAuthenticationFlow(authStateSelector);
 
@@ -97,6 +100,7 @@ function createRootSaga(
         yield spawn(toasterSaga);
         yield spawn(cookieSaga);
         yield spawn(formElementsSaga);
+        yield spawn(formSaga);
         yield spawn(authenticationSaga);
         yield spawn(requestHandlingSaga);
         yield spawn(routerSaga);

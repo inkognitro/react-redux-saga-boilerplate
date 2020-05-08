@@ -4,7 +4,7 @@ import { createFormWasSetToRunningRequestMode } from "Common/Domain/Form/Event/F
 import { FormElementState, MultipleFormElementStateChanges } from "Common/Domain/FormElements/Types";
 import { createChangeFormElementStates } from "Common/Domain/FormElements/Command/ChangeFormElementStates";
 
-export function* handleSetFormToRunningRequestMode(form: FormState): Generator {
+export function* setFormToRunningRequestMode(form: FormState): Generator {
     if (form.isRequestRunning) {
         return;
     }

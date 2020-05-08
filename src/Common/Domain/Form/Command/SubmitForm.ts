@@ -1,13 +1,13 @@
 import { Event } from "Common/Domain/Bus/Event";
-import { FormCommandTypes } from "Common/Domain/Form/Types";
+import { FormCommandTypes, FormState } from "Common/Domain/Form/Types";
 
-export function createSubmitForm(formId: string): SubmitForm {
+export function createSubmitForm(form: FormState): SubmitForm {
     return {
         type: FormCommandTypes.SUBMIT_FORM,
-        payload: { formId },
+        payload: { form },
     };
 }
 
 export type SubmitForm = Event<FormCommandTypes.SUBMIT_FORM, {
-    formState: string
+    form: FormState
 }>;

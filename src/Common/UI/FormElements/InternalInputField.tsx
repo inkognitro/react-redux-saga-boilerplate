@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FormElementTypes, InputFieldState } from "Common/Domain/FormElements/Types";
+import { FormElementTypes, InputFieldState as InputFieldData } from "Common/Domain/FormElements/Types";
 import { Messages } from "Common/UI/FormElements/Messages";
 
 function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
@@ -15,17 +15,22 @@ function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     throw new Error(`Form element type "${type}" not supported!`);
 }
 
-export type DumbInputFieldState = {
-  data: InputFieldState,
+type InputFieldState<SpecificInputFieldState> = {
+  data: SpecificInputFieldState,
 };
 
-export type DumbInputFieldCallbacks = {
-  onChange(state: InputFieldState, stateChanges: Partial<InputFieldState>): void;
+type InputFieldCallbacks<SpecificInputFieldState> = {
+  onChange(state: SpecificInputFieldState, stateChanges: Partial<SpecificInputFieldState>): void;
 };
 
-export type DumbInputFieldProps = (DumbInputFieldCallbacks & DumbInputFieldState);
+type InternalInputFieldProps<State> = (
+    InputFieldCallbacks<(State & InputFieldData)>
+    & InputFieldState<(State & InputFieldData)>
+);
 
-export const DumbInputField: FC<DumbInputFieldProps> = (props) => {
+export type InternalInputFieldFC<State = {}> = FC<InternalInputFieldProps<State>>
+
+export const InternalInputField: InternalInputFieldFC = (props) => {
     const onChange = props.data.readOnly
         ? undefined
         : (event: React.ChangeEvent<HTMLInputElement>) => {

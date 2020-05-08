@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { FormElementGroup } from "Common/UI/FormElements/FormElementGroup";
 import { Label } from "Common/UI/FormElements/Label";
 import { createLogin } from "Common/Domain/Authentication/Command/Login";
-import { DumblInputField } from "Common/UI/FormElements/DumbInputField";
+import { DumblInputField } from "Common/UI/FormElements/InternalInputField";
 import { createLeakReduxState } from "../../../Domain/Routing/Home/Command/LeakReduxState";
 import { ContentPage } from "../../Base/PageTypes/ContentPage";
 import { RootState } from "../../../Bootstrap/ServicesFactory";
