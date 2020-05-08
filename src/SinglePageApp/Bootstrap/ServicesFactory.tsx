@@ -41,8 +41,8 @@ import { createAuthenticationFlow } from "Common/Domain/Authentication/Authentic
 import { RoutingState } from "SinglePageApp/Domain/Routing/Types";
 import { designReducer } from "Common/Domain/Design/Event/Reducer";
 import { DesignState } from "Common/Domain/Design/Types";
-import { createFormElementsFlow } from "Common/Domain/FormElements/FormElements";
-import { createFormFlow } from "Common/Domain/Form/Form";
+import { createFormElementsFlow } from "Common/Domain/FormUtils/FormElements/FormElements";
+import { createFormFlow } from "Common/Domain/FormUtils/Form/Form";
 import { createRoutingSaga, routingReducer } from "../Domain/Routing/Routing";
 
 type AppServices = {
