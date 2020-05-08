@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { RouterLink } from "Common/UI/Base/Link";
 import { ErrorPage } from "../Base/PageTypes/ErrorPage";
-import { createHomeRouteUrl } from "../../Domain/Routing/Home/Home";
+import {createHomeRouteUrl} from "SinglePageApp/Domain/Routing/Routes";
 
 export const NotFound: FC = () => ( // todo: translation
     <ErrorPage>

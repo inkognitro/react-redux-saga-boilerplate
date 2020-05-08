@@ -8,7 +8,7 @@ import { CSSPlugin } from "gsap/CSSPlugin";
 
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const plugins = [CSSPlugin]; // needed to make sure CSSPlugin is not being dropped by webpack through tree shaking
+const plugins = [CSSPlugin]; // required to make sure CSSPlugin is not being dropped by webpack through tree shaking
 
 export type RootComponentProps = {
   store: Store;

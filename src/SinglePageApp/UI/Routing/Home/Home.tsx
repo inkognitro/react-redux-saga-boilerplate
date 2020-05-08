@@ -7,22 +7,23 @@ import { connect } from "react-redux";
 import { FormElementGroup } from "Common/UI/FormUtils/FormElements/FormElementGroup";
 import { Label } from "Common/UI/FormUtils/FormElements/Label";
 import { createLogin } from "Common/Domain/Authentication/Command/Login";
-import { DumblInputField } from "Common/UI/FormUtils/FormElements/InternalInputField";
-import { createLeakReduxState } from "../../../Domain/Routing/Home/Command/LeakReduxState";
-import { ContentPage } from "../../Base/PageTypes/ContentPage";
-import { RootState } from "../../../Bootstrap/ServicesFactory";
+import { TextField } from "Common/UI/FormUtils/FormElements/TextField";
+import { createLeakReduxState } from "SinglePageApp/Domain/Routing/Home/Command/LeakReduxState";
+import { ContentPage } from "SinglePageApp/UI/Base/PageTypes/ContentPage";
+import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
+import { TextFieldState } from "Common/Domain/FormUtils/FormElements/Types";
 
 type DumbHomeCallbackProps = {
-  onClickLogin: () => void;
-  onAddToast: (type: ToastTypes, content: string) => void;
-  onClickLeakReduxState: () => void;
+    onClickLogin: () => void;
+    onAddToast: (type: ToastTypes, content: string) => void;
+    onClickLeakReduxState: () => void;
 };
 
 type DumbHomeStateProps = {
-  toastContent: string;
+    toastContentField: TextFieldState;
 };
 
-type DumbHomeProps = DumbHomeStateProps & DumbHomeCallbackProps;
+type DumbHomeProps = (DumbHomeStateProps & DumbHomeCallbackProps);
 
 const DumbHome: FC<DumbHomeProps> = (props) => (
     <ContentPage>
@@ -45,32 +46,32 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
         <br />
         <h3>Toasts</h3>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContentField.value)}>
                 add a success toast message
             </FunctionalLink>
             {' '}
             (is being closed after 3 seconds)
         </div>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContentField.value)}>
                 add an info toast message
             </FunctionalLink>
         </div>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContentField.value)}>
                 add a warning toast message
             </FunctionalLink>
         </div>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContent)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContentField.value)}>
                 add an error toast message
             </FunctionalLink>
         </div>
 
         <br />
         <FormElementGroup>
-            <Label title={`Toast content: ${props.toastContent}`} formElementId="toastContentTextField" />
-            <DumblInputField stateSelector={(state: RootState) => state.routing.home.toastContentField} />
+            <Label title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
+            <TextField data={props.toastContentField} />
         </FormElementGroup>
 
         <br />
@@ -84,7 +85,7 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
 );
 
 const mapStateToProps = (state: RootState): DumbHomeStateProps => ({
-    toastContent: state.routing.home.toastContentField.value,
+    toastContentField: state.routing.home.toastContentField,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DumbHomeCallbackProps => ({
