@@ -4,8 +4,8 @@ import { ToastTypes } from "Common/Domain/Toaster/Types";
 import { Dispatch } from "redux";
 import { createShowMessage } from "Common/Domain/Toaster/Command/ShowMessage";
 import { connect } from "react-redux";
-import { FormGroup } from "Common/UI/Form/FormGroup";
-import { Label } from "Common/UI/Form/Label";
+import { FormElementGroup } from "Common/UI/FormElements/FormElementGroup";
+import { Label } from "Common/UI/FormElements/Label";
 import { createLogin } from "Common/Domain/Authentication/Command/Login";
 import { DumblInputField } from "Common/UI/FormElements/DumbInputField";
 import { createLeakReduxState } from "../../../Domain/Routing/Home/Command/LeakReduxState";
@@ -68,10 +68,10 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
         </div>
 
         <br />
-        <FormGroup>
+        <FormElementGroup>
             <Label title={`Toast content: ${props.toastContent}`} formElementId="toastContentTextField" />
             <DumblInputField stateSelector={(state: RootState) => state.routing.home.toastContentField} />
-        </FormGroup>
+        </FormElementGroup>
 
         <br />
         <h3>Redux</h3>

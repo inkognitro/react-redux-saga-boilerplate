@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { FormElementTypes, InputFieldState } from "Common/Domain/FormElements/Types";
-import { Messages } from "Common/UI/Form/Messages";
+import { Messages } from "Common/UI/FormElements/Messages";
 
 function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     if (type === FormElementTypes.TEXT) {
