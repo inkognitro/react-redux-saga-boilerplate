@@ -1,4 +1,4 @@
-[![BadgeMITLicense: MIT](docs/readme/badgeMITLicense.svg)](LICENSE.md)
+[![BadgeMITLicense: MIT](docs/readme/badgeMITLicense.svg)](LICENSE)
 ![BadgeTestCoverage](docs/readme/badgeTestCoverage.svg)
 
 # React Redux Boilerplate (WIP)
