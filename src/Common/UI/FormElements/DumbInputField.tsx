@@ -1,8 +1,6 @@
 import React, { FC } from "react";
-import { FormElementTypes ,TextFieldState } from "Common/Domain/FormElements/Types";
+import { FormElementTypes, InputFieldState } from "Common/Domain/FormElements/Types";
 import { Messages } from "Common/UI/Form/Messages";
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
 
 function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     if (type === FormElementTypes.TEXT) {
@@ -17,20 +15,21 @@ function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     throw new Error(`Form element type "${type}" not supported!`);
 }
 
-type DumbTextFieldCallbacks<InputFieldState> = {
-  onChange(formElementId: string, state: InputFieldState): void;
+export type DumbInputFieldState = {
+  data: InputFieldState,
 };
 
-type DumbInputFieldProps<InputFieldState> = DumbTextFieldCallbacks<InputFieldState> & {
-  data: InputFieldState;
+export type DumbInputFieldCallbacks = {
+  onChange(state: InputFieldState, stateChanges: Partial<InputFieldState>): void;
 };
 
-const DumbInputField: FC<DumbInputFieldProps> = (props) => {
+export type DumbInputFieldProps = (DumbInputFieldCallbacks & DumbInputFieldState);
+
+export const DumbInputField: FC<DumbInputFieldProps> = (props) => {
     const onChange = props.data.readOnly
         ? undefined
         : (event: React.ChangeEvent<HTMLInputElement>) => {
-            props.onChange(props.data.id, {
-                ...props.data,
+            props.onChange(props.data, {
                 value: event.target.value,
             });
         };
@@ -48,21 +47,3 @@ const DumbInputField: FC<DumbInputFieldProps> = (props) => {
         </React.Fragment>
     );
 };
-
-const mapStateToProps = (
-    rootState: object,
-    props: { stateSelector: (rootState: object) => TextFieldState },
-): { data: TextFieldState } => ({
-    data: props.stateSelector(rootState),
-});
-
-const mapDispatchToProps = (dispatch: Dispatch): DumbTextFieldCallbacks => ({
-    onChange: (textFieldId: string, textFieldState: TextFieldState) => dispatch(
-        createTextFieldStateWasChanged(textFieldId, textFieldState),
-    ),
-});
-
-export const InputFieldHelper = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(DumbTextField);

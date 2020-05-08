@@ -14,7 +14,7 @@ export function createFormElementsFlow(): () => Generator {
 
 function* takeEveryChangeFormElementState(): Generator {
     yield takeEvery(FormElementCommandTypes.CHANGE_FORM_ELEMENT_STATE, function* (command: ChangeFormElementState) {
-        const event = createFormElementStateWasChanged(command.payload.formElementId, command.payload.stateChanges);
+        const event = createFormElementStateWasChanged(command.payload.formElement, command.payload.stateChanges);
         yield put(event);
     });
 }

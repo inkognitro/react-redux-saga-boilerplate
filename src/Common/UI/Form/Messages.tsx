@@ -1,8 +1,5 @@
 import React, { FC } from "react";
-import {
-    Message as MessageData,
-    MessageTypes,
-} from "Common/Domain/FormElements/DeprecatedTypes";
+import { Message as MessageData, MessageTypes } from "Common/Domain/FormElements/Types";
 import { ErrorIcon } from "Common/UI/Icon/ErrorIcon";
 import { IconSizes, IconTypes } from "Common/UI/Icon/Icon";
 
