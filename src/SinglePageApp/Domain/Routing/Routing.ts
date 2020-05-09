@@ -4,7 +4,7 @@ import { homeReducer } from "./Home/Reducer";
 import { createHomeSaga } from "./Home/Home";
 
 export function createRoutingSaga(): () => Generator {
-    return function* routingSaga(): Generator {
+    return function* (): Generator {
         yield spawn(createHomeSaga());
     };
 }

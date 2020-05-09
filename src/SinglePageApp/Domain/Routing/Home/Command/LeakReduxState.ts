@@ -1,6 +1,6 @@
 import { Command } from "Common/Domain/Bus/Command";
 import { select, takeEvery } from "redux-saga/effects";
-import { HomeCommandTypes } from "SinglePageApp/Domain/Routing/Home/Home";
+import {HomeCommandTypes} from "SinglePageApp/Domain/Routing/Home/Types";
 
 export function createWatchLeakReduxStateSaga(): () => Generator {
     return function* watchLeakReduxState(): Generator {

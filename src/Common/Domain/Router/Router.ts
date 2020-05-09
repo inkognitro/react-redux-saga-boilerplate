@@ -5,7 +5,7 @@ import {
 import { HistoryManager } from "Common/Domain/Router/HistoryManager";
 import { createRouterWasInitialized } from "Common/Domain/Router/Event/RouterWasInitialized";
 import { createCurrentUrlWasChanged } from "Common/Domain/Router/Event/CurrentUrlWasChanged";
-import {handleOpenUrl} from "Common/Domain/Router/Saga/OpenUrlHandling";
+import { handleOpenUrl } from "Common/Domain/Router/Saga/OpenUrlHandling";
 
 export function createRouterSaga(
     routerStateSelector: RouterStateSelector,
@@ -26,10 +26,8 @@ function* watchOpenUrlCommands(routerStateSelector: RouterStateSelector, history
 function* watchCurrentUrlChange(historyManager: HistoryManager): Generator {
     while (true) {
         // @ts-ignore
-        const url: string = yield call(
-            historyManager.getOnChangeCurrentUrlPromise,
-        );
-        put(createCurrentUrlWasChanged(url));
+        const url: string = yield call(historyManager.getOnChangeCurrentUrlPromise);
+        yield put(createCurrentUrlWasChanged(url));
     }
 }
 

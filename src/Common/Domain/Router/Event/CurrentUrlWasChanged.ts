@@ -10,9 +10,6 @@ export function createCurrentUrlWasChanged(url: string): CurrentUrlWasChanged {
     };
 }
 
-export type CurrentUrlWasChanged = Event<
-  RouterEventTypes.CURRENT_URL_WAS_CHANGED,
-  {
+export type CurrentUrlWasChanged = Event<RouterEventTypes.CURRENT_URL_WAS_CHANGED, {
     url: string;
-  }
->;
+}>;

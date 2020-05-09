@@ -15,11 +15,7 @@ export function homeReducer(state: HomeState = initialHomeState, event?: Event):
     if (!event) {
         return state;
     }
-
-    console.log('event', event);
-
     if (event.type === RouterEventTypes.CURRENT_URL_WAS_CHANGED) {
-        console.log('url was changed to ', event.payload.url);
         return initialHomeState;
     }
     if (Object.values(FormElementEventTypes).includes(event.type)) {
