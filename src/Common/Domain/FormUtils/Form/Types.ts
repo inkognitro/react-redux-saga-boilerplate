@@ -14,12 +14,12 @@ export enum FormEventTypes {
 
 export type FormEvent = (FormWasSetToRunningRequestMode | FormWasSetToNoRunningRequestMode);
 
-export type FormState = {
+export type FormState<SpecificElementsByName> = {
     id: string
     isRequestRunning: boolean
-    elementsByName: FormElementsByName
+    elementsByName: FormElementsByName<SpecificElementsByName>
 };
 
-export type FormElementsByName = {
-    [name: string]: FormElementState
-};
+export type FormElementsByName<SpecificElementsByName> = (
+    { [name: string]: FormElementState} & SpecificElementsByName
+)

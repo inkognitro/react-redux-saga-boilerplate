@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from "redux";
 import { spawn } from "redux-saga/effects";
-import { homeReducer } from "./Home/Reducer";
-import { createHomeSaga } from "./Home/Home";
+import { homePageReducer } from "./HomePage/Reducer";
+import { createHomeSaga } from "./HomePage/Home";
 
 export function createRoutingSaga(): () => Generator {
     return function* (): Generator {
@@ -10,5 +10,5 @@ export function createRoutingSaga(): () => Generator {
 }
 
 export const routingReducer: Reducer = combineReducers({
-    home: homeReducer,
+    home: homePageReducer,
 });

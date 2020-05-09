@@ -1,11 +1,16 @@
 import uuidV4 from 'uuid/v4';
-import { FormState } from "Common/Domain/FormUtils/Form/Types";
+import { FormElementsByName, FormState } from "Common/Domain/FormUtils/Form/Types";
 
-export function createFormState(partialInitialFormState: Partial<FormState> = {}): FormState {
+type FormStateCreationSettings<SpecificFormElementsByName> = (Partial<FormState<SpecificFormElementsByName>> & {
+    elementsByName: FormElementsByName<SpecificFormElementsByName>
+});
+
+export function createFormState<SpecificFormElementsByName>(
+    settings: FormStateCreationSettings<SpecificFormElementsByName>,
+): FormState<SpecificFormElementsByName> {
     return {
         id: uuidV4(),
         isRequestRunning: false,
-        elementsByName: {},
-        ...partialInitialFormState,
+        elementsByName: settings.elementsByName,
     };
 }

@@ -1,8 +1,13 @@
-import {FormElementsByName, FormEvent, FormEventTypes, FormState} from "Common/Domain/FormUtils/Form/Types";
-import {FormElementEvent, FormElementEventTypes} from "Common/Domain/FormUtils/FormElements/Types";
-import {formElementReducer} from "Common/Domain/FormUtils/FormElements/Reducer/FormElementReducer";
+import {
+    FormElementsByName, FormEvent, FormEventTypes, FormState,
+} from "Common/Domain/FormUtils/Form/Types";
+import { FormElementEvent, FormElementEventTypes } from "Common/Domain/FormUtils/FormElements/Types";
+import { formElementReducer } from "Common/Domain/FormUtils/FormElements/Reducer/FormElementReducer";
 
-export function formReducer(state: FormState, event?: (FormEvent | FormElementEvent)): FormState {
+export function formReducer<SpecificElementsByName>(
+    state: FormState<SpecificElementsByName>,
+    event?: (FormEvent | FormElementEvent),
+): FormState<SpecificElementsByName> {
     if (!event) {
         return state;
     }
@@ -19,9 +24,11 @@ export function formReducer(state: FormState, event?: (FormEvent | FormElementEv
         };
     }
     if (event.type === FormElementEventTypes.FORM_ELEMENT_STATE_WAS_CHANGED) {
-        const elementsByName: FormElementsByName = {};
+        // @ts-ignore
+        const elementsByName: FormElementsByName<SpecificElementsByName> = {};
         for (const name in state.elementsByName) {
             const formElementState = state.elementsByName[name];
+            // @ts-ignore
             elementsByName[name] = formElementReducer(formElementState, event);
         }
         return {

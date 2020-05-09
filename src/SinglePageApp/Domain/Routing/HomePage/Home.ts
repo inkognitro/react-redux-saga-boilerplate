@@ -1,5 +1,5 @@
 import { select, spawn, takeEvery } from "redux-saga/effects";
-import { HomeCommandTypes } from "SinglePageApp/Domain/Routing/Home/Types";
+import { HomePageCommandTypes } from "SinglePageApp/Domain/Routing/HomePage/Types";
 
 export function createHomeSaga(): () => Generator {
     return function* (): Generator {
@@ -8,7 +8,7 @@ export function createHomeSaga(): () => Generator {
 }
 
 function* watchLeakReduxStateCommands(): Generator {
-    yield takeEvery(HomeCommandTypes.LEAK_REDUX_STATE, function* (): Generator {
+    yield takeEvery(HomePageCommandTypes.LEAK_REDUX_STATE, function* (): Generator {
         const state = yield select();
         console.log(state);
     });

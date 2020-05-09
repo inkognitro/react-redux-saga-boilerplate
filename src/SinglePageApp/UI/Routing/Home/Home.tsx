@@ -8,7 +8,7 @@ import { FormElementGroup } from "Common/UI/FormUtils/FormElements/FormElementGr
 import { Label } from "Common/UI/FormUtils/FormElements/Label";
 import { createLogin } from "Common/Domain/Authentication/Command/Login";
 import { ConnectedTextField } from "Common/UI/FormUtils/FormElements/TextField";
-import { createLeakReduxState } from "SinglePageApp/Domain/Routing/Home/Command/LeakReduxState";
+import { createLeakReduxState } from "SinglePageApp/Domain/Routing/HomePage/Command/LeakReduxState";
 import { ContentPage } from "SinglePageApp/UI/Base/PageTypes/ContentPage";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { TextFieldState } from "Common/Domain/FormUtils/FormElements/Types";
@@ -71,7 +71,7 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
         <br />
         <FormElementGroup>
             <Label title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
-            <ConnectedTextField getData={(state: RootState) => state.routing.home.toastContentField} />
+            <ConnectedTextField getData={(state: RootState) => state.routing.home.toastContent} />
         </FormElementGroup>
 
         <br />
@@ -85,7 +85,7 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
 );
 
 const mapStateToProps = (state: RootState): DumbHomeStateProps => ({
-    toastContentField: state.routing.home.toastContentField,
+    toastContentField: state.routing.home.toastContent,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DumbHomeCallbackProps => ({
