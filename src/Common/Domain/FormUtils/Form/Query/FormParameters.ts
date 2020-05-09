@@ -1,5 +1,5 @@
 import { FormState } from "Common/Domain/FormUtils/Form/Types";
-import { FormElementState, FormElementTypes } from "../../FormElements/Types";
+import { FormElementState, FormElementTypes } from "Common/Domain/FormUtils/FormElements/Types";
 
 export function createFormParameters(form: FormState): object {
     let parameters = {};
