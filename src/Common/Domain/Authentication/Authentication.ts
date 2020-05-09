@@ -15,7 +15,7 @@ import { Login } from "Common/Domain/Authentication/Command/Login";
 import { Action } from "redux";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { createUserWasLoggedOut } from "Common/Domain/Authentication/Event/UserWasLoggedOut";
-import {handleLogin} from "Common/Domain/Authentication/Saga/LoginHandling";
+import { handleLogin } from "Common/Domain/Authentication/Saga/LoginHandling";
 
 export const authTokenCookieName = "authUser";
 export const authTokenCookieTimeToLiveInDays = 14;
@@ -24,8 +24,6 @@ export const authTokenCookieTimeToLiveInDays = 14;
 export function createAuthenticationSaga(
     authStateSelector: AuthStateSelector,
 ): () => Generator {
-
-
     return function* (): Generator {
         while (true) {
             // @ts-ignore

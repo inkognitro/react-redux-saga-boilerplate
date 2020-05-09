@@ -1,6 +1,8 @@
-import {FormElementsByName, FormEvent, FormEventTypes, FormState} from "Common/Domain/FormUtils/Form/Types";
-import {FormElementEvent, FormElementEventTypes} from "Common/Domain/FormUtils/FormElements/Types";
-import {formElementReducer} from "Common/Domain/FormUtils/FormElements/Reducer/FormElementReducer";
+import {
+    FormElementsByName, FormEvent, FormEventTypes, FormState,
+} from "Common/Domain/FormUtils/Form/Types";
+import { FormElementEvent, FormElementEventTypes } from "Common/Domain/FormUtils/FormElements/Types";
+import { formElementReducer } from "Common/Domain/FormUtils/FormElements/Reducer/FormElementReducer";
 
 export function formReducer(state: FormState, event?: (FormEvent | FormElementEvent)): FormState {
     if (!event) {
