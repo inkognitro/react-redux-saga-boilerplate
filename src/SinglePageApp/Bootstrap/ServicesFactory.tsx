@@ -43,7 +43,7 @@ import { designReducer } from "Common/Domain/Design/Event/Reducer";
 import { DesignState } from "Common/Domain/Design/Types";
 import { createFormElementsFlow } from "Common/Domain/FormUtils/FormElements/FormElements";
 import { createFormFlow } from "Common/Domain/FormUtils/Form/Form";
-import { createRoutingSaga, routingReducer } from "Common/Domain/Domain/Routing/Routing";
+import { createRoutingSaga, routingReducer } from "SinglePageApp/Domain/Routing/Routing";
 
 type AppServices = {
   store: Store;

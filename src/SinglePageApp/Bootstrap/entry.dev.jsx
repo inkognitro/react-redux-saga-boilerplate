@@ -1,9 +1,10 @@
 import React from 'react';
-import {render} from 'react-dom'
+import { render } from 'react-dom'
 import { hot } from 'react-hot-loader/root';
-import {RootComponent} from '../App';
-import {createAppServices, createHotReloadedAppServices} from "./ServicesFactory";
-import {MockHttpRequestDispatcher} from "Common/Infrastructure/RequestHandling/MockHttpRequestDispatcher";
+import { MockHttpRequestDispatcher } from "../../Common/Infrastructure/RequestHandling/MockHttpRequestDispatcher";
+import { RootComponent } from '../App';
+import { createAppServices, createHotReloadedAppServices } from "./ServicesFactory";
+
 const HotReloadedApp = hot(RootComponent);
 
 const httpRequestDispatcher = new MockHttpRequestDispatcher();
@@ -11,5 +12,5 @@ const appServices = (module.hot ? createHotReloadedAppServices(httpRequestDispat
 
 render(
     <HotReloadedApp history={appServices.history} store={appServices.store} />,
-    document.getElementById('app')
+    document.getElementById('app'),
 );

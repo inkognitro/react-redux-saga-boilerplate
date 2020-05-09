@@ -38,6 +38,7 @@
     "class-methods-use-this": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "linebreak-style": 0,
-    "jest/expect-expect": "off"
+    "jest/expect-expect": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }

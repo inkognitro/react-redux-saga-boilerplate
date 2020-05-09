@@ -1,3 +1,4 @@
+/* eslint-disable */
 const merge = require('webpack-merge');
 const path = require('path');
 const commonConfig = require('./webpack.common');
@@ -5,7 +6,7 @@ const commonConfig = require('./webpack.common');
 module.exports = merge(commonConfig, {
     mode: "development",
     devtool: 'inline-source-map',
-    entry:  path.resolve(__dirname, './entry.dev.js'),
+    entry:  path.resolve(__dirname, './entry.dev.jsx'),
     devServer: {
         historyApiFallback: true,
         contentBase: './dist/SinglePageApp',
