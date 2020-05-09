@@ -5,6 +5,7 @@ import {
 import { HistoryManager } from "Common/Domain/Router/HistoryManager";
 import { createRouterWasInitialized } from "Common/Domain/Router/Event/RouterWasInitialized";
 import { createCurrentUrlWasChanged } from "Common/Domain/Router/Event/CurrentUrlWasChanged";
+import {handleOpenUrl} from "Common/Domain/Router/Saga/OpenUrlHandling";
 
 export function createRouterSaga(
     routerStateSelector: RouterStateSelector,
@@ -19,7 +20,7 @@ export function createRouterSaga(
 }
 
 function* watchOpenUrlCommands(routerStateSelector: RouterStateSelector, historyManager: HistoryManager): Generator {
-    yield takeEvery(RouterCommandTypes.OPEN_URL, routerStateSelector, historyManager)
+    yield takeEvery(RouterCommandTypes.OPEN_URL, handleOpenUrl, routerStateSelector, historyManager)
 }
 
 function* watchCurrentUrlChange(historyManager: HistoryManager): Generator {
