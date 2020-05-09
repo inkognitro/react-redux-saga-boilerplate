@@ -48,9 +48,9 @@ export const InternalInputField: FC<FormElementComponentProps<InputFieldState>> 
 };
 
 const mapStateToProps = (
-    rootState: any, props: ConnectedFormElementComponentProps<InputFieldState>,
+    _: any, props: ConnectedFormElementComponentProps<InputFieldState>,
 ): FormElementComponentState<InputFieldState> => ({
-    data: props.getData(rootState),
+    data: props.data,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): FormElementComponentCallbacks<InputFieldState> => ({

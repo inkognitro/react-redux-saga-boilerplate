@@ -9,5 +9,5 @@ export type FormElementComponentCallbacks<Data> = {
 export type FormElementComponentProps<Data> = (FormElementComponentState<Data> & FormElementComponentCallbacks<Data>)
 
 export type ConnectedFormElementComponentProps<Data> = {
-    getData(rootState: any): Data
+    data: Data
 }

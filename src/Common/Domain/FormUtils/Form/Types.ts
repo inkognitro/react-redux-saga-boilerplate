@@ -14,7 +14,7 @@ export enum FormEventTypes {
 
 export type FormEvent = (FormWasSetToRunningRequestMode | FormWasSetToNoRunningRequestMode);
 
-export type FormState<SpecificElementsByName> = {
+export type FormState<SpecificElementsByName = {}> = {
     id: string
     isRequestRunning: boolean
     elementsByName: FormElementsByName<SpecificElementsByName>

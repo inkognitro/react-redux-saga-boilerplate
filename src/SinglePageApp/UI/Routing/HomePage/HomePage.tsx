@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { FormElementGroup } from "Common/UI/FormUtils/FormElements/FormElementGroup";
 import { Label } from "Common/UI/FormUtils/FormElements/Label";
 import { createLogin } from "Common/Domain/Authentication/Command/Login";
-import { ConnectedTextField } from "Common/UI/FormUtils/FormElements/TextField";
+import { TextField } from "Common/UI/FormUtils/FormElements/TextField";
 import { createLeakReduxState } from "SinglePageApp/Domain/Routing/HomePage/Command/LeakReduxState";
 import { ContentPage } from "SinglePageApp/UI/Base/PageTypes/ContentPage";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
@@ -71,7 +71,7 @@ const HomePageComponent: FC<HomePageComponentProps> = (props) => (
         <br />
         <FormElementGroup>
             <Label title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
-            <ConnectedTextField getData={(state: RootState) => state.routing.homePage.toastContent} />
+            <TextField data={props.toastContentField} />
         </FormElementGroup>
 
         <br />

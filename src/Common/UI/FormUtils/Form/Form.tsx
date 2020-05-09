@@ -7,7 +7,14 @@ export type FormProps = {
 }
 
 export const Form: FC<FormProps> = (props) => (
-    <form onSubmit={() => props.onSubmit(props.data)}>
+    <form
+        onSubmit={(event: React.FormEvent): void => {
+            console.log('sdflkjsdfkljsdf');
+
+            event.preventDefault();
+            props.onSubmit(props.data);
+        }}
+    >
         {props.children}
     </form>
 );

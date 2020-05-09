@@ -12,8 +12,8 @@ import { formReducer } from "Common/Domain/FormUtils/Form/Event/Reducer";
 const initialLoginPageState: LoginPageState = {
     form: createFormState({
         elementsByName: {
-            username: createTextFieldState(),
-            password: createPasswordFieldState(),
+            username: createTextFieldState({ value: 'sonGoku' }),
+            password: createPasswordFieldState({ value: '1234' }),
         },
     }),
 };
