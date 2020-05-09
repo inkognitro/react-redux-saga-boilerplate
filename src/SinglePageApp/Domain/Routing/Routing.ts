@@ -1,14 +1,16 @@
 import { combineReducers, Reducer } from "redux";
 import { spawn } from "redux-saga/effects";
+import { loginPageReducer } from "SinglePageApp/Domain/Routing/AuthPages/LoginPage/Reducer";
 import { homePageReducer } from "./HomePage/Reducer";
-import { createHomeSaga } from "./HomePage/Home";
+import { createHomePageSaga } from "./HomePage/HomePage";
 
 export function createRoutingSaga(): () => Generator {
     return function* (): Generator {
-        yield spawn(createHomeSaga());
+        yield spawn(createHomePageSaga());
     };
 }
 
 export const routingReducer: Reducer = combineReducers({
-    home: homePageReducer,
+    homePage: homePageReducer,
+    loginPage: loginPageReducer,
 });

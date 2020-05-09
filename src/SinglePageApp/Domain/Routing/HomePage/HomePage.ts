@@ -1,7 +1,7 @@
 import { select, spawn, takeEvery } from "redux-saga/effects";
 import { HomePageCommandTypes } from "SinglePageApp/Domain/Routing/HomePage/Types";
 
-export function createHomeSaga(): () => Generator {
+export function createHomePageSaga(): () => Generator {
     return function* (): Generator {
         yield spawn(watchLeakReduxStateCommands);
     };

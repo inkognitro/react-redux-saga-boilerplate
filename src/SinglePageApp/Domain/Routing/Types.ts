@@ -1,5 +1,7 @@
 import { HomePageState } from "SinglePageApp/Domain/Routing/HomePage/Types";
+import { LoginPageState } from "SinglePageApp/Domain/Routing/AuthPages/LoginPage/Types";
 
 export type RoutingState = {
-  home: HomePageState;
+  homePage: HomePageState
+  loginPage: LoginPageState
 };
