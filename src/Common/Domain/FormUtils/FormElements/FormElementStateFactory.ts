@@ -12,6 +12,7 @@ export function createTextFieldState(partialInitialState: Partial<TextFieldState
         value: (partialInitialState.value ? partialInitialState.value : ''),
         readOnly: (partialInitialState.readOnly ? partialInitialState.readOnly : false),
         type: FormElementTypes.TEXT,
+        messages: [],
     };
 }
 
@@ -22,6 +23,7 @@ export function createPasswordFieldState(partialInitialState: PasswordFieldState
         value: (partialInitialState.value ? partialInitialState.value : ''),
         readOnly: (partialInitialState.readOnly ? partialInitialState.readOnly : false),
         type: FormElementTypes.PASSWORD,
+        messages: [],
     };
 }
 
@@ -32,5 +34,6 @@ export function createEmailFieldState(partialInitialState: EmailFieldStateCreati
         value: (partialInitialState.value ? partialInitialState.value : ''),
         readOnly: (partialInitialState.readOnly ? partialInitialState.readOnly : false),
         type: FormElementTypes.EMAIL,
+        messages: [],
     };
 }

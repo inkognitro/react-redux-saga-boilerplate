@@ -1,13 +1,22 @@
-import { spawn } from "redux-saga/effects";
+import { spawn, takeEvery } from "redux-saga/effects";
 import { CookieStorage } from "Common/Domain/Cookie/CookieStorage";
-import { createWatchRemoveCookieFlow } from "Common/Domain/Cookie/Saga/Flow/RemoveCookieHandling";
-import { createWatchSaveCookieFlow } from "Common/Domain/Cookie/Saga/Flow/SaveCookieHandling";
+import { handleRemoveCookie } from "Common/Domain/Cookie/Saga/RemoveCookieHandling";
+import { handleSaveCookie } from "Common/Domain/Cookie/Saga/SaveCookieHandling";
+import { CookieCommandTypes } from "Common/Domain/Cookie/Types";
 
-export function createCookieFlow(
+export function createCookieSaga(
     cookieStorage: CookieStorage,
 ): () => Generator {
     return function* (): Generator {
-        yield spawn(createWatchRemoveCookieFlow(cookieStorage));
-        yield spawn(createWatchSaveCookieFlow(cookieStorage));
+        yield spawn(watchRemoveCookieCommands, cookieStorage);
+        yield spawn(watchSaveCookieCommands, cookieStorage);
     };
+}
+
+function* watchSaveCookieCommands(cookieStorage: CookieStorage): Generator {
+    yield takeEvery(CookieCommandTypes.SAVE_COOKIE, handleSaveCookie, cookieStorage);
+}
+
+function* watchRemoveCookieCommands(cookieStorage: CookieStorage): Generator {
+    yield takeEvery(CookieCommandTypes.REMOVE_COOKIE, handleRemoveCookie, cookieStorage);
 }

@@ -17,7 +17,7 @@ import uuidV4 from "uuid/v4";
 import { createMessageWasAddedToPipeline } from "Common/Domain/Toaster/Event/MessageWasAddedToPipeline";
 import {
     moveMessagesFromPipelineToToastsHandling,
-} from "Common/Domain/Toaster/Saga/Callables/MoveMessagesFromPipelineToToastsHandling";
+} from "Common/Domain/Toaster/Saga/MoveMessagesFromPipelineToToastsHandling";
 
 function createAutomaticCloseDelayInMs(
     settings: ShowMessageSettings,

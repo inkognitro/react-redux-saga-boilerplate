@@ -8,24 +8,24 @@ import { RouterState, RouterStateSelector } from "Common/Domain/Router/Types";
 import createSagaMiddleware from "redux-saga";
 import { spawn } from "redux-saga/effects";
 import { createBrowserHistory, History } from "history";
-import { createToasterFlow } from "Common/Domain/Toaster/Toaster";
+import { createToasterSaga } from "Common/Domain/Toaster/Toaster";
 import {
     ToasterState,
     ToasterStateSelector,
 } from "Common/Domain/Toaster/Types";
-import { toasterReducer } from "Common/Domain/Toaster/Event/Reducer";
+import { toasterReducer } from "Common/Domain/Toaster/Reducer";
 import {
     TranslatorState,
     TranslatorStateSelector,
 } from "Common/Domain/Translator/Types";
-import { createTranslatorFlow } from "Common/Domain/Translator/Translator";
-import { translatorReducer } from "Common/Domain/Translator/Event/Reducer";
-import { createRouterFlow } from "Common/Domain/Router/Router";
+import { createTranslatorSaga } from "Common/Domain/Translator/Translator";
+import { translatorReducer } from "Common/Domain/Translator/Reducer";
+import { createRouterSaga } from "Common/Domain/Router/Router";
 import { BrowserHistoryManager } from "Common/Infrastructure/Router/BrowserHistoryManager";
-import { createCookieFlow } from "Common/Domain/Cookie/Cookie";
+import { createCookieSaga } from "Common/Domain/Cookie/Cookie";
 import { BrowserCookieStorage } from "Common/Infrastructure/Cookie/BrowserCookieStorage";
-import { routerReducer } from "Common/Domain/Router/Event/Reducer";
-import { httpReducer } from "Common/Domain/RequestHandling/Base/Http/Event/Reducer";
+import { routerReducer } from "Common/Domain/Router/Reducer";
+import { httpReducer } from "Common/Domain/RequestHandling/Base/Http/Reducer";
 import {
     HttpState,
     HttpStateSelector,
@@ -35,11 +35,11 @@ import {
     AuthState,
     AuthStateSelector,
 } from "Common/Domain/Authentication/Types";
-import { authenticationReducer } from "Common/Domain/Authentication/Event/Reducer";
+import { authenticationReducer } from "Common/Domain/Authentication/Reducer";
 import { HttpRequestDispatcher } from "Common/Domain/RequestHandling/Base/Http/HttpRequestDispatcher";
-import { createAuthenticationFlow } from "Common/Domain/Authentication/Authentication";
+import { createAuthenticationSaga } from "Common/Domain/Authentication/Authentication";
 import { RoutingState } from "SinglePageApp/Domain/Routing/Types";
-import { designReducer } from "Common/Domain/Design/Event/Reducer";
+import { designReducer } from "Common/Domain/Design/Reducer";
 import { DesignState } from "Common/Domain/Design/Types";
 import { createFormElementsFlow } from "Common/Domain/FormUtils/FormElements/FormElements";
 import { createFormFlow } from "Common/Domain/FormUtils/Form/Form";
@@ -66,24 +66,24 @@ function createRootSaga(
     httpRequestDispatcher: HttpRequestDispatcher,
 ): () => Generator {
     const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
-    const toasterSaga = createToasterFlow(toasterStateSelector);
+    const toasterSaga = createToasterSaga(toasterStateSelector);
 
     const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
-    const translatorSaga = createTranslatorFlow(translatorStateSelector);
+    const translatorSaga = createTranslatorSaga(translatorStateSelector);
 
     const historyManager = new BrowserHistoryManager(history);
     const routerStateSelector: RouterStateSelector = (state: RootState) => state.router;
-    const routerSaga = createRouterFlow(routerStateSelector, historyManager);
+    const routerSaga = createRouterSaga(routerStateSelector, historyManager);
 
     const cookieStorage = new BrowserCookieStorage();
-    const cookieSaga = createCookieFlow(cookieStorage);
+    const cookieSaga = createCookieSaga(cookieStorage);
 
     const formElementsSaga = createFormElementsFlow();
 
     const formSaga = createFormFlow();
 
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
-    const authenticationSaga = createAuthenticationFlow(authStateSelector);
+    const authenticationSaga = createAuthenticationSaga(authStateSelector);
 
     const httpStateSelector: HttpStateSelector = (state: RootState) => state.http;
     const requestHandlingSaga = createRequestHandlingFlow(

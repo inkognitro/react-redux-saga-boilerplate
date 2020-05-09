@@ -1,31 +1,41 @@
-import { RouterStateSelector } from "Common/Domain/Router/Types";
-import { call, put, spawn } from "redux-saga/effects";
+import { RouterCommandTypes, RouterStateSelector } from "Common/Domain/Router/Types";
+import {
+    call, put, spawn, takeEvery,
+} from "redux-saga/effects";
 import { HistoryManager } from "Common/Domain/Router/HistoryManager";
 import { createRouterWasInitialized } from "Common/Domain/Router/Event/RouterWasInitialized";
 import { createCurrentUrlWasChanged } from "Common/Domain/Router/Event/CurrentUrlWasChanged";
-import { createWatchExtendRouterFlow } from "Common/Domain/Router/Saga/Flow/ExtendRouterHandling";
-import { createWatchOpenUrlFlow } from "Common/Domain/Router/Saga/Flow/OpenUrlHandling";
 
-export function createRouterFlow(
+export function createRouterSaga(
     routerStateSelector: RouterStateSelector,
     historyManager: HistoryManager,
 ): () => Generator {
-    const watchCurrentUrlChange = function* (): Generator {
-        while (true) {
-            // @ts-ignore
-            const url: string = yield call(
-                historyManager.getOnChangeCurrentUrlPromise,
-            );
-            put(createCurrentUrlWasChanged(url));
-        }
-    };
-    const initializeRouter = function* (): Generator {
-        yield put(createRouterWasInitialized(historyManager.getCurrentUrl()));
-    };
     return function* (): Generator {
-        yield call(initializeRouter);
-        yield spawn(watchCurrentUrlChange);
-        yield spawn(createWatchOpenUrlFlow(routerStateSelector, historyManager));
-        yield spawn(createWatchExtendRouterFlow(routerStateSelector));
+        yield call(initializeRouter, historyManager);
+        yield spawn(watchCurrentUrlChange, historyManager);
+        yield spawn(watchOpenUrlCommands, routerStateSelector, historyManager);
+        yield spawn(handleExtendRouter, routerStateSelector);
     };
+}
+
+function* watchOpenUrlCommands(routerStateSelector: RouterStateSelector, historyManager: HistoryManager): Generator {
+    yield takeEvery(RouterCommandTypes.OPEN_URL, routerStateSelector, historyManager)
+}
+
+function* watchCurrentUrlChange(historyManager: HistoryManager): Generator {
+    while (true) {
+        // @ts-ignore
+        const url: string = yield call(
+            historyManager.getOnChangeCurrentUrlPromise,
+        );
+        put(createCurrentUrlWasChanged(url));
+    }
+}
+
+function* initializeRouter(historyManager: HistoryManager): Generator {
+    yield put(createRouterWasInitialized(historyManager.getCurrentUrl()));
+}
+
+function* handleExtendRouter(routerStateSelector: RouterStateSelector): Generator {
+    yield takeEvery(RouterCommandTypes.EXTEND_ROUTER, handleExtendRouter, routerStateSelector);
 }

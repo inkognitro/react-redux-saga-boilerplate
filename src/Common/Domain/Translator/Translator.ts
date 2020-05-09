@@ -1,9 +1,13 @@
-import { spawn } from "redux-saga/effects";
-import { TranslatorStateSelector } from "Common/Domain/Translator/Types";
-import { createWatchSetUILanguageFlow } from "Common/Domain/Translator/Saga/Flow/SetUILanguageHandling";
+import { spawn, takeEvery } from "redux-saga/effects";
+import { TranslatorCommandTypes, TranslatorStateSelector } from "Common/Domain/Translator/Types";
+import { handleSetUILanguage } from "Common/Domain/Translator/Saga/SetUILanguageHandling";
 
-export function createTranslatorFlow(translatorStateSelector: TranslatorStateSelector): () => Generator {
+export function createTranslatorSaga(translatorStateSelector: TranslatorStateSelector): () => Generator {
     return function* (): Generator {
-        yield spawn(createWatchSetUILanguageFlow(translatorStateSelector));
+        yield spawn(watchSetUiLanguageCommands, translatorStateSelector);
     };
+}
+
+function* watchSetUiLanguageCommands(translatorStateSelector: TranslatorStateSelector): Generator {
+    yield takeEvery(TranslatorCommandTypes.SET_UI_LANGUAGE, handleSetUILanguage, translatorStateSelector);
 }

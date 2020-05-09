@@ -1,13 +1,21 @@
-import { spawn } from "redux-saga/effects";
-import { ToasterStateSelector } from "Common/Domain/Toaster/Types";
-import { createWatchRemoveMessageFlow } from "Common/Domain/Toaster/Saga/Flow/RemoveMessageHandling";
-import { createWatchShowMessageFlow } from "Common/Domain/Toaster/Saga/Flow/ShowMessageHandling";
+import { spawn, takeEvery } from "redux-saga/effects";
+import { ToasterCommandTypes, ToasterStateSelector } from "Common/Domain/Toaster/Types";
+import { handleShowMessage } from "Common/Domain/Toaster/Saga/ShowMessageHandling";
+import { handleRemoveMessage } from "Common/Domain/Toaster/Saga/RemoveMessageHandling";
 
-export function createToasterFlow(
+export function createToasterSaga(
     toasterStateSelector: ToasterStateSelector,
 ): () => Generator {
-    return function* toasterFlow(): Generator {
-        yield spawn(createWatchShowMessageFlow(toasterStateSelector));
-        yield spawn(createWatchRemoveMessageFlow(toasterStateSelector));
+    return function* (): Generator {
+        yield spawn(watchRemoveMessageCommands, toasterStateSelector);
+        yield spawn(watchShowMessageCommands, toasterStateSelector);
     };
+}
+
+function* watchShowMessageCommands(toasterStateSelector: ToasterStateSelector): Generator {
+    yield takeEvery(ToasterCommandTypes.SHOW_MESSAGE, handleShowMessage, toasterStateSelector);
+}
+
+function* watchRemoveMessageCommands(toasterStateSelector: ToasterStateSelector): Generator {
+    yield takeEvery(ToasterCommandTypes.REMOVE_MESSAGE, handleRemoveMessage, toasterStateSelector);
 }

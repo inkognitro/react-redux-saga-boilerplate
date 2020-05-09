@@ -1,4 +1,4 @@
-import { toasterReducer } from "Common/Domain/Toaster/Event/Reducer";
+import { toasterReducer } from "Common/Domain/Toaster/Reducer";
 import { createShowMessage } from "Common/Domain/Toaster/Command/ShowMessage";
 import {
     ToasterState,
@@ -6,7 +6,7 @@ import {
     ToastTypes,
 } from "Common/Domain/Toaster/Types";
 import { expectSaga } from "redux-saga-test-plan";
-import { handleShowMessage } from "Common/Domain/Toaster/Saga/Callables/ShowMessageHandling";
+import { handleShowMessage } from "Common/Domain/Toaster/Saga/ShowMessageHandling";
 import { CommonToastIds } from "Common/Domain/Toaster/Query/CommonToastIdByTypeQuery";
 
 describe("Dispatching ShowMessage command", () => {

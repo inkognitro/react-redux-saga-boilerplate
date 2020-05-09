@@ -1,11 +1,11 @@
 import { Event } from "Common/Domain/Bus/Event";
 import {
     FormElementEventTypes,
-    MultipleFormElementStateChanges
+    FormElementStateChanges,
 } from "Common/Domain/FormUtils/FormElements/Types";
 
 export function createFormElementStateWereChanged(
-    multipleStateChanges: MultipleFormElementStateChanges,
+    multipleStateChanges: FormElementStateChanges[],
 ): FormElementStatesWereChanged {
     return {
         type: FormElementEventTypes.FORM_ELEMENT_STATES_WERE_CHANGED,
@@ -14,5 +14,5 @@ export function createFormElementStateWereChanged(
 }
 
 export type FormElementStatesWereChanged = Event<FormElementEventTypes.FORM_ELEMENT_STATES_WERE_CHANGED, {
-    multipleStateChanges: MultipleFormElementStateChanges;
+    multipleStateChanges: FormElementStateChanges[];
 }>;

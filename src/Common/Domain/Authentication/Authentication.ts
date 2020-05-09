@@ -1,8 +1,5 @@
 import {
-    call,
     cancel,
-    cancelled,
-    delay,
     fork,
     put,
     select,
@@ -13,27 +10,18 @@ import {
     AuthEventTypes,
     AuthState,
     AuthStateSelector,
-    AuthUser,
 } from "Common/Domain/Authentication/Types";
 import { Login } from "Common/Domain/Authentication/Command/Login";
-import {
-    authenticate,
-    ResponseData,
-    ResponseDataTypes,
-} from "Common/Domain/RequestHandling/ApiV1/Http/Saga/Callables/Auth/Authenticate";
-import { createUserLoginFailed } from "Common/Domain/Authentication/Event/UserLoginFailed";
-import { createSaveCookie } from "Common/Domain/Cookie/Command/SaveCookie";
-import { createUserWasLoggedIn } from "Common/Domain/Authentication/Event/UserWasLoggedIn";
-import { createUserLoginWasCancelled } from "Common/Domain/Authentication/Event/UserLoginWasCancelled";
 import { Action } from "redux";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { createUserWasLoggedOut } from "Common/Domain/Authentication/Event/UserWasLoggedOut";
+import {handleLogin} from "Common/Domain/Authentication/Saga/LoginHandling";
 
 export const authTokenCookieName = "authUser";
 export const authTokenCookieTimeToLiveInDays = 14;
 // const authRefreshBeforeExpirationInSeconds = 60; //todo use for authentication refresh!
 
-export function createAuthenticationFlow(
+export function createAuthenticationSaga(
     authStateSelector: AuthStateSelector,
 ): () => Generator {
 

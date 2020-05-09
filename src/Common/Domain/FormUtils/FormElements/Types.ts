@@ -45,5 +45,5 @@ export type PasswordFieldState = InputFieldState<FormElementTypes.PASSWORD>;
 
 export type FormElementState = (TextFieldState | EmailFieldState | PasswordFieldState);
 
-export type MultipleFormElementStateChanges = { formElement: FormElementState, stateChanges: Partial<FormElementState> }[];
+export type FormElementStateChanges = { formElement: FormElementState, stateChanges: Partial<FormElementState> };
 export type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged);

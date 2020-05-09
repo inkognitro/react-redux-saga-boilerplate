@@ -8,7 +8,7 @@ import {
     HttpResponse,
 } from "Common/Domain/RequestHandling/Base/Http/Types";
 import { createSendHttpRequest } from "Common/Domain/RequestHandling/ApiV1/Http/Command/SendHttpRequest";
-import { receiveHttpResponse } from "Common/Domain/RequestHandling/Base/Http/Saga/Callables/HttpResponseReceiving";
+import { receiveHttpResponse } from "Common/Domain/RequestHandling/Base/Http/Saga/HttpResponseReceiving";
 
 type AuthenticateResponse = HttpResponse<
   ReadResponseBody<{

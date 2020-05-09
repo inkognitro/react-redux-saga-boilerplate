@@ -1,6 +1,9 @@
 import { put } from "redux-saga/effects";
 import { FormState } from "Common/Domain/FormUtils/Form/Types";
-import { FormElementState, MultipleFormElementStateChanges } from "Common/Domain/FormUtils/FormElements/Types";
+import {
+    FormElementState,
+    FormElementStateChanges,
+} from "Common/Domain/FormUtils/FormElements/Types";
 import { createChangeFormElementStates } from "Common/Domain/FormUtils/FormElements/Command/ChangeFormElementStates";
 import { createFormWasSetToNoRunningRequestMode } from "Common/Domain/FormUtils/Form/Event/FormWasSetToNoRunningRequestMode";
 
@@ -11,7 +14,7 @@ export function* setFormToNoRunningRequestMode(
     if (!form.isRequestRunning) {
         return;
     }
-    const multipleFormElementStateChanges: MultipleFormElementStateChanges = [];
+    const multipleFormElementStateChanges: FormElementStateChanges[] = [];
     for (const name in form.elementsByName) {
         const formElement: FormElementState = form.elementsByName[name];
         const formElementBeforeRunningRequestMode: FormElementState = formBeforeRunningRequestMode.elementsByName[name];

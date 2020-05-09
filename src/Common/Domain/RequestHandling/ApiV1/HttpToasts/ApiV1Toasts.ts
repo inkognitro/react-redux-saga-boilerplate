@@ -21,7 +21,7 @@ const apiV1EventTypesToWatch = [
 
 type ApiV1Event = ApiV1HttpConnectionFailed | ApiV1HttpResponseWasReceived;
 
-export function createApiV1HttpToastsFlow(
+export function createApiV1HttpToastsSaga(
     translatorStateSelector: TranslatorStateSelector,
 ): () => Generator {
     return function* (): Generator {
