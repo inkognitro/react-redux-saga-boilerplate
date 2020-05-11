@@ -5,3 +5,9 @@ export const homeRoute: Route = {
     urlMustMatchExactly: true,
 };
 export const createHomeRouteUrl = (): string => homeRoute.urlSchema;
+
+export const loginRoute: Route = {
+    urlSchema: "/auth/login",
+    urlMustMatchExactly: true,
+};
+export const createLoginRouteUrl = (): string => loginRoute.urlSchema;

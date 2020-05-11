@@ -7,25 +7,25 @@ import { connect } from "react-redux";
 import { FormElementGroup } from "Common/UI/FormUtils/FormElements/FormElementGroup";
 import { Label } from "Common/UI/FormUtils/FormElements/Label";
 import { createLogin } from "Common/Domain/Authentication/Command/Login";
-import { ConnectedTextField } from "Common/UI/FormUtils/FormElements/TextField";
-import { createLeakReduxState } from "SinglePageApp/Domain/Routing/Home/Command/LeakReduxState";
+import { TextField } from "Common/UI/FormUtils/FormElements/TextField";
+import { createLeakReduxState } from "SinglePageApp/Domain/Routing/HomePage/Command/LeakReduxState";
 import { ContentPage } from "SinglePageApp/UI/Base/PageTypes/ContentPage";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { TextFieldState } from "Common/Domain/FormUtils/FormElements/Types";
 
-type DumbHomeCallbackProps = {
+type DumbHomePageCallbacks = {
     onClickLogin: () => void;
     onAddToast: (type: ToastTypes, content: string) => void;
     onClickLeakReduxState: () => void;
 };
 
-type DumbHomeStateProps = {
+type DumbHomePageState = {
     toastContentField: TextFieldState;
 };
 
-type DumbHomeProps = (DumbHomeStateProps & DumbHomeCallbackProps);
+type DumbHomePageProps = (DumbHomePageState & DumbHomePageCallbacks);
 
-const DumbHome: FC<DumbHomeProps> = (props) => (
+const DumbHomePage: FC<DumbHomePageProps> = (props) => (
     <ContentPage>
         <h1>Features</h1>
         <br />
@@ -71,7 +71,7 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
         <br />
         <FormElementGroup>
             <Label title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
-            <ConnectedTextField getData={(state: RootState) => state.routing.home.toastContentField} />
+            <TextField data={props.toastContentField} />
         </FormElementGroup>
 
         <br />
@@ -84,11 +84,11 @@ const DumbHome: FC<DumbHomeProps> = (props) => (
     </ContentPage>
 );
 
-const mapStateToProps = (state: RootState): DumbHomeStateProps => ({
-    toastContentField: state.routing.home.toastContentField,
+const mapStateToProps = (state: RootState): DumbHomePageState => ({
+    toastContentField: state.routing.homePage.toastContent,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DumbHomeCallbackProps => ({
+const mapDispatchToProps = (dispatch: Dispatch): DumbHomePageCallbacks => ({
     onClickLogin: () => dispatch(
         createLogin({
             username: "sonGoku",
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DumbHomeCallbackProps => ({
     onClickLeakReduxState: () => dispatch(createLeakReduxState()),
 });
 
-export const Home = connect(mapStateToProps, mapDispatchToProps)(DumbHome);
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(DumbHomePage);

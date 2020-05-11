@@ -5,7 +5,7 @@ import { FunctionalLink } from "Common/UI/Base/Link";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { AuthUser } from "Common/Domain/Authentication/Types";
-import { createHomeRouteUrl } from "SinglePageApp/Domain/Routing/Routes";
+import { createHomeRouteUrl, createLoginRouteUrl } from "SinglePageApp/Domain/Routing/Routes";
 
 type RepresentationalNavBarState = {
   currentUser: AuthUser | null;
@@ -31,7 +31,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
             );
         }
         return (
-            <li className="nav-item"><NavLink className="nav-link" to="foo">Login</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to={createLoginRouteUrl()}>Login</NavLink></li>
         );
     }
 

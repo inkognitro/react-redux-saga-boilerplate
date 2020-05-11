@@ -1,16 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 
 export type CardProps = {
-  title?: JSX.Element;
-  footer?: JSX.Element;
-  className?: string;
+  title?: ReactNode;
+  footer?: ReactNode;
 };
 
-export const Card: FC<CardProps> = ({ className, title, children }) => ( // todo: insert footer as well
-    <div className={`card${className ? ` ${className}` : ''}`}>
+export const Card: FC<CardProps> = (props) => ( // todo: insert footer as well
+    <div className="card">
         <div className="card-body">
-            {(title ? (<h5 className="card-title">{title}</h5>) : null)}
-            {children}
+            {(props.title ? (<h5 className="card-title">{props.title}</h5>) : null)}
+            {props.children}
         </div>
     </div>
 );
