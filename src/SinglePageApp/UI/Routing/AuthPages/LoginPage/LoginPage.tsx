@@ -9,10 +9,11 @@ import { TextField } from "Common/UI/FormUtils/FormElements/TextField";
 import { FormElementGroup } from "Common/UI/FormUtils/FormElements/FormElementGroup";
 import { PasswordField } from "Common/UI/FormUtils/FormElements/PasswordField";
 import { PrimaryButton } from "Common/UI/FormUtils/FormElements/PrimaryButton";
-import { FormState } from "Common/Domain/FormUtils/Form/Types";
+import { Dispatch } from "redux";
+import { createLogin } from "SinglePageApp/Domain/Routing/AuthPages/LoginPage/Command/Login";
 
 type LoginPageComponentCallbacks = {
-    onSubmitLoginForm: (form: FormState) => void
+    onSubmitLoginForm: () => void
 };
 
 type LoginPageComponentState = {
@@ -24,7 +25,7 @@ type LoginPageComponentProps = (LoginPageComponentState & LoginPageComponentCall
 const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
     <ContentPage>
         <Card title="Login">
-            <Form data={props.data.form} onSubmit={() => props.onSubmitLoginForm(props.data.form)}>
+            <Form onSubmit={props.onSubmitLoginForm}>
                 <FormElementGroup>
                     <TextField data={props.data.form.elementsByName.username} />
                 </FormElementGroup>
@@ -32,7 +33,7 @@ const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
                     <PasswordField data={props.data.form.elementsByName.password} />
                 </FormElementGroup>
                 <FormElementGroup>
-                    <PrimaryButton onClick={() => props.onSubmitLoginForm(props.data.form)}>
+                    <PrimaryButton onClick={props.onSubmitLoginForm}>
                         Login
                     </PrimaryButton>
                 </FormElementGroup>
@@ -45,8 +46,8 @@ const mapStateToProps = (state: RootState): LoginPageComponentState => ({
     data: state.routing.loginPage,
 });
 
-const mapDispatchToProps = (): LoginPageComponentCallbacks => ({
-    onSubmitLoginForm: (form: FormState) => console.log('login', form),
+const mapDispatchToProps = (dispatch: Dispatch): LoginPageComponentCallbacks => ({
+    onSubmitLoginForm: () => dispatch(createLogin()),
 });
 
 export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(DumbLoginPage);
