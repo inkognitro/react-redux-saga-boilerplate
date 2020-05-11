@@ -13,19 +13,19 @@ import { ContentPage } from "SinglePageApp/UI/Base/PageTypes/ContentPage";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { TextFieldState } from "Common/Domain/FormUtils/FormElements/Types";
 
-type HomePageComponentCallbacks = {
+type DumbHomePageCallbacks = {
     onClickLogin: () => void;
     onAddToast: (type: ToastTypes, content: string) => void;
     onClickLeakReduxState: () => void;
 };
 
-type HomePageComponentState = {
+type DumbHomePageState = {
     toastContentField: TextFieldState;
 };
 
-type HomePageComponentProps = (HomePageComponentState & HomePageComponentCallbacks);
+type DumbHomePageProps = (DumbHomePageState & DumbHomePageCallbacks);
 
-const HomePageComponent: FC<HomePageComponentProps> = (props) => (
+const DumbHomePage: FC<DumbHomePageProps> = (props) => (
     <ContentPage>
         <h1>Features</h1>
         <br />
@@ -84,11 +84,11 @@ const HomePageComponent: FC<HomePageComponentProps> = (props) => (
     </ContentPage>
 );
 
-const mapStateToProps = (state: RootState): HomePageComponentState => ({
+const mapStateToProps = (state: RootState): DumbHomePageState => ({
     toastContentField: state.routing.homePage.toastContent,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): HomePageComponentCallbacks => ({
+const mapDispatchToProps = (dispatch: Dispatch): DumbHomePageCallbacks => ({
     onClickLogin: () => dispatch(
         createLogin({
             username: "sonGoku",
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch: Dispatch): HomePageComponentCallbacks => (
     onClickLeakReduxState: () => dispatch(createLeakReduxState()),
 });
 
-export const HomePage = connect(mapStateToProps, mapDispatchToProps)(HomePageComponent);
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(DumbHomePage);
