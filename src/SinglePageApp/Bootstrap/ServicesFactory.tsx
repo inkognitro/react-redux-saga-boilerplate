@@ -44,6 +44,8 @@ import { DesignState } from "Common/Domain/Design/Types";
 import { createFormElementsFlow } from "Common/Domain/FormUtils/FormElements/FormElements";
 import { createFormFlow } from "Common/Domain/FormUtils/Form/Form";
 import { createRoutingSaga, routingReducer } from "SinglePageApp/Domain/Routing/Routing";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import {AxiosHttpRequestDispatcher} from "Common/Infrastructure/RequestHandling/AxiosHttpRequestDispatcher";
 
 type AppServices = {
   store: Store;
@@ -108,7 +110,21 @@ function createRootSaga(
     };
 }
 
-export function createAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
+export function createDevAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
+    const history: History = createBrowserHistory();
+    const sagaMiddleware = createSagaMiddleware();
+    const store = createReduxStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+    const rootSaga = createRootSaga(history, httpRequestDispatcher);
+    sagaMiddleware.run(rootSaga);
+    return {
+        store,
+        history,
+        httpRequestDispatcher,
+    };
+}
+
+export function createProdAppServices(): AppServices {
+    const httpRequestDispatcher = new AxiosHttpRequestDispatcher();
     const history: History = createBrowserHistory();
     const sagaMiddleware = createSagaMiddleware();
     const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
@@ -132,11 +148,11 @@ export type RootState = {
 };
 
 let currentServices: null | AppServices = null;
-export function createHotReloadedAppServices(
+export function createHotReloadedDevAppServices(
     httpRequestDispatcher: HttpRequestDispatcher,
 ): AppServices {
     if (currentServices === null) {
-        currentServices = createAppServices(httpRequestDispatcher);
+        currentServices = createDevAppServices(httpRequestDispatcher);
         return currentServices;
     }
     return currentServices;
