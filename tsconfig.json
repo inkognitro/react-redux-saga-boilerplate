@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "jsx": "react",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "es2017"],
     "module": "commonjs",
     "esModuleInterop": true,
     "outDir": "./dist/",
