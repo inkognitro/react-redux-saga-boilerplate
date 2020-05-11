@@ -5,7 +5,7 @@ import { FunctionalLink } from "Common/UI/Base/Link";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { AuthUser } from "Common/Domain/Authentication/Types";
-import {createHomeRouteUrl, createLoginRouteUrl} from "SinglePageApp/Domain/Routing/Routes";
+import { createHomeRouteUrl, createLoginRouteUrl } from "SinglePageApp/Domain/Routing/Routes";
 
 type RepresentationalNavBarState = {
   currentUser: AuthUser | null;

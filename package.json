@@ -15,7 +15,7 @@
     "test:lint": "eslint ./src --ext .ts,.tsx",
     "test:types": "tsc --noEmit",
     "ci": "npm run ci:lint && npm run ci:coverage && npm run ci:build",
-    "ci:lint": "test:types && eslint ./src --ext .ts,.tsx --quiet --fix",
+    "ci:lint": "npm run test:types && eslint ./src --ext .ts,.tsx --quiet --fix",
     "ci:coverage": "jest --coverage --colors && make-coverage-badge --output-path \"./docs/readme/badgeTestCoverage.svg\" --report-path \"./docs/coverage/coverage-summary.json\"",
     "ci:build": "npm run build:spa"
   },

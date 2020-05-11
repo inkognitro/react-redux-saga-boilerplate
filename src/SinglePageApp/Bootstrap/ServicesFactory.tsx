@@ -45,7 +45,7 @@ import { createFormElementsFlow } from "Common/Domain/FormUtils/FormElements/For
 import { createFormFlow } from "Common/Domain/FormUtils/Form/Form";
 import { createRoutingSaga, routingReducer } from "SinglePageApp/Domain/Routing/Routing";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {AxiosHttpRequestDispatcher} from "Common/Infrastructure/RequestHandling/AxiosHttpRequestDispatcher";
+import { AxiosHttpRequestDispatcher } from "Common/Infrastructure/RequestHandling/AxiosHttpRequestDispatcher";
 
 type AppServices = {
   store: Store;

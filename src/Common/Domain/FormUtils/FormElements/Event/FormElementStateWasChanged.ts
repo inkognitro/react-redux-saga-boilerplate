@@ -1,5 +1,5 @@
 import { Event } from "Common/Domain/Bus/Event";
-import {FormElementEventTypes, FormElementState} from "Common/Domain/FormUtils/FormElements/Types";
+import { FormElementEventTypes, FormElementState } from "Common/Domain/FormUtils/FormElements/Types";
 
 export function createFormElementStateWasChanged(
     formElement: FormElementState,

@@ -1,16 +1,18 @@
-import {call, cancelled, delay, fork, put} from "@redux-saga/core/effects";
-import {Login} from "Common/Domain/Authentication/Command/Login";
+import {
+    call, cancelled, delay, fork, put,
+} from "@redux-saga/core/effects";
+import { Login } from "Common/Domain/Authentication/Command/Login";
 import {
     authenticate,
     ResponseData,
-    ResponseDataTypes
+    ResponseDataTypes,
 } from "Common/Domain/RequestHandling/ApiV1/Http/Saga/Auth/Authenticate";
-import {createUserLoginFailed} from "Common/Domain/Authentication/Event/UserLoginFailed";
-import {AuthUser} from "Common/Domain/Authentication/Types";
-import {createSaveCookie} from "Common/Domain/Cookie/Command/SaveCookie";
-import {createUserWasLoggedIn} from "Common/Domain/Authentication/Event/UserWasLoggedIn";
-import {createUserLoginWasCancelled} from "Common/Domain/Authentication/Event/UserLoginWasCancelled";
-import {authTokenCookieName, authTokenCookieTimeToLiveInDays} from "Common/Domain/Authentication/Authentication";
+import { createUserLoginFailed } from "Common/Domain/Authentication/Event/UserLoginFailed";
+import { AuthUser } from "Common/Domain/Authentication/Types";
+import { createSaveCookie } from "Common/Domain/Cookie/Command/SaveCookie";
+import { createUserWasLoggedIn } from "Common/Domain/Authentication/Event/UserWasLoggedIn";
+import { createUserLoginWasCancelled } from "Common/Domain/Authentication/Event/UserLoginWasCancelled";
+import { authTokenCookieName, authTokenCookieTimeToLiveInDays } from "Common/Domain/Authentication/Authentication";
 
 function* handleAutomaticAuthenticationRefresh(shouldRemember: boolean): Generator {
     while (true) {
