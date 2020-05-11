@@ -24,17 +24,18 @@ type LoginPageComponentProps = (LoginPageComponentState & LoginPageComponentCall
 const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
     <ContentPage>
         <Card title="Login">
-            <Form data={props.data.form} onSubmit={() => console.log('sdflksdfkljklj')}>
-                todo: Make sure, onEnter is also supported!
+            <Form data={props.data.form} onSubmit={() => props.onSubmitLoginForm(props.data.form)}>
                 <FormElementGroup>
                     <TextField data={props.data.form.elementsByName.username} />
                 </FormElementGroup>
                 <FormElementGroup>
                     <PasswordField data={props.data.form.elementsByName.password} />
                 </FormElementGroup>
-                <PrimaryButton onClick={() => props.onSubmitLoginForm(props.data.form)}>
-                    Login
-                </PrimaryButton>
+                <FormElementGroup>
+                    <PrimaryButton onClick={() => props.onSubmitLoginForm(props.data.form)}>
+                        Login
+                    </PrimaryButton>
+                </FormElementGroup>
             </Form>
         </Card>
     </ContentPage>
