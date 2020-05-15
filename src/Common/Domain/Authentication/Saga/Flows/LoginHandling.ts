@@ -44,9 +44,10 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
                 createSaveCookie({
                     name: authTokenCookieName,
                     content: JSON.stringify(authUser),
-                    timeToLiveInDays: command.payload.shouldRemember
+                    timeToLiveInDays: (command.payload.shouldRemember
                         ? authTokenCookieTimeToLiveInDays
-                        : undefined,
+                        : undefined
+                    ),
                 }),
             );
             yield put(createUserWasLoggedIn(command.payload, authUser));

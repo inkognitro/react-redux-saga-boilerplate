@@ -111,7 +111,7 @@ export class Message extends Component<MessageProps> {
           <StyledMessage ref={(element: HTMLDivElement) => { this.message = element; }}>
               <StyledMessageContent>
                   {this.renderCloseIcon()}
-                  {this.props.message.content}
+                  {this.props.message.message}
               </StyledMessageContent>
           </StyledMessage>
       );

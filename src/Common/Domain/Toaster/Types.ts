@@ -7,6 +7,7 @@ import { ToastIntroAnimationWasFinished } from "Common/Domain/Toaster/Event/Toas
 import { ToastOutroAnimationWasStarted } from "Common/Domain/Toaster/Event/ToastOutroAnimationWasStarted";
 import { ToastWasAdded } from "Common/Domain/Toaster/Event/ToastWasAdded";
 import { ToastWasRemoved } from "Common/Domain/Toaster/Event/ToastWasRemoved";
+import { Message } from "Common/Domain/Model/Message";
 
 export enum ToastTypes {
   INFO = "info",
@@ -25,7 +26,7 @@ export type ToastMessage = {
   id: string;
   canBeClosedManually: boolean;
   automaticCloseDelayInMs: null | number;
-  content: string;
+  message: Message;
   isIntroAnimationRunning?: boolean;
   isOutroAnimationRunning?: boolean;
 };

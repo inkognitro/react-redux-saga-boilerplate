@@ -16,7 +16,7 @@ describe("Toaster", () => {
                                 id: "foo123",
                                 canBeClosedManually: true,
                                 automaticCloseDelayInMs: null,
-                                content: "bar",
+                                message: "bar",
                             },
                         ],
                     },

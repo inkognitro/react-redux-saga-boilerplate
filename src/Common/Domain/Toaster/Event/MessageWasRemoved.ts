@@ -10,9 +10,6 @@ export function createMessageWasRemoved(messageId: string): MessageWasRemoved {
     };
 }
 
-export type MessageWasRemoved = Event<
-  ToasterEventTypes.MESSAGE_WAS_REMOVED,
-  {
+export type MessageWasRemoved = Event<ToasterEventTypes.MESSAGE_WAS_REMOVED, {
     messageId: string;
-  }
->;
+}>;

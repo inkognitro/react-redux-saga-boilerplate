@@ -92,7 +92,6 @@ function createRootSaga(
         httpStateSelector,
         httpRequestDispatcher,
         authStateSelector,
-        translatorStateSelector,
     );
 
     const routingSaga = createRoutingSaga();

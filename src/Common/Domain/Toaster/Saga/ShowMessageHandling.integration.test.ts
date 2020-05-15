@@ -26,7 +26,7 @@ describe("Dispatching ShowMessage command", () => {
                     messages: [
                         {
                             id: "1234",
-                            content: "foo",
+                            message: "foo",
                             canBeClosedManually: true,
                             automaticCloseDelayInMs: null,
                             isIntroAnimationRunning: false,
