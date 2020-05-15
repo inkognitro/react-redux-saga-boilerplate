@@ -1,6 +1,5 @@
-import { AuthEventTypes } from "Common/Domain/Authentication/Types";
+import {AuthEventTypes, LoginSettings} from "Common/Domain/Authentication/Types";
 import { Event } from "Common/Domain/Bus/Event";
-import { LoginSettings } from "Common/Domain/Authentication/Command/Login";
 
 export function createUserLoginWasCancelled(
     loginSettings: LoginSettings,
@@ -11,9 +10,6 @@ export function createUserLoginWasCancelled(
     };
 }
 
-export type UserLoginWasCancelled = Event<
-  AuthEventTypes.USER_LOGIN_WAS_CANCELLED,
-  {
+export type UserLoginWasCancelled = Event<AuthEventTypes.USER_LOGIN_WAS_CANCELLED, {
     loginSettings: LoginSettings;
-  }
->;
+}>;

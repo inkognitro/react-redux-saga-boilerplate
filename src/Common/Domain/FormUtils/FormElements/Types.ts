@@ -27,17 +27,17 @@ export enum MessageTypes {
     ERROR = "error",
 }
 
-type BasicFormElementState<AdditionalElementState = any> = (AdditionalElementState & {
+export interface BasicFormElementState {
     id: string
     type: FormElementTypes
     readOnly: boolean
-});
+}
 
-export type InputFieldState<FormElementType = string> = BasicFormElementState<{
+export type InputFieldState<FormElementType = string> = (BasicFormElementState & {
     type: FormElementType
     value: string,
     messages: Message[]
-}>;
+});
 
 export type TextFieldState = InputFieldState<FormElementTypes.TEXT>;
 export type EmailFieldState = InputFieldState<FormElementTypes.EMAIL>;

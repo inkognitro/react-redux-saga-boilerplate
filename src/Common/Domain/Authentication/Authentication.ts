@@ -1,53 +1,25 @@
-import {
-    cancel,
-    fork,
-    put,
-    select,
-    take,
-} from "redux-saga/effects";
-import {
-    AuthCommandTypes,
-    AuthEventTypes,
-    AuthState,
-    AuthStateSelector,
-} from "Common/Domain/Authentication/Types";
-import { Login } from "Common/Domain/Authentication/Command/Login";
-import { Action } from "redux";
-import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
-import { createUserWasLoggedOut } from "Common/Domain/Authentication/Event/UserWasLoggedOut";
-import { handleLogin } from "Common/Domain/Authentication/Saga/LoginHandling";
+import { spawn, takeEvery } from "redux-saga/effects";
+import { AuthCommandTypes, AuthStateSelector } from "Common/Domain/Authentication/Types";
+import { handleLogin } from "Common/Domain/Authentication/Saga/Flows/LoginHandling";
+import { handleAutomaticAuthenticationRefresh } from "Common/Domain/Authentication/Saga/Flows/AutomaticAuthRefreshHandling";
+import { handleLogout } from "Common/Domain/Authentication/Saga/Flows/LogoutHandling";
 
-export const authTokenCookieName = "authUser";
+export const authTokenCookieName = 'authUser';
 export const authTokenCookieTimeToLiveInDays = 14;
-// const authRefreshBeforeExpirationInSeconds = 60; //todo use for authentication refresh!
+export const authRefreshBeforeExpirationInSeconds = 60;
 
-export function createAuthenticationSaga(
-    authStateSelector: AuthStateSelector,
-): () => Generator {
+export function createAuthenticationSaga(authStateSelector: AuthStateSelector): () => Generator {
     return function* (): Generator {
-        while (true) {
-            // @ts-ignore
-            const command: Login = yield take([AuthCommandTypes.LOGIN]);
-            const loginTask = yield fork(handleLogin, command);
-            // @ts-ignore
-            const action: Action = yield take([
-                AuthEventTypes.USER_LOGIN_FAILED,
-                AuthCommandTypes.LOGOUT,
-            ]);
-            if (action.type === AuthEventTypes.USER_LOGIN_FAILED) {
-                continue;
-            }
-            if (action.type === AuthCommandTypes.LOGOUT) {
-                // @ts-ignore
-                yield cancel(loginTask);
-                // @ts-ignore
-                const authState: AuthState = yield select(authStateSelector);
-                const authUser = findCurrentAuthUser(authState);
-                if (!authUser) {
-                    continue;
-                }
-                yield put(createUserWasLoggedOut());
-            }
-        }
+        yield spawn(handleAutomaticAuthenticationRefresh, authStateSelector);
+        yield spawn(watchLoginCommands, authStateSelector);
+        yield spawn(watchLogoutCommands, authStateSelector);
     };
+}
+
+function* watchLoginCommands(authStateSelector: AuthStateSelector): Generator {
+    yield takeEvery(AuthCommandTypes.LOGIN, handleLogin, authStateSelector);
+}
+
+function* watchLogoutCommands(authStateSelector: AuthStateSelector): Generator {
+    yield takeEvery(AuthCommandTypes.LOGOUT, handleLogout, authStateSelector);
 }

@@ -11,6 +11,7 @@ import { UserLoginWasCancelled } from "Common/Domain/Authentication/Event/UserLo
 export type AuthUser = {
   token: string;
   user: User;
+  shouldRemember: boolean,
 };
 
 export type AuthState = {
@@ -21,6 +22,8 @@ export type AuthState = {
 export enum AuthEventTypes {
   USER_LOGIN_WAS_REQUESTED = "USER_LOGIN_WAS_REQUESTED-42db2e56-7772-436f-91bc-17b2ba6798a1",
   USER_LOGIN_WAS_CANCELLED = "USER_LOGIN_WAS_CANCELLED-42db2e56-7772-436f-91bc-17b2ba6798a1",
+  USER_LOGIN_PROCESS_WAS_NOT_EXECUTED = "USER_LOGIN_PROCESS_WAS_NOT_EXECUTED-42db2e56-7772-436f-91bc-17b2ba6798a1",
+  USER_LOGOUT_PROCESS_WAS_NOT_EXECUTED = "USER_LOGOUT_PROCESS_WAS_NOT_EXECUTED-42db2e56-7772-436f-91bc-17b2ba6798a1",
   USER_WAS_LOGGED_IN = "USER_WAS_LOGGED_IN-42db2e56-7772-436f-91bc-17b2ba6798a1",
   USER_LOGIN_FAILED = "USER_LOGIN_FAILED-42db2e56-7772-436f-91bc-17b2ba6798a1",
   USER_AUTHENTICATION_WAS_REFRESHED = "USER_AUTHENTICATION_WAS_REFRESHED-42db2e56-7772-436f-91bc-17b2ba6798a1",
@@ -47,3 +50,10 @@ export enum AuthCommandTypes {
   LOGIN = "LOGIN-b99351cf-06a9-4d0c-9a09-f09fd0b3cbe3",
   LOGOUT = "LOGOUT-b99351cf-06a9-4d0c-9a09-f09fd0b3cbe3",
 }
+
+export type LoginSettings = {
+    loginId: string,
+    username: string;
+    password: string;
+    shouldRemember: boolean;
+};
