@@ -1,5 +1,5 @@
 import {
-    Message,
+    ToastMessage,
     MessageToAdd,
     ToasterState,
 } from "Common/Domain/Toaster/Types";
@@ -7,7 +7,7 @@ import {
 export function findMessageById(
     state: ToasterState,
     messageId: string,
-): null | Message {
+): null | ToastMessage {
     for (const index in state.toasts) {
         const toast = state.toasts[index];
         const foundMessage = toast.messages.find(
@@ -36,7 +36,7 @@ export function findMessageToAddByMessageId(
 export function getNonRemovingMessagesInToast(
     state: ToasterState,
     toastId: string,
-): Message[] {
+): ToastMessage[] {
     const toast = state.toasts.find((toast) => toast.id === toastId);
     if (!toast) {
         return [];

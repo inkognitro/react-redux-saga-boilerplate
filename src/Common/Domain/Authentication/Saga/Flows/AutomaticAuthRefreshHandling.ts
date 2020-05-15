@@ -1,8 +1,19 @@
-import { AuthState, AuthStateSelector } from "Common/Domain/Authentication/Types";
-import { delay, select } from "@redux-saga/core/effects";
+import {
+    AuthEventTypes,
+    AuthState,
+    AuthStateSelector,
+} from "Common/Domain/Authentication/Types";
+import {
+    delay, select, take, race, put,
+} from "@redux-saga/core/effects";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { getSecondsUntilExpiration } from "Common/Domain/Authentication/JWTHandling";
 import { authRefreshBeforeExpirationInSeconds } from "Common/Domain/Authentication/Authentication";
+import { UserWasLoggedOut } from "Common/Domain/Authentication/Event/UserWasLoggedOut";
+import { createUserAuthenticationWasRefreshed } from "Common/Domain/Authentication/Event/UserAuthenticationWasRefreshed";
+import {
+    createUserAuthenticationRefreshWasRequested,
+} from "Common/Domain/Authentication/Event/UserAuthenticationRefreshWasRequested";
 
 export function* handleAutomaticAuthenticationRefresh(authStateSelector: AuthStateSelector): Generator {
     while (true) {
@@ -14,8 +25,20 @@ export function* handleAutomaticAuthenticationRefresh(authStateSelector: AuthSta
             continue;
         }
         const secondsUntilExpiration = getSecondsUntilExpiration(currentAuthUser.token);
-        if (secondsUntilExpiration < authRefreshBeforeExpirationInSeconds) {
-            console.log('execute token refresh');
+        if (secondsUntilExpiration > authRefreshBeforeExpirationInSeconds) {
+            continue;
         }
+        console.log('execute token refresh'); // todo: execute automatic token refresh
+        put(createUserAuthenticationRefreshWasRequested(currentAuthUser));
+        // @ts-ignore
+        const raceResult: {logoutEvent?: UserWasLoggedOut} = yield race({
+            // todo: insert refresh auth api call here (with dispatched events)
+            logoutEvent: take(AuthEventTypes.USER_WAS_LOGGED_OUT),
+        });
+        if (raceResult.logoutEvent) {
+            return;
+        }
+        // todo: replace first param with new authUser from api call
+        put(createUserAuthenticationWasRefreshed(currentAuthUser, currentAuthUser));
     }
 }

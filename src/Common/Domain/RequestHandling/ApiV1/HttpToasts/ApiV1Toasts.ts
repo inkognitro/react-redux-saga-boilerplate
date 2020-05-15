@@ -1,7 +1,7 @@
 import { takeEvery, put, select } from "redux-saga/effects";
 import {
     ApiV1HttpEventTypes,
-    MessageTypes,
+
 } from "Common/Domain/RequestHandling/ApiV1/Http/Types";
 import { COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID } from "Common/Domain/Translator/Translation/en";
 import { createShowMessage } from "Common/Domain/Toaster/Command/ShowMessage";
@@ -13,6 +13,7 @@ import {
 import { findTranslatedText } from "Common/Domain/Translator/Query/TranslatedTextQuery";
 import { ApiV1HttpConnectionFailed } from "Common/Domain/RequestHandling/ApiV1/Http/Event/ApiV1HttpConnectionFailed";
 import { ApiV1HttpResponseWasReceived } from "Common/Domain/RequestHandling/ApiV1/Http/Event/ApiV1HttpResponseWasReceived";
+import {MessageTypes} from "Common/Domain/Model/Message";
 
 const apiV1EventTypesToWatch = [
     ApiV1HttpEventTypes.API_V1_HTTP_CONNECTION_FAILED,

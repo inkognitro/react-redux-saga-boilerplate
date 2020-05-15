@@ -18,10 +18,10 @@ export enum ToastTypes {
 export type MessageToAdd = {
   toastType: ToastTypes;
   mustBeShownInSeparateToast: boolean;
-  message: Message;
+  message: ToastMessage;
 };
 
-export type Message = {
+export type ToastMessage = {
   id: string;
   canBeClosedManually: boolean;
   automaticCloseDelayInMs: null | number;
@@ -33,7 +33,7 @@ export type Message = {
 export type Toast = {
   id: string;
   type: ToastTypes;
-  messages: Message[];
+  messages: ToastMessage[];
   isIntroAnimationRunning?: boolean;
   isOutroAnimationRunning?: boolean;
 };

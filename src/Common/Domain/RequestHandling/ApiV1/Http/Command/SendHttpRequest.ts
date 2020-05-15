@@ -9,9 +9,6 @@ export function createSendHttpRequest(request: HttpRequest): SendHttpRequest {
     };
 }
 
-export type SendHttpRequest = Command<
-  ApiV1CommandTypes.SEND_HTTP_REQUEST,
-  {
+export type SendHttpRequest = Command<ApiV1CommandTypes.SEND_HTTP_REQUEST, {
     request: HttpRequest;
-  }
->;
+}>;

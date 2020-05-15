@@ -1,74 +1,55 @@
 import { apiV1BaseUrl } from "Common/Domain/RequestHandling/ApiV1/Http/ApiV1Http";
-import { ReadResponseBody } from "Common/Domain/RequestHandling/ApiV1/Http/Types";
+import {ApiV1ReadResponse, ApiV1Response} from "Common/Domain/RequestHandling/ApiV1/Http/Types";
 import { User } from "Common/Domain/Model/User";
 import { call, put } from "redux-saga/effects";
 import { createPostRequest } from "Common/Domain/RequestHandling/Base/Http/Command/RequestFactory";
-import {
-    HttpRequest,
-    HttpResponse,
-} from "Common/Domain/RequestHandling/Base/Http/Types";
+import { HttpRequest } from "Common/Domain/RequestHandling/Base/Http/Types";
 import { createSendHttpRequest } from "Common/Domain/RequestHandling/ApiV1/Http/Command/SendHttpRequest";
-import { receiveHttpResponse } from "Common/Domain/RequestHandling/Base/Http/Saga/HttpResponseReceiving";
-
-type AuthenticateResponse = HttpResponse<
-  ReadResponseBody<{
-    token: string;
-    user: User;
-  }>
->;
+import {
+    receiveHttpResponse,
+} from "Common/Domain/RequestHandling/Base/Http/Saga/HttpResponseReceiving";
 
 export enum ResponseDataTypes {
   SUCCESS = "success",
   ERROR = "error",
 }
 
-export function* authenticate(
-    settings: AuthenticateSettings,
-): Generator<unknown, null | ResponseData> {
+export type Result = {
+    successData?: {
+        token: string;
+        user: User;
+    },
+    errorData?: {},
+};
+
+type AuthSettings = {
+    username: string
+    password: string
+};
+
+export function* authenticate(settings: AuthSettings): Generator<unknown, Result> {
     const request: HttpRequest = createPostRequest({
         url: `${apiV1BaseUrl}/auth/authenticate`,
         body: {
             username: settings.username,
             password: settings.password,
         },
-        isLoaderEnabled: settings.isLoaderEnabled,
     });
     yield put(createSendHttpRequest(request));
     // @ts-ignore
-    const response: AuthenticateResponse = yield call(
-        receiveHttpResponse,
-        request,
-    );
+    const response: ApiV1ReadResponse<{user: User, token: string}> = yield call(receiveHttpResponse, request);
     if (!response) {
-        return null;
+        return {};
     }
     if (response.statusCode === 200) {
         return {
-            type: ResponseDataTypes.SUCCESS,
-            token: response.body.data.token,
-            user: response.body.data.user,
+            successData: {
+                token: response.body.data.token,
+                user: response.body.data.user,
+            },
         };
     }
     return {
-    // @ts-ignore
-        type: ResponseDataTypes.ERROR,
+        errorData: {},
     };
 }
-
-export type ResponseData = ErrorData | SuccessData;
-
-type SuccessData = {
-  type: ResponseDataTypes.SUCCESS;
-  token: string;
-  user: User;
-};
-
-type ErrorData = {
-  type: ResponseDataTypes.ERROR;
-};
-
-type AuthenticateSettings = {
-  username: string;
-  password: string;
-  isLoaderEnabled: boolean;
-};

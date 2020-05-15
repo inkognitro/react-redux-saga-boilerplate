@@ -13,7 +13,7 @@ export enum HttpRequestMethods {
   DELETE = "DELETE",
 }
 
-export type HttpResponse<ResponseBody = object> = {
+export type HttpResponse<ResponseBody = {}> = {
   statusCode: number;
   body: ResponseBody;
 };

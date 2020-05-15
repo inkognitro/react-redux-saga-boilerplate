@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CloseIcon } from "Common/UI/Icon/CloseIcon";
 import { IconSizes, IconTypes } from "Common/UI/Icon/Icon";
 import { TimelineLite, Power1 } from "gsap";
-import { Message as MessageData } from "Common/Domain/Toaster/Types";
+import { ToastMessage as MessageData } from "Common/Domain/Toaster/Types";
 import styled from "styled-components";
 import { StyledComponentProps } from "Common/UI/Design/Types";
 

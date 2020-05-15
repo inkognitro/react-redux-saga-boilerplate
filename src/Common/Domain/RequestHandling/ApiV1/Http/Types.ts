@@ -1,28 +1,13 @@
+import { HttpResponse } from "Common/Domain/RequestHandling/Base/Http/Types";
+import { Message } from "Common/Domain/Model/Message";
+
 export type BasicResponseBody = {
   generalMessages?: Message[];
   fieldMessages?: FieldMessage[];
 };
 
-export type ReadResponseBody<Data = any> = BasicResponseBody & {
-  data: Data;
-};
-
-export enum MessageTypes {
-  INFO = "info",
-  SUCCESS = "success",
-  WARNING = "warning",
-  ERROR = "error",
-}
-
-export type Message = {
-  id: string;
-  type: MessageTypes;
-  translationId: string;
-  defaultText: string;
-  placeholders?: {
-    [key: string]: string;
-  };
-};
+export type ApiV1Response<Body = {}> = HttpResponse<(BasicResponseBody & Body)>
+export type ApiV1ReadResponse<Data = {}> = HttpResponse<(BasicResponseBody & {data: Data})>
 
 export enum ApiV1HttpEventTypes {
   API_V1_HTTP_RESPONSE_WAS_RECEIVED = "API_V1_HTTP_RESPONSE_WAS_RECEIVED-47406dac-1dc9-4831-a20a-ac917a944ddb",

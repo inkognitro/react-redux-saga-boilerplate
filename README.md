@@ -53,10 +53,12 @@ To build the app in the *dist* folder, run:
     npm run build:spa
     
 ## Open todos (WIP)
-1. Finalization of authentication module
-2. Test coverage
-3. (Concurrent saga performance analysis)
-4. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
+1. Beautify: ToastMessage should contain Model/Message as content
+2. Beautify: Decouple Loader from HttpBase
+3. Finalization of authentication module
+4. Test coverage
+5. (Concurrent saga performance analysis)
+6. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:
