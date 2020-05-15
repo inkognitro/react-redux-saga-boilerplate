@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CloseIcon } from "Common/UI/Icon/CloseIcon";
 import { IconSizes, IconTypes } from "Common/UI/Icon/Icon";
 import { TimelineLite, Power1 } from "gsap";
-import { ToastMessage as MessageData } from "Common/Domain/Toaster/Types";
+import { ToastMessage as ToastMessageData } from "Common/Domain/Toaster/Types";
 import styled from "styled-components";
 import { StyledComponentProps } from "Common/UI/Design/Types";
 
@@ -32,7 +32,7 @@ const StyledCloseIcon = styled(CloseIcon)`
 `;
 
 export type MessageProps = {
-  message: MessageData;
+  toastMessage: ToastMessageData;
   onRemove(): void;
 };
 
@@ -44,16 +44,16 @@ export class Message extends Component<MessageProps> {
   private outroAnimation: TimelineLite;
 
   componentDidMount() {
-      if (this.props.message.isIntroAnimationRunning) {
+      if (this.props.toastMessage.isIntroAnimationRunning) {
           this.playIntroAnimation();
       }
   }
 
   componentDidUpdate(prevProps: MessageProps) {
       if (
-          this.props.message.isOutroAnimationRunning
-        && prevProps.message.isOutroAnimationRunning
-        !== this.props.message.isOutroAnimationRunning
+          this.props.toastMessage.isOutroAnimationRunning
+        && prevProps.toastMessage.isOutroAnimationRunning
+        !== this.props.toastMessage.isOutroAnimationRunning
       ) {
           this.playOutroAnimation();
       }
@@ -94,7 +94,7 @@ export class Message extends Component<MessageProps> {
   }
 
   renderCloseIcon() {
-      if (!this.props.message.canBeClosedManually) {
+      if (!this.props.toastMessage.canBeClosedManually) {
           return null;
       }
       return (
@@ -106,12 +106,12 @@ export class Message extends Component<MessageProps> {
       );
   }
 
-  render() {
+  render() { // todo: render translated message! Use react context for that
       return (
           <StyledMessage ref={(element: HTMLDivElement) => { this.message = element; }}>
               <StyledMessageContent>
                   {this.renderCloseIcon()}
-                  {this.props.message.message}
+                  {this.props.toastMessage.message.content.defaultText}
               </StyledMessageContent>
           </StyledMessage>
       );

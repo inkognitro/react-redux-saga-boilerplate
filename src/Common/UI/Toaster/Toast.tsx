@@ -127,7 +127,7 @@ export class Toast extends Component<ToastProps> {
                   {this.props.toast.messages.map((message: MessageData) => (
                       <Message
                           key={message.id}
-                          message={message}
+                          toastMessage={message}
                           onRemove={() => this.props.onRemoveMessage(message.id)}
                       />
                   ))}
