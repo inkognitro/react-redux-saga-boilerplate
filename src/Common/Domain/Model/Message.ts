@@ -1,3 +1,5 @@
+import { Translation } from "Common/Domain/Model/Translation";
+
 export enum MessageTypes {
     INFO = "info",
     SUCCESS = "success",
@@ -10,9 +12,6 @@ export type Message = {
     type: MessageTypes;
     content: {
         defaultText: string
-        translationId?: string
-        placeholders?: {
-            [key: string]: string
-        };
+        translation?: Translation
     },
 }

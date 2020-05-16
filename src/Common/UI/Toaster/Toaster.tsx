@@ -23,16 +23,14 @@ export type ToasterProps = ToasterComponentState & ToasterComponentCallbacks;
 export const Toaster: FC<ToasterProps> = (props) => {
     const { toasts } = props;
     return (
-        <React.Fragment>
-            <StyledToastsContainer>
-                {toasts.map((toast: ToastData) => (
-                    <Toast
-                        key={toast.id}
-                        toast={toast}
-                        onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
-                    />
-                ))}
-            </StyledToastsContainer>
-        </React.Fragment>
+        <StyledToastsContainer>
+            {toasts.map((toast: ToastData) => (
+                <Toast
+                    key={toast.id}
+                    toast={toast}
+                    onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
+                />
+            ))}
+        </StyledToastsContainer>
     );
 };

@@ -10,12 +10,9 @@ const StyledMessage = styled.div`
   position: relative;
   background-color: white;
   width: 250px;
-  border-bottom: 1px solid
-    ${(props: StyledComponentProps) => props.theme.colorSmoothLineOnWhite};
+  border-bottom: 1px solid ${(props: StyledComponentProps) => props.theme.colorSmoothLineOnWhite};
 
-  &:last-child {
-    border-bottom: 0;
-  }
+  &:last-child { border-bottom: 0; }
 `;
 
 const StyledMessageContent = styled.div`
