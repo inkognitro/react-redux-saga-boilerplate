@@ -27,8 +27,8 @@ export function createApiV1HttpToastsSaga(): () => Generator {
                             id: '5d1f6d84-5199-4a75-9a58-c9eb42f2d3e1',
                             type: MessageTypes.ERROR,
                             content: {
-                                defaultText: 'Could not connect to server.',
                                 translationId: COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID,
+                                fallback: 'Could not connect to server.',
                             },
                         },
                     }),

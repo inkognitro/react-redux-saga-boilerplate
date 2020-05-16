@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Message } from "Common/UI/Toaster/Message";
 import { Power1, TimelineLite } from "gsap";
 import {
-    ToastMessage as MessageData,
+    Message as MessageData,
     Toast as ToastData,
     ToastTypes,
 } from "Common/Domain/Toaster/Types";
 import styled from "styled-components";
 import { StyledComponentProps } from "Common/UI/Design/Types";
 import { createBoxShadowCss } from "Common/UI/Design/StyleFactory";
+import {TranslatorState} from "Common/Domain/Translator/Types";
 
 const StyledToast = styled.div`
   margin-top: 20px;
@@ -33,8 +34,9 @@ const StyledToast = styled.div`
 `;
 
 export type ToastProps = {
-  toast: ToastData;
-  onRemoveMessage(messageId: string): void;
+    translatorState: TranslatorState
+    toast: ToastData
+    onRemoveMessage(messageId: string): void
 };
 
 export class Toast extends Component<ToastProps> {
@@ -127,7 +129,8 @@ export class Toast extends Component<ToastProps> {
                   {this.props.toast.messages.map((message: MessageData) => (
                       <Message
                           key={message.id}
-                          toastMessage={message}
+                          translatorState={this.props.translatorState}
+                          messageData={message}
                           onRemove={() => this.props.onRemoveMessage(message.id)}
                       />
                   ))}

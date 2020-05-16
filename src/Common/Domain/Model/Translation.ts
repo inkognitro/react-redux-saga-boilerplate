@@ -4,5 +4,6 @@ export type Placeholders = {
 
 export type Translation = {
     translationId: string
-    placeholders?: Placeholders
+    placeholders?: Placeholders,
+    fallback?: string,
 }

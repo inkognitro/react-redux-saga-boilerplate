@@ -1,5 +1,5 @@
 import {
-    ToastMessage,
+    Message,
     Toast,
     ToasterState,
     ToasterStateSelector,
@@ -42,7 +42,7 @@ function getToastsToMerge(toasterState: ToasterState): Toast[] {
     return toastsToMerge;
 }
 
-function* startAutomaticMessageCloseTimer(message: ToastMessage): Generator {
+function* startAutomaticMessageCloseTimer(message: Message): Generator {
     if (!message.automaticCloseDelayInMs) {
         return;
     }
@@ -50,7 +50,7 @@ function* startAutomaticMessageCloseTimer(message: ToastMessage): Generator {
     yield put(createRemoveMessage(message.id));
 }
 
-function* startAutomaticMessageCloseTimers(messages: ToastMessage[]): Generator {
+function* startAutomaticMessageCloseTimers(messages: Message[]): Generator {
     for (const index in messages) {
         const message = messages[index];
         yield spawn(startAutomaticMessageCloseTimer, message);

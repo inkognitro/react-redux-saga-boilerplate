@@ -8,7 +8,7 @@ type TranslationProps = {
 };
 
 const mapStateToProps = (rootState: RootState, props: TranslationProps): TranslationComponentState => ({
-    getTranslatorState: () => rootState.translator,
+    translatorState: rootState.translator,
     translationData: props.translationData,
 });
 

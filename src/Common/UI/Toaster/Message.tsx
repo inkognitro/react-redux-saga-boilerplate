@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { CloseIcon } from "Common/UI/Icon/CloseIcon";
 import { IconSizes, IconTypes } from "Common/UI/Icon/Icon";
 import { TimelineLite, Power1 } from "gsap";
-import { ToastMessage as ToastMessageData } from "Common/Domain/Toaster/Types";
+import { Message as MessageData } from "Common/Domain/Toaster/Types";
 import styled from "styled-components";
 import { StyledComponentProps } from "Common/UI/Design/Types";
+import { Translation } from "Common/UI/Model/Translation";
+import { TranslatorState } from "Common/Domain/Translator/Types";
 
 const StyledMessage = styled.div`
   position: relative;
@@ -29,8 +31,9 @@ const StyledCloseIcon = styled(CloseIcon)`
 `;
 
 export type MessageProps = {
-  toastMessage: ToastMessageData;
-  onRemove(): void;
+    translatorState: TranslatorState
+    messageData: MessageData
+    onRemove(): void
 };
 
 export class Message extends Component<MessageProps> {
@@ -41,16 +44,16 @@ export class Message extends Component<MessageProps> {
   private outroAnimation: TimelineLite;
 
   componentDidMount() {
-      if (this.props.toastMessage.isIntroAnimationRunning) {
+      if (this.props.messageData.isIntroAnimationRunning) {
           this.playIntroAnimation();
       }
   }
 
   componentDidUpdate(prevProps: MessageProps) {
       if (
-          this.props.toastMessage.isOutroAnimationRunning
-        && prevProps.toastMessage.isOutroAnimationRunning
-        !== this.props.toastMessage.isOutroAnimationRunning
+          this.props.messageData.isOutroAnimationRunning
+        && prevProps.messageData.isOutroAnimationRunning
+        !== this.props.messageData.isOutroAnimationRunning
       ) {
           this.playOutroAnimation();
       }
@@ -91,7 +94,7 @@ export class Message extends Component<MessageProps> {
   }
 
   renderCloseIcon() {
-      if (!this.props.toastMessage.canBeClosedManually) {
+      if (!this.props.messageData.canBeClosedManually) {
           return null;
       }
       return (
@@ -108,7 +111,10 @@ export class Message extends Component<MessageProps> {
           <StyledMessage ref={(element: HTMLDivElement) => { this.message = element; }}>
               <StyledMessageContent>
                   {this.renderCloseIcon()}
-                  {this.props.toastMessage.message.content.defaultText}
+                  <Translation
+                      translatorState={this.props.translatorState}
+                      translationData={this.props.messageData.content}
+                  />
               </StyledMessageContent>
           </StyledMessage>
       );

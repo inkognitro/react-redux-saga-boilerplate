@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Toast as ToastData } from "Common/Domain/Toaster/Types";
 import styled from "styled-components";
 import { Toast } from "Common/UI/Toaster/Toast";
+import { TranslatorState } from "Common/Domain/Translator/Types";
 
 const StyledToastsContainer = styled.div`
   position: fixed;
@@ -11,7 +12,8 @@ const StyledToastsContainer = styled.div`
 `;
 
 export type ToasterComponentState = {
-    toasts: ToastData[];
+    translatorState: TranslatorState
+    toasts: ToastData[]
 };
 
 export type ToasterComponentCallbacks = {
@@ -27,6 +29,7 @@ export const Toaster: FC<ToasterProps> = (props) => {
             {toasts.map((toast: ToastData) => (
                 <Toast
                     key={toast.id}
+                    translatorState={props.translatorState}
                     toast={toast}
                     onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
                 />

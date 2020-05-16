@@ -7,7 +7,7 @@ import { ToastIntroAnimationWasFinished } from "Common/Domain/Toaster/Event/Toas
 import { ToastOutroAnimationWasStarted } from "Common/Domain/Toaster/Event/ToastOutroAnimationWasStarted";
 import { ToastWasAdded } from "Common/Domain/Toaster/Event/ToastWasAdded";
 import { ToastWasRemoved } from "Common/Domain/Toaster/Event/ToastWasRemoved";
-import { Message } from "Common/Domain/Model/Message";
+import {Translation} from "Common/Domain/Model/Translation";
 
 export enum ToastTypes {
   INFO = "info",
@@ -19,14 +19,14 @@ export enum ToastTypes {
 export type MessageToAdd = {
   toastType: ToastTypes;
   mustBeShownInSeparateToast: boolean;
-  message: ToastMessage;
+  message: Message;
 };
 
-export type ToastMessage = {
+export type Message = {
   id: string;
   canBeClosedManually: boolean;
   automaticCloseDelayInMs: null | number;
-  message: Message;
+  content: Translation;
   isIntroAnimationRunning?: boolean;
   isOutroAnimationRunning?: boolean;
 };
@@ -34,7 +34,7 @@ export type ToastMessage = {
 export type Toast = {
   id: string;
   type: ToastTypes;
-  messages: ToastMessage[];
+  messages: Message[];
   isIntroAnimationRunning?: boolean;
   isOutroAnimationRunning?: boolean;
 };

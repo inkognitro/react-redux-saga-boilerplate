@@ -4,20 +4,19 @@ import { findTranslatedText } from "Common/Domain/Translator/Query/TranslatedTex
 import { Translation as TranslationData } from "Common/Domain/Model/Translation";
 
 export type TranslationComponentState = {
-    getTranslatorState: () => TranslatorState
+    translatorState: TranslatorState,
     translationData: TranslationData,
-    translationFallback?: string,
 };
 
 export type TranslationProps = TranslationComponentState;
 
 export const Translation: FC<TranslationProps> = (props) => {
-    const translatedText = findTranslatedText(props.getTranslatorState(), props.translationData);
-    if (translatedText === null && props.translationFallback) {
-        return props.translationFallback;
+    const translatedText = findTranslatedText(props.translatorState, props.translationData);
+    if (translatedText !== null) {
+        return translatedText;
     }
-    if (translatedText === null) {
-        return props.translationData.translationId;
+    if (props.translationData.fallback) {
+        return props.translationData.fallback;
     }
-    return translatedText;
+    return props.translationData.translationId;
 };

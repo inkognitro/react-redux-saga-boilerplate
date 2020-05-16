@@ -10,8 +10,5 @@ export enum MessageTypes {
 export type Message = {
     id: string;
     type: MessageTypes;
-    content: {
-        defaultText: string
-        translation?: Translation
-    },
+    content: Translation,
 }
