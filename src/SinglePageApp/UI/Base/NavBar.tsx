@@ -6,6 +6,8 @@ import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { findCurrentAuthUser } from "Common/Domain/Authentication/Query/CurrentAuthUserQuery";
 import { AuthUser } from "Common/Domain/Authentication/Types";
 import { createHomeRouteUrl, createLoginRouteUrl } from "SinglePageApp/Domain/Routing/Routes";
+import { Dispatch } from "redux";
+import {createLogout} from "Common/Domain/Authentication/Command/Logout";
 
 type RepresentationalNavBarState = {
   currentUser: AuthUser | null;
@@ -51,8 +53,8 @@ const mapStateToProps = (state: RootState): RepresentationalNavBarState => ({
     currentUser: findCurrentAuthUser(state.authentication),
 });
 
-const mapDispatchToProps = (): RepresentationalNavBarCallbacks => ({
-    onClickLogout: (): void => console.log("logout"),
+const mapDispatchToProps = (dispatch: Dispatch): RepresentationalNavBarCallbacks => ({
+    onClickLogout: () => dispatch(createLogout()),
 });
 
 export const NavBar = connect(mapStateToProps, mapDispatchToProps)(RepresentationalNavBar);
