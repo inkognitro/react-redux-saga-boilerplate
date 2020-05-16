@@ -66,7 +66,7 @@ export function* handleShowMessage(
         mustBeShownInSeparateToast: !!command.payload.mustBeShownInSeparateToast,
         message: {
             id: command.payload.id ? command.payload.id : uuidV4(),
-            message: command.payload.content,
+            content: command.payload.content,
             automaticCloseDelayInMs: createAutomaticCloseDelayInMs(command.payload),
             canBeClosedManually: createCanBeClosedManually(command.payload),
         },

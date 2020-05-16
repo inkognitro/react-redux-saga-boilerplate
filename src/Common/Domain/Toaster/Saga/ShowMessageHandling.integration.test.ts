@@ -8,14 +8,19 @@ import {
 import { expectSaga } from "redux-saga-test-plan";
 import { handleShowMessage } from "Common/Domain/Toaster/Saga/ShowMessageHandling";
 import { CommonToastIds } from "Common/Domain/Toaster/Query/CommonToastIdByTypeQuery";
+import uuidV4 from "uuid/v4";
 
 describe("Dispatching ShowMessage command", () => {
     it("should add a message", () => {
         const toasterStateSelector: ToasterStateSelector = (state: ToasterState) => state;
+        const translationId = uuidV4();
         const command = createShowMessage({
             id: "1234",
             toastType: ToastTypes.INFO,
-            content: "foo",
+            content: {
+                translationId,
+                fallback: 'foo',
+            },
         });
         const expectedState: ToasterState = {
             messagesToAdd: [],
@@ -26,7 +31,10 @@ describe("Dispatching ShowMessage command", () => {
                     messages: [
                         {
                             id: "1234",
-                            message: "foo",
+                            content: {
+                                translationId,
+                                fallback: 'foo',
+                            },
                             canBeClosedManually: true,
                             automaticCloseDelayInMs: null,
                             isIntroAnimationRunning: false,
@@ -35,23 +43,6 @@ describe("Dispatching ShowMessage command", () => {
                     isIntroAnimationRunning: true,
                 },
             ],
-        };
-        return expectSaga(handleShowMessage, toasterStateSelector, command)
-            .withReducer(toasterReducer)
-            .hasFinalState(expectedState)
-            .run(false);
-    });
-
-    it("should not add message without content", () => {
-        const toasterStateSelector: ToasterStateSelector = (state: ToasterState) => state;
-        const command = createShowMessage({
-            id: "1234",
-            toastType: ToastTypes.INFO,
-            content: "",
-        });
-        const expectedState: ToasterState = {
-            messagesToAdd: [],
-            toasts: [],
         };
         return expectSaga(handleShowMessage, toasterStateSelector, command)
             .withReducer(toasterReducer)

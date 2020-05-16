@@ -12,6 +12,7 @@ import { createLeakReduxState } from "SinglePageApp/Domain/Routing/HomePage/Comm
 import { ContentPage } from "SinglePageApp/UI/Base/PageTypes/ContentPage";
 import { RootState } from "SinglePageApp/Bootstrap/ServicesFactory";
 import { TextFieldState } from "Common/Domain/FormUtils/FormElements/Types";
+import uuidV4 from 'uuid/v4';
 
 type DumbHomePageCallbacks = {
     onClickLogin: () => void;
@@ -91,6 +92,7 @@ const mapStateToProps = (state: RootState): DumbHomePageState => ({
 const mapDispatchToProps = (dispatch: Dispatch): DumbHomePageCallbacks => ({
     onClickLogin: () => dispatch(
         createLogin({
+            loginId: uuidV4(),
             username: "sonGoku",
             password: "1234",
             shouldRemember: false,
@@ -98,7 +100,10 @@ const mapDispatchToProps = (dispatch: Dispatch): DumbHomePageCallbacks => ({
     ),
     onAddToast: (type: ToastTypes, content: string) => dispatch(
         createShowMessage({
-            content,
+            content: {
+                translationId: uuidV4(),
+                fallback: content,
+            },
             toastType: type,
         }),
     ),

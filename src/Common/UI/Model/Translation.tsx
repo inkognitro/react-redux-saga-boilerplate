@@ -4,9 +4,9 @@ import { findTranslatedText } from "Common/Domain/Translator/Query/TranslatedTex
 import { Translation as TranslationData } from "Common/Domain/Model/Translation";
 
 export type TranslationComponentState = {
-    translatorState: TranslatorState,
-    translationData: TranslationData,
-};
+    translatorState: TranslatorState
+    translationData: TranslationData
+}
 
 export type TranslationProps = TranslationComponentState;
 
