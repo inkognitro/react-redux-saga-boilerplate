@@ -2,15 +2,14 @@ import { HttpRequestDispatcher } from "Common/Domain/RequestHandling/Base/Http/H
 import {
     HttpRequest,
     HttpRequestResponse,
-    HttpResponse,
 } from "Common/Domain/RequestHandling/Base/Http/Types";
-import { ReadResponseBody } from "Common/Domain/RequestHandling/ApiV1/Http/Types";
+import { ApiV1ReadResponse } from "Common/Domain/RequestHandling/ApiV1/Http/Types";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(request: HttpRequest): Promise<HttpRequestResponse> {
         console.info("MockHttpRequestDispatcher.executeRequest:");
         console.info(request);
-        const response: HttpResponse<ReadResponseBody> = {
+        const response: ApiV1ReadResponse = {
             statusCode: 200,
             body: {
                 generalMessages: [],

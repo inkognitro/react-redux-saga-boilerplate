@@ -43,7 +43,7 @@ const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
 );
 
 const mapStateToProps = (state: RootState): LoginPageComponentState => ({
-    data: state.routing.loginPage,
+    data: state.routing.authPages.loginPage,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LoginPageComponentCallbacks => ({

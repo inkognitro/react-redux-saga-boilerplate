@@ -13,10 +13,10 @@ export type TranslationProps = TranslationComponentState;
 export const Translation: FC<TranslationProps> = (props) => {
     const translatedText = findTranslatedText(props.translatorState, props.translationData);
     if (translatedText !== null) {
-        return translatedText;
+        return (<React.Fragment>{translatedText}</React.Fragment>);
     }
     if (props.translationData.fallback) {
-        return props.translationData.fallback;
+        return (<React.Fragment>{props.translationData.fallback}</React.Fragment>);
     }
-    return props.translationData.translationId;
+    return (<React.Fragment>{props.translationData.translationId}</React.Fragment>);
 };

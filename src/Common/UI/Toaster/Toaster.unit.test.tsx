@@ -1,12 +1,17 @@
 import React from "react";
-import { Toaster } from "Common/UI/Toaster/Toaster";
-import { shallow } from "enzyme";
-import { ToastTypes } from "Common/Domain/Toaster/Types";
+import {Toaster} from "Common/UI/Toaster/Toaster";
+import {shallow} from "enzyme";
+import {ToastTypes} from "Common/Domain/Toaster/Types";
+import {LanguageIds} from "Common/Domain/Translator/Types";
 
 describe("Toaster", () => {
     it("should render", () => {
         shallow(
             <Toaster
+                translatorState={{
+                    currentLanguageId: LanguageIds.EN,
+                    translations: {},
+                }}
                 toasts={[
                     {
                         id: "foo",
@@ -16,7 +21,10 @@ describe("Toaster", () => {
                                 id: "foo123",
                                 canBeClosedManually: true,
                                 automaticCloseDelayInMs: null,
-                                message: "bar",
+                                content: {
+                                    translationId: 'foo',
+                                    fallback: 'bar',
+                                },
                             },
                         ],
                     },
