@@ -1,7 +1,9 @@
 import { spawn, takeEvery } from "redux-saga/effects";
 import { AuthCommandTypes, AuthStateSelector } from "Packages/Common/Domain/Authentication/Types";
 import { handleLogin } from "Packages/Common/Domain/Authentication/Saga/Flows/LoginHandling";
-import { handleAutomaticAuthenticationRefresh } from "Packages/Common/Domain/Authentication/Saga/Flows/AutomaticAuthRefreshHandling";
+import {
+    handleAutomaticAuthenticationRefresh,
+} from "Packages/Common/Domain/Authentication/Saga/Flows/AutomaticAuthRefreshHandling";
 import { handleLogout } from "Packages/Common/Domain/Authentication/Saga/Flows/LogoutHandling";
 
 export const authTokenCookieName = 'authUser';

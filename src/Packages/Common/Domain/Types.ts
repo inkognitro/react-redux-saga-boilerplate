@@ -7,7 +7,7 @@ export enum MessageTypes {
 
 export type Placeholders = {
     [key: string]: string;
-};
+}
 
 export type Translation = {
     translationId: string
@@ -26,8 +26,8 @@ export type FieldMessage = {
     message: Message
 }
 
-export type ResultWithMessages<Result> = {
-    generalMessages?: Message[]
-    fieldMessages?: FieldMessage[]
-    result: Result
+export type ResultWithMessages<Data> = {
+    generalMessages: Message[]
+    fieldMessages: FieldMessage[]
+    data: Data
 }

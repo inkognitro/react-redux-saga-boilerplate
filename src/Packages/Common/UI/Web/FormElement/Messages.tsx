@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ErrorIcon } from "Packages/Common/UI/Web/Icon/ErrorIcon";
 import { IconSizes, IconTypes } from "Packages/Common/UI/Web/Icon/Icon";
-import {Message, MessageTypes} from "Packages/Common/Domain/Types";
+import { Message as MessageData, MessageTypes } from "Packages/Common/Domain/Types";
 
 export type MessageProps = {
     message: MessageData;

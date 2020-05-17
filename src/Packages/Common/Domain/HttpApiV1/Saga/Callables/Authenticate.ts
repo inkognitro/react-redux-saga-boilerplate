@@ -9,18 +9,11 @@ import {
     receiveHttpResponse,
 } from "Packages/Common/Domain/HttpFoundation/Saga/Callables/HttpResponseReceiving";
 import { AuthUser } from "Packages/Common/Domain/Authentication/Types";
-import {FieldMessage, Message} from "Packages/Common/Domain/Types";
+import { ResultWithMessages } from "Packages/Common/Domain/Types";
 
-export type AuthenticateResult = {
-    successData?: {
-        generalMessages: Message[]
-        authUser: AuthUser
-    },
-    errorData?: {
-        generalMessages?: Message[]
-        fieldMessages?: FieldMessage[]
-    },
-};
+export type AuthenticateResult = (null | ResultWithMessages<{
+    authUser?: AuthUser
+}>);
 
 type AuthSettings = {
     username: string
@@ -39,7 +32,7 @@ export function* authenticate(settings: AuthSettings): Generator<unknown, Authen
     // @ts-ignore
     const response: ApiV1ReadResponse<{user: User, token: string}> = yield call(receiveHttpResponse, request);
     if (!response) {
-        return {};
+        return null;
     }
     const baseResult = {
         generalMessages: (response.body.generalMessages ? response.body.generalMessages : []),
@@ -47,8 +40,8 @@ export function* authenticate(settings: AuthSettings): Generator<unknown, Authen
     };
     if (response.statusCode === 200) {
         return {
-            successData: {
-                ...baseResult,
+            ...baseResult,
+            data: {
                 authUser: {
                     token: response.body.data.token,
                     user: response.body.data.user,
@@ -57,6 +50,7 @@ export function* authenticate(settings: AuthSettings): Generator<unknown, Authen
         };
     }
     return {
-        errorData: baseResult,
+        ...baseResult,
+        data: {},
     };
 }
