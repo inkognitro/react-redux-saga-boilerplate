@@ -1,13 +1,13 @@
 import React, { FC } from "react";
-import { Message as MessageData, MessageTypes } from "Packages/Common/Domain/FormElement/Types";
 import { ErrorIcon } from "Packages/Common/UI/Web/Icon/ErrorIcon";
 import { IconSizes, IconTypes } from "Packages/Common/UI/Web/Icon/Icon";
+import { Message as MessageData, MessageTypes } from "Entity/Domain/Message";
 
 export type MessageProps = {
-  message: MessageData;
+    message: MessageData;
 };
 
-const Message: FC<MessageProps> = (props) => {
+const Message: FC<MessageProps> = (props) => { // todo: message content should be TranslatedText (after integration via context)
     if (props.message.type === MessageTypes.ERROR) {
         return (
             <small className="text-danger">
@@ -21,7 +21,7 @@ const Message: FC<MessageProps> = (props) => {
 };
 
 export type MessagesProps = {
-  messages: MessageData[];
+    messages: MessageData[];
 };
 
 export const Messages: FC<MessagesProps> = (props) => {

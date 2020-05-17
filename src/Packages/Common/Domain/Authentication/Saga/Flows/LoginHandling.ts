@@ -4,9 +4,8 @@ import {
 import { Login } from "Packages/Common/Domain/Authentication/Command/Login";
 import {
     authenticate,
-    Result,
-    ResponseDataTypes,
-} from "Packages/Common/Domain/HttpApiV1/Saga/Auth/Authenticate";
+    AuthenticateResult,
+} from "Packages/Common/Domain/HttpApiV1/Saga/Callables/Authenticate";
 import { createUserLoginFailed } from "Packages/Common/Domain/Authentication/Event/UserLoginFailed";
 import { AuthState, AuthStateSelector, AuthUser } from "Packages/Common/Domain/Authentication/Types";
 import { createSaveCookie } from "Packages/Common/Domain/Cookie/Command/SaveCookie";
@@ -29,7 +28,7 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
     }
     try {
         // @ts-ignore
-        const result: Result = yield call(authenticate, {
+        const result: AuthenticateResult = yield call(authenticate, {
             username: command.payload.username,
             password: command.payload.password,
         });
@@ -52,7 +51,7 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             yield put(createUserWasLoggedIn(command.payload, authUser));
             return;
         }
-        if (result.errorData === ResponseDataTypes.ERROR) {
+        if (result.errorData) {
             yield put(createUserLoginFailed(command.payload));
             return;
         }

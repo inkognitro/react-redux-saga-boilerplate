@@ -1,5 +1,6 @@
 import { FormElementStateWasChanged } from "Packages/Common/Domain/FormElement/Event/FormElementStateWasChanged";
 import { FormElementStatesWereChanged } from "Packages/Common/Domain/FormElement/Event/FormElementStatesWereChanged";
+import { Message } from "Entity/Domain/Message";
 
 export enum FormElementCommandTypes {
     CHANGE_FORM_ELEMENT_STATE = 'CHANGE_FORM_ELEMENT_STATE-1d8df24a-9de9-49c5-bcdc-659b5d4267e7',
@@ -15,16 +16,6 @@ export enum FormElementTypes {
     TEXT = 'text',
     EMAIL = 'email',
     PASSWORD = "password",
-}
-
-export type Message = {
-    id: string;
-    type: MessageTypes;
-    content: string;
-};
-
-export enum MessageTypes {
-    ERROR = "error",
 }
 
 export interface BasicFormElementState {

@@ -8,18 +8,21 @@ import { createSendHttpRequest } from "Packages/Common/Domain/HttpApiV1/Command/
 import {
     receiveHttpResponse,
 } from "Packages/Common/Domain/HttpFoundation/Saga/Callables/HttpResponseReceiving";
+import { FieldPathMessage } from "Packages/Common/Domain/Form/Types";
+import { Message } from "Entity/Domain/Message";
 
-export enum ResponseDataTypes {
-  SUCCESS = "success",
-  ERROR = "error",
-}
-
-export type Result = {
+export type AuthenticateResult = {
     successData?: {
-        token: string;
-        user: User;
+        generalMessages: Message[]
+        data: {
+            token: string
+            user: User
+        }
     },
-    errorData?: {},
+    errorData?: {
+        generalMessages?: Message[]
+        fieldMessages?: FieldPathMessage[]
+    },
 };
 
 type AuthSettings = {
@@ -27,7 +30,7 @@ type AuthSettings = {
     password: string
 };
 
-export function* authenticate(settings: AuthSettings): Generator<unknown, Result> {
+export function* authenticate(settings: AuthSettings): Generator<unknown, AuthenticateResult> {
     const request: Request = createPostRequest({
         url: `${apiV1BaseUrl}/auth/authenticate`,
         body: {
@@ -41,15 +44,22 @@ export function* authenticate(settings: AuthSettings): Generator<unknown, Result
     if (!response) {
         return {};
     }
+    const baseResult = {
+        generalMessages: (response.body.generalMessages ? response.body.generalMessages : []),
+        fieldMessages: (response.body.fieldMessages ? response.body.fieldMessages : []),
+    };
     if (response.statusCode === 200) {
         return {
             successData: {
-                token: response.body.data.token,
-                user: response.body.data.user,
+                ...baseResult,
+                data: {
+                    token: response.body.data.token,
+                    user: response.body.data.user,
+                },
             },
         };
     }
     return {
-        errorData: {},
+        errorData: baseResult,
     };
 }

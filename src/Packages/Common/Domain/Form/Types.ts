@@ -1,6 +1,7 @@
 import { FormElementState } from "Packages/Common/Domain/FormElement/Types";
 import { FormWasSetToRunningRequestMode } from "Packages/Common/Domain/Form/Event/FormWasSetToRunningRequestMode";
 import { FormWasSetToNoRunningRequestMode } from "Packages/Common/Domain/Form/Event/FormWasSetToNoRunningRequestMode";
+import { Message } from "Entity/Domain/Message";
 
 export enum FormCommandTypes {
     SUBMIT_FORM = 'SUBMIT_FORM-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
@@ -20,6 +21,9 @@ export type FormState<SpecificElementsByName = {}> = {
     elementsByName: FormElementsByName<SpecificElementsByName>
 };
 
-export type FormElementsByName<SpecificElementsByName> = (
-    { [name: string]: FormElementState} & SpecificElementsByName
-)
+export type FormElementsByName<SpecificElementsByName> = ({ [name: string]: FormElementState} & SpecificElementsByName)
+
+export type FieldPathMessage = {
+    fieldPath: (string | number)[] // e.g. ['users', 0, 'username']
+    message: Message
+}
