@@ -12,7 +12,7 @@ module.exports = merge(baseConfiguration, {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/WebSPA/index.html',
+            template: './src/Apps/WebSPA/index.html',
         }),
     ],
 });
