@@ -13,9 +13,9 @@
     "target": "es6",
     "baseUrl": "./src",
     "paths": {
+      "Apps/*": ["./Apps/*"],
       "Entity/*": ["./Entity/*"],
       "Packages/*": ["./Packages/*"],
-      "SinglePageWebApp/*": ["./SinglePageWebApp/*"]
     },
     "removeComments": true,
     "allowUnreachableCode": false,
