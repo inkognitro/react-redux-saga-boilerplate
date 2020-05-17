@@ -78,7 +78,7 @@ To build the app in the *dist* folder, run:
 11. Linting with Airbnb presets
 
 ## Modules
-- [Common/Domain/Form/README.md](src/Packages/Common/Domain/Form/README.md)
+- [Packages/Common/Domain/Form/README.md](src/Packages/Common/Domain/Form/README.md)
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
@@ -153,7 +153,7 @@ To execute the tests, run:
 Tests are organized as follow:
 - The file suffix `.test.ts` is required
 - A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
+- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Packages/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
 Read a [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.

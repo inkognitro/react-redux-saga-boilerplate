@@ -17,7 +17,7 @@ import uuidV4 from "uuid/v4";
 import { createMessageWasAddedToPipeline } from "Packages/Common/Domain/Toaster/Event/MessageWasAddedToPipeline";
 import {
     moveMessagesFromPipelineToToastsHandling,
-} from "Packages/Common/Domain/Toaster/Saga/MoveMessagesFromPipelineToToastsHandling";
+} from "Packages/Common/Domain/Toaster/Saga/Flow/MoveMessagesFromPipelineToToastsHandling";
 
 function createAutomaticCloseDelayInMs(
     settings: ShowMessageSettings,
@@ -44,16 +44,10 @@ export function* handleShowMessage(
 ): Generator {
     // @ts-ignore
     const toasterState: ToasterState = yield select(toasterStateSelector);
-    if (
-        command.payload.id
-    && findToastByMessageId(toasterState, command.payload.id)
-    ) {
+    if (command.payload.id && findToastByMessageId(toasterState, command.payload.id)) {
         return;
     }
-    if (
-        command.payload.id
-    && findMessageToAddByMessageId(toasterState, command.payload.id)
-    ) {
+    if (command.payload.id && findMessageToAddByMessageId(toasterState, command.payload.id)) {
         return;
     }
     if (!command.payload.content) {

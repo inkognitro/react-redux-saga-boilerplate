@@ -1,7 +1,7 @@
 import { spawn, takeEvery } from "redux-saga/effects";
 import { ToasterCommandTypes, ToasterStateSelector } from "Packages/Common/Domain/Toaster/Types";
-import { handleShowMessage } from "Packages/Common/Domain/Toaster/Saga/ShowMessageHandling";
-import { handleRemoveMessage } from "Packages/Common/Domain/Toaster/Saga/RemoveMessageHandling";
+import { handleShowMessage } from "Packages/Common/Domain/Toaster/Saga/Flow/ShowMessageHandling";
+import { handleRemoveMessage } from "Packages/Common/Domain/Toaster/Saga/Flow/RemoveMessageHandling";
 
 export function createToasterSaga(
     toasterStateSelector: ToasterStateSelector,

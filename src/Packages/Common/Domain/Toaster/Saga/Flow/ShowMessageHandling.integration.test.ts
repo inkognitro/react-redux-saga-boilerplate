@@ -6,7 +6,7 @@ import {
     ToastTypes,
 } from "Packages/Common/Domain/Toaster/Types";
 import { expectSaga } from "redux-saga-test-plan";
-import { handleShowMessage } from "Packages/Common/Domain/Toaster/Saga/ShowMessageHandling";
+import { handleShowMessage } from "Packages/Common/Domain/Toaster/Saga/Flow/ShowMessageHandling";
 import { CommonToastIds } from "Packages/Common/Domain/Toaster/Query/CommonToastIdByTypeQuery";
 import uuidV4 from "uuid/v4";
 
