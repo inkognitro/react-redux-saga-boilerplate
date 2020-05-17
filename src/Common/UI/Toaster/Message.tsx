@@ -69,7 +69,7 @@ export class Message extends Component<MessageProps> {
       this.introAnimation.fromTo(
           this.message,
           { x: "100%" },
-          { x: "0%", duration: 0.8, ease: Power1.easeOut },
+          { x: "0%", duration: 0.5, ease: Power1.easeOut },
       );
       this.introAnimation.set(this.message, { height: "" });
       this.introAnimation.play();

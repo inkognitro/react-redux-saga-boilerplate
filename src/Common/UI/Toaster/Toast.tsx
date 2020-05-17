@@ -70,14 +70,14 @@ export class Toast extends Component<ToastProps> {
       this.introAnimation.fromTo(
           this.toastWrapperElement,
           { height: 0 },
-          { height: "auto", duration: 0.5 },
+          { height: "auto", duration: 0.3 },
           "start",
       );
       this.introAnimation.fromTo(
           this.toastElement,
           { opacity: 0, y: -25 },
           {
-              opacity: 1, y: 0, marginTop: 20, duration: 0.8, ease: Power1.easeOut,
+              opacity: 1, y: 0, marginTop: 20, duration: 0.5, ease: Power1.easeOut,
           },
           "start",
       );
