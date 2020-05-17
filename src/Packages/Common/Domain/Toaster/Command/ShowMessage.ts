@@ -1,6 +1,6 @@
 import { Command } from "Packages/Common/Domain/Bus/Command";
 import { ToasterCommandTypes, ToastTypes } from "Packages/Common/Domain/Toaster/Types";
-import { Translation } from "Packages/../../../../../Entity/Domain/Translation/Translation";
+import { Translation } from "Entity/Domain/Translation";
 
 export function createShowMessage(settings: ShowMessageSettings): ShowMessage {
     return {

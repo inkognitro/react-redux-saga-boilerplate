@@ -7,7 +7,7 @@ import { ToastIntroAnimationWasFinished } from "Packages/Common/Domain/Toaster/E
 import { ToastOutroAnimationWasStarted } from "Packages/Common/Domain/Toaster/Event/ToastOutroAnimationWasStarted";
 import { ToastWasAdded } from "Packages/Common/Domain/Toaster/Event/ToastWasAdded";
 import { ToastWasRemoved } from "Packages/Common/Domain/Toaster/Event/ToastWasRemoved";
-import { Translation } from "Packages/../../../../Entity/Domain/Translation/Translation";
+import { Translation } from "Entity/Domain/Translation";
 
 export enum ToastTypes {
   INFO = "info",

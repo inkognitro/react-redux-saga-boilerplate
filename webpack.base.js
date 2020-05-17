@@ -21,6 +21,7 @@ module.exports = {
     },
     resolve: {
         alias: {
+            Entity: path.resolve(__dirname, './src/Entity'),
             Packages: path.resolve(__dirname, './src/Packages'),
             SinglePageWebApp: path.resolve(__dirname, './src/SinglePageWebApp'),
         },

@@ -21,6 +21,7 @@ module.exports = {
         "jsx"
     ],
     "moduleNameMapper": {
+        "Entity/(.*)": "<rootDir>/src/Entity/$1",
         "Packages/(.*)": "<rootDir>/src/Packages/$1",
         "SinglePageWebApp/(.*)": "<rootDir>/src/SinglePageWebApp/$1"
     },
