@@ -25,18 +25,18 @@ import { BrowserHistoryManager } from "Common/Infrastructure/Router/BrowserHisto
 import { createCookieSaga } from "Common/Domain/Cookie/Cookie";
 import { BrowserCookieStorage } from "Common/Infrastructure/Cookie/BrowserCookieStorage";
 import { routerReducer } from "Common/Domain/Router/Reducer";
-import { httpReducer } from "Common/Domain/RequestHandling/Base/Http/Reducer";
+import { httpReducer } from "Common/Domain/HttpFoundation/Reducer";
 import {
-    HttpState,
-    HttpStateSelector,
-} from "Common/Domain/RequestHandling/Base/Http/Types";
-import { createRequestHandlingFlow } from "Common/Domain/RequestHandling/RequestHandling";
+    HttpFoundationState,
+    HttpFoundationStateSelector,
+} from "Common/Domain/HttpFoundation/Types";
+import { createRequestHandlingSaga } from "SinglePageApp/Domain/RequestHandling/RequestHandling";
 import {
     AuthState,
     AuthStateSelector,
 } from "Common/Domain/Authentication/Types";
 import { authenticationReducer } from "Common/Domain/Authentication/Reducer";
-import { HttpRequestDispatcher } from "Common/Domain/RequestHandling/Base/Http/HttpRequestDispatcher";
+import { HttpRequestDispatcher } from "Common/Domain/HttpFoundation/HttpRequestDispatcher";
 import { createAuthenticationSaga } from "Common/Domain/Authentication/Authentication";
 import { RoutingState } from "SinglePageApp/Domain/Routing/Types";
 import { designReducer } from "Common/Domain/Design/Reducer";
@@ -93,9 +93,9 @@ function createRootSaga(
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
     const authenticationSaga = createAuthenticationSaga(authStateSelector);
 
-    const httpStateSelector: HttpStateSelector = (state: RootState) => state.http;
-    const requestHandlingSaga = createRequestHandlingFlow(
-        httpStateSelector,
+    const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.http;
+    const requestHandlingSaga = createRequestHandlingSaga(
+        httpFoundationStateSelector,
         httpRequestDispatcher,
         authStateSelector,
     );
@@ -148,7 +148,7 @@ export type RootState = {
   translator: TranslatorState
   loader: LoaderState
   toaster: ToasterState
-  http: HttpState
+  http: HttpFoundationState
   router: RouterState
   routing: RoutingState
   authentication: AuthState

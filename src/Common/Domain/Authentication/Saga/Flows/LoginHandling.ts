@@ -6,7 +6,7 @@ import {
     authenticate,
     Result,
     ResponseDataTypes,
-} from "Common/Domain/RequestHandling/ApiV1/Http/Saga/Auth/Authenticate";
+} from "Common/Domain/HttpApiV1/Saga/Auth/Authenticate";
 import { createUserLoginFailed } from "Common/Domain/Authentication/Event/UserLoginFailed";
 import { AuthState, AuthStateSelector, AuthUser } from "Common/Domain/Authentication/Types";
 import { createSaveCookie } from "Common/Domain/Cookie/Command/SaveCookie";

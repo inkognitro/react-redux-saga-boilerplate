@@ -1,25 +1,25 @@
 import axios from "axios";
 import {
-    HttpRequestResponse,
-    HttpRequest,
-    HttpRequestMethods,
-} from "Common/Domain/RequestHandling/Base/Http/Types";
-import { HttpRequestDispatcher } from "Common/Domain/RequestHandling/Base/Http/HttpRequestDispatcher";
+    RequestResponse,
+    Request,
+    RequestMethods,
+} from "Common/Domain/HttpFoundation/Types";
+import { HttpRequestDispatcher } from "Common/Domain/HttpFoundation/HttpRequestDispatcher";
 
-function getAxiosRequestMethodByRequest(request: HttpRequest): string {
-    if (request.method === HttpRequestMethods.GET) {
+function getAxiosRequestMethodByRequest(request: Request): string {
+    if (request.method === RequestMethods.GET) {
         return "get";
     }
-    if (request.method === HttpRequestMethods.POST) {
+    if (request.method === RequestMethods.POST) {
         return "post";
     }
     throw new Error(`Method "${request.method}" not supported!`);
 }
 
 function createRequestResponseFromAxiosResponse(
-    request: HttpRequest,
+    request: Request,
     axiosResponse?: AxiosResponse,
-): HttpRequestResponse {
+): RequestResponse {
     return {
         request,
         response: !axiosResponse
@@ -31,7 +31,7 @@ function createRequestResponseFromAxiosResponse(
     };
 }
 
-function createAxiosConfigFromExecutionSettings(request: HttpRequest): object {
+function createAxiosConfigFromExecutionSettings(request: Request): object {
     let config: Partial<object> = {
         method: getAxiosRequestMethodByRequest(request),
         url: request.url,
@@ -49,7 +49,7 @@ function createAxiosConfigFromExecutionSettings(request: HttpRequest): object {
 }
 
 export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {
-    executeRequest(request: HttpRequest): Promise<HttpRequestResponse> {
+    executeRequest(request: Request): Promise<RequestResponse> {
         return new Promise((resolve) => {
             axios(createAxiosConfigFromExecutionSettings(request))
                 .then((response: AxiosResponse): void => {

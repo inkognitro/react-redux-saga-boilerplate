@@ -1,12 +1,12 @@
-import { HttpRequestDispatcher } from "Common/Domain/RequestHandling/Base/Http/HttpRequestDispatcher";
+import { HttpRequestDispatcher } from "Common/Domain/HttpFoundation/HttpRequestDispatcher";
 import {
-    HttpRequest,
-    HttpRequestResponse,
-} from "Common/Domain/RequestHandling/Base/Http/Types";
-import { ApiV1ReadResponse } from "Common/Domain/RequestHandling/ApiV1/Http/Types";
+    Request,
+    RequestResponse,
+} from "Common/Domain/HttpFoundation/Types";
+import { ApiV1ReadResponse } from "Common/Domain/HttpApiV1/Types";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
-    executeRequest(request: HttpRequest): Promise<HttpRequestResponse> {
+    executeRequest(request: Request): Promise<RequestResponse> {
         console.info("MockHttpRequestDispatcher.executeRequest:");
         console.info(request);
         const response: ApiV1ReadResponse = {
