@@ -19,13 +19,12 @@ export type HttpResponse<ResponseBody = {}> = {
 };
 
 export type HttpRequest = {
-  method: HttpRequestMethods;
-  id: string;
-  url: string;
-  queryParameters: object;
-  headers: object;
-  body: undefined | object;
-  isLoaderEnabled: boolean;
+  method: HttpRequestMethods
+  id: string
+  url: string
+  queryParameters: object
+  headers: object
+  body: undefined | object
 };
 
 export type HttpRequestResponse<ResponseBody = object> = {
@@ -50,13 +49,14 @@ export enum HttpEventTypes {
   HTTP_REQUEST_WAS_CANCELLED = "HTTP_REQUEST_WAS_CANCELLED-27fd0173-f640-46ce-8881-516cdf5c41fc",
 }
 
-export type HttpEvent =
+export type HttpEvent = (
   | HttpRequestWasSent
   | HttpRequestWasNotSent
   | HttpSuccessResponseWasReceived
   | HttpErrorResponseWasReceived
   | HttpRequestFailed
-  | HttpRequestWasCancelled;
+  | HttpRequestWasCancelled
+);
 
 export type HttpStateSelector<State = any> = (state: State) => HttpState;
 

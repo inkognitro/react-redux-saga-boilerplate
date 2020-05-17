@@ -46,6 +46,9 @@ import { createFormFlow } from "Common/Domain/FormUtils/Form/Form";
 import { createRoutingSaga, routingReducer } from "SinglePageApp/Domain/Routing/Routing";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { AxiosHttpRequestDispatcher } from "Common/Infrastructure/RequestHandling/AxiosHttpRequestDispatcher";
+import { createLoaderSaga } from "Common/Domain/Loader/Loader";
+import { loaderReducer } from "Common/Domain/Loader/Reducer";
+import { LoaderState } from "Common/Domain/Loader/Types";
 
 type AppServices = {
   store: Store;
@@ -61,6 +64,7 @@ const rootReducer = combineReducers({
     router: routerReducer,
     routing: routingReducer,
     authentication: authenticationReducer,
+    loader: loaderReducer,
 });
 
 function createRootSaga(
@@ -72,6 +76,8 @@ function createRootSaga(
 
     const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
     const translatorSaga = createTranslatorSaga(translatorStateSelector);
+
+    const loaderSaga = createLoaderSaga();
 
     const historyManager = new BrowserHistoryManager(history);
     const routerStateSelector: RouterStateSelector = (state: RootState) => state.router;
@@ -98,6 +104,7 @@ function createRootSaga(
 
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
+        yield spawn(loaderSaga);
         yield spawn(toasterSaga);
         yield spawn(cookieSaga);
         yield spawn(formElementsSaga);
@@ -137,13 +144,14 @@ export function createProdAppServices(): AppServices {
 }
 
 export type RootState = {
-  design: DesignState;
-  translator: TranslatorState;
-  toaster: ToasterState;
-  http: HttpState;
-  router: RouterState;
-  routing: RoutingState;
-  authentication: AuthState;
+  design: DesignState
+  translator: TranslatorState
+  loader: LoaderState
+  toaster: ToasterState
+  http: HttpState
+  router: RouterState
+  routing: RoutingState
+  authentication: AuthState
 };
 
 let currentServices: null | AppServices = null;

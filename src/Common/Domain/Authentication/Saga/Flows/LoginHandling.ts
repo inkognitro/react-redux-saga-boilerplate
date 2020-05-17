@@ -32,7 +32,6 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
         const result: Result = yield call(authenticate, {
             username: command.payload.username,
             password: command.payload.password,
-            isLoaderEnabled: true,
         });
         if (result.successData) {
             const authUser: AuthUser = {

@@ -9,7 +9,6 @@ type GetRequestCreationSettings = {
   url: string;
   queryParameters?: object;
   headers?: object;
-  isLoaderEnabled?: boolean;
 };
 
 export function createGetRequest(
@@ -78,9 +77,6 @@ function createHttpRequest(
         url: settings.url,
         queryParameters: settings.queryParameters ? settings.queryParameters : {},
         headers: settings.headers ? settings.headers : {},
-        isLoaderEnabled: settings.isLoaderEnabled
-            ? settings.isLoaderEnabled
-            : false,
         body: settings.body ? settings.body : undefined,
     };
 }
