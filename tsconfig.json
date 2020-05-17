@@ -13,8 +13,8 @@
     "target": "es6",
     "baseUrl": "./src",
     "paths": {
-      "Common/*": ["./Common/*"],
-      "SinglePageApp/*": ["./SinglePageApp/*"]
+      "Packages/*": ["./Packages/*"],
+      "SinglePageWebApp/*": ["./SinglePageWebApp/*"]
     },
     "removeComments": true,
     "allowUnreachableCode": false,

@@ -21,8 +21,8 @@ module.exports = {
         "jsx"
     ],
     "moduleNameMapper": {
-        "Common/(.*)": "<rootDir>/src/Common/$1",
-        "SinglePageApp/(.*)": "<rootDir>/src/SinglePageApp/$1"
+        "Packages/(.*)": "<rootDir>/src/Packages/$1",
+        "SinglePageWebApp/(.*)": "<rootDir>/src/SinglePageWebApp/$1"
     },
     "coverageDirectory": "<rootDir>/docs/coverage",
     "coverageReporters": [
