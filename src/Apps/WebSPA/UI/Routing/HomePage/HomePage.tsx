@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FunctionalLink, RouterLink } from "Packages/Common/UI/Web/Link";
+import { FunctionalLink, RouteLink } from "Packages/Common/UI/Web/Link";
 import { ToastTypes } from "Packages/Common/Domain/Toaster/Types";
 import { Dispatch } from "redux";
 import { createShowMessage } from "Packages/Common/Domain/Toaster/Command/ShowMessage";
@@ -28,14 +28,11 @@ type DumbHomePageProps = (DumbHomePageState & DumbHomePageCallbacks);
 
 const DumbHomePage: FC<DumbHomePageProps> = (props) => (
     <ContentPage>
-        <h1>Features</h1>
-        <br />
-        <br />
         <h3>Routing</h3>
         <div>
-            <RouterLink url="/some-page-which-does-not-exist">
+            <RouteLink url="/some-page-which-does-not-exist">
                 go to non existing page
-            </RouterLink>
+            </RouteLink>
         </div>
         <br />
         <h3>Authentication</h3>
@@ -78,6 +75,17 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         <br />
         <h3>Redux</h3>
         <div>
+            Download
+            {' '}
+            <RouteLink
+                url="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd"
+                target="_blank"
+            >
+                Redux DevTools
+            </RouteLink>
+            {' '}
+            for a better developer experience or
+            {' '}
             <FunctionalLink onClick={props.onClickLeakReduxState}>
                 leak redux state in console
             </FunctionalLink>

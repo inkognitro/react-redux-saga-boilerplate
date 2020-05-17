@@ -37,7 +37,7 @@ export const FunctionalLink: FunctionComponent<FunctionalLinkProps> = (
     </StyledLink>
 );
 
-export type RouterLinkProps = {
+export type LinkProps = {
   url: string;
   target?: string;
   children: any;
@@ -45,12 +45,12 @@ export type RouterLinkProps = {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch: Dispatch, props: RouterLinkProps) => ({
+const mapDispatchToProps = (dispatch: Dispatch, props: LinkProps) => ({
     url: props.url,
     onClick: () => dispatch(createOpenUrl({ url: props.url, target: props.target })),
 });
 
-export const RouterLink = connect(
+export const RouteLink = connect(
     mapStateToProps,
     mapDispatchToProps,
 )(FunctionalLink);
