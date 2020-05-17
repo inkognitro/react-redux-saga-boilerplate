@@ -1,6 +1,6 @@
 import { apiV1BaseUrl } from "Packages/Common/Domain/HttpApiV1/HttpApiV1";
 import { ApiV1ReadResponse } from "Packages/Common/Domain/HttpApiV1/Types";
-import { User } from "Packages/Common/Domain/Model/User";
+import { User } from "Packages/../../../../../../Entity/Domain/User/User";
 import { call, put } from "redux-saga/effects";
 import { createPostRequest } from "Packages/Common/Domain/HttpFoundation/Command/RequestFactory";
 import { Request } from "Packages/Common/Domain/HttpFoundation/Types";

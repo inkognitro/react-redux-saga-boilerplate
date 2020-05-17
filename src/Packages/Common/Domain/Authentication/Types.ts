@@ -5,7 +5,7 @@ import { UserAuthenticationWasRefreshed } from "Packages/Common/Domain/Authentic
 import { UserLoginWasRequested } from "Packages/Common/Domain/Authentication/Event/UserLoginWasRequested";
 import { UserWasLoggedIn } from "Packages/Common/Domain/Authentication/Event/UserWasLoggedIn";
 import { UserWasLoggedOut } from "Packages/Common/Domain/Authentication/Event/UserWasLoggedOut";
-import { User } from "Packages/Common/Domain/Model/User";
+import { User } from "Packages/../../../../Entity/Domain/User/User";
 import { UserLoginWasCancelled } from "Packages/Common/Domain/Authentication/Event/UserLoginWasCancelled";
 
 export type AuthUser = {

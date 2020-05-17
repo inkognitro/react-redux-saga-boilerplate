@@ -1,5 +1,5 @@
 import { Response } from "Packages/Common/Domain/HttpFoundation/Types";
-import { Message } from "Packages/Common/Domain/Model/Message";
+import { Message } from "Packages/../../../../Entity/Domain/Message/Message";
 
 export type BasicResponseBody = {
   generalMessages?: Message[];

@@ -5,7 +5,7 @@ import { TimelineLite, Power1 } from "gsap";
 import { Message as MessageData } from "Packages/Common/Domain/Toaster/Types";
 import styled from "styled-components";
 import { StyledComponentProps } from "Packages/Common/UI/Web/Design/Types";
-import { Translation } from "Packages/Common/UI/Web/Model/Translation";
+import { TranslatedText } from "Packages/Common/UI/Web/TranslatedText";
 import { TranslatorState } from "Packages/Common/Domain/Translator/Types";
 
 const StyledMessage = styled.div`
@@ -111,7 +111,7 @@ export class Message extends Component<MessageProps> {
           <StyledMessage ref={(element: HTMLDivElement) => { this.message = element; }}>
               <StyledMessageContent>
                   {this.renderCloseIcon()}
-                  <Translation
+                  <TranslatedText
                       translatorState={this.props.translatorState}
                       translationData={this.props.messageData.content}
                   />

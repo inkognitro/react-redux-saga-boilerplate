@@ -1,5 +1,5 @@
-import { FormState } from "Packages/Common/Domain/FormUtils/Form/Types";
-import { PasswordFieldState, TextFieldState } from "Packages/Common/Domain/FormUtils/FormElements/Types";
+import { FormState } from "Packages/Common/Domain/Form/Types";
+import { PasswordFieldState, TextFieldState } from "Packages/Common/Domain/FormElement/Types";
 
 type LoginFormState = FormState<{
     username: TextFieldState

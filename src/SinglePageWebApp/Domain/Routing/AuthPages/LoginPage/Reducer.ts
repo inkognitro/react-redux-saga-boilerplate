@@ -3,11 +3,11 @@ import { RouterEventTypes } from "Packages/Common/Domain/Router/Types";
 import {
     createPasswordFieldState,
     createTextFieldState,
-} from "Packages/Common/Domain/FormUtils/FormElements/FormElementStateFactory";
-import { FormElementEvent, FormElementEventTypes } from "Packages/Common/Domain/FormUtils/FormElements/Types";
+} from "Packages/Common/Domain/FormElement/FormElementStateFactory";
+import { FormElementEvent, FormElementEventTypes } from "Packages/Common/Domain/FormElement/Types";
 import { LoginPageState } from "SinglePageWebApp/Domain/Routing/AuthPages/LoginPage/Types";
-import { createFormState } from "Packages/Common/Domain/FormUtils/Form/FormStateFactory";
-import { formReducer } from "Packages/Common/Domain/FormUtils/Form/Event/Reducer";
+import { createFormState } from "Packages/Common/Domain/Form/FormStateFactory";
+import { formReducer } from "Packages/Common/Domain/Form/Event/Reducer";
 
 const initialLoginPageState: LoginPageState = {
     form: createFormState({

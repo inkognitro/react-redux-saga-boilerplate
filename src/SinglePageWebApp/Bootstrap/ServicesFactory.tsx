@@ -41,8 +41,8 @@ import { createAuthenticationSaga } from "Packages/Common/Domain/Authentication/
 import { RoutingState } from "SinglePageWebApp/Domain/Routing/Types";
 import { designReducer } from "Packages/Common/Domain/Design/Reducer";
 import { DesignState } from "Packages/Common/Domain/Design/Types";
-import { createFormElementsFlow } from "Packages/Common/Domain/FormUtils/FormElements/FormElements";
-import { createFormFlow } from "Packages/Common/Domain/FormUtils/Form/Form";
+import { createFormElementsFlow } from "Packages/Common/Domain/FormElement/FormElements";
+import { createFormFlow } from "Packages/Common/Domain/Form/Form";
 import { createRoutingSaga, routingReducer } from "SinglePageWebApp/Domain/Routing/Routing";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { AxiosHttpRequestDispatcher } from "Packages/Common/Infrastructure/RequestHandling/AxiosHttpRequestDispatcher";

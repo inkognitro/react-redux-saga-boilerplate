@@ -78,7 +78,7 @@ To build the app in the *dist* folder, run:
 11. Linting with Airbnb presets
 
 ## Modules
-- [Common/Domain/Form/README.md](src/Packages/Common/Domain/FormUtils/Form/README.md)
+- [Common/Domain/Form/README.md](src/Packages/Common/Domain/Form/README.md)
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.

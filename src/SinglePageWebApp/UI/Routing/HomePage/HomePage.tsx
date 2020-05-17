@@ -4,14 +4,14 @@ import { ToastTypes } from "Packages/Common/Domain/Toaster/Types";
 import { Dispatch } from "redux";
 import { createShowMessage } from "Packages/Common/Domain/Toaster/Command/ShowMessage";
 import { connect } from "react-redux";
-import { FormElementGroup } from "Packages/Common/UI/Web/FormUtils/FormElements/FormElementGroup";
-import { Label } from "Packages/Common/UI/Web/FormUtils/FormElements/Label";
+import { FormElementGroup } from "Packages/Common/UI/Web/FormElement/FormElementGroup";
+import { Label } from "Packages/Common/UI/Web/FormElement/Label";
 import { createLogin } from "Packages/Common/Domain/Authentication/Command/Login";
-import { TextField } from "Packages/Common/UI/Web/FormUtils/FormElements/TextField";
+import { TextField } from "Packages/Common/UI/Web/FormElement/TextField";
 import { createLeakReduxState } from "SinglePageWebApp/Domain/Routing/HomePage/Command/LeakReduxState";
-import { ContentPage } from "SinglePageWebApp/UI/Base/PageTypes/ContentPage";
+import { ContentPage } from "SinglePageWebApp/UI/PageTypes/ContentPage";
 import { RootState } from "SinglePageWebApp/Bootstrap/ServicesFactory";
-import { TextFieldState } from "Packages/Common/Domain/FormUtils/FormElements/Types";
+import { TextFieldState } from "Packages/Common/Domain/FormElement/Types";
 import uuidV4 from 'uuid/v4';
 
 type DumbHomePageCallbacks = {

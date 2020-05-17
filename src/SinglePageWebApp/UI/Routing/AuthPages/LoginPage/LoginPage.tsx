@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
-import { ContentPage } from "SinglePageWebApp/UI/Base/PageTypes/ContentPage";
+import { ContentPage } from "SinglePageWebApp/UI/PageTypes/ContentPage";
 import { RootState } from "SinglePageWebApp/Bootstrap/ServicesFactory";
 import { LoginPageState } from "SinglePageWebApp/Domain/Routing/AuthPages/LoginPage/Types";
 import { Card } from "Packages/Common/UI/Web/Card";
-import { Form } from "Packages/Common/UI/Web/FormUtils/Form/Form";
-import { TextField } from "Packages/Common/UI/Web/FormUtils/FormElements/TextField";
-import { FormElementGroup } from "Packages/Common/UI/Web/FormUtils/FormElements/FormElementGroup";
-import { PasswordField } from "Packages/Common/UI/Web/FormUtils/FormElements/PasswordField";
-import { PrimaryButton } from "Packages/Common/UI/Web/FormUtils/FormElements/PrimaryButton";
+import { Form } from "Packages/Common/UI/Web/Form/Form";
+import { TextField } from "Packages/Common/UI/Web/FormElement/TextField";
+import { FormElementGroup } from "Packages/Common/UI/Web/FormElement/FormElementGroup";
+import { PasswordField } from "Packages/Common/UI/Web/FormElement/PasswordField";
+import { PrimaryButton } from "Packages/Common/UI/Web/FormElement/PrimaryButton";
 import { Dispatch } from "redux";
 import { createLogin } from "SinglePageWebApp/Domain/Routing/AuthPages/LoginPage/Command/Login";
 
