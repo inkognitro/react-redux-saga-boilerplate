@@ -10,14 +10,12 @@ import {
 } from "Packages/Common/Domain/HttpFoundation/Saga/Callables/HttpResponseReceiving";
 import { FieldPathMessage } from "Packages/Common/Domain/Form/Types";
 import { Message } from "Entity/Domain/Message";
+import { AuthUser } from "Packages/Common/Domain/Authentication/Types";
 
 export type AuthenticateResult = {
     successData?: {
         generalMessages: Message[]
-        data: {
-            token: string
-            user: User
-        }
+        authUser: AuthUser
     },
     errorData?: {
         generalMessages?: Message[]
@@ -52,7 +50,7 @@ export function* authenticate(settings: AuthSettings): Generator<unknown, Authen
         return {
             successData: {
                 ...baseResult,
-                data: {
+                authUser: {
                     token: response.body.data.token,
                     user: response.body.data.user,
                 },

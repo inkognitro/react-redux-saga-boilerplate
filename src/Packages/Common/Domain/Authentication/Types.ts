@@ -1,5 +1,7 @@
 import { UserAuthenticationRefreshFailed } from "Packages/Common/Domain/Authentication/Event/UserAuthenticationRefreshFailed";
-import { UserAuthenticationRefreshWasRequested } from "Packages/Common/Domain/Authentication/Event/UserAuthenticationRefreshWasRequested";
+import {
+    UserAuthenticationRefreshWasRequested,
+} from "Packages/Common/Domain/Authentication/Event/UserAuthenticationRefreshWasRequested";
 import { UserLoginFailed } from "Packages/Common/Domain/Authentication/Event/UserLoginFailed";
 import { UserAuthenticationWasRefreshed } from "Packages/Common/Domain/Authentication/Event/UserAuthenticationWasRefreshed";
 import { UserLoginWasRequested } from "Packages/Common/Domain/Authentication/Event/UserLoginWasRequested";
@@ -9,14 +11,13 @@ import { User } from "Entity/Domain/User";
 import { UserLoginWasCancelled } from "Packages/Common/Domain/Authentication/Event/UserLoginWasCancelled";
 
 export type AuthUser = {
-  token: string;
-  user: User;
-  shouldRemember: boolean,
+  token: string
+  user: User
 };
 
 export type AuthState = {
-  isAuthenticationRunning: boolean;
-  currentAuthUser: null | AuthUser;
+  isAuthenticationRunning: boolean
+  currentAuthUser: (null | AuthUser)
 };
 
 export enum AuthEventTypes {

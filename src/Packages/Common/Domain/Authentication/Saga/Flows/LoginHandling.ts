@@ -7,7 +7,7 @@ import {
     AuthenticateResult,
 } from "Packages/Common/Domain/HttpApiV1/Saga/Callables/Authenticate";
 import { createUserLoginFailed } from "Packages/Common/Domain/Authentication/Event/UserLoginFailed";
-import { AuthState, AuthStateSelector, AuthUser } from "Packages/Common/Domain/Authentication/Types";
+import { AuthState, AuthStateSelector } from "Packages/Common/Domain/Authentication/Types";
 import { createSaveCookie } from "Packages/Common/Domain/Cookie/Command/SaveCookie";
 import { createUserWasLoggedIn } from "Packages/Common/Domain/Authentication/Event/UserWasLoggedIn";
 import { createUserLoginWasCancelled } from "Packages/Common/Domain/Authentication/Event/UserLoginWasCancelled";
@@ -33,22 +33,17 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             password: command.payload.password,
         });
         if (result.successData) {
-            const authUser: AuthUser = {
-                token: result.successData.token,
-                user: result.successData.user,
-                shouldRemember: command.payload.shouldRemember,
-            };
             yield put(
                 createSaveCookie({
                     name: authTokenCookieName,
-                    content: JSON.stringify(authUser),
+                    content: JSON.stringify(result.successData.authUser),
                     timeToLiveInDays: (command.payload.shouldRemember
                         ? authTokenCookieTimeToLiveInDays
                         : undefined
                     ),
                 }),
             );
-            yield put(createUserWasLoggedIn(command.payload, authUser));
+            yield put(createUserWasLoggedIn(command.payload, result.successData.authUser));
             return;
         }
         if (result.errorData) {
