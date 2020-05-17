@@ -1,10 +1,9 @@
 import {Response} from "Packages/Common/Domain/HttpFoundation/Types";
-import {Message} from "Entity/Domain/Message";
-import {FieldPathMessage} from "Packages/Common/Domain/Form/Types";
+import {FieldMessage, Message} from "Packages/Common/Domain/Types";
 
 export type BasicResponseBody = {
   generalMessages?: Message[];
-  fieldMessages?: FieldPathMessage[];
+  fieldMessages?: FieldMessage[];
 };
 
 export type ApiV1Response<Body = {}> = Response<(BasicResponseBody & Body)>

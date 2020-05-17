@@ -8,9 +8,8 @@ import { createSendHttpRequest } from "Packages/Common/Domain/HttpApiV1/Command/
 import {
     receiveHttpResponse,
 } from "Packages/Common/Domain/HttpFoundation/Saga/Callables/HttpResponseReceiving";
-import { FieldPathMessage } from "Packages/Common/Domain/Form/Types";
-import { Message } from "Entity/Domain/Message";
 import { AuthUser } from "Packages/Common/Domain/Authentication/Types";
+import {FieldMessage, Message} from "Packages/Common/Domain/Types";
 
 export type AuthenticateResult = {
     successData?: {
@@ -19,7 +18,7 @@ export type AuthenticateResult = {
     },
     errorData?: {
         generalMessages?: Message[]
-        fieldMessages?: FieldPathMessage[]
+        fieldMessages?: FieldMessage[]
     },
 };
 

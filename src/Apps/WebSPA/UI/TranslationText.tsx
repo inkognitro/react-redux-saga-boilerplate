@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { TranslationText as DumbTranslationText, TranslationComponentState } from "Packages/Common/UI/Web/TranslationText";
-import { Translation as TranslationData } from "Entity/Domain/Translation";
+import {Translation} from "Packages/Common/Domain/Types";
 
 type TranslationTextProps = {
     translationData: TranslationData
