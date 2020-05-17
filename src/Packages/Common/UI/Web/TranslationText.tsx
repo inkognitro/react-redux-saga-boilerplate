@@ -5,18 +5,18 @@ import { Translation as TranslationData } from "Entity/Domain/Translation";
 
 export type TranslationComponentState = {
     translatorState: TranslatorState
-    translationData: TranslationData
+    translation: TranslationData
 }
 
-export type TranslationProps = TranslationComponentState;
+export type TranslationTextProps = TranslationComponentState;
 
-export const TranslatedText: FC<TranslationProps> = (props) => {
-    const translatedText = findTranslatedText(props.translatorState, props.translationData);
+export const TranslationText: FC<TranslationTextProps> = (props) => {
+    const translatedText = findTranslatedText(props.translatorState, props.translation);
     if (translatedText !== null) {
         return (<React.Fragment>{translatedText}</React.Fragment>);
     }
-    if (props.translationData.fallback) {
-        return (<React.Fragment>{props.translationData.fallback}</React.Fragment>);
+    if (props.translation.fallback) {
+        return (<React.Fragment>{props.translation.fallback}</React.Fragment>);
     }
-    return (<React.Fragment>{props.translationData.translationId}</React.Fragment>);
+    return (<React.Fragment>{props.translation.translationId}</React.Fragment>);
 };

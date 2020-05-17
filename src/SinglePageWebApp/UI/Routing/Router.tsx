@@ -1,15 +1,15 @@
 import { Specification, Router as CommonRouter } from "Packages/Common/UI/Web/Router/Router";
 import React, { FC } from "react";
 import { History } from "history";
-import { homeRoute, loginRoute } from "SinglePageWebApp/Domain/Routing/Routes";
-import { LoginPage } from "SinglePageWebApp/UI/Routing/AuthPages/LoginPage/LoginPage";
+import { homeRoute } from "SinglePageWebApp/Domain/Routing/Routes";
+import { authRouteComponents } from "SinglePageWebApp/UI/Routing/AuthPages/AuthPages";
 import { HomePage } from "./HomePage/HomePage";
 import { NotFound } from "./NotFound";
 
 const specification: Specification = {
     routeComponents: [
         { route: homeRoute, component: HomePage },
-        { route: loginRoute, component: LoginPage },
+        ...authRouteComponents,
     ],
     defaultComponent: NotFound,
 };

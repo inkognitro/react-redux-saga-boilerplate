@@ -7,7 +7,8 @@ import { findCurrentAuthUser } from "Packages/Common/Domain/Authentication/Query
 import { AuthUser } from "Packages/Common/Domain/Authentication/Types";
 import { createHomeRouteUrl, createLoginRouteUrl } from "SinglePageWebApp/Domain/Routing/Routes";
 import { Dispatch } from "redux";
-import {createLogout} from "Packages/Common/Domain/Authentication/Command/Logout";
+import { createLogout } from "Packages/Common/Domain/Authentication/Command/Logout";
+import { UserLabel } from "Entity/UI/Web/User/UserLabel";
 
 type RepresentationalNavBarState = {
   currentUser: AuthUser | null;
@@ -27,7 +28,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
                     <FunctionalLink className="nav-link" onClick={() => this.props.onClickLogout()}>
                         Logout
                         {' '}
-                        {this.props.currentUser.user.username}
+                        <UserLabel user={this.props.currentUser.user} />
                     </FunctionalLink>
                 </li>
             );
