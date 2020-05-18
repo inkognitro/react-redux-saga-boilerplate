@@ -8,7 +8,6 @@ import { RouterState, RouterStateSelector } from "Packages/Common/Domain/Router/
 import createSagaMiddleware from "redux-saga";
 import { spawn } from "redux-saga/effects";
 import { createBrowserHistory, History } from "history";
-import { createToasterSaga } from "Packages/Common/Domain/Toaster";
 import {
     ToasterState,
     ToasterStateSelector,
@@ -49,6 +48,7 @@ import { createLoaderSaga } from "Packages/Common/Domain/Loader/Loader";
 import { loaderReducer } from "Packages/Common/Domain/Loader/Reducer";
 import { LoaderState } from "Packages/Common/Domain/Loader/Types";
 import {createRouterSaga} from "Packages/Common/Domain/Router/Saga/Flow";
+import {createToasterSaga} from "Packages/Common/Domain/Toaster/Saga/Flow";
 
 type AppServices = {
   store: Store;

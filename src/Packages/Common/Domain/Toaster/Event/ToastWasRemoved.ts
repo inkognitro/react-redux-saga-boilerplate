@@ -10,9 +10,6 @@ export function createToastWasRemoved(toastId: string): ToastWasRemoved {
     };
 }
 
-export type ToastWasRemoved = Event<
-  ToasterEventTypes.TOAST_WAS_REMOVED,
-  {
+export type ToastWasRemoved = Event<ToasterEventTypes.TOAST_WAS_REMOVED, {
     toastId: string;
-  }
->;
+}>;

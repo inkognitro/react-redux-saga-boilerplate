@@ -12,9 +12,6 @@ export function createMessageWasAddedToPipeline(
     };
 }
 
-export type MessageWasAddedToPipeline = Event<
-  ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
-  {
+export type MessageWasAddedToPipeline = Event<ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE, {
     messageToAdd: MessageToAdd;
-  }
->;
+}>;

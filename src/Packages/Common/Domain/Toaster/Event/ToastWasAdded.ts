@@ -10,9 +10,6 @@ export function createToastWasAdded(toast: Toast): ToastWasAdded {
     };
 }
 
-export type ToastWasAdded = Event<
-  ToasterEventTypes.TOAST_WAS_ADDED,
-  {
+export type ToastWasAdded = Event<ToasterEventTypes.TOAST_WAS_ADDED, {
     toast: Toast;
-  }
->;
+}>;

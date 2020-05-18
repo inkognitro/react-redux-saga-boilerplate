@@ -14,10 +14,7 @@ export function createMessagesWereAddedToToast(
     };
 }
 
-export type MessagesWereAddedToToast = Event<
-  ToasterEventTypes.MESSAGES_WERE_ADDED_TO_TOAST,
-  {
+export type MessagesWereAddedToToast = Event<ToasterEventTypes.MESSAGES_WERE_ADDED_TO_TOAST, {
     toastId: string;
     messages: Message[];
-  }
->;
+}>;

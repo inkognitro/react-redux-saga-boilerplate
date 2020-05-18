@@ -12,9 +12,6 @@ export function createToastIntroAnimationWasFinished(
     };
 }
 
-export type ToastIntroAnimationWasFinished = Event<
-  ToasterEventTypes.TOAST_INTRO_ANIMATION_WAS_FINISHED,
-  {
+export type ToastIntroAnimationWasFinished = Event<ToasterEventTypes.TOAST_INTRO_ANIMATION_WAS_FINISHED, {
     toastId: string;
-  }
->;
+}>;

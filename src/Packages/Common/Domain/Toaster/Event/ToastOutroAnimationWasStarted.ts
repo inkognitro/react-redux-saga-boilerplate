@@ -12,9 +12,6 @@ export function createToastOutroAnimationWasStarted(
     };
 }
 
-export type ToastOutroAnimationWasStarted = Event<
-  ToasterEventTypes.TOAST_OUTRO_ANIMATION_WAS_STARTED,
-  {
+export type ToastOutroAnimationWasStarted = Event<ToasterEventTypes.TOAST_OUTRO_ANIMATION_WAS_STARTED, {
     toastId: string;
-  }
->;
+}>;
