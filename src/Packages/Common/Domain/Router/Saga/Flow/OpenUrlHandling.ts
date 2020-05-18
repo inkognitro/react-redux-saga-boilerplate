@@ -1,8 +1,8 @@
 import { RouterState, RouterStateSelector } from "Packages/Common/Domain/Router/Types";
-import { HistoryManager } from "Packages/Common/Domain/Router/HistoryManager";
 import { select } from "redux-saga/effects";
 import { getByRedirectInfluencedUrl } from "Packages/Common/Domain/Router/Query/UrlQuery";
-import { OpenUrl } from "Packages/Common/Domain/Router/Commands/OpenUrl";
+import { HistoryManager } from "Packages/Common/Domain/Router";
+import { OpenUrl } from "Packages/Common/Domain/Router/Command/OpenUrl";
 
 export function* handleOpenUrl(
     routerStateSelector: RouterStateSelector,

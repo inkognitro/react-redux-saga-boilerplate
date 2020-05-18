@@ -10,9 +10,6 @@ export function createRouterWasInitialized(url: string): RouterWasInitialized {
     };
 }
 
-export type RouterWasInitialized = Event<
-  RouterEventTypes.ROUTER_WAS_INITIALIZED,
-  {
+export type RouterWasInitialized = Event<RouterEventTypes.ROUTER_WAS_INITIALIZED, {
     url: string;
-  }
->;
+}>;

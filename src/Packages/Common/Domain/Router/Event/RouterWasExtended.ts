@@ -11,10 +11,7 @@ export function createRouterWasExtended(
     };
 }
 
-export type RouterWasExtended = Event<
-  RouterEventTypes.ROUTER_WAS_EXTENDED,
-  {
+export type RouterWasExtended = Event<RouterEventTypes.ROUTER_WAS_EXTENDED, {
     routes: Route[];
     redirects: Redirect[];
-  }
->;
+}>;

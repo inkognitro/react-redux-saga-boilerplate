@@ -5,7 +5,7 @@ import {
 } from "Packages/Common/Domain/Router/Types";
 import { Command } from "Packages/Common/Domain/Bus/Command";
 
-export function createAddRedirects(
+export function createExtendRouter(
     routes: Route[],
     redirects: Redirect[],
 ): ExtendRouter {
@@ -15,10 +15,7 @@ export function createAddRedirects(
     };
 }
 
-export type ExtendRouter = Command<
-  RouterCommandTypes.EXTEND_ROUTER,
-  {
+export type ExtendRouter = Command<RouterCommandTypes.EXTEND_ROUTER, {
     routes: Route[];
     redirects: Redirect[];
-  }
->;
+}>;

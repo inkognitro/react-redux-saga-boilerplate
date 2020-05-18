@@ -8,7 +8,7 @@ export function findRedirectByExactRoute(
         const redirect = state.redirects[index];
         if (
             redirect.fromRoute.urlSchema === route.urlSchema
-      && redirect.fromRoute.urlMustMatchExactly === route.urlMustMatchExactly
+            && redirect.fromRoute.urlMustMatchExactly === route.urlMustMatchExactly
         ) {
             return redirect;
         }

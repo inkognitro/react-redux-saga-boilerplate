@@ -1,14 +1,15 @@
 import {
     Redirect,
     Route,
+    RouterCommandTypes,
     RouterState,
     RouterStateSelector,
 } from "Packages/Common/Domain/Router/Types";
-import { put, select } from "redux-saga/effects";
+import { put, select, takeEvery } from "redux-saga/effects";
 import { findRedirectByExactRoute } from "Packages/Common/Domain/Router/Query/RedirectQuery";
 import { findStoredRoute } from "Packages/Common/Domain/Router/Query/RouteQuery";
 import { createRouterWasExtended } from "Packages/Common/Domain/Router/Event/RouterWasExtended";
-import { ExtendRouter } from "Packages/Common/Domain/Router/Commands/ExtendRouter";
+import { ExtendRouter } from "Packages/Common/Domain/Router/Command/ExtendRouter";
 
 export function* handleExtendRouter(routerStateSelector: RouterStateSelector, command: ExtendRouter): Generator {
     // @ts-ignore
@@ -38,4 +39,8 @@ export function* handleExtendRouter(routerStateSelector: RouterStateSelector, co
         return;
     }
     yield put(createRouterWasExtended(routesToAdd, redirectsToAdd));
+}
+
+export function* watchExtendRouterCommands(routerStateSelector: RouterStateSelector): Generator {
+    yield takeEvery(RouterCommandTypes.EXTEND_ROUTER, handleExtendRouter, routerStateSelector);
 }

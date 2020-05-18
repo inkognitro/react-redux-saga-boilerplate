@@ -28,7 +28,7 @@ export function* handleAutomaticAuthenticationRefresh(authStateSelector: AuthSta
         if (secondsUntilExpiration > authRefreshBeforeExpirationInSeconds) {
             continue;
         }
-        console.log('execute token refresh'); // todo: execute automatic token refresh
+        // todo: execute automatic token refresh
         put(createUserAuthenticationRefreshWasRequested(currentAuthUser));
         // @ts-ignore
         const raceResult: {logoutEvent?: UserWasLoggedOut} = yield race({

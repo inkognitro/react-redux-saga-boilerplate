@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { createOpenUrl } from "Packages/Common/Domain/Router/Commands/OpenUrl";
+import { createOpenUrl } from "Packages/Common/Domain/Router/Command/OpenUrl";
 import styled from "styled-components";
 import { StyledComponentProps } from "Packages/Common/UI/Web/Design/Types";
 

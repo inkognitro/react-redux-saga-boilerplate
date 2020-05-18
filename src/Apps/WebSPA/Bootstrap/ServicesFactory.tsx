@@ -8,7 +8,7 @@ import { RouterState, RouterStateSelector } from "Packages/Common/Domain/Router/
 import createSagaMiddleware from "redux-saga";
 import { spawn } from "redux-saga/effects";
 import { createBrowserHistory, History } from "history";
-import { createToasterSaga } from "Packages/Common/Domain/Toaster/Toaster";
+import { createToasterSaga } from "Packages/Common/Domain/Toaster";
 import {
     ToasterState,
     ToasterStateSelector,
@@ -18,9 +18,8 @@ import {
     TranslatorState,
     TranslatorStateSelector,
 } from "Packages/Common/Domain/Translator/Types";
-import { createTranslatorSaga } from "Packages/Common/Domain/Translator/Translator";
+import { createTranslatorSaga } from "Packages/Common/Domain/Translator";
 import { translatorReducer } from "Packages/Common/Domain/Translator/Reducer";
-import { createRouterSaga } from "Packages/Common/Domain/Router/Router";
 import { BrowserHistoryManager } from "Packages/Common/Infrastructure/Router/BrowserHistoryManager";
 import { createCookieSaga } from "Packages/Common/Domain/Cookie/Cookie";
 import { BrowserCookieStorage } from "Packages/Common/Infrastructure/Cookie/BrowserCookieStorage";
@@ -49,6 +48,7 @@ import { AxiosHttpRequestDispatcher } from "Packages/Common/Infrastructure/Reque
 import { createLoaderSaga } from "Packages/Common/Domain/Loader/Loader";
 import { loaderReducer } from "Packages/Common/Domain/Loader/Reducer";
 import { LoaderState } from "Packages/Common/Domain/Loader/Types";
+import {createRouterSaga} from "Packages/Common/Domain/Router/Saga/Flow";
 
 type AppServices = {
   store: Store;

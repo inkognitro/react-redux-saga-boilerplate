@@ -10,6 +10,6 @@ export function createHomePageSaga(): () => Generator {
 function* watchLeakReduxStateCommands(): Generator {
     yield takeEvery(HomePageCommandTypes.LEAK_REDUX_STATE, function* (): Generator {
         const state = yield select();
-        console.log(state);
+        console.info(state);
     });
 }

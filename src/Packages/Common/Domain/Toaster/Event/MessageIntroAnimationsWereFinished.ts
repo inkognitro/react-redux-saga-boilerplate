@@ -12,9 +12,6 @@ export function createMessageIntroAnimationsWereFinished(
     };
 }
 
-export type MessageIntroAnimationsWereFinished = Event<
-  ToasterEventTypes.MESSAGE_INTRO_ANIMATIONS_WERE_FINISHED,
-  {
+export type MessageIntroAnimationsWereFinished = Event<ToasterEventTypes.MESSAGE_INTRO_ANIMATIONS_WERE_FINISHED, {
     messageIds: string[];
-  }
->;
+}>;

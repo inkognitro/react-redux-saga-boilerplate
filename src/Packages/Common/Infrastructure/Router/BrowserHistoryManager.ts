@@ -1,5 +1,5 @@
 import { History, LocationState } from "history";
-import { HistoryManager } from "Packages/Common/Domain/Router/HistoryManager";
+import {HistoryManager} from "Packages/Common/Domain/Router";
 
 export class BrowserHistoryManager implements HistoryManager {
   private readonly history: History<LocationState>;

@@ -16,7 +16,9 @@
     "prettier/@typescript-eslint"
   ],
   "rules": {
-    "no-console": "off",
+    "no-console": ["error", {
+      "allow": ["info", "error"]
+    }],
     "react/prop-types": "off",
     "indent": ["error", 4],
     "react/jsx-indent": ["error", 4],
