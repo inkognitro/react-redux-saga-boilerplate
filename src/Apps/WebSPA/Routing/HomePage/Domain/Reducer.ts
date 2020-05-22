@@ -1,4 +1,4 @@
-import { HomePageState } from "Apps/WebSPA/Routing/HomePage/Domain/HomePage/Types";
+import { HomePageState } from "Apps/WebSPA/Routing/HomePage/Domain/Types";
 import { CurrentUrlWasChanged } from "Packages/Common/Router/Domain/Event/CurrentUrlWasChanged";
 import { RouterEventTypes } from "Packages/Common/Router/Domain/Types";
 import { createTextFieldState } from "Packages/Common/FormElement/Domain/FormElementStateFactory";

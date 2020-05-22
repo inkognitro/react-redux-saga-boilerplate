@@ -3,14 +3,14 @@ import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
 import { findTranslatedText } from "Packages/Common/Translator/Domain/Query/TranslatedTextQuery";
 import { Translation } from "Packages/Common/Types";
 
-export type WCTranslationTextState = {
+export type TranslationTextWCState = {
     translatorState: TranslatorState
     translation: Translation
 }
 
-export type WCTranslationTextProps = WCTranslationTextState;
+export type TranslationTextWCProps = TranslationTextWCState;
 
-export const TranslationTextWC: FC<WCTranslationTextProps> = (props) => {
+export const TranslationTextWC: FC<TranslationTextWCProps> = (props) => {
     const translatedText = findTranslatedText(props.translatorState, props.translation);
     if (translatedText !== null) {
         return (<React.Fragment>{translatedText}</React.Fragment>);

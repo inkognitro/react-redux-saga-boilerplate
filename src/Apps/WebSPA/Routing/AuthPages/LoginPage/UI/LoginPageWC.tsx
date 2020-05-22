@@ -50,4 +50,4 @@ const mapDispatchToProps = (dispatch: Dispatch): LoginPageComponentCallbacks => 
     onSubmitLoginForm: () => dispatch(createLogin()),
 });
 
-export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(DumbLoginPage);
+export const LoginPageWC = connect(mapStateToProps, mapDispatchToProps)(DumbLoginPage);

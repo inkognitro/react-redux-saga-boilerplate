@@ -5,7 +5,7 @@ import { History } from "history";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import { Theme } from "Packages/Common/Design/Domain/Types";
 import { ThemeProvider } from "styled-components";
-import { Index } from "Apps/WebSPA/Routing";
+import { RouterWC } from "Apps/WebSPA/Routing";
 import { Toaster } from "Apps/WebSPA/LayoutFoundation/UI/Toaster";
 import { Loader } from "Apps/WebSPA/LayoutFoundation/UI/Loader";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
@@ -23,7 +23,7 @@ type DumbThemedAppProps = {
 
 const DumbThemedApp: FC<DumbThemedAppProps> = (props) => (
     <ThemeProvider theme={props.theme}>
-        <Index history={props.history} />
+        <RouterWC history={props.history} />
         <Toaster />
         <Loader />
     </ThemeProvider>

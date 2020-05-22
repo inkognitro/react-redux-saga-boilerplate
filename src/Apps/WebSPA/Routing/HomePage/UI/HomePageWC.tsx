@@ -8,7 +8,7 @@ import { FormElementGroupWC } from "Packages/Common/FormElement/UI/FormElementGr
 import { LabelWC } from "Packages/Common/FormElement/UI/LabelWC";
 import { createLogin } from "Packages/Common/Authentication/Domain/Command/Login";
 import { TextFieldWC } from "Packages/Common/FormElement/UI/TextFieldWC";
-import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage/Domain/HomePage/Command/LeakReduxState";
+import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage/Domain/Command/LeakReduxState";
 import { ContentPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ContentPage";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { TextFieldState } from "Packages/Common/FormElement/Domain/Types";
@@ -118,4 +118,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DumbHomePageCallbacks => ({
     onClickLeakReduxState: () => dispatch(createLeakReduxState()),
 });
 
-export const HomePage = connect(mapStateToProps, mapDispatchToProps)(DumbHomePage);
+export const HomePageWC = connect(mapStateToProps, mapDispatchToProps)(DumbHomePage);

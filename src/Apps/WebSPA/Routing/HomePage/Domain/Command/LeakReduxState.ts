@@ -1,4 +1,4 @@
-import { HomePageCommandTypes } from "Apps/WebSPA/Routing/HomePage/Domain/HomePage/Types";
+import { HomePageCommandTypes } from "Apps/WebSPA/Routing/HomePage/Domain/Types";
 import {Command} from "Packages/Common/Types";
 
 export function createLeakReduxState(): LeakReduxState {
