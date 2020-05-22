@@ -3,8 +3,8 @@ import { MessageWC } from "Packages/Common/Toaster/UI/MessageWC";
 import { Power1, TimelineLite } from "gsap";
 import { Message, Toast, ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 import styled from "styled-components";
-import { StyledComponentProps } from "Packages/Common/Design/WebUI/Types";
-import { createBoxShadowCss } from "Packages/Common/Design/WebUI/StyleFactory";
+import { StyledWCProps } from "Packages/Common/Design/UI/Types";
+import { createBoxShadowCss } from "Packages/Common/Design/UI/WCStyleFactory";
 import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
 
 const StyledToast = styled.div`
@@ -12,20 +12,20 @@ const StyledToast = styled.div`
   background-color: white;
   margin-right: 20px;
   border-top: 3px solid
-    ${(props: StyledComponentProps) => props.theme.colorPrimary};
+    ${(props: StyledWCProps) => props.theme.colorPrimary};
   overflow: hidden;
   ${createBoxShadowCss()}
   &.info {
-    border-color: ${(props: StyledComponentProps) => props.theme.colorInfo};
+    border-color: ${(props: StyledWCProps) => props.theme.colorInfo};
   }
   &.success {
-    border-color: ${(props: StyledComponentProps) => props.theme.colorSuccess};
+    border-color: ${(props: StyledWCProps) => props.theme.colorSuccess};
   }
   &.warning {
-    border-color: ${(props: StyledComponentProps) => props.theme.colorWarning};
+    border-color: ${(props: StyledWCProps) => props.theme.colorWarning};
   }
   &.error {
-    border-color: ${(props: StyledComponentProps) => props.theme.colorError};
+    border-color: ${(props: StyledWCProps) => props.theme.colorError};
   }
 `;
 

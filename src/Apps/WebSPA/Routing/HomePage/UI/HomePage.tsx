@@ -4,10 +4,10 @@ import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 import { Dispatch } from "redux";
 import { createShowMessage } from "Packages/Common/Toaster/Domain/Command/ShowMessage";
 import { connect } from "react-redux";
-import { FormElementGroup } from "Packages/Common/FormElement/WebUI/FormElementGroup";
-import { Label } from "Packages/Common/FormElement/WebUI/Label";
+import { FormElementGroupWC } from "Packages/Common/FormElement/UI/FormElementGroupWC";
+import { LabelWC } from "Packages/Common/FormElement/UI/LabelWC";
 import { createLogin } from "Packages/Common/Authentication/Domain/Command/Login";
-import { TextField } from "Packages/Common/FormElement/WebUI/TextField";
+import { TextFieldWC } from "Packages/Common/FormElement/UI/TextFieldWC";
 import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage/Domain/HomePage/Command/LeakReduxState";
 import { ContentPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ContentPage";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
@@ -67,10 +67,10 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         </div>
 
         <br />
-        <FormElementGroup>
-            <Label title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
-            <TextField data={props.toastContentField} />
-        </FormElementGroup>
+        <FormElementGroupWC>
+            <LabelWC title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
+            <TextFieldWC data={props.toastContentField} />
+        </FormElementGroupWC>
 
         <br />
         <h3>Redux</h3>

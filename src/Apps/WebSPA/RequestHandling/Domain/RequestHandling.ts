@@ -1,10 +1,10 @@
 import { spawn } from "redux-saga/effects";
-import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1/Domain/HttpApiV1";
-import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster/Domain/HttpApiV1Toaster";
+import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster/Domain/Saga/Flow";
 import { createHttpFoundationSaga } from "Packages/Common/HttpFoundation/Domain/Saga/Flow";
 import { HttpFoundationStateSelector } from "Packages/Common/HttpFoundation/Domain/Types";
 import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/HttpRequestDispatcher";
 import { AuthStateSelector } from "Packages/Common/Authentication/Domain/Types";
+import {createHttpApiV1Saga} from "Packages/Common/HttpApiV1/Domain/Saga/Flow";
 
 export function createRequestHandlingSaga(
     httpStateSelector: HttpFoundationStateSelector,

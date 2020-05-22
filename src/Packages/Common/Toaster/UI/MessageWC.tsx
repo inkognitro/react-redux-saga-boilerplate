@@ -4,7 +4,7 @@ import { IconSizes, IconTypes } from "Packages/Common/Icon/UI/IconWC";
 import { TimelineLite, Power1 } from "gsap";
 import { Message } from "Packages/Common/Toaster/Domain/Types";
 import styled from "styled-components";
-import { StyledComponentProps } from "Packages/Common/Design/WebUI/Types";
+import { StyledWCProps } from "Packages/Common/Design/UI/Types";
 import { TranslationTextWC } from "Packages/Common/Translator/UI/TranslationTextWC";
 import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
 
@@ -12,7 +12,7 @@ const StyledMessage = styled.div`
   position: relative;
   background-color: white;
   width: 250px;
-  border-bottom: 1px solid ${(props: StyledComponentProps) => props.theme.colorSmoothLineOnWhite};
+  border-bottom: 1px solid ${(props: StyledWCProps) => props.theme.colorSmoothLineOnWhite};
 
   &:last-child { border-bottom: 0; }
 `;

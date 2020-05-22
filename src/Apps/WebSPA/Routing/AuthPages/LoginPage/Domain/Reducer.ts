@@ -7,7 +7,7 @@ import {
 import { FormElementEvent, FormElementEventTypes } from "Packages/Common/FormElement/Domain/Types";
 import { LoginPageState } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Types";
 import { createFormState } from "Packages/Common/Form/Domain/FormStateFactory";
-import { formReducer } from "Packages/Common/Form/Domain/Event/Reducer";
+import { formReducer } from "Packages/Common/Form/Domain/Reducer";
 
 const initialLoginPageState: LoginPageState = {
     form: createFormState({

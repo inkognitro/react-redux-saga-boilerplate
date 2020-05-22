@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { StyledComponentProps } from "Packages/Common/Design/WebUI/Types";
+import { StyledWCProps } from "Packages/Common/Design/UI/Types";
 
 const StyledAlignedAreaDiv = styled.div`
   display: table;
@@ -20,7 +20,7 @@ export enum horizontalAligns {
   RIGHT = "right",
 }
 
-type StyledAlignedAreaContentProps = StyledComponentProps & {
+type StyledAlignedAreaContentProps = StyledWCProps & {
   verticalAlign?: string;
   horizontalAlign?: string;
 };

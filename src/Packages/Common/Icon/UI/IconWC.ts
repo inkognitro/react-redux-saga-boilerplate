@@ -1,4 +1,4 @@
-import { StyledComponentProps } from "Packages/Common/Design/WebUI/Types";
+import { StyledWCProps } from "Packages/Common/Design/UI/Types";
 import styled, { StyledComponent } from "styled-components";
 import { ComponentType } from "react";
 
@@ -36,26 +36,26 @@ export type CommonIconWCProps = {
 
 export function createStyledIcon(component: ComponentType): StyledComponent<ComponentType, any> {
     return styled(component)`
-    color: ${(props: StyledComponentProps) => props.theme.colorText};
+    color: ${(props: StyledWCProps) => props.theme.colorText};
     font-size: 24px !important;
 
     &.style-info {
-      color: ${(props: StyledComponentProps) => props.theme.colorInfo};
+      color: ${(props: StyledWCProps) => props.theme.colorInfo};
     }
     &.style-success {
-      color: ${(props: StyledComponentProps) => props.theme.colorSuccess};
+      color: ${(props: StyledWCProps) => props.theme.colorSuccess};
     }
     &.style-warning {
-      color: ${(props: StyledComponentProps) => props.theme.colorWarning};
+      color: ${(props: StyledWCProps) => props.theme.colorWarning};
     }
     &.style-error {
-      color: ${(props: StyledComponentProps) => props.theme.colorError};
+      color: ${(props: StyledWCProps) => props.theme.colorError};
     }
     &.style-interactive {
-      color: ${(props: StyledComponentProps) => props.theme.colorInteractive};
+      color: ${(props: StyledWCProps) => props.theme.colorInteractive};
     }
     &.style-secondary {
-      color: ${(props: StyledComponentProps) => props.theme.colorSecondary};
+      color: ${(props: StyledWCProps) => props.theme.colorSecondary};
     }
     &.style-white {
       color: white;
@@ -92,7 +92,7 @@ export function createStyledIcon(component: ComponentType): StyledComponent<Comp
       &:hover,
       &:active,
       &:focus {
-        color: ${(props: StyledComponentProps) => props.theme.colorInteractive};
+        color: ${(props: StyledWCProps) => props.theme.colorInteractive};
         text-decoration: underline;
       }
     }

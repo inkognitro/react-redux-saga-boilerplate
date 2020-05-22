@@ -1,4 +1,4 @@
-import { apiV1BaseUrl } from "Packages/Common/HttpApiV1/Domain/HttpApiV1";
+import { apiV1BaseUrl } from "Packages/Common/HttpApiV1";
 import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1/Domain/Types";
 import { User } from "Packages/Entity/User/Domain/User";
 import { call, put } from "redux-saga/effects";

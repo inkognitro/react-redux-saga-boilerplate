@@ -20,7 +20,6 @@ import {
 import { createTranslatorSaga } from "Packages/Common/Translator";
 import { translatorReducer } from "Packages/Common/Translator/Domain/Reducer";
 import { BrowserHistoryManager } from "Packages/Common/Router/Infrastructure/BrowserHistoryManager";
-import { createCookieSaga } from "Packages/Common/Cookie/Domain/Cookie";
 import { BrowserCookieStorage } from "Packages/Common/Cookie/Infrastructure/BrowserCookieStorage";
 import { routerReducer } from "Packages/Common/Router/Domain/Reducer";
 import { httpReducer } from "Packages/Common/HttpFoundation/Domain/Reducer";
@@ -38,8 +37,6 @@ import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/Htt
 import { createAuthenticationSaga } from "Packages/Common/Authentication/Domain/Authentication";
 import { designReducer } from "Packages/Common/Design/Domain/Reducer";
 import { DesignState } from "Packages/Common/Design/Domain/Types";
-import { createFormElementsFlow } from "Packages/Common/FormElement/Domain/FormElements";
-import { createFormFlow } from "Packages/Common/Form/Domain/Form";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { AxiosHttpRequestDispatcher } from "Packages/Common/HttpFoundation/Infrastructure/AxiosHttpRequestDispatcher";
 import { createLoaderSaga } from "Packages/Common/Loader/Domain/Loader";
@@ -48,6 +45,9 @@ import { LoaderState } from "Packages/Common/Loader/Domain/Types";
 import {createRouterSaga} from "Packages/Common/Router/Domain/Saga/Flow";
 import {createToasterSaga} from "Packages/Common/Toaster/Domain/Saga/Flow";
 import {createRoutingSaga, routingReducer, RoutingState} from "Apps/WebSPA/Routing/HomePage/Domain";
+import {createFormElementsFlow} from "Packages/Common/FormElement/Domain/Saga/Flow";
+import {createFormFlow} from "Packages/Common/Form/Domain/Saga/Flow";
+import {createCookieSaga} from "Packages/Common/Cookie/Domain/Saga/Flow";
 
 type AppServices = {
   store: Store;

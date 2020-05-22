@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { createOpenUrl } from "Packages/Common/Router/Domain/Command/OpenUrl";
 import styled from "styled-components";
-import { StyledComponentProps } from "Packages/Common/Design/WebUI/Types";
+import { StyledWCProps } from "Packages/Common/Design/UI/Types";
 
 const StyledLink = styled.a`
   color: $colorInteractive;
@@ -11,7 +11,7 @@ const StyledLink = styled.a`
   &:hover,
   &:active,
   &:focus {
-    color: ${(props: StyledComponentProps) => props.theme.colorInteracting};
+    color: ${(props: StyledWCProps) => props.theme.colorInteracting};
     text-decoration: underline;
   }
 `;

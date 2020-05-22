@@ -18,3 +18,13 @@ export enum CookieCommandTypes {
   SAVE_COOKIE = "SAVE_COOKIE-d12895c4-7a9c-423d-b01d-c4be1d770468",
   REMOVE_COOKIE = "REMOVE_COOKIE-d12895c4-7a9c-423d-b01d-c4be1d770468",
 }
+
+export interface CookieReader {
+  findCookieContent(cookieName: string): null | string;
+}
+
+export interface CookieStorage extends CookieReader {
+  saveCookie(settings: Cookie): void;
+
+  removeCookie(cookieName: string): void;
+}
