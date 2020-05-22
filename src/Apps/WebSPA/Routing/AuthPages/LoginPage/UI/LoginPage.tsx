@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
 import { ContentPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ContentPage";
-import { RootState } from "Apps/WebSPA/_bootstrap/ServicesFactory";
+import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { LoginPageState } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Types";
-import { Card } from "Packages/Common/LayoutFoundation/WebUI/Card";
+import { CardWC } from "Packages/Common/LayoutFoundation/UI/CardWC";
 import { Form } from "Packages/Common/Form/WebUI/Form";
 import { TextField } from "Packages/Common/FormElement/WebUI/TextField";
 import { FormElementGroup } from "Packages/Common/FormElement/WebUI/FormElementGroup";
@@ -24,7 +24,7 @@ type LoginPageComponentProps = (LoginPageComponentState & LoginPageComponentCall
 
 const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
     <ContentPage>
-        <Card title="Login">
+        <CardWC title="Login">
             <Form onSubmit={props.onSubmitLoginForm}>
                 <FormElementGroup>
                     <TextField data={props.data.form.elementsByName.username} />
@@ -38,7 +38,7 @@ const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
                     </PrimaryButton>
                 </FormElementGroup>
             </Form>
-        </Card>
+        </CardWC>
     </ContentPage>
 );
 

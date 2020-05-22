@@ -1,63 +1,38 @@
-import {
-    Request,
-    RequestMethods,
-} from "Packages/Common/HttpFoundation/Domain/Types";
+import { Request, RequestMethods } from "Packages/Common/HttpFoundation/Domain/Types";
 import uuidV4 from "uuid/v4";
 
 type GetRequestCreationSettings = {
-  id?: string;
-  url: string;
-  queryParameters?: object;
-  headers?: object;
+  id?: string
+  url: string
+  queryParameters?: object
+  headers?: object
 };
 
-export function createGetRequest(
-    settings: GetRequestCreationSettings,
-): Request {
+export function createGetRequest(settings: GetRequestCreationSettings): Request {
     return createHttpRequest(settings, RequestMethods.GET);
 }
 
-type PostRequestCreationSettings = GetRequestCreationSettings & {
-  body?: object;
-};
-export function createPostRequest(
-    settings: PostRequestCreationSettings,
-): Request {
+type PostRequestCreationSettings = GetRequestCreationSettings & { body?: object };
+export function createPostRequest(settings: PostRequestCreationSettings): Request {
     return createHttpRequest(settings, RequestMethods.POST);
 }
 
-type PutRequestCreationSettings = GetRequestCreationSettings & {
-  body?: object;
-};
-export function createPutRequest(
-    settings: PutRequestCreationSettings,
-): Request {
+type PutRequestCreationSettings = GetRequestCreationSettings & { body?: object };
+export function createPutRequest(settings: PutRequestCreationSettings): Request {
     return createHttpRequest(settings, RequestMethods.PUT);
 }
 
-type PatchRequestCreationSettings = GetRequestCreationSettings & {
-  body?: object;
-};
-export function createPatchRequest(
-    settings: PatchRequestCreationSettings,
-): Request {
+type PatchRequestCreationSettings = GetRequestCreationSettings & { body?: object };
+export function createPatchRequest(settings: PatchRequestCreationSettings): Request {
     return createHttpRequest(settings, RequestMethods.PATCH);
 }
 
-type DeleteRequestCreationSettings = GetRequestCreationSettings & {
-  body?: object;
-};
-export function createDeleteRequest(
-    settings: DeleteRequestCreationSettings,
-): Request {
+type DeleteRequestCreationSettings = GetRequestCreationSettings & { body?: object };
+export function createDeleteRequest(settings: DeleteRequestCreationSettings): Request {
     return createHttpRequest(settings, RequestMethods.DELETE);
 }
 
-export function createWithHeaderEnhancedHttpRequest(
-    request: Request,
-    headerProperty: string,
-    headerValue: string,
-): Request {
+export function getWithHeaderEnhancedHttpRequest(request: Request, headerProperty: string, headerValue: string): Request {
     return {
         ...request,
         headers: {

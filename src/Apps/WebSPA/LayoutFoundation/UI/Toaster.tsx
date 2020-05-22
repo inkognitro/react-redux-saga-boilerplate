@@ -1,20 +1,20 @@
 import { connect } from "react-redux";
 import {
-    Toaster as RepresentationalToaster,
-    ToasterComponentCallbacks,
-    ToasterComponentState,
-} from "Packages/Common/Toaster/WebUI/Toaster";
+    ToasterWC as RepresentationalToaster,
+    ToasterWCCallbacks,
+    ToasterWCState,
+} from "Packages/Common/Toaster/UI/ToasterWC";
 import { Dispatch } from "redux";
-import { RootState } from "Apps/WebSPA/_bootstrap/ServicesFactory";
-import { createRemoveMessage } from "Packages/Common/Toaster/Domain";
+import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
+import { createRemoveMessage } from "Packages/Common/Toaster";
 import { getAllToasts } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
 
-const mapStateToProps = (rootState: RootState): ToasterComponentState => ({
+const mapStateToProps = (rootState: RootState): ToasterWCState => ({
     toasts: getAllToasts(rootState.toaster),
     translatorState: rootState.translator,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): ToasterComponentCallbacks => ({
+const mapDispatchToProps = (dispatch: Dispatch): ToasterWCCallbacks => ({
     onRemoveMessage: (messageId: string): void => {
         dispatch(createRemoveMessage(messageId));
     },

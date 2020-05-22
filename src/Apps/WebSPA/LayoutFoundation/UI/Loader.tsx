@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import {
-    Loader as PresentationalLoader,
-    LoaderState as PresentationalLoaderState,
-} from "Packages/Common/Loader/WebUI/Loader";
-import { RootState } from "Apps/WebSPA/_bootstrap/ServicesFactory";
+    LoaderWC as PresentationalLoader,
+    LoaderWCState as PresentationalLoaderState,
+} from "Packages/Common/Loader/UI/LoaderWC";
+import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { shouldShowLoader } from "Packages/Common/Loader/Domain/Query/ShouldShowLoader";
 
 const mapStateToProps = (state: RootState): PresentationalLoaderState => ({

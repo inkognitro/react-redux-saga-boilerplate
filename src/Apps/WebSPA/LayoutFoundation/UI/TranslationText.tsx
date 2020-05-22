@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
-import { RootState } from "Apps/WebSPA/_bootstrap/ServicesFactory";
-import { TranslationText as DumbTranslationText, TranslationComponentState } from "Packages/Common/Translator/WebUI/TranslationText";
+import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
+import { TranslationTextWC as DumbTranslationText, WCTranslationTextState } from "Packages/Common/Translator/UI/TranslationTextWC";
 import {Translation} from "Packages/Common/Types";
 
 type TranslationTextProps = {
     translationData: TranslationData
 };
 
-const mapStateToProps = (rootState: RootState, props: TranslationTextProps): TranslationComponentState => ({
+const mapStateToProps = (rootState: RootState, props: TranslationTextProps): WCTranslationTextState => ({
     translatorState: rootState.translator,
     translation: props.translationData,
 });

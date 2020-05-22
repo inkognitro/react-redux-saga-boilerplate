@@ -1,8 +1,8 @@
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { FunctionalLink } from "Packages/Common/Router/WebUI/Link";
-import { RootState } from "Apps/WebSPA/_bootstrap/ServicesFactory";
+import { FunctionalLinkWC } from "Packages/Common/Router/UI/LinkWC";
+import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { findCurrentAuthUser } from "Packages/Common/Authentication/Domain/Query/CurrentAuthUserQuery";
 import { AuthUser } from "Packages/Common/Authentication/Domain/Types";
 import { createHomeRouteUrl, createLoginRouteUrl } from "Apps/WebSPA/Routing/HomePage/Domain";
@@ -25,11 +25,11 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
         if (this.props.currentUser) {
             return (
                 <li className="nav-item">
-                    <FunctionalLink className="nav-link" onClick={() => this.props.onClickLogout()}>
+                    <FunctionalLinkWC className="nav-link" onClick={() => this.props.onClickLogout()}>
                         Logout
                         {' '}
                         <UserLabel user={this.props.currentUser.user} />
-                    </FunctionalLink>
+                    </FunctionalLinkWC>
                 </li>
             );
         }

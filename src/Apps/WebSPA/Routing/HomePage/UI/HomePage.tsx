@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FunctionalLink, RouteLink } from "Packages/Common/Router/WebUI/Link";
+import { FunctionalLinkWC, RouteLink } from "Packages/Common/Router/UI/LinkWC";
 import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 import { Dispatch } from "redux";
 import { createShowMessage } from "Packages/Common/Toaster/Domain/Command/ShowMessage";
@@ -10,7 +10,7 @@ import { createLogin } from "Packages/Common/Authentication/Domain/Command/Login
 import { TextField } from "Packages/Common/FormElement/WebUI/TextField";
 import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage/Domain/HomePage/Command/LeakReduxState";
 import { ContentPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ContentPage";
-import { RootState } from "Apps/WebSPA/_bootstrap/ServicesFactory";
+import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { TextFieldState } from "Packages/Common/FormElement/Domain/Types";
 import uuidV4 from 'uuid/v4';
 
@@ -36,34 +36,34 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         </div>
         <br />
         <h3>Authentication</h3>
-        <FunctionalLink onClick={props.onClickLogin}>
+        <FunctionalLinkWC onClick={props.onClickLogin}>
             Login
-        </FunctionalLink>
+        </FunctionalLinkWC>
         <br />
 
         <br />
         <h3>Toasts</h3>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContentField.value)}>
+            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContentField.value)}>
                 add a success toast message
-            </FunctionalLink>
+            </FunctionalLinkWC>
             {' '}
             (is being closed after 3 seconds)
         </div>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContentField.value)}>
+            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContentField.value)}>
                 add an info toast message
-            </FunctionalLink>
+            </FunctionalLinkWC>
         </div>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContentField.value)}>
+            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContentField.value)}>
                 add a warning toast message
-            </FunctionalLink>
+            </FunctionalLinkWC>
         </div>
         <div>
-            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContentField.value)}>
+            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContentField.value)}>
                 add an error toast message
-            </FunctionalLink>
+            </FunctionalLinkWC>
         </div>
 
         <br />
@@ -86,9 +86,9 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
             {' '}
             for a better developer experience or
             {' '}
-            <FunctionalLink onClick={props.onClickLeakReduxState}>
+            <FunctionalLinkWC onClick={props.onClickLeakReduxState}>
                 leak redux state in console
-            </FunctionalLink>
+            </FunctionalLinkWC>
         </div>
     </ContentPage>
 );

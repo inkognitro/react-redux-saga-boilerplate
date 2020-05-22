@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { RouteLink } from "Packages/Common/Router/WebUI/Link";
+import { RouteLink } from "Packages/Common/Router/UI/LinkWC";
 import { ErrorPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ErrorPage";
 import { createHomeRouteUrl } from "Apps/WebSPA/Routing/HomePage/Domain";
 

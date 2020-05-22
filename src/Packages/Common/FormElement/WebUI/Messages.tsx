@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { ErrorIcon } from "Packages/Common/Icon/WebUI/ErrorIcon";
-import { IconSizes, IconTypes } from "Packages/Common/Icon/WebUI/Icon";
+import { ErrorIconWC } from "Packages/Common/Icon/UI/ErrorIconWC";
+import { IconSizes, IconTypes } from "Packages/Common/Icon/UI/IconWC";
 import { Message as MessageData, MessageTypes } from "Packages/Common/Types";
 
 export type MessageProps = {
@@ -11,7 +11,7 @@ const Message: FC<MessageProps> = (props) => { // todo: message content should b
     if (props.message.type === MessageTypes.ERROR) {
         return (
             <small className="text-danger">
-                <ErrorIcon size={IconSizes.XS} type={IconTypes.ERROR} />
+                <ErrorIconWC size={IconSizes.XS} type={IconTypes.ERROR} />
                 {" "}
                 {props.message.content}
             </small>

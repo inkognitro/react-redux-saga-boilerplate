@@ -3,7 +3,7 @@ import { createLoginPageSaga } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Dom
 import { combineReducers, Reducer } from "redux";
 import { loginPageReducer } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Reducer";
 import { LoginPageState } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Types";
-import { RouteComponent } from "Packages/Common/Router/WebUI/Router";
+import { RouteComponent } from "Packages/Common/Router/UI/RouterWC";
 import { loginRoute } from "Apps/WebSPA/Routing/HomePage/Domain";
 import { LoginPage } from "Apps/WebSPA/Routing/AuthPages/LoginPage/UI/LoginPage";
 

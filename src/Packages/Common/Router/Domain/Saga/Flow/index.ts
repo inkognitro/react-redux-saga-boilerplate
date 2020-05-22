@@ -6,7 +6,7 @@ import { watchExtendRouterCommands } from "Packages/Common/Router/Domain/Saga/Fl
 import { handleOpenUrl } from "Packages/Common/Router/Domain/Saga/Flow/OpenUrlHandling";
 import { createCurrentUrlWasChanged } from "Packages/Common/Router/Domain/Event/CurrentUrlWasChanged";
 import { createRouterWasInitialized } from "Packages/Common/Router/Domain/Event/RouterWasInitialized";
-import { HistoryManager } from "Packages/Common/Router/Domain";
+import { HistoryManager } from "Packages/Common/Router";
 
 export function createRouterSaga(
     routerStateSelector: RouterStateSelector,
