@@ -22,7 +22,6 @@ module.exports = {
     resolve: {
         alias: {
             Apps: path.resolve(__dirname, './src/Apps'),
-            Entity: path.resolve(__dirname, './src/Entity'),
             Packages: path.resolve(__dirname, './src/Packages'),
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],

@@ -14,7 +14,6 @@
     "baseUrl": "./src",
     "paths": {
       "Apps/*": ["./Apps/*"],
-      "Entity/*": ["./Entity/*"],
       "Packages/*": ["./Packages/*"],
     },
     "removeComments": true,

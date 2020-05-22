@@ -8,8 +8,8 @@
     "url": "git://github.com/inkognitro/react-redux-saga-boilerplate.git"
   },
   "scripts": {
-    "start:spa": "webpack-dev-server --config src/Apps/WebSPA/Bootstrap/webpack.dev.js",
-    "build:spa": "webpack --config src/Apps/WebSPA/Bootstrap/webpack.prod.js",
+    "start:spa": "webpack-dev-server --config src/Apps/WebSPA/_bootstrap/webpack.dev.js",
+    "build:spa": "webpack --config src/Apps/WebSPA/_bootstrap/webpack.prod.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:lint": "eslint ./src --ext .ts,.tsx",
