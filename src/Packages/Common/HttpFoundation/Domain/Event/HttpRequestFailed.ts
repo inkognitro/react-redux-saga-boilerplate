@@ -2,7 +2,7 @@ import {
     HttpEventTypes,
     Request,
 } from "Packages/Common/HttpFoundation/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import {Event} from "Packages/Common/CommonTypes";
 
 export function createHttpRequestFailed(
     request: Request,

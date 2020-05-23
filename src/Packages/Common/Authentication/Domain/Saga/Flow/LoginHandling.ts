@@ -11,12 +11,9 @@ import { AuthState, AuthStateSelector } from "Packages/Common/Authentication/Dom
 import { createSaveCookie } from "Packages/Common/Cookie/Domain/Command/SaveCookie";
 import { createUserWasLoggedIn } from "Packages/Common/Authentication/Domain/Event/UserWasLoggedIn";
 import { createUserLoginWasCancelled } from "Packages/Common/Authentication/Domain/Event/UserLoginWasCancelled";
-import {
-    authTokenCookieName,
-    authTokenCookieTimeToLiveInDays,
-} from "Packages/Common/Authentication/Domain/Authentication";
 import { findCurrentAuthUser } from "Packages/Common/Authentication/Domain/Query/CurrentAuthUserQuery";
 import { createUserLoginWasNotExecuted } from "Packages/Common/Authentication/Domain/Event/UserLoginWasNotExecuted";
+import {authTokenCookieName, authTokenCookieTimeToLiveInDays} from "Packages/Common/Authentication";
 
 export function* handleLogin(authStateSelector: AuthStateSelector, command: Login): Generator {
     // @ts-ignore

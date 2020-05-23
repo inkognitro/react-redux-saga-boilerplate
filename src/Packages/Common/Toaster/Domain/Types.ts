@@ -1,13 +1,15 @@
-import { MessageIntroAnimationsWereFinished } from "Packages/Common/Toaster/Domain/Event/MessageIntroAnimationsWereFinished";
-import { MessageOutroAnimationWasStarted } from "Packages/Common/Toaster/Domain/Event/MessageOutroAnimationWasStarted";
-import { MessagesWereAddedToToast } from "Packages/Common/Toaster/Domain/Event/MessagesWereAddedToToast";
-import { MessageWasAddedToPipeline } from "Packages/Common/Toaster/Domain/Event/MessageWasAddedToPipeline";
-import { MessageWasRemoved } from "Packages/Common/Toaster/Domain/Event/MessageWasRemoved";
-import { ToastIntroAnimationWasFinished } from "Packages/Common/Toaster/Domain/Event/ToastIntroAnimationWasFinished";
-import { ToastOutroAnimationWasStarted } from "Packages/Common/Toaster/Domain/Event/ToastOutroAnimationWasStarted";
-import { ToastWasAdded } from "Packages/Common/Toaster/Domain/Event/ToastWasAdded";
-import { ToastWasRemoved } from "Packages/Common/Toaster/Domain/Event/ToastWasRemoved";
-import { Translation } from "Packages/Common/Types";
+import { Translation } from "Packages/Common/CommonTypes";
+import {
+    MessageOutroAnimationWasStarted,
+    MessagesWereAddedToToast,
+    MessageIntroAnimationsWereFinished,
+    MessageWasAddedToPipeline,
+    MessageWasRemoved,
+    ToastIntroAnimationWasFinished,
+    ToastOutroAnimationWasStarted,
+    ToastWasAdded,
+    ToastWasRemoved,
+} from "Packages/Common/Toaster";
 
 export enum ToastTypes {
   INFO = "info",

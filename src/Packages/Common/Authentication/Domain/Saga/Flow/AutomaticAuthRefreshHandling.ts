@@ -8,12 +8,12 @@ import {
 } from "@redux-saga/core/effects";
 import { findCurrentAuthUser } from "Packages/Common/Authentication/Domain/Query/CurrentAuthUserQuery";
 import { getSecondsUntilExpiration } from "Packages/Common/Authentication/Domain/JWTHandling";
-import { authRefreshBeforeExpirationInSeconds } from "Packages/Common/Authentication/Domain/Authentication";
 import { UserWasLoggedOut } from "Packages/Common/Authentication/Domain/Event/UserWasLoggedOut";
 import { createUserAuthenticationWasRefreshed } from "Packages/Common/Authentication/Domain/Event/UserAuthenticationWasRefreshed";
 import {
     createUserAuthenticationRefreshWasRequested,
 } from "Packages/Common/Authentication/Domain/Event/UserAuthenticationRefreshWasRequested";
+import {authRefreshBeforeExpirationInSeconds} from "Packages/Common/Authentication";
 
 export function* handleAutomaticAuthenticationRefresh(authStateSelector: AuthStateSelector): Generator {
     while (true) {

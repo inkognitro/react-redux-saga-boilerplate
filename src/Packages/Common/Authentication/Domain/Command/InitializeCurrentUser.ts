@@ -1,5 +1,5 @@
 import { AuthCommandTypes } from "Packages/Common/Authentication/Domain/Types";
-import {Command} from "Packages/Common/Types";
+import {Command} from "Packages/Common/CommonTypes";
 
 export function createInitializeCurrentUser(): InitializeCurrentUser {
     return {

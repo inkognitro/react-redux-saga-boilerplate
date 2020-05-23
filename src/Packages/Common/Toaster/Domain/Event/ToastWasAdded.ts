@@ -1,5 +1,5 @@
-import { Toast, ToasterEventTypes } from "Packages/Common/Toaster/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import { Event } from "Packages/Common/CommonTypes";
+import { Toast, ToasterEventTypes } from "../Types";
 
 export function createToastWasAdded(toast: Toast): ToastWasAdded {
     return {

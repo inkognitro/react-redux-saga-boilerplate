@@ -3,7 +3,7 @@ import {
     Route,
     RouterCommandTypes,
 } from "Packages/Common/Router/Domain/Types";
-import {Command} from "Packages/Common/Types";
+import {Command} from "Packages/Common/CommonTypes";
 
 export function createExtendRouter(
     routes: Route[],

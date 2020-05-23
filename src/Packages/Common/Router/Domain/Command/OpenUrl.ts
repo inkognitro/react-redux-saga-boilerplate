@@ -1,5 +1,5 @@
 import { RouterCommandTypes } from "Packages/Common/Router/Domain/Types";
-import {Command} from "Packages/Common/Types";
+import {Command} from "Packages/Common/CommonTypes";
 
 export function createOpenUrl(settings: OpenUrlSettings): OpenUrl {
     return {

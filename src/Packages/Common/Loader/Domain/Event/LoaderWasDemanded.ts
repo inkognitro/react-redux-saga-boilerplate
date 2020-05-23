@@ -1,5 +1,5 @@
 import { LoaderEventTypes } from "Packages/Common/Loader/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import {Event} from "Packages/Common/CommonTypes";
 
 export function createLoaderWasDemanded(): LoaderWasDemanded {
     return {

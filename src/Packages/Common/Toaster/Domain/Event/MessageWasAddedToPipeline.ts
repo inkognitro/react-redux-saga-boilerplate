@@ -1,5 +1,5 @@
-import { MessageToAdd, ToasterEventTypes } from "Packages/Common/Toaster/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import { Event } from "Packages/Common/CommonTypes";
+import { MessageToAdd, ToasterEventTypes } from "../Types";
 
 export function createMessageWasAddedToPipeline(
     messageToAdd: MessageToAdd,

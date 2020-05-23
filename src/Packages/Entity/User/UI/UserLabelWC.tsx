@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { User } from "Packages/Entity/User/Domain/User";
+import { User } from "../Domain/User";
 
 export type UserLabelWCProps = {
     user: User;

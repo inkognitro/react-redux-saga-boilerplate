@@ -1,8 +1,8 @@
 import React from "react";
-import { ToasterWC } from "Packages/Common/Toaster/UI/ToasterWC";
+import { LanguageIds } from "Packages/Common/Translator";
 import { shallow } from "enzyme";
-import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
-import { LanguageIds } from "Packages/Common/Translator/Domain/Types";
+import { ToasterWC } from "./ToasterWC";
+import { ToastTypes } from "../Domain/Types";
 
 describe("ToasterWC", () => {
     it("should render", () => {

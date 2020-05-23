@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { MessageWC } from "Packages/Common/Toaster/UI/MessageWC";
 import { Power1, TimelineLite } from "gsap";
-import { Message, Toast, ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 import styled from "styled-components";
-import { StyledWCProps } from "Packages/Common/Design/UI/Types";
-import { createBoxShadowCss } from "Packages/Common/Design/UI/WCStyleFactory";
-import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
+import { StyledWCProps, createBoxShadowCss } from "Packages/Common/Design";
+import { TranslatorState } from "Packages/Common/Translator";
+import { Message, Toast, ToastTypes } from "../Domain/Types";
+import { MessageWC } from "./MessageWC";
 
 const StyledToast = styled.div`
   margin-top: 20px;

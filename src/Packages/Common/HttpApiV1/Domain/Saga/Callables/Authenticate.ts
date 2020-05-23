@@ -9,7 +9,7 @@ import {
     receiveHttpResponse,
 } from "Packages/Common/HttpFoundation/Domain/Saga/Callables/HttpResponseReceiving";
 import { AuthUser } from "Packages/Common/Authentication/Domain/Types";
-import { ResultWithMessages } from "Packages/Common/Types";
+import { ResultWithMessages } from "Packages/Common/CommonTypes";
 
 export type AuthenticateResult = (null | ResultWithMessages<{
     authUser?: AuthUser

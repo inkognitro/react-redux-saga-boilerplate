@@ -2,7 +2,7 @@ import {
     Request,
     HttpEventTypes,
 } from "Packages/Common/HttpFoundation/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import {Event} from "Packages/Common/CommonTypes";
 
 export function createRequestWasSent(request: Request): HttpRequestWasSent {
     return {

@@ -1,5 +1,5 @@
 import { AuthEventTypes, LoginSettings } from "Packages/Common/Authentication/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import {Event} from "Packages/Common/CommonTypes";
 
 export function createUserLoginFailed(
     loginSettings: LoginSettings,

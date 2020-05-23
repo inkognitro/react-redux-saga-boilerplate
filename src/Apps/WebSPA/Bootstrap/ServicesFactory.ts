@@ -33,7 +33,6 @@ import {
 } from "Packages/Common/Authentication/Domain/Types";
 import { authenticationReducer } from "Packages/Common/Authentication/Domain/Reducer";
 import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/HttpRequestDispatcher";
-import { createAuthenticationSaga } from "Packages/Common/Authentication/Domain/Authentication";
 import { designReducer } from "Packages/Common/Design/Domain/Reducer";
 import { DesignState } from "Packages/Common/Design/Domain/Types";
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -48,6 +47,7 @@ import {createFormFlow} from "Packages/Common/Form/Domain/Saga/Flow";
 import {createCookieSaga} from "Packages/Common/Cookie/Domain/Saga/Flow";
 import {createRoutingSaga, routingReducer, RoutingState} from "Apps/WebSPA/Routing";
 import {createRequestHandlingSaga} from "Apps/WebSPA/RequestHandling/Domain/Saga/Flow";
+import {createAuthenticationSaga} from "Packages/Common/Authentication/Domain/Saga/Flow";
 
 type AppServices = {
   store: Store;

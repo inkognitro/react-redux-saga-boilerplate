@@ -3,8 +3,8 @@ import {
     TranslatorEvent,
     TranslatorEventTypes,
     TranslatorState,
-} from "Packages/Common/Translator/Domain/Types";
-import { translationIdToTranslationMapping } from "Packages/Common/Translator/Domain/Translation/en";
+} from "./Types";
+import { translationIdToTranslationMapping } from "./Translation/en";
 
 const initialTranslatorState: TranslatorState = {
     currentLanguageId: LanguageIds.EN,
@@ -18,7 +18,6 @@ export function translatorReducer(
     if (!event) {
         return state;
     }
-
     if (event.type === TranslatorEventTypes.UI_LANGUAGE_WAS_SET) {
         return {
             ...state,
@@ -26,6 +25,5 @@ export function translatorReducer(
             translations: event.payload.translationIdToTranslationMapping,
         };
     }
-
     return state;
 }

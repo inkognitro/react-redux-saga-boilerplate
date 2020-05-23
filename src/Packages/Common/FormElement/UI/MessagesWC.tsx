@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ErrorIconWC } from "Packages/Common/Icon/UI/ErrorIconWC";
 import { IconSizes, IconTypes } from "Packages/Common/Icon/UI/IconWC";
-import { Message as MessageData, MessageTypes } from "Packages/Common/Types";
+import { Message as MessageData, MessageTypes } from "Packages/Common/CommonTypes";
 
 export type MessageWCProps = {
     message: MessageData;

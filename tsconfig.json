@@ -14,7 +14,7 @@
     "baseUrl": "./src",
     "paths": {
       "Apps/*": ["./Apps/*"],
-      "Packages/*": ["./Packages/*"],
+      "Packages/*": ["./Packages/*"]
     },
     "removeComments": true,
     "allowUnreachableCode": false,

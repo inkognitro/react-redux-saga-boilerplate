@@ -1,14 +1,10 @@
-import { spawn, takeEvery } from "redux-saga/effects";
 import { AuthCommandTypes, AuthStateSelector } from "Packages/Common/Authentication/Domain/Types";
-import { handleLogin } from "Packages/Common/Authentication/Domain/Saga/Flows/LoginHandling";
+import { spawn, takeEvery } from "@redux-saga/core/effects";
+import { handleLogin } from "Packages/Common/Authentication/Domain/Saga/Flow/LoginHandling";
+import { handleLogout } from "Packages/Common/Authentication/Domain/Saga/Flow/LogoutHandling";
 import {
     handleAutomaticAuthenticationRefresh,
-} from "Packages/Common/Authentication/Domain/Saga/Flows/AutomaticAuthRefreshHandling";
-import { handleLogout } from "Packages/Common/Authentication/Domain/Saga/Flows/LogoutHandling";
-
-export const authTokenCookieName = 'authUser';
-export const authTokenCookieTimeToLiveInDays = 14;
-export const authRefreshBeforeExpirationInSeconds = 60;
+} from "Packages/Common/Authentication/Domain/Saga/Flow/AutomaticAuthRefreshHandling";
 
 export function createAuthenticationSaga(authStateSelector: AuthStateSelector): () => Generator {
     return function* (): Generator {

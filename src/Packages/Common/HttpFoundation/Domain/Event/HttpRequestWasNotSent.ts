@@ -2,7 +2,7 @@ import {
     Request,
     HttpEventTypes,
 } from "Packages/Common/HttpFoundation/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import {Event} from "Packages/Common/CommonTypes";
 
 export enum Reasons {
   REQUEST_WITH_SAME_ID_IS_ALREADY_RUNNING = "requestWithSameIdIsAlreadyRunning",

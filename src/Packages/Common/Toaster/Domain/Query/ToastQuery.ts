@@ -1,4 +1,4 @@
-import { Toast, ToasterState } from "Packages/Common/Toaster/Domain/Types";
+import { Toast, ToasterState } from "../Types";
 
 export function getAllToasts(state: ToasterState): Toast[] {
     return state.toasts;

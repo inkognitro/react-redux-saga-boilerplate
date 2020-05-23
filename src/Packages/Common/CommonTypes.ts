@@ -1,4 +1,4 @@
-import {Action} from "redux";
+import { Action } from "redux";
 
 export enum MessageTypes {
     INFO = "info",
@@ -33,9 +33,11 @@ export type ResultWithMessages<Data> = {
     fieldMessages: FieldMessage[]
     data: Data
 }
+
 export type Command<Type = any, Payload = undefined> = Action<Type> & {
     payload: Payload;
-};
+}
+
 export type Event<Type = any, Payload = undefined> = Action<Type> & {
     payload: Payload;
-};
+}

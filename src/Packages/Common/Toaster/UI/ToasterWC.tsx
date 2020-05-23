@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { Toast } from "Packages/Common/Toaster/Domain/Types";
+import { TranslatorState } from "Packages/Common/Translator";
 import styled from "styled-components";
-import { ToastWC } from "Packages/Common/Toaster/UI/ToastWC";
-import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
+import { Toast } from "../Domain/Types";
+import { ToastWC } from "./ToastWC";
 
 const StyledToastsContainer = styled.div`
   position: fixed;

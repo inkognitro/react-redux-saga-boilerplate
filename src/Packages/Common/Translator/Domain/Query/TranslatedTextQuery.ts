@@ -1,5 +1,5 @@
-import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
-import {Translation} from "Packages/Common/Types";
+import { Translation } from "Packages/Common/CommonTypes";
+import { TranslatorState } from "../Types";
 
 export function findTranslatedText(state: TranslatorState, translation: Translation): null | string {
     let translatedText = state.translations[translation.translationId];

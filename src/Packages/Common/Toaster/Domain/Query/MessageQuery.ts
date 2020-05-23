@@ -2,23 +2,7 @@ import {
     Message,
     MessageToAdd,
     ToasterState,
-} from "Packages/Common/Toaster/Domain/Types";
-
-export function findMessageById(
-    state: ToasterState,
-    messageId: string,
-): null | Message {
-    for (const index in state.toasts) {
-        const toast = state.toasts[index];
-        const foundMessage = toast.messages.find(
-            (message) => message.id === messageId,
-        );
-        if (foundMessage) {
-            return foundMessage;
-        }
-    }
-    return null;
-}
+} from "../Types";
 
 export function findMessageToAddByMessageId(
     state: ToasterState,

@@ -1,5 +1,5 @@
-import { Message, ToasterEventTypes } from "Packages/Common/Toaster/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import { Event } from "Packages/Common/CommonTypes";
+import { Message, ToasterEventTypes } from "../Types";
 
 export function createMessagesWereAddedToToast(
     toastId: string,

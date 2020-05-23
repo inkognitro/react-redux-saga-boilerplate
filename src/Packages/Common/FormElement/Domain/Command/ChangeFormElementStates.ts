@@ -2,7 +2,7 @@ import {
     FormElementCommandTypes,
     FormElementStateChanges,
 } from "Packages/Common/FormElement/Domain/Types";
-import {Command} from "Packages/Common/Types";
+import {Command} from "Packages/Common/CommonTypes";
 
 export function createChangeFormElementStates(multipleStateChanges: FormElementStateChanges[]): ChangeFormElementStates {
     return {

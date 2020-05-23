@@ -1,5 +1,5 @@
 import { FormElementEventTypes, FormElementState } from "Packages/Common/FormElement/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import {Event} from "Packages/Common/CommonTypes";
 
 export function createFormElementStateWasChanged(
     formElement: FormElementState,

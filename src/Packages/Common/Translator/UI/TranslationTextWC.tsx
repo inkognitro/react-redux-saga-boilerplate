@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
-import { findTranslatedText } from "Packages/Common/Translator/Domain/Query/TranslatedTextQuery";
-import { Translation } from "Packages/Common/Types";
+import { findTranslatedText, TranslatorState } from "Packages/Common/Translator";
+import { Translation } from "Packages/Common/CommonTypes";
 
 export type TranslationTextWCState = {
     translatorState: TranslatorState

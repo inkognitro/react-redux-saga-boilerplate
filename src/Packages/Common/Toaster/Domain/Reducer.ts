@@ -1,9 +1,9 @@
+import { Reducer } from "redux";
 import {
     ToasterEvent,
     ToasterEventTypes,
     ToasterState,
-} from "Packages/Common/Toaster/Domain/Types";
-import { Reducer } from "redux";
+} from "./Types";
 
 const initialToasterState: ToasterState = {
     messagesToAdd: [],

@@ -1,7 +1,4 @@
-import {
-    ShowMessage,
-    ShowMessageSettings,
-} from "Packages/Common/Toaster/Domain/Command/ShowMessage";
+import uuidV4 from "uuid/v4";
 import {
     MessageToAdd,
     ToasterState,
@@ -11,13 +8,16 @@ import {
 import {
     delay, fork, put, select,
 } from "redux-saga/effects";
-import { findToastByMessageId } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
-import { findMessageToAddByMessageId } from "Packages/Common/Toaster/Domain/Query/MessageQuery";
-import uuidV4 from "uuid/v4";
-import { createMessageWasAddedToPipeline } from "Packages/Common/Toaster/Domain/Event/MessageWasAddedToPipeline";
+import {
+    ShowMessage,
+    ShowMessageSettings,
+} from "../../Command/ShowMessage";
+import { findToastByMessageId } from "../../Query/ToastQuery";
+import { findMessageToAddByMessageId } from "../../Query/MessageQuery";
+import { createMessageWasAddedToPipeline } from "../../Event/MessageWasAddedToPipeline";
 import {
     moveMessagesFromPipelineToToastsHandling,
-} from "Packages/Common/Toaster/Domain/Saga/Flow/MoveMessagesFromPipelineToToastsHandling";
+} from "./MoveMessagesFromPipelineToToastsHandling";
 
 function createAutomaticCloseDelayInMs(
     settings: ShowMessageSettings,

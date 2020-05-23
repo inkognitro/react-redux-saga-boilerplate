@@ -1,5 +1,5 @@
-import { ToasterCommandTypes } from "Packages/Common/Toaster/Domain/Types";
-import {Command} from "Packages/Common/Types";
+import { Command } from "Packages/Common/CommonTypes";
+import { ToasterCommandTypes } from "../Types";
 
 export function createRemoveMessage(messageId: string): RemoveMessage {
     return {

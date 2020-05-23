@@ -5,7 +5,7 @@ import { createShowMessage } from "Packages/Common/Toaster/Domain/Command/ShowMe
 import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 import { ApiV1HttpConnectionFailed } from "Packages/Common/HttpApiV1/Domain/Event/ApiV1HttpConnectionFailed";
 import { ApiV1HttpResponseWasReceived } from "Packages/Common/HttpApiV1/Domain/Event/ApiV1HttpResponseWasReceived";
-import {MessageTypes} from "Packages/Common/Types";
+import {MessageTypes} from "Packages/Common/CommonTypes";
 
 const apiV1EventTypesToWatch = [
     HttpApiV1EventTypes.API_V1_HTTP_CONNECTION_FAILED,

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { CloseIconWC } from "Packages/Common/Icon/UI/CloseIconWC";
 import { IconSizes, IconTypes } from "Packages/Common/Icon/UI/IconWC";
 import { TimelineLite, Power1 } from "gsap";
-import { Message } from "Packages/Common/Toaster/Domain/Types";
 import styled from "styled-components";
-import { StyledWCProps } from "Packages/Common/Design/UI/Types";
-import { TranslationTextWC } from "Packages/Common/Translator/UI/TranslationTextWC";
+import { StyledWCProps } from "Packages/Common/Design";
+import { TranslationTextWC } from "Packages/Common/Translator";
 import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
+import { Message } from "../Domain/Types";
 
 const StyledMessage = styled.div`
   position: relative;

@@ -1,5 +1,5 @@
 import { LoginPageCommandTypes } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Types";
-import {Command} from "Packages/Common/Types";
+import {Command} from "Packages/Common/CommonTypes";
 
 export function createLogin(): Login {
     return {

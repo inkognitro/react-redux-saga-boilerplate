@@ -1,5 +1,5 @@
-import { ToasterEventTypes } from "Packages/Common/Toaster/Domain/Types";
-import {Event} from "Packages/Common/Types";
+import { Event } from "Packages/Common/CommonTypes";
+import { ToasterEventTypes } from "../Types";
 
 export function createMessageOutroAnimationWasStarted(
     messageId: string,

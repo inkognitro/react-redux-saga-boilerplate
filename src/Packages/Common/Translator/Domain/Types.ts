@@ -1,4 +1,4 @@
-import { UILanguageWasSet } from "Packages/Common/Translator/Domain/Event/UILanguageWasSet";
+import { UILanguageWasSet } from "./Event/UILanguageWasSet";
 
 export type TranslatorStateSelector<State = any> = (
   state: State

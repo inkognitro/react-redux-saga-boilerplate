@@ -1,14 +1,14 @@
+import { put, select } from "redux-saga/effects";
+import { SetUILanguage } from "Packages/Common/Translator";
 import {
     LanguageIds,
     TranslationIdToTranslationMapping,
     TranslatorState,
     TranslatorStateSelector,
-} from "Packages/Common/Translator/Domain/Types";
-import { put, select } from "redux-saga/effects";
-import { getCurrentLanguageId } from "Packages/Common/Translator/Domain/Query/LanguageIdQuery";
-import { translationIdToTranslationMapping } from "Packages/Common/Translator/Domain/Translation/en";
-import { createUILanguageWasSet } from "Packages/Common/Translator/Domain/Event/UILanguageWasSet";
-import { SetUILanguage } from "Packages/Common/Translator/Domain/Command/SetUILanguage";
+} from "../../Types";
+import { getCurrentLanguageId } from "../../Query/LanguageIdQuery";
+import { translationIdToTranslationMapping } from "../../Translation/en";
+import { createUILanguageWasSet } from "../../Event/UILanguageWasSet";
 
 export function* handleSetUILanguage(translatorStateSelector: TranslatorStateSelector, command: SetUILanguage): Generator {
     // @ts-ignore

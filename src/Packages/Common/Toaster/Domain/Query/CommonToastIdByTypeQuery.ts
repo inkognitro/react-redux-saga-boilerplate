@@ -1,4 +1,4 @@
-import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
+import { ToastTypes } from "../Types";
 
 export enum CommonToastIds {
   INFO = "5011d2e7-ce60-4186-bbee-bf3e8ab57c3b",
