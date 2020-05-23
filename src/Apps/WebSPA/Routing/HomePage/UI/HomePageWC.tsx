@@ -1,17 +1,15 @@
 import React, { FC } from "react";
-import { FunctionalLinkWC, RouteLink } from "Packages/Common/Router/UI/LinkWC";
-import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
+import { FunctionalLinkWC, RouteLink } from "Packages/Common/Router";
+import { ToastTypes, createShowMessage } from "Packages/Common/Toaster";
 import { Dispatch } from "redux";
-import { createShowMessage } from "Packages/Common/Toaster/Domain/Command/ShowMessage";
 import { connect } from "react-redux";
-import { FormElementGroupWC } from "Packages/Common/FormElement/UI/FormElementGroupWC";
-import { LabelWC } from "Packages/Common/FormElement/UI/LabelWC";
-import { createLogin } from "Packages/Common/Authentication/Domain/Command/Login";
-import { TextFieldWC } from "Packages/Common/FormElement/UI/TextFieldWC";
-import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage/Domain/Command/LeakReduxState";
-import { ContentPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ContentPage";
+import {
+    FormElementGroupWC, LabelWC, TextFieldWC, TextFieldState,
+} from "Packages/Common/FormElement";
+import { createLogin } from "Packages/Common/Authentication";
+import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage";
+import { ContentPage } from "Apps/WebSPA/LayoutFoundation";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
-import { TextFieldState } from "Packages/Common/FormElement/Domain/Types";
 import uuidV4 from 'uuid/v4';
 
 type DumbHomePageCallbacks = {

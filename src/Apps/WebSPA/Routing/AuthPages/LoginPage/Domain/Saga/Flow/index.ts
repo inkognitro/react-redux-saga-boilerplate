@@ -1,6 +1,6 @@
 import { spawn, takeEvery } from "@redux-saga/core/effects";
-import { LoginPageCommandTypes } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Types";
-import { handleLogin } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Saga/Flow/LoginHandling";
+import { LoginPageCommandTypes } from "../../Types";
+import { handleLogin } from "./LoginHandling";
 
 export function createLoginPageSaga(): () => Generator {
     return function* (): Generator {

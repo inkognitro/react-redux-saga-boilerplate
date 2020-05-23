@@ -1,9 +1,11 @@
-import { HomePageState } from "Apps/WebSPA/Routing/HomePage/Domain/Types";
-import { CurrentUrlWasChanged } from "Packages/Common/Router/Domain/Event/CurrentUrlWasChanged";
-import { RouterEventTypes } from "Packages/Common/Router/Domain/Types";
-import { createTextFieldState } from "Packages/Common/FormElement/Domain/FormElementStateFactory";
-import { FormElementEvent, FormElementEventTypes } from "Packages/Common/FormElement/Domain/Types";
-import { textFieldReducer } from "Packages/Common/FormElement/Domain/Reducer/TextFieldReducer";
+import { RouterEventTypes, CurrentUrlWasChanged } from "Packages/Common/Router";
+import {
+    textFieldReducer,
+    FormElementEvent,
+    FormElementEventTypes,
+    createTextFieldState,
+} from "Packages/Common/FormElement";
+import { HomePageState } from "./Types";
 
 const initialHomePageState: HomePageState = {
     toastContent: createTextFieldState({ value: 'Hi there :)' }),

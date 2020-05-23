@@ -11,42 +11,41 @@ import { createBrowserHistory, History } from "history";
 import {
     ToasterState,
     ToasterStateSelector,
-} from "Packages/Common/Toaster/Domain/Types";
-import { toasterReducer } from "Packages/Common/Toaster/Domain/Reducer";
+    toasterReducer,
+    createToasterSaga,
+} from "Packages/Common/Toaster";
 import {
     TranslatorState,
     TranslatorStateSelector,
-} from "Packages/Common/Translator/Domain/Types";
-import { createTranslatorSaga } from "Packages/Common/Translator";
-import { translatorReducer } from "Packages/Common/Translator/Domain/Reducer";
-import { BrowserHistoryManager } from "Packages/Common/Router/Infrastructure/BrowserHistoryManager";
-import { BrowserCookieStorage } from "Packages/Common/Cookie/Infrastructure/BrowserCookieStorage";
-import { routerReducer } from "Packages/Common/Router/Domain/Reducer";
-import { httpReducer } from "Packages/Common/HttpFoundation/Domain/Reducer";
+    createTranslatorSaga,
+    translatorReducer,
+} from "Packages/Common/Translator";
+import {
+    BrowserHistoryManager,
+    routerReducer,
+    createRouterSaga,
+} from "Packages/Common/Router";
+import { BrowserCookieStorage, createCookieSaga } from "Packages/Common/Cookie";
 import {
     HttpFoundationState,
-    HttpFoundationStateSelector, HttpRequestDispatcher,
-} from "Packages/Common/HttpFoundation/Domain/Types";
+    HttpFoundationStateSelector,
+    HttpRequestDispatcher,
+    httpFoundationReducer,
+    AxiosHttpRequestDispatcher,
+} from "Packages/Common/HttpFoundation";
 import {
     AuthState,
     AuthStateSelector,
-} from "Packages/Common/Authentication/Domain/Types";
-import { authenticationReducer } from "Packages/Common/Authentication/Domain/Reducer";
-import { designReducer } from "Packages/Common/Design/Domain/Reducer";
-import { DesignState } from "Packages/Common/Design/Domain/Types";
+    authenticationReducer,
+    createAuthenticationSaga,
+} from "Packages/Common/Authentication";
+import { designReducer, DesignState } from "Packages/Common/Design";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { AxiosHttpRequestDispatcher } from "Packages/Common/HttpFoundation/Infrastructure/AxiosHttpRequestDispatcher";
-import { createLoaderSaga } from "Packages/Common/Loader/Domain/Saga/Flow";
-import { loaderReducer } from "Packages/Common/Loader/Domain/Reducer";
-import { LoaderState } from "Packages/Common/Loader/Domain/Types";
-import {createRouterSaga} from "Packages/Common/Router/Domain/Saga/Flow";
-import {createToasterSaga} from "Packages/Common/Toaster/Domain/Saga/Flow";
-import {createFormElementsFlow} from "Packages/Common/FormElement/Domain/Saga/Flow";
-import {createFormFlow} from "Packages/Common/Form/Domain/Saga/Flow";
-import {createCookieSaga} from "Packages/Common/Cookie/Domain/Saga/Flow";
-import {createRoutingSaga, routingReducer, RoutingState} from "Apps/WebSPA/Routing";
-import {createRequestHandlingSaga} from "Apps/WebSPA/RequestHandling/Domain/Saga/Flow";
-import {createAuthenticationSaga} from "Packages/Common/Authentication/Domain/Saga/Flow";
+import { createLoaderSaga, loaderReducer, LoaderState } from "Packages/Common/Loader";
+import { createFormElementsFlow } from "Packages/Common/FormElement";
+import { createFormSaga } from "Packages/Common/Form";
+import { createRoutingSaga, routingReducer, RoutingState } from "Apps/WebSPA/Routing";
+import { createRequestHandlingSaga } from "Apps/WebSPA/RequestHandling";
 
 type AppServices = {
   store: Store;
@@ -58,7 +57,7 @@ const rootReducer = combineReducers({
     design: designReducer,
     translator: translatorReducer,
     toaster: toasterReducer,
-    http: httpReducer,
+    http: httpFoundationReducer,
     router: routerReducer,
     routing: routingReducer,
     authentication: authenticationReducer,
@@ -86,12 +85,12 @@ function createRootSaga(
 
     const formElementsSaga = createFormElementsFlow();
 
-    const formSaga = createFormFlow();
+    const formSaga = createFormSaga();
 
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
     const authenticationSaga = createAuthenticationSaga(authStateSelector);
 
-    const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.http;
+    const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.httpFoundation;
     const requestHandlingSaga = createRequestHandlingSaga(
         httpFoundationStateSelector,
         httpRequestDispatcher,
@@ -146,7 +145,7 @@ export type RootState = {
   translator: TranslatorState
   loader: LoaderState
   toaster: ToasterState
-  http: HttpFoundationState
+  httpFoundation: HttpFoundationState
   router: RouterState
   routing: RoutingState
   authentication: AuthState

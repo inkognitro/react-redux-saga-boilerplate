@@ -15,7 +15,7 @@ const eventTypesForRunningHttpRequestsRemoval = [
     HttpEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED,
 ];
 
-export function httpReducer(
+export function httpFoundationReducer(
     state: HttpFoundationState = initialHttpState,
     event?: HttpEvent,
 ): HttpFoundationState {

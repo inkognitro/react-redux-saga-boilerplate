@@ -1,5 +1,5 @@
 import { select } from "redux-saga/effects";
-import { Login } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Command/Login";
+import { Login } from "../../Command/Login";
 
 export function* handleLogin(command: Login): Generator {
     // @ts-ignore

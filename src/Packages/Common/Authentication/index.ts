@@ -13,6 +13,7 @@ export { UserLoginWasRequested } from './Domain/Event/UserLoginWasRequested';
 export { UserLogoutWasNotExecuted } from './Domain/Event/UserLogoutWasNotExecuted';
 export { UserWasLoggedIn } from './Domain/Event/UserWasLoggedIn';
 export { findCurrentAuthUser } from './Domain/Query/CurrentAuthUserQuery';
+export { authenticationReducer } from './Domain/Reducer';
 export * from './Domain/Types';
 export const authTokenCookieName = 'authUser';
 export const authTokenCookieTimeToLiveInDays = 14;

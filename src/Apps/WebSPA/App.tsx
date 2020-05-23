@@ -3,13 +3,11 @@ import { connect, Provider as StoreProvider } from "react-redux";
 import { Store } from "redux";
 import { History } from "history";
 import { CSSPlugin } from "gsap/CSSPlugin";
-import { Theme } from "Packages/Common/Design/Domain/Types";
 import { ThemeProvider } from "styled-components";
 import { RouterWC } from "Apps/WebSPA/Routing";
-import { Toaster } from "Apps/WebSPA/LayoutFoundation/UI/Toaster";
-import { Loader } from "Apps/WebSPA/LayoutFoundation/UI/Loader";
+import { Toaster, Loader } from "Apps/WebSPA/LayoutFoundation";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
-import { getTheme } from "Packages/Common/Design/Domain/Query/ThemeQuery";
+import { Theme, getTheme } from "Packages/Common/Design";
 import "bootstrap/scss/bootstrap.scss";
 
 // @ts-ignore

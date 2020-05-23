@@ -7,13 +7,13 @@ import {
 import { History } from "history";
 import { Route } from "Packages/Common/Router";
 
-export type RouteComponent = {
+export type RouteWC = {
   route: Route;
   component: ComponentType;
 };
 
 export type Specification = {
-  routeComponents: RouteComponent[];
+  routeComponents: RouteWC[];
   defaultComponent: ComponentType;
 };
 

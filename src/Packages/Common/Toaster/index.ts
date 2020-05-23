@@ -10,5 +10,6 @@ export { MessageWasAddedToPipeline } from "./Domain/Event/MessageWasAddedToPipel
 export { MessagesWereAddedToToast } from "./Domain/Event/MessagesWereAddedToToast";
 export { MessageOutroAnimationWasStarted } from "./Domain/Event/MessageOutroAnimationWasStarted";
 export { MessageIntroAnimationsWereFinished } from "./Domain/Event/MessageIntroAnimationsWereFinished";
+export { toasterReducer } from './Domain/Reducer';
 export * from './Domain/Types';
 export * from './UI/ToasterWC';

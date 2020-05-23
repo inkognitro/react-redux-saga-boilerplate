@@ -1,13 +1,12 @@
-import { CurrentUrlWasChanged } from "Packages/Common/Router/Domain/Event/CurrentUrlWasChanged";
-import { RouterEventTypes } from "Packages/Common/Router/Domain/Types";
+import { RouterEventTypes, CurrentUrlWasChanged } from "Packages/Common/Router";
 import {
     createPasswordFieldState,
     createTextFieldState,
-} from "Packages/Common/FormElement/Domain/FormElementStateFactory";
-import { FormElementEvent, FormElementEventTypes } from "Packages/Common/FormElement/Domain/Types";
-import { LoginPageState } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Types";
-import { createFormState } from "Packages/Common/Form/Domain/FormStateFactory";
-import { formReducer } from "Packages/Common/Form/Domain/Reducer";
+    FormElementEvent,
+    FormElementEventTypes,
+} from "Packages/Common/FormElement";
+import { formReducer, createFormState } from "Packages/Common/Form";
+import { LoginPageState } from "./Types";
 
 const initialLoginPageState: LoginPageState = {
     form: createFormState({

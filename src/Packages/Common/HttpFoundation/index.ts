@@ -15,6 +15,7 @@ export { HttpRequestWasNotSent } from './Domain/Event/HttpRequestWasNotSent';
 export { HttpErrorResponseWasReceived } from './Domain/Event/HttpErrorResponseWasReceived';
 export { HttpSuccessResponseWasReceived } from './Domain/Event/HttpSuccessResponseWasReceived';
 export { HttpRequestWasSent } from './Domain/Event/HttpRequestWasSent';
+export { httpFoundationReducer } from './Domain/Reducer';
 export { AxiosHttpRequestDispatcher } from './Infrastructure/AxiosHttpRequestDispatcher';
 export { MockHttpRequestDispatcher } from './Infrastructure/MockHttpRequestDispatcher';
 export * from './Domain/Types';

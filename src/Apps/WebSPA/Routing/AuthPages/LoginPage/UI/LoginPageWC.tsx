@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
-import { ContentPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ContentPage";
+import { ContentPage } from "Apps/WebSPA/LayoutFoundation";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
-import { LoginPageState } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Types";
-import { CardWC } from "Packages/Common/LayoutFoundation/UI/CardWC";
-import { FormWC } from "Packages/Common/Form/UI/FormWC";
-import { TextFieldWC } from "Packages/Common/FormElement/UI/TextFieldWC";
-import { FormElementGroupWC } from "Packages/Common/FormElement/UI/FormElementGroupWC";
-import { PasswordFieldWC } from "Packages/Common/FormElement/UI/PasswordFieldWC";
-import { PrimaryButtonWC } from "Packages/Common/FormElement/UI/PrimaryButtonWC";
+import { LoginPageState, createLogin } from "Apps/WebSPA/Routing/AuthPages/LoginPage";
+import { CardWC } from "Packages/Common/LayoutFoundation";
+import { FormWC } from "Packages/Common/Form";
+import {
+    TextFieldWC,
+    FormElementGroupWC,
+    PrimaryButtonWC,
+    PasswordFieldWC,
+} from "Packages/Common/FormElement";
 import { Dispatch } from "redux";
-import { createLogin } from "Apps/WebSPA/Routing/AuthPages/LoginPage/Domain/Command/Login";
 
 type LoginPageComponentCallbacks = {
     onSubmitLoginForm: () => void

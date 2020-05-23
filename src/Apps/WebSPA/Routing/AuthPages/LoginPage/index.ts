@@ -1,6 +1,6 @@
 import { Route } from "Packages/Common/Router/Domain/Types";
 
-export { Login } from './Domain/Command/Login';
+export { createLogin, Login } from './Domain/Command/Login';
 export { createLoginPageSaga } from './Domain/Saga/Flow';
 export { loginPageReducer } from './Domain/Reducer';
 export * from './Domain/Types';

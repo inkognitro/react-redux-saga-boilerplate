@@ -1,4 +1,4 @@
-import { Route } from "Packages/Common/Router/Domain/Types";
+import { Route } from "Packages/Common/Router";
 
 export { createLeakReduxState, LeakReduxState } from './Domain/Command/LeakReduxState';
 export { createHomePageSaga } from './Domain/Saga/Flow';
