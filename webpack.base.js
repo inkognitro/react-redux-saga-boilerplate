@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
