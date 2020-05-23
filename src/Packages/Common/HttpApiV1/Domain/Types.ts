@@ -1,5 +1,5 @@
-import {Response} from "Packages/Common/HttpFoundation/Domain/Types";
-import {FieldMessage, Message} from "Packages/Common/CommonTypes";
+import { Response } from "Packages/Common/HttpFoundation";
+import { FieldMessage, Message } from "Packages/Common/CommonTypes";
 
 export type BasicResponseBody = {
   generalMessages?: Message[];

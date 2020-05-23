@@ -1,11 +1,13 @@
 import { put, takeEvery } from "redux-saga/effects";
-import { HttpApiV1EventTypes } from "Packages/Common/HttpApiV1/Domain/Types";
-import { COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID } from "Packages/Common/Translator/Domain/Translation/en";
-import { createShowMessage } from "Packages/Common/Toaster/Domain/Command/ShowMessage";
+import { createShowMessage } from "Packages/Common/Toaster";
 import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
-import { ApiV1HttpConnectionFailed } from "Packages/Common/HttpApiV1/Domain/Event/ApiV1HttpConnectionFailed";
-import { ApiV1HttpResponseWasReceived } from "Packages/Common/HttpApiV1/Domain/Event/ApiV1HttpResponseWasReceived";
-import {MessageTypes} from "Packages/Common/CommonTypes";
+import {
+    HttpApiV1EventTypes,
+    ApiV1HttpResponseWasReceived,
+    ApiV1HttpConnectionFailed,
+} from "Packages/Common/HttpApiV1";
+import { MessageTypes } from "Packages/Common/CommonTypes";
+import { COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID } from "Packages/Common/Translator";
 
 const apiV1EventTypesToWatch = [
     HttpApiV1EventTypes.API_V1_HTTP_CONNECTION_FAILED,
