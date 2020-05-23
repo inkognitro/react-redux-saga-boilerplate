@@ -1,5 +1,5 @@
-import { FormElementCommandTypes, FormElementState } from "Packages/Common/FormElement/Domain/Types";
-import {Command} from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Common/CommonTypes";
+import { FormElementCommandTypes, FormElementState } from "../Types";
 
 export function createChangeFormElementState(
     formElement: FormElementState,

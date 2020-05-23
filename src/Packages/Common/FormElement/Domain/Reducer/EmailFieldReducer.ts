@@ -1,7 +1,7 @@
-import { EmailFieldState, FormElementEvent } from "Packages/Common/FormElement/Domain/Types";
-import { internalFormElementReducer } from "Packages/Common/FormElement/Domain/Reducer/InternalFormElementReducer";
 import { Reducer } from "redux";
-import { createEmailFieldState } from "Packages/Common/FormElement/Domain/FormElementStateFactory";
+import { EmailFieldState, FormElementEvent } from "../Types";
+import { internalFormElementReducer } from "./InternalFormElementReducer";
+import { createEmailFieldState } from "../FormElementStateFactory";
 
 type PartialInitialState = Partial<Omit<EmailFieldState, "type">>;
 

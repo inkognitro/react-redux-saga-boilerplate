@@ -1,7 +1,7 @@
-import { FormElementEvent, FormElementState, FormElementTypes } from "Packages/Common/FormElement/Domain/Types";
-import { textFieldReducer } from "Packages/Common/FormElement/Domain/Reducer/TextFieldReducer";
-import { emailFieldReducer } from "Packages/Common/FormElement/Domain/Reducer/EmailFieldReducer";
-import { passwordFieldReducer } from "Packages/Common/FormElement/Domain/Reducer/PasswordFieldReducer";
+import { FormElementEvent, FormElementState, FormElementTypes } from "../Types";
+import { textFieldReducer } from "./TextFieldReducer";
+import { emailFieldReducer } from "./EmailFieldReducer";
+import { passwordFieldReducer } from "./PasswordFieldReducer";
 
 export function formElementReducer(state: FormElementState, event?: FormElementEvent): FormElementState {
     if (!event) {

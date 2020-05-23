@@ -1,7 +1,7 @@
-import { FormElementEvent, TextFieldState } from "Packages/Common/FormElement/Domain/Types";
-import { internalFormElementReducer } from "Packages/Common/FormElement/Domain/Reducer/InternalFormElementReducer";
 import { Reducer } from "redux";
-import { createTextFieldState } from "Packages/Common/FormElement/Domain/FormElementStateFactory";
+import { FormElementEvent, TextFieldState } from "../Types";
+import { internalFormElementReducer } from "./InternalFormElementReducer";
+import { createTextFieldState } from "../FormElementStateFactory";
 
 type PartialInitialState = Partial<Omit<TextFieldState, "type">>;
 

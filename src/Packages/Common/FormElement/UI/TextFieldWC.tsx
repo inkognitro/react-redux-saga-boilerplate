@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { TextFieldState } from "Packages/Common/FormElement/Domain/Types";
-import { ConnectedInternalInputFieldWC } from "Packages/Common/FormElement/UI/InternalInputFieldWC";
-import { ConnectedFormElementWCProps } from "Packages/Common/FormElement/UI/Types";
+import { TextFieldState } from "Packages/Common/FormElement";
+import { ConnectedInternalInputFieldWC } from "./InternalInputFieldWC";
+import { ConnectedFormElementWCProps } from "./Types";
 
 export type TextFieldWCProps = ConnectedFormElementWCProps<TextFieldState>
 export const TextFieldWC: FC<TextFieldWCProps> = (props) => (

@@ -3,7 +3,7 @@ import {
     FormElementEventTypes,
     FormElementState,
     FormElementStateChanges,
-} from "Packages/Common/FormElement/Domain/Types";
+} from "../Types";
 
 export function internalFormElementReducer<SpecificFormElementState>(
     state: (SpecificFormElementState & FormElementState),

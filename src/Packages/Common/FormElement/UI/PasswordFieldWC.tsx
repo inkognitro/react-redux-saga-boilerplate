@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { PasswordFieldState } from "Packages/Common/FormElement/Domain/Types";
-import { ConnectedInternalInputFieldWC } from "Packages/Common/FormElement/UI/InternalInputFieldWC";
-import { ConnectedFormElementWCProps } from "Packages/Common/FormElement/UI/Types";
+import { PasswordFieldState } from "Packages/Common/FormElement";
+import { ConnectedInternalInputFieldWC } from "./InternalInputFieldWC";
+import { ConnectedFormElementWCProps } from "./Types";
 
 export type PasswordFieldWCProps = ConnectedFormElementWCProps<PasswordFieldState>
 export const PasswordFieldWC: FC<PasswordFieldWCProps> = (props) => (

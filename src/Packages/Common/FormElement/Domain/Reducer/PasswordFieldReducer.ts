@@ -1,7 +1,7 @@
-import { FormElementEvent, PasswordFieldState } from "Packages/Common/FormElement/Domain/Types";
-import { internalFormElementReducer } from "Packages/Common/FormElement/Domain/Reducer/InternalFormElementReducer";
 import { Reducer } from "redux";
-import { createPasswordFieldState } from "Packages/Common/FormElement/Domain/FormElementStateFactory";
+import { FormElementEvent, PasswordFieldState } from "../Types";
+import { internalFormElementReducer } from "./InternalFormElementReducer";
+import { createPasswordFieldState } from "../FormElementStateFactory";
 
 type PartialInitialState = Partial<Omit<PasswordFieldState, "type">>;
 

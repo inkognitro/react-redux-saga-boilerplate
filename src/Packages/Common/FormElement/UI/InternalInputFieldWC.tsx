@@ -1,15 +1,18 @@
 import React, { FC } from "react";
-import { FormElementTypes, InputFieldState } from "Packages/Common/FormElement/Domain/Types";
-import { MessagesWC } from "Packages/Common/FormElement/UI/MessagesWC";
+import {
+    FormElementTypes,
+    InputFieldState,
+    createChangeFormElementState,
+    MessagesWC,
+} from "Packages/Common/FormElement";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { createChangeFormElementState } from "Packages/Common/FormElement/Domain/Command/ChangeFormElementState";
 import {
     ConnectedFormElementWCProps,
     FormElementWCCallbacks,
     FormElementWCProps,
     FormElementWCState,
-} from "Packages/Common/FormElement/UI/Types";
+} from "./Types";
 
 function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     if (type === FormElementTypes.TEXT) {

@@ -1,8 +1,8 @@
-import {put, spawn, takeEvery} from "@redux-saga/core/effects";
-import {FormElementCommandTypes} from "Packages/Common/FormElement/Domain/Types";
-import {ChangeFormElementState, ChangeFormElementStates} from "Packages/Common/FormElement";
-import {createFormElementStateWereChanged} from "Packages/Common/FormElement/Domain/Event/FormElementStatesWereChanged";
-import {createFormElementStateWasChanged} from "Packages/Common/FormElement/Domain/Event/FormElementStateWasChanged";
+import { put, spawn, takeEvery } from "@redux-saga/core/effects";
+import { ChangeFormElementState, ChangeFormElementStates } from "Packages/Common/FormElement";
+import { createFormElementStateWereChanged } from "../../Event/FormElementStatesWereChanged";
+import { createFormElementStateWasChanged } from "../../Event/FormElementStateWasChanged";
+import { FormElementCommandTypes } from "../../Types";
 
 export function createFormElementsFlow(): () => Generator {
     return function* (): Generator {

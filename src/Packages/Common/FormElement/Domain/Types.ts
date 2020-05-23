@@ -1,6 +1,5 @@
-import { FormElementStateWasChanged } from "Packages/Common/FormElement/Domain/Event/FormElementStateWasChanged";
-import { FormElementStatesWereChanged } from "Packages/Common/FormElement/Domain/Event/FormElementStatesWereChanged";
-import {Message} from "Packages/Common/CommonTypes";
+import { FormElementStatesWereChanged, FormElementStateWasChanged } from "Packages/Common/FormElement";
+import { Message } from "Packages/Common/CommonTypes";
 
 export enum FormElementCommandTypes {
     CHANGE_FORM_ELEMENT_STATE = 'CHANGE_FORM_ELEMENT_STATE-1d8df24a-9de9-49c5-bcdc-659b5d4267e7',

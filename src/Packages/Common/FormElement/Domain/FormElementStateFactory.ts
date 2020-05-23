@@ -1,10 +1,10 @@
+import uuidV4 from "uuid/v4";
 import {
     EmailFieldState,
     FormElementTypes,
     PasswordFieldState,
     TextFieldState,
-} from "Packages/Common/FormElement/Domain/Types";
-import uuidV4 from "uuid/v4";
+} from "./Types";
 
 export function createTextFieldState(partialInitialState: Partial<TextFieldState> = {}): TextFieldState {
     return {
