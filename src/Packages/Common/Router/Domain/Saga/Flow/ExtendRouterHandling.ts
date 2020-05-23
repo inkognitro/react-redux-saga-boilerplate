@@ -6,10 +6,10 @@ import {
     RouterStateSelector,
 } from "Packages/Common/Router/Domain/Types";
 import { put, select, takeEvery } from "redux-saga/effects";
-import { findRedirectByExactRoute } from "Packages/Common/Router/Domain/Query/RedirectQuery";
-import { findStoredRoute } from "Packages/Common/Router/Domain/Query/RouteQuery";
-import { createRouterWasExtended } from "Packages/Common/Router/Domain/Event/RouterWasExtended";
-import { ExtendRouter } from "Packages/Common/Router/Domain/Command/ExtendRouter";
+import { ExtendRouter } from "Packages/Common/Router";
+import { findRedirectByExactRoute } from "../../Query/RedirectQuery";
+import { findStoredRoute } from "../../Query/RouteQuery";
+import { createRouterWasExtended } from "../../Event/RouterWasExtended";
 
 export function* handleExtendRouter(routerStateSelector: RouterStateSelector, command: ExtendRouter): Generator {
     // @ts-ignore

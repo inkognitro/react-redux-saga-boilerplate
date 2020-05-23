@@ -2,7 +2,7 @@ import {
     RouterEvent,
     RouterEventTypes,
     RouterState,
-} from "Packages/Common/Router/Domain/Types";
+} from "./Types";
 
 const initialRouterState: RouterState = {
     redirects: [],

@@ -1,6 +1,4 @@
-import { CurrentUrlWasChanged } from "Packages/Common/Router/Domain/Event/CurrentUrlWasChanged";
-import { RouterWasExtended } from "Packages/Common/Router/Domain/Event/RouterWasExtended";
-import { RouterWasInitialized } from "Packages/Common/Router/Domain/Event/RouterWasInitialized";
+import { CurrentUrlWasChanged, RouterWasExtended, RouterWasInitialized } from "Packages/Common/Router";
 
 export type RouterState = {
   redirects: Redirect[];

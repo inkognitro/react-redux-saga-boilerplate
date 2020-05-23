@@ -5,10 +5,10 @@ import {
     Switch,
 } from "react-router-dom";
 import { History } from "history";
-import { Route as RouteData } from "Packages/Common/Router/Domain/Types";
+import { Route } from "Packages/Common/Router";
 
 export type RouteComponent = {
-  route: RouteData;
+  route: Route;
   component: ComponentType;
 };
 

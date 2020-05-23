@@ -1,5 +1,5 @@
-import { Route, RouterState } from "Packages/Common/Router/Domain/Types";
-import { isUrlMatchingRoute } from "Packages/Common/Router/Domain/Query/UrlMatchesRouteQuery";
+import { Route, RouterState } from "../Types";
+import { isUrlMatchingRoute } from "./UrlMatchesRouteQuery";
 
 export function findRouteByUrl(state: RouterState, url: string): null | Route {
     for (const index in state.routes) {

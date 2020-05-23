@@ -1,4 +1,4 @@
-import { Redirect, Route, RouterState } from "Packages/Common/Router/Domain/Types";
+import { Redirect, Route, RouterState } from "../Types";
 
 export function findRedirectByExactRoute(
     state: RouterState,

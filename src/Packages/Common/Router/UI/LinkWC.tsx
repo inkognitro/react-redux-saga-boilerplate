@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { createOpenUrl } from "Packages/Common/Router/Domain/Command/OpenUrl";
+import { createOpenUrl } from "Packages/Common/Router";
 import styled from "styled-components";
-import { StyledWCProps } from "Packages/Common/Design/UI/Types";
+import { StyledWCProps } from "Packages/Common/Design";
 
 const StyledLink = styled.a`
   color: $colorInteractive;

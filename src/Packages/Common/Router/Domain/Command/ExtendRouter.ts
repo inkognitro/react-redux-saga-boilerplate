@@ -1,9 +1,9 @@
+import { Command } from "Packages/Common/CommonTypes";
 import {
     Redirect,
     Route,
     RouterCommandTypes,
-} from "Packages/Common/Router/Domain/Types";
-import {Command} from "Packages/Common/CommonTypes";
+} from "../Types";
 
 export function createExtendRouter(
     routes: Route[],
