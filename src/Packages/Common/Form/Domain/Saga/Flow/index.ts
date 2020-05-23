@@ -1,6 +1,6 @@
-import {spawn, takeEvery} from "@redux-saga/core/effects";
-import {FormCommandTypes} from "Packages/Common/Form";
-import {handleSubmitForm} from "Packages/Common/Form/Domain/Saga/Flow/SubmitFormHandling";
+import { spawn, takeEvery } from "@redux-saga/core/effects";
+import { FormCommandTypes } from "../../Types";
+import { handleSubmitForm } from "./SubmitFormHandling";
 
 export function createFormFlow(): () => Generator {
     return function* (): Generator {

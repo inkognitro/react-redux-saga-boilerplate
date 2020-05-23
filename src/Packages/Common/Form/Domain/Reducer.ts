@@ -1,8 +1,7 @@
 import {
     FormElementsByName, FormEvent, FormEventTypes, FormState,
 } from "Packages/Common/Form/Domain/Types";
-import { FormElementEvent, FormElementEventTypes } from "Packages/Common/FormElement/Domain/Types";
-import { formElementReducer } from "Packages/Common/FormElement/Domain/Reducer/FormElementReducer";
+import { FormElementEvent, FormElementEventTypes, formElementReducer } from "Packages/Common/FormElement";
 
 export function formReducer<SpecificElementsByName>(
     state: FormState<SpecificElementsByName>,

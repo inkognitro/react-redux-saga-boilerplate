@@ -1,5 +1,5 @@
-import { FormEventTypes } from "Packages/Common/Form/Domain/Types";
-import {Event} from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Common/CommonTypes";
+import { FormEventTypes } from "../Types";
 
 export function createFormWasSetToNoRunningRequestMode(formId: string): FormWasSetToNoRunningRequestMode {
     return {

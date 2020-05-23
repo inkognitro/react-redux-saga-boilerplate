@@ -1,6 +1,5 @@
-import { FormElementState } from "Packages/Common/FormElement/Domain/Types";
-import { FormWasSetToRunningRequestMode } from "Packages/Common/Form/Domain/Event/FormWasSetToRunningRequestMode";
-import { FormWasSetToNoRunningRequestMode } from "Packages/Common/Form/Domain/Event/FormWasSetToNoRunningRequestMode";
+import { FormElementState } from "Packages/Common/FormElement";
+import { FormWasSetToNoRunningRequestMode, FormWasSetToRunningRequestMode } from "Packages/Common/Form";
 
 export enum FormCommandTypes {
     SUBMIT_FORM = 'SUBMIT_FORM-5539c0dd-7765-419f-b351-8ffbb7f5aae6',

@@ -1,5 +1,5 @@
 import uuidV4 from 'uuid/v4';
-import { FormElementsByName, FormState } from "Packages/Common/Form/Domain/Types";
+import { FormElementsByName, FormState } from "./Types";
 
 type FormStateCreationSettings<SpecificFormElementsByName> = (Partial<FormState<SpecificFormElementsByName>> & {
     elementsByName: FormElementsByName<SpecificFormElementsByName>

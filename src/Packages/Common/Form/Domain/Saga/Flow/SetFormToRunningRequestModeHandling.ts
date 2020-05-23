@@ -1,11 +1,11 @@
 import { put } from "redux-saga/effects";
-import { FormState } from "Packages/Common/Form/Domain/Types";
-import { createFormWasSetToRunningRequestMode } from "Packages/Common/Form/Domain/Event/FormWasSetToRunningRequestMode";
 import {
     FormElementState,
     FormElementStateChanges,
-} from "Packages/Common/FormElement/Domain/Types";
-import { createChangeFormElementStates } from "Packages/Common/FormElement/Domain/Command/ChangeFormElementStates";
+    createChangeFormElementStates,
+} from "Packages/Common/FormElement";
+import { FormState } from "../../Types";
+import { createFormWasSetToRunningRequestMode } from "../../Event/FormWasSetToRunningRequestMode";
 
 export function* setFormToRunningRequestMode(form: FormState): Generator {
     if (form.isRequestRunning) {
