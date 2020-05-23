@@ -2,20 +2,20 @@ import {
     HttpFoundationCommandTypes,
     HttpFoundationState,
     HttpFoundationStateSelector,
+    HttpRequestDispatcher,
     RequestResponse,
     SendHttpRequest,
 } from "Packages/Common/HttpFoundation";
-import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/HttpRequestDispatcher";
 import {
     call, cancelled, put, select, takeEvery,
 } from "@redux-saga/core/effects";
-import { findRunningHttpRequestById } from "Packages/Common/HttpFoundation/Domain/Query/HttpRequestQuery";
-import { createHttpRequestWasNotSent, Reasons } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestWasNotSent";
-import { createRequestWasSent } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestWasSent";
-import { createHttpRequestFailed } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestFailed";
-import { createHttpErrorResponseWasReceived } from "Packages/Common/HttpFoundation/Domain/Event/HttpErrorResponseWasReceived";
-import { createHttpSuccessResponseWasReceived } from "Packages/Common/HttpFoundation/Domain/Event/HttpSuccessResponseWasReceived";
-import { createHttpRequestWasCancelled } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestWasCancelled";
+import { findRunningHttpRequestById } from "../../Query/HttpRequestQuery";
+import { createHttpRequestWasNotSent, Reasons } from "../../Event/HttpRequestWasNotSent";
+import { createRequestWasSent } from "../../Event/HttpRequestWasSent";
+import { createHttpRequestFailed } from "../../Event/HttpRequestFailed";
+import { createHttpErrorResponseWasReceived } from "../../Event/HttpErrorResponseWasReceived";
+import { createHttpSuccessResponseWasReceived } from "../../Event/HttpSuccessResponseWasReceived";
+import { createHttpRequestWasCancelled } from "../../Event/HttpRequestWasCancelled";
 
 export function createWatchSendHttpRequestCommands(
     httpStateSelector: HttpFoundationStateSelector,

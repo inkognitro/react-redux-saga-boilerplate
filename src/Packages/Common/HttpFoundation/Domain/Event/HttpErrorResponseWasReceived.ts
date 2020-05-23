@@ -1,9 +1,9 @@
+import { Event } from "Packages/Common/CommonTypes";
 import {
     HttpEventTypes,
     Request,
     Response,
-} from "Packages/Common/HttpFoundation/Domain/Types";
-import {Event} from "Packages/Common/CommonTypes";
+} from "../Types";
 
 export function createHttpErrorResponseWasReceived(
     request: Request,

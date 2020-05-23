@@ -2,9 +2,8 @@ import axios from "axios";
 import {
     RequestResponse,
     Request,
-    RequestMethods,
-} from "Packages/Common/HttpFoundation/Domain/Types";
-import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/HttpRequestDispatcher";
+    RequestMethods, HttpRequestDispatcher,
+} from "Packages/Common/HttpFoundation";
 
 function getAxiosRequestMethodByRequest(request: Request): string {
     if (request.method === RequestMethods.GET) {

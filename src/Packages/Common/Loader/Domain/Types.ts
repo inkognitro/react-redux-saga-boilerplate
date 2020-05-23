@@ -1,5 +1,4 @@
-import { LoaderWasDemanded } from "Packages/Common/Loader/Domain/Event/LoaderWasDemanded";
-import { LoaderWasWithdrawn } from "Packages/Common/Loader/Domain/Event/LoaderWasWithdrawn";
+import { LoaderWasDemanded, LoaderWasWithdrawn } from "Packages/Common/Loader";
 
 export enum LoaderEventTypes {
     LOADER_WAS_DEMANDED = "LOADER_WAS_DEMANDED-5359f800-ab47-427b-bcd3-990216cdffd7",

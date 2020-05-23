@@ -2,7 +2,7 @@ import {
     HttpEvent,
     HttpEventTypes,
     HttpFoundationState,
-} from "Packages/Common/HttpFoundation/Domain/Types";
+} from "./Types";
 
 const initialHttpState: HttpFoundationState = {
     runningHttpRequests: [],

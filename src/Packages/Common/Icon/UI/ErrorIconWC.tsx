@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react";
+import MaterialErrorIcon from "@material-ui/icons/Error";
 import {
     CommonIconWCProps,
     createBaseIconProps,
     createStyledIcon,
-} from "Packages/Common/Icon/UI/IconWC";
-import MaterialErrorIcon from "@material-ui/icons/Error";
+} from "./IconWC";
 
 export type ErrorIconProps = CommonIconWCProps;
 

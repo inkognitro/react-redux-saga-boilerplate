@@ -1,7 +1,6 @@
 import { spawn } from "redux-saga/effects";
-import { HttpFoundationStateSelector } from "Packages/Common/HttpFoundation/Domain/Types";
-import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/HttpRequestDispatcher";
-import { createWatchSendHttpRequestCommands } from "Packages/Common/HttpFoundation/Domain/Saga/Flow/SendHttpRequestHandling";
+import { HttpFoundationStateSelector, HttpRequestDispatcher } from "../../Types";
+import { createWatchSendHttpRequestCommands } from "./SendHttpRequestHandling";
 
 export function createHttpFoundationSaga(
     httpStateSelector: HttpFoundationStateSelector,

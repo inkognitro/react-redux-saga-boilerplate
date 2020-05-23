@@ -3,11 +3,10 @@ import {
     AlignedAreaWC,
     horizontalAligns,
     verticalAligns,
-} from "Packages/Common/LayoutFoundation/UI/AlignedAreaWC";
+} from "Packages/Common/LayoutFoundation";
 import { TimelineLite } from "gsap";
-import { IconSizes, IconTypes } from "Packages/Common/Icon/UI/IconWC";
+import { IconSizes, IconTypes, LoaderIconWC } from "Packages/Common/Icon";
 import styled from "styled-components";
-import { LoaderIconWC } from "Packages/Common/Icon/UI/LoaderIconWC";
 
 const StyledLoaderDiv = styled.div`
   position: fixed;

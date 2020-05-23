@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react";
+import MaterialCloseIcon from "@material-ui/icons/Close";
 import {
     CommonIconWCProps,
     createBaseIconProps,
     createStyledIcon,
-} from "Packages/Common/Icon/UI/IconWC";
-import MaterialCloseIcon from "@material-ui/icons/Close";
+} from "./IconWC";
 
 export type CloseIconProps = CommonIconWCProps;
 

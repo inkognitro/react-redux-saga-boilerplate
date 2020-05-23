@@ -1,4 +1,4 @@
-import { LoaderEvent, LoaderEventTypes, LoaderState } from "Packages/Common/Loader/Domain/Types";
+import { LoaderEvent, LoaderEventTypes, LoaderState } from "./Types";
 
 const initialLoaderState: LoaderState = {
     loaderDemandCount: 0,

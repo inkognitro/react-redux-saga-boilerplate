@@ -1,10 +1,10 @@
 import React, { FC } from "react";
+import DoneIcon from "@material-ui/icons/Done";
 import {
     CommonIconWCProps,
     createBaseIconProps,
     createStyledIcon,
-} from "Packages/Common/Icon/UI/IconWC";
-import DoneIcon from "@material-ui/icons/Done";
+} from "./IconWC";
 
 export type SuccessIconWCProps = CommonIconWCProps;
 

@@ -1,5 +1,5 @@
-import { LoaderEventTypes } from "Packages/Common/Loader/Domain/Types";
-import {Event} from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Common/CommonTypes";
+import { LoaderEventTypes } from "../Types";
 
 export function createLoaderWasWithdrawn(): LoaderWasWithdrawn {
     return {

@@ -25,19 +25,18 @@ import { routerReducer } from "Packages/Common/Router/Domain/Reducer";
 import { httpReducer } from "Packages/Common/HttpFoundation/Domain/Reducer";
 import {
     HttpFoundationState,
-    HttpFoundationStateSelector,
+    HttpFoundationStateSelector, HttpRequestDispatcher,
 } from "Packages/Common/HttpFoundation/Domain/Types";
 import {
     AuthState,
     AuthStateSelector,
 } from "Packages/Common/Authentication/Domain/Types";
 import { authenticationReducer } from "Packages/Common/Authentication/Domain/Reducer";
-import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/HttpRequestDispatcher";
 import { designReducer } from "Packages/Common/Design/Domain/Reducer";
 import { DesignState } from "Packages/Common/Design/Domain/Types";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { AxiosHttpRequestDispatcher } from "Packages/Common/HttpFoundation/Infrastructure/AxiosHttpRequestDispatcher";
-import { createLoaderSaga } from "Packages/Common/Loader/Domain/Loader";
+import { createLoaderSaga } from "Packages/Common/Loader/Domain/Saga/Flow";
 import { loaderReducer } from "Packages/Common/Loader/Domain/Reducer";
 import { LoaderState } from "Packages/Common/Loader/Domain/Types";
 import {createRouterSaga} from "Packages/Common/Router/Domain/Saga/Flow";

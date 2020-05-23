@@ -1,5 +1,5 @@
-import { LoaderCommandTypes } from "Packages/Common/Loader/Domain/Types";
-import {Command} from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Common/CommonTypes";
+import { LoaderCommandTypes } from "../Types";
 
 export function createHideLoader(): HideLoader {
     return {

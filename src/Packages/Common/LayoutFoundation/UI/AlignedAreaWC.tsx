@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { StyledWCProps } from "Packages/Common/Design/UI/Types";
+import { StyledWCProps } from "Packages/Common/Design";
 
 const StyledAlignedAreaDiv = styled.div`
   display: table;

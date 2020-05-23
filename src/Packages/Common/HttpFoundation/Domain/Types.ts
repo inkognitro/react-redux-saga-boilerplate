@@ -1,9 +1,11 @@
-import { HttpRequestWasSent } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestWasSent";
-import { HttpErrorResponseWasReceived } from "Packages/Common/HttpFoundation/Domain/Event/HttpErrorResponseWasReceived";
-import { HttpRequestFailed } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestFailed";
-import { HttpRequestWasCancelled } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestWasCancelled";
-import { HttpRequestWasNotSent } from "Packages/Common/HttpFoundation/Domain/Event/HttpRequestWasNotSent";
-import { HttpSuccessResponseWasReceived } from "Packages/Common/HttpFoundation/Domain/Event/HttpSuccessResponseWasReceived";
+import {
+    HttpRequestWasSent,
+    HttpErrorResponseWasReceived,
+    HttpRequestFailed,
+    HttpRequestWasCancelled,
+    HttpRequestWasNotSent,
+    HttpSuccessResponseWasReceived,
+} from "Packages/Common/HttpFoundation";
 
 export enum RequestMethods {
   GET = "GET",
@@ -58,4 +60,8 @@ export type HttpFoundationStateSelector<State = any> = (state: State) => HttpFou
 
 export enum HttpFoundationCommandTypes {
   SEND_HTTP_REQUEST = "SEND_HTTP_REQUEST-639d43a1-e8dd-426d-a868-5079aa60d064",
+}
+
+export interface HttpRequestDispatcher {
+  executeRequest(request: Request): Promise<RequestResponse>;
 }

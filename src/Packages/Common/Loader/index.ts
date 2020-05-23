@@ -1,4 +1,4 @@
-// todo: export loader saga!
+export { createLoaderSaga } from './Domain/Saga/Flow';
 export { createHideLoader, HideLoader } from './Domain/Command/HideLoader';
 export { createShowLoader, ShowLoader } from './Domain/Command/ShowLoader';
 export { LoaderWasWithdrawn } from './Domain/Event/LoaderWasWithdrawn';

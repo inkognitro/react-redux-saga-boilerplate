@@ -1,9 +1,9 @@
-import { HttpRequestDispatcher } from "Packages/Common/HttpFoundation/Domain/HttpRequestDispatcher";
 import {
+    HttpRequestDispatcher,
     Request,
     RequestResponse,
-} from "Packages/Common/HttpFoundation/Domain/Types";
-import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1/Domain/Types";
+} from "Packages/Common/HttpFoundation";
+import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(request: Request): Promise<RequestResponse> {

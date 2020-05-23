@@ -1,7 +1,7 @@
 import {
     Request,
     HttpFoundationState,
-} from "Packages/Common/HttpFoundation/Domain/Types";
+} from "../Types";
 
 export function findRunningHttpRequestById(
     state: HttpFoundationState,

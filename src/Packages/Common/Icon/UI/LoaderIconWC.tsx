@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react";
+import MaterialHourGlassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 import {
     CommonIconWCProps,
     createBaseIconProps,
     createStyledIcon,
-} from "Packages/Common/Icon/UI/IconWC";
-import MaterialHourGlassEmptyIcon from "@material-ui/icons/HourglassEmpty";
+} from "./IconWC";
 
 export type LoaderIconWCProps = CommonIconWCProps;
 
