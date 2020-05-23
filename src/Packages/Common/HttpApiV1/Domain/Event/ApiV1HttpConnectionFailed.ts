@@ -1,6 +1,6 @@
-import { HttpApiV1EventTypes } from "Packages/Common/HttpApiV1/Domain/Types";
 import { Request } from "Packages/Common/HttpFoundation/Domain/Types";
-import {Event} from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Common/CommonTypes";
+import { HttpApiV1EventTypes } from "../Types";
 
 export function createApiV1HttpConnectionFailed(
     request: Request,

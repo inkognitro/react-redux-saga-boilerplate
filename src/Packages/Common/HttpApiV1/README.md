@@ -1,5 +1,5 @@
 # HttpApiV1
-This module provides a standardized way to communicate with the API version 1 of the app.
+This module provides a standardized way to communicate with the API version 1.
 
-## Internal dependencies
-Requires the saga flow of `Packages/Common/HttpFoundation`.
+## `Packages` module dependencies 
+Requires the module `Packages/Common/HttpFoundation`, with saga.

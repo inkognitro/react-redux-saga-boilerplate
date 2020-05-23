@@ -1,8 +1,8 @@
 # Form
 This module provides a standardized way to create and use forms.
 
-## Internal dependencies
-Requires the saga flow of `Packages/Common/FormElement`.
+## `Packages` module dependencies
+Requires the module `Packages/Common/FormElement`, with saga.
 
 ## Usage
 Following code snipped could be used in a package.

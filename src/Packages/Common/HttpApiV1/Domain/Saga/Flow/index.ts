@@ -1,7 +1,7 @@
-import {AuthStateSelector} from "Packages/Common/Authentication/Domain/Types";
-import {spawn, takeEvery} from "@redux-saga/core/effects";
-import {ApiV1CommandTypes} from "Packages/Common/HttpApiV1/Domain/Types";
-import {handleSendHttpRequest} from "Packages/Common/HttpApiV1/Domain/Saga/SendHttpRequestHandling";
+import { AuthStateSelector } from "Packages/Common/Authentication";
+import { spawn, takeEvery } from "@redux-saga/core/effects";
+import { ApiV1CommandTypes } from "../../Types";
+import { handleSendHttpRequest } from "./SendHttpRequestHandling";
 
 export function createHttpApiV1Saga(authStateSelector: AuthStateSelector): () => Generator {
     return function* (): Generator {

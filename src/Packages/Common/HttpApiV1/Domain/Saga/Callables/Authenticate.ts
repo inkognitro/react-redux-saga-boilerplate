@@ -1,14 +1,8 @@
-import { apiV1BaseUrl } from "Packages/Common/HttpApiV1";
-import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1/Domain/Types";
-import { User } from "Packages/Entity/User/Domain/User";
+import { apiV1BaseUrl, ApiV1ReadResponse, createSendHttpRequest } from "Packages/Common/HttpApiV1";
+import { User } from "Packages/Entity/User";
 import { call, put } from "redux-saga/effects";
-import { createPostRequest } from "Packages/Common/HttpFoundation/Domain/Command/RequestFactory";
-import { Request } from "Packages/Common/HttpFoundation/Domain/Types";
-import { createSendHttpRequest } from "Packages/Common/HttpApiV1/Domain/Command/SendHttpRequest";
-import {
-    receiveHttpResponse,
-} from "Packages/Common/HttpFoundation/Domain/Saga/Callables/HttpResponseReceiving";
-import { AuthUser } from "Packages/Common/Authentication/Domain/Types";
+import { createPostRequest, Request, receiveHttpResponse } from "Packages/Common/HttpFoundation";
+import { AuthUser } from "Packages/Common/Authentication";
 import { ResultWithMessages } from "Packages/Common/CommonTypes";
 
 export type AuthenticateResult = (null | ResultWithMessages<{
