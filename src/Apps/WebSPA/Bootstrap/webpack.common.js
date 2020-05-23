@@ -2,6 +2,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const baseConfiguration = require('../../../../webpack.base');
 
 module.exports = merge(baseConfiguration, {
@@ -14,5 +15,10 @@ module.exports = merge(baseConfiguration, {
         new HtmlWebpackPlugin({
             template: './src/Apps/WebSPA/index.html',
         }),
+        new CopyPlugin({
+            patterns: [
+                { from: './src/Apps/WebSPA/favicon.ico', to: './dist/WebSPA/favicon.ico' },
+            ],
+        })
     ],
 });
