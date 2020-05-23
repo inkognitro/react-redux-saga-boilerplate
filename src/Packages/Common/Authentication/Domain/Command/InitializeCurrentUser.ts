@@ -1,5 +1,5 @@
-import { AuthCommandTypes } from "Packages/Common/Authentication/Domain/Types";
-import {Command} from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Common/CommonTypes";
+import { AuthCommandTypes } from "../Types";
 
 export function createInitializeCurrentUser(): InitializeCurrentUser {
     return {
@@ -8,6 +8,4 @@ export function createInitializeCurrentUser(): InitializeCurrentUser {
     };
 }
 
-export type InitializeCurrentUser = Command<
-  AuthCommandTypes.INITIALIZE_CURRENT_USER
->;
+export type InitializeCurrentUser = Command<AuthCommandTypes.INITIALIZE_CURRENT_USER>;

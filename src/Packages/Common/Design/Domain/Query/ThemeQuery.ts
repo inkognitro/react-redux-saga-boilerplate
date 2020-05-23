@@ -1,4 +1,4 @@
-import { Theme, DesignState } from "Packages/Common/Design/Domain/Types";
+import { Theme, DesignState } from "../Types";
 
 export function getTheme(state: DesignState): Theme {
     return state.theme;

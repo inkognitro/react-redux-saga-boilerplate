@@ -1,5 +1,5 @@
-import {AuthCommandTypes, LoginSettings} from "Packages/Common/Authentication/Domain/Types";
-import {Command} from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Common/CommonTypes";
+import { AuthCommandTypes, LoginSettings } from "../Types";
 
 export function createLogin(settings: LoginSettings): Login {
     return {
@@ -9,4 +9,3 @@ export function createLogin(settings: LoginSettings): Login {
 }
 
 export type Login = Command<AuthCommandTypes.LOGIN, LoginSettings>;
-

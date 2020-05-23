@@ -1,4 +1,4 @@
-import { AuthState, AuthUser } from "Packages/Common/Authentication/Domain/Types";
+import { AuthState, AuthUser } from "../Types";
 
 export function findCurrentAuthUser(state: AuthState): null | AuthUser {
     if (state.currentAuthUser) {
@@ -7,6 +7,6 @@ export function findCurrentAuthUser(state: AuthState): null | AuthUser {
     return null;
 }
 
-export function isAuthenticationRunning(state: AuthState): boolean {
+export function isAuthenticationRunning(state: AuthState): boolean { //todo: check usage!
     return state.isAuthenticationRunning;
 }

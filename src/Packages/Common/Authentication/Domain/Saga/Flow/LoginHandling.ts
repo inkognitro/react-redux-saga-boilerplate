@@ -2,18 +2,19 @@ import {
     call, cancelled, put, select,
 } from "@redux-saga/core/effects";
 import { Login } from "Packages/Common/Authentication/Domain/Command/Login";
+import { authenticate, AuthenticateResult } from "Packages/Common/HttpApiV1";
 import {
-    authenticate,
-    AuthenticateResult,
-} from "Packages/Common/HttpApiV1/Domain/Saga/Callables/Authenticate";
-import { createUserLoginFailed } from "Packages/Common/Authentication/Domain/Event/UserLoginFailed";
-import { AuthState, AuthStateSelector } from "Packages/Common/Authentication/Domain/Types";
-import { createSaveCookie } from "Packages/Common/Cookie/Domain/Command/SaveCookie";
-import { createUserWasLoggedIn } from "Packages/Common/Authentication/Domain/Event/UserWasLoggedIn";
-import { createUserLoginWasCancelled } from "Packages/Common/Authentication/Domain/Event/UserLoginWasCancelled";
-import { findCurrentAuthUser } from "Packages/Common/Authentication/Domain/Query/CurrentAuthUserQuery";
-import { createUserLoginWasNotExecuted } from "Packages/Common/Authentication/Domain/Event/UserLoginWasNotExecuted";
-import {authTokenCookieName, authTokenCookieTimeToLiveInDays} from "Packages/Common/Authentication";
+    AuthState,
+    AuthStateSelector,
+    authTokenCookieName,
+    authTokenCookieTimeToLiveInDays,
+    findCurrentAuthUser,
+} from "Packages/Common/Authentication";
+import { createSaveCookie } from "Packages/Common/Cookie";
+import { createUserLoginFailed } from "../../Event/UserLoginFailed";
+import { createUserWasLoggedIn } from "../../Event/UserWasLoggedIn";
+import { createUserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
+import { createUserLoginWasNotExecuted } from "../../Event/UserLoginWasNotExecuted";
 
 export function* handleLogin(authStateSelector: AuthStateSelector, command: Login): Generator {
     // @ts-ignore

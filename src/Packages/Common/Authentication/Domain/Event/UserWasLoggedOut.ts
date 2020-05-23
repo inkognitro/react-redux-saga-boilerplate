@@ -1,5 +1,5 @@
-import { AuthEventTypes, AuthUser } from "Packages/Common/Authentication/Domain/Types";
-import {Event} from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Common/CommonTypes";
+import { AuthEventTypes, AuthUser } from "../Types";
 
 export function createUserWasLoggedOut(authUser: AuthUser): UserWasLoggedOut {
     return {

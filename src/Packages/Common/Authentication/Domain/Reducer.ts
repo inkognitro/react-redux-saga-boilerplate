@@ -2,7 +2,7 @@ import {
     AuthEvent,
     AuthEventTypes,
     AuthState,
-} from "Packages/Common/Authentication/Domain/Types";
+} from "./Types";
 
 const initialAuthState: AuthState = {
     isAuthenticationRunning: false,

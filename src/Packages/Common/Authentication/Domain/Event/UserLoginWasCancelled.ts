@@ -1,9 +1,7 @@
-import {AuthEventTypes, LoginSettings} from "Packages/Common/Authentication/Domain/Types";
-import {Event} from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Common/CommonTypes";
+import { AuthEventTypes, LoginSettings } from "../Types";
 
-export function createUserLoginWasCancelled(
-    loginSettings: LoginSettings,
-): UserLoginWasCancelled {
+export function createUserLoginWasCancelled(loginSettings: LoginSettings): UserLoginWasCancelled {
     return {
         type: AuthEventTypes.USER_LOGIN_WAS_CANCELLED,
         payload: { loginSettings },

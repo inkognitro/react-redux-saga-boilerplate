@@ -1,5 +1,5 @@
-import { AuthEventTypes } from "Packages/Common/Authentication/Domain/Types";
-import {Event} from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Common/CommonTypes";
+import { AuthEventTypes } from "../Types";
 
 export function createUserLogoutWasNotExecuted(logoutId: string): UserLogoutWasNotExecuted {
     return {

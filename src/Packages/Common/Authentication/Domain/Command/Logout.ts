@@ -1,6 +1,6 @@
-import { AuthCommandTypes } from "Packages/Common/Authentication/Domain/Types";
 import uuidV4 from 'uuid/v4';
-import {Command} from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Common/CommonTypes";
+import { AuthCommandTypes } from "../Types";
 
 export function createLogout(): Logout {
     return {

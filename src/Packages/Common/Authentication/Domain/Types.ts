@@ -1,14 +1,14 @@
 import { UserAuthenticationRefreshFailed } from "Packages/Common/Authentication/Domain/Event/UserAuthenticationRefreshFailed";
 import {
     UserAuthenticationRefreshWasRequested,
-} from "Packages/Common/Authentication/Domain/Event/UserAuthenticationRefreshWasRequested";
-import { UserLoginFailed } from "Packages/Common/Authentication/Domain/Event/UserLoginFailed";
-import { UserAuthenticationWasRefreshed } from "Packages/Common/Authentication/Domain/Event/UserAuthenticationWasRefreshed";
-import { UserLoginWasRequested } from "Packages/Common/Authentication/Domain/Event/UserLoginWasRequested";
-import { UserWasLoggedIn } from "Packages/Common/Authentication/Domain/Event/UserWasLoggedIn";
-import { UserWasLoggedOut } from "Packages/Common/Authentication/Domain/Event/UserWasLoggedOut";
+    UserLoginWasCancelled,
+    UserWasLoggedOut,
+    UserWasLoggedIn,
+    UserLoginWasRequested,
+    UserAuthenticationWasRefreshed,
+    UserLoginFailed,
+} from "Packages/Common/Authentication";
 import { User } from "Packages/Entity/User/Domain/User";
-import { UserLoginWasCancelled } from "Packages/Common/Authentication/Domain/Event/UserLoginWasCancelled";
 
 export type AuthUser = {
   token: string

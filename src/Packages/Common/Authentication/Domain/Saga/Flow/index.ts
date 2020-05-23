@@ -1,10 +1,8 @@
-import { AuthCommandTypes, AuthStateSelector } from "Packages/Common/Authentication/Domain/Types";
 import { spawn, takeEvery } from "@redux-saga/core/effects";
-import { handleLogin } from "Packages/Common/Authentication/Domain/Saga/Flow/LoginHandling";
-import { handleLogout } from "Packages/Common/Authentication/Domain/Saga/Flow/LogoutHandling";
-import {
-    handleAutomaticAuthenticationRefresh,
-} from "Packages/Common/Authentication/Domain/Saga/Flow/AutomaticAuthRefreshHandling";
+import { AuthCommandTypes, AuthStateSelector } from "../../Types";
+import { handleLogin } from "./LoginHandling";
+import { handleLogout } from "./LogoutHandling";
+import { handleAutomaticAuthenticationRefresh } from "./AutomaticAuthRefreshHandling";
 
 export function createAuthenticationSaga(authStateSelector: AuthStateSelector): () => Generator {
     return function* (): Generator {

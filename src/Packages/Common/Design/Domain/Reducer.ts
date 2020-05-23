@@ -1,5 +1,5 @@
-import { DesignState } from "Packages/Common/Design/Domain/Types";
-import { getDefaultTheme } from "Packages/Common/Design/Domain/Query/ThemeQuery";
+import { DesignState } from "./Types";
+import { getDefaultTheme } from "./Query/ThemeQuery";
 
 const initialDesignState: DesignState = {
     theme: getDefaultTheme(),
