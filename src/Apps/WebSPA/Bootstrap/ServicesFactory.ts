@@ -57,7 +57,7 @@ const rootReducer = combineReducers({
     design: designReducer,
     translator: translatorReducer,
     toaster: toasterReducer,
-    http: httpFoundationReducer,
+    httpFoundation: httpFoundationReducer,
     router: routerReducer,
     routing: routingReducer,
     authentication: authenticationReducer,

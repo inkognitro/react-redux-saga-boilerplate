@@ -30,11 +30,15 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             username: command.payload.username,
             password: command.payload.password,
         });
-        if (result.successData) {
+        if (!result) {
+            yield put(createUserLoginFailed(command.payload));
+            return;
+        }
+        if (result.data.authUser) {
             yield put(
                 createSaveCookie({
                     name: authTokenCookieName,
-                    content: JSON.stringify(result.successData.authUser),
+                    content: JSON.stringify(result.data.authUser),
                     timeToLiveInDays: (command.payload.shouldRemember
                         ? authTokenCookieTimeToLiveInDays
                         : undefined
@@ -48,7 +52,6 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             yield put(createUserLoginFailed(command.payload));
             return;
         }
-        yield put(createUserLoginFailed(command.payload));
     } finally {
         if (yield cancelled()) {
             yield put(createUserLoginWasCancelled(command.payload));
