@@ -31,7 +31,7 @@ import {
     HttpFoundationStateSelector,
     HttpRequestDispatcher,
     httpFoundationReducer,
-    AxiosHttpRequestDispatcher,
+    AxiosHttpRequestDispatcher, createHttpFoundationSaga,
 } from "Packages/Common/HttpFoundation";
 import {
     AuthState,
@@ -45,7 +45,7 @@ import { createLoaderSaga, loaderReducer, LoaderState } from "Packages/Common/Lo
 import { createFormElementsFlow } from "Packages/Common/FormElement";
 import { createFormSaga } from "Packages/Common/Form";
 import { createRoutingSaga, routingReducer, RoutingState } from "Apps/WebSPA/Routing";
-import { createRequestHandlingSaga } from "Apps/WebSPA/RequestHandling";
+import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
 
 type AppServices = {
   store: Store;
@@ -70,35 +70,22 @@ function createRootSaga(
 ): () => Generator {
     const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
     const toasterSaga = createToasterSaga(toasterStateSelector);
-
     const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
     const translatorSaga = createTranslatorSaga(translatorStateSelector);
-
     const loaderSaga = createLoaderSaga();
-
     const historyManager = new BrowserHistoryManager(history);
     const routerStateSelector: RouterStateSelector = (state: RootState) => state.router;
     const routerSaga = createRouterSaga(routerStateSelector, historyManager);
-
     const cookieStorage = new BrowserCookieStorage();
     const cookieSaga = createCookieSaga(cookieStorage);
-
     const formElementsSaga = createFormElementsFlow();
-
     const formSaga = createFormSaga();
-
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
     const authenticationSaga = createAuthenticationSaga(authStateSelector);
-
     const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.httpFoundation;
-    const requestHandlingSaga = createRequestHandlingSaga(
-        httpFoundationStateSelector,
-        httpRequestDispatcher,
-        authStateSelector,
-    );
-
+    const httpFoundationSaga = createHttpFoundationSaga(httpFoundationStateSelector, httpRequestDispatcher);
+    const httpApiV1Saga = createHttpApiV1Saga(authStateSelector);
     const routingSaga = createRoutingSaga();
-
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
         yield spawn(loaderSaga);
@@ -107,7 +94,8 @@ function createRootSaga(
         yield spawn(formElementsSaga);
         yield spawn(formSaga);
         yield spawn(authenticationSaga);
-        yield spawn(requestHandlingSaga);
+        yield spawn(httpFoundationSaga);
+        yield spawn(httpApiV1Saga);
         yield spawn(routerSaga);
         yield spawn(routingSaga);
     };

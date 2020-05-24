@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
-import { ContentPage } from "Apps/WebSPA/LayoutFoundation";
+import { ContentPage } from "Apps/WebSPA/Foundation";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { LoginPageState, createLogin } from "Apps/WebSPA/Routing/AuthPages/LoginPage";
 import { CardWC } from "Packages/Common/LayoutFoundation";

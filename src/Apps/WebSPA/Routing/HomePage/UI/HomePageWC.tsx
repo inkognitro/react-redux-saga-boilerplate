@@ -8,7 +8,7 @@ import {
 } from "Packages/Common/FormElement";
 import { createLogin } from "Packages/Common/Authentication";
 import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage";
-import { ContentPage } from "Apps/WebSPA/LayoutFoundation";
+import { ContentPage } from "Apps/WebSPA/Foundation";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import uuidV4 from 'uuid/v4';
 

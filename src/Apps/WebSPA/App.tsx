@@ -5,7 +5,7 @@ import { History } from "history";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import { ThemeProvider } from "styled-components";
 import { RouterWC } from "Apps/WebSPA/Routing";
-import { Toaster, Loader } from "Apps/WebSPA/LayoutFoundation";
+import { Toaster, Loader } from "Apps/WebSPA/Foundation";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { Theme, getTheme } from "Packages/Common/Design";
 import "bootstrap/scss/bootstrap.scss";

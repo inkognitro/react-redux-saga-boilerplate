@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { RouteLink } from "Packages/Common/Router/UI/LinkWC";
-import { ErrorPage } from "Apps/WebSPA/LayoutFoundation/UI/PageTypes/ErrorPage";
+import { ErrorPage } from "Apps/WebSPA/Foundation/UI/PageTypes/ErrorPage";
 import {createHomeRouteUrl} from "Apps/WebSPA/Routing/UrlFactory";
 
 export const NotFoundWC: FC = () => ( // todo: translation
