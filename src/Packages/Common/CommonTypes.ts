@@ -28,9 +28,9 @@ export type FieldMessage = {
     message: Message
 }
 
-export type ResultWithMessages<Data> = {
-    generalMessages: Message[]
-    fieldMessages: FieldMessage[]
+export type BusinessLogicResult<Data> = {
+    generalMessages?: Message[]
+    fieldMessages?: FieldMessage[]
     data: Data
 }
 

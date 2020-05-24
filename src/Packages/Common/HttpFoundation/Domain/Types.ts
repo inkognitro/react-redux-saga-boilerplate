@@ -15,6 +15,10 @@ export enum RequestMethods {
   DELETE = "DELETE",
 }
 
+export enum HttpStatusCodes {
+    OK = 200,
+}
+
 export type Response<ResponseBody = {}> = {
   statusCode: number;
   body: ResponseBody;

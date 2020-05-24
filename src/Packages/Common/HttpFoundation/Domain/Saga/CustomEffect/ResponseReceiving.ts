@@ -1,4 +1,6 @@
-import { take, StrictEffect } from "redux-saga/effects";
+import {
+    call, take, StrictEffect, CallEffect,
+} from "redux-saga/effects";
 import {
     HttpRequestWasNotSent,
     HttpSuccessResponseWasReceived,
@@ -24,11 +26,11 @@ type HttpRequestExecutionEndingEvent = (
     | HttpRequestWasCancelled
 );
 
-type ReceiveHttpResponseGenerator<SpecificHttpResponse> = Generator<StrictEffect, (null | SpecificHttpResponse)>;
+export type ReceiveHttpResponseGenerator<SpecificResponse> = Generator<StrictEffect, (null | SpecificResponse)>;
 
-export function* receiveHttpResponse<SpecificHttpResponse = Response>(
+function* internalReceiveResponse<SpecificResponse = Response>(
     request: Request,
-): ReceiveHttpResponseGenerator<SpecificHttpResponse> {
+): ReceiveHttpResponseGenerator<SpecificResponse> {
     let requestId = null;
     let event = null;
     while (requestId !== request.id) {
@@ -47,4 +49,15 @@ export function* receiveHttpResponse<SpecificHttpResponse = Response>(
         return eventToUse.payload.response;
     }
     return null;
+}
+
+type ReceiveResponseCallEffect<SpecificResponse> = CallEffect<{
+    context: any
+    fn: ReceiveHttpResponseGenerator<SpecificResponse>
+    args: any[]
+}>
+
+export function receiveResponse<SpecificResponse>(request: Request): ReceiveResponseCallEffect<SpecificResponse> {
+    // @ts-ignore
+    return call(internalReceiveResponse, request);
 }

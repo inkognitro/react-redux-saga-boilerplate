@@ -1,3 +1,5 @@
+export { executeRequest, ExecuteRequestCallEffect } from './Domain/Saga/CustomEffect/RequestHandling';
+export { receiveResponse, ReceiveHttpResponseGenerator } from './Domain/Saga/CustomEffect/ResponseReceiving';
 export { createHttpFoundationSaga } from './Domain/Saga/Flow';
 export { createSendHttpRequest, SendHttpRequest } from './Domain/Command/SendHttpRequest';
 export {
@@ -8,7 +10,6 @@ export {
     createPostRequest,
     getWithHeaderEnhancedHttpRequest,
 } from './Domain/Command/RequestFactory';
-export { receiveHttpResponse } from './Domain/Saga/Callables/HttpResponseReceiving';
 export { HttpRequestWasCancelled } from './Domain/Event/HttpRequestWasCancelled';
 export { HttpRequestFailed } from './Domain/Event/HttpRequestFailed';
 export { HttpRequestWasNotSent } from './Domain/Event/HttpRequestWasNotSent';
