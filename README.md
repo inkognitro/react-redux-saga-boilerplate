@@ -8,7 +8,7 @@ Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
 With this project I try to provide a best practise frontend boilerplate to save nerves of developers
-and other stakeholders. Because talking is cheap, this is my way to convince people of my skills.
+and other stakeholders. Furthermore talking is cheap, therefore I'd like to show my frontend skills in this way.
 
 ## Knowledge base
 To fully understand this project you should be familiar with the technologies below.
