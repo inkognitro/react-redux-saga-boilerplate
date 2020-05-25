@@ -142,8 +142,8 @@ and the saga is not listening for a "logout" action yet.
 This project is divided in `Apps`, `Packages`, `ModuleCollections` and `Modules`.
 Following definitions should clarify how the project code is structured.
 
-- `Package:` A package is a collection of module collections and modules. A package can be considered as a root `module collection` without an `index.ts` file.
-- `Module:` A module contains a strongly coupled feature collection. Every module contains an `index.ts` file, which defines its public API. Every module is divided in domain, infrastructure and UI layer.
+- `Package:` A package is a collection of `ModuleCollections` and `Modules`. A package can be considered as a root `module collection` without an `index.ts` file.
+- `Module:` A module contains a strongly coupled features. Every module contains an `index.ts` file, which defines its public API. Every module is divided in domain, infrastructure and UI layer.
 - `ModuleCollection:` A module collection contains multiple modules and other module collections. A module collection contains an `index.ts` file to define its public API.
 - `App:` An app (e.g. WebSPA) is a standalone application, which uses several modules from different packages. Furthermore it can contain its own specific modules or module collections. Ideally most stuff is kept reusable and sourced out to packages.
 
