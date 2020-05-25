@@ -1,11 +1,11 @@
 # Form
 This module provides a standardized way to create and use forms.
 
-## Package module dependencies 
-Requires the module `Packages/Common/FormElement`, with saga.
+## Module dependencies 
+- `Packages/Common/FormElement`, with saga
 
 ## Usage
-Following code snipped could be used in a package.
+Following code snipped could be used in a module.
 ```javascript
 import { createFormParameters, createFormState } from 'Packages/Common/Form';
 import { createPasswordFieldState, createTextFieldState } from 'Packages/Common/FormElement';
