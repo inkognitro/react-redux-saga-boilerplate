@@ -77,10 +77,6 @@ To build the app in the *dist* folder, run:
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
 11. Linting with Airbnb presets
 
-## Packages
-- [Packages/Common/README.md](src/Packages/Common/README.md)
-- [Packages/Entity/README.md](src/Packages/Entity/README.md)
-
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
 To be specific, the criteria was: readable code, flat learning curve, documentation, large community, easy testing.
@@ -141,6 +137,21 @@ about this and understand saga's [flow principle](https://redux-saga.js.org/docs
 But keep in mind: Whenever you apply saga's flow principle, time travelling with an injected
 redux state could get tricky. With the previous "login flow" example, imagine the current user is already given in the injected state
 and the saga is not listening for a "logout" action yet.
+
+## Project Structure
+This project is divided in `Apps`, `Packages`, `ModuleCollections` and `Modules`.
+Following definitions should clarify how the project code is structured.
+
+- `Package:` A package is a collection of module collections and modules. A package can be considered as a root `module collection` without an `index.ts` file.
+- `Module:` A module contains a strongly coupled feature collection. Every module contains an `index.ts` file, which defines its public API. Every module is divided in domain, infrastructure and UI layer.
+- `ModuleCollection:` A module collection contains multiple modules and other module collections. A module collection contains an `index.ts` file to define its public API.
+- `App:` An app (e.g. WebSPA) is a standalone application, which uses several modules from different packages and defines its own specific modules. Ideally most stuff is sourced out to packages and kept reusable.
+
+With this feature based structure, it is ensured that specific features easily can be generalized and vise versa.
+
+## Package documentations
+- [Packages/Common/README.md](src/Packages/Common/README.md)
+- [Packages/Entity/README.md](src/Packages/Entity/README.md)
 
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
