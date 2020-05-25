@@ -1,6 +1,9 @@
-import { Request, receiveResponse } from "Packages/Common/HttpFoundation";
-import { call, put, CallEffect, StrictEffect } from "@redux-saga/core/effects";
-import { ApiV1Response, createSendHttpRequest } from "Packages/Common/HttpApiV1";
+import { receiveResponse, Request } from "Packages/Common/HttpFoundation";
+import {
+    call, CallEffect, put, StrictEffect,
+} from "@redux-saga/core/effects";
+import { createSendHttpRequest } from "Packages/Common/HttpApiV1/Domain/Command/SendHttpRequest";
+import { ApiV1Response } from "../../Types";
 
 type ExecuteRequestGenerator<ResponseBody> = Generator<StrictEffect, (null | ApiV1Response<ResponseBody>)>;
 
@@ -20,3 +23,5 @@ export function executeRequest<ResponseBody>(request: Request): ExecuteRequestCa
     // @ts-ignore
     return call(internalExecuteRequest, request);
 }
+
+export const apiV1BaseUrl = "//localhost:9000";

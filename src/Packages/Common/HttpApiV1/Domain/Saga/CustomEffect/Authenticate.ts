@@ -1,22 +1,20 @@
-import { apiV1BaseUrl, ApiV1ReadResponse } from "Packages/Common/HttpApiV1";
 import { User } from "Packages/Entity/User";
 import { createPostRequest, HttpStatusCodes, Request } from "Packages/Common/HttpFoundation";
 import { AuthUser } from "Packages/Common/Authentication";
 import { BusinessLogicResult } from "Packages/Common/CommonTypes";
-import { executeRequest } from "./InternalRequestHandling";
+import { ApiV1ReadResponse } from "../../Types";
+import { apiV1BaseUrl, executeRequest } from "./InternalRequestHandling";
 
-export type AuthenticateResult = BusinessLogicResult<{
-    authUser?: AuthUser
-}>;
+type AuthApiResponse = ApiV1ReadResponse<{user: User, token: string}>;
 
-type AuthSettings = {
+export type AuthenticateSettings = {
     username: string
     password: string
 };
 
-type AuthApiResponse = ApiV1ReadResponse<{user: User, token: string}>;
+export type AuthenticateResult = BusinessLogicResult<{ authUser?: AuthUser }>;
 
-export function* authenticate(settings: AuthSettings): Generator<unknown, AuthenticateResult> {
+export function* authenticate(settings: AuthenticateSettings): Generator<unknown, AuthenticateResult> {
     const request: Request = createPostRequest({
         url: `${apiV1BaseUrl}/auth/authenticate`,
         body: {
