@@ -16,7 +16,7 @@ const apiV1EventTypesToWatch = [
 
 type ApiV1Event = ApiV1HttpConnectionFailed | ApiV1HttpResponseWasReceived;
 
-export function createHttpApiV1ToasterSaga(): () => Generator { // todo: integrate in a way that this can be enabled or disabled
+export function createHttpApiV1ToasterSaga(): () => Generator {
     return function* (): Generator {
         yield takeEvery(apiV1EventTypesToWatch, function* (event: ApiV1Event) {
             // @ts-ignore
@@ -33,6 +33,8 @@ export function createHttpApiV1ToasterSaga(): () => Generator { // todo: integra
                 );
                 return;
             }
+
+            // todo: from here, integrate in a way that this can be enabled or disabled
             const messages = event.payload.response.body.generalMessages;
             if (!messages) {
                 return;

@@ -11,6 +11,7 @@ import {
     findCurrentAuthUser,
 } from "Packages/Common/Authentication";
 import { createSaveCookie } from "Packages/Common/Cookie";
+import { ResultTypes } from "Packages/Common/CommonTypes";
 import { createUserLoginFailed } from "../../Event/UserLoginFailed";
 import { createUserWasLoggedIn } from "../../Event/UserWasLoggedIn";
 import { createUserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
@@ -30,28 +31,22 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             username: command.payload.username,
             password: command.payload.password,
         });
-        if (!result) {
+        if (result.type !== ResultTypes.SUCCESS || !result.data.authUser) {
             yield put(createUserLoginFailed(command.payload));
             return;
         }
-        if (result.data.authUser) {
-            yield put(
-                createSaveCookie({
-                    name: authTokenCookieName,
-                    content: JSON.stringify(result.data.authUser),
-                    timeToLiveInDays: (command.payload.shouldRemember
-                        ? authTokenCookieTimeToLiveInDays
-                        : undefined
-                    ),
-                }),
-            );
-            yield put(createUserWasLoggedIn(command.payload, result.successData.authUser));
-            return;
-        }
-        if (result.errorData) {
-            yield put(createUserLoginFailed(command.payload));
-            return;
-        }
+        yield put(
+            createSaveCookie({
+                name: authTokenCookieName,
+                content: JSON.stringify(result.data.authUser),
+                timeToLiveInDays: (command.payload.shouldRemember
+                    ? authTokenCookieTimeToLiveInDays
+                    : undefined
+                ),
+            }),
+        );
+        yield put(createUserWasLoggedIn(command.payload, result.data.authUser));
+        return;
     } finally {
         if (yield cancelled()) {
             yield put(createUserLoginWasCancelled(command.payload));

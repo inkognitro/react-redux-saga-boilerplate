@@ -1,7 +1,12 @@
 import { User } from "Packages/Entity/User";
 import { createPostRequest, HttpStatusCodes, Request } from "Packages/Common/HttpFoundation";
 import { AuthUser } from "Packages/Common/Authentication";
-import { BusinessLogicResult, createBusinessLogicResult, ResultTypes } from "Packages/Common/BusinessLogicResult";
+import {
+    SuccessResult,
+    ErrorResult,
+    createErrorResult,
+    createSuccessResult,
+} from "Packages/Common/CommonTypes";
 import { ApiV1ReadResponse } from "../../Types";
 import { apiV1BaseUrl, executeRequest } from "./InternalRequestHandling";
 
@@ -12,8 +17,7 @@ export type AuthenticateSettings = {
     password: string
 };
 
-type ResultData = { authUser?: AuthUser }
-export type AuthenticateResult = BusinessLogicResult<ResultData>;
+export type AuthenticateResult = (SuccessResult<{ authUser: AuthUser }> | ErrorResult);
 
 export function* authenticate(settings: AuthenticateSettings): Generator<unknown, AuthenticateResult> {
     const request: Request = createPostRequest({
@@ -26,13 +30,12 @@ export function* authenticate(settings: AuthenticateSettings): Generator<unknown
     // @ts-ignore
     const response: (null | AuthApiResponse) = yield executeRequest<AuthApiResponse>(request);
     if (!response) {
-        return createBusinessLogicResult<ResultData>({
-            type: ResultTypes.ERROR,
+        return createErrorResult({
+            data: undefined,
         });
     }
     if (response.statusCode === HttpStatusCodes.OK) {
-        return createBusinessLogicResult<ResultData>({
-            type: ResultTypes.SUCCESS,
+        return createSuccessResult({
             generalMessages: response.body.generalMessages,
             fieldMessages: response.body.fieldMessages,
             data: {
@@ -43,9 +46,9 @@ export function* authenticate(settings: AuthenticateSettings): Generator<unknown
             },
         });
     }
-    return createBusinessLogicResult<ResultData>({
-        type: ResultTypes.ERROR,
+    return createErrorResult({
         generalMessages: response.body.generalMessages,
         fieldMessages: response.body.fieldMessages,
+        data: undefined,
     });
 }

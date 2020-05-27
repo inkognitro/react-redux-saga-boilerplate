@@ -35,3 +35,37 @@ export type Command<Type = any, Payload = undefined> = Action<Type> & {
 export type Event<Type = any, Payload = undefined> = Action<Type> & {
     payload: Payload;
 }
+
+export enum ResultTypes {
+    SUCCESS = 'success',
+    ERROR = 'error',
+}
+
+type ResultProps<Data> = {
+    generalMessages: Message[]
+    fieldMessages: FieldMessage[]
+    data: Data
+}
+
+type BaseResult<Type extends ResultTypes, Data> = ({ type: Type } & ResultProps<Data>)
+export type SuccessResult<Data = undefined> = BaseResult<ResultTypes.SUCCESS, Data>;
+export type ErrorResult<Data = undefined> = BaseResult<ResultTypes.ERROR, Data>;
+
+export type ResultPropsForCreation<Data> = Partial<ResultProps<Data>> & Pick<ResultProps<Data>, 'data'>;
+export function createErrorResult<Data = undefined>(settings: ResultPropsForCreation<Data>): ErrorResult<Data> {
+    return {
+        type: ResultTypes.ERROR,
+        generalMessages: [],
+        fieldMessages: [],
+        ...settings,
+    };
+}
+
+export function createSuccessResult<Data = undefined>(settings: ResultPropsForCreation<Data>): SuccessResult<Data> {
+    return {
+        type: ResultTypes.SUCCESS,
+        generalMessages: [],
+        fieldMessages: [],
+        ...settings,
+    };
+}
