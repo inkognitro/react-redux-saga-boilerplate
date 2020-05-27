@@ -1,7 +1,7 @@
 import { User } from "Packages/Entity/User";
 import { createPostRequest, HttpStatusCodes, Request } from "Packages/Common/HttpFoundation";
 import { AuthUser } from "Packages/Common/Authentication";
-import { BusinessLogicResult } from "Packages/Common/CommonTypes";
+import { BusinessLogicResult, createBusinessLogicResult, ResultTypes } from "Packages/Common/BusinessLogicResult";
 import { ApiV1ReadResponse } from "../../Types";
 import { apiV1BaseUrl, executeRequest } from "./InternalRequestHandling";
 
@@ -12,7 +12,8 @@ export type AuthenticateSettings = {
     password: string
 };
 
-export type AuthenticateResult = BusinessLogicResult<{ authUser?: AuthUser }>;
+type ResultData = { authUser?: AuthUser }
+export type AuthenticateResult = BusinessLogicResult<ResultData>;
 
 export function* authenticate(settings: AuthenticateSettings): Generator<unknown, AuthenticateResult> {
     const request: Request = createPostRequest({
@@ -25,27 +26,26 @@ export function* authenticate(settings: AuthenticateSettings): Generator<unknown
     // @ts-ignore
     const response: (null | AuthApiResponse) = yield executeRequest<AuthApiResponse>(request);
     if (!response) {
-        return {
-            data: {},
-        };
+        return createBusinessLogicResult<ResultData>({
+            type: ResultTypes.ERROR,
+        });
     }
-    const result = {
-        generalMessages: response.body.generalMessages,
-        fieldMessages: response.body.fieldMessages,
-    };
     if (response.statusCode === HttpStatusCodes.OK) {
-        return {
-            ...result,
+        return createBusinessLogicResult<ResultData>({
+            type: ResultTypes.SUCCESS,
+            generalMessages: response.body.generalMessages,
+            fieldMessages: response.body.fieldMessages,
             data: {
                 authUser: {
                     token: response.body.data.token,
                     user: response.body.data.user,
                 },
             },
-        };
+        });
     }
-    return {
-        ...result,
-        data: {},
-    };
+    return createBusinessLogicResult<ResultData>({
+        type: ResultTypes.ERROR,
+        generalMessages: response.body.generalMessages,
+        fieldMessages: response.body.fieldMessages,
+    });
 }

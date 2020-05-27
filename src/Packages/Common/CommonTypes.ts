@@ -28,12 +28,6 @@ export type FieldMessage = {
     message: Message
 }
 
-export type BusinessLogicResult<Data> = {
-    generalMessages?: Message[]
-    fieldMessages?: FieldMessage[]
-    data: Data
-}
-
 export type Command<Type = any, Payload = undefined> = Action<Type> & {
     payload: Payload;
 }
