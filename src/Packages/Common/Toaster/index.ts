@@ -1,4 +1,5 @@
 export { createToasterSaga } from "./Domain/Saga/Flow";
+export { dispatchToastsFromResult, DispatchToastsFromResultGenerator } from "./Domain/Saga/CustomEffect/ToastDispatching";
 export { RemoveMessage, createRemoveMessage } from "./Domain/Command/RemoveMessage";
 export { ShowMessage, createShowMessage } from "./Domain/Command/ShowMessage";
 export { ToastWasRemoved } from "./Domain/Event/ToastWasRemoved";

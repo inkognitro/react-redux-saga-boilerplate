@@ -1,14 +1,16 @@
-import { Event } from "Packages/Common/CommonTypes";
+import { Event, SuccessResult } from "Packages/Common/CommonTypes";
 import { AuthEventTypes, AuthUser, LoginSettings } from "../Types";
 
-export function createUserWasLoggedIn(loginSettings: LoginSettings, authUser: AuthUser): UserWasLoggedIn {
+type UserWasLoggedInResult = SuccessResult<{ authUser: AuthUser }>;
+
+export function createUserWasLoggedIn(loginSettings: LoginSettings, result: UserWasLoggedInResult): UserWasLoggedIn {
     return {
         type: AuthEventTypes.USER_WAS_LOGGED_IN,
-        payload: { loginSettings, authUser },
+        payload: { loginSettings, result },
     };
 }
 
 export type UserWasLoggedIn = Event<AuthEventTypes.USER_WAS_LOGGED_IN, {
     loginSettings: LoginSettings
-    authUser: AuthUser
-}>;
+    result: SuccessResult<{ authUser: AuthUser }>
+}>

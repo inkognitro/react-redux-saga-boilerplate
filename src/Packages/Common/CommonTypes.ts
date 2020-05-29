@@ -51,6 +51,8 @@ type BaseResult<Type extends ResultTypes, Data> = ({ type: Type } & ResultProps<
 export type SuccessResult<Data = undefined> = BaseResult<ResultTypes.SUCCESS, Data>;
 export type ErrorResult<Data = undefined> = BaseResult<ResultTypes.ERROR, Data>;
 
+export type Result = (SuccessResult | ErrorResult);
+
 export type ResultPropsForCreation<Data> = Partial<ResultProps<Data>> & Pick<ResultProps<Data>, 'data'>;
 export function createErrorResult<Data = undefined>(settings: ResultPropsForCreation<Data>): ErrorResult<Data> {
     return {

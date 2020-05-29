@@ -45,7 +45,7 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
                 ),
             }),
         );
-        yield put(createUserWasLoggedIn(command.payload, result.data.authUser));
+        yield put(createUserWasLoggedIn(command.payload, result));
         return;
     } finally {
         if (yield cancelled()) {
