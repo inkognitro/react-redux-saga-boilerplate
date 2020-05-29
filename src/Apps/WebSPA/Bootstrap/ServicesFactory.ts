@@ -46,7 +46,7 @@ import { createFormElementsFlow } from "Packages/Common/FormElement";
 import { createFormSaga } from "Packages/Common/Form";
 import { createRoutingSaga, routingReducer, RoutingState } from "Apps/WebSPA/Routing";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
-import {createHttpApiV1ToasterSaga} from "Packages/Common/HttpApiV1Toaster";
+import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster";
 
 type AppServices = {
   store: Store;
