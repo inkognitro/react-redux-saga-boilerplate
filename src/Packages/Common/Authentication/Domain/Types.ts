@@ -9,6 +9,7 @@ import {
     UserLoginFailed,
 } from "Packages/Common/Authentication";
 import { User } from "Packages/Entity/User/Domain/User";
+import {ErrorResult, SuccessResult} from "Packages/Common/CommonTypes";
 
 export type AuthUser = {
   token: string
@@ -58,3 +59,7 @@ export type LoginSettings = {
     password: string;
     shouldRemember: boolean;
 };
+
+export type LoginSuccessResult = SuccessResult<{ authUser: AuthUser }>
+export type LoginErrorResult = ErrorResult;
+export type LoginResult = (LoginSuccessResult | LoginErrorResult);
