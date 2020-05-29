@@ -46,6 +46,7 @@ import { createFormElementsFlow } from "Packages/Common/FormElement";
 import { createFormSaga } from "Packages/Common/Form";
 import { createRoutingSaga, routingReducer, RoutingState } from "Apps/WebSPA/Routing";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
+import {createHttpApiV1ToasterSaga} from "Packages/Common/HttpApiV1Toaster";
 
 type AppServices = {
   store: Store;
@@ -85,6 +86,7 @@ function createRootSaga(
     const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.httpFoundation;
     const httpFoundationSaga = createHttpFoundationSaga(httpFoundationStateSelector, httpRequestDispatcher);
     const httpApiV1Saga = createHttpApiV1Saga(authStateSelector);
+    const httpApiV1ToasterSaga = createHttpApiV1ToasterSaga();
     const routingSaga = createRoutingSaga();
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
@@ -96,6 +98,7 @@ function createRootSaga(
         yield spawn(authenticationSaga);
         yield spawn(httpFoundationSaga);
         yield spawn(httpApiV1Saga);
+        yield spawn(httpApiV1ToasterSaga);
         yield spawn(routerSaga);
         yield spawn(routingSaga);
     };
