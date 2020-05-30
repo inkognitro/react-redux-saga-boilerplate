@@ -1,3 +1,4 @@
+export * from './Domain/Types';
 export { createFormElementsFlow } from './Domain/Saga/Flow';
 export { createChangeFormElementState, ChangeFormElementState } from './Domain/Command/ChangeFormElementState';
 export { createChangeFormElementStates, ChangeFormElementStates } from './Domain/Command/ChangeFormElementStates';
@@ -12,7 +13,6 @@ export {
     createTextFieldState,
     createEmailFieldState,
 } from './Domain/FormElementStateFactory';
-export * from './Domain/Types';
 export * from './UI/Types';
 export * from './UI/EmailFieldWC';
 export * from './UI/FormElementGroupWC';

@@ -1,3 +1,4 @@
+export * from './Domain/Types';
 export interface HistoryManager {
     getCurrentUrl(): string
     openUrlInOtherTarget(url: string, target: string): void
@@ -12,6 +13,5 @@ export { RouterWasExtended } from './Domain/Event/RouterWasExtended';
 export { RouterWasInitialized } from './Domain/Event/RouterWasInitialized';
 export { routerReducer } from './Domain/Reducer';
 export { BrowserHistoryManager } from './Infrastructure/BrowserHistoryManager';
-export * from './Domain/Types';
 export * from './UI/LinkWC';
 export * from './UI/RouterWC';

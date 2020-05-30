@@ -1,3 +1,4 @@
+export * from './Domain/Types';
 export { createAuthenticationSaga } from './Domain/Saga/Flow';
 export { login } from './Domain/Saga/CustomEffect/Login';
 export { createLogin, Login } from './Domain/Command/Login';
@@ -15,7 +16,6 @@ export { UserLogoutWasNotExecuted } from './Domain/Event/UserLogoutWasNotExecute
 export { UserWasLoggedIn } from './Domain/Event/UserWasLoggedIn';
 export { findCurrentAuthUser } from './Domain/Query/CurrentAuthUserQuery';
 export { authenticationReducer } from './Domain/Reducer';
-export * from './Domain/Types';
 export const authTokenCookieName = 'authUser';
 export const authTokenCookieTimeToLiveInDays = 14;
 export const authRefreshBeforeExpirationInSeconds = 60;

@@ -1,3 +1,4 @@
+export * from './Domain/Types';
 export { executeRequest, ExecuteRequestCallEffect } from './Domain/Saga/CustomEffect/RequestHandling';
 export { receiveResponse, ReceiveHttpResponseGenerator } from './Domain/Saga/CustomEffect/ResponseReceiving';
 export { createHttpFoundationSaga } from './Domain/Saga/Flow';
@@ -19,4 +20,3 @@ export { HttpRequestWasSent } from './Domain/Event/HttpRequestWasSent';
 export { httpFoundationReducer } from './Domain/Reducer';
 export { AxiosHttpRequestDispatcher } from './Infrastructure/AxiosHttpRequestDispatcher';
 export { MockHttpRequestDispatcher } from './Infrastructure/MockHttpRequestDispatcher';
-export * from './Domain/Types';

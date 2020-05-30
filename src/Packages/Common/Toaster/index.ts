@@ -1,3 +1,4 @@
+export * from './Domain/Types';
 export { createToasterSaga } from "./Domain/Saga/Flow";
 export { dispatchToastsFromResult, DispatchToastsFromResultGenerator } from "./Domain/Saga/CustomEffect/ToastDispatching";
 export { RemoveMessage, createRemoveMessage } from "./Domain/Command/RemoveMessage";
@@ -12,5 +13,4 @@ export { MessagesWereAddedToToast } from "./Domain/Event/MessagesWereAddedToToas
 export { MessageOutroAnimationWasStarted } from "./Domain/Event/MessageOutroAnimationWasStarted";
 export { MessageIntroAnimationsWereFinished } from "./Domain/Event/MessageIntroAnimationsWereFinished";
 export { toasterReducer } from './Domain/Reducer';
-export * from './Domain/Types';
 export * from './UI/ToasterWC';
