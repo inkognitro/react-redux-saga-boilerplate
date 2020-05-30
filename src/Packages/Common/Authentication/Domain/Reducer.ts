@@ -24,13 +24,17 @@ export function authenticationReducer(
     if (event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {
         return {
             ...state,
-            currentAuthUser: event.payload.authUser,
+            currentAuthUser: event.payload.result.data.authUser,
             isAuthenticationRunning: false,
         };
     }
 
     if (event.type === AuthEventTypes.USER_LOGIN_FAILED) {
-        return { ...state, currentAuthUser: null, isAuthenticationRunning: false };
+        return {
+            ...state,
+            currentAuthUser: null,
+            isAuthenticationRunning: false,
+        };
     }
 
     if (event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_REQUESTED) {

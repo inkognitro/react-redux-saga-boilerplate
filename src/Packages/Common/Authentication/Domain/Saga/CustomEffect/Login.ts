@@ -17,13 +17,6 @@ import {
 
 type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 
-const loginResultEventTypes = [
-    AuthEventTypes.USER_LOGIN_WAS_CANCELLED,
-    AuthEventTypes.USER_LOGIN_FAILED,
-    AuthEventTypes.USER_LOGIN_WAS_NOT_EXECUTED,
-    AuthEventTypes.USER_WAS_LOGGED_IN,
-];
-
 type LoginResultEvent = (UserLoginWasCancelled | UserLoginFailed | UserLoginWasNotExecuted | UserWasLoggedIn);
 
 function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerator {
@@ -35,13 +28,19 @@ function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerato
     const { loginId } = command.payload;
     let eventLoginId: (null | string) = null;
     let event: (null | LoginResultEvent) = null;
-    while (eventLoginId === loginId) {
+    while (eventLoginId !== loginId) {
         // @ts-ignore
-        event = yield take(loginResultEventTypes);
+        event = yield take([
+            AuthEventTypes.USER_LOGIN_WAS_CANCELLED,
+            AuthEventTypes.USER_LOGIN_FAILED,
+            AuthEventTypes.USER_LOGIN_WAS_NOT_EXECUTED,
+            AuthEventTypes.USER_WAS_LOGGED_IN,
+        ]);
         if (event === null) {
             continue;
         }
         eventLoginId = event.payload.loginSettings.loginId;
+        console.info('eventLoginId', eventLoginId);
     }
     if (event === null) {
         throw new Error('event is null');
