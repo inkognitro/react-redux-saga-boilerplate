@@ -1,12 +1,14 @@
 import {
     call, CallEffect, put, StrictEffect, take,
 } from "redux-saga/effects";
-import { Result } from "Packages/Common/CommonTypes";
+import {
+    createErrorResult, ErrorResult, Result, SuccessResult,
+} from "Packages/Common/CommonTypes";
 import {
     AuthEventTypes,
+    AuthUser,
     createLogin,
     Login,
-    LoginResult,
     LoginSettings,
     UserLoginFailed,
     UserLoginWasCancelled,
@@ -14,7 +16,15 @@ import {
     UserWasLoggedIn,
 } from "Packages/Common/Authentication";
 
-export type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
+export type LoginSuccessResult = SuccessResult<{ authUser: AuthUser }>
+export type LoginErrorResult = ErrorResult;
+export type LoginResult = (LoginSuccessResult | LoginErrorResult);
+
+function createLoginErrorResult(): LoginErrorResult {
+    return createErrorResult({ data: undefined });
+}
+
+type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 
 const loginResultEventTypes = [
     AuthEventTypes.USER_LOGIN_WAS_CANCELLED,
@@ -30,18 +40,34 @@ function* internalLogin(settings: LoginSettings): LoginResultEventGenerator {
     yield put(command);
     const { loginId } = command.payload;
     let eventLoginId: (null | string) = null;
+    let event: (null | LoginResultEvent) = null;
     while (eventLoginId === loginId) {
         // @ts-ignore
-        const event: LoginResultEvent = yield take(loginResultEventTypes);
+        event = yield take(loginResultEventTypes);
+        if (event === null) {
+            continue;
+        }
         eventLoginId = event.payload.loginSettings.loginId;
     }
-    /*
-    if (event.type === AuthEventTypes.USER_LOGIN_WAS_CANCELLED) { }
-    */
-    // define if above also for other events!
+    if (event === null) {
+        throw new Error('event is null');
+    }
+    if (event.type === AuthEventTypes.USER_LOGIN_WAS_CANCELLED) {
+        return createLoginErrorResult();
+    }
+    if (event.type === AuthEventTypes.USER_LOGIN_WAS_NOT_EXECUTED) {
+        return createLoginErrorResult();
+    }
+    if (event.type === AuthEventTypes.USER_LOGIN_FAILED) {
+        return event.payload.result;
+    }
+    if (event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {
+        return event.payload.result;
+    }
+    return createLoginErrorResult();
 }
 
-type LoginCallEffect = CallEffect<{
+export type LoginCallEffect = CallEffect<{
     context: any
     fn: LoginResultEventGenerator
     args: any[]

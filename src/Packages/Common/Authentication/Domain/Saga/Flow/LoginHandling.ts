@@ -31,8 +31,8 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             username: command.payload.username,
             password: command.payload.password,
         });
-        if (result.type !== ResultTypes.SUCCESS || !result.data.authUser) {
-            yield put(createUserLoginFailed(command.payload));
+        if (result.type === ResultTypes.ERROR) {
+            yield put(createUserLoginFailed(command.payload, result));
             return;
         }
         yield put(

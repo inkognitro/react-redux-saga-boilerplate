@@ -1,5 +1,6 @@
 import { Event } from "Packages/Common/CommonTypes";
-import { AuthEventTypes, LoginErrorResult, LoginSettings } from "../Types";
+import { LoginErrorResult } from "Packages/Common/Authentication/Domain/Saga/CustomEffect/Login";
+import { AuthEventTypes, LoginSettings } from "../Types";
 
 export function createUserLoginFailed(loginSettings: LoginSettings, result: LoginErrorResult): UserLoginFailed {
     return {

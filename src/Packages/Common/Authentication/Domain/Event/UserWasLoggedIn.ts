@@ -1,5 +1,6 @@
 import { Event } from "Packages/Common/CommonTypes";
-import { AuthEventTypes, LoginSettings, LoginSuccessResult } from "../Types";
+import { AuthEventTypes, LoginSettings} from "../Types";
+import {LoginSuccessResult} from "Packages/Common/Authentication/Domain/Saga/CustomEffect/Login";
 
 export function createUserWasLoggedIn(loginSettings: LoginSettings, result: LoginSuccessResult): UserWasLoggedIn {
     return {
