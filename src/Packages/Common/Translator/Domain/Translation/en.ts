@@ -1,4 +1,6 @@
-export const translationIdToTranslationMapping = {
-    COULD_NOT_CONNECT_TO_SERVER_TRANSLATION_ID: "Could not connect to server.",
+import { TranslationIds, TranslationIdToTranslationMapping } from "Packages/Common/Translator";
+
+export const translationIdToTranslationMapping: TranslationIdToTranslationMapping = {
+    [TranslationIds.COULD_NOT_CONNECT_TO_SERVER]: "Could not connect to server.",
     // todo: define translations!
 };
