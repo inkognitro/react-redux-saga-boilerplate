@@ -12,14 +12,14 @@ export type RouteWC = {
   component: ComponentType;
 };
 
-export type Specification = {
+export type RouterWCSpecification = {
   routeComponents: RouteWC[];
   defaultComponent: ComponentType;
 };
 
 export type RouterWCProps = {
   history: History;
-  specification: Specification;
+  specification: RouterWCSpecification;
 };
 
 export const RouterWC: FC<RouterWCProps> = (props) => (

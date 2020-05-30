@@ -1,4 +1,4 @@
-import { RouterWC as CommonRouter, Specification } from "Packages/Common/Router/UI/RouterWC";
+import { RouterWC as CommonRouter, RouterWCSpecification } from "Packages/Common/Router/UI/RouterWC";
 import React, { FC } from "react";
 import { History } from "history";
 import { homeRoute } from "Apps/WebSPA/Routing/HomePage";
@@ -18,7 +18,7 @@ import { HomePageWC } from "./HomePage/UI/HomePageWC";
 
 export * from './UrlFactory';
 
-const specification: Specification = {
+const specification: RouterWCSpecification = {
     routeComponents: [
         { route: homeRoute, component: HomePageWC },
         ...authRouteComponents,
