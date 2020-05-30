@@ -7,7 +7,7 @@ import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(request: Request): Promise<RequestResponse> {
-        console.info('Request execution simulation running', request);
+        console.info('Request execution simulation - request', request);
         const response: ApiV1ReadResponse = {
             statusCode: 200,
             body: {
@@ -28,7 +28,10 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
             },
         };
         return new Promise((resolve) => {
-            setTimeout(() => resolve({ request, response }), 2000);
+            setTimeout(() => {
+                console.info('Request execution simulation - response', response);
+                resolve({ request, response });
+            }, 2000);
         });
     }
 }

@@ -1,20 +1,20 @@
-import { select } from "redux-saga/effects";
+import { select, put } from "redux-saga/effects";
 import { login, LoginResult } from "Packages/Common/Authentication";
 import { dispatchToastsFromResult } from "Packages/Common/Toaster";
+import { createHideLoader, createShowLoader } from "Packages/Common/Loader";
 import { LoginPageState, LoginPageStateSelector } from "../../Types";
-import { Login } from "../../Command/Login";
 
-export function* handleLogin(loginPageStateSelector: LoginPageStateSelector, command: Login): Generator {
+export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Generator {
     // @ts-ignore
     const loginPageState: LoginPageState = yield select(loginPageStateSelector);
+    yield put(createShowLoader());
     // @ts-ignore
     const result: LoginResult = yield login({
-        username: 'sonGoku',
-        password: '1234',
+        username: loginPageState.form.elementsByName.username.value,
+        password: loginPageState.form.elementsByName.password.value,
         shouldRemember: false,
     });
-    dispatchToastsFromResult(result);
-    console.info(result);
-    console.info(command, loginPageState.form.elementsByName);
-    // todo: make bridge between auth package and single page app implementation
+    yield put(createHideLoader());
+    yield dispatchToastsFromResult(result);
+    console.info(result); // todo: remove!
 }
