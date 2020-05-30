@@ -1,13 +1,13 @@
 import { spawn, takeEvery } from "@redux-saga/core/effects";
-import { LoginPageCommandTypes } from "../../Types";
+import { LoginPageCommandTypes, LoginPageStateSelector } from "../../Types";
 import { handleLogin } from "./LoginHandling";
 
-export function createLoginPageSaga(): () => Generator {
+export function createLoginPageSaga(loginPageStateSelector: LoginPageStateSelector): () => Generator {
     return function* (): Generator {
-        yield spawn(watchLoginCommands);
+        yield spawn(watchLoginCommands, loginPageStateSelector);
     };
 }
 
-function* watchLoginCommands(): Generator {
-    yield takeEvery(LoginPageCommandTypes.LOGIN, handleLogin);
+function* watchLoginCommands(loginPageStateSelector: LoginPageStateSelector): Generator {
+    yield takeEvery(LoginPageCommandTypes.LOGIN, handleLogin, loginPageStateSelector);
 }

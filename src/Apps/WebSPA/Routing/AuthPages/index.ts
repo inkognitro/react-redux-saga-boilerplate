@@ -7,11 +7,15 @@ import {
     loginRoute,
     loginPageReducer,
     LoginPageState,
+    LoginPageStateSelector,
 } from "./LoginPage";
 
-export function createAuthPagesSaga(): () => Generator {
+export { loginRoute } from './LoginPage';
+
+export function createAuthPagesSaga(authPagesStateSelector: AuthPagesStateSelector): () => Generator {
+    const loginPageStateSelector: LoginPageStateSelector = (rootState: any) => authPagesStateSelector(rootState).loginPage;
     return function* (): Generator {
-        yield spawn(createLoginPageSaga());
+        yield spawn(createLoginPageSaga(loginPageStateSelector));
     };
 }
 
@@ -22,6 +26,8 @@ export const authPagesReducer: Reducer = combineReducers({
 export type AuthPagesState = {
     loginPage: LoginPageState
 }
+
+export type AuthPagesStateSelector = (rootState: any) => AuthPagesState
 
 export const authRouteComponents: RouteWC[] = [
     { route: loginRoute, component: LoginPageWC },

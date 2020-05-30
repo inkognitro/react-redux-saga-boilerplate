@@ -1,4 +1,5 @@
 export { createAuthenticationSaga } from './Domain/Saga/Flow';
+export { login } from './Domain/Saga/CustomEffect/Login';
 export { createLogin, Login } from './Domain/Command/Login';
 export { createLogout, Logout } from './Domain/Command/Logout';
 export { createInitializeCurrentUser, InitializeCurrentUser } from './Domain/Command/InitializeCurrentUser';
@@ -15,10 +16,6 @@ export { UserWasLoggedIn } from './Domain/Event/UserWasLoggedIn';
 export { findCurrentAuthUser } from './Domain/Query/CurrentAuthUserQuery';
 export { authenticationReducer } from './Domain/Reducer';
 export * from './Domain/Types';
-export {createLoginErrorResult} from "Packages/Common/Authentication/Domain/Saga/CustomEffect/Login";
-export {LoginResult} from "Packages/Common/Authentication/Domain/Saga/CustomEffect/Login";
-export {LoginErrorResult} from "Packages/Common/Authentication/Domain/Saga/CustomEffect/Login";
-export {LoginSuccessResult} from "Packages/Common/Authentication/Domain/Saga/CustomEffect/Login";
 export const authTokenCookieName = 'authUser';
 export const authTokenCookieTimeToLiveInDays = 14;
 export const authRefreshBeforeExpirationInSeconds = 60;

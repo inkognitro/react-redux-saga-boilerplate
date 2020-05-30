@@ -1,4 +1,4 @@
-import { UserAuthenticationRefreshFailed } from "Packages/Common/Authentication/Domain/Event/UserAuthenticationRefreshFailed";
+import {UserAuthenticationRefreshFailed} from "Packages/Common/Authentication/Domain/Event/UserAuthenticationRefreshFailed";
 import {
     UserAuthenticationRefreshWasRequested,
     UserAuthenticationWasRefreshed,
@@ -8,7 +8,8 @@ import {
     UserWasLoggedIn,
     UserWasLoggedOut,
 } from "Packages/Common/Authentication";
-import { User } from "Packages/Entity/User/Domain/User";
+import {User} from "Packages/Entity/User/Domain/User";
+import {createErrorResult, ErrorResult, SuccessResult} from "Packages/Common/CommonTypes";
 
 export type AuthUser = {
   token: string
@@ -58,3 +59,10 @@ export type LoginSettings = {
     password: string;
     shouldRemember: boolean;
 };
+export type LoginSuccessResult = SuccessResult<{ authUser: AuthUser }>
+export type LoginErrorResult = ErrorResult;
+export type LoginResult = (LoginSuccessResult | LoginErrorResult);
+
+export function createLoginErrorResult(): LoginErrorResult {
+    return createErrorResult({data: undefined});
+}

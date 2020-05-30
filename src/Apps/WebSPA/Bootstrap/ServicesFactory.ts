@@ -44,7 +44,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLoaderSaga, loaderReducer, LoaderState } from "Packages/Common/Loader";
 import { createFormElementsFlow } from "Packages/Common/FormElement";
 import { createFormSaga } from "Packages/Common/Form";
-import { createRoutingSaga, routingReducer, RoutingState } from "Apps/WebSPA/Routing";
+import {createRoutingSaga, routingReducer, RoutingState, RoutingStateSelector} from "Apps/WebSPA/Routing";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
 import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster";
 
@@ -87,7 +87,8 @@ function createRootSaga(
     const httpFoundationSaga = createHttpFoundationSaga(httpFoundationStateSelector, httpRequestDispatcher);
     const httpApiV1Saga = createHttpApiV1Saga(authStateSelector);
     const httpApiV1ToasterSaga = createHttpApiV1ToasterSaga();
-    const routingSaga = createRoutingSaga();
+    const routingStateSelector: RoutingStateSelector = (state: RootState) => state.routing;
+    const routingSaga = createRoutingSaga(routingStateSelector);
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
         yield spawn(loaderSaga);

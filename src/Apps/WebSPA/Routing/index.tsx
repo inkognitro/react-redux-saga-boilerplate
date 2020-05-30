@@ -4,7 +4,7 @@ import { History } from "history";
 import { homeRoute } from "Apps/WebSPA/Routing/HomePage";
 import {
     authPagesReducer,
-    AuthPagesState,
+    AuthPagesState, AuthPagesStateSelector,
     authRouteComponents,
     createAuthPagesSaga,
 } from "Apps/WebSPA/Routing/AuthPages";
@@ -30,10 +30,11 @@ type RouterWCProps = { history: History };
 
 export const RouterWC: FC<RouterWCProps> = (props) => <CommonRouter specification={specification} history={props.history} />;
 
-export function createRoutingSaga(): () => Generator {
+export function createRoutingSaga(routingStateSelector: RoutingStateSelector): () => Generator {
+    const authPagesStateSelector: AuthPagesStateSelector = (rootState: any) => routingStateSelector(rootState).authPages;
     return function* (): Generator {
         yield spawn(createHomePageSaga());
-        yield spawn(createAuthPagesSaga());
+        yield spawn(createAuthPagesSaga(authPagesStateSelector));
     };
 }
 
@@ -41,7 +42,10 @@ export const routingReducer: Reducer = combineReducers({
     homePage: homePageReducer,
     authPages: authPagesReducer,
 });
+
 export type RoutingState = {
     homePage: HomePageState
     authPages: AuthPagesState
 };
+
+export type RoutingStateSelector = (rootState: any) => RoutingState
