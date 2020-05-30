@@ -31,7 +31,7 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
                     ),
                     user: {
                         id: "1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b",
-                        username: "songoku",
+                        username: "Nagato",
                     },
                 },
             },
