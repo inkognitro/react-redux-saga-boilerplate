@@ -6,14 +6,12 @@ import { connect } from "react-redux";
 import {
     FormElementGroupWC, LabelWC, TextFieldWC, TextFieldState,
 } from "Packages/Common/FormElement";
-import { createLogin } from "Packages/Common/Authentication";
 import { createLeakReduxState } from "Apps/WebSPA/Routing/HomePage";
 import { ContentPage } from "Apps/WebSPA/Foundation";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import uuidV4 from 'uuid/v4';
 
 type DumbHomePageCallbacks = {
-    onClickLogin: () => void;
     onAddToast: (type: ToastTypes, content: string) => void;
     onClickLeakReduxState: () => void;
 };
@@ -32,12 +30,6 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
                 go to non existing page
             </RouteLink>
         </div>
-        <br />
-        <h3>Authentication</h3>
-        <FunctionalLinkWC onClick={props.onClickLogin}>
-            Login
-        </FunctionalLinkWC>
-        <br />
 
         <br />
         <h3>Toasts</h3>
@@ -96,14 +88,6 @@ const mapStateToProps = (state: RootState): DumbHomePageState => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DumbHomePageCallbacks => ({
-    onClickLogin: () => dispatch(
-        createLogin({
-            loginId: uuidV4(),
-            username: "sonGoku",
-            password: "1234",
-            shouldRemember: false,
-        }),
-    ),
     onAddToast: (type: ToastTypes, content: string) => dispatch(
         createShowMessage({
             content: {
