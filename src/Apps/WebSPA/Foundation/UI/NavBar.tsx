@@ -1,7 +1,6 @@
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { FunctionalLinkWC } from "Packages/Common/Router";
+import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { Dispatch } from "redux";
 import { AuthUser, createLogout, findCurrentAuthUser } from "Packages/Common/Authentication";
@@ -32,7 +31,11 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
             );
         }
         return (
-            <li className="nav-item"><NavLink className="nav-link" to={createLoginRouteUrl()}>Login</NavLink></li>
+            <li className="nav-item">
+                <RouteLinkWC className="nav-link" url={createLoginRouteUrl()}>
+                    Login
+                </RouteLinkWC>
+            </li>
         );
     }
 
@@ -40,7 +43,9 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
         return (
             <ul className="nav justify-content-center">
                 <li className="nav-item">
-                    <NavLink className="nav-link" to={createHomeRouteUrl()}>Home</NavLink>
+                    <RouteLinkWC className="nav-link" url={createHomeRouteUrl()}>
+                        Home
+                    </RouteLinkWC>
                 </li>
                 {this.renderAuthLink()}
             </ul>

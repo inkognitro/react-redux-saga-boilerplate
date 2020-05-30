@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FunctionalLinkWC, RouteLink } from "Packages/Common/Router";
+import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
 import { ToastTypes, createShowMessage } from "Packages/Common/Toaster";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -26,9 +26,9 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
     <ContentPage>
         <h3>Routing</h3>
         <div>
-            <RouteLink url="/some-page-which-does-not-exist">
+            <RouteLinkWC url="/some-page-which-does-not-exist">
                 go to non existing page
-            </RouteLink>
+            </RouteLinkWC>
         </div>
 
         <br />
@@ -67,12 +67,12 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         <div>
             Download
             {' '}
-            <RouteLink
+            <RouteLinkWC
                 url="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd"
                 target="_blank"
             >
                 Redux DevTools
-            </RouteLink>
+            </RouteLinkWC>
             {' '}
             for a better developer experience or
             {' '}

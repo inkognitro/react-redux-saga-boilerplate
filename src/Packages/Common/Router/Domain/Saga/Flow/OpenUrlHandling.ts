@@ -16,6 +16,9 @@ export function* handleOpenUrl(
         historyManager.openUrlInOtherTarget(command.payload.url, target);
         return;
     }
+    if (target === '_self' && historyManager.getCurrentUrl() === command.payload.url) {
+        return;
+    }
     const url = getByRedirectInfluencedUrl(routerState, command.payload.url);
     historyManager.changeCurrentUrl(url, !!command.payload.shouldReplaceCurrentUrl);
 }

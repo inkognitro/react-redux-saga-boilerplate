@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch: Dispatch, props: LinkProps) => ({
     onClick: () => dispatch(createOpenUrl({ url: props.url, target: props.target })),
 });
 
-export const RouteLink = connect(
+export const RouteLinkWC = connect(
     mapStateToProps,
     mapDispatchToProps,
 )(FunctionalLinkWC);
