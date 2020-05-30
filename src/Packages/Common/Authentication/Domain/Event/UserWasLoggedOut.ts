@@ -1,13 +1,16 @@
 import { Event } from "Packages/Common/CommonTypes";
 import { AuthEventTypes, AuthUser } from "../Types";
 
-export function createUserWasLoggedOut(authUser: AuthUser): UserWasLoggedOut {
+type UserWasLoggedOutPayload = {
+    authUser: AuthUser
+    logoutId: string
+}
+
+export function createUserWasLoggedOut(payload: UserWasLoggedOutPayload): UserWasLoggedOut {
     return {
         type: AuthEventTypes.USER_WAS_LOGGED_OUT,
-        payload: { authUser },
+        payload,
     };
 }
 
-export type UserWasLoggedOut = Event<AuthEventTypes.USER_WAS_LOGGED_OUT, {
-    authUser: AuthUser
-}>;
+export type UserWasLoggedOut = Event<AuthEventTypes.USER_WAS_LOGGED_OUT, UserWasLoggedOutPayload>;

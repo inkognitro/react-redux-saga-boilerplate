@@ -9,7 +9,7 @@ import {
     UserWasLoggedOut,
 } from "Packages/Common/Authentication";
 import { User } from "Packages/Entity/User/Domain/User";
-import { createErrorResult, ErrorResult, SuccessResult } from "Packages/Common/CommonTypes";
+import { ErrorResult, SuccessResult } from "Packages/Common/CommonTypes";
 
 export type AuthUser = {
   token: string
@@ -59,10 +59,11 @@ export type LoginSettings = {
     password: string;
     shouldRemember: boolean;
 };
-export type LoginSuccessResult = SuccessResult<{ authUser: AuthUser }>
-export type LoginErrorResult = ErrorResult;
-export type LoginResult = (LoginSuccessResult | LoginErrorResult);
 
-export function createLoginErrorResult(): LoginErrorResult {
-    return createErrorResult({ data: undefined });
-}
+export type LoginSuccessResult = SuccessResult<{ authUser: AuthUser }>
+export type LoginErrorResult = ErrorResult
+export type LoginResult = (LoginSuccessResult | LoginErrorResult)
+
+export type LogoutSuccessResult = SuccessResult
+export type LogoutErrorResult = ErrorResult;
+export type LogoutResult = (LogoutSuccessResult | LogoutErrorResult);

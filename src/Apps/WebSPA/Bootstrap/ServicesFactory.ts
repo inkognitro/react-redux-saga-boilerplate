@@ -50,6 +50,7 @@ import {
 } from "Apps/WebSPA/Routing";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
 import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster";
+import { createFoundationSaga } from "Apps/WebSPA/Foundation/Domain/Saga/Flow";
 
 type AppServices = {
     store: Store
@@ -95,6 +96,7 @@ function createRootSaga(
     const httpApiV1ToasterSaga = createHttpApiV1ToasterSaga();
     const routingStateSelector: RoutingStateSelector = (state: RootState) => state.routing;
     const routingSaga = createRoutingSaga(routingStateSelector);
+    const appFoundationSaga = createFoundationSaga();
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
         yield spawn(loaderSaga);
@@ -108,6 +110,7 @@ function createRootSaga(
         yield spawn(httpApiV1ToasterSaga);
         yield spawn(routerSaga);
         yield spawn(routingSaga);
+        yield spawn(appFoundationSaga);
     };
 }
 

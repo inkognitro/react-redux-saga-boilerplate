@@ -1,5 +1,6 @@
 export * from './Domain/Types';
 export { createAuthenticationSaga } from './Domain/Saga/Flow';
+export { logout } from './Domain/Saga/CustomEffect/Logout';
 export { login } from './Domain/Saga/CustomEffect/Login';
 export { createLogin, Login } from './Domain/Command/Login';
 export { createLogout, Logout } from './Domain/Command/Logout';

@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { Dispatch } from "redux";
-import { AuthUser, createLogout, findCurrentAuthUser } from "Packages/Common/Authentication";
+import { AuthUser, findCurrentAuthUser } from "Packages/Common/Authentication";
 import { createHomeRouteUrl, createLoginRouteUrl } from "Apps/WebSPA/Routing";
 import { UserLabelWC } from "Packages/Entity/User";
+import { createLogout } from "Apps/WebSPA/Foundation";
 
 type RepresentationalNavBarState = {
   currentUser: AuthUser | null;

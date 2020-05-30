@@ -1,12 +1,10 @@
-import {
-    call, CallEffect, put, StrictEffect, take,
-} from "redux-saga/effects";
+import {call, CallEffect, put, StrictEffect, take,} from "redux-saga/effects";
 import uuidV4 from 'uuid/v4';
 import {
     AuthEventTypes,
     createLogin,
-    createLoginErrorResult,
     Login,
+    LoginErrorResult,
     LoginResult,
     LoginSettings,
     UserLoginFailed,
@@ -14,10 +12,15 @@ import {
     UserLoginWasNotExecuted,
     UserWasLoggedIn,
 } from "Packages/Common/Authentication";
+import {createErrorResult} from "Packages/Common/CommonTypes";
 
 type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 
 type LoginResultEvent = (UserLoginWasCancelled | UserLoginFailed | UserLoginWasNotExecuted | UserWasLoggedIn);
+
+function createLoginErrorResult(): LoginErrorResult {
+    return createErrorResult({data: undefined});
+}
 
 function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerator {
     const command: Login = createLogin({
@@ -42,12 +45,6 @@ function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerato
         eventLoginId = event.payload.loginSettings.loginId;
     }
     if (event === null) {
-        throw new Error('event is null');
-    }
-    if (event.type === AuthEventTypes.USER_LOGIN_WAS_CANCELLED) {
-        return createLoginErrorResult();
-    }
-    if (event.type === AuthEventTypes.USER_LOGIN_WAS_NOT_EXECUTED) {
         return createLoginErrorResult();
     }
     if (event.type === AuthEventTypes.USER_LOGIN_FAILED) {
@@ -65,7 +62,7 @@ export type LoginCallEffect = CallEffect<{
     args: any[]
 }>
 
-type LoginEffectSettings = Omit<LoginSettings, 'loginId'>;
+export type LoginEffectSettings = Omit<LoginSettings, 'loginId'>;
 export function login(settings: LoginEffectSettings): LoginCallEffect {
     // @ts-ignore
     return call(internalLogin, settings);

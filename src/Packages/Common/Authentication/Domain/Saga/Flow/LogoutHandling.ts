@@ -13,5 +13,8 @@ export function* handleLogout(authStateSelector: AuthStateSelector, command: Log
         yield put(createUserLogoutWasNotExecuted(command.payload.logoutId));
         return;
     }
-    yield put(createUserWasLoggedOut(currentAuthUser));
+    yield put(createUserWasLoggedOut({
+        authUser: currentAuthUser,
+        logoutId: command.payload.logoutId,
+    }));
 }
