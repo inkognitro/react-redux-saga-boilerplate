@@ -40,7 +40,6 @@ function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerato
             continue;
         }
         eventLoginId = event.payload.loginSettings.loginId;
-        console.info('eventLoginId', eventLoginId);
     }
     if (event === null) {
         throw new Error('event is null');
