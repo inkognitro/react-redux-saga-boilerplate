@@ -1,15 +1,13 @@
 import {
     Redirect,
-    Route,
     RouterCommandTypes,
     RouterState,
     RouterStateSelector,
 } from "Packages/Common/Router/Domain/Types";
 import { put, select, takeEvery } from "redux-saga/effects";
-import { ExtendRouter } from "Packages/Common/Router";
+import { createRouterWasExtended } from "Packages/Common/Router/Domain/Event/RouterWasExtended";
 import { findRedirectByExactRoute } from "../../Query/RedirectQuery";
-import { findStoredRoute } from "../../Query/RouteQuery";
-import { createRouterWasExtended } from "../../Event/RouterWasExtended";
+import { ExtendRouter } from "../../Command/ExtendRouter";
 
 export function* handleExtendRouter(routerStateSelector: RouterStateSelector, command: ExtendRouter): Generator {
     // @ts-ignore
@@ -26,19 +24,10 @@ export function* handleExtendRouter(routerStateSelector: RouterStateSelector, co
         }
         redirectsToAdd.push(redirect);
     }
-    const routesToAdd: Route[] = [];
-    for (const index in command.payload.routes) {
-        const route = command.payload.routes[index];
-        const storedRoute = findStoredRoute(routerState, route);
-        if (storedRoute) {
-            continue;
-        }
-        routesToAdd.push(route);
-    }
-    if (redirectsToAdd.length === 0 && routesToAdd.length === 0) {
+    if (redirectsToAdd.length === 0) {
         return;
     }
-    yield put(createRouterWasExtended(routesToAdd, redirectsToAdd));
+    yield put(createRouterWasExtended(redirectsToAdd));
 }
 
 export function* watchExtendRouterCommands(routerStateSelector: RouterStateSelector): Generator {

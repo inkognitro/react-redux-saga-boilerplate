@@ -6,7 +6,6 @@ export interface HistoryManager {
     getOnChangeCurrentUrlPromise(): Promise<string>
 }
 export { createRouterSaga } from './Domain/Saga/Flow';
-export { createExtendRouter, ExtendRouter } from './Domain/Command/ExtendRouter';
 export { createOpenUrl, OpenUrl } from './Domain/Command/OpenUrl';
 export { CurrentUrlWasChanged } from './Domain/Event/CurrentUrlWasChanged';
 export { RouterWasExtended } from './Domain/Event/RouterWasExtended';

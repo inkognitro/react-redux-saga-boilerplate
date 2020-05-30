@@ -16,7 +16,7 @@ export function getByRedirectInfluencedUrl(
         if (alreadyFoundRedirectUrls.includes(foundRedirectUrl)) {
             console.error(
                 `Infinite redirect loop with url "${urlToGo}"!`
-          + ` Returned base url "${url}" instead.`,
+                + ` Returned base url "${url}" instead.`,
             );
             return url;
         }

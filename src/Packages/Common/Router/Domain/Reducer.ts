@@ -6,7 +6,6 @@ import {
 
 const initialRouterState: RouterState = {
     redirects: [],
-    routes: [],
 };
 
 export function routerReducer(
@@ -20,7 +19,6 @@ export function routerReducer(
         return {
             ...state,
             redirects: [...state.redirects, ...event.payload.redirects],
-            routes: [...state.routes, ...event.payload.routes],
         };
     }
     return state;
