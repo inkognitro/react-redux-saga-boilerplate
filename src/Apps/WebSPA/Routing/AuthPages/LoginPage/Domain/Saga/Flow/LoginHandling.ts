@@ -16,5 +16,4 @@ export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Ge
     });
     yield put(createHideLoader());
     yield dispatchToastsFromResult(result);
-    console.info(result); // todo: remove!
 }
