@@ -2,6 +2,7 @@ import {
     applyMiddleware,
     combineReducers,
     createStore as createReduxStore,
+    Reducer,
     Store,
 } from "redux";
 import { RouterState, RouterStateSelector } from "Packages/Common/Router/Domain/Types";
@@ -44,26 +45,31 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLoaderSaga, loaderReducer, LoaderState } from "Packages/Common/Loader";
 import { createFormElementsFlow } from "Packages/Common/FormElement";
 import { createFormSaga } from "Packages/Common/Form";
-import {createRoutingSaga, routingReducer, RoutingState, RoutingStateSelector} from "Apps/WebSPA/Routing";
+import {
+    createRoutingSaga, routingReducer, RoutingState, RoutingStateSelector,
+} from "Apps/WebSPA/Routing";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
 import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster";
 
 type AppServices = {
-  store: Store;
-  history: History;
-  httpRequestDispatcher: HttpRequestDispatcher;
+    store: Store
+    sagaTask: any
+    history: History
+    httpRequestDispatcher: HttpRequestDispatcher
 };
 
-const rootReducer = combineReducers({
-    design: designReducer,
-    translator: translatorReducer,
-    toaster: toasterReducer,
-    httpFoundation: httpFoundationReducer,
-    router: routerReducer,
-    routing: routingReducer,
-    authentication: authenticationReducer,
-    loader: loaderReducer,
-});
+function createRootReducer(): Reducer {
+    return combineReducers({
+        design: designReducer,
+        translator: translatorReducer,
+        toaster: toasterReducer,
+        httpFoundation: httpFoundationReducer,
+        router: routerReducer,
+        routing: routingReducer,
+        authentication: authenticationReducer,
+        loader: loaderReducer,
+    });
+}
 
 function createRootSaga(
     history: History,
@@ -105,15 +111,24 @@ function createRootSaga(
     };
 }
 
-export function createDevAppServices(): AppServices {
+export function createDevAppServices(currentServices?: AppServices): AppServices {
+    if (currentServices) {
+        currentServices.sagaTask.cancel();
+    }
     const httpRequestDispatcher: HttpRequestDispatcher = new MockHttpRequestDispatcher();
-    const history: History = createBrowserHistory();
+    const history: History = (currentServices ? currentServices.history : createBrowserHistory());
     const sagaMiddleware = createSagaMiddleware();
-    const store = createReduxStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+    const initialState = (currentServices ? currentServices.store.getState() : undefined);
+    const store = createReduxStore(
+        createRootReducer(),
+        initialState,
+        composeWithDevTools(applyMiddleware(sagaMiddleware)),
+    );
     const rootSaga = createRootSaga(history, httpRequestDispatcher);
-    sagaMiddleware.run(rootSaga);
+    const sagaTask = sagaMiddleware.run(rootSaga);
     return {
         store,
+        sagaTask,
         history,
         httpRequestDispatcher,
     };
@@ -123,11 +138,12 @@ export function createProdAppServices(): AppServices {
     const httpRequestDispatcher = new AxiosHttpRequestDispatcher();
     const history: History = createBrowserHistory();
     const sagaMiddleware = createSagaMiddleware();
-    const store = createReduxStore(rootReducer, applyMiddleware(sagaMiddleware));
+    const store = createReduxStore(createRootReducer(), applyMiddleware(sagaMiddleware));
     const rootSaga = createRootSaga(history, httpRequestDispatcher);
-    sagaMiddleware.run(rootSaga);
+    const sagaTask = sagaMiddleware.run(rootSaga);
     return {
         store,
+        sagaTask,
         history,
         httpRequestDispatcher,
     };
@@ -148,13 +164,14 @@ export type RootState = {
 window.hotReloadedServices = (window.hotReloadedServices ? window.hotReloadedServices : null);
 export function createHotReloadedDevAppServices(): AppServices {
     // @ts-ignore
-    if (window.hotReloadedServices !== null) {
+    if (window.hotReloadedServices === null) {
+        // @ts-ignore
+        window.hotReloadedServices = createDevAppServices();
         // @ts-ignore
         return window.hotReloadedServices;
     }
-    const services: AppServices = createDevAppServices();
     // @ts-ignore
-    window.hotReloadedServices = services;
+    window.hotReloadedServices = createDevAppServices(window.hotReloadedServices);
     // @ts-ignore
     return window.hotReloadedServices;
 }
