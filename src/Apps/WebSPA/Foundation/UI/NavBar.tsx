@@ -24,9 +24,9 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
             return (
                 <li className="nav-item">
                     <FunctionalLinkWC className="nav-link" onClick={() => this.props.onClickLogout()}>
-                        Logout
-                        {' '}
                         <UserLabelWC user={this.props.currentUser.user} />
+                        {' '}
+                        :: Logout
                     </FunctionalLinkWC>
                 </li>
             );

@@ -6,6 +6,10 @@ import {
 import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
+    constructor() {
+        console.info('MockHttpRequestDispatcher::constructor');
+    }
+
     executeRequest(request: Request): Promise<RequestResponse> {
         console.info('Request execution simulation - request', request);
         const response: ApiV1ReadResponse = {

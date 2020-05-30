@@ -31,7 +31,7 @@ import {
     HttpFoundationStateSelector,
     HttpRequestDispatcher,
     httpFoundationReducer,
-    AxiosHttpRequestDispatcher, createHttpFoundationSaga,
+    AxiosHttpRequestDispatcher, createHttpFoundationSaga, MockHttpRequestDispatcher,
 } from "Packages/Common/HttpFoundation";
 import {
     AuthState,
@@ -105,7 +105,8 @@ function createRootSaga(
     };
 }
 
-export function createDevAppServices(httpRequestDispatcher: HttpRequestDispatcher): AppServices {
+export function createDevAppServices(): AppServices {
+    const httpRequestDispatcher: HttpRequestDispatcher = new MockHttpRequestDispatcher();
     const history: History = createBrowserHistory();
     const sagaMiddleware = createSagaMiddleware();
     const store = createReduxStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
@@ -143,13 +144,17 @@ export type RootState = {
   authentication: AuthState
 };
 
-let currentServices: null | AppServices = null;
-export function createHotReloadedDevAppServices(
-    httpRequestDispatcher: HttpRequestDispatcher,
-): AppServices {
-    if (currentServices === null) {
-        currentServices = createDevAppServices(httpRequestDispatcher);
-        return currentServices;
+// @ts-ignore
+window.hotReloadedServices = (window.hotReloadedServices ? window.hotReloadedServices : null);
+export function createHotReloadedDevAppServices(): AppServices {
+    // @ts-ignore
+    if (window.hotReloadedServices !== null) {
+        // @ts-ignore
+        return window.hotReloadedServices;
     }
-    return currentServices;
+    const services: AppServices = createDevAppServices();
+    // @ts-ignore
+    window.hotReloadedServices = services;
+    // @ts-ignore
+    return window.hotReloadedServices;
 }
