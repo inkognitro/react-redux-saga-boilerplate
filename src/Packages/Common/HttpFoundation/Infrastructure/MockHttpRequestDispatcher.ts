@@ -11,13 +11,10 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
                 generalMessages: [
                     {
                         id: '99ec424a-3700-4452-b66e-1df8080441ee',
-                        type: MessageTypes.INFO,
+                        type: MessageTypes.SUCCESS,
                         content: {
                             translationId: '3f995999-20a6-4d00-9565-22e1f04133cd',
-                            fallback: (
-                                'You have successfully been logged in.. '
-                                + 'unnecessary info I know, but it is for test purposes^^'
-                            ),
+                            fallback: 'Test message from backend: You have successfully been logged in!',
                         },
                     },
                 ],

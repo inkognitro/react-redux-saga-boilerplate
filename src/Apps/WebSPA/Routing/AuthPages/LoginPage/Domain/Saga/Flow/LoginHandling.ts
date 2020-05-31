@@ -1,7 +1,10 @@
-import { select, put } from "redux-saga/effects";
+import { put, select } from "redux-saga/effects";
 import { login, LoginResult } from "Packages/Common/Authentication";
 import { dispatchToastsFromResult } from "Packages/Common/Toaster";
 import { createHideLoader, createShowLoader } from "Packages/Common/Loader";
+import { ResultTypes } from "Packages/Common/CommonTypes";
+import { createOpenUrl } from "Packages/Common/Router";
+import { createHomeRouteUrl } from "Apps/WebSPA/Routing";
 import { LoginPageState, LoginPageStateSelector } from "../../Types";
 
 export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Generator {
@@ -16,4 +19,10 @@ export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Ge
     });
     yield put(createHideLoader());
     yield dispatchToastsFromResult(result);
+    if (result.type === ResultTypes.SUCCESS) {
+        yield put(createOpenUrl({
+            url: createHomeRouteUrl(),
+            shouldReplaceCurrentUrl: true,
+        }));
+    }
 }
