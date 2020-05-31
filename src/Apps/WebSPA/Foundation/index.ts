@@ -1,8 +1,12 @@
+import { Logout as LogoutType } from './Domain/Command/Logout';
+
+export type Logout = LogoutType;
+
 export { FoundationCommandTypes } from './Domain/Types';
-export { createLogout, Logout } from './Domain/Command/Logout';
-export * from './UI/Loader';
-export * from './UI/Toaster';
-export * from './UI/NavBar';
-export * from './UI/PageTypes/ContentPage';
-export * from './UI/PageTypes/ErrorPage';
-export * from './UI/TranslationTextWC';
+export { createLogout } from './Domain/Command/Logout';
+export { Loader } from './UI/Loader';
+export { Toaster } from './UI/Toaster';
+export { NavBar } from './UI/NavBar';
+export { ContentPage } from './UI/PageTypes/ContentPage';
+export { ErrorPage } from './UI/PageTypes/ErrorPage';
+export { TranslationTextWC } from './UI/TranslationTextWC';

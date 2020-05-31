@@ -18,7 +18,6 @@ import {
     HttpSuccessResponseWasReceived as HttpSuccessResponseWasReceivedType,
 } from './Domain/Event/HttpSuccessResponseWasReceived';
 import { HttpRequestWasSent as HttpRequestWasSentType } from './Domain/Event/HttpRequestWasSent';
-import { AxiosHttpRequestDispatcher as AxiosHttpRequestDispatcherType } from './Infrastructure/AxiosHttpRequestDispatcher';
 
 export type Request = RequestType;
 export type HttpRequestDispatcher = HttpRequestDispatcherType;
@@ -36,7 +35,6 @@ export type HttpRequestWasNotSent = HttpRequestWasNotSentType;
 export type HttpErrorResponseWasReceived = HttpErrorResponseWasReceivedType;
 export type HttpSuccessResponseWasReceived = HttpSuccessResponseWasReceivedType;
 export type HttpRequestWasSent = HttpRequestWasSentType;
-export type AxiosHttpRequestDispatcher = AxiosHttpRequestDispatcherType;
 
 export {
     HttpStatusCodes,
@@ -57,4 +55,5 @@ export {
     getWithHeaderEnhancedHttpRequest,
 } from './Domain/Command/RequestFactory';
 export { httpFoundationReducer } from './Domain/Reducer';
+export { AxiosHttpRequestDispatcher } from './Infrastructure/AxiosHttpRequestDispatcher';
 export { MockHttpRequestDispatcher } from './Infrastructure/MockHttpRequestDispatcher';

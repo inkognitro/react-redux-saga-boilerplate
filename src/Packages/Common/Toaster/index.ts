@@ -27,7 +27,7 @@ import {
     MessageIntroAnimationsWereFinished as MessageIntroAnimationsWereFinishedType,
 } from "./Domain/Event/MessageIntroAnimationsWereFinished";
 
-export type MesToasterStateSelector = ToasterStateSelectorType;
+export type ToasterStateSelector = ToasterStateSelectorType;
 export type ToasterEvent = ToasterEventType;
 export type ToasterState = ToasterStateType;
 export type MessageToAdd = MessageToAddType;
