@@ -8,8 +8,8 @@
     "url": "git://github.com/inkognitro/react-redux-saga-boilerplate.git"
   },
   "scripts": {
-    "start:spa": "webpack-dev-server --config src/SinglePageApp/Bootstrap/webpack.dev.js",
-    "build:spa": "webpack --config src/SinglePageApp/Bootstrap/webpack.prod.js",
+    "start:spa": "webpack-dev-server --config src/Apps/WebSPA/Bootstrap/webpack.dev.js",
+    "build:spa": "webpack --config src/Apps/WebSPA/Bootstrap/webpack.prod.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:lint": "eslint ./src --ext .ts,.tsx",
@@ -39,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
     "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^6.0.1",
     "css-loader": "^3.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",

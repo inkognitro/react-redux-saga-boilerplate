@@ -53,10 +53,11 @@ To build the app in the *dist* folder, run:
     npm run build:spa
     
 ## Open todos (WIP)
-1. Finalization of authentication module
-2. Test coverage
-3. (Concurrent saga performance analysis)
-4. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
+1. Beautify: Decouple Loader from HttpBase
+2. Finalization of authentication module
+3. Test coverage
+4. (Concurrent saga performance analysis)
+5. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:
@@ -75,9 +76,6 @@ To build the app in the *dist* folder, run:
 9. Prepared testing (see Testing section below)
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
 11. Linting with Airbnb presets
-
-## Modules
-- [Common/Domain/Form/README.md](src/Common/Domain/FormUtils/Form/README.md)
 
 ## Architecture
 The target was to create a highly maintainable frontend boilerplate.
@@ -140,6 +138,21 @@ But keep in mind: Whenever you apply saga's flow principle, time travelling with
 redux state could get tricky. With the previous "login flow" example, imagine the current user is already given in the injected state
 and the saga is not listening for a "logout" action yet.
 
+## Project Structure
+This project is divided in `Apps`, `Packages`, `ModuleCollections` and `Modules`.
+Following definitions should clarify how the project code is structured.
+
+- `Package:` A package is a collection of `ModuleCollections` and `Modules`. A package can be considered as a root `module collection` without an `index.ts` file.
+- `Module:` A module contains a strongly coupled features. Every module contains an `index.ts` file, which defines its public API. Every module is divided in domain, infrastructure and UI layer.
+- `ModuleCollection:` A module collection contains multiple modules and other module collections. A module collection contains an `index.ts` file to define its public API.
+- `App:` An app (e.g. WebSPA) is a standalone application, which uses several modules from different packages. Furthermore it can contain its own specific modules or module collections. Ideally most stuff is kept reusable and sourced out to packages.
+
+With this feature based structure, it is ensured that specific features easily can be generalized and vise versa.
+
+## Package documentations
+- [Packages/Common/README.md](src/Packages/Common/README.md)
+- [Packages/Entity/README.md](src/Packages/Entity/README.md)
+
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
 Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
@@ -152,7 +165,7 @@ To execute the tests, run:
 Tests are organized as follow:
 - The file suffix `.test.ts` is required
 - A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Common/Domain/Toaster/Saga/Callables/ShowMessageHandling.integration.test.ts`.
+- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Packages/Common/Domain/Toaster/Saga/Flow/ShowMessageHandling.integration.test.ts`.
 
 As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
 Read a [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.

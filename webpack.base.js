@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -21,8 +22,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            Common: path.resolve(__dirname, './src/Common'),
-            SinglePageApp: path.resolve(__dirname, './src/SinglePageApp'),
+            Apps: path.resolve(__dirname, './src/Apps'),
+            Packages: path.resolve(__dirname, './src/Packages'),
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
