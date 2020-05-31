@@ -27,8 +27,8 @@ type StyledAlignedAreaContentProps = StyledWCProps & {
 
 const StyledAlignedAreaContent = styled.div<StyledAlignedAreaContentProps>`
     display: table-cell;
-    horizontal-align: ${(props) => props.horizontalAlign || horizontalAligns.LEFT}
-    vertical-align: ${(props) => props.verticalAlign || verticalAligns.TOP}
+    text-align: ${(props) => props.horizontalAlign || horizontalAligns.LEFT};
+    vertical-align: ${(props) => props.verticalAlign || verticalAligns.TOP};
 `;
 
 export type AlignedAreaWCProps = {

@@ -5,7 +5,6 @@ import {
     verticalAligns,
 } from "Packages/Common/LayoutFoundation";
 import { TimelineLite } from "gsap";
-import { IconSizes, IconTypes, LoaderIconWC } from "Packages/Common/Icon";
 import styled from "styled-components";
 
 const StyledLoaderDiv = styled.div`
@@ -16,6 +15,11 @@ const StyledLoaderDiv = styled.div`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
+`;
+
+const StyledLoaderTextDiv = styled.div`
+  padding-top: 40px;
+  color: white;
 `;
 
 export type LoaderWCState = {
@@ -67,11 +71,13 @@ export class LoaderWC extends Component<LoaderWCProps> {
       );
   }
 
-  render() {
+  render() { // todo: translation
       return (
           <StyledLoaderDiv ref={(element: HTMLDivElement) => { this.loader = element; }}>
-              <AlignedAreaWC horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.MIDDLE}>
-                  <LoaderIconWC size={IconSizes.LG} type={IconTypes.WHITE} />
+              <AlignedAreaWC horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.TOP}>
+                  <StyledLoaderTextDiv>
+                      Loading..
+                  </StyledLoaderTextDiv>
               </AlignedAreaWC>
           </StyledLoaderDiv>
       );
