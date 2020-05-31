@@ -53,8 +53,8 @@ To build the app in the *dist* folder, run:
     npm run build:spa
     
 ## Open todos (WIP)
-1. Beautify: Decouple Loader from HttpBase
-2. Finalization of authentication module
+1. Better simulation of authentication refresh in `Packages/Common/Authentication` module.
+2. Remove `ModuleCollections` and divide Modules in `Domain`, `UI`, `Infrastructure` and `SubModules`
 3. Test coverage
 4. (Concurrent saga performance analysis)
 5. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
