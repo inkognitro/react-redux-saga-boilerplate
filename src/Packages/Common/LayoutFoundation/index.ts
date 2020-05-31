@@ -1,2 +1,2 @@
-export * from './UI/AlignedAreaWC';
-export * from './UI/CardWC';
+export { AlignedAreaWC, horizontalAligns, verticalAligns } from './UI/AlignedAreaWC';
+export { CardWC } from './UI/CardWC';

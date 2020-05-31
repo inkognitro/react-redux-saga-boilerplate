@@ -1,10 +1,29 @@
-export * from './Domain/Types';
-export { createSubmitForm, SubmitForm } from './Domain/Command/SubmitForm';
-export { FormWasSubmitted } from './Domain/Event/FormWasSubmitted';
-export { FormWasSetToNoRunningRequestMode } from './Domain/Event/FormWasSetToNoRunningRequestMode';
-export { FormWasSetToRunningRequestMode } from './Domain/Event/FormWasSetToRunningRequestMode';
+import {
+    FormState as FormStateType,
+    FormElementsByName as FormElementsByNameType,
+    FormEvent as FormEventType,
+} from './Domain/Types';
+import { SubmitForm as SubmitFormType } from './Domain/Command/SubmitForm';
+import { FormWasSubmitted as FormWasSubmittedType } from './Domain/Event/FormWasSubmitted';
+import {
+    FormWasSetToNoRunningRequestMode as FormWasSetToNoRunningRequestModeType,
+} from './Domain/Event/FormWasSetToNoRunningRequestMode';
+import {
+    FormWasSetToRunningRequestMode as FormWasSetToRunningRequestModeType,
+} from './Domain/Event/FormWasSetToRunningRequestMode';
+
+export type FormState = FormStateType;
+export type FormElementsByName<SpecificElementsByName = {}> = FormElementsByNameType<SpecificElementsByName>;
+export type FormEvent = FormEventType;
+export type SubmitForm = SubmitFormType;
+export type FormWasSubmitted = FormWasSubmittedType;
+export type FormWasSetToNoRunningRequestMode = FormWasSetToNoRunningRequestModeType;
+export type FormWasSetToRunningRequestMode = FormWasSetToRunningRequestModeType;
+
+export { FormCommandTypes, FormEventTypes } from './Domain/Types';
+export { createSubmitForm } from './Domain/Command/SubmitForm';
 export { formReducer } from './Domain/Reducer';
 export { createFormSaga } from './Domain/Saga/Flow';
-export * from './Domain/FormStateFactory';
+export { createFormState } from './Domain/FormStateFactory';
 export { createFormParameters } from './Domain/Query/FormParameters';
-export * from './UI/FormWC';
+export { FormWC } from './UI/FormWC';
