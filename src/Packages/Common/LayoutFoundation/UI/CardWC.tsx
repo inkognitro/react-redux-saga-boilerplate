@@ -5,7 +5,7 @@ export type CardWCProps = {
   footer?: ReactNode;
 };
 
-export const CardWC: FC<CardWCProps> = (props) => ( // todo: insert footer as well
+export const CardWC: FC<CardWCProps> = (props) => (
     <div className="card">
         <div className="card-body">
             {(props.title ? (<h5 className="card-title">{props.title}</h5>) : null)}

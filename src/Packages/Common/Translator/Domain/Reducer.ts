@@ -6,7 +6,7 @@ import {
 } from "./Types";
 import { translationIdToTranslationMapping } from "./Translation/en";
 
-const initialTranslatorState: TranslatorState = {
+export const initialTranslatorState: TranslatorState = {
     currentLanguageId: LanguageIds.EN,
     translations: translationIdToTranslationMapping,
 };

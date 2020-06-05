@@ -7,6 +7,7 @@ export function findCurrentAuthUser(state: AuthState): null | AuthUser {
     return null;
 }
 
-export function isAuthenticationRunning(state: AuthState): boolean { //todo: check usage!
+// todo: use for authentication refresh and change to "login" is running!
+export function isAuthenticationRunning(state: AuthState): boolean {
     return state.isAuthenticationRunning;
 }

@@ -9,4 +9,3 @@ export { Toaster } from './UI/Toaster';
 export { NavBar } from './UI/NavBar';
 export { ContentPage } from './UI/PageTypes/ContentPage';
 export { ErrorPage } from './UI/PageTypes/ErrorPage';
-export { TranslationTextWC } from './UI/TranslationTextWC';

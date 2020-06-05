@@ -21,4 +21,5 @@ export { createTranslatorSaga } from './Domain/Saga/Flow';
 export { createSetUILanguage } from './Domain/Command/SetUILanguage';
 export { translatorReducer } from './Domain/Reducer';
 export { findTranslatedText } from './Domain/Query/TranslatedTextQuery';
-export { TranslationTextWC } from './UI/TranslationTextWC';
+export { TranslatedTextWC } from './UI/TranslatedTextWC';
+export { TranslationTextProvider } from './UI/TranslatorContext';

@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import {
-    AlignedAreaWC,
-    horizontalAligns,
-    verticalAligns,
-} from "Packages/Common/LayoutFoundation";
+import { AlignedAreaWC, horizontalAligns, verticalAligns } from "Packages/Common/LayoutFoundation";
 import { TimelineLite } from "gsap";
 import styled from "styled-components";
+import { TranslatedTextWC, TranslationIds } from "Packages/Common/Translator";
 
 const StyledLoaderDiv = styled.div`
   position: fixed;
@@ -71,12 +68,12 @@ export class LoaderWC extends Component<LoaderWCProps> {
       );
   }
 
-  render() { // todo: translation
+  render() {
       return (
           <StyledLoaderDiv ref={(element: HTMLDivElement) => { this.loader = element; }}>
               <AlignedAreaWC horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.TOP}>
                   <StyledLoaderTextDiv>
-                      Loading..
+                      <TranslatedTextWC translation={{ translationId: TranslationIds.LOADING }} />
                   </StyledLoaderTextDiv>
               </AlignedAreaWC>
           </StyledLoaderDiv>

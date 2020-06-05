@@ -4,7 +4,7 @@ import { IconSizes, IconTypes } from "Packages/Common/Icon/UI/IconWC";
 import { TimelineLite, Power1 } from "gsap";
 import styled from "styled-components";
 import { StyledWCProps } from "Packages/Common/Design";
-import { TranslationTextWC } from "Packages/Common/Translator";
+import { TranslatedTextWC } from "Packages/Common/Translator";
 import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
 import { Message } from "../Domain/Types";
 
@@ -106,15 +106,12 @@ export class MessageWC extends Component<MessageWCProps> {
       );
   }
 
-  render() { // todo: render translated message! Use react context for that
+  render() {
       return (
           <StyledMessage ref={(element: HTMLDivElement) => { this.message = element; }}>
               <StyledMessageContent>
                   {this.renderCloseIcon()}
-                  <TranslationTextWC
-                      translatorState={this.props.translatorState}
-                      translation={this.props.message.content}
-                  />
+                  <TranslatedTextWC translation={this.props.message.content} />
               </StyledMessageContent>
           </StyledMessage>
       );

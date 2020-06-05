@@ -7,11 +7,15 @@ export enum LanguageIds {
 }
 
 export enum TranslationIds {
-    COULD_NOT_CONNECT_TO_SERVER = 'couldNotConnectToServer'
+    COULD_NOT_CONNECT_TO_SERVER = 'couldNotConnectToServer',
+    BACK_TO_START = 'backToStart',
+    PAGE_NOT_FOUND_TITLE = 'pageNotFoundTitle',
+    LOADING = 'Loading..',
 }
 
 export type TranslationIdToTranslationMapping = {
     [TranslationIds.COULD_NOT_CONNECT_TO_SERVER]: string
+    [TranslationIds.BACK_TO_START]: string
     [id: string]: string
 };
 

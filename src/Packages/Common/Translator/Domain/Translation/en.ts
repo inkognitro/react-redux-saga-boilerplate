@@ -2,5 +2,7 @@ import { TranslationIds, TranslationIdToTranslationMapping } from "Packages/Comm
 
 export const translationIdToTranslationMapping: TranslationIdToTranslationMapping = {
     [TranslationIds.COULD_NOT_CONNECT_TO_SERVER]: "Could not connect to server.",
-    // todo: define translations!
+    [TranslationIds.BACK_TO_START]: "Back to start",
+    [TranslationIds.PAGE_NOT_FOUND_TITLE]: "404 - Page not found",
+    [TranslationIds.LOADING]: "Loading..",
 };

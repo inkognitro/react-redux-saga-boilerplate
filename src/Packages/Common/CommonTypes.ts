@@ -1,4 +1,5 @@
 import { Action } from "redux";
+import {TranslationIds} from "Packages/Common/Translator";
 
 export enum MessageTypes {
     INFO = "info",
@@ -8,19 +9,19 @@ export enum MessageTypes {
 }
 
 export type Placeholders = {
-    [key: string]: string;
+    [key: string]: string
 }
 
 export type Translation = {
-    translationId: string
-    placeholders?: Placeholders,
-    fallback?: string,
+    translationId: (TranslationIds | string)
+    placeholders?: Placeholders
+    fallback?: string
 }
 
 export type Message = {
     id: string;
-    type: MessageTypes;
-    content: Translation,
+    type: MessageTypes
+    content: Translation
 }
 
 export type FieldMessage = {
@@ -29,11 +30,11 @@ export type FieldMessage = {
 }
 
 export type Command<Type = any, Payload = undefined> = Action<Type> & {
-    payload: Payload;
+    payload: Payload
 }
 
 export type Event<Type = any, Payload = undefined> = Action<Type> & {
-    payload: Payload;
+    payload: Payload
 }
 
 export enum ResultTypes {
