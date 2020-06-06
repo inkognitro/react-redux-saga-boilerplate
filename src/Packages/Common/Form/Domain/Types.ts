@@ -3,7 +3,7 @@ import { FormWasSetToNoRunningRequestMode, FormWasSetToRunningRequestMode } from
 
 export enum FormCommandTypes {
     SUBMIT_FORM = 'SUBMIT_FORM-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
-    SET_FIELD_MESSAGES = 'SET_FIELD_MESSAGES-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
+    SET_FORM_FIELD_MESSAGES = 'SET_FORM_FIELD_MESSAGES-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
 }
 
 export enum FormEventTypes {

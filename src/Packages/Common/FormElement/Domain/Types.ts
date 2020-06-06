@@ -23,7 +23,7 @@ export interface BasicFormElementState {
     readOnly: boolean
 }
 
-export type InputFieldState<FormElementType = string> = (BasicFormElementState & {
+export type InputFieldState<FormElementType extends FormElementTypes> = (BasicFormElementState & {
     type: FormElementType
     value: string,
     messages: Message[]

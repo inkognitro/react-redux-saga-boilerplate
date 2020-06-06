@@ -26,21 +26,26 @@ export function internalFormElementReducer<SpecificFormElementState>(
             formElement: state,
             stateChanges: {},
         };
-        const mergedStateChanges = event.payload.multipleStateChanges.reduce(
-            (mergedStateChanges, stateChanges) => {
-                if (mergedStateChanges.formElement.id !== state.id) {
-                    return mergedStateChanges;
+        const mergedFormElementStateChanges = event.payload.multipleStateChanges.reduce( // todo: fix!
+            (mergedFormElementStateChanges, formElementStateChanges): FormElementStateChanges => {
+                if (mergedFormElementStateChanges.formElement.id !== state.id) {
+                    return mergedFormElementStateChanges;
                 }
                 return {
-                    ...mergedStateChanges,
-                    ...stateChanges.stateChanges,
+                    formElement: mergedFormElementStateChanges.formElement,
+                    stateChanges: {
+                        ...mergedFormElementStateChanges.stateChanges,
+                        ...formElementStateChanges.stateChanges,
+                    },
                 };
             },
             initialStateChanges,
         );
+        console.log('state', state);
+        console.log('mergedFormElementStateChanges', mergedFormElementStateChanges);
         return {
             ...state,
-            ...mergedStateChanges,
+            ...mergedFormElementStateChanges.stateChanges,
         };
     }
     return state;

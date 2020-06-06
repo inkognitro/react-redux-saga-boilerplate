@@ -22,7 +22,7 @@ export function formReducer<SpecificElementsByName>(
             isRequestRunning: false,
         };
     }
-    if (event.type === FormElementEventTypes.FORM_ELEMENT_STATE_WAS_CHANGED) {
+    if (Object.values(FormElementEventTypes).includes(event.type)) {
         // @ts-ignore
         const elementsByName: FormElementsByName<SpecificElementsByName> = {};
         for (const name in state.elementsByName) {

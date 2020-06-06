@@ -1,7 +1,7 @@
 import { spawn, takeEvery } from "@redux-saga/core/effects";
 import { FormCommandTypes } from "../../Types";
 import { handleSubmitForm } from "./SubmitFormHandling";
-import { handleSetFieldMessages } from "./SetFieldMessagesHandling";
+import { handleSetFormFieldMessages } from "./SetFormFieldMessagesHandling";
 
 export function createFormSaga(): () => Generator {
     return function* (): Generator {
@@ -15,5 +15,5 @@ function* watchFormSubmitCommands(): Generator {
 }
 
 function* watchSetFieldMessagesCommands(): Generator {
-    yield takeEvery(FormCommandTypes.SET_FIELD_MESSAGES, handleSetFieldMessages);
+    yield takeEvery(FormCommandTypes.SET_FORM_FIELD_MESSAGES, handleSetFormFieldMessages);
 }
