@@ -33,7 +33,7 @@ export type Request = {
   body: undefined | object
 };
 
-export type RequestResponse<ResponseBody = object> = {
+export type RequestResponse<ResponseBody = {}> = {
   request: Request;
   response?: Response<ResponseBody>;
 };

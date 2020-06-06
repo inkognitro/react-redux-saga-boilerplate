@@ -21,11 +21,11 @@ import { HttpRequestWasSent as HttpRequestWasSentType } from './Domain/Event/Htt
 
 export type Request = RequestType;
 export type HttpRequestDispatcher = HttpRequestDispatcherType;
-export type RequestResponse<ResponseBody = object> = RequestResponseType<ResponseBody>;
+export type RequestResponse<ResponseBody = {}> = RequestResponseType<ResponseBody>;
 export type HttpEvent = HttpEventType;
 export type HttpFoundationState = HttpFoundationStateType;
 export type HttpFoundationStateSelector = HttpFoundationStateSelectorType;
-export type Response = ResponseType;
+export type Response<ResponseBody = {}> = ResponseType<ResponseBody>;
 export type ExecuteRequestCallEffect<SpecificResponse> = ExecuteRequestCallEffectType<SpecificResponse>;
 export type ReceiveHttpResponseGenerator<SpecificResponse> = ReceiveHttpResponseGeneratorType<SpecificResponse>;
 export type SendHttpRequest = SendHttpRequestType;

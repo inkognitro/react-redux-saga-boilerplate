@@ -11,7 +11,6 @@ import { getAllToasts } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
 
 const mapStateToProps = (rootState: RootState): ToasterWCState => ({
     toasts: getAllToasts(rootState.toaster),
-    translatorState: rootState.translator,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): ToasterWCCallbacks => ({

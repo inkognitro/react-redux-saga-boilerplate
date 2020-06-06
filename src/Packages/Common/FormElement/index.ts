@@ -4,6 +4,8 @@ import {
     EmailFieldState as EmailFieldStateType,
     FormElementState as FormElementStateType,
     FormElementStateChanges as FormElementStateChangesType,
+    FormElementEvent as FormElementEventType,
+    InputFieldState as InputFieldStateType,
 } from './Domain/Types';
 import { ChangeFormElementState as ChangeFormElementStateType } from './Domain/Command/ChangeFormElementState';
 import { ChangeFormElementStates as ChangeFormElementStatesType } from './Domain/Command/ChangeFormElementStates';
@@ -19,6 +21,8 @@ export type ChangeFormElementState = ChangeFormElementStateType;
 export type ChangeFormElementStates = ChangeFormElementStatesType;
 export type FormElementStatesWereChanged = FormElementStatesWereChangedType;
 export type FormElementStateWasChanged = FormElementStateWasChangedType;
+export type FormElementEvent = FormElementEventType;
+export type InputFieldState = InputFieldStateType;
 
 export { FormElementTypes, FormElementEventTypes } from './Domain/Types';
 export { createFormElementsFlow } from './Domain/Saga/Flow';

@@ -1,6 +1,6 @@
 import { spawn } from "redux-saga/effects";
 import { combineReducers, Reducer } from "redux";
-import { RouteWC } from "Packages/Common/Router";
+import { RouteComponentSpecification } from "Packages/Common/Router";
 import {
     createLoginPageSaga,
     LoginPageWC,
@@ -29,6 +29,6 @@ export type AuthPagesState = {
 
 export type AuthPagesStateSelector = (rootState: any) => AuthPagesState
 
-export const authRouteComponents: RouteWC[] = [
+export const authRouteComponents: RouteComponentSpecification[] = [
     { route: loginRoute, component: LoginPageWC },
 ];

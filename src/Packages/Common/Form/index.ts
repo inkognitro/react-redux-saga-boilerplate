@@ -12,7 +12,7 @@ import {
     FormWasSetToRunningRequestMode as FormWasSetToRunningRequestModeType,
 } from './Domain/Event/FormWasSetToRunningRequestMode';
 
-export type FormState = FormStateType;
+export type FormState<SpecificElementsByName = {}> = FormStateType<SpecificElementsByName>;
 export type FormElementsByName<SpecificElementsByName = {}> = FormElementsByNameType<SpecificElementsByName>;
 export type FormEvent = FormEventType;
 export type SubmitForm = SubmitFormType;

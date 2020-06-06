@@ -9,7 +9,10 @@ import {
 import { OpenUrl as OpenUrlType } from './Domain/Command/OpenUrl';
 import { RouterWasExtended as RouterWasExtendedType } from './Domain/Event/RouterWasExtended';
 import { RouterWasInitialized as RouterWasInitializedType } from './Domain/Event/RouterWasInitialized';
-import { RouterWCSpecification as RouterWCSpecificationType } from './UI/RouterWC';
+import {
+    RouterWCSpecification as RouterWCSpecificationType,
+    RouteComponentSpecification as RouteComponentSpecificationType,
+} from './UI/RouterWC';
 
 export type CurrentUrlWasChanged = CurrentUrlWasChangedType;
 export type RouterState = RouterStateType;
@@ -21,6 +24,7 @@ export type OpenUrl = OpenUrlType;
 export type RouterWasExtended = RouterWasExtendedType;
 export type RouterWasInitialized = RouterWasInitializedType;
 export type RouterWCSpecification = RouterWCSpecificationType;
+export type RouteComponentSpecification = RouteComponentSpecificationType;
 
 export interface HistoryManager {
     getCurrentUrl(): string

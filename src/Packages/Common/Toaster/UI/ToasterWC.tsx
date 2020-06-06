@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { TranslatorState } from "Packages/Common/Translator";
 import styled from "styled-components";
 import { Toast } from "../Domain/Types";
 import { ToastWC } from "./ToastWC";
@@ -12,7 +11,6 @@ const StyledToastsContainer = styled.div`
 `;
 
 export type ToasterWCState = {
-    translatorState: TranslatorState
     toasts: Toast[]
 };
 
@@ -29,7 +27,6 @@ export const ToasterWC: FC<ToasterProps> = (props) => {
             {toasts.map((toast: Toast) => (
                 <ToastWC
                     key={toast.id}
-                    translatorState={props.translatorState}
                     toast={toast}
                     onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
                 />

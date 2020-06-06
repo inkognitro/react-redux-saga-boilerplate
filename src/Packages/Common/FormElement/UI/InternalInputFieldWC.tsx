@@ -50,9 +50,7 @@ export const InternalInputFieldWC: FC<FormElementWCProps<InputFieldState>> = (pr
     );
 };
 
-const mapStateToProps = (
-    _: any, props: ConnectedFormElementWCProps<InputFieldState>,
-): FormElementWCState<InputFieldState> => ({
+const mapStateToProps = (_: any, props: ConnectedFormElementWCProps<InputFieldState>): FormElementWCState<InputFieldState> => ({
     data: props.data,
 });
 

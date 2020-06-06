@@ -5,7 +5,6 @@ import { TimelineLite, Power1 } from "gsap";
 import styled from "styled-components";
 import { StyledWCProps } from "Packages/Common/Design";
 import { TranslatedTextWC } from "Packages/Common/Translator";
-import { TranslatorState } from "Packages/Common/Translator/Domain/Types";
 import { Message } from "../Domain/Types";
 
 const StyledMessage = styled.div`
@@ -31,7 +30,6 @@ const StyledCloseIcon = styled(CloseIconWC)`
 `;
 
 export type MessageWCProps = {
-    translatorState: TranslatorState
     message: Message
     onRemove(): void
 };

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Power1, TimelineLite } from "gsap";
 import styled from "styled-components";
 import { StyledWCProps, createBoxShadowCss } from "Packages/Common/Design";
-import { TranslatorState } from "Packages/Common/Translator";
 import { Message, Toast, ToastTypes } from "../Domain/Types";
 import { MessageWC } from "./MessageWC";
 
@@ -29,7 +28,6 @@ const StyledToast = styled.div`
 `;
 
 export type ToastWCProps = {
-    translatorState: TranslatorState
     toast: Toast
     onRemoveMessage(messageId: string): void
 };
@@ -124,7 +122,6 @@ export class ToastWC extends Component<ToastWCProps> {
                   {this.props.toast.messages.map((message: Message) => (
                       <MessageWC
                           key={message.id}
-                          translatorState={this.props.translatorState}
                           message={message}
                           onRemove={() => this.props.onRemoveMessage(message.id)}
                       />
