@@ -14,7 +14,9 @@ import { findToastById } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
 import { createToastWasAdded } from "Packages/Common/Toaster/Domain/Event/ToastWasAdded";
 import { createToastIntroAnimationWasFinished } from "Packages/Common/Toaster/Domain/Event/ToastIntroAnimationWasFinished";
 import { createMessagesWereAddedToToast } from "Packages/Common/Toaster/Domain/Event/MessagesWereAddedToToast";
-import { createMessageIntroAnimationsWereFinished } from "Packages/Common/Toaster/Domain/Event/MessageIntroAnimationsWereFinished";
+import {
+    createMessageIntroAnimationsWereFinished,
+} from "Packages/Common/Toaster/Domain/Event/MessageIntroAnimationsWereFinished";
 
 function getToastsToMerge(toasterState: ToasterState): Toast[] {
     const toastsToMerge: Toast[] = [];

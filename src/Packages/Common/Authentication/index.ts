@@ -16,9 +16,15 @@ import { Logout as LogoutType } from './Domain/Command/Logout';
 import { InitializeCurrentUser as InitializeCurrentUserType } from './Domain/Command/InitializeCurrentUser';
 import { UserLoginWasCancelled as UserLoginWasCancelledType } from './Domain/Event/UserLoginWasCancelled';
 import { UserWasLoggedOut as UserWasLoggedOutType } from './Domain/Event/UserWasLoggedOut';
-import { UserAuthenticationWasRefreshed as UserAuthenticationWasRefreshedType } from './Domain/Event/UserAuthenticationWasRefreshed';
-import { UserAuthenticationRefreshFailed as UserAuthenticationRefreshFailedType } from './Domain/Event/UserAuthenticationRefreshFailed';
-import { UserAuthenticationRefreshWasRequested as UserAuthenticationRefreshWasRequestedType } from './Domain/Event/UserAuthenticationRefreshWasRequested';
+import {
+    UserAuthenticationWasRefreshed as UserAuthenticationWasRefreshedType,
+} from './Domain/Event/UserAuthenticationWasRefreshed';
+import {
+    UserAuthenticationRefreshFailed as UserAuthenticationRefreshFailedType,
+} from './Domain/Event/UserAuthenticationRefreshFailed';
+import {
+    UserAuthenticationRefreshWasRequested as UserAuthenticationRefreshWasRequestedType,
+} from './Domain/Event/UserAuthenticationRefreshWasRequested';
 import { UserLoginFailed as UserLoginFailedType } from './Domain/Event/UserLoginFailed';
 import { UserLoginWasNotExecuted as UserLoginWasNotExecutedType } from './Domain/Event/UserLoginWasNotExecuted';
 import { UserLoginWasRequested as UserLoginWasRequestedType } from './Domain/Event/UserLoginWasRequested';

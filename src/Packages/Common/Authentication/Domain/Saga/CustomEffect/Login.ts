@@ -1,4 +1,6 @@
-import {call, CallEffect, put, StrictEffect, take,} from "redux-saga/effects";
+import {
+    call, CallEffect, put, StrictEffect, take,
+} from "redux-saga/effects";
 import uuidV4 from 'uuid/v4';
 import {
     AuthEventTypes,
@@ -12,14 +14,14 @@ import {
     UserLoginWasNotExecuted,
     UserWasLoggedIn,
 } from "Packages/Common/Authentication";
-import {createErrorResult} from "Packages/Common/CommonTypes";
+import { createErrorResult } from "Packages/Common/CommonTypes";
 
 type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 
 type LoginResultEvent = (UserLoginWasCancelled | UserLoginFailed | UserLoginWasNotExecuted | UserWasLoggedIn);
 
 function createLoginErrorResult(): LoginErrorResult {
-    return createErrorResult({data: undefined});
+    return createErrorResult({ data: undefined });
 }
 
 function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerator {

@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import {TranslationIds} from "Packages/Common/Translator";
+import { TranslationIds } from "Packages/Common/Translator";
 
 export enum MessageTypes {
     INFO = "info",
