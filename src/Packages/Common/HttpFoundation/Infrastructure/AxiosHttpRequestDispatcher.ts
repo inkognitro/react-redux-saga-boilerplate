@@ -40,8 +40,8 @@ function createAxiosConfigFromExecutionSettings(request: Request): object {
     if (request.queryParameters) {
         config = { ...config, params: request.queryParameters };
     }
-    if (request.headers) {
-        config = { ...config, headers: request.headers };
+    if (request.header) {
+        config = { ...config, headers: request.header };
     }
     if (request.body) {
         config = { ...config, data: request.body };

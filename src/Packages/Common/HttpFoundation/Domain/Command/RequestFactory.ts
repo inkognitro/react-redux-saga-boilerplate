@@ -35,8 +35,8 @@ export function createDeleteRequest(settings: DeleteRequestCreationSettings): Re
 export function getWithHeaderEnhancedHttpRequest(request: Request, headerProperty: string, headerValue: string): Request {
     return {
         ...request,
-        headers: {
-            ...request.headers,
+        header: {
+            ...request.header,
             [headerProperty]: headerValue,
         },
     };
@@ -51,7 +51,7 @@ function createHttpRequest(
         method,
         url: settings.url,
         queryParameters: settings.queryParameters ? settings.queryParameters : {},
-        headers: settings.headers ? settings.headers : {},
+        header: settings.headers ? settings.headers : {},
         body: settings.body ? settings.body : undefined,
     };
 }

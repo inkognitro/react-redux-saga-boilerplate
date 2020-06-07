@@ -31,7 +31,7 @@ export type Request = {
   id: string
   url: string
   queryParameters: object
-  headers: object
+  header: object
   body: undefined | object
 };
 
