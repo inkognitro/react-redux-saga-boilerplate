@@ -7,6 +7,7 @@ some modules of this package need to be wired up in the app's service factory.
 - `Packages/Entity` (as common package, logically the one and only)
 
 ## Modules
+- [Packages/Common/Translator/README.md](./Translator/README.md)
 - [Packages/Common/HttpFoundation/README.md](./HttpFoundation/README.md)
 - [Packages/Common/HttpApiV1/README.md](./HttpApiV1/README.md)
 - [Packages/Common/Form/README.md](./Form/README.md)

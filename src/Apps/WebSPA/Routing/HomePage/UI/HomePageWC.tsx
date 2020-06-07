@@ -60,6 +60,10 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         <FormElementGroupWC>
             <LabelWC title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
             <TextFieldWC data={props.toastContentField} />
+            <small>
+                FYI: If you leave this field empty,
+                the ID of the simulated translation object will be shown in the toast message.
+            </small>
         </FormElementGroupWC>
 
         <br />
