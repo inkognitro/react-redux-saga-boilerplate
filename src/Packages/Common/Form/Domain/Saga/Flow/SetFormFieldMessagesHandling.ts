@@ -21,6 +21,9 @@ export function* handleSetFormFieldMessages(command: SetFormFieldMessages): Gene
         }
         multipleFormElementStateChanges.push(formElementStateChanges);
     }
+    if (multipleFormElementStateChanges.length === 0) {
+        return;
+    }
     yield put(createChangeFormElementStates(multipleFormElementStateChanges));
 }
 

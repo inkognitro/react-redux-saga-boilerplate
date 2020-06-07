@@ -33,7 +33,7 @@ export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Ge
             path: ['username'],
         },
     ]));
-    if (result.type === ResultTypes.ERROR) { // todo: change to success!
+    if (result.type === ResultTypes.SUCCESS) {
         yield put(createOpenUrl({
             url: createHomeRouteUrl(),
             shouldReplaceCurrentUrl: true,
