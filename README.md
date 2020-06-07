@@ -53,12 +53,11 @@ To build the app in the *dist* folder, run:
     npm run build:spa
     
 ## Open todos (WIP)
-1. Command in `Packages/Common/Form` module to enrich form fields with `FieldMessage[]`
-2. Better simulation of authentication refresh in `Packages/Common/Authentication` module
-3. Remove `ModuleCollections` and divide Modules in `Domain`, `UI`, `Infrastructure` and `SubModules`
-4. Test coverage
-5. (Concurrent saga performance analysis)
-6. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
+1. Better simulation of authentication refresh in `Packages/Common/Authentication` module
+2. Remove `ModuleCollections` and divide Modules in `Domain`, `UI`, `Infrastructure` and `SubModules`
+3. Test coverage
+4. (Concurrent saga performance analysis)
+5. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
 ## Features
 1. Basic [JWT](http://jwt.io) authentication:
