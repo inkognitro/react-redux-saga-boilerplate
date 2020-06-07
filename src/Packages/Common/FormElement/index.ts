@@ -2,10 +2,12 @@ import {
     PasswordFieldState as PasswordFieldStateType,
     TextFieldState as TextFieldStateType,
     EmailFieldState as EmailFieldStateType,
+    CheckboxState as CheckboxStateType,
     FormElementState as FormElementStateType,
     FormElementStateChanges as FormElementStateChangesType,
     FormElementEvent as FormElementEventType,
-    InputFieldState as InputFieldStateType, FormElementTypes,
+    InputFieldState as InputFieldStateType,
+    FormElementTypes,
 } from './Domain/Types';
 import { ChangeFormElementState as ChangeFormElementStateType } from './Domain/Command/ChangeFormElementState';
 import { ChangeFormElementStates as ChangeFormElementStatesType } from './Domain/Command/ChangeFormElementStates';
@@ -15,6 +17,7 @@ import { FormElementStateWasChanged as FormElementStateWasChangedType } from './
 export type PasswordFieldState = PasswordFieldStateType;
 export type TextFieldState = TextFieldStateType;
 export type EmailFieldState = EmailFieldStateType;
+export type CheckboxState = CheckboxStateType;
 export type FormElementState = FormElementStateType;
 export type FormElementStateChanges = FormElementStateChangesType;
 export type ChangeFormElementState = ChangeFormElementStateType;
@@ -45,3 +48,4 @@ export { PasswordFieldWC } from './UI/PasswordFieldWC';
 export { PrimaryButtonWC } from './UI/PrimaryButtonWC';
 export { SecondaryButtonWC } from './UI/SecondaryButtonWC';
 export { TextFieldWC } from './UI/TextFieldWC';
+export { CheckboxWC } from './UI/CheckboxWC';

@@ -27,7 +27,7 @@ function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     throw new Error(`Form element type "${type}" not supported!`);
 }
 
-export const InternalInputFieldWC: FC<FormElementWCProps<InputFieldState>> = (props) => {
+const InternalInputFieldWC: FC<FormElementWCProps<InputFieldState>> = (props) => {
     const onChange = props.data.readOnly
         ? undefined
         : (event: React.ChangeEvent<HTMLInputElement>) => {
