@@ -22,7 +22,7 @@ export type ChangeFormElementStates = ChangeFormElementStatesType;
 export type FormElementStatesWereChanged = FormElementStatesWereChangedType;
 export type FormElementStateWasChanged = FormElementStateWasChangedType;
 export type FormElementEvent = FormElementEventType;
-export type InputFieldState<FormElementType extends FormElementTypes> = InputFieldStateType<FormElementType>;
+export type InputFieldState<FormElementType extends FormElementTypes = any> = InputFieldStateType<FormElementType>;
 
 export { FormElementTypes, FormElementEventTypes } from './Domain/Types';
 export { createFormElementsFlow } from './Domain/Saga/Flow';

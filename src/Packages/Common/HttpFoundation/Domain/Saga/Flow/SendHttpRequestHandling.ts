@@ -44,7 +44,7 @@ export function createWatchSendHttpRequestCommands(
                 yield put(createHttpRequestFailed(requestResponse.request));
                 return;
             }
-            if (requestResponse.response.statusCode !== 200) {
+            if (requestResponse.response.header.statusCode !== 200) {
                 yield put(
                     createHttpErrorResponseWasReceived(
                         requestResponse.request,

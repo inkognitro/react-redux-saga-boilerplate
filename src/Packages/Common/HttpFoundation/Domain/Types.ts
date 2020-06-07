@@ -20,8 +20,10 @@ export enum HttpStatusCodes {
 }
 
 export type Response<ResponseBody = {}> = {
-  statusCode: number;
-  body: ResponseBody;
+    header: {
+        statusCode: number
+    }
+    body: ResponseBody
 };
 
 export type Request = {
@@ -34,12 +36,12 @@ export type Request = {
 };
 
 export type RequestResponse<ResponseBody = {}> = {
-  request: Request;
-  response?: Response<ResponseBody>;
+  request: Request
+  response?: Response<ResponseBody>
 };
 
 export type HttpFoundationState = {
-  runningHttpRequests: Request[];
+  runningHttpRequests: Request[]
 };
 
 export enum HttpEventTypes {

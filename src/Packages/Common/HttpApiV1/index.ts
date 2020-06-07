@@ -7,7 +7,7 @@ import { SendHttpRequest as SendHttpRequestType } from './Domain/Command/SendHtt
 export type AuthenticateResult = AuthenticateResultType;
 export type ApiV1HttpConnectionFailed = ApiV1HttpConnectionFailedType;
 export type ApiV1HttpResponseWasReceived = ApiV1HttpResponseWasReceivedType;
-export type ApiV1ReadResponse = ApiV1ReadResponseType;
+export type ApiV1ReadResponse<Data = {}> = ApiV1ReadResponseType<Data>;
 export type SendHttpRequest = SendHttpRequestType;
 
 export { HttpApiV1EventTypes } from './Domain/Types';

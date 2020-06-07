@@ -24,7 +24,9 @@ function createRequestResponseFromAxiosResponse(
         response: !axiosResponse
             ? undefined
             : {
-                statusCode: axiosResponse.status,
+                header: {
+                    statusCode: axiosResponse.status,
+                },
                 body: axiosResponse.data,
             },
     };

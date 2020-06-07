@@ -34,7 +34,7 @@ export function* authenticate(settings: AuthenticateSettings): Generator<unknown
             data: undefined,
         });
     }
-    if (response.statusCode === HttpStatusCodes.OK) {
+    if (response.header.statusCode === HttpStatusCodes.OK) {
         return createSuccessResult({
             generalMessages: response.body.generalMessages,
             fieldMessages: response.body.fieldMessages,

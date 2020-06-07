@@ -6,7 +6,9 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(request: Request): Promise<RequestResponse> {
         console.info('Request execution simulation - request', request);
         const response: ApiV1ReadResponse = {
-            statusCode: 200,
+            header: {
+                statusCode: 200,
+            },
             body: {
                 generalMessages: [
                     {
