@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 import { IconSizes, IconTypes, ErrorIconWC } from "Packages/Common/Icon";
 import { Message as MessageData, MessageTypes } from "Packages/Common/CommonTypes";
 import { TranslatedTextWC } from "Packages/Common/Translator";
@@ -10,11 +10,13 @@ export type MessageWCProps = {
 const Message: FC<MessageWCProps> = (props) => {
     if (props.message.type === MessageTypes.ERROR) {
         return (
-            <small className="text-danger">
+            <Fragment>
                 <ErrorIconWC size={IconSizes.XS} type={IconTypes.ERROR} />
-                {" "}
-                <TranslatedTextWC translation={props.message.content} />
-            </small>
+                {' '}
+                <small className="text-danger">
+                    <TranslatedTextWC translation={props.message.content} />
+                </small>
+            </Fragment>
         );
     }
     return (

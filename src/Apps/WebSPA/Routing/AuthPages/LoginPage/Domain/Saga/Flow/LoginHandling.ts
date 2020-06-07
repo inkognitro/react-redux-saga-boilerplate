@@ -24,7 +24,7 @@ export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Ge
         {
             message: {
                 id: 'foo123',
-                type: MessageTypes.INFO,
+                type: MessageTypes.ERROR,
                 content: {
                     translationId: 'foo1234444',
                     fallback: 'This is just an info message for the username field!',
