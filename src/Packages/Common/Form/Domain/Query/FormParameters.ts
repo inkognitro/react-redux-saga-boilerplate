@@ -15,7 +15,7 @@ export function createFormParameters(form: FormState): object {
     return parameters;
 }
 
-function createParameterValueByFormElement(formElement: FormElementState): string {
+function createParameterValueByFormElement(formElement: FormElementState): (boolean | string) {
     if (formElement.type === FormElementTypes.EMAIL) {
         return formElement.value;
     }
@@ -23,6 +23,9 @@ function createParameterValueByFormElement(formElement: FormElementState): strin
         return formElement.value;
     }
     if (formElement.type === FormElementTypes.PASSWORD) {
+        return formElement.value;
+    }
+    if (formElement.type === FormElementTypes.CHECKBOX) {
         return formElement.value;
     }
     // @ts-ignore
