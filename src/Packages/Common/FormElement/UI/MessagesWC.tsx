@@ -17,7 +17,11 @@ const Message: FC<MessageWCProps> = (props) => {
             </small>
         );
     }
-    return <small className="text-info">{props.message.content}</small>;
+    return (
+        <small className="text-info">
+            <TranslatedTextWC translation={props.message.content} />
+        </small>
+    );
 };
 
 export type MessagesProps = {
