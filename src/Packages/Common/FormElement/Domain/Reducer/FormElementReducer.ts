@@ -2,6 +2,7 @@ import { FormElementEvent, FormElementState, FormElementTypes } from "../Types";
 import { textFieldReducer } from "./TextFieldReducer";
 import { emailFieldReducer } from "./EmailFieldReducer";
 import { passwordFieldReducer } from "./PasswordFieldReducer";
+import { checkboxReducer } from "./CheckboxReducer";
 
 export function formElementReducer(state: FormElementState, event?: FormElementEvent): FormElementState {
     if (!event) {
@@ -15,6 +16,9 @@ export function formElementReducer(state: FormElementState, event?: FormElementE
     }
     if (state.type === FormElementTypes.PASSWORD) {
         return passwordFieldReducer(state, event);
+    }
+    if (state.type === FormElementTypes.CHECKBOX) {
+        return checkboxReducer(state, event);
     }
     // @ts-ignore
     throw new Error(`form element with type "${state.type}" not supported!`);
