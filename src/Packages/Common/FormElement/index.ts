@@ -39,6 +39,7 @@ export {
     createPasswordFieldState,
     createTextFieldState,
     createEmailFieldState,
+    createCheckboxState,
 } from './Domain/FormElementStateFactory';
 export { EmailFieldWC } from './UI/EmailFieldWC';
 export { FormElementGroupWC } from './UI/FormElementGroupWC';

@@ -1,9 +1,10 @@
 import { FormState } from "Packages/Common/Form";
-import { PasswordFieldState, TextFieldState } from "Packages/Common/FormElement";
+import { CheckboxState, PasswordFieldState, TextFieldState } from "Packages/Common/FormElement";
 
 type LoginFormState = FormState<{
     username: TextFieldState
     password: PasswordFieldState
+    rememberMe: CheckboxState
 }>
 
 export type LoginPageState = {

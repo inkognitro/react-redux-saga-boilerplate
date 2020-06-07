@@ -8,7 +8,7 @@ import {
     TextFieldWC,
     FormElementGroupWC,
     PrimaryButtonWC,
-    PasswordFieldWC,
+    PasswordFieldWC, CheckboxWC,
 } from "Packages/Common/FormElement";
 import { Dispatch } from "redux";
 import { LoginPageState } from "../Domain/Types";
@@ -33,6 +33,9 @@ const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
                 </FormElementGroupWC>
                 <FormElementGroupWC>
                     <PasswordFieldWC data={props.data.form.elementsByName.password} />
+                </FormElementGroupWC>
+                <FormElementGroupWC>
+                    <CheckboxWC data={props.data.form.elementsByName.rememberMe} />
                 </FormElementGroupWC>
                 <FormElementGroupWC>
                     <PrimaryButtonWC onClick={props.onSubmitLoginForm}>

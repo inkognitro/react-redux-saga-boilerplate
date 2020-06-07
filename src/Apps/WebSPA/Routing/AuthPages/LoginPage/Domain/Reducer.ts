@@ -2,6 +2,7 @@ import { RouterEventTypes, CurrentUrlWasChanged } from "Packages/Common/Router";
 import {
     createPasswordFieldState,
     createTextFieldState,
+    createCheckboxState,
     FormElementEvent,
     FormElementEventTypes,
 } from "Packages/Common/FormElement";
@@ -13,6 +14,7 @@ const initialLoginPageState: LoginPageState = {
         elementsByName: {
             username: createTextFieldState({ value: 'Nagato' }),
             password: createPasswordFieldState({ value: '1234' }),
+            rememberMe: createCheckboxState({ value: true }),
         },
     }),
 };

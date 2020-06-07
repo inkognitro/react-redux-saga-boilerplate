@@ -33,6 +33,7 @@ export function internalFormElementReducer<SpecificFormElementState>(
                 }
                 return {
                     formElement: mergedFormElementStateChanges.formElement,
+                    // @ts-ignore
                     stateChanges: {
                         ...mergedFormElementStateChanges.stateChanges,
                         ...formElementStateChanges.stateChanges,

@@ -1,5 +1,6 @@
 import uuidV4 from "uuid/v4";
 import {
+    CheckboxState,
     EmailFieldState,
     FormElementTypes,
     PasswordFieldState,
@@ -34,6 +35,17 @@ export function createEmailFieldState(partialInitialState: EmailFieldStateCreati
         value: (partialInitialState.value ? partialInitialState.value : ''),
         readOnly: (partialInitialState.readOnly ? partialInitialState.readOnly : false),
         type: FormElementTypes.EMAIL,
+        messages: [],
+    };
+}
+
+type CheckboxStateCreationSettings = Partial<CheckboxState>;
+export function createCheckboxState(partialInitialState: CheckboxStateCreationSettings = {}): CheckboxState {
+    return {
+        id: (partialInitialState.id ? partialInitialState.id : uuidV4()),
+        value: (partialInitialState.value ? partialInitialState.value : false),
+        readOnly: (partialInitialState.readOnly ? partialInitialState.readOnly : false),
+        type: FormElementTypes.CHECKBOX,
         messages: [],
     };
 }
