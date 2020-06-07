@@ -16,7 +16,7 @@ export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Ge
     const result: LoginResult = yield login({
         username: loginPageState.form.elementsByName.username.value,
         password: loginPageState.form.elementsByName.password.value,
-        shouldRemember: false,
+        shouldRemember: loginPageState.form.elementsByName.rememberMe.value,
     });
     yield put(createHideLoader());
     yield dispatchToastsFromResult(result);

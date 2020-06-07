@@ -18,9 +18,9 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
 
 function createResponseByRequest(request: Request): ApiV1ReadResponse {
     if (request.url === (`${apiV1BaseUrl}/auth/authenticate`)) {
-        return createInvalidLoginResponse();
+        return createValidLoginResponse();
     }
-    return createValidLoginResponse();
+    return createInvalidLoginResponse();
 }
 
 function createInvalidLoginResponse(): ApiV1ReadResponse {
