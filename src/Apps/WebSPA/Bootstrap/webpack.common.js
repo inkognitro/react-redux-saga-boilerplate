@@ -17,7 +17,7 @@ module.exports = merge(baseConfiguration, {
         }),
         new CopyPlugin({
             patterns: [
-                { from: './src/Apps/WebSPA/favicon.ico', to: './dist/WebSPA/favicon.ico' },
+                { from: './src/Apps/WebSPA/favicon.ico', to: './favicon.ico' },
             ],
         })
     ],
