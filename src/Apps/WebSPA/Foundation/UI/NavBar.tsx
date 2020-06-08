@@ -21,15 +21,11 @@ type RepresentationalNavBarProps = (RepresentationalNavBarState & Representation
 
 class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
     renderAuthLink(): ReactNode {
-        if (this.props.currentUser) {
+        if (this.props.currentUser.type === AuthUserTypes.AUTHENTICATED_USER) {
             return (
                 <li className="nav-item">
                     <FunctionalLinkWC className="nav-link" onClick={() => this.props.onClickLogout()}>
-                        {(
-                            this.props.currentUser.type === AuthUserTypes.AUTHENTICATED_USER
-                                ? (<UserLabelWC user={this.props.currentUser.user} />)
-                                : undefined
-                        )}
+                        <UserLabelWC user={this.props.currentUser.user} />
                         {' '}
                         :: Logout
                     </FunctionalLinkWC>
