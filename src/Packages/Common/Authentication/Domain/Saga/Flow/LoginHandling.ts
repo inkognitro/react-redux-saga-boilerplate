@@ -1,27 +1,26 @@
-import {
-    call, cancelled, put, select,
-} from "@redux-saga/core/effects";
-import { Login } from "Packages/Common/Authentication/Domain/Command/Login";
-import { authenticate, AuthenticateResult } from "Packages/Common/HttpApiV1";
+import {call, cancelled, put, select,} from "@redux-saga/core/effects";
+import {Login} from "Packages/Common/Authentication/Domain/Command/Login";
+import {authenticate, AuthenticateResult} from "Packages/Common/HttpApiV1";
 import {
     AuthState,
     AuthStateSelector,
     authTokenCookieName,
     authTokenCookieTimeToLiveInDays,
+    AuthUserTypes,
     getCurrentAuthUser,
 } from "Packages/Common/Authentication";
-import { createSaveCookie } from "Packages/Common/Cookie";
-import { ResultTypes } from "Packages/Entity/CommonTypes";
-import { createUserLoginFailed } from "../../Event/UserLoginFailed";
-import { createUserWasLoggedIn } from "../../Event/UserWasLoggedIn";
-import { createUserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
-import { createUserLoginWasNotExecuted } from "../../Event/UserLoginWasNotExecuted";
+import {createSaveCookie} from "Packages/Common/Cookie";
+import {ResultTypes} from "Packages/Entity/CommonTypes";
+import {createUserLoginFailed} from "../../Event/UserLoginFailed";
+import {createUserWasLoggedIn} from "../../Event/UserWasLoggedIn";
+import {createUserLoginWasCancelled} from "../../Event/UserLoginWasCancelled";
+import {createUserLoginWasNotExecuted} from "../../Event/UserLoginWasNotExecuted";
 
 export function* handleLogin(authStateSelector: AuthStateSelector, command: Login): Generator {
     // @ts-ignore
     const authState: AuthState = yield select(authStateSelector);
     const currentAuthUser = getCurrentAuthUser(authState);
-    if (currentAuthUser) {
+    if (currentAuthUser.type === AuthUserTypes.AUTHENTICATED_USER) {
         yield put(createUserLoginWasNotExecuted(command.payload));
         return;
     }
