@@ -1,4 +1,4 @@
-import { Command } from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Entity/CommonTypes";
 import { Redirect, RouterCommandTypes } from "../Types";
 
 export function createExtendRouter(redirects: Redirect[]): ExtendRouter {

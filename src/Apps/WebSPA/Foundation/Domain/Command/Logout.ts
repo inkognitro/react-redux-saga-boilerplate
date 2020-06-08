@@ -1,4 +1,4 @@
-import { Command } from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Entity/CommonTypes";
 import { FoundationCommandTypes } from "../Types";
 
 export function createLogout(): Logout {

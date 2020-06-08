@@ -1,10 +1,8 @@
-import { AuthState, AuthUser } from "../Types";
+import { AuthUser } from "Packages/Entity/AuthUser";
+import { AuthState } from "../Types";
 
-export function findCurrentAuthUser(state: AuthState): null | AuthUser {
-    if (state.currentAuthUser) {
-        return state.currentAuthUser;
-    }
-    return null;
+export function getCurrentAuthUser(state: AuthState): AuthUser {
+    return state.currentUser;
 }
 
 // todo: use for authentication refresh and change to "login" is running!

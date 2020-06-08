@@ -1,6 +1,6 @@
 import { put } from "redux-saga/effects";
 import { SetFormFieldMessages } from "Packages/Common/Form/Domain/Command/SetFormFieldMessages";
-import { FieldMessage } from "Packages/Common/CommonTypes";
+import { FieldMessage } from "Packages/Entity/CommonTypes";
 import {
     createChangeFormElementStates,
     FormElementState,

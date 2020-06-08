@@ -1,4 +1,4 @@
-import { Event } from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Entity/CommonTypes";
 import { RouterEventTypes } from "../Types";
 
 export function createCurrentUrlWasChanged(url: string): CurrentUrlWasChanged {

@@ -1,4 +1,4 @@
-import { MessageTypes } from "Packages/Common/CommonTypes";
+import { MessageTypes } from "Packages/Entity/CommonTypes";
 import { ToastTypes } from "Packages/Common/Toaster";
 
 export function getToastTypeByMessageType(messageType: MessageTypes) {

@@ -2,7 +2,7 @@ import { put, takeEvery } from "redux-saga/effects";
 import { createShowMessage } from "Packages/Common/Toaster";
 import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 import { HttpApiV1EventTypes } from "Packages/Common/HttpApiV1";
-import { TranslationIds } from "Packages/Common/Translator";
+import { TranslationIds } from "Packages/Entity/CommonTypes";
 
 export function createHttpApiV1ToasterSaga(): () => Generator {
     return function* (): Generator {

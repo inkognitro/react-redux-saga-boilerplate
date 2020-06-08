@@ -1,4 +1,4 @@
-import { Command } from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Entity/CommonTypes";
 import { LoaderCommandTypes } from "../Types";
 
 export function createHideLoader(): HideLoader {

@@ -1,7 +1,10 @@
-import { Event } from "Packages/Common/CommonTypes";
-import { AuthEventTypes, AuthUser } from "../Types";
+import { Event } from "Packages/Entity/CommonTypes";
+import { AuthEventTypes } from "../Types";
+import {AuthenticatedAuthUser} from "Packages/Entity/AuthUser";
 
-export function createUserAuthenticationRefreshWasRequested(authUser: AuthUser): UserAuthenticationRefreshWasRequested {
+export function createUserAuthenticationRefreshWasRequested(
+    authUser: AuthenticatedAuthUser,
+): UserAuthenticationRefreshWasRequested {
     return {
         type: AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_REQUESTED,
         payload: { authUser },
@@ -9,5 +12,5 @@ export function createUserAuthenticationRefreshWasRequested(authUser: AuthUser):
 }
 
 export type UserAuthenticationRefreshWasRequested = Event<AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_REQUESTED, {
-    authUser: AuthUser;
+    authUser: AuthenticatedAuthUser;
 }>;

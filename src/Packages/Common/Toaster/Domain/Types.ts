@@ -1,4 +1,4 @@
-import { Translation } from "Packages/Common/CommonTypes";
+import { Translation } from "Packages/Entity/CommonTypes";
 import {
     MessageOutroAnimationWasStarted,
     MessagesWereAddedToToast,

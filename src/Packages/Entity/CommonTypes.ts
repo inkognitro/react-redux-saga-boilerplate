@@ -1,5 +1,4 @@
 import { Action } from "redux";
-import { TranslationIds } from "Packages/Common/Translator";
 
 export enum MessageTypes {
     INFO = "info",
@@ -10,6 +9,13 @@ export enum MessageTypes {
 
 export type Placeholders = {
     [key: string]: string
+}
+
+export enum TranslationIds {
+    COULD_NOT_CONNECT_TO_SERVER = 'couldNotConnectToServer',
+    BACK_TO_START = 'backToStart',
+    PAGE_NOT_FOUND_TITLE = 'pageNotFoundTitle',
+    LOADING = 'Loading..',
 }
 
 export type Translation = {

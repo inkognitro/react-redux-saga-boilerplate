@@ -1,16 +1,10 @@
+import { TranslationIds } from "Packages/Entity/CommonTypes";
 import { UILanguageWasSet } from "./Event/UILanguageWasSet";
 
 export type TranslatorStateSelector<State = any> = (state: State) => TranslatorState;
 
 export enum LanguageIds {
     EN = "en"
-}
-
-export enum TranslationIds {
-    COULD_NOT_CONNECT_TO_SERVER = 'couldNotConnectToServer',
-    BACK_TO_START = 'backToStart',
-    PAGE_NOT_FOUND_TITLE = 'pageNotFoundTitle',
-    LOADING = 'Loading..',
 }
 
 export type TranslationIdToTranslationMapping = {

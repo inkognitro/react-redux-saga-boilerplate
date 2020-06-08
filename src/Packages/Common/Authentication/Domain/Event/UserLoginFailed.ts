@@ -1,4 +1,4 @@
-import { Event } from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Entity/CommonTypes";
 import { AuthEventTypes, LoginErrorResult, LoginSettings } from "../Types";
 
 export function createUserLoginFailed(loginSettings: LoginSettings, result: LoginErrorResult): UserLoginFailed {

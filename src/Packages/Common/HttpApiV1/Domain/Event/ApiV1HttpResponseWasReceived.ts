@@ -1,5 +1,5 @@
 import { Request } from "Packages/Common/HttpFoundation/Domain/Types";
-import { Event } from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Entity/CommonTypes";
 import { HttpApiV1EventTypes, ApiV1Response } from "../Types";
 
 export function createApiV1HttpResponseWasReceived(

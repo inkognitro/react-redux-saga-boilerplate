@@ -1,8 +1,9 @@
-import { Event } from "Packages/Common/CommonTypes";
-import { AuthEventTypes, AuthUser } from "../Types";
+import { Event } from "Packages/Entity/CommonTypes";
+import { AuthEventTypes } from "../Types";
+import {AuthenticatedAuthUser} from "Packages/Entity/AuthUser";
 
 type UserWasLoggedOutPayload = {
-    authUser: AuthUser
+    authUser: AuthenticatedAuthUser
     logoutId: string
 }
 

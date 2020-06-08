@@ -1,12 +1,13 @@
 import {
-    delay, select, take, race, put,
+    delay, put, race, select, take,
 } from "@redux-saga/core/effects";
 import {
-    findCurrentAuthUser,
     AuthEventTypes,
+    authRefreshBeforeExpirationInSeconds,
     AuthState,
     AuthStateSelector,
-    authRefreshBeforeExpirationInSeconds,
+    AuthUserTypes,
+    getCurrentAuthUser,
     UserWasLoggedOut,
 } from "Packages/Common/Authentication";
 import { getSecondsUntilExpiration } from "../../JWTHandling";
@@ -18,8 +19,8 @@ export function* handleAutomaticAuthenticationRefresh(authStateSelector: AuthSta
         yield delay(30000);
         // @ts-ignore
         const authState: AuthState = yield select(authStateSelector);
-        const currentAuthUser = findCurrentAuthUser(authState);
-        if (!currentAuthUser) {
+        const currentAuthUser = getCurrentAuthUser(authState);
+        if (currentAuthUser.type !== AuthUserTypes.AUTHENTICATED_USER) {
             continue;
         }
         const secondsUntilExpiration = getSecondsUntilExpiration(currentAuthUser.token);

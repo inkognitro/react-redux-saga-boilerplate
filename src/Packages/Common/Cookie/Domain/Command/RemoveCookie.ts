@@ -1,4 +1,4 @@
-import { Command } from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Entity/CommonTypes";
 import { CookieCommandTypes } from "../Types";
 
 export function createRemoveCookie(name: string): RemoveCookie {

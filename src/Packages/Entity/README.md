@@ -10,4 +10,5 @@ The purpose of these modules solely is:
 None!!!
 
 ## Modules
+- Packages/Entity/AuthUser
 - Packages/Entity/User

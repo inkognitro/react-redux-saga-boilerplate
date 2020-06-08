@@ -1,4 +1,4 @@
-import { Event } from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Entity/CommonTypes";
 import { FormCommandTypes, FormState } from "../Types";
 
 export function createSubmitForm(form: FormState): SubmitForm {

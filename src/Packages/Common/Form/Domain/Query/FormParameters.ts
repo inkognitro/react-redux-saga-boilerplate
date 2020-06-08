@@ -1,6 +1,8 @@
 import { FormElementState, FormElementTypes } from "Packages/Common/FormElement";
 import { FormState } from "../Types";
 
+// todo: remove this file!
+
 export function createFormParameters(form: FormState): object {
     let parameters = {};
     for (const name in form.elementsByName) {

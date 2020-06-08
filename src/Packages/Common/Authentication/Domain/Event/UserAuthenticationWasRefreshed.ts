@@ -1,9 +1,10 @@
-import { Event } from "Packages/Common/CommonTypes";
-import { AuthEventTypes, AuthUser } from "../Types";
+import { Event } from "Packages/Entity/CommonTypes";
+import { AuthEventTypes } from "../Types";
+import {AuthenticatedAuthUser} from "Packages/Entity/AuthUser";
 
 export function createUserAuthenticationWasRefreshed(
-    authUser: AuthUser,
-    previousAuthUser: AuthUser,
+    authUser: AuthenticatedAuthUser,
+    previousAuthUser: AuthenticatedAuthUser,
 ): UserAuthenticationWasRefreshed {
     return {
         type: AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED,
@@ -12,6 +13,6 @@ export function createUserAuthenticationWasRefreshed(
 }
 
 export type UserAuthenticationWasRefreshed = Event<AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED, {
-    authUser: AuthUser;
-    previousAuthUser: AuthUser;
+    authUser: AuthenticatedAuthUser;
+    previousAuthUser: AuthenticatedAuthUser;
 }>;

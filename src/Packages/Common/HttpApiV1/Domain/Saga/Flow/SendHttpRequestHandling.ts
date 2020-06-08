@@ -1,12 +1,10 @@
 import {
-    Request,
-    getWithHeaderEnhancedHttpRequest,
     createSendHttpRequest as createCommonSendHttpRequest,
+    getWithHeaderEnhancedHttpRequest,
+    Request,
 } from "Packages/Common/HttpFoundation";
 import {
-    findCurrentAuthUser,
-    AuthState,
-    AuthStateSelector,
+    AuthState, AuthStateSelector, AuthUserTypes, getCurrentAuthUser,
 } from "Packages/Common/Authentication";
 import { put, select } from "redux-saga/effects";
 import { SendHttpRequest } from "Packages/Common/HttpApiV1";
@@ -23,8 +21,8 @@ export function* handleSendHttpRequest(authStateSelector: AuthStateSelector, com
 }
 
 function getWithAuthTokenEnhancedRequest(authState: AuthState, request: Request): Request {
-    const authUser = findCurrentAuthUser(authState);
-    if (!authUser) {
+    const authUser = getCurrentAuthUser(authState);
+    if (authUser.type !== AuthUserTypes.AUTHENTICATED_USER) {
         return request;
     }
     const headerProperty = "X-API-TOKEN";

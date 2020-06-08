@@ -14,7 +14,7 @@ import {
     UserLoginWasNotExecuted,
     UserWasLoggedIn,
 } from "Packages/Common/Authentication";
-import { createErrorResult } from "Packages/Common/CommonTypes";
+import { createErrorResult } from "Packages/Entity/CommonTypes";
 
 type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 

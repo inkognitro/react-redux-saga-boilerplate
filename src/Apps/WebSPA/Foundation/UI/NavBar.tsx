@@ -3,17 +3,18 @@ import { connect } from "react-redux";
 import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
 import { RootState } from "Apps/WebSPA/Bootstrap/ServicesFactory";
 import { Dispatch } from "redux";
-import { AuthUser, findCurrentAuthUser } from "Packages/Common/Authentication";
+import { AuthUserTypes, getCurrentAuthUser } from "Packages/Common/Authentication";
+import { AuthUser } from "Packages/Entity/AuthUser";
 import { createHomeRouteUrl, createLoginRouteUrl } from "Apps/WebSPA/Routing";
 import { UserLabelWC } from "Packages/Entity/User";
 import { createLogout } from "Apps/WebSPA/Foundation";
 
 type RepresentationalNavBarState = {
-  currentUser: AuthUser | null;
+  currentUser: AuthUser
 };
 
 type RepresentationalNavBarCallbacks = {
-  onClickLogout(): void;
+  onClickLogout(): void
 };
 
 type RepresentationalNavBarProps = (RepresentationalNavBarState & RepresentationalNavBarCallbacks);
@@ -24,7 +25,11 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
             return (
                 <li className="nav-item">
                     <FunctionalLinkWC className="nav-link" onClick={() => this.props.onClickLogout()}>
-                        <UserLabelWC user={this.props.currentUser.user} />
+                        {(
+                            this.props.currentUser.type === AuthUserTypes.AUTHENTICATED_USER
+                                ? (<UserLabelWC user={this.props.currentUser.user} />)
+                                : undefined
+                        )}
                         {' '}
                         :: Logout
                     </FunctionalLinkWC>
@@ -55,7 +60,7 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
 }
 
 const mapStateToProps = (state: RootState): RepresentationalNavBarState => ({
-    currentUser: findCurrentAuthUser(state.authentication),
+    currentUser: getCurrentAuthUser(state.authentication),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): RepresentationalNavBarCallbacks => ({

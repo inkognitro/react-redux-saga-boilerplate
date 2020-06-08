@@ -6,7 +6,6 @@ import {
     LoginSettings as LoginSettingsType,
     LoginErrorResult as LoginErrorResultType,
     LoginSuccessResult as LoginSuccessResultType,
-    AuthUser as AuthUserType,
     AuthStateSelector as AuthStateSelectorType,
     AuthState as AuthStateType,
     AuthEvent as AuthEventType,
@@ -38,7 +37,6 @@ export type LoginResult = LoginResultType;
 export type LoginSettings = LoginSettingsType;
 export type LoginErrorResult = LoginErrorResultType;
 export type LoginSuccessResult = LoginSuccessResultType;
-export type AuthUser = AuthUserType;
 export type AuthStateSelector = AuthStateSelectorType;
 export type AuthState = AuthStateType;
 export type AuthEvent = AuthEventType;
@@ -56,15 +54,16 @@ export type UserLoginWasRequested = UserLoginWasRequestedType;
 export type UserLogoutWasNotExecuted = UserLogoutWasNotExecutedType;
 export type UserWasLoggedIn = UserWasLoggedInType;
 
-export { AuthEventTypes, AuthCommandTypes } from './Domain/Types';
+export { AuthEventTypes, AuthCommandTypes} from './Domain/Types';
 export { createAuthenticationSaga } from './Domain/Saga/Flow';
 export { logout } from './Domain/Saga/CustomEffect/Logout';
 export { login } from './Domain/Saga/CustomEffect/Login';
 export { createLogin } from './Domain/Command/Login';
 export { createLogout } from './Domain/Command/Logout';
 export { createInitializeCurrentUser } from './Domain/Command/InitializeCurrentUser';
-export { findCurrentAuthUser } from './Domain/Query/CurrentAuthUserQuery';
+export { getCurrentAuthUser } from './Domain/Query/CurrentAuthUserQuery';
 export { authenticationReducer } from './Domain/Reducer';
 export const authTokenCookieName = 'authUser';
 export const authTokenCookieTimeToLiveInDays = 14;
 export const authRefreshBeforeExpirationInSeconds = 60;
+export {AuthUserTypes} from "Packages/Entity/AuthUser";

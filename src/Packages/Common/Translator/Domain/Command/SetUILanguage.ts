@@ -2,7 +2,7 @@ import {
     LanguageIds,
     TranslatorCommandTypes,
 } from "Packages/Common/Translator/Domain/Types";
-import { Command } from "Packages/Common/CommonTypes";
+import { Command } from "Packages/Entity/CommonTypes";
 
 export function createSetUILanguage(languageId: LanguageIds): SetUILanguage {
     return {

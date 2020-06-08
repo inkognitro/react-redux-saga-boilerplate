@@ -8,10 +8,10 @@ import {
     AuthStateSelector,
     authTokenCookieName,
     authTokenCookieTimeToLiveInDays,
-    findCurrentAuthUser,
+    getCurrentAuthUser,
 } from "Packages/Common/Authentication";
 import { createSaveCookie } from "Packages/Common/Cookie";
-import { ResultTypes } from "Packages/Common/CommonTypes";
+import { ResultTypes } from "Packages/Entity/CommonTypes";
 import { createUserLoginFailed } from "../../Event/UserLoginFailed";
 import { createUserWasLoggedIn } from "../../Event/UserWasLoggedIn";
 import { createUserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
@@ -20,7 +20,7 @@ import { createUserLoginWasNotExecuted } from "../../Event/UserLoginWasNotExecut
 export function* handleLogin(authStateSelector: AuthStateSelector, command: Login): Generator {
     // @ts-ignore
     const authState: AuthState = yield select(authStateSelector);
-    const currentAuthUser = findCurrentAuthUser(authState);
+    const currentAuthUser = getCurrentAuthUser(authState);
     if (currentAuthUser) {
         yield put(createUserLoginWasNotExecuted(command.payload));
         return;

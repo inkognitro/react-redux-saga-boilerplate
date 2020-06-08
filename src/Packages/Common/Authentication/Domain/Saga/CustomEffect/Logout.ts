@@ -9,7 +9,7 @@ import {
     UserLogoutWasNotExecuted,
     UserWasLoggedOut,
 } from "Packages/Common/Authentication";
-import { createErrorResult, createSuccessResult } from "Packages/Common/CommonTypes";
+import { createErrorResult, createSuccessResult } from "Packages/Entity/CommonTypes";
 
 type LogoutResultEventGenerator = Generator<StrictEffect, LogoutResult>;
 

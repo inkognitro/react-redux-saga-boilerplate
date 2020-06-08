@@ -1,5 +1,5 @@
 import { Redirect, RouterEventTypes } from "Packages/Common/Router/Domain/Types";
-import { Event } from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Entity/CommonTypes";
 
 export function createRouterWasExtended(redirects: Redirect[] = []): RouterWasExtended {
     return {

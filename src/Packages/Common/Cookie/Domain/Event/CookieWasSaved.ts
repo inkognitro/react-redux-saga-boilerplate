@@ -1,4 +1,4 @@
-import { Event } from "Packages/Common/CommonTypes";
+import { Event } from "Packages/Entity/CommonTypes";
 import { Cookie, CookieEventTypes } from "../Types";
 
 export function createCookieWasSaved(cookie: Cookie): CookieWasSaved {

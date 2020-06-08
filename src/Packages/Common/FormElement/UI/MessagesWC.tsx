@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { IconSizes, IconTypes, ErrorIconWC } from "Packages/Common/Icon";
-import { Message as MessageData, MessageTypes } from "Packages/Common/CommonTypes";
+import { Message as MessageData, MessageTypes } from "Packages/Entity/CommonTypes";
 import { TranslatedTextWC } from "Packages/Common/Translator";
 
 export type MessageWCProps = {

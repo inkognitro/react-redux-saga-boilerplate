@@ -1,12 +1,13 @@
-import {
-    AuthEvent,
-    AuthEventTypes,
-    AuthState,
-} from "./Types";
+import {AnonymousAuthUser, AuthUserTypes} from "Packages/Entity/AuthUser";
+import {AuthEvent, AuthEventTypes, AuthState} from "./Types";
+
+const anonymousUser: AnonymousAuthUser = {
+    type: AuthUserTypes.ANONYMOUS,
+};
 
 const initialAuthState: AuthState = {
     isAuthenticationRunning: false,
-    currentAuthUser: null,
+    currentUser: anonymousUser,
 };
 
 export function authenticationReducer(
@@ -24,7 +25,7 @@ export function authenticationReducer(
     if (event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {
         return {
             ...state,
-            currentAuthUser: event.payload.result.data.authUser,
+            currentUser: event.payload.result.data.authUser,
             isAuthenticationRunning: false,
         };
     }
@@ -32,7 +33,7 @@ export function authenticationReducer(
     if (event.type === AuthEventTypes.USER_LOGIN_FAILED) {
         return {
             ...state,
-            currentAuthUser: null,
+            currentUser: anonymousUser,
             isAuthenticationRunning: false,
         };
     }
@@ -44,21 +45,21 @@ export function authenticationReducer(
     if (event.type === AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED) {
         return {
             ...state,
-            currentAuthUser: event.payload.authUser,
+            currentUser: event.payload.authUser,
             isAuthenticationRunning: false,
         };
     }
 
     if (event.type === AuthEventTypes.USER_LOGIN_WAS_CANCELLED) {
-        return { ...state, currentAuthUser: null, isAuthenticationRunning: false };
+        return { ...state, currentUser: anonymousUser, isAuthenticationRunning: false };
     }
 
     if (event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED) {
-        return { ...state, currentAuthUser: null, isAuthenticationRunning: false };
+        return { ...state, currentUser: anonymousUser, isAuthenticationRunning: false };
     }
 
     if (event.type === AuthEventTypes.USER_WAS_LOGGED_OUT) {
-        return { ...state, currentAuthUser: null };
+        return { ...state, currentUser: anonymousUser };
     }
 
     return state;

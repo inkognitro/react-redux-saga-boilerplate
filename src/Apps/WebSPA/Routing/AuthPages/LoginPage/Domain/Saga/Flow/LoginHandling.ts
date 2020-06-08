@@ -2,7 +2,7 @@ import { put, select } from "redux-saga/effects";
 import { login, LoginResult } from "Packages/Common/Authentication";
 import { dispatchToastsFromResult } from "Packages/Common/Toaster";
 import { createHideLoader, createShowLoader } from "Packages/Common/Loader";
-import { ResultTypes } from "Packages/Common/CommonTypes";
+import { ResultTypes } from "Packages/Entity/CommonTypes";
 import { createOpenUrl } from "Packages/Common/Router";
 import { createHomeRouteUrl } from "Apps/WebSPA/Routing";
 import { createSetFormFieldMessages } from "Packages/Common/Form";

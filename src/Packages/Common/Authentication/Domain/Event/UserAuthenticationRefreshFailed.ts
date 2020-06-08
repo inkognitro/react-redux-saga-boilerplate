@@ -1,5 +1,6 @@
-import { Event } from "Packages/Common/CommonTypes";
-import { AuthEventTypes, AuthUser } from "../Types";
+import { Event } from "Packages/Entity/CommonTypes";
+import { AuthEventTypes } from "../Types";
+import {AuthenticatedAuthUser} from "Packages/Entity/AuthUser";
 
 export function createUserAuthenticationRefreshFailed(payload: Payload): UserAuthenticationRefreshFailed {
     return {
@@ -10,4 +11,4 @@ export function createUserAuthenticationRefreshFailed(payload: Payload): UserAut
 
 export type UserAuthenticationRefreshFailed = Event<AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED, Payload>;
 
-type Payload = { authUser: AuthUser };
+type Payload = { authUser: AuthenticatedAuthUser };

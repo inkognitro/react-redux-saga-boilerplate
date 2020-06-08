@@ -1,4 +1,4 @@
-import { Event, FieldMessage } from "Packages/Common/CommonTypes";
+import { Event, FieldMessage } from "Packages/Entity/CommonTypes";
 import { FormCommandTypes, FormState } from "../Types";
 
 export function createSetFormFieldMessages(form: FormState, fieldMessages: FieldMessage[]): SetFormFieldMessages {
