@@ -1,6 +1,6 @@
 import { Event } from "Packages/Entity/CommonTypes";
+import { AuthenticatedAuthUser } from "Packages/Entity/AuthUser";
 import { AuthEventTypes } from "../Types";
-import {AuthenticatedAuthUser} from "Packages/Entity/AuthUser";
 
 export function createUserAuthenticationWasRefreshed(
     authUser: AuthenticatedAuthUser,

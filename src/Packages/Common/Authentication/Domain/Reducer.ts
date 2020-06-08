@@ -1,5 +1,5 @@
-import {AnonymousAuthUser, AuthUserTypes} from "Packages/Entity/AuthUser";
-import {AuthEvent, AuthEventTypes, AuthState} from "./Types";
+import { AnonymousAuthUser, AuthUserTypes } from "Packages/Entity/AuthUser";
+import { AuthEvent, AuthEventTypes, AuthState } from "./Types";
 
 const anonymousUser: AnonymousAuthUser = {
     type: AuthUserTypes.ANONYMOUS,

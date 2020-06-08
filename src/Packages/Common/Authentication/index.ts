@@ -54,7 +54,7 @@ export type UserLoginWasRequested = UserLoginWasRequestedType;
 export type UserLogoutWasNotExecuted = UserLogoutWasNotExecutedType;
 export type UserWasLoggedIn = UserWasLoggedInType;
 
-export { AuthEventTypes, AuthCommandTypes} from './Domain/Types';
+export { AuthEventTypes, AuthCommandTypes } from './Domain/Types';
 export { createAuthenticationSaga } from './Domain/Saga/Flow';
 export { logout } from './Domain/Saga/CustomEffect/Logout';
 export { login } from './Domain/Saga/CustomEffect/Login';
@@ -66,4 +66,4 @@ export { authenticationReducer } from './Domain/Reducer';
 export const authTokenCookieName = 'authUser';
 export const authTokenCookieTimeToLiveInDays = 14;
 export const authRefreshBeforeExpirationInSeconds = 60;
-export {AuthUserTypes} from "Packages/Entity/AuthUser";
+export { AuthUserTypes } from "Packages/Entity/AuthUser";
