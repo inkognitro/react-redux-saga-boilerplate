@@ -1,11 +1,11 @@
 import React from "react";
-import { shallow } from "enzyme";
+import renderer from 'react-test-renderer';
 import { ToasterWC } from "./ToasterWC";
 import { ToastTypes } from "../Domain/Types";
 
 describe("ToasterWC", () => {
-    it("should render", () => {
-        shallow(
+    it('renders correctly', () => {
+        renderer.create(
             <ToasterWC
                 toasts={[
                     {
