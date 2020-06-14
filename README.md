@@ -16,7 +16,7 @@ To fully understand this project you should be familiar with the technologies be
 - [redux (with react)](https://egghead.io/courses/getting-started-with-redux)
 - [redux-saga](https://redux-saga.js.org/)
 - [jest](https://jestjs.io/docs/en/getting-started) (unit testing)
-- [enzyme](https://enzymejs.github.io/enzyme/) (react component testing)
+- [react-test-renderer](https://reactjs.org/docs/test-renderer.html) (react component testing)
 - [redux-saga-test-plan](https://survivejs.com/blog/redux-saga-test-plan-interview/) (integration testing)
 - [eslint](https://eslint.org/docs/user-guide/getting-started) (code linting)
    
@@ -156,7 +156,7 @@ With this feature based structure, it is ensured that specific features easily c
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
 Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
-React components are tested with [enzyme](https://enzymejs.github.io/enzyme/).
+React components are tested with [react-test-renderer](https://reactjs.org/docs/test-renderer.html).
 
 To execute the tests, run:
 
