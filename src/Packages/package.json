@@ -1,7 +1,7 @@
 {
   "name": "@app/packages",
   "version": "1.0.0",
-  "description": "Shared modules to use for several apps.",
+  "description": "Shared modules for uses in several apps.",
   "author": "Marcel Fischer",
   "scripts": {
     "tsc": "tsc",
