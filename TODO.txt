@@ -2,3 +2,5 @@
 - jest configurations!
 - Form docs: remove documented code
 - Form docs: update docs, according to login example!
+- check web app build
+- check web app dist
