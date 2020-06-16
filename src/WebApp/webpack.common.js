@@ -23,24 +23,24 @@ module.exports = {
     },
     resolve: {
         alias: {
-            WebApp: path.resolve(__dirname, '../'),
-            Packages: path.resolve(__dirname, '../../Packages/src'),
+            WebApp: path.resolve(__dirname, './src'),
+            Packages: path.resolve(__dirname, '../Packages/src'),
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     output: {
-        path: path.resolve(__dirname, '../../../dist/WebApp'),
+        path: path.resolve(__dirname, '../../dist/WebApp'),
         filename: "app.js",
         publicPath: "/",
     },
     plugins: [
         new ForkTsCheckerWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/WebApp/index.html',
+            template: './src/index.html',
         }),
         new CopyPlugin({
             patterns: [
-                { from: './src/WebApp/favicon.ico', to: './favicon.ico' },
+                { from: './src/favicon.ico', to: './favicon.ico' },
             ],
         })
     ],

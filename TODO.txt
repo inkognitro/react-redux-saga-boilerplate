@@ -1,0 +1,4 @@
+- package scripts!
+- jest configurations!
+- Form docs: remove documented code
+- Form docs: update docs, according to login example!

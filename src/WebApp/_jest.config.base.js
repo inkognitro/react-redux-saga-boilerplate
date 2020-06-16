@@ -13,7 +13,8 @@ module.exports = {
         "jsx",
     ],
     "moduleNameMapper": {
-        "Apps/WebApp/(.*)": "<rootDir>/src/Apps/WebApp/$1",
         "Packages/(.*)": "<rootDir>/src/Packages/$1",
+        "WebApp/(.*)": "<rootDir>/src/WebApp/$1",
+        "MobileApp/(.*)": "<rootDir>/src/MobileApp/$1",
     },
 };

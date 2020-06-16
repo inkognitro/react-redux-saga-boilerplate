@@ -52,10 +52,10 @@ import {
     routingReducer,
     RoutingState,
     RoutingStateSelector,
-} from "Apps/WebApp/Routing";
+} from "WebApp/Routing";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
 import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster";
-import { createFoundationSaga } from "Apps/WebApp/Foundation/Domain/Saga/Flow";
+import { createFoundationSaga } from "WebApp/Foundation/Domain/Saga/Flow";
 
 type AppServices = {
     store: Store

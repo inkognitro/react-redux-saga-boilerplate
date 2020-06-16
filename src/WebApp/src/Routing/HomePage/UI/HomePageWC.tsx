@@ -8,7 +8,7 @@ import {
 } from "Packages/Common/FormElement";
 import { createLeakReduxState } from "WebApp/Routing/HomePage";
 import { ContentPage } from "WebApp/Foundation";
-import { RootState } from "WebApp/Bootstrap/ServicesFactory";
+import { RootState } from "WebApp/ServicesFactory";
 import uuidV4 from 'uuid/v4';
 
 type DumbHomePageCallbacks = {

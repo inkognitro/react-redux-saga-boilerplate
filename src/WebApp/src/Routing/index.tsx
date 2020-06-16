@@ -1,18 +1,18 @@
 import { RouterWC as CommonRouter, RouterWCSpecification } from "Packages/Common/Router/UI/RouterWC";
 import React, { FC } from "react";
 import { History } from "history";
-import { homeRoute } from "Apps/WebApp/Routing/HomePage";
+import { homeRoute } from "WebApp/Routing/HomePage";
 import {
     authPagesReducer,
     AuthPagesState, AuthPagesStateSelector,
     authRouteComponents,
     createAuthPagesSaga,
-} from "Apps/WebApp/Routing/AuthPages";
+} from "WebApp/Routing/AuthPages";
 import { spawn } from "@redux-saga/core/effects";
-import { HomePageState } from "Apps/WebApp/Routing/HomePage/Domain/Types";
+import { HomePageState } from "WebApp/Routing/HomePage/Domain/Types";
 import { combineReducers, Reducer } from "redux";
-import { homePageReducer } from "Apps/WebApp/Routing/HomePage/Domain/Reducer";
-import { createHomePageSaga } from "Apps/WebApp/Routing/HomePage/Domain/Saga/Flow";
+import { homePageReducer } from "WebApp/Routing/HomePage/Domain/Reducer";
+import { createHomePageSaga } from "WebApp/Routing/HomePage/Domain/Saga/Flow";
 import { NotFoundWC } from "./NotFoundPage";
 import { HomePageWC } from "./HomePage/UI/HomePageWC";
 

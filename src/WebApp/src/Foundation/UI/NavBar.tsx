@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
 import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
-import { RootState } from "WebApp/Bootstrap/ServicesFactory";
+import { RootState } from "WebApp/ServicesFactory";
 import { Dispatch } from "redux";
 import { AuthUserTypes, getCurrentAuthUser } from "Packages/Common/Authentication";
 import { AuthUser } from "Packages/Entity/AuthUser";

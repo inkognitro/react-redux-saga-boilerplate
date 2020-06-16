@@ -3,6 +3,6 @@ module.exports = {
     ...configBase,
     rootDir: '../../..',
     roots: [
-        '<rootDir>/src/Apps/WebApp',
+        '<rootDir>/src/WebApp',
     ],
 };

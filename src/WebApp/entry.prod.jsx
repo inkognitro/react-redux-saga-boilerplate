@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom'
-import { RootComponent } from '../App';
-import { createProdAppServices } from "./ServicesFactory";
+import { RootComponent } from './src/App';
+import { createProdAppServices } from "./src/ServicesFactory";
 
 const appServices = createProdAppServices();
 render(
