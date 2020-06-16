@@ -1,4 +1,3 @@
-/* eslint-disable */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -24,24 +23,24 @@ module.exports = {
     },
     resolve: {
         alias: {
-            Apps: path.resolve(__dirname, './src/Apps'),
-            Packages: path.resolve(__dirname, './src/Packages'),
+            WebApp: path.resolve(__dirname, '../'),
+            Packages: path.resolve(__dirname, '../../Packages/src'),
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     output: {
-        path: path.resolve(__dirname, '../../../../dist/WebApp'),
+        path: path.resolve(__dirname, '../../../dist/WebApp'),
         filename: "app.js",
         publicPath: "/",
     },
     plugins: [
         new ForkTsCheckerWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/Apps/WebApp/index.html',
+            template: './src/WebApp/index.html',
         }),
         new CopyPlugin({
             patterns: [
-                { from: './src/Apps/WebApp/favicon.ico', to: './favicon.ico' },
+                { from: './src/WebApp/favicon.ico', to: './favicon.ico' },
             ],
         })
     ],

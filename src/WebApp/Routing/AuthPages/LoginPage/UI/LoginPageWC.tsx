@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
-import { ContentPage } from "Apps/WebApp/Foundation";
-import { RootState } from "Apps/WebApp/Bootstrap/ServicesFactory";
+import { ContentPage } from "WebApp/Foundation";
+import { RootState } from "WebApp/Bootstrap/ServicesFactory";
 import { CardWC } from "Packages/Common/LayoutFoundation";
 import { FormWC } from "Packages/Common/Form";
 import {

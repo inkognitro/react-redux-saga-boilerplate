@@ -3,7 +3,7 @@ import {
     LoaderWC as PresentationalLoader,
     LoaderWCState as PresentationalLoaderState,
 } from "Packages/Common/Loader/UI/LoaderWC";
-import { RootState } from "Apps/WebApp/Bootstrap/ServicesFactory";
+import { RootState } from "WebApp/Bootstrap/ServicesFactory";
 import { shouldShowLoader } from "Packages/Common/Loader/Domain/Query/ShouldShowLoader";
 
 const mapStateToProps = (state: RootState): PresentationalLoaderState => ({

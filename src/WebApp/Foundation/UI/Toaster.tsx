@@ -5,7 +5,7 @@ import {
     ToasterWCState,
 } from "Packages/Common/Toaster/UI/ToasterWC";
 import { Dispatch } from "redux";
-import { RootState } from "Apps/WebApp/Bootstrap/ServicesFactory";
+import { RootState } from "WebApp/Bootstrap/ServicesFactory";
 import { createRemoveMessage } from "Packages/Common/Toaster";
 import { getAllToasts } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
 

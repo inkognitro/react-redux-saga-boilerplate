@@ -3,8 +3,8 @@
         "baseUrl": "./src",
         "paths": {
             "@app/packages/*": ["./Packages/src/*"],
-            "@app/bundles/WebApp/*": ["./Bundles/WebApp/src/*"],
-            "@app/bundles/MobileApp/*": ["./Bundles/MobileApp/src/*"]
+            "@app/bundles/WebApp/*": ["./WebApp/src/*"],
+            "@app/bundles/MobileApp/*": ["./MobileApp/src/*"]
         },
         "noEmit": true,
         "module": "commonjs",
