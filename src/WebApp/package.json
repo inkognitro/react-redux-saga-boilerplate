@@ -13,7 +13,6 @@
     "build": "webpack --config webpack.prod.js"
   },
   "dependencies": {
-    "@app/packages": "1.0.0",
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.1",
     "react": "^16.13.1",

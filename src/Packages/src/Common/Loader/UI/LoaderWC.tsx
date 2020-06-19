@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { AlignedAreaWC, horizontalAligns, verticalAligns } from "Packages/Common/LayoutFoundation";
 import { TimelineLite } from "gsap";
 import styled from "styled-components";
-import { TranslatedTextWC } from "Packages/Common/Translator";
+import { TranslatedTextWC } from "Packages/Common/Translator/Web";
 import { TranslationIds } from "Packages/Entity/CommonTypes";
 
 const StyledLoaderDiv = styled.div`

@@ -12,18 +12,7 @@
   "workspaces": {
     "packages": [
       "src/Packages",
-      "src/WebApp",
-      "src/MobileApp"
-    ],
-    "nohoist": [
-      "**/react-native",
-      "**/react-native/**",
-      "**/react-redux",
-      "**/react-redux/**",
-      "**/redux",
-      "**/redux/**",
-      "**/redux-saga",
-      "**/redux-saga/**"
+      "src/WebApp"
     ]
   },
   "scripts": {

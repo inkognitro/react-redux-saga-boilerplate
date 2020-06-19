@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
-import { ToastTypes, createShowMessage } from "Packages/Common/Toaster";
+import { ToastTypes, createShowMessage } from "Packages/Common/Toaster/Domain";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import {

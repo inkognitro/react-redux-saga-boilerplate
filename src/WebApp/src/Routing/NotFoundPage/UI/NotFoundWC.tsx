@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { RouteLinkWC } from "Packages/Common/Router/UI/LinkWC";
 import { ErrorPage } from "WebApp/Foundation/UI/PageTypes/ErrorPage";
 import { createHomeRouteUrl } from "WebApp/Routing/UrlFactory";
-import { TranslatedTextWC } from "Packages/Common/Translator";
+import { TranslatedTextWC } from "Packages/Common/Translator/Web";
 import { TranslationIds } from "Packages/Entity/CommonTypes";
 
 export const NotFoundWC: FC = () => (

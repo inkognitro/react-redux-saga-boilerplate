@@ -6,7 +6,7 @@ import {
 } from "Packages/Common/Toaster/Web/ToasterWC";
 import { Dispatch } from "redux";
 import { RootState } from "WebApp/ServicesFactory";
-import { createRemoveMessage } from "Packages/Common/Toaster";
+import { createRemoveMessage } from "Packages/Common/Toaster/Domain";
 import { getAllToasts } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
 
 const mapStateToProps = (rootState: RootState): ToasterWCState => ({

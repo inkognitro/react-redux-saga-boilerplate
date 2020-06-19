@@ -14,13 +14,13 @@ import {
     ToasterStateSelector,
     toasterReducer,
     createToasterSaga,
-} from "Packages/Common/Toaster";
+} from "Packages/Common/Toaster/Domain";
 import {
     TranslatorState,
     TranslatorStateSelector,
     createTranslatorSaga,
     translatorReducer,
-} from "Packages/Common/Translator";
+} from "Packages/Common/Translator/Domain";
 import {
     BrowserHistoryManager,
     routerReducer,
@@ -54,7 +54,7 @@ import {
     RoutingStateSelector,
 } from "WebApp/Routing";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
-import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster";
+import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster/Domain";
 import { createFoundationSaga } from "WebApp/Foundation/Domain/Saga/Flow";
 
 type AppServices = {

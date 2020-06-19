@@ -1,5 +1,5 @@
 import { put, takeEvery } from "redux-saga/effects";
-import { createShowMessage } from "Packages/Common/Toaster";
+import { createShowMessage } from "Packages/Common/Toaster/Domain";
 import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 import { HttpApiV1EventTypes } from "Packages/Common/HttpApiV1";
 import { TranslationIds } from "Packages/Entity/CommonTypes";
