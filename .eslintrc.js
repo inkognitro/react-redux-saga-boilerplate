@@ -1,4 +1,5 @@
-{
+module.exports = {
+  "root": true,
   "parserOptions": {
     "ecmaVersion": 6,
     "project": "tsconfig.json"
@@ -43,4 +44,4 @@
     "jest/expect-expect": "off",
     "import/no-extraneous-dependencies": "off"
   }
-}
+};

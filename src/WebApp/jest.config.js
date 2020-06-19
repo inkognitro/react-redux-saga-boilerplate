@@ -1,8 +1,7 @@
 const configBase = require('../../jest.config.base');
 module.exports = {
     ...configBase,
-    rootDir: '../..',
-    roots: [
-        '<rootDir>/src/Packages',
-    ],
+    moduleNameMapper: {
+        "Packages/(.*)": "<rootDir>/../Packages/src/$1",
+    },
 };

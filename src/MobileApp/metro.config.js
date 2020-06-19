@@ -1,17 +1,24 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
+const path = require('path');
 
-module.exports = {
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: false,
-      },
+const extraNodeModules = {
+  'MobileApp': path.resolve(__dirname + './src'),
+  'Packages': path.resolve(__dirname + '/../Packages/src'),
+};
+
+const config = {
+  watchFolders: [
+    path.resolve(__dirname, '../Packages/src'),
+  ],
+  resolver: {
+    extraNodeModules: new Proxy(extraNodeModules, {
+      get: (target, name) => {
+        if (target[name]) {
+          return target[name];
+        }
+        return path.join(__dirname, `node_modules/${name}`);
+      }
     }),
   },
 };
+
+module.exports = config;

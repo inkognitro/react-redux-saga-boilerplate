@@ -2,7 +2,7 @@ import {
     call, CallEffect, put, StrictEffect,
 } from "redux-saga/effects";
 import { Result } from "Packages/Entity/CommonTypes";
-import { createShowMessage } from "Packages/Common/Toaster";
+import { createShowMessage } from "Packages/Common/Toaster/Domain/Command/ShowMessage";
 import { getToastTypeByMessageType } from "Packages/Common/Toaster/Domain/Query/ToastTypeQuery";
 
 export type DispatchToastsFromResultGenerator = Generator<StrictEffect, void>;

@@ -1,5 +1,5 @@
 import { put, select } from "redux-saga/effects";
-import { SetUILanguage } from "Packages/Common/Translator";
+import { SetUILanguage } from "Packages/Common/Translator/Domain/Command/SetUILanguage";
 import {
     LanguageIds,
     TranslationIdToTranslationMapping,

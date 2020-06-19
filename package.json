@@ -15,22 +15,24 @@
       "src/WebApp",
       "src/MobileApp"
     ],
-    "nohoist": ["**/react-native", "**/react-native/**"]
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/react-redux",
+      "**/react-redux/**",
+      "**/redux",
+      "**/redux/**",
+      "**/redux-saga",
+      "**/redux-saga/**"
+    ]
   },
   "scripts": {
-    "test": "lerna run test",
     "tsc": "lerna run tsc --stream",
-
-    "OLDstart:webapp": "webpack-dev-server --config src/Apps/WebApp/Bootstrap/webpack.dev.js",
-    "OLDbuild:webapp": "webpack --config src/Apps/WebApp/Bootstrap/webpack.prod.js",
-    "OLDtest": "jest",
-    "OLDtest:watch": "jest --watch",
-    "OLDtest:lint": "eslint ./src --ext .ts,.tsx",
-    "OLDtest:types": "tsc --noEmit",
-    "OLDci": "npm run ci:lint && npm run ci:coverage && npm run ci:build",
-    "OLDci:lint": "npm run test:types && eslint ./src --ext .ts,.tsx --quiet --fix",
-    "OLDci:coverage": "jest --coverage --colors && make-coverage-badge --output-path \"./docs/readme/badgeTestCoverage.svg\" --report-path \"./docs/coverage/coverage-summary.json\"",
-    "OLDci:build": "npm run build:webapp"
+    "test": "lerna run test --stream",
+    "test:coverage": "lerna run test:coverage --stream",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix --stream",
+    "ci": "lerna run test:coverage --stream && lerna run lint:fix --stream && lerna run build --stream"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.29.0",

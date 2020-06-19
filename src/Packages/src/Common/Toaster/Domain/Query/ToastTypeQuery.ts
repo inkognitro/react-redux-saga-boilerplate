@@ -1,5 +1,5 @@
 import { MessageTypes } from "Packages/Entity/CommonTypes";
-import { ToastTypes } from "Packages/Common/Toaster";
+import { ToastTypes } from "Packages/Common/Toaster/Domain/Types";
 
 export function getToastTypeByMessageType(messageType: MessageTypes) {
     if (messageType === MessageTypes.ERROR) {

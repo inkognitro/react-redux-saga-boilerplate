@@ -1,4 +1,4 @@
-import { TranslationIdToTranslationMapping } from "Packages/Common/Translator";
+import { TranslationIdToTranslationMapping } from "Packages/Common/Translator/Domain/Types";
 import { TranslationIds } from "Packages/Entity/CommonTypes";
 
 export const translationIdToTranslationMapping: TranslationIdToTranslationMapping = {

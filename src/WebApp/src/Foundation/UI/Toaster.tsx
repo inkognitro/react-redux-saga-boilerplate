@@ -3,7 +3,7 @@ import {
     ToasterWC as RepresentationalToaster,
     ToasterWCCallbacks,
     ToasterWCState,
-} from "Packages/Common/Toaster/UI/ToasterWC";
+} from "Packages/Common/Toaster/Web/ToasterWC";
 import { Dispatch } from "redux";
 import { RootState } from "WebApp/ServicesFactory";
 import { createRemoveMessage } from "Packages/Common/Toaster";
