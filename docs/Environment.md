@@ -18,17 +18,24 @@ tbd...
 ## Scripts
 To install all node modules (except MobileApp), run:
 
-    lerna bootstrap
+    \Foo\Bar\MonorepoRootFolder> lerna bootstrap
 
 To remove all node modules (except MobileApp), run:
 
-    lerna clean
+    \Foo\Bar\MonorepoRootFolder> lerna clean
 
 To run the tests in every package, run:
 
-    lerna run test
-
+    \Foo\Bar\MonorepoRootFolder> yarn run test
 
 To type check every package, run:
 
-    lerna run tsc
+    \Foo\Bar\MonorepoRootFolder> yarn run tsc
+
+To lint check every package without fixing it, run:
+
+    \Foo\Bar\MonorepoRootFolder> yarn run lint
+
+To lint check every package with fixing it, run:
+
+    \Foo\Bar\MonorepoRootFolder> yarn run lint:fix
