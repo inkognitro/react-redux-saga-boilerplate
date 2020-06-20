@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { NavBar } from "WebApp/Foundation/UI/NavBar";
+import { NavBar } from "../NavBar";
 
 export const ContentPage: FC = (props) => (
     <React.Fragment>

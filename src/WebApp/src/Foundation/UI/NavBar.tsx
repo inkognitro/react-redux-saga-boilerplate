@@ -7,7 +7,7 @@ import { getCurrentAuthUser } from "Packages/Common/Authentication/Domain";
 import { AuthUser, AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
 import { createHomeRouteUrl, createLoginRouteUrl } from "WebApp/Routing";
 import { UserLabelWC } from "Packages/Entity/User/Web";
-import { createLogout } from "WebApp/Foundation";
+import { createLogout } from "../Domain";
 
 type RepresentationalNavBarState = {
   currentUser: AuthUser

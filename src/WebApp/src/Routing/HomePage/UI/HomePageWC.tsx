@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { TextFieldState } from "Packages/Common/FormElement/Domain";
 import { FormElementGroupWC, LabelWC, TextFieldWC } from "Packages/Common/FormElement/Web";
 import { createLeakReduxState } from "WebApp/Routing/HomePage";
-import { ContentPage } from "WebApp/Foundation";
+import { ContentPage } from "WebApp/Foundation/UI";
 import { RootState } from "WebApp/ServicesFactory";
 import uuidV4 from 'uuid/v4';
 
