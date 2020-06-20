@@ -30,6 +30,8 @@ To fully understand this project you should be familiar with the technologies be
 6. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
 ## Features
+
+### General
 1. Basic [JWT](http://jwt.io) authentication:
     - with remember me flag
     - ideally the authentication server responds with the [jwtSecret]-httpOnly-cookie and [jwtHeader].[jwtPayload] in the response body, to be protected against XSS and CSRF attacks.
@@ -37,15 +39,20 @@ To fully understand this project you should be familiar with the technologies be
 2. Toasts integration
     - multiple messages per toast
     - pipelined messages considering running toast animations (async visibility of toasts)
-3. Bootstrap 4 SCSS and [material icons](http://material.io/resources/icons/) integration
-4. Styling with [styled-components](http://styled-components.com/)
-5. Request handling with [axios](http://npmjs.com/package/axios) library in the background
-6. Loader integration according to running requests
-7. UTC datetime handling with [moment](http://momentjs.com) in the background 
-8. Basic form components
-9. Prepared testing (see Testing section below)
-10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
-11. Linting with Airbnb presets
+3. Loader integration e.g. for running requests
+4. UTC datetime handling with [moment](http://momentjs.com) in the background
+5. Test integration with jest (see [coding guidelines](./docs/CodingGuidelines.md))
+6. Code linting (see [coding guidelines](./docs/CodingGuidelines.md))
+    
+### WebApp
+1. Bootstrap 4 SCSS and [material icons](http://material.io/resources/icons/) integration
+2. Styling with [styled-components](http://styled-components.com/)
+3. Request handling with [axios](http://npmjs.com/package/axios) library in the background
+4. Basic form components
+5. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
+    
+### MobileApp
+Under construction.
 
 ## Documentation
 - [Environment](./docs/Environment.md): Installation, development start, scripts
