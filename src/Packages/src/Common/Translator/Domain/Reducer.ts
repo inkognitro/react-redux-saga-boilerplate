@@ -1,10 +1,12 @@
 import {
     LanguageIds,
-    TranslatorEvent,
-    TranslatorEventTypes,
     TranslatorState,
 } from "./Types";
 import { translationIdToTranslationMapping } from "./Translation/en";
+import { UILanguageWasSet } from "./Event/UILanguageWasSet";
+import { TranslatorEventTypes } from "./Event/Types";
+
+type TranslatorEvent = UILanguageWasSet
 
 export const initialTranslatorState: TranslatorState = {
     currentLanguageId: LanguageIds.EN,

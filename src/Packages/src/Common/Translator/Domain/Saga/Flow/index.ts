@@ -1,6 +1,7 @@
 import { spawn, takeEvery } from "redux-saga/effects";
-import { TranslatorCommandTypes, TranslatorStateSelector } from "../../Types";
+import { TranslatorStateSelector } from "../../Types";
 import { handleSetUILanguage } from "./SetUILanguageHandling";
+import { TranslatorCommandTypes } from "../../Command/Types";
 
 function* watchSetUiLanguageCommands(translatorStateSelector: TranslatorStateSelector): Generator {
     yield takeEvery(TranslatorCommandTypes.SET_UI_LANGUAGE, handleSetUILanguage, translatorStateSelector);

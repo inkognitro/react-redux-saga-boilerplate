@@ -1,5 +1,5 @@
 # Entity (Package)
-This package provides "entity modules" as a code base for every business entity.
+This package provides "entity modules" as a codebase for every business entity.
 These modules must not have sagas nor commands or events.
 The purpose of these modules solely is:
 - Type definitions for entities (e.g. user type definition)

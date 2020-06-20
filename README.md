@@ -1,5 +1,5 @@
-[![BadgeMITLicense: MIT](docs/readme/badgeMITLicense.svg)](LICENSE)
-![BadgeTestCoverage](docs/readme/badgeTestCoverage.svg)
+[![BadgeMITLicense: MIT](docs/assets/badgeMITLicense.svg)](LICENSE)
+![BadgeTestCoverage](docs/assets/badgeTestCoverage.svg)
 
 # React Redux Boilerplate (WIP)
 Frontend boilerplate realized in [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
@@ -30,18 +30,7 @@ To fully understand this project you should be familiar with the technologies be
    - either: serve the app for development mode (see "Development mode" section)
    - or: to build the app for production (see "Production mode" section)
 7. Continuous integration (optional): Execute `npm run ci` to automatically test and build the app for every push on your project repository.
-   
-## Configure eslint
-To prevent errors during continuous integration, I recommend configuring your IDE to support the given `.eslintrc.json`. 
-If you don't know about eslint, you probably find the answer [here](https://eslint.org/).
-However, below you can see the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
-
-Automatic detection of `.eslintrc.json` in the project folder:
-![esLintAutomaticDetection](docs/readme/esLintAutomaticDetection.png)
-
-Replace `Strg + Alt + L` shortcut with eslint fix:
-![esLintKeymapShortcut](docs/readme/esLintKeymapShortcut.png)
-
+  
 ## Development mode
 To run the app with hot module reloading at *//localhost:9000*, run:
 
@@ -78,65 +67,8 @@ To build the app in the *dist* folder, run:
 11. Linting with Airbnb presets
 
 ## Architecture
-The target was to create a highly maintainable frontend boilerplate.
-To be specific, the criteria was: readable code, flat learning curve, documentation, large community, easy testing.
+link to readme..
 
-So the architecture was divided in three layers:
-1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
-2. **Infrastructure Layer**: This is the layer where the specific implementations live in (e.g browser cookie storage for browser environments).
-3. **UI Layer**: In this layer all web UI components live in.
-
-One picture says more than thousand words:
-
-![DDD info graphic](docs/readme/architecture.png)
-
-
-If you continue to strictly separate these layers, the already written domain logic could also be used for a native app with [react-native](https://reactnative.dev/).
-Below you find some articles which help you to understand the bird's eye view of the architecture:
-
-- ["MVC vs Flux vs Redux – The Real Differences"](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences)
-- ["Command vs. Event in Domain Driven Design"](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9)
-
-### Evaluation: whys and whats
-Redux was chosen because it makes modularity and maintainability a breeze while giving you full control over every action which is happening during the runtime of your frontend app.
-It works like a charm with Domain Driven Design (DDD) by providing a pattern to encapsulate the view from the business logic with its general bus for actions (e.g. commands, events).
-
-Nevertheless redux only handles synchronous data flow and therefore it was required to find a solution for handling sync and async business logic.
-Most common redux libraries for this are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
-
-[Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out quite early:
-The code gets really messy over time. Most people end up in a callback hell and therefore testing is also not that easy.
-One would crawl through some articles or give it a try. No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
-
-The two favorites obviously were redux-saga and redux-observable.
-Following comparison will give a hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
-
-**redux-observable**:
-- (+) easy testing (error prone if you don't know exactly what you are doing)
-- (+) RxJs observable is a widespread technology
-- (-) relatively hard to learn
-- (+) documentation
-- (+) no callback hell
-
-**redux-saga**:
-- (+) easy-testing
-- (+) flat learning curve
-- (+) large community
-- (+) documentation
-- (+) no callback hell
-- (+) more control with yield over async await
-
-**own redux middleware**:
-- (+) full control 
-- (-) head around testing and probably mocking everything
-- (-) error prone
-- (-) no community, no documentation
-
-Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
-about this and understand saga's [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
-But keep in mind: Whenever you apply saga's flow principle, time travelling with an injected
-redux state could get tricky. With the previous "login flow" example, imagine the current user is already given in the injected state
-and the saga is not listening for a "logout" action yet.
 
 ## Project Structure
 This project is divided in `Apps`, `Packages`, `ModuleCollections` and `Modules`.
@@ -149,9 +81,6 @@ Following definitions should clarify how the project code is structured.
 
 With this feature based structure, it is ensured that specific features easily can be generalized and vise versa.
 
-## Package documentations
-- [Packages/Common/README.md](src/Packages/Common/README.md)
-- [Packages/Entity/README.md](src/Packages/Entity/README.md)
 
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
