@@ -1,0 +1,1 @@
+export { BrowserHistoryManager } from './BrowserHistoryManager';

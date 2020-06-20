@@ -1,9 +1,8 @@
-[![BadgeMITLicense: MIT](docs/readme/badgeMITLicense.svg)](LICENSE)
-![BadgeTestCoverage](docs/readme/badgeTestCoverage.svg)
+[![BadgeMITLicense: MIT](docs/assets/badgeMITLicense.svg)](LICENSE)
 
 # React Redux Boilerplate (WIP)
-Frontend boilerplate realized in [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
-Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
+Monorepo frontend boilerplate for mobile and web app development. Realized with [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
+Written in [TypeScript](http://typescriptlang.org).
 
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
@@ -12,51 +11,21 @@ and other stakeholders.
 
 ## Knowledge base
 To fully understand this project you should be familiar with the technologies below.
+- [lerna](https://lerna.js.org/) (monorepo management)
 - [react](https://reactjs.org/docs/getting-started.html)
 - [redux (with react)](https://egghead.io/courses/getting-started-with-redux)
 - [redux-saga](https://redux-saga.js.org/)
 - [jest](https://jestjs.io/docs/en/getting-started) (unit testing)
-- [enzyme](https://enzymejs.github.io/enzyme/) (react component testing)
+- [react-test-renderer](https://reactjs.org/docs/test-renderer.html) (react component testing)
 - [redux-saga-test-plan](https://survivejs.com/blog/redux-saga-test-plan-interview/) (integration testing)
 - [eslint](https://eslint.org/docs/user-guide/getting-started) (code linting)
+- [webpack](http://webpack.js.org) (web app bundling)
    
-## Installation
-1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
-2. Clone or download this repository
-3. Open console and move into project folder
-4. Run *npm install*
-5. Configure eslint (optional, see "Configure eslint" section)
-6. Follow the steps below to
-   - either: serve the app for development mode (see "Development mode" section)
-   - or: to build the app for production (see "Production mode" section)
-7. Continuous integration (optional): Execute `npm run ci` to automatically test and build the app for every push on your project repository.
-   
-## Configure eslint
-To prevent errors during continuous integration, I recommend configuring your IDE to support the given `.eslintrc.json`. 
-If you don't know about eslint, you probably find the answer [here](https://eslint.org/).
-However, below you can see the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
-
-Automatic detection of `.eslintrc.json` in the project folder:
-![esLintAutomaticDetection](docs/readme/esLintAutomaticDetection.png)
-
-Replace `Strg + Alt + L` shortcut with eslint fix:
-![esLintKeymapShortcut](docs/readme/esLintKeymapShortcut.png)
-
-## Development mode
-To run the app with hot module reloading at *//localhost:9000*, run:
-
-    npm run start:spa
-
-## Production mode
-To build the app in the *dist* folder, run:
-
-    npm run build:spa
-    
 ## Open todos (WIP)
-1. Command in `Packages/Common/Form` module to enrich form fields with `FieldMessage[]`
-2. Better simulation of authentication refresh in `Packages/Common/Authentication` module
-3. Remove `ModuleCollections` and divide Modules in `Domain`, `UI`, `Infrastructure` and `SubModules`
-4. Test coverage
+1. Better simulation of authentication refresh in `Packages/Common/Authentication` module
+2. Remove `ModuleCollections` and divide Modules in `Domain`, `UI`, `Infrastructure` and `SubModules`
+3. Integration of `src/MobileApp` as an additional yarn workspace (pay also attention to environment docs)
+4. Test coverage + badge integration
 5. (Concurrent saga performance analysis)
 6. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
@@ -78,102 +47,11 @@ To build the app in the *dist* folder, run:
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
 11. Linting with Airbnb presets
 
-## Architecture
-The target was to create a highly maintainable frontend boilerplate.
-To be specific, the criteria was: readable code, flat learning curve, documentation, large community, easy testing.
-
-So the architecture was divided in three layers:
-1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
-2. **Infrastructure Layer**: This is the layer where the specific implementations live in (e.g browser cookie storage for browser environments).
-3. **UI Layer**: In this layer all web UI components live in.
-
-One picture says more than thousand words:
-
-![DDD info graphic](docs/readme/architecture.png)
-
-
-If you continue to strictly separate these layers, the already written domain logic could also be used for a native app with [react-native](https://reactnative.dev/).
-Below you find some articles which help you to understand the bird's eye view of the architecture:
-
-- ["MVC vs Flux vs Redux – The Real Differences"](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences)
-- ["Command vs. Event in Domain Driven Design"](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9)
-
-### Evaluation: whys and whats
-Redux was chosen because it makes modularity and maintainability a breeze while giving you full control over every action which is happening during the runtime of your frontend app.
-It works like a charm with Domain Driven Design (DDD) by providing a pattern to encapsulate the view from the business logic with its general bus for actions (e.g. commands, events).
-
-Nevertheless redux only handles synchronous data flow and therefore it was required to find a solution for handling sync and async business logic.
-Most common redux libraries for this are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
-
-[Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out quite early:
-The code gets really messy over time. Most people end up in a callback hell and therefore testing is also not that easy.
-One would crawl through some articles or give it a try. No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
-
-The two favorites obviously were redux-saga and redux-observable.
-Following comparison will give a hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
-
-**redux-observable**:
-- (+) easy testing (error prone if you don't know exactly what you are doing)
-- (+) RxJs observable is a widespread technology
-- (-) relatively hard to learn
-- (+) documentation
-- (+) no callback hell
-
-**redux-saga**:
-- (+) easy-testing
-- (+) flat learning curve
-- (+) large community
-- (+) documentation
-- (+) no callback hell
-- (+) more control with yield over async await
-
-**own redux middleware**:
-- (+) full control 
-- (-) head around testing and probably mocking everything
-- (-) error prone
-- (-) no community, no documentation
-
-Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
-about this and understand saga's [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
-But keep in mind: Whenever you apply saga's flow principle, time travelling with an injected
-redux state could get tricky. With the previous "login flow" example, imagine the current user is already given in the injected state
-and the saga is not listening for a "logout" action yet.
-
-## Project Structure
-This project is divided in `Apps`, `Packages`, `ModuleCollections` and `Modules`.
-Following definitions should clarify how the project code is structured.
-
-- `Package:` A package is a collection of `ModuleCollections` and `Modules`. A package can be considered as a root `module collection` without an `index.ts` file.
-- `Module:` A module contains a strongly coupled features. Every module contains an `index.ts` file, which defines its public API. Every module is divided in domain, infrastructure and UI layer.
-- `ModuleCollection:` A module collection contains multiple modules and other module collections. A module collection contains an `index.ts` file to define its public API.
-- `App:` An app (e.g. WebSPA) is a standalone application, which uses several modules from different packages. Furthermore it can contain its own specific modules or module collections. Ideally most stuff is kept reusable and sourced out to packages.
-
-With this feature based structure, it is ensured that specific features easily can be generalized and vise versa.
-
-## Package documentations
-- [Packages/Common/README.md](src/Packages/Common/README.md)
-- [Packages/Entity/README.md](src/Packages/Entity/README.md)
-
-## Testing
-The integrated test runner is [jest](http://jestjs.io).
-Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
-React components are tested with [enzyme](https://enzymejs.github.io/enzyme/).
-
-To execute the tests, run:
-
-    npm run test
-
-Tests are organized as follow:
-- The file suffix `.test.ts` is required
-- A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Packages/Common/Domain/Toaster/Saga/Flow/ShowMessageHandling.integration.test.ts`.
-
-As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
-Read a [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
-
-I think, because snapshot tests are expected to fail with every UI change, they are completely useless for TDD.
-In my opinion, tests are here to develop faster and especially to prevent unwanted bugs.
-Similar thoughts [here](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
+## Documentation
+- [Environment](./docs/Environment.md): Installation, development start, scripts
+- [Architecture](./docs/Architecture.md): Architecture and code structure.
+- [Coding guidelines](./docs/CodingGuidelines.md): Please don't mess up this project.
+- [API documentation](./docs/ApiDocs.md): Documentation for existing code and its usage.
 
 ## Appreciation
 Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).
