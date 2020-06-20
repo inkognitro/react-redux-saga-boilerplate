@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { UserLabelWC } from "Packages/Entity/User";
+import { UserLabelWC } from "Packages/Entity/User/Web";
 import { AuthUser, AuthUserTypes } from "../Domain/Types";
 
 export type AuthUserLabelWCProps = {
