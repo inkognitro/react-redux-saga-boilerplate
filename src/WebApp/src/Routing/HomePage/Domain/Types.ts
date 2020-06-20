@@ -1,4 +1,4 @@
-import { TextFieldState } from "Packages/Common/FormElement";
+import { TextFieldState } from "Packages/Common/FormElement/Domain";
 
 export type HomePageState = {
   toastContent: TextFieldState;

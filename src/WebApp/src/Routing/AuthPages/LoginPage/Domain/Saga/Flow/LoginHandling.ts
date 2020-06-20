@@ -1,11 +1,11 @@
 import { put, select } from "redux-saga/effects";
-import { login, LoginResult } from "Packages/Common/Authentication";
+import { login, LoginResult } from "Packages/Common/Authentication/Domain";
 import { dispatchToastsFromResult } from "Packages/Common/Toaster/Domain";
-import { createHideLoader, createShowLoader } from "Packages/Common/Loader";
+import { createHideLoader, createShowLoader } from "Packages/Common/Loader/Domain";
 import { ResultTypes } from "Packages/Entity/CommonTypes";
-import { createOpenUrl } from "Packages/Common/Router";
+import { createOpenUrl } from "Packages/Common/Router/Domain";
 import { createHomeRouteUrl } from "WebApp/Routing";
-import { createSetFormFieldMessages } from "Packages/Common/Form";
+import { createSetFormFieldMessages } from "Packages/Common/Form/Domain";
 import { LoginPageState, LoginPageStateSelector } from "../../Types";
 
 export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Generator {

@@ -1,4 +1,4 @@
-import { Route } from "Packages/Common/Router/Domain/Types";
+import { Route } from "Packages/Common/Router/Domain";
 import { Login as LoginType } from './Domain/Command/Login';
 import {
     LoginPageState as LoginPageStateType,

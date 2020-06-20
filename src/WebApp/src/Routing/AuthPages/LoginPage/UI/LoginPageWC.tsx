@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import { connect } from "react-redux";
 import { ContentPage } from "WebApp/Foundation";
 import { RootState } from "WebApp/ServicesFactory";
-import { CardWC } from "Packages/Common/LayoutFoundation";
-import { FormWC } from "Packages/Common/Form";
+import { CardWC } from "Packages/Common/LayoutFoundation/Web";
+import { FormWC } from "Packages/Common/Form/Web";
 import {
     TextFieldWC,
     FormElementGroupWC,
     PrimaryButtonWC,
     PasswordFieldWC, CheckboxWC,
-} from "Packages/Common/FormElement";
+} from "Packages/Common/FormElement/Web";
 import { Dispatch } from "redux";
 import { LoginPageState } from "../Domain/Types";
 import { createLogin } from "../Domain/Command/Login";

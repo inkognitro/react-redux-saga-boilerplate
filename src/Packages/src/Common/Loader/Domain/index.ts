@@ -16,3 +16,4 @@ export { createShowLoader } from './Command/ShowLoader';
 export { loaderReducer } from './Reducer';
 export { LoaderCommandTypes } from "./Command/Types";
 export { LoaderEventTypes } from "./Event/Types";
+export { shouldShowLoader } from "./Query/ShouldShowLoader";

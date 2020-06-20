@@ -5,7 +5,12 @@ import {
     Reducer,
     Store,
 } from "redux";
-import { RouterState, RouterStateSelector } from "Packages/Common/Router/Domain/Types";
+import {
+    RouterState,
+    RouterStateSelector,
+    routerReducer,
+    createRouterSaga,
+} from "Packages/Common/Router/Domain";
 import createSagaMiddleware from "redux-saga";
 import { spawn } from "redux-saga/effects";
 import { createBrowserHistory, History } from "history";
@@ -21,39 +26,38 @@ import {
     createTranslatorSaga,
     translatorReducer,
 } from "Packages/Common/Translator/Domain";
-import {
-    BrowserHistoryManager,
-    routerReducer,
-    createRouterSaga,
-} from "Packages/Common/Router";
-import { BrowserCookieStorage, createCookieSaga } from "Packages/Common/Cookie";
+import { BrowserHistoryManager } from "Packages/Common/Router/Infrastructure";
+import { createCookieSaga } from "Packages/Common/Cookie/Domain";
+import { BrowserCookieStorage } from "Packages/Common/Cookie/Infrastructure";
 import {
     HttpFoundationState,
     HttpFoundationStateSelector,
     HttpRequestDispatcher,
     httpFoundationReducer,
-    AxiosHttpRequestDispatcher,
     createHttpFoundationSaga,
+} from "Packages/Common/HttpFoundation/Domain";
+import {
+    AxiosHttpRequestDispatcher,
     MockHttpRequestDispatcher,
-} from "Packages/Common/HttpFoundation";
+} from "Packages/Common/HttpFoundation/Infrastructure";
 import {
     AuthState,
     AuthStateSelector,
     authenticationReducer,
     createAuthenticationSaga,
-} from "Packages/Common/Authentication";
-import { designReducer, DesignState } from "Packages/Common/Design";
+} from "Packages/Common/Authentication/Domain";
+import { designReducer, DesignState } from "Packages/Common/Design/Domain";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { createLoaderSaga, loaderReducer, LoaderState } from "Packages/Common/Loader";
-import { createFormElementsFlow } from "Packages/Common/FormElement";
-import { createFormSaga } from "Packages/Common/Form";
+import { createLoaderSaga, loaderReducer, LoaderState } from "Packages/Common/Loader/Domain";
+import { createFormElementsFlow } from "Packages/Common/FormElement/Domain";
+import { createFormSaga } from "Packages/Common/Form/Domain";
 import {
     createRoutingSaga,
     routingReducer,
     RoutingState,
     RoutingStateSelector,
 } from "WebApp/Routing";
-import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1";
+import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1/Domain";
 import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster/Domain";
 import { createFoundationSaga } from "WebApp/Foundation/Domain/Saga/Flow";
 

@@ -1,10 +1,10 @@
-import { RouterEventTypes, CurrentUrlWasChanged } from "Packages/Common/Router";
+import { RouterEventTypes, CurrentUrlWasChanged } from "Packages/Common/Router/Domain";
 import {
     textFieldReducer,
     FormElementEvent,
     FormElementEventTypes,
     createTextFieldState,
-} from "Packages/Common/FormElement";
+} from "Packages/Common/FormElement/Domain";
 import { HomePageState } from "./Types";
 
 const initialHomePageState: HomePageState = {

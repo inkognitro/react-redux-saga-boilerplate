@@ -1,12 +1,12 @@
-import { RouterEventTypes, CurrentUrlWasChanged } from "Packages/Common/Router";
+import { RouterEventTypes, CurrentUrlWasChanged } from "Packages/Common/Router/Domain";
 import {
     createPasswordFieldState,
     createTextFieldState,
     createCheckboxState,
     FormElementEvent,
     FormElementEventTypes,
-} from "Packages/Common/FormElement";
-import { formReducer, createFormState } from "Packages/Common/Form";
+} from "Packages/Common/FormElement/Domain";
+import { formReducer, createFormState } from "Packages/Common/Form/Domain";
 import { LoginPageState } from "./Types";
 
 const initialLoginPageState: LoginPageState = {

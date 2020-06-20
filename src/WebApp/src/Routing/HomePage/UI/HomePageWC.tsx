@@ -1,11 +1,10 @@
 import React, { FC } from "react";
-import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
+import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router/Web";
 import { ToastTypes, createShowMessage } from "Packages/Common/Toaster/Domain";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import {
-    FormElementGroupWC, LabelWC, TextFieldWC, TextFieldState,
-} from "Packages/Common/FormElement";
+import { TextFieldState } from "Packages/Common/FormElement/Domain";
+import { FormElementGroupWC, LabelWC, TextFieldWC } from "Packages/Common/FormElement/Web";
 import { createLeakReduxState } from "WebApp/Routing/HomePage";
 import { ContentPage } from "WebApp/Foundation";
 import { RootState } from "WebApp/ServicesFactory";

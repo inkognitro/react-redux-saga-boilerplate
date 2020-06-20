@@ -1,10 +1,14 @@
 import {
     AuthState as AuthStateType,
     AuthStateSelector as AuthStateSelectorType,
+    LoginResult as LoginResultType,
+    LogoutResult as LogoutResultType,
 } from './Types';
 
 export type AuthStateSelector = AuthStateSelectorType;
 export type AuthState = AuthStateType;
+export type LoginResult = LoginResultType;
+export type LogoutResult = LogoutResultType;
 
 export { AuthCommandTypes } from "./Command/Types";
 export { AuthEventTypes } from './Event/Types';

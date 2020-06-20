@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import {
     LoaderWC as PresentationalLoader,
     LoaderWCState as PresentationalLoaderState,
-} from "Packages/Common/Loader/Web/LoaderWC";
+} from "Packages/Common/Loader/Web";
 import { RootState } from "WebApp/ServicesFactory";
-import { shouldShowLoader } from "Packages/Common/Loader/Domain/Query/ShouldShowLoader";
+import { shouldShowLoader } from "Packages/Common/Loader/Domain";
 
 const mapStateToProps = (state: RootState): PresentationalLoaderState => ({
     isVisible: shouldShowLoader(state.loader),

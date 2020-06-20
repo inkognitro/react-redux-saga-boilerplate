@@ -1,5 +1,4 @@
 import { put } from "redux-saga/effects";
-import { SetFormFieldMessages } from "Packages/Common/Form/Domain/Command/SetFormFieldMessages";
 import { FieldMessage } from "Packages/Entity/CommonTypes";
 import {
     createChangeFormElementStates,
@@ -7,6 +6,7 @@ import {
     FormElementStateChanges,
     FormElementTypes, TextFieldState,
 } from "Packages/Common/FormElement/Domain";
+import { SetFormFieldMessages } from "../../Command/SetFormFieldMessages";
 
 export function* handleSetFormFieldMessages(command: SetFormFieldMessages): Generator {
     const formElementsByName = command.payload.form.elementsByName;

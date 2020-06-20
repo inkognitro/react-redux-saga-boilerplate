@@ -3,11 +3,10 @@ import {
     ToasterWC as RepresentationalToaster,
     ToasterWCCallbacks,
     ToasterWCState,
-} from "Packages/Common/Toaster/Web/ToasterWC";
+} from "Packages/Common/Toaster/Web";
 import { Dispatch } from "redux";
 import { RootState } from "WebApp/ServicesFactory";
-import { createRemoveMessage } from "Packages/Common/Toaster/Domain";
-import { getAllToasts } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
+import { createRemoveMessage, getAllToasts } from "Packages/Common/Toaster/Domain";
 
 const mapStateToProps = (rootState: RootState): ToasterWCState => ({
     toasts: getAllToasts(rootState.toaster),

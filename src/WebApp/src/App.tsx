@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { RouterWC } from "WebApp/Routing";
 import { Toaster, Loader } from "WebApp/Foundation";
 import { RootState } from "WebApp/ServicesFactory";
-import { Theme, getTheme } from "Packages/Common/Design";
+import { Theme, getTheme } from "Packages/Common/Design/Domain";
 import "bootstrap/scss/bootstrap.scss";
 
 // @ts-ignore

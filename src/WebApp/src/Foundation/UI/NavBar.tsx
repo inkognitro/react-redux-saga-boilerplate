@@ -1,12 +1,12 @@
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
-import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router";
+import { FunctionalLinkWC, RouteLinkWC } from "Packages/Common/Router/Web";
 import { RootState } from "WebApp/ServicesFactory";
 import { Dispatch } from "redux";
-import { AuthUserTypes, getCurrentAuthUser } from "Packages/Common/Authentication";
-import { AuthUser } from "Packages/Entity/AuthUser";
+import { getCurrentAuthUser } from "Packages/Common/Authentication/Domain";
+import { AuthUser, AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
 import { createHomeRouteUrl, createLoginRouteUrl } from "WebApp/Routing";
-import { UserLabelWC } from "Packages/Entity/User";
+import { UserLabelWC } from "Packages/Entity/User/Web";
 import { createLogout } from "WebApp/Foundation";
 
 type RepresentationalNavBarState = {
