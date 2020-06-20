@@ -11,20 +11,24 @@ This section describes how this monorepo can be handled.
 5. Open console and move into project folder, run:  `lerna bootstrap`
 6. Configure eslint, described in [coding guidelines](./CodingGuidelines.md)
 
-
-## Start developing
+## Development
 tbd...
 
 ## Scripts
-To install all node modules (except MobileApp), run:
+Following scripts are executed for all yarn workspaces.
+Be aware that these commands require [yarn](https://yarnpkg.com/) and [lerna](https://lerna.js.org/) as a global dependency.
+The `src/MobileApp` package is not yet being integrated and currently not included in these scripts.
+This will be done asap.
+
+To install install `node_modules` in every package, run:
 
     \Foo\Bar\MonorepoRootFolder> lerna bootstrap
 
-To remove all node modules (except MobileApp), run:
+To remove `node_modules` from all packages, run:
 
     \Foo\Bar\MonorepoRootFolder> lerna clean
 
-To run the tests in every package, run:
+To run all package tests, run:
 
     \Foo\Bar\MonorepoRootFolder> yarn run test
 
@@ -32,10 +36,14 @@ To type check every package, run:
 
     \Foo\Bar\MonorepoRootFolder> yarn run tsc
 
-To lint check every package without fixing it, run:
+To lint every package without fixing it, run:
 
     \Foo\Bar\MonorepoRootFolder> yarn run lint
 
-To lint check every package with fixing it, run:
+To lint every package with fixing it, run:
 
     \Foo\Bar\MonorepoRootFolder> yarn run lint:fix
+
+Continuous integration. To execute tests, type check, lint fix and build every package, run:
+
+    \Foo\Bar\MonorepoRootFolder> yarn run ci
