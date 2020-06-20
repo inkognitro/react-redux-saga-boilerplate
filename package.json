@@ -16,6 +16,8 @@
     ]
   },
   "scripts": {
+    "start:spa": "cd src/WebApp && yarn run start",
+    "start:android": "cd src/MobileApp && yarn run android",
     "tsc": "lerna run tsc --stream",
     "test": "lerna run test --stream",
     "test:coverage": "lerna run test:coverage --stream",

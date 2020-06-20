@@ -11,8 +11,16 @@ This section describes how this monorepo can be handled.
 5. Open console and move into project folder, run:  `lerna bootstrap`
 6. Configure eslint, described in [coding guidelines](./CodingGuidelines.md)
 
-## Development
-tbd...
+## WebApp development
+To run the web app with hot module reloading at `//localhost:9000`, run:
+
+    \Foo\Bar\MonorepoRootFolder> yarn run start:spa
+    
+## MobileApp development
+To run the mobile app with hot module reloading on android device emulator, run:
+
+    \Foo\Bar\MonorepoRootFolder> yarn run start:android
+
 
 ## Scripts
 Following scripts are executed for all yarn workspaces.
