@@ -25,3 +25,25 @@ Automatic detection of `.eslintrc.json` in the project folder:
 
 Replace `Strg + Alt + L` shortcut with eslint fix:
 ![esLintKeymapShortcut](assets/esLintKeymapShortcut.png)
+
+## Testing
+The integrated test runner is [jest](http://jestjs.io).
+Business logic (redux-saga) can be tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
+React components can be tested with [react-test-renderer](https://reactjs.org/docs/test-renderer.html).
+
+Tests should be organized as follow:
+- The file suffix `.test.ts` is required
+- A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
+- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Packages/Common/Domain/Toaster/Saga/Flow/ShowMessageHandling.integration.test.ts`.
+
+Unit tests should have the suffix `.unit.test.ts`. Integration tests should have the suffix `.integration.test.ts`.
+
+## Appendix
+Following information is not necessary to know but may be interesting for you.
+
+### Thoughts about testing
+I think, because snapshot tests are expected to fail with every UI change, they are completely useless for TDD.
+In my opinion, tests are here to develop faster and especially to prevent unwanted bugs.
+Similar thoughts [here](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
+
+Read a [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.

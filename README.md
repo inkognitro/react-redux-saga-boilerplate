@@ -1,9 +1,8 @@
 [![BadgeMITLicense: MIT](docs/assets/badgeMITLicense.svg)](LICENSE)
-![BadgeTestCoverage](docs/assets/badgeTestCoverage.svg)
 
 # React Redux Boilerplate (WIP)
-Frontend boilerplate realized in [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
-Written in [TypeScript](http://typescriptlang.org). Built with [webpack](http://webpack.js.org).
+Frontend boilerplate for mobile and web app development. Realized with [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
+Written in [TypeScript](http://typescriptlang.org).
 
 ## Motivation
 Sometimes it is hard to deliver good quality software due to economic time pressure.
@@ -19,28 +18,8 @@ To fully understand this project you should be familiar with the technologies be
 - [react-test-renderer](https://reactjs.org/docs/test-renderer.html) (react component testing)
 - [redux-saga-test-plan](https://survivejs.com/blog/redux-saga-test-plan-interview/) (integration testing)
 - [eslint](https://eslint.org/docs/user-guide/getting-started) (code linting)
+- [webpack](http://webpack.js.org) (web app bundling)
    
-## Installation
-1. Install the latest version of [NodeJS](http://nodejs.org/en/download/)
-2. Clone or download this repository
-3. Open console and move into project folder
-4. Run *npm install*
-5. Configure eslint (optional, see "Configure eslint" section)
-6. Follow the steps below to
-   - either: serve the app for development mode (see "Development mode" section)
-   - or: to build the app for production (see "Production mode" section)
-7. Continuous integration (optional): Execute `npm run ci` to automatically test and build the app for every push on your project repository.
-  
-## Development mode
-To run the app with hot module reloading at *//localhost:9000*, run:
-
-    npm run start:webapp
-
-## Production mode
-To build the app in the *dist* folder, run:
-
-    npm run build:webapp
-    
 ## Open todos (WIP)
 1. Better simulation of authentication refresh in `Packages/Common/Authentication` module
 2. Remove `ModuleCollections` and divide Modules in `Domain`, `UI`, `Infrastructure` and `SubModules`
@@ -66,42 +45,11 @@ To build the app in the *dist* folder, run:
 10. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
 11. Linting with Airbnb presets
 
-## Architecture
-link to readme..
-
-
-## Project Structure
-This project is divided in `Apps`, `Packages`, `ModuleCollections` and `Modules`.
-Following definitions should clarify how the project code is structured.
-
-- `Package:` A package is a collection of `ModuleCollections` and `Modules`. A package can be considered as a root `module collection` without an `index.ts` file.
-- `Module:` A module contains a strongly coupled features. Every module contains an `index.ts` file, which defines its public API. Every module is divided in domain, infrastructure and UI layer.
-- `ModuleCollection:` A module collection contains multiple modules and other module collections. A module collection contains an `index.ts` file to define its public API.
-- `App:` An app (e.g. WebApp) is a standalone application, which uses several modules from different packages. Furthermore it can contain its own specific modules or module collections. Ideally most stuff is kept reusable and sourced out to packages.
-
-With this feature based structure, it is ensured that specific features easily can be generalized and vise versa.
-
-
-## Testing
-The integrated test runner is [jest](http://jestjs.io).
-Business logic (redux-saga) is tested with [redux-saga-test-plan](https://www.npmjs.com/package/redux-saga-test-plan).
-React components are tested with [react-test-renderer](https://reactjs.org/docs/test-renderer.html).
-
-To execute the tests, run:
-
-    npm run test
-
-Tests are organized as follow:
-- The file suffix `.test.ts` is required
-- A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Packages/Common/Domain/Toaster/Saga/Flow/ShowMessageHandling.integration.test.ts`.
-
-As you can see, unit tests always have the suffix `.unit.test.ts`, integration tests the suffix `.integration.test.ts`.
-Read a [smart article](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) about testing structure.
-
-I think, because snapshot tests are expected to fail with every UI change, they are completely useless for TDD.
-In my opinion, tests are here to develop faster and especially to prevent unwanted bugs.
-Similar thoughts [here](https://medium.com/@tomgold_48918/why-i-stopped-using-snapshot-testing-with-jest-3279fe41ffb2).
+## Documentation
+- [Environment](./docs/Architecture.md): Installation, Scripts
+- [Architecture](./docs/Architecture.md): Explanation of the architecture and code structure.
+- [Coding guidelines](./docs/CodingGuidelines.md): Please don't mess up this project.
+- [API documentation](./docs/ApiDocs.md): Documentation for existing code and its usage.
 
 ## Appreciation
 Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).
