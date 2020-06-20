@@ -10,7 +10,7 @@ With growing experience these guidelines could change. Nothing is carved in ston
 By avoiding circular import references the codebase stays clear and understandable.
 However, some bundlers also have problems with circular import references. Below you find some helpful rules:
 1. Imports must only reach to the next `index.ts` file.
-2. Inside a module files need to be imported relatively (e.g. `import { LoaderCommandTypes } from "./Types";`).
+2. Importing a file from same module should be done by a relative import (e.g. `import { LoaderCommandTypes } from "./Types";`).
 3. Importing a file from another module should be done with an absolute import (e.g. `import { Command } from "Packages/Entity/CommonTypes";`).
 
 ## Linting for a unified codebase

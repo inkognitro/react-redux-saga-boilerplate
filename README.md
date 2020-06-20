@@ -46,7 +46,7 @@ To fully understand this project you should be familiar with the technologies be
 11. Linting with Airbnb presets
 
 ## Documentation
-- [Environment](./docs/Architecture.md): Installation, Scripts
+- [Environment](./docs/Environment.md): Installation, Scripts
 - [Architecture](./docs/Architecture.md): Explanation of the architecture and code structure.
 - [Coding guidelines](./docs/CodingGuidelines.md): Please don't mess up this project.
 - [API documentation](./docs/ApiDocs.md): Documentation for existing code and its usage.
