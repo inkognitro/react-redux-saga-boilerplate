@@ -1,5 +1,6 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { Cookie, CookieEventTypes } from "../Types";
+import { Cookie } from "../Types";
+import { CookieEventTypes } from "./Types";
 
 export function createCookieWasSaved(cookie: Cookie): CookieWasSaved {
     return {
@@ -10,9 +11,6 @@ export function createCookieWasSaved(cookie: Cookie): CookieWasSaved {
     };
 }
 
-export type CookieWasSaved = Event<
-  CookieEventTypes.COOKIE_WAS_SAVED,
-  {
+export type CookieWasSaved = Event<CookieEventTypes.COOKIE_WAS_SAVED, {
     cookie: Cookie;
-  }
->;
+}>;

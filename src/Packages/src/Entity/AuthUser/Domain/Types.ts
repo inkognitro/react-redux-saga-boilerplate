@@ -1,4 +1,4 @@
-import { User } from "Packages/Entity/User";
+import { User } from "Packages/Entity/User/Domain";
 
 export enum AuthUserTypes {
     ANONYMOUS = 'anonymous',

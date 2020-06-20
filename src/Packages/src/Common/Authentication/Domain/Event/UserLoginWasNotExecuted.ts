@@ -1,5 +1,6 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { AuthEventTypes, LoginSettings } from "../Types";
+import { LoginSettings } from "../Types";
+import { AuthEventTypes } from "./Types";
 
 export function createUserLoginWasNotExecuted(loginSettings: LoginSettings): UserLoginWasNotExecuted {
     return {

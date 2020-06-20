@@ -1,5 +1,25 @@
-import { AnonymousAuthUser, AuthUserTypes } from "Packages/Entity/AuthUser";
-import { AuthEvent, AuthEventTypes, AuthState } from "./Types";
+import { AnonymousAuthUser, AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
+import { AuthEventTypes } from "./Event/Types";
+import { UserAuthenticationRefreshFailed } from "./Event/UserAuthenticationRefreshFailed";
+import { UserAuthenticationRefreshWasRequested } from "./Event/UserAuthenticationRefreshWasRequested";
+import { UserLoginWasCancelled } from "./Event/UserLoginWasCancelled";
+import { UserLoginFailed } from "./Event/UserLoginFailed";
+import { UserAuthenticationWasRefreshed } from "./Event/UserAuthenticationWasRefreshed";
+import { UserLoginWasRequested } from "./Event/UserLoginWasRequested";
+import { UserWasLoggedIn } from "./Event/UserWasLoggedIn";
+import { UserWasLoggedOut } from "./Event/UserWasLoggedOut";
+import { AuthState } from "./Types";
+
+export type AuthEvent = (
+    UserAuthenticationRefreshFailed
+    | UserAuthenticationRefreshWasRequested
+    | UserLoginWasCancelled
+    | UserLoginFailed
+    | UserAuthenticationWasRefreshed
+    | UserLoginWasRequested
+    | UserWasLoggedIn
+    | UserWasLoggedOut
+);
 
 const anonymousUser: AnonymousAuthUser = {
     type: AuthUserTypes.ANONYMOUS,

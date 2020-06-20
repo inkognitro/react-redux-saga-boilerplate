@@ -1,5 +1,6 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { AuthEventTypes, LoginSettings, LoginSuccessResult } from "../Types";
+import { LoginSettings, LoginSuccessResult } from "../Types";
+import { AuthEventTypes } from "./Types";
 
 export function createUserWasLoggedIn(loginSettings: LoginSettings, result: LoginSuccessResult): UserWasLoggedIn {
     return {

@@ -1,15 +1,16 @@
 import {
     call, CallEffect, put, StrictEffect, take,
 } from "redux-saga/effects";
-import {
-    AuthEventTypes,
-    createLogout,
-    LogoutErrorResult,
-    LogoutResult, LogoutSuccessResult,
-    UserLogoutWasNotExecuted,
-    UserWasLoggedOut,
-} from "Packages/Common/Authentication";
 import { createErrorResult, createSuccessResult } from "Packages/Entity/CommonTypes";
+import {
+    LogoutErrorResult,
+    LogoutResult,
+    LogoutSuccessResult,
+} from "../../Types";
+import { AuthEventTypes } from '../../Event/Types';
+import { createLogout } from '../../Command/Logout';
+import { UserLogoutWasNotExecuted } from '../../Event/UserLogoutWasNotExecuted';
+import { UserWasLoggedOut } from '../../Event/UserWasLoggedOut';
 
 type LogoutResultEventGenerator = Generator<StrictEffect, LogoutResult>;
 

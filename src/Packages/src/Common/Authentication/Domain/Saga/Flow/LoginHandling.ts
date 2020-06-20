@@ -1,22 +1,21 @@
 import {
     call, cancelled, put, select,
 } from "@redux-saga/core/effects";
-import { Login } from "Packages/Common/Authentication/Domain/Command/Login";
 import { authenticate, AuthenticateResult } from "Packages/Common/HttpApiV1";
-import {
-    AuthState,
-    AuthStateSelector,
-    authTokenCookieName,
-    authTokenCookieTimeToLiveInDays,
-    AuthUserTypes,
-    getCurrentAuthUser,
-} from "Packages/Common/Authentication";
-import { createSaveCookie } from "Packages/Common/Cookie";
+import { createSaveCookie } from "Packages/Common/Cookie/Domain";
 import { ResultTypes } from "Packages/Entity/CommonTypes";
+import { AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
+import { getCurrentAuthUser } from "../../Query/CurrentAuthUserQuery";
+import { AuthState, AuthStateSelector } from "../../Types";
+import { Login } from "../../Command/Login";
 import { createUserLoginFailed } from "../../Event/UserLoginFailed";
 import { createUserWasLoggedIn } from "../../Event/UserWasLoggedIn";
 import { createUserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
 import { createUserLoginWasNotExecuted } from "../../Event/UserLoginWasNotExecuted";
+
+export const authTokenCookieTimeToLiveInDays = 14;
+
+export const authTokenCookieName = 'authUser';
 
 export function* handleLogin(authStateSelector: AuthStateSelector, command: Login): Generator {
     // @ts-ignore
@@ -41,8 +40,8 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
                 name: authTokenCookieName,
                 content: JSON.stringify(result.data.authUser),
                 timeToLiveInDays: (command.payload.shouldRemember
-                        ? authTokenCookieTimeToLiveInDays
-                        : undefined
+                    ? authTokenCookieTimeToLiveInDays
+                    : undefined
                 ),
             }),
         );

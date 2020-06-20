@@ -2,19 +2,14 @@ import {
     call, CallEffect, put, StrictEffect, take,
 } from "redux-saga/effects";
 import uuidV4 from 'uuid/v4';
-import {
-    AuthEventTypes,
-    createLogin,
-    Login,
-    LoginErrorResult,
-    LoginResult,
-    LoginSettings,
-    UserLoginFailed,
-    UserLoginWasCancelled,
-    UserLoginWasNotExecuted,
-    UserWasLoggedIn,
-} from "Packages/Common/Authentication";
 import { createErrorResult } from "Packages/Entity/CommonTypes";
+import { AuthEventTypes } from "../../Event/Types";
+import { Login, createLogin } from "../../Command/Login";
+import { UserLoginFailed } from "../../Event/UserLoginFailed";
+import { UserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
+import { UserLoginWasNotExecuted } from "../../Event/UserLoginWasNotExecuted";
+import { UserWasLoggedIn } from "../../Event/UserWasLoggedIn";
+import { LoginErrorResult, LoginResult, LoginSettings } from "../../Types";
 
 type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 

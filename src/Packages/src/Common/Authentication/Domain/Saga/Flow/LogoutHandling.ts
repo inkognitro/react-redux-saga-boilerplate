@@ -1,7 +1,8 @@
 import { put, select } from "@redux-saga/core/effects";
-import {
-    AuthState, AuthStateSelector, AuthUserTypes, getCurrentAuthUser, Logout,
-} from "Packages/Common/Authentication";
+import { AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
+import { AuthState, AuthStateSelector } from "../../Types";
+import { getCurrentAuthUser } from "../../Query/CurrentAuthUserQuery";
+import { Logout } from "../../Command/Logout";
 import { createUserLogoutWasNotExecuted } from "../../Event/UserLogoutWasNotExecuted";
 import { createUserWasLoggedOut } from "../../Event/UserWasLoggedOut";
 

@@ -1,5 +1,6 @@
 import { put } from "redux-saga/effects";
-import { SaveCookie, CookieStorage } from "Packages/Common/Cookie";
+import { CookieStorage } from "../../Types";
+import { SaveCookie } from "../../Command/SaveCookie";
 import { createCookieWasSaved } from "../../Event/CookieWasSaved";
 
 export function* handleSaveCookie(cookieStorage: CookieStorage, command: SaveCookie): Generator {

@@ -1,5 +1,6 @@
 import { spawn, takeEvery } from "@redux-saga/core/effects";
-import { CookieCommandTypes, CookieStorage } from "Packages/Common/Cookie";
+import { CookieStorage } from "../../Types";
+import { CookieCommandTypes } from "../../Command/Types";
 import { handleSaveCookie } from "./SaveCookieHandling";
 import { handleRemoveCookie } from "./RemoveCookieHandling";
 

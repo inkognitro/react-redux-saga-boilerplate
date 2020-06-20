@@ -1,8 +1,9 @@
 import { spawn, takeEvery } from "@redux-saga/core/effects";
-import { AuthCommandTypes, AuthStateSelector } from "../../Types";
+import { AuthStateSelector } from "../../Types";
 import { handleLogin } from "./LoginHandling";
 import { handleLogout } from "./LogoutHandling";
 import { handleAutomaticAuthenticationRefresh } from "./AutomaticAuthRefreshHandling";
+import { AuthCommandTypes } from "../../Command/Types";
 
 export function createAuthenticationSaga(authStateSelector: AuthStateSelector): () => Generator {
     return function* (): Generator {

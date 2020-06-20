@@ -1,5 +1,6 @@
 import { put } from "redux-saga/effects";
-import { RemoveCookie, CookieStorage } from "Packages/Common/Cookie";
+import { CookieStorage } from "../../Types";
+import { RemoveCookie } from "../../Command/RemoveCookie";
 import { createCookieWasRemoved } from "../../Event/CookieWasRemoved";
 
 export function* handleRemoveCookie(cookieStorage: CookieStorage, command: RemoveCookie): Generator {

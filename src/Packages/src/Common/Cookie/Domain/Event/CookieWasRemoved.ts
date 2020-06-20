@@ -1,5 +1,5 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { CookieEventTypes } from "../Types";
+import { CookieEventTypes } from "Packages/Common/Cookie/Domain/Event/Types";
 
 export function createCookieWasRemoved(cookieName: string): CookieWasRemoved {
     return {
