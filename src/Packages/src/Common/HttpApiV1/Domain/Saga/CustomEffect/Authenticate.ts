@@ -1,6 +1,6 @@
-import { User } from "Packages/Entity/User";
-import { createPostRequest, HttpStatusCodes, Request } from "Packages/Common/HttpFoundation";
-import { AuthenticatedAuthUser, AuthUserTypes } from "Packages/Entity/AuthUser";
+import { User } from "Packages/Entity/User/Domain";
+import { createPostRequest, HttpStatusCodes, Request } from "Packages/Common/HttpFoundation/Domain";
+import { AuthenticatedAuthUser, AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
 import {
     SuccessResult,
     ErrorResult,

@@ -1,13 +1,12 @@
+import { put, select } from "redux-saga/effects";
 import {
     createSendHttpRequest as createCommonSendHttpRequest,
     getWithHeaderEnhancedHttpRequest,
     Request,
-} from "Packages/Common/HttpFoundation";
-import {
-    AuthState, AuthStateSelector, AuthUserTypes, getCurrentAuthUser,
-} from "Packages/Common/Authentication";
-import { put, select } from "redux-saga/effects";
-import { SendHttpRequest } from "Packages/Common/HttpApiV1";
+} from "Packages/Common/HttpFoundation/Domain";
+import { AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
+import { AuthState, AuthStateSelector, getCurrentAuthUser } from "Packages/Common/Authentication/Domain";
+import { SendHttpRequest } from "../../Command/SendHttpRequest";
 
 export function* handleSendHttpRequest(authStateSelector: AuthStateSelector, command: SendHttpRequest): Generator {
     // @ts-ignore

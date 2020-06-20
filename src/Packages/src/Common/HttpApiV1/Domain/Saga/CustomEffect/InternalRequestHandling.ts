@@ -1,8 +1,8 @@
-import { receiveResponse, Request } from "Packages/Common/HttpFoundation";
+import { receiveResponse, Request } from "Packages/Common/HttpFoundation/Domain";
 import {
     call, CallEffect, put, StrictEffect,
 } from "@redux-saga/core/effects";
-import { createSendHttpRequest } from "Packages/Common/HttpApiV1/Domain/Command/SendHttpRequest";
+import { createSendHttpRequest } from "../../Command/SendHttpRequest";
 import { ApiV1Response } from "../../Types";
 
 type ExecuteRequestGenerator<ResponseBody> = Generator<StrictEffect, (null | ApiV1Response<ResponseBody>)>;

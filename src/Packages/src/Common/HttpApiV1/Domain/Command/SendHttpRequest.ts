@@ -1,6 +1,6 @@
-import { Request } from "Packages/Common/HttpFoundation/Domain/Types";
+import { Request } from "Packages/Common/HttpFoundation/Domain";
 import { Command } from "Packages/Entity/CommonTypes";
-import { ApiV1CommandTypes } from "../Types";
+import { ApiV1CommandTypes } from "./Types";
 
 export function createSendHttpRequest(request: Request): SendHttpRequest {
     return {
