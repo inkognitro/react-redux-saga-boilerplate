@@ -6,8 +6,8 @@ it is recommended to list documentation parts for every package here.
 Each documentation should live in the corresponding codebase.
 
 ## Packages
-- [Packages/Common/README.md](src/Packages/Common/README.md)
-- [Packages/Entity/README.md](src/Packages/Entity/README.md)
+- [Packages/Common/README.md](../src/Packages/src/Common/README.md)
+- [Packages/Entity/README.md](../src/Packages/src/Entity/README.md)
 
 ## WebApp
 tbd

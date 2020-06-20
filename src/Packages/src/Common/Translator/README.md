@@ -1,3 +1,5 @@
+[« package docs overview](../README.md)
+
 # Translator
 This module provides a standardized way to consume translations inside components.
 
