@@ -1,22 +1,20 @@
+import uuidV4 from "uuid/v4";
+import {
+    delay, fork, put, select, spawn,
+} from "redux-saga/effects";
 import {
     Message,
     Toast,
     ToasterState,
     ToasterStateSelector,
-} from "Packages/Common/Toaster/Domain/Types";
-import uuidV4 from "uuid/v4";
-import { getCommonToastIdByType } from "Packages/Common/Toaster/Domain/Query/CommonToastIdByTypeQuery";
-import {
-    delay, fork, put, select, spawn,
-} from "redux-saga/effects";
-import { createRemoveMessage } from "Packages/Common/Toaster/Domain/Command/RemoveMessage";
-import { findToastById } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
-import { createToastWasAdded } from "Packages/Common/Toaster/Domain/Event/ToastWasAdded";
-import { createToastIntroAnimationWasFinished } from "Packages/Common/Toaster/Domain/Event/ToastIntroAnimationWasFinished";
-import { createMessagesWereAddedToToast } from "Packages/Common/Toaster/Domain/Event/MessagesWereAddedToToast";
-import {
-    createMessageIntroAnimationsWereFinished,
-} from "Packages/Common/Toaster/Domain/Event/MessageIntroAnimationsWereFinished";
+} from "../../Types";
+import { getCommonToastIdByType } from "../../Query/CommonToastIdByTypeQuery";
+import { createRemoveMessage } from "../../Command/RemoveMessage";
+import { findToastById } from "../../Query/ToastQuery";
+import { createToastWasAdded } from "../../Event/ToastWasAdded";
+import { createToastIntroAnimationWasFinished } from "../../Event/ToastIntroAnimationWasFinished";
+import { createMessagesWereAddedToToast } from "../../Event/MessagesWereAddedToToast";
+import { createMessageIntroAnimationsWereFinished } from "../../Event/MessageIntroAnimationsWereFinished";
 
 function getToastsToMerge(toasterState: ToasterState): Toast[] {
     const toastsToMerge: Toast[] = [];

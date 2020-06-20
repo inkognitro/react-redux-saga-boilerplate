@@ -1,13 +1,13 @@
 import uuidV4 from "uuid/v4";
 import {
+    delay, fork, put, select,
+} from "redux-saga/effects";
+import {
     MessageToAdd,
     ToasterState,
     ToasterStateSelector,
     ToastTypes,
-} from "Packages/Common/Toaster/Domain/Types";
-import {
-    delay, fork, put, select,
-} from "redux-saga/effects";
+} from "../../Types";
 import {
     ShowMessage,
     ShowMessageSettings,

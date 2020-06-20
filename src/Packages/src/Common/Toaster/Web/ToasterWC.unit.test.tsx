@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 import { ToasterWC } from "./ToasterWC";
-import { ToastTypes } from "../Domain/Types";
+import { ToastTypes } from "../Domain";
 
 describe("ToasterWC", () => {
     it('renders correctly', () => {

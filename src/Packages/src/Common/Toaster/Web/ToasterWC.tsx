@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Toast } from "../Domain/Types";
+import { Toast } from "../Domain";
 import { ToastWC } from "./ToastWC";
 
 const StyledToastsContainer = styled.div`

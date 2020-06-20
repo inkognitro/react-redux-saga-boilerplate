@@ -1,5 +1,5 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { ToasterEventTypes } from "../Types";
+import { ToasterEventTypes } from "./Types";
 
 export function createToastOutroAnimationWasStarted(
     toastId: string,

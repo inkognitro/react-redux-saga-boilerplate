@@ -1,12 +1,12 @@
-import { ToasterState, ToasterStateSelector } from "Packages/Common/Toaster/Domain/Types";
 import { delay, put, select } from "redux-saga/effects";
-import { findToastByMessageId } from "Packages/Common/Toaster/Domain/Query/ToastQuery";
-import { getNonRemovingMessagesInToast } from "Packages/Common/Toaster/Domain/Query/MessageQuery";
-import { RemoveMessage } from "Packages/Common/Toaster/Domain/Command/RemoveMessage";
-import { createToastOutroAnimationWasStarted } from "Packages/Common/Toaster/Domain/Event/ToastOutroAnimationWasStarted";
-import { createToastWasRemoved } from "Packages/Common/Toaster/Domain/Event/ToastWasRemoved";
-import { createMessageOutroAnimationWasStarted } from "Packages/Common/Toaster/Domain/Event/MessageOutroAnimationWasStarted";
-import { createMessageWasRemoved } from "Packages/Common/Toaster/Domain/Event/MessageWasRemoved";
+import { ToasterState, ToasterStateSelector } from "../../Types";
+import { findToastByMessageId } from "../../Query/ToastQuery";
+import { getNonRemovingMessagesInToast } from "../../Query/MessageQuery";
+import { RemoveMessage } from "../../Command/RemoveMessage";
+import { createToastOutroAnimationWasStarted } from "../../Event/ToastOutroAnimationWasStarted";
+import { createToastWasRemoved } from "../../Event/ToastWasRemoved";
+import { createMessageOutroAnimationWasStarted } from "../../Event/MessageOutroAnimationWasStarted";
+import { createMessageWasRemoved } from "../../Event/MessageWasRemoved";
 
 export function* handleRemoveMessage(toasterStateSelector: ToasterStateSelector, command: RemoveMessage): Generator {
     // @ts-ignore

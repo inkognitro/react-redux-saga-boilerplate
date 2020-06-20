@@ -1,6 +1,5 @@
 import {
     ToasterStateSelector as ToasterStateSelectorType,
-    ToasterEvent as ToasterEventType,
     ToasterState as ToasterStateType,
     MessageToAdd as MessageToAddType,
     Toast as ToastType,
@@ -20,15 +19,12 @@ import {
 import { MessageWasRemoved as MessageWasRemovedType } from "./Event/MessageWasRemoved";
 import { MessageWasAddedToPipeline as MessageWasAddedToPipelineType } from "./Event/MessageWasAddedToPipeline";
 import { MessagesWereAddedToToast as MessagesWereAddedToToastType } from "./Event/MessagesWereAddedToToast";
-import {
-    MessageOutroAnimationWasStarted as MessageOutroAnimationWasStartedType,
-} from "./Event/MessageOutroAnimationWasStarted";
+import { MessageOutroAnimationWasStarted as MessageOutroAnimationWasStartedType } from "./Event/MessageOutroAnimationWasStarted";
 import {
     MessageIntroAnimationsWereFinished as MessageIntroAnimationsWereFinishedType,
 } from "./Event/MessageIntroAnimationsWereFinished";
 
 export type ToasterStateSelector = ToasterStateSelectorType;
-export type ToasterEvent = ToasterEventType;
 export type ToasterState = ToasterStateType;
 export type MessageToAdd = MessageToAddType;
 export type Toast = ToastType;
@@ -46,9 +42,11 @@ export type MessagesWereAddedToToast = MessagesWereAddedToToastType;
 export type MessageOutroAnimationWasStarted = MessageOutroAnimationWasStartedType;
 export type MessageIntroAnimationsWereFinished = MessageIntroAnimationsWereFinishedType;
 
-export { ToastTypes, ToasterCommandTypes, ToasterEventTypes } from './Types';
+export { ToastTypes } from './Types';
 export { createToasterSaga } from "./Saga/Flow";
 export { dispatchToastsFromResult } from "./Saga/CustomEffect/ToastDispatching";
 export { createRemoveMessage } from "./Command/RemoveMessage";
 export { createShowMessage } from "./Command/ShowMessage";
 export { toasterReducer } from './Reducer';
+export { ToasterCommandTypes } from "./Command/Types";
+export { ToasterEventTypes } from "./Event/Types";

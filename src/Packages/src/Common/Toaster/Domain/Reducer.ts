@@ -1,9 +1,27 @@
 import { Reducer } from "redux";
-import {
-    ToasterEvent,
-    ToasterEventTypes,
-    ToasterState,
-} from "./Types";
+import { ToasterEventTypes } from "./Event/Types";
+import { MessageIntroAnimationsWereFinished } from "./Event/MessageIntroAnimationsWereFinished";
+import { MessageOutroAnimationWasStarted } from "./Event/MessageOutroAnimationWasStarted";
+import { MessagesWereAddedToToast } from "./Event/MessagesWereAddedToToast";
+import { MessageWasAddedToPipeline } from "./Event/MessageWasAddedToPipeline";
+import { MessageWasRemoved } from "./Event/MessageWasRemoved";
+import { ToastIntroAnimationWasFinished } from "./Event/ToastIntroAnimationWasFinished";
+import { ToastOutroAnimationWasStarted } from "./Event/ToastOutroAnimationWasStarted";
+import { ToastWasAdded } from "./Event/ToastWasAdded";
+import { ToastWasRemoved } from "./Event/ToastWasRemoved";
+import { ToasterState } from "./Types";
+
+type ToasterEvent = (
+    | MessageIntroAnimationsWereFinished
+    | MessageOutroAnimationWasStarted
+    | MessagesWereAddedToToast
+    | MessageWasAddedToPipeline
+    | MessageWasRemoved
+    | ToastIntroAnimationWasFinished
+    | ToastOutroAnimationWasStarted
+    | ToastWasAdded
+    | ToastWasRemoved
+)
 
 const initialToasterState: ToasterState = {
     messagesToAdd: [],

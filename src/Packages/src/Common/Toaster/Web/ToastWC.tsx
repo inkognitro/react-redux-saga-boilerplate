@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Power1, TimelineLite } from "gsap";
 import styled from "styled-components";
-import { StyledWCProps, createBoxShadowCss } from "Packages/Common/Design";
-import { Message, Toast, ToastTypes } from "../Domain/Types";
+import { StyledWCProps, createBoxShadowCss } from "Packages/Common/Design/Web";
+import { Message, Toast, ToastTypes } from "../Domain";
 import { MessageWC } from "./MessageWC";
 
 const StyledToast = styled.div`
