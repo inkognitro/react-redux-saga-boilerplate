@@ -1,7 +1,7 @@
 {
   "name": "react-redux-boilerplate",
   "version": "1.0.0",
-  "description": "Frontend boilerplate realized in react combined with redux and redux-saga. Written in TypeScript.",
+  "description": "Frontend boilerplate for mobile and web app development. Realized in react combined with redux and redux-saga. Written in TypeScript.",
   "author": "Marcel Fischer",
   "license": "MIT",
   "repository": {
