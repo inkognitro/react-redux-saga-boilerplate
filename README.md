@@ -1,7 +1,7 @@
 [![BadgeMITLicense: MIT](docs/assets/badgeMITLicense.svg)](LICENSE)
 
 # React Redux Boilerplate (WIP)
-Frontend boilerplate for mobile and web app development. Realized with [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
+Monorepo frontend boilerplate for mobile and web app development. Realized with [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
 Written in [TypeScript](http://typescriptlang.org).
 
 ## Motivation
@@ -11,6 +11,7 @@ and other stakeholders.
 
 ## Knowledge base
 To fully understand this project you should be familiar with the technologies below.
+- [lerna](https://lerna.js.org/) (monorepo management)
 - [react](https://reactjs.org/docs/getting-started.html)
 - [redux (with react)](https://egghead.io/courses/getting-started-with-redux)
 - [redux-saga](https://redux-saga.js.org/)
@@ -47,8 +48,8 @@ To fully understand this project you should be familiar with the technologies be
 11. Linting with Airbnb presets
 
 ## Documentation
-- [Environment](./docs/Environment.md): Installation, Scripts
-- [Architecture](./docs/Architecture.md): Explanation of the architecture and code structure.
+- [Environment](./docs/Environment.md): Installation, development start, scripts
+- [Architecture](./docs/Architecture.md): Architecture and code structure.
 - [Coding guidelines](./docs/CodingGuidelines.md): Please don't mess up this project.
 - [API documentation](./docs/ApiDocs.md): Documentation for existing code and its usage.
 
