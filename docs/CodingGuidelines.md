@@ -13,6 +13,15 @@ However, some bundlers also have problems with circular import references. Below
 2. Importing a file from same module should be done by a relative import (e.g. `import { LoaderCommandTypes } from "./Types";`).
 3. Importing a file from another module should be done with an absolute import (e.g. `import { Command } from "Packages/Entity/CommonTypes";`).
 
+## Separate import per layer
+A import should always reference to only one layer. This avoids problems with bundlers.
+Problem: Imagine there was a `index.ts` in the root of the `Packages/Common/Translation` module,
+which is exporting domain layer stuff, native and web components.
+If we would import things from this `index.ts` file into our mobile app,
+we had unwanted dependencies to web components and likely to additional web libraries.
+Therefore it is important to import things from `.../Domain`, `.../Native` or `.../Web` folders,
+where the corresponding `index.ts` files do export their public module api.
+
 ## Linting for a unified codebase
 With linting rules all team members have the same understanding of code style.
 This helps to read code more quickly and therefore increases productivity.

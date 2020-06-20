@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { initialTranslatorState } from "Packages/Common/Translator/Domain/Reducer";
+import { initialTranslatorState } from "./Domain";
 
 const TranslatorContext = createContext(initialTranslatorState);
 export const TranslationTextProvider = TranslatorContext.Provider;

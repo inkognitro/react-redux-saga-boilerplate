@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Text } from 'react-native';
-import { findTranslatedText, TranslatorState } from "Packages/Common/Translator/Domain";
 import { Translation } from "Packages/Entity/CommonTypes";
+import { findTranslatedText, TranslatorState } from "../Domain";
 import { TranslationTextConsumer } from '../TranslatorContext';
 
 type InternalTranslatedTextWCProps = {

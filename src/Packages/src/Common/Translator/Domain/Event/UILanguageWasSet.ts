@@ -1,5 +1,5 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { LanguageIds, TranslationIdToTranslationMapping } from "Packages/Common/Translator/Domain/Types";
+import { LanguageIds, TranslationIdToTranslationMapping } from "../Types";
 import { TranslatorEventTypes } from "./Types";
 
 export function createUILanguageWasSet(

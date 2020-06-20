@@ -19,5 +19,6 @@ export { createTranslatorSaga } from './Saga/Flow';
 export { createSetUILanguage } from './Command/SetUILanguage';
 export { translatorReducer } from './Reducer';
 export { findTranslatedText } from './Query/TranslatedTextQuery';
-export {TranslatorCommandTypes} from "Packages/Common/Translator/Domain/Command/Types";
-export {TranslatorEventTypes} from "Packages/Common/Translator/Domain/Event/Types";
+export { TranslatorCommandTypes } from "./Command/Types";
+export { TranslatorEventTypes } from "./Event/Types";
+export { initialTranslatorState } from "./Reducer";
