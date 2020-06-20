@@ -16,8 +16,9 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: install packages, test and build
       run: |
-        npm install
-        npm run ci
+        npm install -g yarn
+        npm install -g lerna
+        yarn run ci
       env:
         CI: true
     - name: Commit files
