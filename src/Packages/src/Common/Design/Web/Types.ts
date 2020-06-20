@@ -1,5 +1,5 @@
-import { Theme } from "Packages/Common/Design";
+import { Theme } from "../Domain";
 
-export type StyledWCProps = {
-  theme: Theme;
+export type StyledComponentProps = {
+    theme: Theme;
 };
