@@ -3,7 +3,7 @@ import {
     FormElementState,
     FormElementStateChanges,
     createChangeFormElementStates,
-} from "Packages/Common/FormElement";
+} from "Packages/Common/FormElement/Domain";
 import { FormState } from "../../Types";
 import { createFormWasSetToNoRunningRequestMode } from "../../Event/FormWasSetToNoRunningRequestMode";
 

@@ -1,5 +1,5 @@
 import { put } from "redux-saga/effects";
-import { SubmitForm } from "Packages/Common/Form";
+import { SubmitForm } from "../../Command/SubmitForm";
 import { createFormWasSubmitted } from "../../Event/FormWasSubmitted";
 
 export function* handleSubmitForm(command: SubmitForm): Generator {

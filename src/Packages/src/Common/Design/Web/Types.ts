@@ -1,5 +1,5 @@
 import { Theme } from "../Domain";
 
-export type StyledComponentProps = {
+export type StyledWCProps = {
     theme: Theme;
 };

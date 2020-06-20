@@ -6,7 +6,7 @@ import {
     FormElementState,
     FormElementStateChanges,
     FormElementTypes, TextFieldState,
-} from "Packages/Common/FormElement";
+} from "Packages/Common/FormElement/Domain";
 
 export function* handleSetFormFieldMessages(command: SetFormFieldMessages): Generator {
     const formElementsByName = command.payload.form.elementsByName;

@@ -24,6 +24,7 @@ export type ChangeFormElementStates = ChangeFormElementStatesType;
 export type FormElementStatesWereChanged = FormElementStatesWereChangedType;
 export type FormElementStateWasChanged = FormElementStateWasChangedType;
 export type InputFieldState<FormElementType extends FormElementTypes = any> = InputFieldStateType<FormElementType>;
+export type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
 
 export { FormElementTypes } from './Types';
 export { createFormElementsFlow } from './Saga/Flow';

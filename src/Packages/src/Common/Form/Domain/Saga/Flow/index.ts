@@ -1,7 +1,7 @@
 import { spawn, takeEvery } from "@redux-saga/core/effects";
-import { FormCommandTypes } from "../../Types";
 import { handleSubmitForm } from "./SubmitFormHandling";
 import { handleSetFormFieldMessages } from "./SetFormFieldMessagesHandling";
+import { FormCommandTypes } from "../../Command/Types";
 
 export function createFormSaga(): () => Generator {
     return function* (): Generator {

@@ -1,5 +1,5 @@
-import { StyledComponentProps as StyledComponentPropsType } from './Types';
+import { StyledWCProps as StyledWCPropsType } from './Types';
 
-export type StyledComponentProps = StyledComponentPropsType;
+export type StyledWCProps = StyledWCPropsType;
 
-export { createBoxShadowCss } from './ComponentStyleFactory';
+export { createBoxShadowCss } from './WCStyleFactory';

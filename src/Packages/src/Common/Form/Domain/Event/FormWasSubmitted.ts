@@ -1,5 +1,6 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { FormEventTypes, FormState } from "../Types";
+import { FormState } from "../Types";
+import {FormEventTypes} from "Packages/Common/Form/Domain/Event/Types";
 
 export function createFormWasSubmitted(form: FormState): FormWasSubmitted {
     return {

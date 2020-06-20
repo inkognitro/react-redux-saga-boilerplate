@@ -16,11 +16,12 @@ export type SubmitForm = SubmitFormType;
 export type FormWasSetToNoRunningRequestMode = FormWasSetToNoRunningRequestModeType;
 export type FormWasSetToRunningRequestMode = FormWasSetToRunningRequestModeType;
 
-export { FormCommandTypes, FormEventTypes } from './Domain/Types';
 export { createSetFormFieldMessages } from './Domain/Command/SetFormFieldMessages';
 export { createSubmitForm } from './Domain/Command/SubmitForm';
 export { formReducer } from './Domain/Reducer';
 export { createFormSaga } from './Domain/Saga/Flow';
 export { createFormState } from './Domain/FormStateFactory';
 export { createFormParameters } from './Domain/Query/FormParameters';
-export { FormWC } from './UI/FormWC';
+export { FormWC } from './Web/FormWC';
+export {FormCommandTypes} from "Packages/Common/Form/Domain/Command/Types";
+export {FormEventTypes} from "Packages/Common/Form/Domain/Event/Types";
