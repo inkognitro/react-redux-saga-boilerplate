@@ -1,8 +1,12 @@
-import { FormElementEvent, FormElementState, FormElementTypes } from "../Types";
+import { FormElementState, FormElementTypes } from "../Types";
 import { textFieldReducer } from "./TextFieldReducer";
 import { emailFieldReducer } from "./EmailFieldReducer";
 import { passwordFieldReducer } from "./PasswordFieldReducer";
 import { checkboxReducer } from "./CheckboxReducer";
+import { FormElementStateWasChanged } from "../Event/FormElementStateWasChanged";
+import { FormElementStatesWereChanged } from "../Event/FormElementStatesWereChanged";
+
+type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
 
 export function formElementReducer(state: FormElementState, event?: FormElementEvent): FormElementState {
     if (!event) {

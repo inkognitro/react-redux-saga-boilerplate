@@ -1,8 +1,11 @@
 import { Reducer } from "redux";
-import { FormElementEvent, PasswordFieldState } from "../Types";
+import { PasswordFieldState } from "../Types";
 import { internalFormElementReducer } from "./InternalFormElementReducer";
 import { createPasswordFieldState } from "../FormElementStateFactory";
+import { FormElementStateWasChanged } from "../Event/FormElementStateWasChanged";
+import { FormElementStatesWereChanged } from "../Event/FormElementStatesWereChanged";
 
+type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
 type PartialInitialState = Partial<Omit<PasswordFieldState, "type">>;
 
 export const passwordFieldReducer = createPasswordFieldReducer();

@@ -1,9 +1,12 @@
 import { Reducer } from "redux";
-import { CheckboxState, FormElementEvent } from "../Types";
+import { CheckboxState } from "../Types";
 import { internalFormElementReducer } from "./InternalFormElementReducer";
 import { createCheckboxState } from "../FormElementStateFactory";
+import { FormElementStatesWereChanged } from "../Event/FormElementStatesWereChanged";
+import { FormElementStateWasChanged } from "../Event/FormElementStateWasChanged";
 
-type PartialInitialState = Partial<Omit<CheckboxState, "type">>;
+type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
+type PartialInitialState = Partial<Omit<CheckboxState, "type">>
 
 export const checkboxReducer = createCheckboxReducer();
 

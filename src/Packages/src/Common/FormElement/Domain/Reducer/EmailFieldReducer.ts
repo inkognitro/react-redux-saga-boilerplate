@@ -1,8 +1,11 @@
 import { Reducer } from "redux";
-import { EmailFieldState, FormElementEvent } from "../Types";
+import { EmailFieldState } from "../Types";
 import { internalFormElementReducer } from "./InternalFormElementReducer";
 import { createEmailFieldState } from "../FormElementStateFactory";
+import { FormElementStateWasChanged } from "../Event/FormElementStateWasChanged";
+import { FormElementStatesWereChanged } from "../Event/FormElementStatesWereChanged";
 
+type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
 type PartialInitialState = Partial<Omit<EmailFieldState, "type">>;
 
 export const emailFieldReducer = createEmailFieldReducer();

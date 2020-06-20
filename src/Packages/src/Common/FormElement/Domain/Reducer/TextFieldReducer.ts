@@ -1,8 +1,11 @@
 import { Reducer } from "redux";
-import { FormElementEvent, TextFieldState } from "../Types";
+import { TextFieldState } from "../Types";
 import { internalFormElementReducer } from "./InternalFormElementReducer";
 import { createTextFieldState } from "../FormElementStateFactory";
+import { FormElementStateWasChanged } from "../Event/FormElementStateWasChanged";
+import { FormElementStatesWereChanged } from "../Event/FormElementStatesWereChanged";
 
+type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
 type PartialInitialState = Partial<Omit<TextFieldState, "type">>;
 
 export const textFieldReducer = createTextFieldReducer();

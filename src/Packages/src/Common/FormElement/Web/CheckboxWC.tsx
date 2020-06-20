@@ -1,7 +1,8 @@
 import React, { FC, Fragment } from "react";
-import { CheckboxState, createChangeFormElementState, MessagesWC } from "Packages/Common/FormElement";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
+import { CheckboxState, createChangeFormElementState } from "../Domain";
+import { MessagesWC } from './MessagesWC';
 import {
     ConnectedFormElementWCProps, FormElementWCCallbacks, FormElementWCProps, FormElementWCState,
 } from "./Types";

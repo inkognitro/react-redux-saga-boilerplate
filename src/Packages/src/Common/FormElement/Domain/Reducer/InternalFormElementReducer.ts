@@ -1,9 +1,9 @@
-import {
-    FormElementEvent,
-    FormElementEventTypes,
-    FormElementState,
-    FormElementStateChanges,
-} from "../Types";
+import { FormElementState, FormElementStateChanges } from "../Types";
+import { FormElementEventTypes } from "../Event/Types";
+import { FormElementStateWasChanged } from "../Event/FormElementStateWasChanged";
+import { FormElementStatesWereChanged } from "../Event/FormElementStatesWereChanged";
+
+type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
 
 export function internalFormElementReducer<SpecificFormElementState>(
     state: (SpecificFormElementState & FormElementState),

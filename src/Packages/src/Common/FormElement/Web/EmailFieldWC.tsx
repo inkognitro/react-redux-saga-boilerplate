@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { EmailFieldState } from "Packages/Common/FormElement";
+import { EmailFieldState } from "../Domain";
 import { ConnectedInternalInputFieldWC } from "./InternalInputFieldWC";
 import { ConnectedFormElementWCProps } from "./Types";
 

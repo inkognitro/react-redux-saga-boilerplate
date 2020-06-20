@@ -1,12 +1,12 @@
 import React, { FC } from "react";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
 import {
     FormElementTypes,
     InputFieldState,
     createChangeFormElementState,
-    MessagesWC,
-} from "Packages/Common/FormElement";
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
+} from "../Domain";
+import { MessagesWC } from "./MessagesWC";
 import {
     ConnectedFormElementWCProps,
     FormElementWCCallbacks,

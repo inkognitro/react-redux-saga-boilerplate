@@ -1,8 +1,8 @@
 import { Event } from "Packages/Entity/CommonTypes";
 import {
-    FormElementEventTypes,
     FormElementStateChanges,
 } from "../Types";
+import { FormElementEventTypes } from "./Types";
 
 export function createFormElementStateWereChanged(
     multipleStateChanges: FormElementStateChanges[],
