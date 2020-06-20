@@ -1,4 +1,4 @@
-import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1";
+import { ApiV1ReadResponse } from "Packages/Common/HttpApiV1/Domain";
 import { MessageTypes } from "Packages/Entity/CommonTypes";
 import { apiV1BaseUrl } from "Packages/Common/HttpApiV1/Domain/Saga/CustomEffect/InternalRequestHandling";
 import { HttpRequestDispatcher, Request, RequestResponse } from "../Domain/Types";

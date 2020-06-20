@@ -1,4 +1,4 @@
-import { Route } from "Packages/Common/Router";
+import { Route } from "Packages/Common/Router/Domain";
 import { LeakReduxState as LeakReduxStateType } from "./Domain/Command/LeakReduxState";
 
 export type LeakReduxState = LeakReduxStateType;

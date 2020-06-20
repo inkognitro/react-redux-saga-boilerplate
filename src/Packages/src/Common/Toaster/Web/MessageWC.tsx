@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { CloseIconWC } from "Packages/Common/Icon/Web/CloseIconWC";
-import { IconSizes, IconTypes } from "Packages/Common/Icon/Web/IconWC";
+import { CloseIconWC, IconSizes, IconTypes } from "Packages/Common/Icon/Web";
 import { TimelineLite, Power1 } from "gsap";
 import styled from "styled-components";
 import { StyledWCProps } from "Packages/Common/Design/Web";

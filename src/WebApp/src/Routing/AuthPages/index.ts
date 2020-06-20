@@ -1,6 +1,6 @@
 import { spawn } from "redux-saga/effects";
 import { combineReducers, Reducer } from "redux";
-import { RouteComponentSpecification } from "Packages/Common/Router";
+import { RouteComponentSpecification } from "Packages/Common/Router/Web";
 import {
     createLoginPageSaga,
     LoginPageWC,

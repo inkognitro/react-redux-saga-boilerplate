@@ -42,6 +42,7 @@ export type MessagesWereAddedToToast = MessagesWereAddedToToastType;
 export type MessageOutroAnimationWasStarted = MessageOutroAnimationWasStartedType;
 export type MessageIntroAnimationsWereFinished = MessageIntroAnimationsWereFinishedType;
 
+export { getAllToasts } from './Query/ToastQuery';
 export { ToastTypes } from './Types';
 export { createToasterSaga } from "./Saga/Flow";
 export { dispatchToastsFromResult } from "./Saga/CustomEffect/ToastDispatching";

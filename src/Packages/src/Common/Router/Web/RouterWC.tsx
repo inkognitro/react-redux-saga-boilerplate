@@ -5,7 +5,7 @@ import {
     Switch,
 } from "react-router-dom";
 import { History } from "history";
-import { Route } from "Packages/Common/Router";
+import { Route } from "Packages/Common/Router/Domain";
 
 export type RouteComponentSpecification = {
   route: Route;

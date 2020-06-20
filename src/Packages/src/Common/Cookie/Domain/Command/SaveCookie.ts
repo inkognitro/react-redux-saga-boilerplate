@@ -1,6 +1,6 @@
 import { Command } from "Packages/Entity/CommonTypes";
 import { Cookie} from "../Types";
-import {CookieCommandTypes} from "@app/packages/Common/Cookie/Domain/Command/Types";
+import { CookieCommandTypes } from "./Types";
 
 export function createSaveCookie(cookie: Cookie): SaveCookie {
     return {

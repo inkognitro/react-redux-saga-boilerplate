@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AlignedAreaWC, horizontalAligns, verticalAligns } from "Packages/Common/LayoutFoundation";
+import { AlignedAreaWC, horizontalAligns, verticalAligns } from "Packages/Common/LayoutFoundation/Web";
 import { TimelineLite } from "gsap";
 import styled from "styled-components";
 import { TranslatedTextWC } from "Packages/Common/Translator/Web";

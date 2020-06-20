@@ -1,7 +1,7 @@
 import {
     call, cancelled, put, select,
 } from "@redux-saga/core/effects";
-import { authenticate, AuthenticateResult } from "Packages/Common/HttpApiV1";
+import { authenticate, AuthenticateResult } from "Packages/Common/HttpApiV1/Domain";
 import { createSaveCookie } from "Packages/Common/Cookie/Domain";
 import { ResultTypes } from "Packages/Entity/CommonTypes";
 import { AuthUserTypes } from "Packages/Entity/AuthUser/Domain";

@@ -1,4 +1,4 @@
-import { StyledWCProps } from "Packages/Common/Design";
+import { StyledWCProps } from "Packages/Common/Design/Web";
 import styled, { StyledComponent } from "styled-components";
 import { ComponentType } from "react";
 
