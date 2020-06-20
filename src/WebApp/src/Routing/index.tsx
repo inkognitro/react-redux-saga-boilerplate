@@ -1,4 +1,4 @@
-import { RouterWC as CommonRouter, RouterWCSpecification } from "Packages/Common/Router/UI/RouterWC";
+import { RouterWC as CommonRouter, RouterWCSpecification } from "Packages/Common/Router/Web/RouterWC";
 import React, { FC } from "react";
 import { History } from "history";
 import { homeRoute } from "WebApp/Routing/HomePage";

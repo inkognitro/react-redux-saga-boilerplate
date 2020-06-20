@@ -1,5 +1,5 @@
 import { Command } from "Packages/Entity/CommonTypes";
-import { RouterCommandTypes } from "../Types";
+import { RouterCommandTypes } from "./Types";
 
 export function createOpenUrl(settings: OpenUrlSettings): OpenUrl {
     return {
@@ -11,7 +11,7 @@ export function createOpenUrl(settings: OpenUrlSettings): OpenUrl {
 export type OpenUrl = Command<RouterCommandTypes.OPEN_URL, OpenUrlSettings>;
 
 export type OpenUrlSettings = {
-  url: string;
-  target?: string;
-  shouldReplaceCurrentUrl?: boolean;
+    url: string
+    target?: string
+    shouldReplaceCurrentUrl?: boolean
 };

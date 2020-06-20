@@ -1,5 +1,5 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import { RouterEventTypes } from "../Types";
+import { RouterEventTypes } from "./Types";
 
 export function createRouterWasInitialized(url: string): RouterWasInitialized {
     return {

@@ -1,13 +1,13 @@
+import { put, select, takeEvery } from "redux-saga/effects";
 import {
     Redirect,
-    RouterCommandTypes,
     RouterState,
     RouterStateSelector,
-} from "Packages/Common/Router/Domain/Types";
-import { put, select, takeEvery } from "redux-saga/effects";
-import { createRouterWasExtended } from "Packages/Common/Router/Domain/Event/RouterWasExtended";
+} from "../../Types";
+import { createRouterWasExtended } from "../../Event/RouterWasExtended";
 import { findRedirectByExactRoute } from "../../Query/RedirectQuery";
 import { ExtendRouter } from "../../Command/ExtendRouter";
+import { RouterCommandTypes } from "../../Command/Types";
 
 export function* handleExtendRouter(routerStateSelector: RouterStateSelector, command: ExtendRouter): Generator {
     // @ts-ignore

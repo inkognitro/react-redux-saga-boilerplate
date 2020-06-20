@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { RouteLinkWC } from "Packages/Common/Router/UI/LinkWC";
+import { RouteLinkWC } from "Packages/Common/Router/Web/LinkWC";
 import { ErrorPage } from "WebApp/Foundation/UI/PageTypes/ErrorPage";
 import { createHomeRouteUrl } from "WebApp/Routing/UrlFactory";
 import { TranslatedTextWC } from "Packages/Common/Translator/Web";
