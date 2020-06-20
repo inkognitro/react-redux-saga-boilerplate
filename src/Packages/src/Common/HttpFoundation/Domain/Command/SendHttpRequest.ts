@@ -1,5 +1,6 @@
 import { Command } from "Packages/Entity/CommonTypes";
-import { HttpFoundationCommandTypes, Request } from "../Types";
+import { Request } from "../Types";
+import { HttpFoundationCommandTypes } from "./Types";
 
 export function createSendHttpRequest(request: Request): SendHttpRequest {
     return {

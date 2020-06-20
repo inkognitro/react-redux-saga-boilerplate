@@ -1,8 +1,6 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import {
-    HttpEventTypes,
-    Request,
-} from "../Types";
+import { Request } from "../Types";
+import { HttpEventTypes } from "./Types";
 
 export function createHttpRequestFailed(
     request: Request,

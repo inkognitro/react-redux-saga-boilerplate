@@ -3,7 +3,7 @@ import {
     RequestResponse,
     Request,
     RequestMethods, HttpRequestDispatcher,
-} from "Packages/Common/HttpFoundation";
+} from "../Domain/Types";
 
 function getAxiosRequestMethodByRequest(request: Request): string {
     if (request.method === RequestMethods.GET) {

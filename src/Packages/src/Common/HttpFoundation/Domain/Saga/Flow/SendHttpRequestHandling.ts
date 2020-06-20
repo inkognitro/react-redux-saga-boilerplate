@@ -1,14 +1,14 @@
 import {
-    HttpFoundationCommandTypes,
+    call, cancelled, put, select, takeEvery,
+} from "@redux-saga/core/effects";
+import {
     HttpFoundationState,
     HttpFoundationStateSelector,
     HttpRequestDispatcher,
     RequestResponse,
-    SendHttpRequest,
-} from "Packages/Common/HttpFoundation";
-import {
-    call, cancelled, put, select, takeEvery,
-} from "@redux-saga/core/effects";
+} from "../../Types";
+import { HttpFoundationCommandTypes } from "../../Command/Types";
+import { SendHttpRequest } from "../../Command/SendHttpRequest";
 import { findRunningHttpRequestById } from "../../Query/HttpRequestQuery";
 import { createHttpRequestWasNotSent, Reasons } from "../../Event/HttpRequestWasNotSent";
 import { createRequestWasSent } from "../../Event/HttpRequestWasSent";

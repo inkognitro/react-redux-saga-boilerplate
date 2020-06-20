@@ -1,5 +1,5 @@
 import { call, put, CallEffect } from "redux-saga/effects";
-import { createSendHttpRequest } from "Packages/Common/HttpFoundation";
+import { createSendHttpRequest } from "../../Command/SendHttpRequest";
 import { ReceiveHttpResponseGenerator, receiveResponse } from "./ResponseReceiving";
 import { Request, Response } from "../../Types";
 

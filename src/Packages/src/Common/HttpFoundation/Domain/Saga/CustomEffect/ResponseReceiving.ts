@@ -1,14 +1,13 @@
 import {
     call, take, StrictEffect, CallEffect,
 } from "redux-saga/effects";
-import {
-    HttpRequestWasNotSent,
-    HttpSuccessResponseWasReceived,
-    HttpErrorResponseWasReceived,
-    HttpRequestFailed,
-    HttpRequestWasCancelled,
-} from "Packages/Common/HttpFoundation";
-import { Request, HttpEventTypes, Response } from "../../Types";
+import { HttpRequestWasNotSent } from "../../Event/HttpRequestWasNotSent";
+import { HttpSuccessResponseWasReceived } from "../../Event/HttpSuccessResponseWasReceived";
+import { HttpErrorResponseWasReceived } from "../../Event/HttpErrorResponseWasReceived";
+import { HttpRequestFailed } from "../../Event/HttpRequestFailed";
+import { HttpRequestWasCancelled } from "../../Event/HttpRequestWasCancelled";
+import { Request, Response } from "../../Types";
+import { HttpEventTypes } from "../../Event/Types";
 
 const httpRequestExecutionEndingEventTypes = [
     HttpEventTypes.HTTP_REQUEST_WAS_NOT_SENT,

@@ -1,9 +1,6 @@
 import { Event } from "Packages/Entity/CommonTypes";
-import {
-    HttpEventTypes,
-    Request,
-    Response,
-} from "../Types";
+import { Request, Response } from "../Types";
+import { HttpEventTypes } from "./Types";
 
 export function createHttpErrorResponseWasReceived(
     request: Request,

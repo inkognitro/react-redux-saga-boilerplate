@@ -1,5 +1,5 @@
 import uuidV4 from "uuid/v4";
-import { Request, RequestMethods } from "../Types";
+import { Request, RequestMethods } from "./Types";
 
 type GetRequestCreationSettings = {
   id?: string
