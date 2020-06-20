@@ -1,0 +1,1 @@
+export { LoaderWC } from './LoaderWC';

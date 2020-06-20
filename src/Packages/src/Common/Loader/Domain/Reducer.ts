@@ -1,4 +1,9 @@
-import { LoaderEvent, LoaderEventTypes, LoaderState } from "./Types";
+import { LoaderState } from "./Types";
+import { LoaderEventTypes } from "./Event/Types";
+import { LoaderWasDemanded } from "./Event/LoaderWasDemanded";
+import { LoaderWasWithdrawn } from "./Event/LoaderWasWithdrawn";
+
+type LoaderEvent = (LoaderWasDemanded | LoaderWasWithdrawn);
 
 const initialLoaderState: LoaderState = {
     loaderDemandCount: 0,

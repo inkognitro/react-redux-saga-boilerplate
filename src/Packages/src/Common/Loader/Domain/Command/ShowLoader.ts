@@ -1,5 +1,5 @@
 import { Command } from "Packages/Entity/CommonTypes";
-import { LoaderCommandTypes } from "../Types";
+import { LoaderCommandTypes } from "./Types";
 
 export function createShowLoader(): ShowLoader {
     return {
