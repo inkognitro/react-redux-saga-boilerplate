@@ -25,7 +25,7 @@ To fully understand this project you should be familiar with the technologies be
 1. Better simulation of authentication refresh in `Packages/Common/Authentication` module
 2. Remove `ModuleCollections` and divide Modules in `Domain`, `UI`, `Infrastructure` and `SubModules`
 3. Integration of `src/MobileApp` as an additional yarn workspace (pay also attention to environment docs)
-4. Test coverage
+4. Test coverage + badge integration
 5. (Concurrent saga performance analysis)
 6. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
