@@ -6,13 +6,15 @@ FYI: This section requires knowledge of the [architecture](Architecture.md).
 Below you can see some recommended coding guidelines.
 With growing experience these guidelines could change. Nothing is carved in stone.
 
-## Be explicit, not implicit. Stay decoupled.
+## Be explicit from the beginning. Stay decoupled.
 In one of my workplaces we had a lot of trouble by being implicit instead of explicit in programming.
 As an example we created a `RequestHandler` class as a handler for every api call.
 As time went by, this class grew with new implicit features like showing a loader every time a request was dispatched.
 Soon we got into trouble because not in all places where a request is dispatched also a loader needs to be shown.
+We began to explicitly pass parameters for what we NOT WANT and not for what WE WANT.
+This sounds really awful, doesn't it?
 Furthermore there was no decoupling per endpoint and therefore no special treatment possible per endpoint
-without more spaghetti code.
+without more spaghetti code or extra ifs in the same place, just horrible.
 
 ## Avoid circular import references
 By avoiding circular import references the codebase stays clear and understandable.
