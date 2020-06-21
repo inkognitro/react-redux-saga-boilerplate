@@ -1,5 +1,5 @@
 import { Command } from "Packages/Entity/CommonTypes";
-import { LoginPageCommandTypes } from "../Types";
+import { LoginPageCommandTypes } from "./Types";
 
 export function createLogin(): Login {
     return {

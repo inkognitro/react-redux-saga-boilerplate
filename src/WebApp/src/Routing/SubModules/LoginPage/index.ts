@@ -12,10 +12,10 @@ export type LoginPageStateSelector = LoginPageStateSelectorType;
 export { createLogin } from './Domain/Command/Login';
 export { createLoginPageSaga } from './Domain/Saga/Flow';
 export { loginPageReducer } from './Domain/Reducer';
-export { LoginPageCommandTypes } from './Domain/Types';
-export { LoginPageWC } from './UI/LoginPageWC';
+export { ConnectedLoginPageWC } from './UI/LoginPageWC';
 
 export const loginRoute: Route = {
     urlSchema: "/auth/login",
     urlMustMatchExactly: true,
 };
+export {LoginPageCommandTypes} from "WebApp/Routing/SubModules/LoginPage/Domain/Command/Types";

@@ -1,6 +1,7 @@
 import { spawn, takeEvery } from "@redux-saga/core/effects";
-import { LoginPageCommandTypes, LoginPageStateSelector } from "../../Types";
+import { LoginPageStateSelector } from "../../Types";
 import { handleLogin } from "./LoginHandling";
+import { LoginPageCommandTypes } from "../../Command/Types";
 
 export function createLoginPageSaga(loginPageStateSelector: LoginPageStateSelector): () => Generator {
     return function* (): Generator {

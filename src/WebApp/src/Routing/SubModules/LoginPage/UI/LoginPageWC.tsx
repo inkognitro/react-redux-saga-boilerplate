@@ -5,10 +5,9 @@ import { RootState } from "WebApp/ServicesFactory";
 import { CardWC } from "Packages/Common/LayoutFoundation/Web";
 import { FormWC } from "Packages/Common/Form/Web";
 import {
-    ConnectedTextFieldWC,
+    InputGroupWC,
     FormGroupWC,
     PrimaryButtonWC,
-    ConncectedPasswordFieldWC, ConncectedCheckboxWC,
 } from "Packages/Common/FormElement/Web";
 import { Dispatch } from "redux";
 import { LoginPageState } from "../Domain/Types";
@@ -24,23 +23,21 @@ type LoginPageComponentState = {
 
 type LoginPageComponentProps = (LoginPageComponentState & LoginPageComponentCallbacks);
 
-const DumbLoginPage: FC<LoginPageComponentProps> = (props) => (
+const LoginPage: FC<LoginPageComponentProps> = (props) => (
     <ContentPage>
         <CardWC title="Login">
             <FormWC onSubmit={props.onSubmitLoginForm}>
                 <FormGroupWC>
-                    <ConnectedTextFieldWC data={props.data.form.elementsByName.username} />
+                    <InputGroupWC formElement={props.data.form.elementsByName.username} />
                 </FormGroupWC>
                 <FormGroupWC>
-                    <ConncectedPasswordFieldWC data={props.data.form.elementsByName.password} />
+                    <InputGroupWC formElement={props.data.form.elementsByName.password} />
                 </FormGroupWC>
                 <FormGroupWC>
-                    <ConncectedCheckboxWC data={props.data.form.elementsByName.rememberMe} />
+                    <InputGroupWC formElement={props.data.form.elementsByName.rememberMe} />
                 </FormGroupWC>
                 <FormGroupWC>
-                    <PrimaryButtonWC onClick={props.onSubmitLoginForm}>
-                        Login
-                    </PrimaryButtonWC>
+                    <PrimaryButtonWC onClick={props.onSubmitLoginForm}>Login</PrimaryButtonWC>
                 </FormGroupWC>
             </FormWC>
         </CardWC>
@@ -55,4 +52,4 @@ const mapDispatchToProps = (dispatch: Dispatch): LoginPageComponentCallbacks => 
     onSubmitLoginForm: () => dispatch(createLogin()),
 });
 
-export const LoginPageWC = connect(mapStateToProps, mapDispatchToProps)(DumbLoginPage);
+export const ConnectedLoginPageWC = connect(mapStateToProps, mapDispatchToProps)(LoginPage);

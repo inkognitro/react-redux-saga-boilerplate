@@ -3,7 +3,7 @@ import { combineReducers, Reducer } from "redux";
 import { RouteComponentSpecification } from "Packages/Common/Router/Web";
 import {
     createLoginPageSaga,
-    LoginPageWC,
+    ConnectedLoginPageWC,
     loginRoute,
     loginPageReducer,
     LoginPageState,
@@ -30,5 +30,5 @@ export type AuthPagesState = {
 export type AuthPagesStateSelector = (rootState: any) => AuthPagesState
 
 export const authRouteComponents: RouteComponentSpecification[] = [
-    { route: loginRoute, component: LoginPageWC },
+    { route: loginRoute, component: ConnectedLoginPageWC },
 ];
