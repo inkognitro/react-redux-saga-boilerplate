@@ -1,9 +1,10 @@
 import React, { FC, Fragment } from "react";
 import { Translation } from "Packages/Entity/CommonTypes";
+import { TranslatedTextWC } from "Packages/Common/Translator/Web";
 import { FormElementWC } from "./FormElementWC";
 import { MessagesWC } from './MessagesWC';
 import { FormElementState, FormElementTypes } from "../Domain";
-import { TranslationLabelWC } from "./LabelWC";
+import { LabelWC } from "./LabelWC";
 
 export type InputGroupWCProps = {
     formElement: FormElementState
@@ -13,11 +14,11 @@ export type InputGroupWCProps = {
 export const InputGroupWC: FC<InputGroupWCProps> = (props) => {
     if (props.formElement.type === FormElementTypes.CHECKBOX) {
         return (
-            <Fragment>
+            <div className="input-group">
                 <FormElementWC data={props.formElement} />
                 {props.label}
                 <div><MessagesWC messages={props.formElement.messages} /></div>
-            </Fragment>
+            </div>
         );
     }
     return (
@@ -37,9 +38,10 @@ export type SimpleInputGroupWCProps = {
 export const SimpleInputGroupWC: FC<SimpleInputGroupWCProps> = (props) => (
     <InputGroupWC
         formElement={props.formElement}
-        label={(props.labelTranslation
-            ? <TranslationLabelWC formElementId={props.formElement.id} translation={props.labelTranslation} />
-            : undefined
-        )}
+        label={(!props.labelTranslation ? undefined : (
+            <LabelWC formElementId={props.formElement.id}>
+                <TranslatedTextWC translation={props.labelTranslation} />
+            </LabelWC>
+        ))}
     />
 );

@@ -5,9 +5,9 @@ import { RootState } from "WebApp/ServicesFactory";
 import { CardWC } from "Packages/Common/LayoutFoundation/Web";
 import { FormWC } from "Packages/Common/Form/Web";
 import {
-    InputGroupWC,
     FormGroupWC,
     PrimaryButtonWC,
+    SimpleInputGroupWC,
 } from "Packages/Common/FormElement/Web";
 import { Dispatch } from "redux";
 import { LoginPageState } from "../Domain/Types";
@@ -28,13 +28,31 @@ const LoginPage: FC<LoginPageComponentProps> = (props) => (
         <CardWC title="Login">
             <FormWC onSubmit={props.onSubmitLoginForm}>
                 <FormGroupWC>
-                    <InputGroupWC formElement={props.data.form.elementsByName.username} />
+                    <SimpleInputGroupWC
+                        labelTranslation={{
+                            translationId: 'non-existing-translation-id-takes-fallback',
+                            fallback: 'Username',
+                        }}
+                        formElement={props.data.form.elementsByName.username}
+                    />
                 </FormGroupWC>
                 <FormGroupWC>
-                    <InputGroupWC formElement={props.data.form.elementsByName.password} />
+                    <SimpleInputGroupWC
+                        labelTranslation={{
+                            translationId: 'non-existing-translation-id-takes-fallback',
+                            fallback: 'Password',
+                        }}
+                        formElement={props.data.form.elementsByName.password}
+                    />
                 </FormGroupWC>
                 <FormGroupWC>
-                    <InputGroupWC formElement={props.data.form.elementsByName.rememberMe} />
+                    <SimpleInputGroupWC
+                        labelTranslation={{
+                            translationId: 'non-existing-translation-id-takes-fallback',
+                            fallback: 'stay logged in',
+                        }}
+                        formElement={props.data.form.elementsByName.rememberMe}
+                    />
                 </FormGroupWC>
                 <FormGroupWC>
                     <PrimaryButtonWC onClick={props.onSubmitLoginForm}>Login</PrimaryButtonWC>

@@ -6,7 +6,7 @@ import {
 export type InputGroupWCProps = InputGroupWCPropsType;
 export type SimpleInputGroupWCProps = SimpleInputGroupWCPropsType;
 
-export { LabelWC, TranslationLabelWC } from './LabelWC';
+export { LabelWC } from './LabelWC';
 export { PrimaryButtonWC } from './PrimaryButtonWC';
 export { SecondaryButtonWC } from './SecondaryButtonWC';
 export { FormGroupWC } from './FormGroupWC';
