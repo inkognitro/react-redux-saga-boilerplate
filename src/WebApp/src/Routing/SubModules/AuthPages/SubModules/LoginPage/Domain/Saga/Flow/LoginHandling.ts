@@ -4,7 +4,7 @@ import { dispatchToastsFromResult } from "Packages/Common/Toaster/Domain";
 import { createHideLoader, createShowLoader } from "Packages/Common/Loader/Domain";
 import { ResultTypes } from "Packages/Entity/CommonTypes";
 import { createOpenUrl } from "Packages/Common/Router/Domain";
-import { createHomeRouteUrl } from "WebApp/Routing";
+import { createHomeRouteUrl } from "WebApp/Routing/Domain";
 import { createSetFormFieldMessages } from "Packages/Common/Form/Domain";
 import { LoginPageState, LoginPageStateSelector } from "../../Types";
 

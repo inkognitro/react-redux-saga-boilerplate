@@ -1,5 +1,5 @@
-import { loginRoute } from "WebApp/Routing/AuthPages/LoginPage";
-import { homeRoute } from "WebApp/Routing/HomePage";
+import { loginRoute } from "../SubModules/AuthPages/Domain";
+import { homeRoute } from "../SubModules/HomePage/Domain";
 
 export function createLoginRouteUrl(): string {
     return loginRoute.urlSchema;

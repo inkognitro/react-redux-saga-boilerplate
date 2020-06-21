@@ -56,7 +56,7 @@ import {
     routingReducer,
     RoutingState,
     RoutingStateSelector,
-} from "WebApp/Routing";
+} from "WebApp/Routing/Domain";
 import { createHttpApiV1Saga } from "Packages/Common/HttpApiV1/Domain";
 import { createHttpApiV1ToasterSaga } from "Packages/Common/HttpApiV1Toaster/Domain";
 import { createFoundationSaga } from "WebApp/Foundation/Domain/Saga/Flow";

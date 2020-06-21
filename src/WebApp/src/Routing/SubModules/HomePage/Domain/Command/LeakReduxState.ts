@@ -1,5 +1,5 @@
 import { Command } from "Packages/Entity/CommonTypes";
-import { HomePageCommandTypes } from "../Types";
+import {HomePageCommandTypes} from "./Types";
 
 export function createLeakReduxState(): LeakReduxState {
     return {

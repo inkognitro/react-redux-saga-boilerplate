@@ -4,7 +4,7 @@ import { Store } from "redux";
 import { History } from "history";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import { ThemeProvider } from "styled-components";
-import { RouterWC } from "WebApp/Routing";
+import { RouterWC } from "WebApp/Routing/UI";
 import { Toaster, Loader } from "WebApp/Foundation/UI";
 import { RootState } from "WebApp/ServicesFactory";
 import { Theme, getTheme } from "Packages/Common/Design/Domain";

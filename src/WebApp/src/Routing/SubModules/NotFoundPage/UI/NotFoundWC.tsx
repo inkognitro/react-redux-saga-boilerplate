@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { RouteLinkWC } from "Packages/Common/Router/Web";
 import { ErrorPage } from "WebApp/Foundation/UI/PageTypes/ErrorPage";
-import { createHomeRouteUrl } from "WebApp/Routing/UrlFactory";
+import { createHomeRouteUrl } from "WebApp/Routing/Domain";
 import { TranslatedTextWC } from "Packages/Common/Translator/Web";
 import { TranslationIds } from "Packages/Entity/CommonTypes";
 

@@ -1,0 +1,1 @@
+export { HomePageWC } from './HomePageWC';

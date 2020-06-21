@@ -5,7 +5,7 @@ import { RootState } from "WebApp/ServicesFactory";
 import { Dispatch } from "redux";
 import { getCurrentAuthUser } from "Packages/Common/Authentication/Domain";
 import { AuthUser, AuthUserTypes } from "Packages/Entity/AuthUser/Domain";
-import { createHomeRouteUrl, createLoginRouteUrl } from "WebApp/Routing";
+import { createHomeRouteUrl, createLoginRouteUrl } from "WebApp/Routing/Domain";
 import { UserLabelWC } from "Packages/Entity/User/Web";
 import { createLogout } from "../Domain";
 
