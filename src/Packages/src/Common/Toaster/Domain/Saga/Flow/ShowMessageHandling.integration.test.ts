@@ -1,5 +1,6 @@
 import { expectSaga } from "redux-saga-test-plan";
 import uuidV4 from "uuid/v4";
+import { ToasterSettings } from "Packages/Common/Toaster/Domain";
 import { toasterReducer } from "../../Reducer";
 import { createShowMessage } from "../../Command/ShowMessage";
 import {
@@ -9,7 +10,6 @@ import {
 } from "../../Types";
 import { handleShowMessage } from "./ShowMessageHandling";
 import { CommonToastIds } from "../../Query/CommonToastIdByTypeQuery";
-import {ToasterSettings} from "Packages/Common/Toaster/Domain";
 
 describe("Dispatching ShowMessage command", () => {
     it("should add a message", () => {

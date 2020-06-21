@@ -71,7 +71,7 @@ function* handleMoveMessagesFromPipelineToToast(
         yield fork(startAutomaticMessageCloseTimers, toastToMerge.messages);
         return;
     }
-    yield put(createMessagesWereAddedToToast(toastToMerge.id, toastToMerge.messages),);
+    yield put(createMessagesWereAddedToToast(toastToMerge.id, toastToMerge.messages));
     yield delay(toasterSettings.toastMessageIntroAnimationTimeInMs);
     yield put(createMessageIntroAnimationsWereFinished(toastToMerge.messages.map((message) => message.id)));
     yield fork(startAutomaticMessageCloseTimers, toastToMerge.messages);

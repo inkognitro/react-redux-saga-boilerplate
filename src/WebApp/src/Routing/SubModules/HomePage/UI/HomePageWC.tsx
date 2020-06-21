@@ -60,7 +60,9 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
             <InputGroupWC
                 label={(
                     <LabelWC formElementId={props.toastContentField.id}>
-                        Toast content: {props.toastContentField.value}
+                        Toast content:
+                        {' '}
+                        {props.toastContentField.value}
                     </LabelWC>
                 )}
                 formElement={props.toastContentField}
