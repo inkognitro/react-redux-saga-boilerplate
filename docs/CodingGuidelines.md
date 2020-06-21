@@ -17,8 +17,8 @@ Furthermore there was no decoupling per endpoint and therefore no special treatm
 without more spaghetti code or extra ifs in the same place, just horrible.
 
 ## Avoid circular import references
-By avoiding circular import references the codebase stays clear and understandable.
-However, some bundlers also have problems with circular import references. Below you find some helpful rules:
+By avoiding circular import references, imports stay clear and comprehensible.
+However, some bundlers have problems with circular import references. Below you find some helpful rules:
 1. Imports must only reach to the next `index.ts` file.
 2. Importing a file from same module should be done by a relative import (e.g. `import { LoaderCommandTypes } from "./Types";`).
 3. Importing a file from another module should be done with an absolute import (e.g. `import { Command } from "Packages/Entity/CommonTypes";`).
