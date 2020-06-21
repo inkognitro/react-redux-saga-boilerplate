@@ -7,10 +7,11 @@ export enum FormElementTypes {
     CHECKBOX = "checkbox",
 }
 
-export interface BasicFormElementState<Type extends FormElementTypes> {
+export type BasicFormElementState<Type extends FormElementTypes = any> = {
     id: string
     type: Type
     readOnly: boolean
+    messages: Message[]
 }
 
 export type InputFieldState<FormElementType extends FormElementTypes = any> = (BasicFormElementState<FormElementType> & {
@@ -23,7 +24,6 @@ export type EmailFieldState = InputFieldState<FormElementTypes.EMAIL>
 export type PasswordFieldState = InputFieldState<FormElementTypes.PASSWORD>
 export type CheckboxState = (BasicFormElementState<FormElementTypes.CHECKBOX> & {
     value: boolean
-    messages: Message[]
 })
 
 export type FormElementState = (TextFieldState | EmailFieldState | PasswordFieldState | CheckboxState)

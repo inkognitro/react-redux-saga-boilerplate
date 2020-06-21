@@ -7,7 +7,6 @@ import {
     Text,
     StatusBar,
 } from 'react-native';
-import { ToasterNC } from 'Packages/Common/Toaster/Native';
 
 import {
     Header,
@@ -36,7 +35,6 @@ export const SampleContent: FC = () => (
                 <View style={styles.body}>
                     <View style={styles.sectionContainer}>
                         <Text style={styles.sectionTitle}>Step One</Text>
-                        <ToasterNC />
                         <Text style={styles.sectionDescription}>
                             Edit
                             {' '}

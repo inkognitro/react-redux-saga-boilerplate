@@ -4,7 +4,7 @@ import { ToastTypes, createShowMessage } from "Packages/Common/Toaster/Domain";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { TextFieldState } from "Packages/Common/FormElement/Domain";
-import { FormElementGroupWC, LabelWC, TextFieldWC } from "Packages/Common/FormElement/Web";
+import { FormGroupWC, LabelWC, ConnectedTextFieldWC } from "Packages/Common/FormElement/Web";
 import { createLeakReduxState } from "WebApp/Routing/HomePage";
 import { ContentPage } from "WebApp/Foundation/UI";
 import { RootState } from "WebApp/ServicesFactory";
@@ -56,13 +56,13 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         </div>
 
         <br />
-        <FormElementGroupWC>
+        <FormGroupWC>
             <LabelWC title={`Toast content: ${props.toastContentField.value}`} formElementId={props.toastContentField.id} />
-            <TextFieldWC data={props.toastContentField} />
+            <ConnectedTextFieldWC data={props.toastContentField} />
             <small>
                 FYI: Without any content, the ID of the transmitted translation object will be shown in the toast message.
             </small>
-        </FormElementGroupWC>
+        </FormGroupWC>
 
         <br />
         <h3>Redux</h3>

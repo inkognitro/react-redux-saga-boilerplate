@@ -1,14 +1,17 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { CheckboxState, createChangeFormElementState } from "../Domain";
-import { MessagesWC } from './MessagesWC';
 import {
-    ConnectedFormElementWCProps, FormElementWCCallbacks, FormElementWCProps, FormElementWCState,
+    ConnectedFormElementFCProps,
+    ConnectedFormElementFC,
+    FormElementFCCallbacks,
+    FormElementFCProps,
+    FormElementFCState,
 } from "./Types";
 
-type DumbCheckboxWCProps = FormElementWCProps<CheckboxState>
-const DumbCheckboxWC: FC<DumbCheckboxWCProps> = (props) => {
+type CheckboxWCProps = FormElementFCProps<CheckboxState>
+const CheckboxWC: FC<CheckboxWCProps> = (props) => {
     const onChange = props.data.readOnly
         ? undefined
         : (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,27 +20,26 @@ const DumbCheckboxWC: FC<DumbCheckboxWCProps> = (props) => {
             });
         };
     return (
-        <Fragment>
-            <input
-                id={props.data.id}
-                type="checkbox"
-                checked={props.data.value}
-                onChange={onChange}
-                readOnly={props.data.readOnly}
-            />
-            <MessagesWC messages={props.data.messages} />
-        </Fragment>
+        <input
+            id={props.data.id}
+            type="checkbox"
+            checked={props.data.value}
+            onChange={onChange}
+            readOnly={props.data.readOnly}
+        />
     );
 };
 
-const mapStateToProps = (_: any, props: ConnectedFormElementWCProps<CheckboxState>): FormElementWCState<CheckboxState> => ({
+const mapStateToProps = (_: any, props: ConnectedFormElementFCProps<CheckboxState>): FormElementFCState<CheckboxState> => ({
     data: props.data,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): FormElementWCCallbacks<CheckboxState> => ({
+const mapDispatchToProps = (dispatch: Dispatch): FormElementFCCallbacks<CheckboxState> => ({
     onChange: (state: CheckboxState, stateChanges: Partial<CheckboxState>) => dispatch(
         createChangeFormElementState(state, stateChanges),
     ),
 });
 
-export const CheckboxWC = connect(mapStateToProps, mapDispatchToProps)(DumbCheckboxWC);
+export const ConncectedCheckboxWC: ConnectedFormElementFC<CheckboxState> = connect(
+    mapStateToProps, mapDispatchToProps,
+)(CheckboxWC);
