@@ -6,7 +6,7 @@ FYI: This section requires knowledge of the [architecture](Architecture.md).
 Below you can see some recommended coding guidelines.
 With growing experience these guidelines could change. Nothing is carved in stone.
 
-## Be explicit not implicit, and stay fucking decoupled!
+## Be explicit, not implicit - and stay decoupled!
 In the past we had a lot of trouble by being implicit instead of explicit in programming.
 As an example we created a `RequestHandler` class as a handler for every api call.
 As time went by, this class grew with new implicit features like showing a loader every time a request was dispatched.
