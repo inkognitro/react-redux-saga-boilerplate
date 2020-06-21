@@ -10,7 +10,7 @@ With growing experience these guidelines could change. Nothing is carved in ston
 In one of my workplaces we had a lot of trouble by being implicit instead of explicit in programming.
 As an example we created a `RequestHandler` class as a handler for every api call.
 As time went by, this class grew with new implicit features like showing a loader every time a request was dispatched.
-Soon we got into trouble because not in all places where a request is dispatched also a loader needs to be shown.
+Soon we got into trouble because e.g. not in all places where a request is dispatched also a loader needs to be shown.
 We began to explicitly pass parameters for what we NOT WANT and not for what WE WANT.
 This sounds really awful, doesn't it?
 Furthermore there was no decoupling per endpoint and therefore no special treatment possible per endpoint
