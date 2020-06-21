@@ -1,9 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { TextFieldState } from "../Domain";
-import { ConnectedInternalInputFieldWC } from "./InternalInputFieldWC";
-import { ConnectedFormElementWCProps } from "./Types";
+import { ConnectedInternalInputFieldWC, InternalInputFieldWC } from "./InternalInputFieldWC";
+import { FormElementFC, ConnectedFormElementFC } from "./Types";
 
-export type TextFieldWCProps = ConnectedFormElementWCProps<TextFieldState>
-export const TextFieldWC: FC<TextFieldWCProps> = (props) => (
+export const TextFieldWC: FormElementFC<TextFieldState> = (props) => (
+    <InternalInputFieldWC data={props.data} onChange={props.onChange} />
+);
+
+export const ConnectedTextFieldWC: ConnectedFormElementFC<TextFieldState> = (props) => (
     <ConnectedInternalInputFieldWC data={props.data} />
 );

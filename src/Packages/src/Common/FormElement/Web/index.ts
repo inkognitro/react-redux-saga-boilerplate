@@ -1,9 +1,13 @@
-export { EmailFieldWC } from './EmailFieldWC';
-export { FormElementGroupWC } from './FormElementGroupWC';
+import {
+    InputGroupWCProps as InputGroupWCPropsType,
+    SimpleInputGroupWCProps as SimpleInputGroupWCPropsType,
+} from './InputGroup';
+
+export type InputGroupWCProps = InputGroupWCPropsType;
+export type SimpleInputGroupWCProps = SimpleInputGroupWCPropsType;
+
 export { LabelWC } from './LabelWC';
-export { MessagesWC } from './MessagesWC';
-export { PasswordFieldWC } from './PasswordFieldWC';
 export { PrimaryButtonWC } from './PrimaryButtonWC';
 export { SecondaryButtonWC } from './SecondaryButtonWC';
-export { TextFieldWC } from './TextFieldWC';
-export { CheckboxWC } from './CheckboxWC';
+export { FormGroupWC } from './FormGroupWC';
+export { InputGroupWC, SimpleInputGroupWC } from './InputGroup';

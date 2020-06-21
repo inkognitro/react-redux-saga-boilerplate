@@ -5,6 +5,7 @@ import {
 import {
     Message,
     Toast,
+    ToasterSettings,
     ToasterState,
     ToasterStateSelector,
 } from "../../Types";
@@ -58,46 +59,38 @@ function* startAutomaticMessageCloseTimers(messages: Message[]): Generator {
 }
 
 function* handleMoveMessagesFromPipelineToToast(
+    toasterSettings: ToasterSettings,
     toasterState: ToasterState,
     toastToMerge: Toast,
 ): Generator {
     const storedToast = findToastById(toasterState, toastToMerge.id);
     if (!storedToast) {
         yield put(createToastWasAdded(toastToMerge));
-        yield delay(800);
+        yield delay(toasterSettings.toastIntroAnimationTimeInMs);
         yield put(createToastIntroAnimationWasFinished(toastToMerge.id));
         yield fork(startAutomaticMessageCloseTimers, toastToMerge.messages);
         return;
     }
-    yield put(
-        createMessagesWereAddedToToast(toastToMerge.id, toastToMerge.messages),
-    );
-    yield delay(800);
-    yield put(
-        createMessageIntroAnimationsWereFinished(
-            toastToMerge.messages.map((message) => message.id),
-        ),
-    );
+    yield put(createMessagesWereAddedToToast(toastToMerge.id, toastToMerge.messages),);
+    yield delay(toasterSettings.toastMessageIntroAnimationTimeInMs);
+    yield put(createMessageIntroAnimationsWereFinished(toastToMerge.messages.map((message) => message.id)));
     yield fork(startAutomaticMessageCloseTimers, toastToMerge.messages);
 }
 
 export function* moveMessagesFromPipelineToToastsHandling(
+    toasterSettings: ToasterSettings,
     toasterStateSelector: ToasterStateSelector,
 ): Generator {
     // @ts-ignore
     const toasterState: ToasterState = yield select(toasterStateSelector);
     const toastsToMerge = getToastsToMerge(toasterState);
-    const functionMustBeReExecuted = false;
     for (const index in toastsToMerge) {
         const toastToMerge = toastsToMerge[index];
         yield spawn(
             handleMoveMessagesFromPipelineToToast,
+            toasterSettings,
             toasterState,
             toastToMerge,
         );
-    }
-    if (functionMustBeReExecuted) {
-        yield delay(500);
-        yield fork(moveMessagesFromPipelineToToastsHandling, toasterStateSelector);
     }
 }

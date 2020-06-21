@@ -1,9 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { EmailFieldState } from "../Domain";
-import { ConnectedInternalInputFieldWC } from "./InternalInputFieldWC";
-import { ConnectedFormElementWCProps } from "./Types";
+import { ConnectedInternalInputFieldWC, InternalInputFieldWC } from "./InternalInputFieldWC";
+import { ConnectedFormElementFC, FormElementFC } from "./Types";
 
-export type EmailFieldWCProps = ConnectedFormElementWCProps<EmailFieldState>
-export const EmailFieldWC: FC<EmailFieldWCProps> = (props) => (
+export const EmailFieldWC: FormElementFC<EmailFieldState> = (props) => (
+    <InternalInputFieldWC data={props.data} onChange={props.onChange} />
+);
+
+export const ConnectedEmailFieldWC: ConnectedFormElementFC<EmailFieldState> = (props) => (
     <ConnectedInternalInputFieldWC data={props.data} />
 );

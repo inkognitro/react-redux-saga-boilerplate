@@ -1,0 +1,1 @@
+export { ConnectedLoginPageWC } from './LoginPageWC';

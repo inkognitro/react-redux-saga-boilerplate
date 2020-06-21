@@ -6,12 +6,12 @@ import {
     InputFieldState,
     createChangeFormElementState,
 } from "../Domain";
-import { MessagesWC } from "./MessagesWC";
 import {
-    ConnectedFormElementWCProps,
-    FormElementWCCallbacks,
-    FormElementWCProps,
-    FormElementWCState,
+    ConnectedFormElementFCProps,
+    ConnectedFormElementFC,
+    FormElementFCCallbacks,
+    FormElementFCState,
+    FormElementFCProps,
 } from "./Types";
 
 function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
@@ -27,7 +27,7 @@ function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     throw new Error(`Form element type "${type}" not supported!`);
 }
 
-const InternalInputFieldWC: FC<FormElementWCProps<InputFieldState>> = (props) => {
+export const InternalInputFieldWC: FC<FormElementFCProps<InputFieldState>> = (props) => {
     const onChange = props.data.readOnly
         ? undefined
         : (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,28 +36,27 @@ const InternalInputFieldWC: FC<FormElementWCProps<InputFieldState>> = (props) =>
             });
         };
     return (
-        <React.Fragment>
-            <input
-                id={props.data.id}
-                className="form-control"
-                type={createHtmlInputTypeByTextFieldType(props.data.type)}
-                value={props.data.value}
-                onChange={onChange}
-                readOnly={props.data.readOnly}
-            />
-            <MessagesWC messages={props.data.messages} />
-        </React.Fragment>
+        <input
+            id={props.data.id}
+            className="form-control"
+            type={createHtmlInputTypeByTextFieldType(props.data.type)}
+            value={props.data.value}
+            onChange={onChange}
+            readOnly={props.data.readOnly}
+        />
     );
 };
 
-const mapStateToProps = (_: any, props: ConnectedFormElementWCProps<InputFieldState>): FormElementWCState<InputFieldState> => ({
+const mapStateToProps = (_: any, props: ConnectedFormElementFCProps<InputFieldState>): FormElementFCState<InputFieldState> => ({
     data: props.data,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): FormElementWCCallbacks<InputFieldState> => ({
+const mapDispatchToProps = (dispatch: Dispatch): FormElementFCCallbacks<InputFieldState> => ({
     onChange: (state: InputFieldState, stateChanges: Partial<InputFieldState>) => dispatch(
         createChangeFormElementState(state, stateChanges),
     ),
 });
 
-export const ConnectedInternalInputFieldWC = connect(mapStateToProps, mapDispatchToProps)(InternalInputFieldWC);
+export const ConnectedInternalInputFieldWC: ConnectedFormElementFC<InputFieldState> = connect(
+    mapStateToProps, mapDispatchToProps,
+)(InternalInputFieldWC);

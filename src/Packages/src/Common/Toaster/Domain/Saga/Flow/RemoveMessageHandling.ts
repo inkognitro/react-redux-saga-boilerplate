@@ -1,5 +1,5 @@
 import { delay, put, select } from "redux-saga/effects";
-import { ToasterState, ToasterStateSelector } from "../../Types";
+import { ToasterSettings, ToasterState, ToasterStateSelector } from "../../Types";
 import { findToastByMessageId } from "../../Query/ToastQuery";
 import { getNonRemovingMessagesInToast } from "../../Query/MessageQuery";
 import { RemoveMessage } from "../../Command/RemoveMessage";
@@ -8,7 +8,11 @@ import { createToastWasRemoved } from "../../Event/ToastWasRemoved";
 import { createMessageOutroAnimationWasStarted } from "../../Event/MessageOutroAnimationWasStarted";
 import { createMessageWasRemoved } from "../../Event/MessageWasRemoved";
 
-export function* handleRemoveMessage(toasterStateSelector: ToasterStateSelector, command: RemoveMessage): Generator {
+export function* handleRemoveMessage(
+    toasterSettings: ToasterSettings,
+    toasterStateSelector: ToasterStateSelector,
+    command: RemoveMessage,
+): Generator {
     // @ts-ignore
     const toasterState: ToasterState = yield select(toasterStateSelector);
     const messageIdToRemove = command.payload.messageId;
@@ -25,11 +29,11 @@ export function* handleRemoveMessage(toasterStateSelector: ToasterStateSelector,
             return;
         }
         yield put(createToastOutroAnimationWasStarted(toast.id));
-        yield delay(800);
+        yield delay(toasterSettings.toastOutroAnimationTimeInMs);
         yield put(createToastWasRemoved(toast.id));
         return;
     }
     yield put(createMessageOutroAnimationWasStarted(messageIdToRemove));
-    yield delay(550);
+    yield delay(toasterSettings.toastMessageOutroAnimationTimeInMs);
     yield put(createMessageWasRemoved(messageIdToRemove));
 }

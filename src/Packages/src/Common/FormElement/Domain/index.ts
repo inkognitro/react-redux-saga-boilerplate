@@ -1,4 +1,5 @@
 import {
+    BasicFormElementState as BasicFormElementStateType,
     PasswordFieldState as PasswordFieldStateType,
     TextFieldState as TextFieldStateType,
     EmailFieldState as EmailFieldStateType,
@@ -17,6 +18,7 @@ export type PasswordFieldState = PasswordFieldStateType;
 export type TextFieldState = TextFieldStateType;
 export type EmailFieldState = EmailFieldStateType;
 export type CheckboxState = CheckboxStateType;
+export type BasicFormElementState<Type extends FormElementTypes = any> = BasicFormElementStateType<Type>;
 export type FormElementState = FormElementStateType;
 export type FormElementStateChanges = FormElementStateChangesType;
 export type ChangeFormElementState = ChangeFormElementStateType;

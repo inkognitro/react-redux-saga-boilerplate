@@ -4,6 +4,7 @@ import {
     MessageToAdd as MessageToAddType,
     Toast as ToastType,
     Message as MessageType,
+    ToasterSettings as ToasterSettingsType,
 } from './Types';
 import {
     DispatchToastsFromResultGenerator as DispatchToastsFromResultGeneratorType,
@@ -24,6 +25,7 @@ import {
     MessageIntroAnimationsWereFinished as MessageIntroAnimationsWereFinishedType,
 } from "./Event/MessageIntroAnimationsWereFinished";
 
+export type ToasterSettings = ToasterSettingsType;
 export type ToasterStateSelector = ToasterStateSelectorType;
 export type ToasterState = ToasterStateType;
 export type MessageToAdd = MessageToAddType;
