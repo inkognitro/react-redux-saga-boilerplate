@@ -9,9 +9,17 @@ import {
 } from "../../Types";
 import { handleShowMessage } from "./ShowMessageHandling";
 import { CommonToastIds } from "../../Query/CommonToastIdByTypeQuery";
+import {ToasterSettings} from "Packages/Common/Toaster/Domain";
 
 describe("Dispatching ShowMessage command", () => {
     it("should add a message", () => {
+        const toasterSettings: ToasterSettings = {
+            toastMessageOutroAnimationTimeInMs: 0,
+            toastOutroAnimationTimeInMs: 0,
+            toastMessageIntroAnimationTimeInMs: 0,
+            toastIntroAnimationTimeInMs: 0,
+            asyncToastWaitingTimeInMs: 0,
+        };
         const toasterStateSelector: ToasterStateSelector = (state: ToasterState) => state;
         const translationId = uuidV4();
         const command = createShowMessage({
@@ -44,7 +52,7 @@ describe("Dispatching ShowMessage command", () => {
                 },
             ],
         };
-        return expectSaga(handleShowMessage, toasterStateSelector, command)
+        return expectSaga(handleShowMessage, toasterSettings, toasterStateSelector, command)
             .withReducer(toasterReducer)
             .hasFinalState(expectedState)
             .run(false);
