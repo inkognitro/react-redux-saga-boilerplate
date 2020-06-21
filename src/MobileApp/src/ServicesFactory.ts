@@ -12,6 +12,7 @@ import {
     ToasterStateSelector,
     toasterReducer,
     createToasterSaga,
+    ToasterSettings,
 } from "Packages/Common/Toaster/Domain";
 import { TranslatorState, translatorReducer } from "Packages/Common/Translator/Domain";
 import { designReducer, DesignState } from "Packages/Common/Design/Domain";
@@ -31,7 +32,14 @@ function createRootReducer(): Reducer {
 
 function createRootSaga(): () => Generator {
     const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
-    const toasterSaga = createToasterSaga(toasterStateSelector);
+    const toasterSettings: ToasterSettings = {
+        asyncToastWaitingTimeInMs: 0,
+        toastIntroAnimationTimeInMs: 0,
+        toastOutroAnimationTimeInMs: 0,
+        toastMessageIntroAnimationTimeInMs: 0,
+        toastMessageOutroAnimationTimeInMs: 0,
+    };
+    const toasterSaga = createToasterSaga(toasterSettings, toasterStateSelector);
     return function* rootSaga(): Generator {
         yield spawn(toasterSaga);
     };

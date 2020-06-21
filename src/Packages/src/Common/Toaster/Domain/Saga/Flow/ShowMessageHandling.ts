@@ -3,7 +3,7 @@ import {
     delay, fork, put, select,
 } from "redux-saga/effects";
 import {
-    MessageToAdd,
+    MessageToAdd, ToasterSettings,
     ToasterState,
     ToasterStateSelector,
     ToastTypes,
@@ -15,9 +15,7 @@ import {
 import { findToastByMessageId } from "../../Query/ToastQuery";
 import { findMessageToAddByMessageId } from "../../Query/MessageQuery";
 import { createMessageWasAddedToPipeline } from "../../Event/MessageWasAddedToPipeline";
-import {
-    moveMessagesFromPipelineToToastsHandling,
-} from "./MoveMessagesFromPipelineToToastsHandling";
+import { moveMessagesFromPipelineToToastsHandling } from "./MoveMessagesFromPipelineToToastsHandling";
 
 function createAutomaticCloseDelayInMs(
     settings: ShowMessageSettings,
@@ -39,6 +37,7 @@ function createCanBeClosedManually(settings: ShowMessageSettings): boolean {
 }
 
 export function* handleShowMessage(
+    toasterSettings: ToasterSettings,
     toasterStateSelector: ToasterStateSelector,
     command: ShowMessage,
 ): Generator {
@@ -66,6 +65,6 @@ export function* handleShowMessage(
         },
     };
     yield put(createMessageWasAddedToPipeline(messageToAdd));
-    yield delay(200);
-    yield fork(moveMessagesFromPipelineToToastsHandling, toasterStateSelector);
+    yield delay(toasterSettings.asyncToastWaitingTimeInMs);
+    yield fork(moveMessagesFromPipelineToToastsHandling, toasterSettings, toasterStateSelector);
 }

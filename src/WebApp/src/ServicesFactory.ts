@@ -19,6 +19,7 @@ import {
     ToasterStateSelector,
     toasterReducer,
     createToasterSaga,
+    ToasterSettings,
 } from "Packages/Common/Toaster/Domain";
 import {
     TranslatorState,
@@ -86,7 +87,14 @@ function createRootSaga(
     httpRequestDispatcher: HttpRequestDispatcher,
 ): () => Generator {
     const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
-    const toasterSaga = createToasterSaga(toasterStateSelector);
+    const toasterSettings: ToasterSettings = {
+        asyncToastWaitingTimeInMs: 200,
+        toastIntroAnimationTimeInMs: 800,
+        toastOutroAnimationTimeInMs: 800,
+        toastMessageIntroAnimationTimeInMs: 800,
+        toastMessageOutroAnimationTimeInMs: 550,
+    };
+    const toasterSaga = createToasterSaga(toasterSettings, toasterStateSelector);
     const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
     const translatorSaga = createTranslatorSaga(translatorStateSelector);
     const loaderSaga = createLoaderSaga();

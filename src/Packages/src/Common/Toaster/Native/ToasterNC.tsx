@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Text } from 'react-native';
 import { Toast } from "Packages/Common/Toaster/Domain";
 
@@ -15,11 +15,11 @@ export type ToasterProps = ToasterWCState & ToasterWCCallbacks;
 export const ToasterNC: FC<ToasterProps> = (props) => (
     <>
         {props.toasts.map((toast) => (
-            <>
+            <Fragment key={toast.id}>
                 {toast.messages.map((message) => (
-                    <Text>{message.content.fallback}</Text>
+                    <Text key={message.id}>{message.content.fallback}</Text>
                 ))}
-            </>
+            </Fragment>
         ))}
     </>
 );
