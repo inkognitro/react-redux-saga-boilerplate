@@ -6,7 +6,7 @@ FYI: This section requires knowledge of the [architecture](Architecture.md).
 Below you can see some recommended coding guidelines.
 With growing experience these guidelines could change. Nothing is carved in stone.
 
-## Be explicit from the beginning. Stay decoupled.
+## Be explicit about parameters. Stay decoupled.
 In one of my workplaces we had a lot of trouble by being implicit instead of explicit in programming.
 As an example we created a `RequestHandler` class as a handler for every api call.
 As time went by, this class grew with new implicit features like showing a loader every time a request was dispatched.
@@ -15,6 +15,22 @@ We began to explicitly pass parameters for what we NOT WANT and not for what WE 
 This sounds really awful, doesn't it?
 Furthermore there was no decoupling per endpoint and therefore no special treatment possible per endpoint
 without more spaghetti code or extra ifs in the same place, just horrible.
+
+## Don't use default exports
+To be unified, it is recommended to import things like
+`import { x } from 'foo';` and not by default exports e.g. `import x from 'foo';`.
+Codebase changes overtime, so could default exports.
+Default exports are just another hurdle for changing code, because outside modules are coupled to it.
+I recommend avoiding default exports at all.
+
+## Redux-saga: Differentiate between `Flow` and `CustomEffect`
+You should split your redux-saga logic into `flows` (aka handlers) and `customEffects`.
+In this codebase all the "handler" sagas are categorized as a `flow`.
+- `Flow:` This is a saga, provided from the a saga factory in the same module.
+Flows are hierarchically composed by factories. The root factory normally is the service factory of an app.
+Dependencies - or in other words instances of implementations - are passed down by these factories.
+- `CustomEffect:` A custom effect is an independent saga, listening for command and events.
+A custom effect provides functionality, which would double coded for other modules.
 
 ## Avoid circular import references
 By avoiding circular import references, imports stay clear and comprehensible.
@@ -37,13 +53,7 @@ With linting rules all team members have the same understanding of code style.
 This helps to read code more quickly and therefore increases productivity.
 Within this project linting is done by [eslint](https://eslint.org/).
 
-Below you can see the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
-
-Automatic detection of `.eslintrc.json` in the project folder:
-![esLintAutomaticDetection](assets/esLintAutomaticDetection.png)
-
-Replace `Strg + Alt + L` shortcut with eslint fix:
-![esLintKeymapShortcut](assets/esLintKeymapShortcut.png)
+See [environment docs](./Environment.md) for setup eslint on webstorm.
 
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
