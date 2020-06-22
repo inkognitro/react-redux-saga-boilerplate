@@ -20,15 +20,15 @@ For a better understanding have a look at the info graphic below. The relevant t
 Generally the project is structured as a monorepo with several sub projects inside.
 Following definitions are given:
 
-- `Package:` A package is a collection of `ModuleCollections` and `Modules`. A package can be considered as a root `module collection` without an `index.ts` file.
-- `Module:` A module contains a strongly coupled features. Every module contains an `index.ts` file, which defines its public API. Every module is divided in domain, infrastructure and UI layer.
-- `ModuleCollection:` A module collection contains multiple modules and other module collections. A module collection contains an `index.ts` file to define its public API.
-- `App:` An app (e.g. WebApp) is a standalone application, which uses several modules from different packages. Furthermore it can contain its own specific modules or module collections. Ideally most stuff is kept reusable and sourced out to packages.
+- `Package:` A package is a collection of `ModuleCollections`.
+- `ModuleCollection:` A module collection contains multiple modules (e.g. `Packages/Entity`, `Packages/Common`)
+- `Module:` A module contains strongly coupled features:
+    - Every module is divided in `Domain`, `Infrastructure` and `UI` (could also be `Native` and `Web`) layer.
+    - In each of these layers a `index.ts` file lives in to define its public API.
+    - A module can contain sub modules in a `SubModules` directory.
+    These sub modules should only be imported from the module itself.
 
-With this feature based structure, it is ensured that specific features easily can be moved in the codebase.
-
-For a better understanding you find the structure info graphic below.
-[STRUCTURE INFO GRAPHIC AS SVG]
+With this feature based structure, it is ensured that specific features easily can be moved up and down in the codebase.
 
 ## Appendix
 Following information is not necessary to know but may be interesting for you.
