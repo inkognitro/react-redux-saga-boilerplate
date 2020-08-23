@@ -1,5 +1,5 @@
 import { TranslationIds } from "Packages/Entity/CommonTypes";
-import { TranslationIdToTranslationMapping } from "../Types";
+import { TranslationIdToTranslationMapping } from "../types";
 
 export const translationIdToTranslationMapping: TranslationIdToTranslationMapping = {
     [TranslationIds.COULD_NOT_CONNECT_TO_SERVER]: "Could not connect to server.",
