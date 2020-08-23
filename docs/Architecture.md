@@ -1,7 +1,7 @@
 [« docs overview](../README.md)
 
 # Architecture
-The target was to create a highly maintainable frontend boilerplate.
+Target was to create a highly maintainable frontend boilerplate.
 To be specific, the criteria were: reusable codebase, readable code, flat learning curve, documentation, large community, easy testing.
 Following explanations should clarify the architecture.
 

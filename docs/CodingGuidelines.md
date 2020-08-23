@@ -1,59 +1,60 @@
 [« docs overview](../README.md)
 
 # Coding Guidelines
-FYI: This section requires knowledge of the [architecture](Architecture.md).
+This section requires knowledge of the [architecture](Architecture.md).
 
 Below you can see some recommended coding guidelines.
-With growing experience these guidelines could change. Nothing is carved in stone.
+With growing experience these guidelines will change.
+Nothing is carved in stone here.
 
 ## Be explicit about parameters. Stay decoupled.
-In one of my workplaces we had a lot of trouble by being implicit instead of explicit in programming.
+In one of my workplaces we had a lot of trouble being implicit instead of explicit in programming.
 As an example we created a `RequestHandler` class as a handler for every api call.
 As time went by, this class grew with new implicit features like showing a loader every time a request was dispatched.
 Soon we got into trouble because e.g. not in all places where a request is dispatched also a loader needs to be shown.
-We began to explicitly pass parameters for what we NOT WANT and not for what WE WANT.
+So we began to explicitly pass parameters for what we NOT WANT and not for what WE WANT.
 This sounds really awful, doesn't it?
-Furthermore there was no decoupling per endpoint and therefore no special treatment possible per endpoint
-without more spaghetti code or extra ifs in the same place, just horrible.
+Furthermore there was no decoupling per endpoint and therefore no special treatment possible per endpoint.
+But this is another story.
 
 ## Don't use default exports
-To be unified, it is recommended to import things like
-`import { x } from 'foo';` and not by default exports e.g. `import x from 'foo';`.
+For unity, it is recommended importing things like
+`import { x } from 'foo';` and not by default exports `import x from 'foo';`.
 Codebase changes overtime, so could default exports.
 Default exports are just another hurdle for changing code, because outside modules are coupled to it.
 I recommend avoiding default exports at all.
 
-## Redux-saga: Differentiate between `Flow` and `CustomEffect`
-You should split your redux-saga logic into `flows` (aka handlers) and `customEffects`.
+## Redux-saga: Differentiate between `flow` and `effect`
+It is recommended splitting your redux-saga logic into `flows` (aka handlers) and custom `effects`.
 In this codebase all the "handler" sagas are categorized as a `flow`.
-- `Flow:` This is a saga, provided from the a saga factory in the same module.
-Flows are hierarchically composed by factories. The root factory normally is the service factory of an app.
+- `flow:` This is a saga, provided from the a saga factory in the same module.
+Flows are hierarchically composed by factories. Usually the root factory is the service factory of an app.
 Dependencies - or in other words instances of implementations - are passed down by these factories.
-- `CustomEffect:` A custom effect is an independent saga, listening for command and events.
-A custom effect provides functionality, which would double coded for other modules.
+- `effect:` A custom effect is an independent saga, listening for commands and events, without dependencies.
+A custom effect provides functionality, which otherwise must be double coded in other modules.
 
 ## Avoid circular import references
 By avoiding circular import references, imports stay clear and comprehensible.
 However, some bundlers have problems with circular import references. Below you find some helpful rules:
-1. Imports must only reach to the next `index.ts` file.
-2. Importing a file from same module should be done by a relative import (e.g. `import { LoaderCommandTypes } from "./Types";`).
+1. Imports must only reach to the very next `index.ts` file.
+2. Importing a file from the same module should be done by a relative import (e.g. `import { LoaderCommandTypes } from "./Types";`).
 3. Importing a file from another module should be done with an absolute import (e.g. `import { Command } from "Packages/Entity/CommonTypes";`).
 
 ## Separate import per layer
-A import should always reference to only one layer. This avoids problems with bundlers.
+Imports always should reference to only one specific layer. This avoids problems with bundlers.
 Problem: Imagine there was a `index.ts` in the root of the `Packages/Common/Translation` module,
-which is exporting domain layer stuff, native and web components.
+which is exporting domain, native and web stuff.
 If we would import things from this `index.ts` file into our mobile app,
 we had unwanted dependencies to web components and likely to additional web libraries.
 Therefore it is important to import things from `.../Domain`, `.../Native` or `.../Web` folders,
-where the corresponding `index.ts` files do export their public module api.
+where the corresponding `index.ts` file exports their public module layer's api.
 
 ## Linting for a unified codebase
-With linting rules all team members have the same understanding of code style.
-This helps to read code more quickly and therefore increases productivity.
+With linting rules all team members have the same understanding of the code style.
+Linting helps to read code more quickly and therefore increases productivity.
 Within this project linting is done by [eslint](https://eslint.org/).
 
-See [environment docs](./Environment.md) for setup eslint on webstorm.
+See [environment docs](./Environment.md) for setting up eslint in WebStorm.
 
 ## Testing
 The integrated test runner is [jest](http://jestjs.io).
