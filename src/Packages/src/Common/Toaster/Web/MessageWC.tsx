@@ -3,7 +3,7 @@ import { CloseIconWC, IconSizes, IconTypes } from "Packages/Common/Icon/Web";
 import { TimelineLite, Power1 } from "gsap";
 import styled from "styled-components";
 import { StyledWCProps } from "Packages/Common/Design/Web";
-import { TranslatedTextWC } from "Packages/Common/Translator/Web";
+import { TranslatedTextWC } from "Packages/Common/translator/web";
 import { Message } from "../Domain/Types";
 
 const StyledMessage = styled.div`

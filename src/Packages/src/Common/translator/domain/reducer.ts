@@ -2,9 +2,8 @@ import {
     LanguageIds,
     TranslatorState,
 } from "./Types";
-import { translationIdToTranslationMapping } from "./Translation/en";
-import { UILanguageWasSet } from "./Event/UILanguageWasSet";
-import { TranslatorEventTypes } from "./Event/Types";
+import { translationIdToTranslationMapping } from "./translation/en";
+import {TranslatorEventTypes, UILanguageWasSet} from "Packages/Common/translator/domain/event";
 
 type TranslatorEvent = UILanguageWasSet
 

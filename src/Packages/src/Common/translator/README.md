@@ -10,8 +10,8 @@ None.
 Following code snipped could be used in a module.
 ```javascript
 import React, { FC, Fragment } from 'react';
-import { TranslationIds } from "Packages/Common/Translator/Domain";
-import { TranslatedTextWC } from "Packages/Common/Translator/Web";
+import { TranslationIds } from "Packages/Common/translator/Domain";
+import { TranslatedTextWC } from "Packages/Common/translator/Web";
 
 export const SomeComponent: FC = () => {
     return (

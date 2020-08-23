@@ -1,5 +1,9 @@
 import { Translation } from "Packages/Entity/CommonTypes";
-import { TranslatorState } from "../Types";
+import { LanguageIds, TranslatorState } from "./types";
+
+export function getCurrentLanguageId(state: TranslatorState): LanguageIds {
+    return state.currentLanguageId;
+}
 
 export function findTranslatedText(state: TranslatorState, translation: Translation): null | string {
     let translatedText = state.translations[translation.translationId];

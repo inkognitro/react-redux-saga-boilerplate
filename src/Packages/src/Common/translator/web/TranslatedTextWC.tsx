@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { Translation } from "Packages/Entity/CommonTypes";
-import { findTranslatedText, TranslatorState } from "../Domain";
+import { findTranslatedText, TranslatorState } from "../domain";
 import { TranslationTextConsumer } from '../TranslatorContext';
 
 type InternalTranslatedTextWCProps = {

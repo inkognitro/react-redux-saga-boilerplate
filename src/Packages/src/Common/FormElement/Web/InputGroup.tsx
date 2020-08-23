@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { Translation } from "Packages/Entity/CommonTypes";
-import { TranslatedTextWC } from "Packages/Common/Translator/Web";
+import { TranslatedTextWC } from "Packages/Common/translator/web";
 import { FormElementWC } from "./FormElementWC";
 import { MessagesWC } from './MessagesWC';
 import { FormElementState, FormElementTypes } from "../Domain";

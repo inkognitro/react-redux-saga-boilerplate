@@ -14,7 +14,7 @@ import {
     createToasterSaga,
     ToasterSettings,
 } from "Packages/Common/Toaster/Domain";
-import { TranslatorState, translatorReducer } from "Packages/Common/Translator/Domain";
+import { TranslatorState, translatorReducer } from "Packages/Common/translator/domain";
 import { designReducer, DesignState } from "Packages/Common/Design/Domain";
 
 type AppServices = {

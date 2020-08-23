@@ -26,7 +26,7 @@ import {
     TranslatorStateSelector,
     createTranslatorSaga,
     translatorReducer,
-} from "Packages/Common/Translator/Domain";
+} from "Packages/Common/translator/domain";
 import { BrowserHistoryManager } from "Packages/Common/Router/Infrastructure";
 import { createCookieSaga } from "Packages/Common/Cookie/Domain";
 import { BrowserCookieStorage } from "Packages/Common/Cookie/Infrastructure";
