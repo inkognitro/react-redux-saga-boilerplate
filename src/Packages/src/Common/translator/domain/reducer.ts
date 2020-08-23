@@ -3,7 +3,7 @@ import {
     TranslatorState,
 } from "./types";
 import { translationIdToTranslationMapping } from "./translation/en";
-import {TranslatorEventTypes, UILanguageWasSet} from "./event";
+import { TranslatorEventTypes, UILanguageWasSet } from "./event";
 
 type TranslatorEvent = UILanguageWasSet
 
