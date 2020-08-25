@@ -20,13 +20,13 @@ const StyledLoaderTextDiv = styled.div`
   color: white;
 `;
 
-export type LoaderWCState = {
+export type LoaderState = {
     isVisible: boolean;
 };
 
-export type LoaderWCProps = LoaderWCState;
+export type LoaderProps = LoaderState;
 
-export class LoaderWC extends Component<LoaderWCProps> {
+export class Loader extends Component<LoaderProps> {
     private fadeInAnimation: TimelineLite;
 
     private loader: HTMLDivElement;
@@ -36,7 +36,7 @@ export class LoaderWC extends Component<LoaderWCProps> {
         this.triggerAnimationBehaviour(null);
     }
 
-    componentDidUpdate(prevProps: LoaderWCProps): void {
+    componentDidUpdate(prevProps: LoaderProps): void {
         this.triggerAnimationBehaviour(prevProps);
     }
 
@@ -48,7 +48,7 @@ export class LoaderWC extends Component<LoaderWCProps> {
         this.fadeInAnimation.reverse();
     }
 
-    triggerAnimationBehaviour(prevProps: null | LoaderWCProps): void {
+    triggerAnimationBehaviour(prevProps: null | LoaderProps): void {
         if (prevProps && prevProps.isVisible === this.props.isVisible) {
             return;
         }

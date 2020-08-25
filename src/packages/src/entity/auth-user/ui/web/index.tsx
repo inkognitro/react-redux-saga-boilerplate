@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import { UserLabel } from "packages/entity/user/ui/web";
 import { AuthUser, AuthUserTypes } from "../../domain";
 
-export type AuthUserLabelWCProps = {
+export type AuthUserLabelProps = {
     authUser: AuthUser;
 };
 
-export const AuthUserLabelWC: FC<AuthUserLabelWCProps> = (props) => {
+export const AuthUserLabel: FC<AuthUserLabelProps> = (props) => {
     if (props.authUser.type === AuthUserTypes.ANONYMOUS) {
         return (<>Guest</>);
     }

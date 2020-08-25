@@ -23,9 +23,9 @@ Following definitions are given:
 - `Package:` A package is a collection of `ModuleCollections`.
 - `ModuleCollection:` A module collection contains multiple modules (e.g. `Packages/Entity`, `Packages/Common`)
 - `Module:` A module contains strongly coupled features:
-    - Every module is divided in `Domain`, `Infrastructure` and `UI` (could also be `Native` and `Web`) layer.
-    - In each of these layers a `index.ts` file lives in to define its public API.
-    - A module can contain sub modules in a `SubModules` directory.
+    - Every module is divided in `domain`, `infrastructure` and `ui` (divided in `native` and `web`) layer.
+    - In each of these layers an `index.ts` file lives in, to define its public api.
+    - A module should contain sub modules in a `sub-modules` directory.
     These sub modules should only be imported from the module itself.
 
 With this feature based structure, it is ensured that specific features easily can be moved up and down in the codebase.

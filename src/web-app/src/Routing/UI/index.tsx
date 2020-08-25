@@ -1,1 +1,0 @@
-export { RouterWC } from './RouterWC';

@@ -1,1 +1,0 @@
-export { HomePageWC } from './HomePageWC';

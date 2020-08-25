@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import { Toaster } from "./toaster";
 import { ToastTypes } from "../../domain";
 
-describe("ToasterWC", () => {
+describe("Toaster", () => {
     it('renders correctly', () => {
         renderer.create(
             <Toaster

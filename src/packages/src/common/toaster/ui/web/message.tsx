@@ -28,12 +28,12 @@ const StyledCloseIcon = styled(CloseIcon)`
   cursor: pointer;
 `;
 
-export type MessageWCProps = {
+export type MessageProps = {
     message: MessageData
     onRemove(): void
 };
 
-export class Message extends Component<MessageWCProps> {
+export class Message extends Component<MessageProps> {
   private message: HTMLDivElement;
 
   private introAnimation: TimelineLite;
@@ -46,7 +46,7 @@ export class Message extends Component<MessageWCProps> {
       }
   }
 
-  componentDidUpdate(prevProps: MessageWCProps) {
+  componentDidUpdate(prevProps: MessageProps) {
       if (
           this.props.message.isOutroAnimationRunning
         && prevProps.message.isOutroAnimationRunning

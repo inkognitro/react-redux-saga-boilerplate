@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom'
 import { hot } from 'react-hot-loader/root';
-import { RootComponent } from './src/App';
-import { createDevAppServices, createHotReloadedDevAppServices } from "./src/ServicesFactory";
+import { RootComponent } from 'web-app/app';
+import { createDevAppServices, createHotReloadedDevAppServices } from "web-app/services.factory";
 
 const HotReloadedApp = hot(RootComponent);
 

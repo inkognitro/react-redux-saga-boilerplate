@@ -1,1 +1,0 @@
-export { NotFoundWC } from './NotFoundWC';

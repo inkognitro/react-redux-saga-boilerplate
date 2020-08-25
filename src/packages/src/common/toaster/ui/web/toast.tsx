@@ -27,12 +27,12 @@ const StyledToast = styled.div`
   }
 `;
 
-export type ToastWCProps = {
+export type ToastProps = {
     toast: ToastData
     onRemoveMessage(messageId: string): void
 };
 
-export class Toast extends Component<ToastWCProps> {
+export class Toast extends Component<ToastProps> {
   private toastWrapperElement: HTMLDivElement;
 
   private toastElement: HTMLDivElement;
@@ -47,7 +47,7 @@ export class Toast extends Component<ToastWCProps> {
       }
   }
 
-  componentDidUpdate(prevProps: ToastWCProps) {
+  componentDidUpdate(prevProps: ToastProps) {
       if (
           this.props.toast.isOutroAnimationRunning
         && prevProps.toast.isOutroAnimationRunning

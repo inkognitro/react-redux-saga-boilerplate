@@ -1,11 +1,11 @@
 import {
     ToasterProps as ToasterPropsType,
-    ToasterCallbacks as ToasterWCCallbacksType,
-    ToasterState as ToasterWCStateType,
+    ToasterCallbacks as ToasterCallbacksType,
+    ToasterState as ToasterStateType,
 } from './toaster';
 
 export type ToasterProps = ToasterPropsType;
-export type ToasterWCCallbacks = ToasterWCCallbacksType;
-export type ToasterWCState = ToasterWCStateType;
+export type ToasterCallbacks = ToasterCallbacksType;
+export type ToasterState = ToasterStateType;
 
 export { Toaster } from './toaster';
