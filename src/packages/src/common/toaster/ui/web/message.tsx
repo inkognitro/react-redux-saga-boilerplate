@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CloseIcon, IconSizes, IconTypes } from "packages/common/icon/ui/web";
 import { TimelineLite, Power1 } from "gsap";
 import styled from "styled-components";
-import { StyledComponentProps } from "packages/common/Design/Web";
+import { StyledComponentProps } from "packages/common/design/ui/web";
 import { TranslatedText } from "packages/common/translator/ui/web";
 import { Message as MessageData } from "../../domain";
 

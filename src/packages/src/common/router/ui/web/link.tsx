@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { createOpenUrl } from "packages/common/router/domain";
 import styled from "styled-components";
-import { StyledComponentProps } from "packages/common/Design/Web";
+import { StyledComponentProps } from "packages/common/design/ui/web";
 
 const StyledLink = styled.a`
   color: $colorInteractive;

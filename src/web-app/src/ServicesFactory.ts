@@ -47,7 +47,7 @@ import {
     authenticationReducer,
     createAuthenticationSaga,
 } from "packages/common/Authentication/Domain";
-import { designReducer, DesignState } from "packages/common/Design/Domain";
+import { designReducer, DesignState } from "packages/common/design/domain";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLoaderSaga, loaderReducer, LoaderState } from "packages/common/loader/domain";
 import { createFormElementsFlow } from "packages/common/form-element/domain";

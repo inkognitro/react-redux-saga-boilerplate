@@ -1,5 +1,5 @@
-import { DesignState } from "./Types";
-import { getDefaultTheme } from "./Query/ThemeQuery";
+import { DesignState } from "./types";
+import { getDefaultTheme } from "./query";
 
 const initialDesignState: DesignState = {
     theme: getDefaultTheme(),

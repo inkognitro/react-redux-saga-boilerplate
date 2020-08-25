@@ -1,4 +1,4 @@
-import { StyledComponentProps } from "packages/common/Design/Web";
+import { StyledComponentProps } from "packages/common/design/ui/web";
 import styled, { StyledComponent } from "styled-components";
 import { ComponentType } from "react";
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Power1, TimelineLite } from "gsap";
 import styled from "styled-components";
-import { StyledComponentProps, createBoxShadowCss } from "packages/common/Design/Web";
+import { StyledComponentProps, createBoxShadowCss } from "packages/common/design/ui/web";
 import { Message as MessageData, Toast as ToastData, ToastTypes } from "../../domain";
 import { Message } from "./message";
 

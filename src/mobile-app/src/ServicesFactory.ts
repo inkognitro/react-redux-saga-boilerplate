@@ -15,7 +15,7 @@ import {
     ToasterSettings,
 } from "packages/common/toaster/domain";
 import { TranslatorState, translatorReducer } from "packages/common/translator/domain";
-import { designReducer, DesignState } from "packages/common/Design/Domain";
+import { designReducer, DesignState } from "packages/common/design/domain";
 
 type AppServices = {
     store: Store
