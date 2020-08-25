@@ -1,4 +1,4 @@
-import { AuthStateSelector } from "packages/common/Authentication/Domain";
+import { AuthStateSelector } from "packages/common/authentication/domain";
 import { spawn, takeEvery } from "@redux-saga/core/effects";
 import { handleSendHttpRequest } from "./send.http.request.handling";
 import { ApiV1CommandTypes } from "../../command";

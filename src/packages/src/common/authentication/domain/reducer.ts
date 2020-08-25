@@ -1,14 +1,16 @@
 import { AnonymousAuthUser, AuthUserTypes } from "packages/entity/auth-user/domain";
-import { AuthEventTypes } from "./Event/Types";
-import { UserAuthenticationRefreshFailed } from "./Event/UserAuthenticationRefreshFailed";
-import { UserAuthenticationRefreshWasRequested } from "./Event/UserAuthenticationRefreshWasRequested";
-import { UserLoginWasCancelled } from "./Event/UserLoginWasCancelled";
-import { UserLoginFailed } from "./Event/UserLoginFailed";
-import { UserAuthenticationWasRefreshed } from "./Event/UserAuthenticationWasRefreshed";
-import { UserLoginWasRequested } from "./Event/UserLoginWasRequested";
-import { UserWasLoggedIn } from "./Event/UserWasLoggedIn";
-import { UserWasLoggedOut } from "./Event/UserWasLoggedOut";
-import { AuthState } from "./Types";
+import { AuthState } from "./types";
+import {
+    AuthEventTypes,
+    UserAuthenticationRefreshFailed,
+    UserAuthenticationRefreshWasRequested,
+    UserAuthenticationWasRefreshed,
+    UserLoginFailed,
+    UserLoginWasCancelled,
+    UserLoginWasRequested,
+    UserWasLoggedIn,
+    UserWasLoggedOut,
+} from "./event";
 
 export type AuthEvent = (
     UserAuthenticationRefreshFailed

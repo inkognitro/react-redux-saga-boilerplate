@@ -6,11 +6,9 @@ import {
     LogoutErrorResult,
     LogoutResult,
     LogoutSuccessResult,
-} from "../../Types";
-import { AuthEventTypes } from '../../Event/Types';
-import { createLogout } from '../../Command/Logout';
-import { UserLogoutWasNotExecuted } from '../../Event/UserLogoutWasNotExecuted';
-import { UserWasLoggedOut } from '../../Event/UserWasLoggedOut';
+} from "../../types";
+import { createLogout } from "../../command";
+import { AuthEventTypes, UserLogoutWasNotExecuted, UserWasLoggedOut } from "../../event";
 
 type LogoutResultEventGenerator = Generator<StrictEffect, LogoutResult>;
 

@@ -5,13 +5,14 @@ import { authenticateAtEndpoint, AuthenticateResult } from "packages/common/http
 import { createSaveCookie } from "packages/common/cookie/domain";
 import { ResultTypes } from "packages/entity/common-types";
 import { AuthUserTypes } from "packages/entity/auth-user/domain";
-import { getCurrentAuthUser } from "../../Query/CurrentAuthUserQuery";
-import { AuthState, AuthStateSelector } from "../../Types";
-import { Login } from "../../Command/Login";
-import { createUserLoginFailed } from "../../Event/UserLoginFailed";
-import { createUserWasLoggedIn } from "../../Event/UserWasLoggedIn";
-import { createUserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
-import { createUserLoginWasNotExecuted } from "../../Event/UserLoginWasNotExecuted";
+import { AuthState, AuthStateSelector } from "../../types";
+import { Login } from "../../command";
+import {
+    createUserLoginFailed,
+    createUserLoginWasCancelled,
+    createUserLoginWasNotExecuted, createUserWasLoggedIn,
+} from "../../event";
+import { getCurrentAuthUser } from "../../query";
 
 export const authTokenCookieTimeToLiveInDays = 14;
 

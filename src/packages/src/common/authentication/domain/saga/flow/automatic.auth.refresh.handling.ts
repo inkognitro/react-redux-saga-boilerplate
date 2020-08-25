@@ -2,13 +2,14 @@ import {
     delay, put, race, select, take,
 } from "@redux-saga/core/effects";
 import { AuthUserTypes } from "packages/entity/auth-user/domain";
-import { AuthState, AuthStateSelector } from "../../Types";
-import { AuthEventTypes } from "../../Event/Types";
-import { UserWasLoggedOut } from "../../Event/UserWasLoggedOut";
-import { getCurrentAuthUser } from "../../Query/CurrentAuthUserQuery";
-import { getSecondsUntilExpiration } from "../../JWTHandling";
-import { createUserAuthenticationWasRefreshed } from "../../Event/UserAuthenticationWasRefreshed";
-import { createUserAuthenticationRefreshWasRequested } from "../../Event/UserAuthenticationRefreshWasRequested";
+import { AuthState, AuthStateSelector } from "../../types";
+import { getSecondsUntilExpiration } from "../../jwt.handling";
+import {
+    AuthEventTypes,
+    createUserAuthenticationRefreshWasRequested,
+    createUserAuthenticationWasRefreshed, UserWasLoggedOut,
+} from "../../event";
+import { getCurrentAuthUser } from "../../query";
 
 const authRefreshBeforeExpirationInSeconds = 60;
 

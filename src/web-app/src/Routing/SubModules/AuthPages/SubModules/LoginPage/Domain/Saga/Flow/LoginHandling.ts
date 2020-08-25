@@ -1,5 +1,5 @@
 import { put, select } from "redux-saga/effects";
-import { login, LoginResult } from "packages/common/Authentication/Domain";
+import { login, LoginResult } from "packages/common/authentication/domain";
 import { dispatchToastsFromResult } from "packages/common/toaster/domain";
 import { createHideLoader, createShowLoader } from "packages/common/loader/domain";
 import { ResultTypes } from "packages/entity/common-types";

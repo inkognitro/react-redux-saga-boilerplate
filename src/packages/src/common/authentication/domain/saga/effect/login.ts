@@ -3,13 +3,14 @@ import {
 } from "redux-saga/effects";
 import uuidV4 from 'uuid/v4';
 import { createErrorResult } from "packages/entity/common-types";
-import { AuthEventTypes } from "../../Event/Types";
-import { Login, createLogin } from "../../Command/Login";
-import { UserLoginFailed } from "../../Event/UserLoginFailed";
-import { UserLoginWasCancelled } from "../../Event/UserLoginWasCancelled";
-import { UserLoginWasNotExecuted } from "../../Event/UserLoginWasNotExecuted";
-import { UserWasLoggedIn } from "../../Event/UserWasLoggedIn";
-import { LoginErrorResult, LoginResult, LoginSettings } from "../../Types";
+import { LoginErrorResult, LoginResult, LoginSettings } from "../../types";
+import { createLogin, Login } from "../../command";
+import {
+    AuthEventTypes,
+    UserLoginFailed,
+    UserLoginWasCancelled,
+    UserLoginWasNotExecuted, UserWasLoggedIn,
+} from "../../event";
 
 type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { FunctionalLink, RouteLink } from "packages/common/router/ui/web";
 import { RootState } from "web-app/ServicesFactory";
 import { Dispatch } from "redux";
-import { getCurrentAuthUser } from "packages/common/Authentication/Domain";
+import { getCurrentAuthUser } from "packages/common/authentication/domain";
 import { AuthUser, AuthUserTypes } from "packages/entity/auth-user/domain";
 import { createHomeRouteUrl, createLoginRouteUrl } from "web-app/Routing/Domain";
 import { UserLabel } from "packages/entity/user/ui/web";

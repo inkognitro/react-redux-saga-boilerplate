@@ -1,5 +1,5 @@
 import { spawn, takeEvery, put } from "@redux-saga/core/effects";
-import { logout, LogoutResult } from "packages/common/Authentication/Domain";
+import { logout, LogoutResult } from "packages/common/authentication/domain";
 import { ResultTypes } from "packages/entity/common-types";
 import { createOpenUrl } from "packages/common/router/domain";
 import { createHomeRouteUrl } from "web-app/Routing/Domain";

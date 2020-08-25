@@ -46,7 +46,7 @@ import {
     AuthStateSelector,
     authenticationReducer,
     createAuthenticationSaga,
-} from "packages/common/Authentication/Domain";
+} from "packages/common/authentication/domain";
 import { designReducer, DesignState } from "packages/common/design/domain";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLoaderSaga, loaderReducer, LoaderState } from "packages/common/loader/domain";

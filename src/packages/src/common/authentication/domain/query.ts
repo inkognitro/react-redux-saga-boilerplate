@@ -1,5 +1,5 @@
 import { AuthUser } from "packages/entity/auth-user/domain";
-import { AuthState } from "../Types";
+import { AuthState } from "./types";
 
 export function getCurrentAuthUser(state: AuthState): AuthUser {
     return state.currentUser;

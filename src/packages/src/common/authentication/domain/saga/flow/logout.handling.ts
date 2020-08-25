@@ -1,10 +1,9 @@
 import { put, select } from "@redux-saga/core/effects";
 import { AuthUserTypes } from "packages/entity/auth-user/domain";
-import { AuthState, AuthStateSelector } from "../../Types";
-import { getCurrentAuthUser } from "../../Query/CurrentAuthUserQuery";
-import { Logout } from "../../Command/Logout";
-import { createUserLogoutWasNotExecuted } from "../../Event/UserLogoutWasNotExecuted";
-import { createUserWasLoggedOut } from "../../Event/UserWasLoggedOut";
+import { AuthState, AuthStateSelector } from "../../types";
+import { Logout } from "../../command";
+import { createUserLogoutWasNotExecuted, createUserWasLoggedOut } from "../../event";
+import { getCurrentAuthUser } from "../../query";
 
 export function* handleLogout(authStateSelector: AuthStateSelector, command: Logout): Generator {
     // @ts-ignore
