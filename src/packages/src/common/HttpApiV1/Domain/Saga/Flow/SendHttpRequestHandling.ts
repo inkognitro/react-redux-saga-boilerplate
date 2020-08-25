@@ -3,7 +3,7 @@ import {
     createSendHttpRequest as createCommonSendHttpRequest,
     getWithHeaderEnhancedHttpRequest,
     Request,
-} from "packages/common/HttpFoundation/Domain";
+} from "packages/common/http-foundation/domain";
 import { AuthUserTypes } from "packages/entity/auth-user/domain";
 import { AuthState, AuthStateSelector, getCurrentAuthUser } from "packages/common/Authentication/Domain";
 import { SendHttpRequest } from "../../Command/SendHttpRequest";

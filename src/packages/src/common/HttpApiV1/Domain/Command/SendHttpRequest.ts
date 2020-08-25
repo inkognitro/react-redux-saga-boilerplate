@@ -1,4 +1,4 @@
-import { Request } from "packages/common/HttpFoundation/Domain";
+import { Request } from "packages/common/http-foundation/domain";
 import { Command } from "packages/entity/common-types";
 import { ApiV1CommandTypes } from "./Types";
 

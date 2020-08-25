@@ -1,4 +1,4 @@
-import { Response } from "packages/common/HttpFoundation/Domain";
+import { Response } from "packages/common/http-foundation/domain";
 import { FieldMessage, Message } from "packages/entity/common-types";
 
 export type BasicResponseBody = {

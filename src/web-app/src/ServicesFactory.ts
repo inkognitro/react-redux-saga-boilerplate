@@ -36,11 +36,11 @@ import {
     HttpRequestDispatcher,
     httpFoundationReducer,
     createHttpFoundationSaga,
-} from "packages/common/HttpFoundation/Domain";
+} from "packages/common/http-foundation/domain";
 import {
     AxiosHttpRequestDispatcher,
     MockHttpRequestDispatcher,
-} from "packages/common/HttpFoundation/Infrastructure";
+} from "packages/common/http-foundation/infrastructure";
 import {
     AuthState,
     AuthStateSelector,

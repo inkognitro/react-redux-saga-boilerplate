@@ -1,4 +1,4 @@
-import { receiveResponse, Request } from "packages/common/HttpFoundation/Domain";
+import { receiveResponse, Request } from "packages/common/http-foundation/domain";
 import {
     call, CallEffect, put, StrictEffect,
 } from "@redux-saga/core/effects";

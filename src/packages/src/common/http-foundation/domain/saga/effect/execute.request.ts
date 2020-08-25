@@ -1,7 +1,7 @@
 import { call, put, CallEffect } from "redux-saga/effects";
-import { createSendHttpRequest } from "../../Command/SendHttpRequest";
-import { ReceiveHttpResponseGenerator, receiveResponse } from "./ResponseReceiving";
-import { Request, Response } from "../../Types";
+import { ReceiveHttpResponseGenerator, receiveResponse } from "./receive.response";
+import { Request, Response } from "../../types";
+import { createSendHttpRequest } from "../../command";
 
 export type ExecuteRequestCallEffect<SpecificResponse> = CallEffect<{
     context: any

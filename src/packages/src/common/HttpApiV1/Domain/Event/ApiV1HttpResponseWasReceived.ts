@@ -1,4 +1,4 @@
-import { Request } from "packages/common/HttpFoundation/Domain";
+import { Request } from "packages/common/http-foundation/domain";
 import { Event } from "packages/entity/common-types";
 import { ApiV1Response } from "../Types";
 import { HttpApiV1EventTypes } from "./Types";

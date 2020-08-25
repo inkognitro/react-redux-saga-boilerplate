@@ -5,18 +5,18 @@ import {
     HttpFoundationState as HttpFoundationStateType,
     HttpFoundationStateSelector as HttpFoundationStateSelectorType,
     Response as ResponseType,
-} from './Types';
-import { ExecuteRequestCallEffect as ExecuteRequestCallEffectType } from './Saga/CustomEffect/RequestHandling';
-import { ReceiveHttpResponseGenerator as ReceiveHttpResponseGeneratorType } from './Saga/CustomEffect/ResponseReceiving';
-import { SendHttpRequest as SendHttpRequestType } from './Command/SendHttpRequest';
-import { HttpRequestWasCancelled as HttpRequestWasCancelledType } from './Event/HttpRequestWasCancelled';
-import { HttpRequestFailed as HttpRequestFailedType } from './Event/HttpRequestFailed';
-import { HttpRequestWasNotSent as HttpRequestWasNotSentType } from './Event/HttpRequestWasNotSent';
-import { HttpErrorResponseWasReceived as HttpErrorResponseWasReceivedType } from './Event/HttpErrorResponseWasReceived';
+} from './types';
+import { ExecuteRequestCallEffect as ExecuteRequestCallEffectType } from './saga/effect/execute.request';
+import { ReceiveHttpResponseGenerator as ReceiveHttpResponseGeneratorType } from './saga/effect/receive.response';
 import {
+    HttpErrorResponseWasReceived as HttpErrorResponseWasReceivedType,
+    HttpRequestFailed as HttpRequestFailedType,
+    HttpRequestWasCancelled as HttpRequestWasCancelledType,
+    HttpRequestWasNotSent as HttpRequestWasNotSentType,
+    HttpRequestWasSent as HttpRequestWasSentType,
     HttpSuccessResponseWasReceived as HttpSuccessResponseWasReceivedType,
-} from './Event/HttpSuccessResponseWasReceived';
-import { HttpRequestWasSent as HttpRequestWasSentType } from './Event/HttpRequestWasSent';
+} from "./event";
+import { SendHttpRequest as SendHttpRequestType } from "./command";
 
 export type Request = RequestType;
 export type HttpRequestDispatcher = HttpRequestDispatcherType;
@@ -37,11 +37,10 @@ export type HttpRequestWasSent = HttpRequestWasSentType;
 export {
     HttpStatusCodes,
     RequestMethods,
-} from './Types';
-export { executeRequest } from './Saga/CustomEffect/RequestHandling';
-export { receiveResponse } from './Saga/CustomEffect/ResponseReceiving';
-export { createHttpFoundationSaga } from './Saga/Flow';
-export { createSendHttpRequest } from './Command/SendHttpRequest';
+} from './types';
+export { executeRequest } from './saga/effect/execute.request';
+export { receiveResponse } from './saga/effect/receive.response';
+export { createHttpFoundationSaga } from './saga/flow';
 export {
     createGetRequest,
     createPatchRequest,
@@ -49,7 +48,7 @@ export {
     createPutRequest,
     createPostRequest,
     getWithHeaderEnhancedHttpRequest,
-} from './RequestFactory';
-export { httpFoundationReducer } from './Reducer';
-export { HttpEventTypes } from "./Event/Types";
-export { HttpFoundationCommandTypes } from "./Command/Types";
+} from './request.factory';
+export { httpFoundationReducer } from './reducer';
+export { HttpEventTypes } from "./event";
+export { HttpFoundationCommandTypes, createSendHttpRequest } from "./command";

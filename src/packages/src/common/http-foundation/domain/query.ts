@@ -1,4 +1,4 @@
-import { Request, HttpFoundationState } from "../Types";
+import { HttpFoundationState, Request } from "./types";
 
 export function findRunningHttpRequestById(
     state: HttpFoundationState,

@@ -1,11 +1,13 @@
-import { HttpFoundationState } from "./Types";
-import { HttpEventTypes } from "./Event/Types";
-import { HttpRequestWasSent } from "./Event/HttpRequestWasSent";
-import { HttpRequestWasNotSent } from "./Event/HttpRequestWasNotSent";
-import { HttpSuccessResponseWasReceived } from "./Event/HttpSuccessResponseWasReceived";
-import { HttpErrorResponseWasReceived } from "./Event/HttpErrorResponseWasReceived";
-import { HttpRequestFailed } from "./Event/HttpRequestFailed";
-import { HttpRequestWasCancelled } from "./Event/HttpRequestWasCancelled";
+import { HttpFoundationState } from "./types";
+import {
+    HttpErrorResponseWasReceived,
+    HttpEventTypes,
+    HttpRequestFailed,
+    HttpRequestWasCancelled,
+    HttpRequestWasNotSent,
+    HttpRequestWasSent,
+    HttpSuccessResponseWasReceived,
+} from "./event";
 
 type HttpEvent = (
     | HttpRequestWasSent
