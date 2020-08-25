@@ -57,7 +57,7 @@ Under construction.
 - [Environment](docs/environment.md): Installation, development start, scripts
 - [Architecture](docs/architecture.md): Architecture and code structure.
 - [Coding guidelines](docs/coding.guidelines.md): Please don't mess up this project.
-- [API documentation](docs/api.docs.md): Documentation for existing code and its usage.
+- [Api documentation](docs/api.docs.md): Documentation for existing code and its usage.
 
 ## Appreciation
 Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).
