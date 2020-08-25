@@ -2,12 +2,12 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "paths": {
-            "@app/packages/*": ["./Packages/src/*"],
-            "@app/web-app/*": ["./WebApp/src/*"],
-            "@app/mobile-app/*": ["./MobileApp/src/*"],
-            "Packages/*": ["./Packages/src/*"],
-            "WebApp/*": ["./WebApp/src/*"],
-            "MobileApp/*": ["./MobileApp/src/*"]
+            "@app/packages/*": ["./packages/src/*"],
+            "@app/web-app/*": ["./web-app/src/*"],
+            "@app/mobile-app/*": ["./mobile-app/src/*"],
+            "packages/*": ["./packages/src/*"],
+            "web-app/*": ["./web-app/src/*"],
+            "mobile-app/*": ["./mobile-app/src/*"]
         },
         "noEmit": true,
         "module": "commonjs",

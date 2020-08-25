@@ -1,1 +1,0 @@
-export { TranslatedTextNC } from './TranslatedTextNC';

@@ -1,1 +1,0 @@
-export { TranslatedTextWC } from './TranslatedTextWC';

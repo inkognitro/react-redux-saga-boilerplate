@@ -41,8 +41,8 @@ To fully understand this project you should be familiar with the technologies be
     - pipelined messages considering running toast animations (async visibility of toasts)
 3. Loader integration e.g. for running requests
 4. UTC datetime handling with [moment](http://momentjs.com) in the background
-5. Test integration with jest (see [coding guidelines](./docs/CodingGuidelines.md))
-6. Code linting (see [coding guidelines](./docs/CodingGuidelines.md))
+5. Test integration with jest (see [coding guidelines](docs/coding.guidelines.md))
+6. Code linting (see [coding guidelines](docs/coding.guidelines.md))
     
 ### WebApp
 1. Bootstrap 4 SCSS and [material icons](http://material.io/resources/icons/) integration
@@ -55,10 +55,10 @@ To fully understand this project you should be familiar with the technologies be
 Under construction.
 
 ## Documentation
-- [Environment](./docs/Environment.md): Installation, development start, scripts
-- [Architecture](./docs/Architecture.md): Architecture and code structure.
-- [Coding guidelines](./docs/CodingGuidelines.md): Please don't mess up this project.
-- [API documentation](./docs/ApiDocs.md): Documentation for existing code and its usage.
+- [Environment](docs/environment.md): Installation, development start, scripts
+- [Architecture](docs/architecture.md): Architecture and code structure.
+- [Coding guidelines](docs/coding.guidelines.md): Please don't mess up this project.
+- [API documentation](docs/api.docs.md): Documentation for existing code and its usage.
 
 ## Appreciation
 Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).

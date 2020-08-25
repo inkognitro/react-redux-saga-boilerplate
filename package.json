@@ -11,13 +11,13 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "src/Packages",
-      "src/WebApp"
+      "src/packages",
+      "src/web-app"
     ]
   },
   "scripts": {
-    "start:spa": "cd src/WebApp && yarn run start",
-    "start:android": "cd src/MobileApp && yarn run android",
+    "start:spa": "cd src/web-app && yarn run start",
+    "start:android": "cd src/mobile-app && yarn run android",
     "tsc": "lerna run tsc --stream",
     "test": "lerna run test --stream",
     "test:coverage": "lerna run test:coverage --stream",
