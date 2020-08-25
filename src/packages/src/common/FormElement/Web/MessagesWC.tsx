@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { IconSizes, IconTypes, ErrorIconWC } from "packages/common/Icon/Web";
+import { IconSizes, IconTypes, ErrorIcon } from "packages/common/icon/ui/web";
 import { Message as MessageData, MessageTypes } from "packages/entity/common-types";
 import { TranslatedText } from "packages/common/translator/ui/web";
 
@@ -11,7 +11,7 @@ const Message: FC<MessageWCProps> = (props) => {
     if (props.message.type === MessageTypes.ERROR) {
         return (
             <Fragment>
-                <ErrorIconWC size={IconSizes.XS} type={IconTypes.ERROR} />
+                <ErrorIcon size={IconSizes.XS} type={IconTypes.ERROR} />
                 {' '}
                 <small className="text-danger">
                     <TranslatedText translation={props.message.content} />

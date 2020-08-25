@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CloseIconWC, IconSizes, IconTypes } from "packages/common/Icon/Web";
+import { CloseIcon, IconSizes, IconTypes } from "packages/common/icon/ui/web";
 import { TimelineLite, Power1 } from "gsap";
 import styled from "styled-components";
 import { StyledComponentProps } from "packages/common/Design/Web";
@@ -21,7 +21,7 @@ const StyledMessageContent = styled.div`
   padding: 15px 20px 15px 20px;
 `;
 
-const StyledCloseIcon = styled(CloseIconWC)`
+const StyledCloseIcon = styled(CloseIcon)`
   position: absolute;
   top: 10px;
   right: 10px;

@@ -1,16 +1,16 @@
 import React, { FunctionComponent } from "react";
 import MaterialCloseIcon from "@material-ui/icons/Close";
 import {
-    CommonIconWCProps,
+    CommonIconProps,
     createBaseIconProps,
     createStyledIcon,
-} from "./IconWC";
+} from "./icon";
 
-export type CloseIconProps = CommonIconWCProps;
+export type CloseIconProps = CommonIconProps;
 
 const StyledCloseIcon = createStyledIcon(MaterialCloseIcon);
 
-export const CloseIconWC: FunctionComponent<CloseIconProps> = (props) => {
+export const CloseIcon: FunctionComponent<CloseIconProps> = (props) => {
     const baseIconProps = createBaseIconProps(props);
     return <StyledCloseIcon {...baseIconProps} />;
 };

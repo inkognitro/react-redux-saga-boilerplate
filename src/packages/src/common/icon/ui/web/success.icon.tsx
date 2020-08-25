@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import DoneIcon from "@material-ui/icons/Done";
 import {
-    CommonIconWCProps,
+    CommonIconProps,
     createBaseIconProps,
     createStyledIcon,
-} from "./IconWC";
+} from "./icon";
 
-export type SuccessIconWCProps = CommonIconWCProps;
+export type SuccessIconProps = CommonIconProps;
 
 const StyledDoneIcon = createStyledIcon(DoneIcon);
 
-export const SuccessIconWC: FC<SuccessIconWCProps> = (props) => {
+export const SuccessIcon: FC<SuccessIconProps> = (props) => {
     const baseIconProps = createBaseIconProps(props);
     return <StyledDoneIcon {...baseIconProps} />;
 };

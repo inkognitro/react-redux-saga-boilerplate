@@ -1,16 +1,16 @@
 import React, { FunctionComponent } from "react";
 import MaterialErrorIcon from "@material-ui/icons/Error";
 import {
-    CommonIconWCProps,
+    CommonIconProps,
     createBaseIconProps,
     createStyledIcon,
-} from "./IconWC";
+} from "./icon";
 
-export type ErrorIconProps = CommonIconWCProps;
+export type ErrorIconProps = CommonIconProps;
 
 const StyledMaterialErrorIcon = createStyledIcon(MaterialErrorIcon);
 
-export const ErrorIconWC: FunctionComponent<ErrorIconProps> = (props) => {
+export const ErrorIcon: FunctionComponent<ErrorIconProps> = (props) => {
     const baseIconProps = createBaseIconProps(props);
     return <StyledMaterialErrorIcon {...baseIconProps} />;
 };

@@ -26,7 +26,7 @@ export enum VerticalAligns {
   BOTTOM = "bottom",
 }
 
-export type CommonIconWCProps = {
+export type CommonIconProps = {
   verticalAlign?: VerticalAligns;
   type?: IconTypes;
   size?: IconSizes;
@@ -104,7 +104,7 @@ type IconProps = {
   onClick?(): void;
 };
 
-function createBaseClassNames(props: CommonIconWCProps): string {
+function createBaseClassNames(props: CommonIconProps): string {
     const classNames = [];
 
     if (props.type === IconTypes.INFO) {
@@ -154,7 +154,7 @@ function createBaseClassNames(props: CommonIconWCProps): string {
     return classNames.join(" ");
 }
 
-export function createBaseIconProps(commonProps: CommonIconWCProps): IconProps {
+export function createBaseIconProps(commonProps: CommonIconProps): IconProps {
     let props: Partial<IconProps> = {
         className: createBaseClassNames(commonProps),
     };
