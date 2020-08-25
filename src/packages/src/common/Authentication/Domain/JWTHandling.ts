@@ -1,7 +1,7 @@
 import {
     createUtcDateTimeStringFromUtcTimestamp,
     getUtcDateTimeMinusNowInSeconds,
-} from "packages/common/DateTimeHandling";
+} from "packages/common/date.time.handling";
 
 type Payload = {
   iat: number;

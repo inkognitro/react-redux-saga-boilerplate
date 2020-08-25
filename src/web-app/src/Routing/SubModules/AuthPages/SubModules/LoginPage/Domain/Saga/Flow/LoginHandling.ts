@@ -5,7 +5,7 @@ import { createHideLoader, createShowLoader } from "packages/common/loader/domai
 import { ResultTypes } from "packages/entity/common-types";
 import { createOpenUrl } from "packages/common/router/domain";
 import { createHomeRouteUrl } from "web-app/Routing/Domain";
-import { createSetFormFieldMessages } from "packages/common/Form/domain";
+import { createSetFormFieldMessages } from "packages/common/form/domain";
 import { LoginPageState, LoginPageStateSelector } from "../../Types";
 
 export function* handleLogin(loginPageStateSelector: LoginPageStateSelector): Generator {
