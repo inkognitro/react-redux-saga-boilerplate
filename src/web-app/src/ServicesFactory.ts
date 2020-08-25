@@ -58,8 +58,8 @@ import {
     RoutingState,
     RoutingStateSelector,
 } from "web-app/Routing/Domain";
-import { createHttpApiV1Saga } from "packages/common/HttpApiV1/Domain";
-import { createHttpApiV1ToasterSaga } from "packages/common/HttpApiV1Toaster/Domain";
+import { createHttpApiV1Saga } from "packages/common/http-api-v1/domain";
+import { createHttpApiV1ToasterSaga } from "packages/common/http-api-v1-toaster/domain";
 import { createFoundationSaga } from "web-app/Foundation/Domain/Saga/Flow";
 
 type AppServices = {

@@ -6,7 +6,7 @@ import {
 } from "packages/common/http-foundation/domain";
 import { AuthUserTypes } from "packages/entity/auth-user/domain";
 import { AuthState, AuthStateSelector, getCurrentAuthUser } from "packages/common/Authentication/Domain";
-import { SendHttpRequest } from "../../Command/SendHttpRequest";
+import { SendHttpRequest } from "../../command";
 
 export function* handleSendHttpRequest(authStateSelector: AuthStateSelector, command: SendHttpRequest): Generator {
     // @ts-ignore

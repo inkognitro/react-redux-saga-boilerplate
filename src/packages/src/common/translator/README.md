@@ -3,7 +3,7 @@
 # Translator
 This module provides a standardized way to consume translations inside components.
 
-## Module dependencies 
+## Dependencies 
 None.
 
 ## Usage

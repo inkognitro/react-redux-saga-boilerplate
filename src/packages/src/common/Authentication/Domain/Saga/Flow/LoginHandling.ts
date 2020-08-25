@@ -1,7 +1,7 @@
 import {
     call, cancelled, put, select,
 } from "@redux-saga/core/effects";
-import { authenticate, AuthenticateResult } from "packages/common/HttpApiV1/Domain";
+import { authenticateAtEndpoint, AuthenticateResult } from "packages/common/http-api-v1/domain";
 import { createSaveCookie } from "packages/common/Cookie/Domain";
 import { ResultTypes } from "packages/entity/common-types";
 import { AuthUserTypes } from "packages/entity/auth-user/domain";
@@ -27,7 +27,7 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
     }
     try {
         // @ts-ignore
-        const result: AuthenticateResult = yield call(authenticate, {
+        const result: AuthenticateResult = yield call(authenticateAtEndpoint, {
             username: command.payload.username,
             password: command.payload.password,
         });

@@ -7,8 +7,8 @@ import {
     createErrorResult,
     createSuccessResult,
 } from "packages/entity/common-types";
-import { ApiV1ReadResponse } from "../../Types";
-import { apiV1BaseUrl, executeRequest } from "./InternalRequestHandling";
+import { ApiV1ReadResponse } from "../../types";
+import { apiV1BaseUrl, executeRequest } from "./execute.request";
 
 type AuthApiResponse = ApiV1ReadResponse<{user: User, token: string}>;
 
@@ -19,7 +19,7 @@ export type AuthenticateSettings = {
 
 export type AuthenticateResult = (SuccessResult<{ authUser: AuthenticatedAuthUser }> | ErrorResult);
 
-export function* authenticate(settings: AuthenticateSettings): Generator<unknown, AuthenticateResult> {
+export function* authenticateAtEndpoint(settings: AuthenticateSettings): Generator<unknown, AuthenticateResult> {
     const request: Request = createPostRequest({
         url: `${apiV1BaseUrl}/auth/authenticate`,
         body: {

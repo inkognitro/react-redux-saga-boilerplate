@@ -1,8 +1,8 @@
 [« package docs overview](../README.md)
 
-# HttpFoundation
+# Http-foundation
 This module provides a standardized way to handle requests and responses via http.
 
-## Module dependencies 
+## Dependencies 
 None.
 

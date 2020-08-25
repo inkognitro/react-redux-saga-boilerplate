@@ -1,6 +1,6 @@
-import { ApiV1ReadResponse } from "packages/common/HttpApiV1/Domain";
+import { ApiV1ReadResponse } from "packages/common/http-api-v1/domain";
 import { MessageTypes } from "packages/entity/common-types";
-import { apiV1BaseUrl } from "packages/common/HttpApiV1/Domain/Saga/CustomEffect/InternalRequestHandling";
+import { apiV1BaseUrl } from "packages/common/http-api-v1/domain/saga/effect/execute.request";
 import { HttpRequestDispatcher, Request, RequestResponse } from "../domain/types";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {

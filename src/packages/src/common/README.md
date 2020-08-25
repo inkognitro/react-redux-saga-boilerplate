@@ -11,5 +11,5 @@ some modules of this package need to be wired up in the app's service factory.
 ## Modules
 - [packages/common/Translator/README.md](translator/README.md)
 - [packages/common/HttpFoundation/README.md](http-foundation/README.md)
-- [packages/common/HttpApiV1/README.md](./HttpApiV1/README.md)
+- [packages/common/HttpApiV1/README.md](http-api-v1/README.md)
 - [packages/common/Form/README.md](./Form/README.md)
