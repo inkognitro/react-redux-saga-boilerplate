@@ -28,8 +28,8 @@ import {
     translatorReducer,
 } from "packages/common/translator/domain";
 import { BrowserHistoryManager } from "packages/common/router/infrastructure";
-import { createCookieSaga } from "packages/common/Cookie/Domain";
-import { BrowserCookieStorage } from "packages/common/Cookie/Infrastructure";
+import { createCookieSaga } from "packages/common/cookie/domain";
+import { BrowserCookieStorage } from "packages/common/cookie/infrastructure";
 import {
     HttpFoundationState,
     HttpFoundationStateSelector,
