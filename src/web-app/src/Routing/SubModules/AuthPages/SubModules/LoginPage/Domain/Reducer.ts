@@ -6,7 +6,7 @@ import {
     FormElementEvent,
     FormElementEventTypes,
 } from "packages/common/form-element/domain";
-import { formReducer, createFormState } from "packages/common/Form/Domain";
+import { formReducer, createFormState } from "packages/common/Form/domain";
 import { LoginPageState } from "./Types";
 
 const initialLoginPageState: LoginPageState = {

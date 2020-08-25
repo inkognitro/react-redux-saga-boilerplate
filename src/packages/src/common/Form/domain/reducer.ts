@@ -1,8 +1,10 @@
 import { FormElementEvent, FormElementEventTypes, formElementReducer } from "packages/common/form-element/domain";
-import { FormElementsByName, FormState } from "./Types";
-import { FormEventTypes } from "./Event/Types";
-import { FormWasSetToRunningRequestMode } from "./Event/FormWasSetToRunningRequestMode";
-import { FormWasSetToNoRunningRequestMode } from "./Event/FormWasSetToNoRunningRequestMode";
+import { FormElementsByName, FormState } from "./types";
+import {
+    FormEventTypes,
+    FormWasSetToNoRunningRequestMode,
+    FormWasSetToRunningRequestMode,
+} from "./event";
 
 type FormEvent = (FormWasSetToRunningRequestMode | FormWasSetToNoRunningRequestMode);
 

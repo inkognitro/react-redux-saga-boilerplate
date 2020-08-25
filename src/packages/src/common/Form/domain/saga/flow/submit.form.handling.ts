@@ -1,6 +1,6 @@
 import { put } from "redux-saga/effects";
-import { SubmitForm } from "../../Command/SubmitForm";
-import { createFormWasSubmitted } from "../../Event/FormWasSubmitted";
+import { createFormWasSubmitted } from "../../event";
+import { SubmitForm } from "../../command";
 
 export function* handleSubmitForm(command: SubmitForm): Generator {
     if (command.payload.form.isRequestRunning) {

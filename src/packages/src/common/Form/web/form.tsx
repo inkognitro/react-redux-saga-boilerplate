@@ -6,11 +6,11 @@ const InvisibleSubmitButton = styled.button`
   display: none;
 `;
 
-export type FormWCProps = {
+export type FormProps = {
     onSubmit: () => void
 }
 
-export const FormWC: FC<FormWCProps> = (props) => (
+export const Form: FC<FormProps> = (props) => (
     <form
         onSubmit={(event: React.FormEvent): void => {
             event.preventDefault();

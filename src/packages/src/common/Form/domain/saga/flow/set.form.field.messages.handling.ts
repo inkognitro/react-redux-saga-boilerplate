@@ -4,9 +4,10 @@ import {
     createChangeFormElementStates,
     FormElementState,
     FormElementStateChanges,
-    FormElementTypes, TextFieldState,
+    FormElementTypes,
+    TextFieldState,
 } from "packages/common/form-element/domain";
-import { SetFormFieldMessages } from "../../Command/SetFormFieldMessages";
+import { SetFormFieldMessages } from "../../command";
 
 export function* handleSetFormFieldMessages(command: SetFormFieldMessages): Generator {
     const formElementsByName = command.payload.form.elementsByName;

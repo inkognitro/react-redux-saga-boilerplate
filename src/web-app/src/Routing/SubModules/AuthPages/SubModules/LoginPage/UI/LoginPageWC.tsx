@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { ContentPage } from "web-app/Foundation/UI";
 import { RootState } from "web-app/ServicesFactory";
 import { Card } from "packages/common/layout-foundation/ui/web";
-import { FormWC } from "packages/common/Form/Web";
+import { Form } from "packages/common/Form/web";
 import {
     FormGroup,
     PrimaryButton,
@@ -26,7 +26,7 @@ type LoginPageComponentProps = (LoginPageComponentState & LoginPageComponentCall
 const LoginPage: FC<LoginPageComponentProps> = (props) => (
     <ContentPage>
         <Card title="Login">
-            <FormWC onSubmit={props.onSubmitLoginForm}>
+            <Form onSubmit={props.onSubmitLoginForm}>
                 <FormGroup>
                     <SimpleInputGroup
                         labelTranslation={{
@@ -57,7 +57,7 @@ const LoginPage: FC<LoginPageComponentProps> = (props) => (
                 <FormGroup>
                     <PrimaryButton onClick={props.onSubmitLoginForm}>Login</PrimaryButton>
                 </FormGroup>
-            </FormWC>
+            </Form>
         </Card>
     </ContentPage>
 );

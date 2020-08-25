@@ -1,4 +1,4 @@
-import { FormState } from "packages/common/Form/Domain";
+import { FormState } from "packages/common/Form/domain";
 import { CheckboxState, PasswordFieldState, TextFieldState } from "packages/common/form-element/domain";
 import { Route } from "packages/common/router/domain";
 

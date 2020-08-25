@@ -4,29 +4,25 @@ import {
     FormElementStateChanges,
     createChangeFormElementStates,
 } from "packages/common/form-element/domain";
-import { FormState } from "../../Types";
-import { createFormWasSetToNoRunningRequestMode } from "../../Event/FormWasSetToNoRunningRequestMode";
+import { FormState } from "../../types";
+import { createFormWasSetToRunningRequestMode } from "../../event";
 
-export function* setFormToNoRunningRequestMode(
-    formBeforeRunningRequestMode: FormState,
-    form: FormState,
-): Generator {
-    if (!form.isRequestRunning) {
+export function* setFormToRunningRequestMode(form: FormState): Generator {
+    if (form.isRequestRunning) {
         return;
     }
     const multipleFormElementStateChanges: FormElementStateChanges[] = [];
     for (const name in form.elementsByName) {
         const formElement: FormElementState = form.elementsByName[name];
-        const formElementBeforeRunningRequestMode: FormElementState = formBeforeRunningRequestMode.elementsByName[name];
-        if (!formElementBeforeRunningRequestMode.readOnly && formElement.readOnly) {
+        if (!formElement.readOnly) {
             multipleFormElementStateChanges.push({
                 formElement,
                 stateChanges: {
-                    readOnly: false,
+                    readOnly: true,
                 },
             });
         }
     }
     yield put(createChangeFormElementStates(multipleFormElementStateChanges));
-    yield put(createFormWasSetToNoRunningRequestMode(form.id));
+    yield put(createFormWasSetToRunningRequestMode(form.id));
 }
