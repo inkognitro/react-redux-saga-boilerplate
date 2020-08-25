@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { RouterWC as CommonRouter } from "packages/common/Router/Web";
+import { Router as CommonRouter } from "packages/common/router/ui/web";
 import { History } from "history";
 import { specification } from "./Types";
 

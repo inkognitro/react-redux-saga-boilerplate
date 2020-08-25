@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CloseIconWC, IconSizes, IconTypes } from "packages/common/Icon/Web";
 import { TimelineLite, Power1 } from "gsap";
 import styled from "styled-components";
-import { StyledWCProps } from "packages/common/Design/Web";
+import { StyledComponentProps } from "packages/common/Design/Web";
 import { TranslatedText } from "packages/common/translator/ui/web";
 import { Message as MessageData } from "../../domain";
 
@@ -10,7 +10,7 @@ const StyledMessage = styled.div`
   position: relative;
   background-color: white;
   width: 250px;
-  border-bottom: 1px solid ${(props: StyledWCProps) => props.theme.colorSmoothLineOnWhite};
+  border-bottom: 1px solid ${(props: StyledComponentProps) => props.theme.colorSmoothLineOnWhite};
 
   &:last-child { border-bottom: 0; }
 `;

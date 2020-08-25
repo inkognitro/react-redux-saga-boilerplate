@@ -1,8 +1,10 @@
-import { RouterState } from "./Types";
-import { RouterEventTypes } from "./Event/Types";
-import { RouterWasInitialized } from "./Event/RouterWasInitialized";
-import { CurrentUrlWasChanged } from "./Event/CurrentUrlWasChanged";
-import { RouterWasExtended } from "./Event/RouterWasExtended";
+import { RouterState } from "./types";
+import {
+    CurrentUrlWasChanged,
+    RouterEventTypes,
+    RouterWasExtended,
+    RouterWasInitialized,
+} from "./event";
 
 type RouterEvent = (RouterWasInitialized | CurrentUrlWasChanged | RouterWasExtended)
 

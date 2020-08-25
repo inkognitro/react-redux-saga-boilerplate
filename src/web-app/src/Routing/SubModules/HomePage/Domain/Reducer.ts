@@ -1,4 +1,4 @@
-import { RouterEventTypes, CurrentUrlWasChanged } from "packages/common/Router/Domain";
+import { RouterEventTypes, CurrentUrlWasChanged } from "packages/common/router/domain";
 import {
     textFieldReducer,
     FormElementEvent,

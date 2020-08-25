@@ -1,10 +1,10 @@
-import { RouterWCSpecification } from "packages/common/Router/Web";
+import { RouterSpecification } from "packages/common/router/ui/web";
 import { homeRoute } from "../SubModules/HomePage/Domain";
 import { HomePageWC } from "../SubModules/HomePage/UI";
 import { NotFoundWC } from "../SubModules/NotFoundPage/UI";
 import { authRouteComponents } from "../SubModules/AuthPages/UI";
 
-export const specification: RouterWCSpecification = {
+export const specification: RouterSpecification = {
     routeComponents: [
         { route: homeRoute, component: HomePageWC },
         ...authRouteComponents,

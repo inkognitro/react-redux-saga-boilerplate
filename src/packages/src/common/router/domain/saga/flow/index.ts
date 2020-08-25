@@ -1,12 +1,11 @@
 import {
     call, put, spawn, takeEvery,
 } from "@redux-saga/core/effects";
-import { HistoryManager, RouterStateSelector } from "../../Types";
-import { watchExtendRouterCommands } from "./ExtendRouterHandling";
-import { handleOpenUrl } from "./OpenUrlHandling";
-import { createCurrentUrlWasChanged } from "../../Event/CurrentUrlWasChanged";
-import { createRouterWasInitialized } from "../../Event/RouterWasInitialized";
-import { RouterCommandTypes } from "../../Command/Types";
+import { HistoryManager, RouterStateSelector } from "../../types";
+import { watchExtendRouterCommands } from "./extend.router.handling";
+import { handleOpenUrl } from "./open.url.handling";
+import { RouterCommandTypes } from "../../command";
+import { createCurrentUrlWasChanged, createRouterWasInitialized } from "../../event";
 
 export function createRouterSaga(
     routerStateSelector: RouterStateSelector,

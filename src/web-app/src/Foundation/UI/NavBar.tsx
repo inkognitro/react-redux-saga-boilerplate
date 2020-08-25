@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from "react";
 import { connect } from "react-redux";
-import { FunctionalLinkWC, RouteLinkWC } from "packages/common/Router/Web";
+import { FunctionalLink, RouteLink } from "packages/common/router/ui/web";
 import { RootState } from "web-app/ServicesFactory";
 import { Dispatch } from "redux";
 import { getCurrentAuthUser } from "packages/common/Authentication/Domain";
@@ -24,19 +24,19 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
         if (this.props.currentUser.type === AuthUserTypes.AUTHENTICATED_USER) {
             return (
                 <li className="nav-item">
-                    <FunctionalLinkWC className="nav-link" onClick={() => this.props.onClickLogout()}>
+                    <FunctionalLink className="nav-link" onClick={() => this.props.onClickLogout()}>
                         <UserLabel user={this.props.currentUser.user} />
                         {' '}
                         :: Logout
-                    </FunctionalLinkWC>
+                    </FunctionalLink>
                 </li>
             );
         }
         return (
             <li className="nav-item">
-                <RouteLinkWC className="nav-link" url={createLoginRouteUrl()}>
+                <RouteLink className="nav-link" url={createLoginRouteUrl()}>
                     Login
-                </RouteLinkWC>
+                </RouteLink>
             </li>
         );
     }
@@ -45,9 +45,9 @@ class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
         return (
             <ul className="nav justify-content-center">
                 <li className="nav-item">
-                    <RouteLinkWC className="nav-link" url={createHomeRouteUrl()}>
+                    <RouteLink className="nav-link" url={createHomeRouteUrl()}>
                         Home
-                    </RouteLinkWC>
+                    </RouteLink>
                 </li>
                 {this.renderAuthLink()}
             </ul>

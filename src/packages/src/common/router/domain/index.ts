@@ -1,14 +1,16 @@
-import { CurrentUrlWasChanged as CurrentUrlWasChangedType } from './Event/CurrentUrlWasChanged';
 import {
     RouterState as RouterStateType,
     Route as RouteType,
     Redirect as RedirectType,
     RouterStateSelector as RouterStateSelectorType,
     HistoryManager as HistoryManagerType,
-} from './Types';
-import { OpenUrl as OpenUrlType } from './Command/OpenUrl';
-import { RouterWasExtended as RouterWasExtendedType } from './Event/RouterWasExtended';
-import { RouterWasInitialized as RouterWasInitializedType } from './Event/RouterWasInitialized';
+} from './types';
+import { OpenUrl as OpenUrlType } from "./command";
+import {
+    CurrentUrlWasChanged as CurrentUrlWasChangedType,
+    RouterWasExtended as RouterWasExtendedType,
+    RouterWasInitialized as RouterWasInitializedType,
+} from "./event";
 
 export type CurrentUrlWasChanged = CurrentUrlWasChangedType;
 export type RouterState = RouterStateType;
@@ -20,8 +22,8 @@ export type RouterWasExtended = RouterWasExtendedType;
 export type RouterWasInitialized = RouterWasInitializedType;
 export type HistoryManager = HistoryManagerType;
 
-export { createRouterSaga } from './Saga/Flow';
-export { createOpenUrl } from './Command/OpenUrl';
-export { routerReducer } from './Reducer';
-export { RouterCommandTypes } from "./Command/Types";
-export { RouterEventTypes } from "./Event/Types";
+export { createRouterSaga } from './saga/flow';
+export { routerReducer } from './reducer';
+export { RouterCommandTypes } from "packages/common/router/domain/command";
+export { createOpenUrl } from "packages/common/router/domain/command";
+export { RouterEventTypes } from "packages/common/router/domain/event";

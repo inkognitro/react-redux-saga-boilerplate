@@ -3,11 +3,10 @@ import {
     Redirect,
     RouterState,
     RouterStateSelector,
-} from "../../Types";
-import { createRouterWasExtended } from "../../Event/RouterWasExtended";
-import { findRedirectByExactRoute } from "../../Query/RedirectQuery";
-import { ExtendRouter } from "../../Command/ExtendRouter";
-import { RouterCommandTypes } from "../../Command/Types";
+} from "../../types";
+import { RouterCommandTypes, ExtendRouter } from "../../command";
+import { createRouterWasExtended } from "../../event";
+import { findRedirectByExactRoute } from "../../query";
 
 export function* handleExtendRouter(routerStateSelector: RouterStateSelector, command: ExtendRouter): Generator {
     // @ts-ignore

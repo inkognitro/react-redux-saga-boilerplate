@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { createOpenUrl } from "packages/common/Router/Domain";
+import { createOpenUrl } from "packages/common/router/domain";
 import styled from "styled-components";
-import { StyledWCProps } from "packages/common/Design/Web";
+import { StyledComponentProps } from "packages/common/Design/Web";
 
 const StyledLink = styled.a`
   color: $colorInteractive;
@@ -11,18 +11,18 @@ const StyledLink = styled.a`
   &:hover,
   &:active,
   &:focus {
-    color: ${(props: StyledWCProps) => props.theme.colorInteracting};
+    color: ${(props: StyledComponentProps) => props.theme.colorInteracting};
     text-decoration: underline;
   }
 `;
 
-type FunctionalLinkWCProps = {
+type FunctionalLinkProps = {
   url?: string;
   onClick: () => void;
   className?: string;
 };
 
-export const FunctionalLinkWC: FC<FunctionalLinkWCProps> = (props) => (
+export const FunctionalLink: FC<FunctionalLinkProps> = (props) => (
     <StyledLink
         className={props.className}
         href={props.url ? props.url : "#"}
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch: Dispatch, props: LinkProps) => ({
     onClick: () => dispatch(createOpenUrl({ url: props.url, target: props.target })),
 });
 
-export const RouteLinkWC = connect(
+export const RouteLink = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(FunctionalLinkWC);
+)(FunctionalLink);

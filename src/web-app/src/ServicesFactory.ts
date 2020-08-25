@@ -10,7 +10,7 @@ import {
     RouterStateSelector,
     routerReducer,
     createRouterSaga,
-} from "packages/common/Router/Domain";
+} from "packages/common/router/domain";
 import createSagaMiddleware from "redux-saga";
 import { spawn } from "redux-saga/effects";
 import { createBrowserHistory, History } from "history";
@@ -27,7 +27,7 @@ import {
     createTranslatorSaga,
     translatorReducer,
 } from "packages/common/translator/domain";
-import { BrowserHistoryManager } from "packages/common/Router/Infrastructure";
+import { BrowserHistoryManager } from "packages/common/router/infrastructure";
 import { createCookieSaga } from "packages/common/Cookie/Domain";
 import { BrowserCookieStorage } from "packages/common/Cookie/Infrastructure";
 import {

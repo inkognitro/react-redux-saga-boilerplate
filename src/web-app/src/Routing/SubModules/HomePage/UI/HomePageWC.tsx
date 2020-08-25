@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FunctionalLinkWC, RouteLinkWC } from "packages/common/Router/Web";
+import { FunctionalLink, RouteLink } from "packages/common/router/ui/web";
 import { ToastTypes, createShowMessage } from "packages/common/toaster/domain";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -25,34 +25,34 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
     <ContentPage>
         <h3>Routing</h3>
         <div>
-            <RouteLinkWC url="/some-page-which-does-not-exist">
+            <RouteLink url="/some-page-which-does-not-exist">
                 go to non existing page
-            </RouteLinkWC>
+            </RouteLink>
         </div>
 
         <br />
         <h3>Toasts</h3>
         <div>
-            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContentField.value)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContentField.value)}>
                 add a success toast message
-            </FunctionalLinkWC>
+            </FunctionalLink>
             {' '}
             (is being closed after 3 seconds)
         </div>
         <div>
-            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContentField.value)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContentField.value)}>
                 add an info toast message
-            </FunctionalLinkWC>
+            </FunctionalLink>
         </div>
         <div>
-            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContentField.value)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContentField.value)}>
                 add a warning toast message
-            </FunctionalLinkWC>
+            </FunctionalLink>
         </div>
         <div>
-            <FunctionalLinkWC onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContentField.value)}>
+            <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContentField.value)}>
                 add an error toast message
-            </FunctionalLinkWC>
+            </FunctionalLink>
         </div>
 
         <br />
@@ -77,18 +77,18 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         <div>
             Download
             {' '}
-            <RouteLinkWC
+            <RouteLink
                 url="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd"
                 target="_blank"
             >
                 Redux DevTools
-            </RouteLinkWC>
+            </RouteLink>
             {' '}
             for a better developer experience or
             {' '}
-            <FunctionalLinkWC onClick={props.onClickLeakReduxState}>
+            <FunctionalLink onClick={props.onClickLeakReduxState}>
                 leak redux state in console
-            </FunctionalLinkWC>
+            </FunctionalLink>
         </div>
     </ContentPage>
 );

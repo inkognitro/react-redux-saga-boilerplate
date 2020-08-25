@@ -1,6 +1,6 @@
 import { FormState } from "packages/common/Form/Domain";
 import { CheckboxState, PasswordFieldState, TextFieldState } from "packages/common/FormElement/Domain";
-import { Route } from "packages/common/Router/Domain";
+import { Route } from "packages/common/router/domain";
 
 type LoginFormState = FormState<{
     username: TextFieldState

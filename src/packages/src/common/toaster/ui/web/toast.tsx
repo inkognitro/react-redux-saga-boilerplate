@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Power1, TimelineLite } from "gsap";
 import styled from "styled-components";
-import { StyledWCProps, createBoxShadowCss } from "packages/common/Design/Web";
+import { StyledComponentProps, createBoxShadowCss } from "packages/common/Design/Web";
 import { Message as MessageData, Toast as ToastData, ToastTypes } from "../../domain";
 import { Message } from "./message";
 
@@ -10,20 +10,20 @@ const StyledToast = styled.div`
   background-color: white;
   margin-right: 20px;
   border-top: 3px solid
-    ${(props: StyledWCProps) => props.theme.colorPrimary};
+    ${(props: StyledComponentProps) => props.theme.colorPrimary};
   overflow: hidden;
   ${createBoxShadowCss()}
   &.info {
-    border-color: ${(props: StyledWCProps) => props.theme.colorInfo};
+    border-color: ${(props: StyledComponentProps) => props.theme.colorInfo};
   }
   &.success {
-    border-color: ${(props: StyledWCProps) => props.theme.colorSuccess};
+    border-color: ${(props: StyledComponentProps) => props.theme.colorSuccess};
   }
   &.warning {
-    border-color: ${(props: StyledWCProps) => props.theme.colorWarning};
+    border-color: ${(props: StyledComponentProps) => props.theme.colorWarning};
   }
   &.error {
-    border-color: ${(props: StyledWCProps) => props.theme.colorError};
+    border-color: ${(props: StyledComponentProps) => props.theme.colorError};
   }
 `;
 

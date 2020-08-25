@@ -5,24 +5,24 @@ import {
     Switch,
 } from "react-router-dom";
 import { History } from "history";
-import { Route } from "packages/common/Router/Domain";
+import { Route } from "packages/common/router/domain";
 
 export type RouteComponentSpecification = {
   route: Route;
   component: ComponentType;
 };
 
-export type RouterWCSpecification = {
+export type RouterSpecification = {
   routeComponents: RouteComponentSpecification[];
   defaultComponent: ComponentType;
 };
 
-export type RouterWCProps = {
+export type RouterProps = {
   history: History;
-  specification: RouterWCSpecification;
+  specification: RouterSpecification;
 };
 
-export const RouterWC: FC<RouterWCProps> = (props) => (
+export const Router: FC<RouterProps> = (props) => (
     <ReactRouter history={props.history}>
         <Switch>
             {props.specification.routeComponents.map((routeComponent) => (
