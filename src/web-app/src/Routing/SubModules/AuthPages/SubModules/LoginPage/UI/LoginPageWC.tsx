@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { ContentPage } from "web-app/Foundation/UI";
 import { RootState } from "web-app/ServicesFactory";
 import { Card } from "packages/common/layout-foundation/ui/web";
-import { Form } from "packages/common/form/web";
+import { Form } from "packages/common/form/ui/web";
 import {
     FormGroup,
     PrimaryButton,
