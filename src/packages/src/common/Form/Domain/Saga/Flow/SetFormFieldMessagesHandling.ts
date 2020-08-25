@@ -5,7 +5,7 @@ import {
     FormElementState,
     FormElementStateChanges,
     FormElementTypes, TextFieldState,
-} from "packages/common/FormElement/Domain";
+} from "packages/common/form-element/domain";
 import { SetFormFieldMessages } from "../../Command/SetFormFieldMessages";
 
 export function* handleSetFormFieldMessages(command: SetFormFieldMessages): Generator {

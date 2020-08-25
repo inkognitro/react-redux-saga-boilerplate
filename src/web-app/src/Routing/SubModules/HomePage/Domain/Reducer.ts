@@ -4,7 +4,7 @@ import {
     FormElementEvent,
     FormElementEventTypes,
     createTextFieldState,
-} from "packages/common/FormElement/Domain";
+} from "packages/common/form-element/domain";
 import { HomePageState } from "./Types";
 
 const initialHomePageState: HomePageState = {

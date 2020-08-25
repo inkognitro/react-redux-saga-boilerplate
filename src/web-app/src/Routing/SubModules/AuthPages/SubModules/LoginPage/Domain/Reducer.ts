@@ -5,7 +5,7 @@ import {
     createCheckboxState,
     FormElementEvent,
     FormElementEventTypes,
-} from "packages/common/FormElement/Domain";
+} from "packages/common/form-element/domain";
 import { formReducer, createFormState } from "packages/common/Form/Domain";
 import { LoginPageState } from "./Types";
 

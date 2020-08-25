@@ -1,4 +1,4 @@
-import { FormElementState } from "packages/common/FormElement/Domain";
+import { FormElementState } from "packages/common/form-element/domain";
 
 export type FormState<SpecificElementsByName = {}> = {
     id: string

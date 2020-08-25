@@ -3,8 +3,8 @@ import { FunctionalLink, RouteLink } from "packages/common/router/ui/web";
 import { ToastTypes, createShowMessage } from "packages/common/toaster/domain";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { TextFieldState } from "packages/common/FormElement/Domain";
-import { FormGroupWC, InputGroupWC, LabelWC } from "packages/common/FormElement/Web";
+import { TextFieldState } from "packages/common/form-element/domain";
+import { FormGroup, InputGroup, Label } from "packages/common/form-element/ui/web";
 import { ContentPage } from "web-app/Foundation/UI";
 import { RootState } from "web-app/ServicesFactory";
 import uuidV4 from 'uuid/v4';
@@ -56,21 +56,21 @@ const DumbHomePage: FC<DumbHomePageProps> = (props) => (
         </div>
 
         <br />
-        <FormGroupWC>
-            <InputGroupWC
+        <FormGroup>
+            <InputGroup
                 label={(
-                    <LabelWC formElementId={props.toastContentField.id}>
+                    <Label formElementId={props.toastContentField.id}>
                         Toast content:
                         {' '}
                         {props.toastContentField.value}
-                    </LabelWC>
+                    </Label>
                 )}
                 formElement={props.toastContentField}
             />
             <small>
                 FYI: Without any content, the ID of the transmitted translation object will be shown in the toast message.
             </small>
-        </FormGroupWC>
+        </FormGroup>
 
         <br />
         <h3>Redux</h3>

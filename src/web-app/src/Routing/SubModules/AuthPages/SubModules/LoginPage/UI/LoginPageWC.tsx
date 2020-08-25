@@ -5,10 +5,10 @@ import { RootState } from "web-app/ServicesFactory";
 import { Card } from "packages/common/layout-foundation/ui/web";
 import { FormWC } from "packages/common/Form/Web";
 import {
-    FormGroupWC,
-    PrimaryButtonWC,
-    SimpleInputGroupWC,
-} from "packages/common/FormElement/Web";
+    FormGroup,
+    PrimaryButton,
+    SimpleInputGroup,
+} from "packages/common/form-element/ui/web";
 import { Dispatch } from "redux";
 import { LoginPageState } from "../Domain/Types";
 import { createLogin } from "../Domain/Command/Login";
@@ -27,36 +27,36 @@ const LoginPage: FC<LoginPageComponentProps> = (props) => (
     <ContentPage>
         <Card title="Login">
             <FormWC onSubmit={props.onSubmitLoginForm}>
-                <FormGroupWC>
-                    <SimpleInputGroupWC
+                <FormGroup>
+                    <SimpleInputGroup
                         labelTranslation={{
                             translationId: 'non-existing-translation-id-takes-fallback',
                             fallback: 'Username',
                         }}
                         formElement={props.data.form.elementsByName.username}
                     />
-                </FormGroupWC>
-                <FormGroupWC>
-                    <SimpleInputGroupWC
+                </FormGroup>
+                <FormGroup>
+                    <SimpleInputGroup
                         labelTranslation={{
                             translationId: 'non-existing-translation-id-takes-fallback',
                             fallback: 'Password',
                         }}
                         formElement={props.data.form.elementsByName.password}
                     />
-                </FormGroupWC>
-                <FormGroupWC>
-                    <SimpleInputGroupWC
+                </FormGroup>
+                <FormGroup>
+                    <SimpleInputGroup
                         labelTranslation={{
                             translationId: 'non-existing-translation-id-takes-fallback',
                             fallback: 'stay logged in',
                         }}
                         formElement={props.data.form.elementsByName.rememberMe}
                     />
-                </FormGroupWC>
-                <FormGroupWC>
-                    <PrimaryButtonWC onClick={props.onSubmitLoginForm}>Login</PrimaryButtonWC>
-                </FormGroupWC>
+                </FormGroup>
+                <FormGroup>
+                    <PrimaryButton onClick={props.onSubmitLoginForm}>Login</PrimaryButton>
+                </FormGroup>
             </FormWC>
         </Card>
     </ContentPage>

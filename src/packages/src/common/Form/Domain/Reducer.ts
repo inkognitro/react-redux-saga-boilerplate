@@ -1,4 +1,4 @@
-import { FormElementEvent, FormElementEventTypes, formElementReducer } from "packages/common/FormElement/Domain";
+import { FormElementEvent, FormElementEventTypes, formElementReducer } from "packages/common/form-element/domain";
 import { FormElementsByName, FormState } from "./Types";
 import { FormEventTypes } from "./Event/Types";
 import { FormWasSetToRunningRequestMode } from "./Event/FormWasSetToRunningRequestMode";

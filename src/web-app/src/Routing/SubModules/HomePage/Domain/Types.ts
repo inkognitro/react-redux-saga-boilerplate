@@ -1,4 +1,4 @@
-import { TextFieldState } from "packages/common/FormElement/Domain";
+import { TextFieldState } from "packages/common/form-element/domain";
 import { Route } from "packages/common/router/domain";
 
 export type HomePageState = {
