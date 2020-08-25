@@ -31,12 +31,12 @@ const StyledAlignedAreaContent = styled.div<StyledAlignedAreaContentProps>`
     vertical-align: ${(props) => props.verticalAlign || verticalAligns.TOP};
 `;
 
-export type AlignedAreaWCProps = {
+export type AlignedAreaProps = {
   horizontalAlign?: horizontalAligns;
   verticalAlign?: verticalAligns;
 };
 
-export const AlignedAreaWC: FC<AlignedAreaWCProps> = ({ horizontalAlign, verticalAlign, children }) => (
+export const AlignedArea: FC<AlignedAreaProps> = ({ horizontalAlign, verticalAlign, children }) => (
     <StyledAlignedAreaDiv>
         <StyledAlignedAreaContent
             horizontalAlign={horizontalAlign}

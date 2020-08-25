@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { connect } from "react-redux";
 import { ContentPage } from "web-app/Foundation/UI";
 import { RootState } from "web-app/ServicesFactory";
-import { CardWC } from "packages/common/LayoutFoundation/Web";
+import { Card } from "packages/common/layout-foundation/ui/web";
 import { FormWC } from "packages/common/Form/Web";
 import {
     FormGroupWC,
@@ -25,7 +25,7 @@ type LoginPageComponentProps = (LoginPageComponentState & LoginPageComponentCall
 
 const LoginPage: FC<LoginPageComponentProps> = (props) => (
     <ContentPage>
-        <CardWC title="Login">
+        <Card title="Login">
             <FormWC onSubmit={props.onSubmitLoginForm}>
                 <FormGroupWC>
                     <SimpleInputGroupWC
@@ -58,7 +58,7 @@ const LoginPage: FC<LoginPageComponentProps> = (props) => (
                     <PrimaryButtonWC onClick={props.onSubmitLoginForm}>Login</PrimaryButtonWC>
                 </FormGroupWC>
             </FormWC>
-        </CardWC>
+        </Card>
     </ContentPage>
 );
 
