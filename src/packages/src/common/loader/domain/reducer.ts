@@ -1,7 +1,5 @@
-import { LoaderState } from "./Types";
-import { LoaderEventTypes } from "./Event/Types";
-import { LoaderWasDemanded } from "./Event/LoaderWasDemanded";
-import { LoaderWasWithdrawn } from "./Event/LoaderWasWithdrawn";
+import { LoaderState } from "./types";
+import { LoaderEventTypes, LoaderWasDemanded, LoaderWasWithdrawn } from "./event";
 
 type LoaderEvent = (LoaderWasDemanded | LoaderWasWithdrawn);
 

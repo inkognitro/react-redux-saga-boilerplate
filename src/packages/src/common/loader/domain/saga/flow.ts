@@ -1,7 +1,6 @@
 import { spawn, takeEvery, put } from "redux-saga/effects";
-import { createLoaderWasDemanded } from "../../Event/LoaderWasDemanded";
-import { createLoaderWasWithdrawn } from "../../Event/LoaderWasWithdrawn";
-import { LoaderCommandTypes } from "../../Command/Types";
+import { LoaderCommandTypes } from "../command";
+import { createLoaderWasDemanded, createLoaderWasWithdrawn } from "../event";
 
 export function createLoaderSaga(): () => Generator {
     return function* (): Generator {

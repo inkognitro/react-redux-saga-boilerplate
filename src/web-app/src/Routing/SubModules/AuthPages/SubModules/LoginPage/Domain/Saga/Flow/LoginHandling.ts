@@ -1,7 +1,7 @@
 import { put, select } from "redux-saga/effects";
 import { login, LoginResult } from "packages/common/Authentication/Domain";
 import { dispatchToastsFromResult } from "packages/common/toaster/domain";
-import { createHideLoader, createShowLoader } from "packages/common/Loader/Domain";
+import { createHideLoader, createShowLoader } from "packages/common/loader/domain";
 import { ResultTypes } from "packages/entity/common-types";
 import { createOpenUrl } from "packages/common/router/domain";
 import { createHomeRouteUrl } from "web-app/Routing/Domain";
