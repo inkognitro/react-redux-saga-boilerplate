@@ -28,8 +28,8 @@ To fully understand this project you should be familiar with the technologies be
 4. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
 ## Features
+Below the common features are listed. Followed additional features are divided in web and mobile app features.
 
-### General
 1. Basic [JWT](http://jwt.io) authentication:
     - with remember me flag
     - ideally the authentication server responds with the [jwtSecret]-httpOnly-cookie and [jwtHeader].[jwtPayload] in the response body, to be protected against XSS and CSRF attacks.
