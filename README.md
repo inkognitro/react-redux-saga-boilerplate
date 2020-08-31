@@ -22,11 +22,10 @@ To fully understand this project you should be familiar with the technologies be
 - [webpack](http://webpack.js.org) (web app bundling)
    
 ## Open todos (WIP)
-1. Better simulation of authentication refresh in `packages/common/authentication` module
-2. Integration of `src/mobile-app` as an additional yarn workspace (pay also attention to environment docs)
-3. Test coverage + badge integration
-4. (Concurrent saga performance analysis)
-5. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
+1. Integration of `src/mobile-app` as an additional yarn workspace (pay also attention to environment docs)
+2. Test coverage + badge integration
+3. (Concurrent saga performance analysis)
+4. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
   
 ## Features
 
