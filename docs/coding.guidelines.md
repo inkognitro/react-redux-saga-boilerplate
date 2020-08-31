@@ -42,12 +42,12 @@ However, some bundlers have problems with circular import references. Below you 
 
 ## Separate import per layer
 Imports always should reference to only one specific layer. This avoids problems with bundlers.
-Problem: Imagine there was a `index.ts` in the root of the `Packages/Common/Translation` module,
+Problem: Imagine there was a `index.ts` in the root of the `packages/common/translation` module,
 which is exporting domain, native and web stuff.
 If we would import things from this `index.ts` file into our mobile app,
 we had unwanted dependencies to web components and likely to additional web libraries.
-Therefore it is important to import things from `.../Domain`, `.../Native` or `.../Web` folders,
-where the corresponding `index.ts` file exports their public module layer's api.
+Therefore it is important to import things from `.../domain`, `.../ui` or `.../infrastructure` folders directly.
+These folders should contain an `index.ts` file to export the corresponding module's public api.
 
 ## Linting for a unified codebase
 With linting rules all team members have the same understanding of the code style.
@@ -64,7 +64,7 @@ React components can be tested with [react-test-renderer](https://reactjs.org/do
 Tests should be organized as follow:
 - The file suffix `.test.ts` is required
 - A unit test is placed next to the tested file. As an example the unit test for `foo/bar/baz.ts` is `/foo/bar/baz.unit.test.ts`.
-- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/Packages/Common/Domain/Toaster/Saga/Flow/ShowMessageHandling.integration.test.ts`.
+- An integration test for encapsulated module behaviour (e.g. toaster), is placed inside the module folder. As an example `/src/packages/common/domain/toaster/saga/flow/show.message.handling.integration.test.ts`.
 
 Unit tests should have the suffix `.unit.test.ts`. Integration tests should have the suffix `.integration.test.ts`.
 

@@ -9,7 +9,7 @@ Following explanations should clarify the architecture.
 The codebase is divided in three layers:
 1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
 2. **Infrastructure Layer**: This is the layer where the specific implementations live in (e.g browser cookie storage for browser environments).
-3. **UI Layer**: In this layer all web UI components live in (recognizable as `Native` and `Web` folders in Packages).
+3. **UI Layer**: In this layer all web UI components live in.
 
 With the separation of these layers it is guaranteed that already written business logic can be used for multiple views (e.g. web and native).
 
@@ -20,12 +20,11 @@ For a better understanding have a look at the info graphic below. The relevant t
 Generally the project is structured as a monorepo with several sub projects inside.
 Following definitions are given:
 
-- `Package:` A package is a collection of `ModuleCollections`.
-- `ModuleCollection:` A module collection contains multiple modules (e.g. `Packages/Entity`, `Packages/Common`)
+- `Package:` A package is a collection of `modules`.
 - `Module:` A module contains strongly coupled features:
     - Every module is divided in `domain`, `infrastructure` and `ui` (divided in `native` and `web`) layer.
-    - In each of these layers an `index.ts` file lives in, to define its public api.
-    - A module should contain sub modules in a `sub-modules` directory.
+    - In each of these layers an `index.ts` file lives in, to define its public api (except `ui` where the `index.ts` file lives in `native` and `web` folders).
+    - To keep the code base lean and reactive, a module can contain sub modules in a `sub-modules` directory.
     These sub modules should only be imported from the module itself.
 
 With this feature based structure, it is ensured that specific features easily can be moved up and down in the codebase.
