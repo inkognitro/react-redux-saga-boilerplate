@@ -9,9 +9,9 @@ import {
     ToastTypes,
 } from "../../types";
 import { moveMessagesFromPipelineToToastsHandling } from "./move.messages.from.pipeline.to.toasts.handling";
-import {ShowMessage, ShowMessageSettings} from "../../command";
-import {createMessageWasAddedToPipeline} from "../../event";
-import {findMessageToAddByMessageId, findToastByMessageId} from "../../query";
+import { ShowMessage, ShowMessageSettings } from "../../command";
+import { createMessageWasAddedToPipeline } from "../../event";
+import { findMessageToAddByMessageId, findToastByMessageId } from "../../query";
 
 function createAutomaticCloseDelayInMs(
     settings: ShowMessageSettings,
