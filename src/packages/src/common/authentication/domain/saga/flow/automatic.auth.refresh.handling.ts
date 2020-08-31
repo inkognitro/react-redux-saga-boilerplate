@@ -44,7 +44,7 @@ export function* handleAutomaticAuthenticationRefresh(
         try {
             // @ts-ignore
             const raceResult: { logoutEvent?: UserWasLoggedOut, refreshResult?: AuthenticationRefreshResult } = yield race({
-                refreshResult: refreshAuthenticationAtEndpoint({token: currentAuthUser.token}),
+                refreshResult: refreshAuthenticationAtEndpoint({ token: currentAuthUser.token }),
                 logoutEvent: take(AuthEventTypes.USER_WAS_LOGGED_OUT),
             });
             if (raceResult.logoutEvent) {
