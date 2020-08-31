@@ -1,7 +1,8 @@
 [![BadgeMITLicense: MIT](docs/assets/badgeMITLicense.svg)](LICENSE)
 
 # React Redux Boilerplate
-Monorepo frontend boilerplate for mobile and web app development. Realized with [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
+Ready to go monorepo frontend boilerplate for web and mobile app development.
+Realized with [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
 Written in [TypeScript](http://typescriptlang.org).
 
 ## Motivation
