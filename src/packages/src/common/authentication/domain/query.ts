@@ -8,8 +8,3 @@ export function getCurrentAuthUser(state: AuthState): AuthUser {
 export function isCurrentUserInitializationRunning(state: AuthState): boolean {
     return state.isInitializationRunning;
 }
-
-// todo: use for authentication refresh and change to "login" is running!
-export function isAuthenticationRunning(state: AuthState): boolean {
-    return state.isAuthenticationRunning;
-}

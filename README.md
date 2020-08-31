@@ -1,6 +1,6 @@
 [![BadgeMITLicense: MIT](docs/assets/badgeMITLicense.svg)](LICENSE)
 
-# React Redux Boilerplate (WIP)
+# React Redux Boilerplate
 Monorepo frontend boilerplate for mobile and web app development. Realized with [react](https://reactjs.org/), [redux](http://redux.js.org/) and [redux-saga](http://redux-saga.js.org).
 Written in [TypeScript](http://typescriptlang.org).
 
@@ -21,11 +21,10 @@ To fully understand this project you should be familiar with the technologies be
 - [eslint](https://eslint.org/docs/user-guide/getting-started) (code linting)
 - [webpack](http://webpack.js.org) (web app bundling)
    
-## Open todos (WIP)
+## Next steps
 1. Integration of `src/mobile-app` as an additional yarn workspace (pay also attention to environment docs)
 2. Test coverage + badge integration
-3. (Concurrent saga performance analysis)
-4. (Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components)
+3. Usage of [react hooks](https://reactjs.org/docs/hooks-intro.html) instead of class components
   
 ## Features
 Below the common features are listed. Followed additional features are divided in web and mobile app features.
