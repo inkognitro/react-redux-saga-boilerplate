@@ -42,15 +42,19 @@ To fully understand this project you should be familiar with the technologies be
 5. Test integration with jest (see [coding guidelines](docs/coding.guidelines.md))
 6. Code linting (see [coding guidelines](docs/coding.guidelines.md))
     
-### WebApp
+### Web app
 1. Bootstrap 4 SCSS and [material icons](http://material.io/resources/icons/) integration
 2. Styling with [styled-components](http://styled-components.com/)
 3. Request handling with [axios](http://npmjs.com/package/axios) library in the background
 4. Basic form components
 5. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
     
-### MobileApp
-Under construction.
+### Mobile app
+The mobile apps purpose is to demonstrate where to put the code for mobile
+and especially how to reuse the domain logic with react native.
+This was done with the `packages/common/toaster` module.
+Certainly the project also can be used as a starter for mobile app development.
+Nevertheless the primary focus for this project was on the overall architecture and the web view.
 
 ## Documentation
 - [Environment](docs/environment.md): Installation, development start, scripts
