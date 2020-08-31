@@ -1,7 +1,7 @@
 {
   "name": "react-redux-boilerplate",
   "version": "1.0.0",
-  "description": "Monorepo frontend boilerplate for mobile and web app development. Realized in react combined with redux and redux-saga. Written in TypeScript.",
+  "description": "Ready to go monorepo frontend boilerplate for web and mobile app development. Realized with react, redux and redux-saga. Written in TypeScript.",
   "author": "Marcel Fischer",
   "license": "MIT",
   "repository": {
