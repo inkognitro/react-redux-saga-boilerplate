@@ -20,12 +20,12 @@ Automatic detection of `.eslintrc.json` in the project folder:
 Replace `Strg + Alt + L` shortcut with eslint fix:
 ![esLintKeymapShortcut](assets/esLintKeymapShortcut.png)
 
-## WebApp development
+## Web app development
 To run the web app with hot module reloading at `//localhost:9000`, run:
 
     \Foo\Bar\MonorepoRootFolder> yarn run start:spa
     
-## MobileApp development
+## Mobile app development
 To run the mobile app with hot module reloading on android device emulator, run:
 
     \Foo\Bar\MonorepoRootFolder> yarn run start:android
@@ -33,7 +33,7 @@ To run the mobile app with hot module reloading on android device emulator, run:
 ## Scripts
 Following scripts are executed for every yarn workspace.
 Be aware that these commands require [yarn](https://yarnpkg.com/) and [lerna](https://lerna.js.org/) as a global dependency.
-The `src/MobileApp` package is not yet being integrated and therefore not yet included in these scripts.
+Due to limitations of the react-native library the `src/mobile-app` package is not yet integrated as a yarn workspace.
 
 To install install `node_modules` in every package, run:
 

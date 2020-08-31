@@ -9,9 +9,9 @@ Each documentation should live in the corresponding codebase.
 - [packages/common/README.md](../src/packages/src/common/README.md)
 - [packages/entity/README.md](../src/packages/src/entity/README.md)
 
-## WebApp
+## Web app
 tbd..
 
-## MobileApp
+## Mobile app
 tbd..
 
