@@ -106,7 +106,7 @@ function createRootSaga(
     const formElementsSaga = createFormElementsFlow();
     const formSaga = createFormSaga();
     const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
-    const authenticationSaga = createAuthenticationSaga(authStateSelector);
+    const authenticationSaga = createAuthenticationSaga(cookieStorage, authStateSelector);
     const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.httpFoundation;
     const httpFoundationSaga = createHttpFoundationSaga(httpFoundationStateSelector, httpRequestDispatcher);
     const httpApiV1Saga = createHttpApiV1Saga(authStateSelector);

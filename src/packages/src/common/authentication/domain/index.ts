@@ -15,7 +15,7 @@ export { logout } from './saga/effect/logout';
 export { login } from './saga/effect/login';
 export { authenticationReducer } from './reducer';
 export {
-    AuthCommandTypes, createInitializeCurrentUser, createLogin, createLogout,
+    AuthCommandTypes, createLogin, createLogout,
 } from "./command";
 export { AuthEventTypes } from "./event";
-export { getCurrentAuthUser } from "./query";
+export { getCurrentAuthUser, isCurrentUserInitializationRunning } from "./query";

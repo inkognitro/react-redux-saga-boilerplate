@@ -20,6 +20,9 @@ function createResponseByRequest(request: Request): ApiV1ReadResponse {
     if (request.url === (`${apiV1BaseUrl}/auth/authenticate`)) {
         return createValidLoginResponse();
     }
+    if (request.url === (`${apiV1BaseUrl}/auth/refreshauthentication`)) {
+        return createValidAuthenticationRefreshResponse();
+    }
     return createInvalidLoginResponse();
 }
 
@@ -60,6 +63,12 @@ function createInvalidLoginResponse(): ApiV1ReadResponse {
     };
 }
 
+const authToken = (
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
+    + "eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmL"
+    + "TgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0"
+);
+
 function createValidLoginResponse(): ApiV1ReadResponse {
     return {
         header: {
@@ -78,15 +87,29 @@ function createValidLoginResponse(): ApiV1ReadResponse {
             ],
             fieldMessages: [],
             data: {
-                pseudoHttpOnlyCookie: "ZUwq2yWnT-H3fvpmUJwJkR3sG4aWQGMTo4tP8tNBHrc",
-                token: (
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
-                    + "eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmL"
-                    + "TgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0"
-                ),
+                token: authToken,
                 user: {
                     id: "1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b",
-                    username: "Nagato",
+                    username: "Nagato (initial)",
+                },
+            },
+        },
+    };
+}
+
+function createValidAuthenticationRefreshResponse(): ApiV1ReadResponse {
+    return {
+        header: {
+            statusCode: 200,
+        },
+        body: {
+            generalMessages: [],
+            fieldMessages: [],
+            data: {
+                token: authToken,
+                user: {
+                    id: "1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b",
+                    username: "Nagato (refreshed)",
                 },
             },
         },

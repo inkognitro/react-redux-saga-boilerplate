@@ -2,6 +2,7 @@ import { ErrorResult, SuccessResult } from "packages/entity/common-types";
 import { AuthenticatedAuthUser, AuthUser } from "packages/entity/auth-user/domain";
 
 export type AuthState = {
+    isInitializationRunning: boolean
     isAuthenticationRunning: boolean
     currentUser: AuthUser
 };

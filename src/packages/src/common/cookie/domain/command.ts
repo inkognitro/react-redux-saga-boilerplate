@@ -15,10 +15,9 @@ export function createSaveCookie(cookie: Cookie): SaveCookie {
     };
 }
 
-export type SaveCookie = Command<CookieCommandTypes.SAVE_COOKIE,
-    {
-        cookie: Cookie;
-    }>;
+export type SaveCookie = Command<CookieCommandTypes.SAVE_COOKIE, {
+    cookie: Cookie;
+}>;
 
 export function createRemoveCookie(name: string): RemoveCookie {
     return {

@@ -17,9 +17,9 @@ const StyledLink = styled.a`
 `;
 
 type FunctionalLinkProps = {
-  url?: string;
-  onClick: () => void;
-  className?: string;
+    url?: string
+    onClick?: () => void
+    className?: string
 };
 
 export const FunctionalLink: FC<FunctionalLinkProps> = (props) => (
@@ -28,7 +28,9 @@ export const FunctionalLink: FC<FunctionalLinkProps> = (props) => (
         href={props.url ? props.url : "#"}
         onClick={(event) => {
             event.preventDefault();
-            props.onClick();
+            if (props.onClick) {
+                props.onClick();
+            }
         }}
     >
         {props.children}

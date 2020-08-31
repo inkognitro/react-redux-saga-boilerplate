@@ -16,7 +16,8 @@ import { getCurrentAuthUser } from "../../query";
 
 export const authTokenCookieTimeToLiveInDays = 14;
 
-export const authTokenCookieName = 'authUser';
+export const authTokenCookieName = 'authUserToken';
+export const shouldRememberAuthTokenCookieName = 'shouldRememberAuthUserToken';
 
 export function* handleLogin(authStateSelector: AuthStateSelector, command: Login): Generator {
     // @ts-ignore
@@ -36,16 +37,7 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             yield put(createUserLoginFailed(command.payload, result));
             return;
         }
-        yield put(
-            createSaveCookie({
-                name: authTokenCookieName,
-                content: JSON.stringify(result.data.authUser),
-                timeToLiveInDays: (command.payload.shouldRemember
-                    ? authTokenCookieTimeToLiveInDays
-                    : undefined
-                ),
-            }),
-        );
+        yield saveAuthCookies(result.data.authUser.token, command.payload.shouldRemember);
         yield put(createUserWasLoggedIn(command.payload, result));
         return;
     } finally {
@@ -53,4 +45,22 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             yield put(createUserLoginWasCancelled(command.payload));
         }
     }
+}
+
+export function* saveAuthCookies(token: string, shouldRemember: boolean): Generator {
+    const cookieTTL = (shouldRemember ? authTokenCookieTimeToLiveInDays : undefined);
+    yield put(
+        createSaveCookie({
+            name: authTokenCookieName,
+            content: token,
+            timeToLiveInDays: cookieTTL,
+        }),
+    );
+    yield put(
+        createSaveCookie({
+            name: shouldRememberAuthTokenCookieName,
+            content: shouldRemember.toString(),
+            timeToLiveInDays: cookieTTL,
+        }),
+    );
 }

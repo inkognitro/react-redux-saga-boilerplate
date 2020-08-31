@@ -1,9 +1,11 @@
 import { put, select } from "@redux-saga/core/effects";
 import { AuthUserTypes } from "packages/entity/auth-user/domain";
+import { createRemoveCookie } from "packages/common/cookie/domain";
 import { AuthState, AuthStateSelector } from "../../types";
 import { Logout } from "../../command";
 import { createUserLogoutWasNotExecuted, createUserWasLoggedOut } from "../../event";
 import { getCurrentAuthUser } from "../../query";
+import { authTokenCookieName, shouldRememberAuthTokenCookieName } from "./login.handling";
 
 export function* handleLogout(authStateSelector: AuthStateSelector, command: Logout): Generator {
     // @ts-ignore
@@ -13,6 +15,8 @@ export function* handleLogout(authStateSelector: AuthStateSelector, command: Log
         yield put(createUserLogoutWasNotExecuted(command.payload.logoutId));
         return;
     }
+    yield put(createRemoveCookie(authTokenCookieName));
+    yield put(createRemoveCookie(shouldRememberAuthTokenCookieName));
     yield put(createUserWasLoggedOut({
         authUser: currentAuthUser,
         logoutId: command.payload.logoutId,

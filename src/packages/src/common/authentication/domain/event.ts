@@ -12,18 +12,30 @@ export enum AuthEventTypes {
     USER_AUTHENTICATION_WAS_REFRESHED = "USER_AUTHENTICATION_WAS_REFRESHED-42db2e56-7772-436f-91bc-17b2ba6798a1",
     USER_AUTHENTICATION_REFRESH_WAS_REQUESTED = "USER_AUTHENTICATION_REFRESH_WAS_REQUESTED-42db2e56-7772-436f-91bc-17b2ba6798a1",
     USER_AUTHENTICATION_REFRESH_FAILED = "USER_AUTHENTICATION_REFRESH_FAILED-42db2e56-7772-436f-91bc-17b2ba6798a1",
+    USER_AUTHENTICATION_REFRESH_WAS_CANCELLED = "USER_AUTHENTICATION_REFRESH_WAS_CANCELLED-42db2e56-7772-436f-91bc-17b2ba6798a1",
     USER_WAS_LOGGED_OUT = "USER_WAS_LOGGED_OUT-42db2e56-7772-436f-91bc-17b2ba6798a1",
+    CURRENT_USER_INITIALIZATION_WAS_STARTED = "CURRENT_USER_INITIALIZATION_WAS_STARTED-42db2e56-7772-436f-91bc-17b2ba6798a1",
+    CURRENT_USER_WAS_INITIALIZED = "CURRENT_USER_WAS_INITIALIZED-42db2e56-7772-436f-91bc-17b2ba6798a1",
+    CURRENT_USER_INITIALIZATION_WAS_CANCELLED = "CURRENT_USER_INITIALIZATION_WAS_CANCELLED-42db2e56-7772-436f-91bc-17b2ba6798a1",
 }
 
-export function createUserAuthenticationRefreshFailed(payload: Payload): UserAuthenticationRefreshFailed {
+export function createUserAuthenticationRefreshWasCancelled(): UserAuthenticationRefreshWasCancelled {
     return {
-        type: AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED,
-        payload,
+        type: AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_CANCELLED,
+        payload: undefined,
     };
 }
 
-export type UserAuthenticationRefreshFailed = Event<AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED, Payload>;
-type Payload = { authUser: AuthenticatedAuthUser };
+export type UserAuthenticationRefreshWasCancelled = Event<AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_CANCELLED>;
+
+export function createUserAuthenticationRefreshFailed(): UserAuthenticationRefreshFailed {
+    return {
+        type: AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED,
+        payload: undefined,
+    };
+}
+
+export type UserAuthenticationRefreshFailed = Event<AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED>;
 
 export function createUserAuthenticationRefreshWasRequested(
     authUser: AuthenticatedAuthUser,
@@ -34,7 +46,36 @@ export function createUserAuthenticationRefreshWasRequested(
     };
 }
 
+export type CurrentUserInitializationWasStarted = Event<AuthEventTypes.CURRENT_USER_INITIALIZATION_WAS_STARTED>;
+
+export function createCurrentUserInitializationWasStarted(): CurrentUserInitializationWasStarted {
+    return {
+        type: AuthEventTypes.CURRENT_USER_INITIALIZATION_WAS_STARTED,
+        payload: undefined,
+    };
+}
+
+export type CurrentUserInitializationWasCancelled = Event<AuthEventTypes.CURRENT_USER_INITIALIZATION_WAS_CANCELLED>;
+
+export function createCurrentUserInitializationWasCancelled(): CurrentUserInitializationWasCancelled {
+    return {
+        type: AuthEventTypes.CURRENT_USER_INITIALIZATION_WAS_CANCELLED,
+        payload: undefined,
+    };
+}
+
 export type UserAuthenticationRefreshWasRequested = Event<AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_REQUESTED, {
+    authUser: AuthenticatedAuthUser;
+}>;
+
+export function createCurrentUserWasInitialized(authUser: AuthenticatedAuthUser): CurrentUserWasInitialized {
+    return {
+        type: AuthEventTypes.CURRENT_USER_WAS_INITIALIZED,
+        payload: { authUser },
+    };
+}
+
+export type CurrentUserWasInitialized = Event<AuthEventTypes.CURRENT_USER_WAS_INITIALIZED, {
     authUser: AuthenticatedAuthUser;
 }>;
 
