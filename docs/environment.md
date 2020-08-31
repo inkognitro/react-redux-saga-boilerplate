@@ -31,9 +31,9 @@ To run the mobile app with hot module reloading on android device emulator, run:
     \Foo\Bar\MonorepoRootFolder> yarn run start:android
 
 ## Scripts
-Following scripts are executed for every yarn workspace.
+Following scripts are executed for every sub repository via lerna.
 Be aware that these commands require [yarn](https://yarnpkg.com/) and [lerna](https://lerna.js.org/) as a global dependency.
-Due to limitations of the react-native library the `src/mobile-app` package is not yet integrated as a yarn workspace.
+Due to limitations of the react-native the `src/mobile-app` package is not yet integrated as a yarn workspace.
 
 To install install `node_modules` in every package, run:
 
