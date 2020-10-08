@@ -1,6 +1,9 @@
-import { createContext } from "react";
-import { initialTranslatorState } from "../domain";
+import { createContext, useContext } from "react";
+import { initialTranslatorState, TranslatorState } from "../domain";
 
-const Context = createContext(initialTranslatorState);
-export const TranslationTextProvider = Context.Provider;
-export const TranslationTextConsumer = Context.Consumer;
+const context = createContext(initialTranslatorState);
+export const TranslationTextProvider = context.Provider;
+
+export function useTranslatorState(): TranslatorState {
+    return useContext(context);
+}

@@ -1,26 +1,43 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
+import { Translation } from "packages/entity/common-types";
+import { TranslatedText } from "packages/common/translator/ui/web";
 import { FormElementState, FormElementTypes } from "../../domain";
-import { ConncectedCheckbox } from "./checkbox";
-import { ConncectedPasswordField } from "./password.field";
-import { ConnectedEmailField } from "./email.field";
-import { ConnectedTextField } from "./text.field";
+import { Checkbox } from "./input.checkbox";
+import { TextField, PasswordField, EmailField } from "./input.text.field";
+import { Label } from "./label";
 
 type FormElementProps = {
     data: FormElementState
+    label?: ReactNode
 }
 
 export const FormElement: FC<FormElementProps> = (props) => {
-    if (props.data.type === FormElementTypes.CHECKBOX) {
-        return (<ConncectedCheckbox data={props.data} />);
+    if (props.data.type === FormElementTypes.TEXT) {
+        return (<TextField data={props.data} label={props.label} />);
     }
     if (props.data.type === FormElementTypes.PASSWORD) {
-        return (<ConncectedPasswordField data={props.data} />);
+        return (<PasswordField data={props.data} label={props.label} />);
     }
     if (props.data.type === FormElementTypes.EMAIL) {
-        return (<ConnectedEmailField data={props.data} />);
+        return (<EmailField data={props.data} label={props.label} />);
     }
-    if (props.data.type === FormElementTypes.TEXT) {
-        return (<ConnectedTextField data={props.data} />);
+    if (props.data.type === FormElementTypes.CHECKBOX) {
+        return (<Checkbox data={props.data} label={props.label} />);
     }
-    throw new Error('Data not supported');
+    console.error('form element not supported: ', props);
+    throw new Error(`form element not supported`);
+};
+
+type SimpleFormElementProps = {
+    data: FormElementState
+    label?: Translation
+}
+
+export const SimpleFormElement: FC<SimpleFormElementProps> = (props) => {
+    const label = (!props.label ? undefined : (
+        <Label for={props.data.id} isRequired={props.data.isRequired}>
+            <TranslatedText translation={props.label} />
+        </Label>
+    ));
+    return (<FormElement data={props.data} label={label} />);
 };

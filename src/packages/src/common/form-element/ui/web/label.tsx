@@ -1,11 +1,13 @@
 import React, { FC } from "react";
 
 export type LabelProps = {
-    formElementId?: string
+    isRequired?: boolean
+    for?: string
 };
 
 export const Label: FC<LabelProps> = (props) => (
-    <label htmlFor={props.formElementId}>
+    <label htmlFor={props.for}>
         {props.children}
+        {(props.isRequired ? ' *' : null)}
     </label>
 );
