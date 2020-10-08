@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // browsers do require a submit button inside the form element for dispatching a submit on enter key press
 const InvisibleSubmitButton = styled.button`
-  display: none;
+    display: none;
 `;
 
 export type FormProps = {

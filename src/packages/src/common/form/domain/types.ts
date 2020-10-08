@@ -1,9 +1,5 @@
-import { FormElementState } from "packages/common/form-element/domain";
-
-export type FormState<SpecificElementsByName = {}> = {
+export type FormState<C = any> = {
     id: string
-    isRequestRunning: boolean
-    elementsByName: FormElementsByName<SpecificElementsByName>
-};
-
-export type FormElementsByName<SpecificElementsByName> = ({ [name: string]: FormElementState} & SpecificElementsByName)
+    isSubmitRunning: boolean
+    content: C
+}

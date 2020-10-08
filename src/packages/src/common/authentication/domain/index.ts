@@ -13,9 +13,7 @@ export type LogoutResult = LogoutResultType;
 export { createAuthenticationSaga } from './saga/flow';
 export { logout } from './saga/effect/logout';
 export { login } from './saga/effect/login';
-export { authenticationReducer } from './reducer';
-export {
-    AuthCommandTypes, createLogin, createLogout,
-} from "./command";
+export { authenticationReducer, initialAuthState } from './reducer';
+export { AuthCommandTypes, createLogin, createLogout } from "./command";
 export { AuthEventTypes } from "./event";
 export { getCurrentAuthUser, isCurrentUserInitializationRunning } from "./query";

@@ -35,7 +35,7 @@ const anonymousUser: AnonymousAuthUser = {
     type: AuthUserTypes.ANONYMOUS,
 };
 
-const initialAuthState: AuthState = {
+export const initialAuthState: AuthState = {
     isInitializationRunning: false,
     isAuthenticationRunning: false,
     currentUser: anonymousUser,

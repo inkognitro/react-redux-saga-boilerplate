@@ -2,40 +2,22 @@ import { Event } from "packages/entity/common-types";
 import { FormState } from "./types";
 
 export enum FormEventTypes {
-    FORM_WAS_SET_TO_RUNNING_REQUEST_MODE = 'FORM_WAS_SET_TO_RUNNING_REQUEST_MODE-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
-    FORM_WAS_SET_TO_NO_RUNNING_REQUEST_MODE = 'FORM_WAS_SET_TO_NO_RUNNING_REQUEST_MODE-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
-    FORM_WAS_SUBMITTED = 'FORM_WAS_SUBMITTED-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
+    SUBMIT_HAS_STARTED = 'SUBMIT_HAS_STARTED-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
+    SUBMIT_HAS_FINISHED = 'SUBMIT_HAS_FINISHED-5539c0dd-7765-419f-b351-8ffbb7f5aae6',
 }
 
-export function createFormWasSubmitted(form: FormState): FormWasSubmitted {
+export type FormSubmitHasStarted = Event<FormEventTypes.SUBMIT_HAS_STARTED, { form: FormState }>
+export function createFormSubmitHasStarted(form: FormState): FormSubmitHasStarted {
     return {
-        type: FormEventTypes.FORM_WAS_SUBMITTED,
+        type: FormEventTypes.SUBMIT_HAS_STARTED,
         payload: { form },
     };
 }
 
-export type FormWasSubmitted = Event<FormEventTypes.FORM_WAS_SUBMITTED, {
-    form: FormState
-}>;
-
-export function createFormWasSetToRunningRequestMode(formId: string): FormWasSetToRunningRequestMode {
+export type FormSubmitHasFinished = Event<FormEventTypes.SUBMIT_HAS_FINISHED, { form: FormState }>
+export function createFormSubmitHasFinished(form: FormState): FormSubmitHasFinished {
     return {
-        type: FormEventTypes.FORM_WAS_SET_TO_RUNNING_REQUEST_MODE,
-        payload: { formId },
+        type: FormEventTypes.SUBMIT_HAS_FINISHED,
+        payload: { form },
     };
 }
-
-export type FormWasSetToRunningRequestMode = Event<FormEventTypes.FORM_WAS_SET_TO_RUNNING_REQUEST_MODE, {
-    formId: string
-}>;
-
-export function createFormWasSetToNoRunningRequestMode(formId: string): FormWasSetToNoRunningRequestMode {
-    return {
-        type: FormEventTypes.FORM_WAS_SET_TO_NO_RUNNING_REQUEST_MODE,
-        payload: { formId },
-    };
-}
-
-export type FormWasSetToNoRunningRequestMode = Event<FormEventTypes.FORM_WAS_SET_TO_NO_RUNNING_REQUEST_MODE, {
-    formId: string
-}>;

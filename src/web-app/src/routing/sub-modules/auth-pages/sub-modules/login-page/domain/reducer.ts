@@ -11,7 +11,7 @@ import { LoginPageState } from "./types";
 
 const initialLoginPageState: LoginPageState = {
     form: createFormState({
-        elementsByName: {
+        content: {
             username: createTextFieldState({ value: 'Nagato' }),
             password: createPasswordFieldState({ value: '1234' }),
             rememberMe: createCheckboxState({ value: true }),

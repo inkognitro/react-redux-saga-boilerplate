@@ -7,25 +7,27 @@ export enum FormElementTypes {
     CHECKBOX = "checkbox",
 }
 
-export type BasicFormElementState<Type extends FormElementTypes = any> = {
+type GenericFormElementState<T extends FormElementTypes = any, Data = {}> = Data & {
     id: string
-    type: Type
-    readOnly: boolean
+    type: T
+    isRequired: boolean
+    isDisabled: boolean
+}
+
+type TextFieldData = {
+    value: string
     messages: Message[]
 }
 
-export type InputFieldState<FormElementType extends FormElementTypes = any> = (BasicFormElementState<FormElementType> & {
-    value: string,
-    messages: Message[]
-});
-
-export type TextFieldState = InputFieldState<FormElementTypes.TEXT>
-export type EmailFieldState = InputFieldState<FormElementTypes.EMAIL>
-export type PasswordFieldState = InputFieldState<FormElementTypes.PASSWORD>
-export type CheckboxState = (BasicFormElementState<FormElementTypes.CHECKBOX> & {
+type CheckboxData = {
     value: boolean
-})
+    messages: Message[]
+}
 
+export type TextFieldState = GenericFormElementState<FormElementTypes.TEXT, TextFieldData>
+export type EmailFieldState = GenericFormElementState<FormElementTypes.EMAIL, TextFieldData>
+export type PasswordFieldState = GenericFormElementState<FormElementTypes.PASSWORD, TextFieldData>
+export type CheckboxState = GenericFormElementState<FormElementTypes.CHECKBOX, CheckboxData>
 export type FormElementState = (TextFieldState | EmailFieldState | PasswordFieldState | CheckboxState)
 
 export type FormElementStateChanges = { formElement: FormElementState, stateChanges: Partial<FormElementState> }

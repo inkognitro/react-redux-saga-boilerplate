@@ -1,44 +1,50 @@
-import { FormElementEvent, FormElementEventTypes, formElementReducer } from "packages/common/form-element/domain";
-import { FormElementsByName, FormState } from "./types";
+import { Action, Reducer } from 'redux';
+import { FormState } from "./types";
 import {
     FormEventTypes,
-    FormWasSetToNoRunningRequestMode,
-    FormWasSetToRunningRequestMode,
+    FormSubmitHasFinished,
+    FormSubmitHasStarted,
 } from "./event";
+import { createFormState } from "./state.factory";
 
-type FormEvent = (FormWasSetToRunningRequestMode | FormWasSetToNoRunningRequestMode);
+type FormEvent = (FormSubmitHasStarted | FormSubmitHasFinished);
 
-export function formReducer<SpecificElementsByName>(
-    state: FormState<SpecificElementsByName>,
-    event?: (FormEvent | FormElementEvent),
-): FormState<SpecificElementsByName> {
-    if (!event) {
-        return state;
-    }
-    if (event.type === FormEventTypes.FORM_WAS_SET_TO_RUNNING_REQUEST_MODE) {
-        return {
-            ...state,
-            isRequestRunning: true,
-        };
-    }
-    if (event.type === FormEventTypes.FORM_WAS_SET_TO_NO_RUNNING_REQUEST_MODE) {
-        return {
-            ...state,
-            isRequestRunning: false,
-        };
-    }
-    if (Object.values(FormElementEventTypes).includes(event.type)) {
+type CreationSettings<C> = {
+    contentReducer: Reducer<C>
+    initialStateSettings: Partial<FormState<C>> & Pick<FormState, 'content'>
+}
+
+const formElementTypes = Object.values(FormEventTypes);
+
+export function createFormReducer<C = any>(settings: CreationSettings<C>): Reducer {
+    const initialFormState = createFormState(settings.initialStateSettings);
+    return function (state: FormState<C> = initialFormState, action: Action) {
+        if (!action || !formElementTypes.includes(action.type)) {
+            return {
+                ...state,
+                content: settings.contentReducer(state.content, action),
+            };
+        }
         // @ts-ignore
-        const elementsByName: FormElementsByName<SpecificElementsByName> = {};
-        for (const name in state.elementsByName) {
-            const formElementState = state.elementsByName[name];
-            // @ts-ignore
-            elementsByName[name] = formElementReducer(formElementState, event);
+        const event: FormEvent = action;
+        if (event.payload.form.id !== state.id) {
+            return state;
+        }
+        if (event.type === FormEventTypes.SUBMIT_HAS_STARTED) {
+            return {
+                ...state,
+                isSubmitRunning: true,
+            };
+        }
+        if (event.type === FormEventTypes.SUBMIT_HAS_FINISHED) {
+            return {
+                ...state,
+                isSubmitRunning: false,
+            };
         }
         return {
             ...state,
-            elementsByName,
+            content: settings.contentReducer(state.content, action),
         };
     }
-    return state;
 }
