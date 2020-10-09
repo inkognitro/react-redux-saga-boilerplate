@@ -1,1 +1,1 @@
-export { User } from './types';
+export { User, MinimalUser } from './types';

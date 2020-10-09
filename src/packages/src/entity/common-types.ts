@@ -54,26 +54,26 @@ type ResultProps<Data> = {
     data: Data
 }
 
-type BaseResult<Type extends ResultTypes, Data> = ({ type: Type } & ResultProps<Data>)
-export type SuccessResult<Data = undefined> = BaseResult<ResultTypes.SUCCESS, Data>;
-export type ErrorResult<Data = undefined> = BaseResult<ResultTypes.ERROR, Data>;
-export type Result<Data = any> = (SuccessResult<Data> | ErrorResult<Data>);
+type GenericResult<Type extends ResultTypes, Data> = ({ type: Type } & ResultProps<Data>)
+export type SuccessResult<Data = undefined> = GenericResult<ResultTypes.SUCCESS, Data>;
+export type ErrorResult<Data = undefined> = GenericResult<ResultTypes.ERROR, Data>;
 
-export type ResultPropsForCreation<Data> = Partial<ResultProps<Data>> & Pick<ResultProps<Data>, 'data'>;
-export function createErrorResult<Data = undefined>(settings: ResultPropsForCreation<Data>): ErrorResult<Data> {
+export type ResultCreationSettings<Data = any> = Partial<ResultProps<Data>> & Pick<ResultProps<Data>, 'data'>;
+
+export function createErrorResult<Data = undefined>(settings: ResultCreationSettings<Data>): ErrorResult<Data> {
     return {
         type: ResultTypes.ERROR,
-        generalMessages: [],
-        fieldMessages: [],
+        generalMessages: settings.generalMessages ? settings.generalMessages : [],
+        fieldMessages: settings.fieldMessages ? settings.fieldMessages : [],
         ...settings,
     };
 }
 
-export function createSuccessResult<Data = undefined>(settings: ResultPropsForCreation<Data>): SuccessResult<Data> {
+export function createSuccessResult<Data = undefined>(settings: ResultCreationSettings<Data>): SuccessResult<Data> {
     return {
         type: ResultTypes.SUCCESS,
-        generalMessages: [],
-        fieldMessages: [],
+        generalMessages: settings.generalMessages ? settings.generalMessages : [],
+        fieldMessages: settings.fieldMessages ? settings.fieldMessages : [],
         ...settings,
     };
 }

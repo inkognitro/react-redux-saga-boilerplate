@@ -1,17 +1,14 @@
 import { Command } from "packages/entity/common-types";
-import { Request } from "packages/common/http-foundation/domain";
+import { ApiV1Request } from "./types";
 
 export enum ApiV1CommandTypes {
-    SEND_HTTP_REQUEST = "SEND_HTTP_REQUEST-47406dac-1dc9-4831-a20a-ac917a944ddb",
+    SEND_API_V1_REQUEST = "SEND_API_V1_REQUEST-47406dac-1dc9-4831-a20a-ac917a944ddb",
 }
 
-export function createSendHttpRequest(request: Request): SendHttpRequest {
+export type SendApiV1Request = Command<ApiV1CommandTypes.SEND_API_V1_REQUEST, { request: ApiV1Request }>
+export function createSendApiV1Request(request: ApiV1Request): SendApiV1Request {
     return {
-        type: ApiV1CommandTypes.SEND_HTTP_REQUEST,
+        type: ApiV1CommandTypes.SEND_API_V1_REQUEST,
         payload: { request },
     };
 }
-
-export type SendHttpRequest = Command<ApiV1CommandTypes.SEND_HTTP_REQUEST, {
-    request: Request;
-}>;
