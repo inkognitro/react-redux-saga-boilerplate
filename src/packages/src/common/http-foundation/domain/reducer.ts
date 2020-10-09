@@ -1,60 +1,55 @@
+import { Reducer } from 'redux';
 import { HttpFoundationState } from "./types";
 import {
-    HttpErrorResponseWasReceived,
-    HttpEventTypes,
-    HttpRequestFailed,
-    HttpRequestWasCancelled,
-    HttpRequestWasNotSent,
-    HttpRequestWasSent,
-    HttpSuccessResponseWasReceived,
+    HttpFoundationEventTypes,
+    ResponseCouldNotBeReceived,
+    RequestWasCancelled,
+    RequestWasNotSent,
+    RequestWasSent,
+    ResponseWasReceived,
 } from "./event";
 
-type HttpEvent = (
-    | HttpRequestWasSent
-    | HttpRequestWasNotSent
-    | HttpSuccessResponseWasReceived
-    | HttpErrorResponseWasReceived
-    | HttpRequestFailed
-    | HttpRequestWasCancelled
+type HttpFoundationEvent = (
+    | RequestWasSent
+    | RequestWasNotSent
+    | ResponseWasReceived
+    | ResponseCouldNotBeReceived
+    | RequestWasCancelled
 );
 
-const initialHttpState: HttpFoundationState = {
-    runningHttpRequests: [],
+const initialHttpFoundationState: HttpFoundationState = {
+    runningRequests: [],
 };
 
 const eventTypesForRunningHttpRequestsRemoval = [
-    HttpEventTypes.HTTP_REQUEST_WAS_CANCELLED,
-    HttpEventTypes.HTTP_REQUEST_FAILED,
-    HttpEventTypes.HTTP_ERROR_RESPONSE_WAS_RECEIVED,
-    HttpEventTypes.HTTP_SUCCESS_RESPONSE_WAS_RECEIVED,
+    HttpFoundationEventTypes.REQUEST_WAS_CANCELLED,
+    HttpFoundationEventTypes.RESPONSE_COULD_NOT_BE_RECEIVED,
+    HttpFoundationEventTypes.RESPONSE_WAS_RECEIVED,
 ];
 
-export function httpFoundationReducer(
-    state: HttpFoundationState = initialHttpState,
-    event?: HttpEvent,
-): HttpFoundationState {
+export const httpFoundationReducer: Reducer<HttpFoundationState> = (
+    state = initialHttpFoundationState,
+    event: HttpFoundationEvent,
+) => {
     if (!event) {
         return state;
     }
-
-    if (event.type === HttpEventTypes.HTTP_REQUEST_WAS_SENT) {
+    if (event.type === HttpFoundationEventTypes.REQUEST_WAS_SENT) {
         return {
             ...state,
             runningHttpRequests: [
-                ...state.runningHttpRequests,
+                ...state.runningRequests,
                 event.payload.request,
             ],
         };
     }
-
     if (eventTypesForRunningHttpRequestsRemoval.includes(event.type)) {
         return {
             ...state,
-            runningHttpRequests: state.runningHttpRequests.filter(
+            runningHttpRequests: state.runningRequests.filter(
                 (request) => request.id !== event.payload.request.id,
             ),
         };
     }
-
     return state;
-}
+};

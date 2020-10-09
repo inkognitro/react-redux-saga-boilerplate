@@ -1,14 +1,6 @@
 import { HttpFoundationState, Request } from "./types";
 
-export function findRunningHttpRequestById(
-    state: HttpFoundationState,
-    requestId: string,
-): null | Request {
-    for (const index in state.runningHttpRequests) {
-        const request = state.runningHttpRequests[index];
-        if (request.id === requestId) {
-            return request;
-        }
-    }
-    return null;
+export function findRunningHttpRequestById(state: HttpFoundationState, requestId: string): null | Request {
+    const request = state.runningRequests.find((request) => request.id === requestId);
+    return (!request ? null : request);
 }

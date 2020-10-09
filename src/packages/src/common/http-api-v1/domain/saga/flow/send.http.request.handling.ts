@@ -1,6 +1,6 @@
 import { put, select } from "redux-saga/effects";
 import {
-    createSendHttpRequest as createCommonSendHttpRequest,
+    createSendRequest as createCommonSendHttpRequest,
     getWithHeaderEnhancedHttpRequest,
     Request,
 } from "packages/common/http-foundation/domain";

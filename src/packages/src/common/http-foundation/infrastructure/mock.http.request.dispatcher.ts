@@ -28,7 +28,7 @@ function createResponseByRequest(request: Request): ApiV1ReadResponse {
 
 function createInvalidLoginResponse(): ApiV1ReadResponse {
     return {
-        header: {
+        headers: {
             statusCode: 403,
         },
         body: {
@@ -71,7 +71,7 @@ const authToken = (
 
 function createValidLoginResponse(): ApiV1ReadResponse {
     return {
-        header: {
+        headers: {
             statusCode: 200,
         },
         body: {
@@ -99,7 +99,7 @@ function createValidLoginResponse(): ApiV1ReadResponse {
 
 function createValidAuthenticationRefreshResponse(): ApiV1ReadResponse {
     return {
-        header: {
+        headers: {
             statusCode: 200,
         },
         body: {

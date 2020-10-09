@@ -8,31 +8,31 @@ export enum RequestMethods {
 
 export enum HttpStatusCodes {
     OK = 200,
+    CREATED = 201,
+    NOT_FOUND = 404,
 }
 
-export type Response<ResponseBody = {}> = {
-    header: {
-        statusCode: number
-    }
-    body: ResponseBody
-};
+export type Response<B extends object = {}> = {
+    headers: { statusCode: number }
+    body: B
+}
 
-export type Request = {
-    method: RequestMethods
+export type Request<Q extends object = {}, B extends object = {}, H extends object = {}> = {
     id: string
+    method: RequestMethods
     url: string
-    queryParameters: object
-    header: object
-    body: undefined | object
-};
+    headers: H
+    queryParameters: Q
+    body: B
+}
 
-export type RequestResponse<ResponseBody = {}> = {
+export type RequestResponse<R extends Response = any> = {
     request: Request
-    response?: Response<ResponseBody>
+    response: R | undefined
 };
 
 export type HttpFoundationState = {
-    runningHttpRequests: Request[]
+    runningRequests: Request[]
 };
 
 export type HttpFoundationStateSelector<State = any> = (state: State) => HttpFoundationState;

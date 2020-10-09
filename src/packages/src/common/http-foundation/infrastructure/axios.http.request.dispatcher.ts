@@ -5,30 +5,43 @@ import {
     RequestMethods, HttpRequestDispatcher,
 } from "../domain/types";
 
+type AxiosError = {
+    request?: object
+    response?: AxiosResponse;
+    message: string
+}
+
+type AxiosResponse = {
+    status: number
+    data: object
+}
+
 function getAxiosRequestMethodByRequest(request: Request): string {
     if (request.method === RequestMethods.GET) {
-        return "get";
+        return 'get';
     }
     if (request.method === RequestMethods.POST) {
-        return "post";
+        return 'post';
+    }
+    if (request.method === RequestMethods.PATCH) {
+        return 'patch';
+    }
+    if (request.method === RequestMethods.PUT) {
+        return 'put';
+    }
+    if (request.method === RequestMethods.DELETE) {
+        return 'delete';
     }
     throw new Error(`Method "${request.method}" not supported!`);
 }
 
-function createRequestResponseFromAxiosResponse(
-    request: Request,
-    axiosResponse?: AxiosResponse,
-): RequestResponse {
+function createRequestResponseFromAxiosResponse(request: Request, axiosResponse?: AxiosResponse): RequestResponse {
     return {
         request,
-        response: !axiosResponse
-            ? undefined
-            : {
-                header: {
-                    statusCode: axiosResponse.status,
-                },
-                body: axiosResponse.data,
-            },
+        response: (!axiosResponse ? undefined : {
+            headers: { statusCode: axiosResponse.status },
+            body: axiosResponse.data,
+        }),
     };
 }
 
@@ -40,8 +53,8 @@ function createAxiosConfigFromExecutionSettings(request: Request): object {
     if (request.queryParameters) {
         config = { ...config, params: request.queryParameters };
     }
-    if (request.header) {
-        config = { ...config, headers: request.header };
+    if (request.headers) {
+        config = { ...config, headers: request.headers };
     }
     if (request.body) {
         config = { ...config, data: request.body };
@@ -73,14 +86,3 @@ export class AxiosHttpRequestDispatcher implements HttpRequestDispatcher {
         });
     }
 }
-
-type AxiosError = {
-  request?: object;
-  response?: AxiosResponse;
-  message: string;
-};
-
-type AxiosResponse = {
-  status: number;
-  data: object;
-};

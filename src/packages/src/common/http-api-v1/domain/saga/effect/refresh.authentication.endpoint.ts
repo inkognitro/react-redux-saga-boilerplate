@@ -34,7 +34,7 @@ export function* refreshAuthenticationAtEndpoint(
             data: undefined,
         });
     }
-    if (response.header.statusCode === HttpStatusCodes.OK) {
+    if (response.headers.statusCode === HttpStatusCodes.OK) {
         return createSuccessResult<{ authUser: AuthenticatedAuthUser }>({
             generalMessages: response.body.generalMessages,
             fieldMessages: response.body.fieldMessages,
