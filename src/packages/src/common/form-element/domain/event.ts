@@ -1,4 +1,4 @@
-import { Event } from "packages/common/entity-base/common-types";
+import { Event } from "packages/common/types/util/domain";
 import { FormElementState, FormElementStateChanges } from "./types";
 
 export enum FormElementEventTypes {

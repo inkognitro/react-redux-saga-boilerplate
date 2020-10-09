@@ -1,4 +1,4 @@
-import { Command } from "packages/common/entity-base/common-types";
+import { Command } from "packages/common/types/util/domain";
 
 export enum LoaderCommandTypes {
     SHOW_LOADER = "SHOW_LOADER-5359f800-ab47-427b-bcd3-990216cdffd7",

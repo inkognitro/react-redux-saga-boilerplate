@@ -1,4 +1,4 @@
-import { Translation } from "packages/common/entity-base/common-types";
+import { Translation } from "packages/common/types/util/domain";
 
 export enum ToastTypes {
     INFO = "info",

@@ -1,6 +1,6 @@
 [« api docs overview](../../../../../docs/api.docs.md)
 
-# Entity base
+# Types
 This module provides a codebase for every (business) entity.
 The purpose of these modules solely is:
 - Type definitions for entities (e.g. user type definition)

@@ -3,8 +3,8 @@ import {
 } from "@redux-saga/core/effects";
 import { refreshAuthenticationAtEndpoint, AuthenticationRefreshResult } from "packages/common/http-api-v1/domain";
 import { CookieReader } from "packages/common/cookie/domain";
-import { ResultTypes } from "packages/common/entity-base/common-types";
-import { AuthUserTypes } from "packages/common/entity-base/auth-user/domain";
+import { ResultTypes } from "packages/common/types/util/domain";
+import { AuthUserTypes } from "packages/common/types/auth-user/domain";
 import { AuthState, AuthStateSelector } from "../../types";
 import {
     createCurrentUserInitializationWasCancelled,

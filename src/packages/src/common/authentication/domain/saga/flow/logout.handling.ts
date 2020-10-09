@@ -1,5 +1,5 @@
 import { put, select } from "@redux-saga/core/effects";
-import { AuthUserTypes } from "packages/common/entity-base/auth-user/domain";
+import { AuthUserTypes } from "packages/common/types/auth-user/domain";
 import { createRemoveCookie } from "packages/common/cookie/domain";
 import { AuthState, AuthStateSelector } from "../../types";
 import { Logout } from "../../command";

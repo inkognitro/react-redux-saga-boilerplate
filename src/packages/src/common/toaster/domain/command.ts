@@ -1,4 +1,4 @@
-import { Command, Translation } from "packages/common/entity-base/common-types";
+import { Command, Translation } from "packages/common/types/util/domain";
 import { ToastTypes } from "./types";
 
 export enum ToasterCommandTypes {

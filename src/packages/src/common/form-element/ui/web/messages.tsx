@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { IconSizes, IconTypes, ErrorIcon } from "packages/common/icon/ui/web";
-import { Message as MessageData, MessageTypes } from "packages/common/entity-base/common-types";
+import { Message as MessageData, MessageTypes } from "packages/common/types/util/domain";
 import { TranslatedText } from "packages/common/translator/ui/web";
 
 type MessageProps = {

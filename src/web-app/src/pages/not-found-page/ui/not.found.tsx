@@ -3,7 +3,7 @@ import { RouteLink } from "packages/common/router/ui/web";
 import { ErrorPage } from "web-app/foundation/ui/page-types/error.page";
 import { createHomeRouteUrl } from "web-app/routing/domain";
 import { TranslatedText } from "packages/common/translator/ui/web";
-import { TranslationIds } from "packages/common/entity-base/common-types";
+import { TranslationIds } from "packages/common/types/util/domain";
 
 export const NotFound: FC = () => (
     <ErrorPage>

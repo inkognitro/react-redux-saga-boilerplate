@@ -2,7 +2,7 @@ import {
     call, CallEffect, put, StrictEffect, take,
 } from "redux-saga/effects";
 import uuidV4 from 'uuid/v4';
-import { createErrorResult } from "packages/common/entity-base/common-types";
+import { createErrorResult } from "packages/common/types/util/domain";
 import { LoginErrorResult, LoginResult, LoginSettings } from "../../types";
 import { createLogin, Login } from "../../command";
 import {

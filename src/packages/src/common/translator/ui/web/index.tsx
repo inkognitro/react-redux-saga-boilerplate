@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { Translation } from "packages/common/entity-base/common-types";
+import { Translation } from "packages/common/types/util/domain";
 import { findTranslatedText } from "../../domain";
 import { useTranslatorState } from '../context';
 

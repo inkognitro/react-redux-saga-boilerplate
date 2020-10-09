@@ -1,5 +1,5 @@
 import { ApiV1ReadResponse } from "packages/common/http-api-v1/domain";
-import { MessageTypes } from "packages/common/entity-base/common-types";
+import { MessageTypes } from "packages/common/types/util/domain";
 import { apiV1BaseUrl } from "packages/common/http-api-v1/domain/saga/effect/execute.request";
 import { HttpRequestDispatcher, Request, RequestResponse } from "../domain/types";
 

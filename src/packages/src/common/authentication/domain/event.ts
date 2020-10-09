@@ -1,5 +1,5 @@
-import { Event } from "packages/common/entity-base/common-types";
-import { AuthenticatedAuthUser } from "packages/common/entity-base/auth-user/domain";
+import { Event } from "packages/common/types/util/domain";
+import { AuthenticatedAuthUser } from "packages/common/types/auth-user/domain";
 import { LoginErrorResult, LoginSettings, LoginSuccessResult } from "./types";
 
 export enum AuthEventTypes {

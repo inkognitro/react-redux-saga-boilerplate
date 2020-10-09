@@ -1,5 +1,5 @@
-import { ErrorResult, SuccessResult } from "packages/common/entity-base/common-types";
-import { AuthenticatedAuthUser, AuthUser } from "packages/common/entity-base/auth-user/domain";
+import { ErrorResult, SuccessResult } from "packages/common/types/util/domain";
+import { AuthenticatedAuthUser, AuthUser } from "packages/common/types/auth-user/domain";
 
 export type AuthState = {
     isInitializationRunning: boolean

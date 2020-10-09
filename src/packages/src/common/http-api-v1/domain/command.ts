@@ -1,4 +1,4 @@
-import { Command } from "packages/common/entity-base/common-types";
+import { Command } from "packages/common/types/util/domain";
 import { ApiV1Request } from "./types";
 
 export enum ApiV1CommandTypes {

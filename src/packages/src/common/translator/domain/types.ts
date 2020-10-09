@@ -1,4 +1,4 @@
-import { TranslationIds } from "packages/common/entity-base/common-types";
+import { TranslationIds } from "packages/common/types/util/domain";
 
 export type TranslatorStateSelector<State = any> = (state: State) => TranslatorState;
 

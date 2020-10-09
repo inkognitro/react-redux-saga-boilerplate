@@ -1,4 +1,4 @@
-import { Event } from "packages/common/entity-base/common-types";
+import { Event } from "packages/common/types/util/domain";
 import { ApiV1Request, ApiV1Response } from "./types";
 
 export enum HttpApiV1EventTypes {

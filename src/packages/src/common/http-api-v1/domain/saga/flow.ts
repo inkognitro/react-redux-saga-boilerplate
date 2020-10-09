@@ -3,7 +3,7 @@ import {
 } from "redux-saga/effects";
 import { AuthState, AuthStateSelector, getCurrentAuthUser } from "packages/common/authentication/domain";
 import { executeRequest, RequestResponse } from "packages/common/http-foundation/domain";
-import { AuthUserTypes } from "packages/common/entity-base/auth-user/domain";
+import { AuthUserTypes } from "packages/common/types/auth-user/domain";
 import { ApiV1CommandTypes, SendApiV1Request } from "../command";
 import {
     ApiV1Request, ApiV1RequestTypes, HttpApiV1State, HttpApiV1StateSelector,

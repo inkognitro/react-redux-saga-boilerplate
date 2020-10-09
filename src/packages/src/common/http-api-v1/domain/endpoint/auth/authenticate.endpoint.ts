@@ -1,8 +1,8 @@
 import { StrictEffect } from "redux-saga/effects";
-import { MinimalUser } from "packages/common/entity-base/user/domain";
+import { MinimalUser } from "packages/common/types/user/domain";
 import {
     createErrorResult, createSuccessResult, ErrorResult, SuccessResult,
-} from "packages/common/entity-base/common-types";
+} from "packages/common/types/util/domain";
 import { HttpStatusCodes } from "packages/common/http-foundation/domain";
 import { ApiV1Request, ApiV1RequestResponse, ApiV1Response } from "../../types";
 import { createApiV1SingleRequest } from "../../request.factory";

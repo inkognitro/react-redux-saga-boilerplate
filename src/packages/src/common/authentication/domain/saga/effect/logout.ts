@@ -1,7 +1,7 @@
 import {
     call, CallEffect, put, StrictEffect, take,
 } from "redux-saga/effects";
-import { createErrorResult, createSuccessResult } from "packages/common/entity-base/common-types";
+import { createErrorResult, createSuccessResult } from "packages/common/types/util/domain";
 import {
     LogoutErrorResult,
     LogoutResult,

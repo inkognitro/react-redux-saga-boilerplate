@@ -1,5 +1,5 @@
 import { Response } from "packages/common/http-foundation/domain";
-import { FieldMessage, Message } from "packages/common/entity-base/common-types";
+import { FieldMessage, Message } from "packages/common/types/util/domain";
 import { EndpointSchema } from "./endpoint/types";
 
 export enum ApiV1RequestTypes {
