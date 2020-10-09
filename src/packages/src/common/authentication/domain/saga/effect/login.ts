@@ -8,13 +8,13 @@ import { createLogin, Login } from "../../command";
 import {
     AuthEventTypes,
     UserLoginFailed,
-    UserLoginWasCancelled,
+    LoginWasCancelled,
     UserLoginWasNotExecuted, UserWasLoggedIn,
 } from "../../event";
 
 type LoginResultEventGenerator = Generator<StrictEffect, LoginResult>;
 
-type LoginResultEvent = (UserLoginWasCancelled | UserLoginFailed | UserLoginWasNotExecuted | UserWasLoggedIn);
+type LoginResultEvent = (LoginWasCancelled | UserLoginFailed | UserLoginWasNotExecuted | UserWasLoggedIn);
 
 function createLoginErrorResult(): LoginErrorResult {
     return createErrorResult({ data: undefined });
@@ -34,7 +34,7 @@ function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerato
         event = yield take([
             AuthEventTypes.LOGIN_WAS_CANCELLED,
             AuthEventTypes.LOGIN_FAILED,
-            AuthEventTypes.USER_LOGIN_WAS_NOT_EXECUTED,
+            AuthEventTypes.LOGIN_WAS_NOT_EXECUTED,
             AuthEventTypes.USER_WAS_LOGGED_IN,
         ]);
         if (event === null) {

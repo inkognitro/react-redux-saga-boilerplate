@@ -12,6 +12,7 @@ export type AnonymousAuthUser = AuthUserBase<AuthUserTypes.ANONYMOUS>
 export type AuthenticatedAuthUser = AuthUserBase<AuthUserTypes.AUTHENTICATED_USER, {
     token: string
     user: User
+    shouldRemember: boolean
 }>
 
 export type AuthUser = (AnonymousAuthUser | AuthenticatedAuthUser)

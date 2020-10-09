@@ -6,7 +6,7 @@ import {
     UserAuthenticationRefreshWasRequested,
     AuthenticationWasRefreshed,
     UserLoginFailed,
-    UserLoginWasCancelled,
+    LoginWasCancelled,
     UserLoginWasRequested,
     UserWasLoggedIn,
     UserWasLoggedOut,
@@ -20,7 +20,7 @@ export type AuthEvent = (
     AuthenticationRefreshFailed
     | UserAuthenticationRefreshWasCancelled
     | UserAuthenticationRefreshWasRequested
-    | UserLoginWasCancelled
+    | LoginWasCancelled
     | UserLoginFailed
     | AuthenticationWasRefreshed
     | UserLoginWasRequested
@@ -69,7 +69,7 @@ export function authenticationReducer(
         };
     }
 
-    if (event.type === AuthEventTypes.CURRENT_USER_WAS_INITIALIZED) {
+    if (event.type === AuthEventTypes.USER_WAS_INITIALIZED) {
         return {
             ...state,
             currentUser: event.payload.authUser,

@@ -7,7 +7,7 @@ import { AuthState, AuthStateSelector } from "../../types";
 import { Login } from "../../command";
 import {
     createUserLoginFailed,
-    createUserLoginWasCancelled,
+    createLoginWasCancelled,
     createUserLoginWasNotExecuted, createUserWasLoggedIn,
 } from "../../event";
 import { getCurrentAuthUser } from "../../query";
@@ -45,7 +45,7 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
         return;
     } finally {
         if (yield cancelled()) {
-            yield put(createUserLoginWasCancelled(command.payload));
+            yield put(createLoginWasCancelled(command.payload));
         }
     }
 }
