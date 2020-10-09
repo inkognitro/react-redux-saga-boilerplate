@@ -1,4 +1,4 @@
-import {FieldMessagePath, Message} from "packages/entity/common-types";
+import {FieldMessagePath, Message} from "packages/common/entity-base/common-types";
 
 export const IsFormElementTypeConfirmationProp = 'isFormElement3025a126';
 

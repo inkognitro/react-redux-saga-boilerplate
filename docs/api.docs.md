@@ -7,11 +7,4 @@ Each documentation should live in the corresponding codebase.
 
 ## Packages
 - [packages/common/README.md](../src/packages/src/common/README.md)
-- [packages/entity/README.md](../src/packages/src/entity/README.md)
-
-## Web app
-tbd..
-
-## Mobile app
-tbd..
 

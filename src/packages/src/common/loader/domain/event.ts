@@ -1,4 +1,4 @@
-import { Event } from "packages/entity/common-types";
+import { Event } from "packages/common/entity-base/common-types";
 
 export enum LoaderEventTypes {
     LOADER_WAS_DEMANDED = "LOADER_WAS_DEMANDED-5359f800-ab47-427b-bcd3-990216cdffd7",

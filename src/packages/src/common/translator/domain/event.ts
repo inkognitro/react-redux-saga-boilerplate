@@ -1,4 +1,4 @@
-import { Event } from "packages/entity/common-types";
+import { Event } from "packages/common/entity-base/common-types";
 import { LanguageIds, TranslationIdToTranslationMapping } from "./types";
 
 export enum TranslatorEventTypes {

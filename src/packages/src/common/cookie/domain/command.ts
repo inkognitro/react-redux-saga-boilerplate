@@ -1,4 +1,4 @@
-import { Command } from "packages/entity/common-types";
+import { Command } from "packages/common/entity-base/common-types";
 import { Cookie } from "./types";
 
 export enum CookieCommandTypes {

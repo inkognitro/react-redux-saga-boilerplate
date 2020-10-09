@@ -1,4 +1,4 @@
-import { Command } from "packages/entity/common-types";
+import { Command } from "packages/common/entity-base/common-types";
 
 export enum FoundationCommandTypes {
     LOGOUT = "LOGOUT-ae1fa78b-8e48-4091-bb99-78078fc25518",

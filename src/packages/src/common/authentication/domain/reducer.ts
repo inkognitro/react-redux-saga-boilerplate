@@ -1,4 +1,4 @@
-import { AnonymousAuthUser, AuthUserTypes } from "packages/entity/auth-user/domain";
+import { AnonymousAuthUser, AuthUserTypes } from "packages/common/entity-base/auth-user/domain";
 import { AuthState } from "./types";
 import {
     AuthEventTypes,

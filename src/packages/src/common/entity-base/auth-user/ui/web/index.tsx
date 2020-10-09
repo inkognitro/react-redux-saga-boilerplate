@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { UserLabel } from "packages/entity/user/ui/web";
+import { UserLabel } from "packages/common/entity-base/user/ui/web";
 import { AuthUser, AuthUserTypes } from "../../domain";
 
 export type AuthUserLabelProps = {

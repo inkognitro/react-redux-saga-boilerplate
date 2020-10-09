@@ -1,4 +1,4 @@
-import { Translation } from "packages/entity/common-types";
+import { Translation } from "packages/common/entity-base/common-types";
 import { LanguageIds, TranslatorState } from "./types";
 
 export function getCurrentLanguageId(state: TranslatorState): LanguageIds {

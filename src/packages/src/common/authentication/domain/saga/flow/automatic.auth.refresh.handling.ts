@@ -1,9 +1,9 @@
 import {
     delay, put, race, select, take,
 } from "@redux-saga/core/effects";
-import { AuthUserTypes } from "packages/entity/auth-user/domain";
+import { AuthUserTypes } from "packages/common/entity-base/auth-user/domain";
 import { AuthenticationRefreshResult, refreshAuthenticationAtEndpoint } from "packages/common/http-api-v1/domain";
-import { ResultTypes } from "packages/entity/common-types";
+import { ResultTypes } from "packages/common/entity-base/common-types";
 import { CookieReader } from "packages/common/cookie/domain";
 import {
     saveAuthCookies,

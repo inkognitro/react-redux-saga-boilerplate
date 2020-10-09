@@ -1,4 +1,4 @@
-import { MessageTypes } from "packages/entity/common-types";
+import { MessageTypes } from "packages/common/entity-base/common-types";
 import {
     Message, MessageToAdd, Toast, ToasterState, ToastTypes,
 } from "./types";

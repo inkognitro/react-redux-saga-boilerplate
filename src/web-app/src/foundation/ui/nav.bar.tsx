@@ -4,11 +4,11 @@ import { FunctionalLink, RouteLink } from "packages/common/router/ui/web";
 import { RootState } from "web-app/services.factory";
 import { Dispatch } from "redux";
 import { getCurrentAuthUser, isCurrentUserInitializationRunning } from "packages/common/authentication/domain";
-import { AuthUser, AuthUserTypes } from "packages/entity/auth-user/domain";
+import { AuthUser, AuthUserTypes } from "packages/common/entity-base/auth-user/domain";
 import { createHomeRouteUrl, createLoginRouteUrl } from "web-app/routing/domain";
-import { UserLabel } from "packages/entity/user/ui/web";
+import { UserLabel } from "packages/common/entity-base/user/ui/web";
 import { TranslatedText } from "packages/common/translator/ui/web";
-import { TranslationIds } from "packages/entity/common-types";
+import { TranslationIds } from "packages/common/entity-base/common-types";
 import { createLogout } from "../domain";
 
 type RepresentationalNavBarState = {

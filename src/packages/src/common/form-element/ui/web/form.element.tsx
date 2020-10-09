@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { Translation } from "packages/entity/common-types";
+import { Translation } from "packages/common/entity-base/common-types";
 import { TranslatedText } from "packages/common/translator/ui/web";
 import { FormElementState, FormElementTypes } from "../../domain";
 import { Checkbox } from "./input.checkbox";

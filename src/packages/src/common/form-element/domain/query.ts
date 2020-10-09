@@ -1,4 +1,4 @@
-import { FieldMessage, FieldMessagePath, Message } from "packages/entity/common-types";
+import { FieldMessage, FieldMessagePath, Message } from "packages/common/entity-base/common-types";
 import { FieldMessagePathPart, FormElementState, IsFormElementTypeConfirmationProp } from "./types";
 
 type PathFormElement = {

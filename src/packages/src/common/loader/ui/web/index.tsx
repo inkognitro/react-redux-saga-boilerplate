@@ -3,7 +3,7 @@ import { AlignedArea, horizontalAligns, verticalAligns } from "packages/common/l
 import { TimelineLite } from "gsap";
 import styled from "styled-components";
 import { TranslatedText } from "packages/common/translator/ui/web";
-import { TranslationIds } from "packages/entity/common-types";
+import { TranslationIds } from "packages/common/entity-base/common-types";
 
 const StyledLoaderDiv = styled.div`
   position: fixed;

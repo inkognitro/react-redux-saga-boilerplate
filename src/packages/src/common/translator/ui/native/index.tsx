@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Text } from 'react-native';
-import { Translation } from 'packages/entity/common-types';
+import { Translation } from 'packages/common/entity-base/common-types';
 import { findTranslatedText } from "../../domain";
 import { useTranslatorState } from '../context';
 

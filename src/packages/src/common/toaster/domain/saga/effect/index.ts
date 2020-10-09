@@ -1,7 +1,7 @@
 import {
     call, CallEffect, put, StrictEffect,
 } from "redux-saga/effects";
-import { Result } from "packages/entity/common-types";
+import { Result } from "packages/common/entity-base/common-types";
 import { createShowMessage } from "../../command";
 import { getToastTypeByMessageType } from "../../query";
 

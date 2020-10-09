@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import { FieldMessage, FieldMessagePath } from "packages/entity/common-types";
+import { FieldMessage, FieldMessagePath } from "packages/common/entity-base/common-types";
 import { setFormElementMessages } from "packages/common/form-element/domain";
 import { createFormSubmitHasFinished, createFormSubmitHasStarted } from "../event";
 import { FormState } from "../types";

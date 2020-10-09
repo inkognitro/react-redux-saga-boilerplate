@@ -1,4 +1,4 @@
-import { TranslationIds } from "packages/entity/common-types";
+import { TranslationIds } from "packages/common/entity-base/common-types";
 import { TranslationIdToTranslationMapping } from "../types";
 
 export const translationIdToTranslationMapping: TranslationIdToTranslationMapping = {
