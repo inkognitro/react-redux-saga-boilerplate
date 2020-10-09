@@ -1,1 +1,1 @@
-export { useAuthState, useCurrentUser } from './context';
+export { useAuthState, useCurrentUser, AuthContextProvider} from './context';

@@ -11,7 +11,4 @@ const appServices = (module.hot
     : createDevAppServices()
 );
 
-render(
-    <HotReloadedApp history={appServices.history} store={appServices.store} />,
-    document.getElementById('app'),
-);
+render(<HotReloadedApp services={appServices} />, document.getElementById('app'));

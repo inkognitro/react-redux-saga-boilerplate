@@ -15,6 +15,7 @@ export enum TranslationIds {
     COULD_NOT_CONNECT_TO_SERVER = 'couldNotConnectToServer',
     BACK_TO_START = 'backToStart',
     PAGE_NOT_FOUND_TITLE = 'pageNotFoundTitle',
+    NOT_AUTHORIZED = 'notAuthorized',
     LOADING = 'Loading..',
 }
 

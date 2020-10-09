@@ -40,15 +40,9 @@ import {
     authenticationReducer,
     createAuthenticationSaga,
 } from "packages/common/authentication/domain";
-import { designReducer, DesignState } from "packages/common/design/domain";
+import {designReducer, DesignState, DesignStateSelector} from "packages/common/design/domain";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLoaderSaga, loaderReducer, LoaderState } from "packages/common/loader/domain";
-import {
-    createRoutingSaga,
-    routingReducer,
-    RoutingState,
-    RoutingStateSelector,
-} from "web-app/routing/domain";
 import {
     createHttpApiV1Saga,
     httpApiV1Reducer,
@@ -57,8 +51,9 @@ import {
 } from "packages/common/http-api-v1/domain";
 import { createHttpApiV1ToasterSaga } from "packages/common/http-api-v1-toaster/domain";
 import { createFoundationSaga } from "web-app/foundation/domain/saga/flow";
+import { pagesReducer, PagesState } from "web-app/pages/services";
 
-type AppServices = {
+export type AppServices = {
     store: Store
     sagaTask: any
     history: History
@@ -72,22 +67,26 @@ export type RootState = {
     toaster: ToasterState
     httpFoundation: HttpFoundationState
     httpApiV1: HttpApiV1State
-    routing: RoutingState
     authentication: AuthState
+    pages: PagesState
 };
 
 function createRootReducer(): Reducer<RootState> {
     return combineReducers({
         design: designReducer,
         translator: translatorReducer,
+        loader: loaderReducer,
         toaster: toasterReducer,
         httpFoundation: httpFoundationReducer,
         httpApiV1: httpApiV1Reducer,
-        routing: routingReducer,
         authentication: authenticationReducer,
-        loader: loaderReducer,
+        pages: pagesReducer,
     });
 }
+
+export const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
+export const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
+export const designStateSelector: DesignStateSelector = (state: RootState) => state.design;
 
 function createRootSaga(httpRequestDispatcher: HttpRequestDispatcher): () => Generator {
     const toasterStateSelector: ToasterStateSelector = (state: RootState) => state.toaster;
@@ -99,20 +98,16 @@ function createRootSaga(httpRequestDispatcher: HttpRequestDispatcher): () => Gen
         toastMessageOutroAnimationTimeInMs: 550,
     };
     const toasterSaga = createToasterSaga(toasterSettings, toasterStateSelector);
-    const translatorStateSelector: TranslatorStateSelector = (state: RootState) => state.translator;
     const translatorSaga = createTranslatorSaga(translatorStateSelector);
     const loaderSaga = createLoaderSaga();
     const cookieStorage = new BrowserCookieStorage();
     const cookieSaga = createCookieSaga(cookieStorage);
-    const authStateSelector: AuthStateSelector = (state: RootState) => state.authentication;
     const authenticationSaga = createAuthenticationSaga(cookieStorage, authStateSelector);
     const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.httpFoundation;
     const httpFoundationSaga = createHttpFoundationSaga(httpFoundationStateSelector, httpRequestDispatcher);
     const httpApiV1StateSelector: HttpApiV1StateSelector = (state: RootState) => state.httpApiV1;
     const httpApiV1Saga = createHttpApiV1Saga(httpApiV1StateSelector, authStateSelector);
     const httpApiV1ToasterSaga = createHttpApiV1ToasterSaga();
-    const routingStateSelector: RoutingStateSelector = (state: RootState) => state.routing;
-    const routingSaga = createRoutingSaga(routingStateSelector);
     const appFoundationSaga = createFoundationSaga();
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
@@ -123,7 +118,6 @@ function createRootSaga(httpRequestDispatcher: HttpRequestDispatcher): () => Gen
         yield spawn(httpFoundationSaga);
         yield spawn(httpApiV1Saga);
         yield spawn(httpApiV1ToasterSaga);
-        yield spawn(routingSaga);
         yield spawn(appFoundationSaga);
     };
 }
