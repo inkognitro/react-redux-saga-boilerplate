@@ -5,3 +5,8 @@ export const authenticateEndpointSchema: EndpointSchema = {
     method: RequestMethods.POST,
     urlPath: EndpointUrlPaths.AUTHENTICATE,
 };
+
+export const refreshAuthenticationEndpointSchema: EndpointSchema = {
+    method: RequestMethods.POST,
+    urlPath: EndpointUrlPaths.AUTHENTICATE,
+};

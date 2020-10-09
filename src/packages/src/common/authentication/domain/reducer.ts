@@ -2,9 +2,9 @@ import { AnonymousAuthUser, AuthUserTypes } from "packages/common/types/auth-use
 import { AuthState } from "./types";
 import {
     AuthEventTypes,
-    UserAuthenticationRefreshFailed,
+    AuthenticationRefreshFailed,
     UserAuthenticationRefreshWasRequested,
-    UserAuthenticationWasRefreshed,
+    AuthenticationWasRefreshed,
     UserLoginFailed,
     UserLoginWasCancelled,
     UserLoginWasRequested,
@@ -17,12 +17,12 @@ import {
 } from "./event";
 
 export type AuthEvent = (
-    UserAuthenticationRefreshFailed
+    AuthenticationRefreshFailed
     | UserAuthenticationRefreshWasCancelled
     | UserAuthenticationRefreshWasRequested
     | UserLoginWasCancelled
     | UserLoginFailed
-    | UserAuthenticationWasRefreshed
+    | AuthenticationWasRefreshed
     | UserLoginWasRequested
     | UserWasLoggedIn
     | UserWasLoggedOut
@@ -78,7 +78,7 @@ export function authenticationReducer(
         };
     }
 
-    if (event.type === AuthEventTypes.USER_LOGIN_FAILED) {
+    if (event.type === AuthEventTypes.LOGIN_FAILED) {
         return {
             ...state,
             currentUser: anonymousUser,
@@ -90,7 +90,7 @@ export function authenticationReducer(
         return { ...state, isAuthenticationRunning: true };
     }
 
-    if (event.type === AuthEventTypes.USER_AUTHENTICATION_WAS_REFRESHED) {
+    if (event.type === AuthEventTypes.AUTHENTICATION_WAS_REFRESHED) {
         return {
             ...state,
             currentUser: event.payload.authUser,
@@ -98,7 +98,7 @@ export function authenticationReducer(
         };
     }
 
-    if (event.type === AuthEventTypes.USER_LOGIN_WAS_CANCELLED) {
+    if (event.type === AuthEventTypes.LOGIN_WAS_CANCELLED) {
         return { ...state, currentUser: anonymousUser, isAuthenticationRunning: false };
     }
 
@@ -106,7 +106,7 @@ export function authenticationReducer(
         return { ...state, isInitializationRunning: false, isAuthenticationRunning: false };
     }
 
-    if (event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_FAILED) {
+    if (event.type === AuthEventTypes.AUTHENTICATION_REFRESH_FAILED) {
         return { ...state, currentUser: anonymousUser, isAuthenticationRunning: false };
     }
 

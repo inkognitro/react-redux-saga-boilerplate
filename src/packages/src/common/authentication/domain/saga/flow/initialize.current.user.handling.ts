@@ -1,10 +1,8 @@
-import {
-    call, cancelled, put, select,
-} from "@redux-saga/core/effects";
-import { refreshAuthenticationAtEndpoint, AuthenticationRefreshResult } from "packages/common/http-api-v1/domain";
+import { cancelled, put, select } from "redux-saga/effects";
+import { callRefreshAuthenticationEndpoint, AuthenticationRefreshResult } from "packages/common/http-api-v1/domain";
 import { CookieReader } from "packages/common/cookie/domain";
 import { ResultTypes } from "packages/common/types/util/domain";
-import { AuthUserTypes } from "packages/common/types/auth-user/domain";
+import { AuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
 import { AuthState, AuthStateSelector } from "../../types";
 import {
     createCurrentUserInitializationWasCancelled,
@@ -35,7 +33,7 @@ export function* handleInitializeCurrentUser(
     yield put(createCurrentUserInitializationWasStarted());
     try {
         // @ts-ignore
-        const result: AuthenticationRefreshResult = yield call(refreshAuthenticationAtEndpoint, { token });
+        const result: AuthenticationRefreshResult = yield callRefreshAuthenticationEndpoint({ token });
         if (result.type === ResultTypes.ERROR) {
             return;
         }
@@ -44,8 +42,13 @@ export function* handleInitializeCurrentUser(
             shouldRememberCookieContent !== null
             && shouldRememberCookieContent.length !== 0
         );
-        yield saveAuthCookies(result.data.authUser.token, shouldRemember);
-        yield put(createCurrentUserWasInitialized(result.data.authUser));
+        const authUser: AuthUser = {
+            type: AuthUserTypes.AUTHENTICATED_USER,
+            token: result.data.token,
+            user: result.data.user,
+        };
+        yield saveAuthCookies(authUser.token, shouldRemember);
+        yield put(createCurrentUserWasInitialized(authUser));
     } finally {
         if (yield cancelled()) {
             yield put(createCurrentUserInitializationWasCancelled());

@@ -1,10 +1,8 @@
-import {
-    call, cancelled, put, select,
-} from "@redux-saga/core/effects";
-import { authenticateAtEndpoint, AuthenticateResult } from "packages/common/http-api-v1/domain";
+import { cancelled, put, select } from "@redux-saga/core/effects";
+import { callAuthenticateEndpoint, AuthenticateResult } from "packages/common/http-api-v1/domain";
 import { createSaveCookie } from "packages/common/cookie/domain";
 import { ResultTypes } from "packages/common/types/util/domain";
-import { AuthUserTypes } from "packages/common/types/auth-user/domain";
+import {AuthUser, AuthUserTypes} from "packages/common/types/auth-user/domain";
 import { AuthState, AuthStateSelector } from "../../types";
 import { Login } from "../../command";
 import {
@@ -29,7 +27,7 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
     }
     try {
         // @ts-ignore
-        const result: AuthenticateResult = yield call(authenticateAtEndpoint, {
+        const result: AuthenticateResult = yield callAuthenticateEndpoint({
             username: command.payload.username,
             password: command.payload.password,
         });
@@ -37,7 +35,12 @@ export function* handleLogin(authStateSelector: AuthStateSelector, command: Logi
             yield put(createUserLoginFailed(command.payload, result));
             return;
         }
-        yield saveAuthCookies(result.data.authUser.token, command.payload.shouldRemember);
+        const authUser: AuthUser = {
+            type: AuthUserTypes.AUTHENTICATED_USER,
+            token: result.data.token,
+            user: result.data.user,
+        };
+        yield saveAuthCookies(result.data.token, command.payload.shouldRemember);
         yield put(createUserWasLoggedIn(command.payload, result));
         return;
     } finally {

@@ -32,8 +32,8 @@ function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerato
     while (eventLoginId !== loginId) {
         // @ts-ignore
         event = yield take([
-            AuthEventTypes.USER_LOGIN_WAS_CANCELLED,
-            AuthEventTypes.USER_LOGIN_FAILED,
+            AuthEventTypes.LOGIN_WAS_CANCELLED,
+            AuthEventTypes.LOGIN_FAILED,
             AuthEventTypes.USER_LOGIN_WAS_NOT_EXECUTED,
             AuthEventTypes.USER_WAS_LOGGED_IN,
         ]);
@@ -45,7 +45,7 @@ function* internalLogin(settings: LoginEffectSettings): LoginResultEventGenerato
     if (event === null) {
         return createLoginErrorResult();
     }
-    if (event.type === AuthEventTypes.USER_LOGIN_FAILED) {
+    if (event.type === AuthEventTypes.LOGIN_FAILED) {
         return event.payload.result;
     }
     if (event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {

@@ -1,6 +1,6 @@
-import { ApiV1ReadResponse } from "packages/common/http-api-v1/domain";
+import { ApiV1Response } from "packages/common/http-api-v1/domain";
 import { MessageTypes } from "packages/common/types/util/domain";
-import { apiV1BaseUrl } from "packages/common/http-api-v1/domain/saga/effect/execute.request";
+import { MinimalUser } from "packages/common/types/user/domain";
 import { HttpRequestDispatcher, Request, RequestResponse } from "../domain/types";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
@@ -16,17 +16,17 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     }
 }
 
-function createResponseByRequest(request: Request): ApiV1ReadResponse {
-    if (request.url === (`${apiV1BaseUrl}/auth/authenticate`)) {
+function createResponseByRequest(request: Request): ApiV1Response {
+    if (request.url === (`/auth/authenticate`)) {
         return createValidLoginResponse();
     }
-    if (request.url === (`${apiV1BaseUrl}/auth/refreshauthentication`)) {
+    if (request.url === (`/auth/refreshauthentication`)) {
         return createValidAuthenticationRefreshResponse();
     }
     return createInvalidLoginResponse();
 }
 
-function createInvalidLoginResponse(): ApiV1ReadResponse {
+function createInvalidLoginResponse(): ApiV1Response {
     return {
         headers: {
             statusCode: 403,
@@ -58,7 +58,6 @@ function createInvalidLoginResponse(): ApiV1ReadResponse {
                     path: ['username'],
                 },
             ],
-            data: {},
         },
     };
 }
@@ -69,7 +68,7 @@ const authToken = (
     + "TgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0"
 );
 
-function createValidLoginResponse(): ApiV1ReadResponse {
+function createValidLoginResponse(): ApiV1Response<{ data: { token: string, user: MinimalUser } }> {
     return {
         headers: {
             statusCode: 200,
@@ -97,7 +96,7 @@ function createValidLoginResponse(): ApiV1ReadResponse {
     };
 }
 
-function createValidAuthenticationRefreshResponse(): ApiV1ReadResponse {
+function createValidAuthenticationRefreshResponse(): ApiV1Response<{ data: { token: string, user: MinimalUser } }> {
     return {
         headers: {
             statusCode: 200,

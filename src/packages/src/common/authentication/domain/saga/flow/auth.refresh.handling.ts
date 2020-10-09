@@ -1,14 +1,11 @@
 import {
     delay, put, race, select, take,
-} from "@redux-saga/core/effects";
-import { AuthUserTypes } from "packages/common/types/auth-user/domain";
-import { AuthenticationRefreshResult, refreshAuthenticationAtEndpoint } from "packages/common/http-api-v1/domain";
+} from "redux-saga/effects";
+import { AuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
+import { AuthenticationRefreshResult, callRefreshAuthenticationEndpoint } from "packages/common/http-api-v1/domain";
 import { ResultTypes } from "packages/common/types/util/domain";
 import { CookieReader } from "packages/common/cookie/domain";
-import {
-    saveAuthCookies,
-    shouldRememberAuthTokenCookieName,
-} from "./login.handling";
+import { saveAuthCookies, shouldRememberAuthTokenCookieName } from "./login.handling";
 import { AuthState, AuthStateSelector } from "../../types";
 import { getSecondsUntilExpiration } from "../../jwt.handling";
 import {
@@ -16,7 +13,7 @@ import {
     createUserAuthenticationRefreshFailed,
     createUserAuthenticationRefreshWasCancelled,
     createUserAuthenticationRefreshWasRequested,
-    createUserAuthenticationWasRefreshed,
+    createAuthenticationWasRefreshed,
     UserWasLoggedOut,
 } from "../../event";
 import { getCurrentAuthUser } from "../../query";
@@ -44,7 +41,7 @@ export function* handleAutomaticAuthenticationRefresh(
         try {
             // @ts-ignore
             const raceResult: { logoutEvent?: UserWasLoggedOut, refreshResult?: AuthenticationRefreshResult } = yield race({
-                refreshResult: refreshAuthenticationAtEndpoint({ token: currentAuthUser.token }),
+                refreshResult: callRefreshAuthenticationEndpoint({token: currentAuthUser.token}),
                 logoutEvent: take(AuthEventTypes.USER_WAS_LOGGED_OUT),
             });
             if (raceResult.logoutEvent) {
@@ -59,8 +56,13 @@ export function* handleAutomaticAuthenticationRefresh(
                     shouldRememberCookieContent !== null
                     && shouldRememberCookieContent.length !== 0
                 );
-                yield saveAuthCookies(raceResult.refreshResult.data.authUser.token, shouldRemember);
-                yield put(createUserAuthenticationWasRefreshed(raceResult.refreshResult.data.authUser, currentAuthUser));
+                const authUser: AuthUser = {
+                    type: AuthUserTypes.AUTHENTICATED_USER,
+                    token: raceResult.refreshResult.data.token,
+                    user: raceResult.refreshResult.data.user,
+                };
+                yield saveAuthCookies(authUser.token, shouldRemember);
+                yield put(createAuthenticationWasRefreshed(authUser, currentAuthUser));
             }
         } finally {
             yield put(createUserAuthenticationRefreshWasCancelled());
