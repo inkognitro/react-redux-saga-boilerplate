@@ -30,8 +30,10 @@ export type Message = {
     content: Translation
 }
 
+export type FieldMessagePath = (string | number)[] // e.g. ['users', 0, 'username']
+
 export type FieldMessage = {
-    path: (string | number)[] // e.g. ['users', 0, 'username']
+    path: FieldMessagePath
     message: Message
 }
 

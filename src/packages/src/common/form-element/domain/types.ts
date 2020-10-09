@@ -1,4 +1,8 @@
-import { Message } from "packages/entity/common-types";
+import {FieldMessagePath, Message} from "packages/entity/common-types";
+
+export const IsFormElementTypeConfirmationProp = 'isFormElement3025a126';
+
+export type FieldMessagePathPart = FieldMessagePath | string
 
 export enum FormElementTypes {
     TEXT = 'text',
@@ -7,11 +11,13 @@ export enum FormElementTypes {
     CHECKBOX = "checkbox",
 }
 
-type GenericFormElementState<T extends FormElementTypes = any, Data = {}> = Data & {
+export type GenericFormElementState<T extends FormElementTypes = any, Data = {}> = Data & {
+    [IsFormElementTypeConfirmationProp]: true
     id: string
     type: T
     isRequired: boolean
     isDisabled: boolean
+    fieldMessagePathPart?: FieldMessagePathPart
 }
 
 type TextFieldData = {

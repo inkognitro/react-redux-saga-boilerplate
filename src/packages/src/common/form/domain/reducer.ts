@@ -16,7 +16,7 @@ type CreationSettings<C> = {
 
 const formElementTypes = Object.values(FormEventTypes);
 
-export function createFormReducer<C = any>(settings: CreationSettings<C>): Reducer {
+export function createFormReducer<C = any>(settings: CreationSettings<C>): Reducer<FormState<C>> {
     const initialFormState = createFormState(settings.initialStateSettings);
     return function (state: FormState<C> = initialFormState, action: Action) {
         if (!action || !formElementTypes.includes(action.type)) {
