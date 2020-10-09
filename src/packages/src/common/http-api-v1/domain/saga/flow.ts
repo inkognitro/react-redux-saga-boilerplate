@@ -1,9 +1,13 @@
-import { put, select, spawn, takeEvery } from "redux-saga/effects";
+import {
+    put, select, spawn, takeEvery,
+} from "redux-saga/effects";
 import { AuthState, AuthStateSelector, getCurrentAuthUser } from "packages/common/authentication/domain";
 import { executeRequest, RequestResponse } from "packages/common/http-foundation/domain";
 import { AuthUserTypes } from "packages/common/entity-base/auth-user/domain";
 import { ApiV1CommandTypes, SendApiV1Request } from "../command";
-import { ApiV1Request, ApiV1RequestTypes, HttpApiV1State, HttpApiV1StateSelector } from "../types";
+import {
+    ApiV1Request, ApiV1RequestTypes, HttpApiV1State, HttpApiV1StateSelector,
+} from "../types";
 import { createResponseCouldNotBeReceived, createResponseWasReceived } from "../event";
 import { createFoundationRequestFromApiV1Request } from "../request.factory";
 import { getBaseUrl } from "../query";
