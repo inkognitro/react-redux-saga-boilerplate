@@ -3,7 +3,6 @@ import { AuthenticatedAuthUser, AuthUser } from "packages/common/types/auth-user
 
 export type AuthState = {
     isInitializationRunning: boolean
-    isAuthenticationRunning: boolean
     currentUser: AuthUser
 }
 
@@ -17,14 +16,10 @@ export type LoginSettings = {
 
 export type LoginSuccessResult = SuccessResult<{ authUser: AuthenticatedAuthUser }>
 export type LoginErrorResult = ErrorResult
-export type LoginResult = (LoginSuccessResult | LoginErrorResult)
-
-export type LogoutSuccessResult = SuccessResult
-export type LogoutErrorResult = ErrorResult
-export type LogoutResult = (LogoutSuccessResult | LogoutErrorResult)
+export type LoginResult = (LoginSuccessResult | LoginErrorResult | null)
 
 export type CurrentUserStorage = {
-    saveCurrentUser(user: AuthenticatedAuthUser): void
-    findCurrentUser(): (null | AuthenticatedAuthUser)
-    removeCurrentUser(): void
+    save(user: AuthenticatedAuthUser): void
+    find(): (null | AuthenticatedAuthUser)
+    remove(): void
 }

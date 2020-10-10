@@ -3,32 +3,24 @@ import { AuthState } from "./types";
 import {
     AuthEventTypes,
     AuthenticationRefreshFailed,
-    UserAuthenticationRefreshWasRequested,
     AuthenticationWasRefreshed,
-    UserLoginFailed,
+    LoginFailed,
     LoginWasCancelled,
-    UserLoginWasRequested,
     UserWasLoggedIn,
     UserWasLoggedOut,
     CurrentUserWasInitialized,
-    CurrentUserInitializationWasStarted,
-    CurrentUserInitializationWasCancelled,
-    UserAuthenticationRefreshWasCancelled,
+    CurrentUserCouldNotBeInitialized,
 } from "./event";
 
 export type AuthEvent = (
     AuthenticationRefreshFailed
-    | UserAuthenticationRefreshWasCancelled
-    | UserAuthenticationRefreshWasRequested
     | LoginWasCancelled
-    | UserLoginFailed
+    | LoginFailed
     | AuthenticationWasRefreshed
-    | UserLoginWasRequested
     | UserWasLoggedIn
     | UserWasLoggedOut
-    | CurrentUserInitializationWasStarted
     | CurrentUserWasInitialized
-    | CurrentUserInitializationWasCancelled
+    | CurrentUserCouldNotBeInitialized
 );
 
 const anonymousUser: AnonymousAuthUser = {
@@ -36,8 +28,7 @@ const anonymousUser: AnonymousAuthUser = {
 };
 
 export const initialAuthState: AuthState = {
-    isInitializationRunning: false,
-    isAuthenticationRunning: false,
+    isInitializationRunning: true,
     currentUser: anonymousUser,
 };
 
@@ -48,75 +39,20 @@ export function authenticationReducer(
     if (!event) {
         return state;
     }
-
-    if (event.type === AuthEventTypes.USER_LOGIN_WAS_REQUESTED) {
-        return { ...state, isAuthenticationRunning: true };
+    switch (event.type) {
+        case AuthEventTypes.CURRENT_USER_WAS_INITIALIZED:
+            return { ...state, currentUser: event.payload.authUser, isInitializationRunning: false };
+        case AuthEventTypes.CURRENT_USER_COULD_NOT_BE_INITIALIZED:
+            return { ...state, isInitializationRunning: false };
+        case AuthEventTypes.USER_WAS_LOGGED_IN:
+            return { ...state, currentUser: event.payload.result.data.authUser };
+        case AuthEventTypes.AUTHENTICATION_WAS_REFRESHED:
+            return { ...state, currentUser: event.payload.authUser };
+        case AuthEventTypes.AUTHENTICATION_REFRESH_FAILED:
+            return { ...state, currentUser: anonymousUser };
+        case AuthEventTypes.USER_WAS_LOGGED_OUT:
+            return { ...state, currentUser: anonymousUser };
+        default:
+            return state;
     }
-
-    if (event.type === AuthEventTypes.USER_WAS_LOGGED_IN) {
-        return {
-            ...state,
-            currentUser: event.payload.result.data.authUser,
-            isAuthenticationRunning: false,
-        };
-    }
-
-    if (event.type === AuthEventTypes.CURRENT_USER_INITIALIZATION_WAS_STARTED) {
-        return {
-            ...state,
-            isInitializationRunning: true,
-            isAuthenticationRunning: true,
-        };
-    }
-
-    if (event.type === AuthEventTypes.USER_WAS_INITIALIZED) {
-        return {
-            ...state,
-            currentUser: event.payload.authUser,
-            isInitializationRunning: false,
-            isAuthenticationRunning: false,
-        };
-    }
-
-    if (event.type === AuthEventTypes.LOGIN_FAILED) {
-        return {
-            ...state,
-            currentUser: anonymousUser,
-            isAuthenticationRunning: false,
-        };
-    }
-
-    if (event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_REQUESTED) {
-        return { ...state, isAuthenticationRunning: true };
-    }
-
-    if (event.type === AuthEventTypes.AUTHENTICATION_WAS_REFRESHED) {
-        return {
-            ...state,
-            currentUser: event.payload.authUser,
-            isAuthenticationRunning: false,
-        };
-    }
-
-    if (event.type === AuthEventTypes.LOGIN_WAS_CANCELLED) {
-        return { ...state, currentUser: anonymousUser, isAuthenticationRunning: false };
-    }
-
-    if (event.type === AuthEventTypes.CURRENT_USER_INITIALIZATION_WAS_CANCELLED) {
-        return { ...state, isInitializationRunning: false, isAuthenticationRunning: false };
-    }
-
-    if (event.type === AuthEventTypes.AUTHENTICATION_REFRESH_FAILED) {
-        return { ...state, currentUser: anonymousUser, isAuthenticationRunning: false };
-    }
-
-    if (event.type === AuthEventTypes.USER_AUTHENTICATION_REFRESH_WAS_CANCELLED) {
-        return { ...state, isAuthenticationRunning: false };
-    }
-
-    if (event.type === AuthEventTypes.USER_WAS_LOGGED_OUT) {
-        return { ...state, currentUser: anonymousUser };
-    }
-
-    return state;
 }

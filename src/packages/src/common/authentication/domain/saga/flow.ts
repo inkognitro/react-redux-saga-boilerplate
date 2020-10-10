@@ -1,86 +1,39 @@
-import {cancel, cancelled, fork, put, select, spawn, take, call, race } from "@redux-saga/core/effects";
-import {Task} from "@redux-saga/types";
-import {AuthUser, AuthUserTypes} from "packages/common/types/auth-user/domain";
 import {
-    createLoginWasCancelled,
-    createUserLoginFailed,
-    createUserWasLoggedIn,
-    createUserWasLoggedOut,
-} from "packages/common/authentication/domain/event";
+    call, cancelled, delay, put, race, select, spawn, fork, cancel, take,
+} from "@redux-saga/core/effects";
+import { AuthenticatedAuthUser, AuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
 import {
     AuthenticateResult,
     AuthenticationRefreshResult,
-    callAuthenticateEndpoint, callRefreshAuthenticationEndpoint
+    callAuthenticateEndpoint,
+    callRefreshAuthenticationEndpoint,
 } from "packages/common/http-api-v1/domain";
-import {ResultTypes} from "packages/common/types/util/domain";
-import {AuthState, AuthStateSelector, CurrentUserStorage} from "../types";
-import {AuthCommandTypes, Login, Logout, RefreshAuthentication,} from "../command";
-import {getCurrentAuthUser} from "packages/common/authentication/domain";
+import { ResultTypes } from "packages/common/types/util/domain";
+import {
+    createAuthenticationWasRefreshed,
+    createLoginWasCancelled,
+    createLoginFailed,
+    createUserWasLoggedIn,
+    createUserWasLoggedOut,
+    createCurrentUserWasInitialized,
+    createUserAuthenticationRefreshFailed,
+    createCurrentUserCouldNotBeInitialized,
+} from "../event";
+import { getCurrentAuthUser } from "../query";
+import {
+    AuthState, AuthStateSelector, CurrentUserStorage, LoginSuccessResult,
+} from "../types";
+import { AuthCommandTypes, Login } from "../command";
 
-export function createAuthenticationSaga(
-    authStateSelector: AuthStateSelector,
-    currentUserStorage: CurrentUserStorage,
-): () => Generator {
-    return function* (): Generator {
-        yield spawn(authenticationFlow, authStateSelector, currentUserStorage);
-    };
-}
-
-type AuthCommand = (Login | Logout);
-
-function* authenticationFlow(
-    authStateSelector: AuthStateSelector,
-    currentUserStorage: CurrentUserStorage,
-): Generator {
-    while (true) {
-        // @ts-ignore
-        const command: AuthCommand = take([
-            AuthCommandTypes.LOGIN,
-            AuthCommandTypes.LOGOUT,
-        ]);
-        yield race({
-            task: call(handleLogin, authStateSelector, currentUserStorage, command), // todo: clean up!
-            logout: take(AuthCommandTypes.LOGOUT), // todo: clean up!
-        });
-    }
-}
-
-function* handleLogin(
-    authStateSelector: AuthStateSelector,
-    currentUserStorage: CurrentUserStorage,
-    command: Login,
-): Generator {
-    try {
-        // @ts-ignore
-        const result: AuthenticateResult = yield callAuthenticateEndpoint({
-            username: command.payload.username,
-            password: command.payload.password,
-        });
-        if (result.type === ResultTypes.ERROR) {
-            yield put(createUserLoginFailed(result));
-            return;
-        }
-        const authUser: AuthUser = {
-            type: AuthUserTypes.AUTHENTICATED_USER,
-            token: result.data.token,
-            user: result.data.user,
-            shouldRemember: command.payload.shouldRemember,
-        };
-        currentUserStorage.saveCurrentUser(authUser);
-        yield put(createUserWasLoggedIn(authUser));
-        yield fork(executeAuthRefreshInterval, authStateSelector, currentUserStorage);
-        return;
-    } finally {
-        if (yield cancelled()) {
-            yield put(createLoginWasCancelled());
-        }
-    }
-}
-
+const authRefreshIntervalInMs = 30000;
 function* executeAuthRefreshInterval(
     authStateSelector: AuthStateSelector,
     currentUserStorage: CurrentUserStorage,
+    startImmediately: boolean,
 ): Generator {
+    if (!startImmediately) {
+        yield delay(authRefreshIntervalInMs);
+    }
     while (true) {
         // @ts-ignore
         const state: AuthState = yield select(authStateSelector);
@@ -93,7 +46,7 @@ function* executeAuthRefreshInterval(
             token: currentUser.token,
         });
         if (result.type === ResultTypes.ERROR) {
-            yield put(createUserLoginFailed(result));
+            yield put(createUserAuthenticationRefreshFailed());
             return;
         }
         const newCurrentUser: AuthUser = {
@@ -101,18 +54,91 @@ function* executeAuthRefreshInterval(
             token: result.data.token,
             user: result.data.user,
         };
-        currentUserStorage.saveCurrentUser(newCurrentUser);
-        yield put(createUserWasLoggedIn(newCurrentUser));
+        currentUserStorage.save(newCurrentUser);
+        yield put(createAuthenticationWasRefreshed(newCurrentUser, currentUser));
+        yield delay(authRefreshIntervalInMs);
     }
 }
 
-function* handleLogout(authStateSelector: AuthStateSelector, currentUserStorage: CurrentUserStorage): Generator {
+function* watchLogin(currentUserStorage: CurrentUserStorage): Generator {
+    // @ts-ignore
+    const command: Login = yield take(AuthCommandTypes.LOGIN);
+    try {
+        // @ts-ignore
+        const result: AuthenticateResult = yield callAuthenticateEndpoint({
+            username: command.payload.settings.username,
+            password: command.payload.settings.password,
+        });
+        if (result.type === ResultTypes.ERROR) {
+            yield put(createLoginFailed(result, command.payload.taskId));
+            return false;
+        }
+        const authUser: AuthenticatedAuthUser = {
+            type: AuthUserTypes.AUTHENTICATED_USER,
+            token: result.data.token,
+            user: result.data.user,
+            shouldRemember: command.payload.settings.shouldRemember,
+        };
+        currentUserStorage.save(authUser);
+        const successResult: LoginSuccessResult = { ...result, data: { authUser } };
+        yield put(createUserWasLoggedIn(successResult, command.payload.taskId));
+        return true;
+    } finally {
+        if (yield cancelled()) {
+            yield put(createLoginWasCancelled(command.payload.taskId));
+        }
+    }
+}
+
+function* watchLogout(authStateSelector: AuthStateSelector, currentUserStorage: CurrentUserStorage): Generator {
+    yield take(AuthCommandTypes.LOGOUT);
     // @ts-ignore
     const state: AuthState = yield select(authStateSelector);
     const currentUser = getCurrentAuthUser(state);
     if (currentUser.type !== AuthUserTypes.AUTHENTICATED_USER) {
         return;
     }
-    currentUserStorage.removeCurrentUser();
+    currentUserStorage.remove();
     yield put(createUserWasLoggedOut(currentUser));
+}
+
+function* initializeCurrentUser(currentUserStorage: CurrentUserStorage): Generator {
+    const currentUser = currentUserStorage.find();
+    if (!currentUser) {
+        yield put(createCurrentUserCouldNotBeInitialized());
+        return;
+    }
+    yield put(createCurrentUserWasInitialized(currentUser));
+}
+
+function* authenticationFlow(
+    authStateSelector: AuthStateSelector,
+    currentUserStorage: CurrentUserStorage,
+): Generator {
+    yield call(initializeCurrentUser, currentUserStorage);
+    let startImmediately = true;
+    while (true) {
+        const refreshTask = yield fork(
+            executeAuthRefreshInterval,
+            authStateSelector,
+            currentUserStorage,
+            startImmediately,
+        );
+        yield race({
+            loginTask: call(watchLogin, currentUserStorage),
+            logoutTask: call(watchLogout, authStateSelector, currentUserStorage),
+        });
+        // @ts-ignore
+        cancel(refreshTask);
+        startImmediately = false;
+    }
+}
+
+export function createAuthenticationSaga(
+    authStateSelector: AuthStateSelector,
+    currentUserStorage: CurrentUserStorage,
+): () => Generator {
+    return function* (): Generator {
+        yield spawn(authenticationFlow, authStateSelector, currentUserStorage);
+    };
 }

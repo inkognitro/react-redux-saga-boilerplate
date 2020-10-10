@@ -21,7 +21,7 @@ module.exports = {
       "allow": ["info", "error"]
     }],
     "react/prop-types": "off",
-    "indent": ["error", 4],
+    "indent": ["error", 4, { "SwitchCase": 1 }],
     "react/jsx-indent": ["error", 4],
     "react/jsx-indent-props": ["error", 4],
     "react/jsx-fragments": "off",
@@ -42,6 +42,7 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "linebreak-style": 0,
     "jest/expect-expect": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "default-case": "off"
   }
 };
