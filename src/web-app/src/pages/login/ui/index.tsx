@@ -1,15 +1,18 @@
-import React, {FC} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {ContentPage} from "web-app/foundation/ui";
-import {Card} from "packages/common/layout-foundation/ui/web";
-import {FormGroup, PrimaryButton, SimpleFormElement} from "packages/common/form-element/ui/web";
-import {Form} from "packages/common/form/ui/web";
-import {TranslatedText} from "packages/common/translator/ui/web";
-import {TranslationIds} from "packages/common/types/util/domain";
-import {createLogin} from "web-app/pages/login/domain";
-import {RootState} from "web-app/services.factory";
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { ContentPage } from "web-app/foundation/ui";
+import { Card } from "packages/common/layout-foundation/ui/web";
+import { FormGroup, PrimaryButton, SimpleFormElement } from "packages/common/form-element/ui/web";
+import { Form } from "packages/common/form/ui/web";
+import { TranslatedText } from "packages/common/translator/ui/web";
+import { TranslationIds } from "packages/common/types/util/domain";
+import { RootState } from "web-app/services.factory";
+import { createInitialize, createLogin } from "../domain";
 
 export const LoginPage: FC = () => {
+    useEffect(() => {
+        dispatch(createInitialize());
+    }, []);
     const dispatch = useDispatch();
     const form = useSelector((state: RootState) => state.pages.loginPage.form);
     return (

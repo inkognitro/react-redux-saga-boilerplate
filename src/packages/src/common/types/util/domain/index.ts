@@ -55,8 +55,8 @@ type ResultProps<Data> = {
 }
 
 type GenericResult<Type extends ResultTypes, Data> = ({ type: Type } & ResultProps<Data>)
-export type SuccessResult<Data = undefined> = GenericResult<ResultTypes.SUCCESS, Data>
-export type ErrorResult<Data = undefined> = GenericResult<ResultTypes.ERROR, Data>
+export type SuccessResult<Data = any> = GenericResult<ResultTypes.SUCCESS, Data>
+export type ErrorResult<Data = any> = GenericResult<ResultTypes.ERROR, Data>
 export type Result = (SuccessResult | ErrorResult)
 
 export type ResultCreationSettings<Data = any> = Partial<ResultProps<Data>> & Pick<ResultProps<Data>, 'data'>;

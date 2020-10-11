@@ -18,16 +18,25 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
 }
 
 function createResponseByRequest(request: Request): ApiV1Response {
+    if (
+        request.url === (`/auth/authenticate`)
+        // @ts-ignore
+        && request.body.username === 'nagato'
+        // @ts-ignore
+        && request.body.password === '1234'
+    ) {
+        return createSuccessLoginResponse();
+    }
     if (request.url === (`/auth/authenticate`)) {
-        return createValidLoginResponse();
+        return createErrorLoginResponse();
     }
     if (request.url === (`/auth/refresh`)) {
         return createValidAuthenticationRefreshResponse();
     }
-    return createInvalidLoginResponse();
+    return createErrorLoginResponse();
 }
 
-function createInvalidLoginResponse(): ApiV1Response {
+function createErrorLoginResponse(): ApiV1Response {
     return {
         headers: {
             statusCode: 403,
@@ -39,7 +48,7 @@ function createInvalidLoginResponse(): ApiV1Response {
                     type: MessageTypes.ERROR,
                     content: {
                         translationId: '38995999-20a6-4d00-9565-22e1f04133cd',
-                        fallback: 'Please check your credentials!',
+                        fallback: 'Wrong credentials!',
                     },
                 },
             ],
@@ -63,7 +72,7 @@ function createInvalidLoginResponse(): ApiV1Response {
     };
 }
 
-function createValidLoginResponse(): ApiV1Response<{ data: { token: string, user: MinimalUser } }> {
+function createSuccessLoginResponse(): ApiV1Response<{ data: { token: string, user: MinimalUser } }> {
     return {
         headers: {
             statusCode: 200,
@@ -75,7 +84,7 @@ function createValidLoginResponse(): ApiV1Response<{ data: { token: string, user
                     type: MessageTypes.SUCCESS,
                     content: {
                         translationId: '3f995999-20a6-4d00-9565-22e1f04133cd',
-                        fallback: 'Test message from backend: You have successfully been logged in!',
+                        fallback: 'Login successful!',
                     },
                 },
             ],
