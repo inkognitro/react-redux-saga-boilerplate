@@ -24,9 +24,9 @@ import {
     AuthState, AuthStateSelector, CurrentUserStorage, LoginSuccessResult,
 } from "../types";
 import { AuthCommandTypes, Login } from "../command";
-import { getSecondsUntilExpiration } from "../jwt.handling";
+import { findSecondsUntilExpiration } from "../jwt.handling";
 
-const authRefreshIntervalInMs = 30000;
+const authRefreshIntervalInMs = 5000;
 function* executeAuthRefreshInterval(
     authStateSelector: AuthStateSelector,
     currentUserStorage: CurrentUserStorage,
@@ -42,8 +42,10 @@ function* executeAuthRefreshInterval(
         if (currentUser.type !== AuthUserTypes.AUTHENTICATED_USER) {
             return;
         }
-        if (getSecondsUntilExpiration(currentUser.token) < 0) {
+        if (findSecondsUntilExpiration(currentUser.token) < 0) {
+            console.log('secondsUntilExpiration: ' + findSecondsUntilExpiration(currentUser.token));
             yield put(createUserAuthenticationRefreshFailed());
+            currentUserStorage.remove();
             return;
         }
         // @ts-ignore
@@ -52,6 +54,7 @@ function* executeAuthRefreshInterval(
         });
         if (result.type === ResultTypes.ERROR) {
             yield put(createUserAuthenticationRefreshFailed());
+            currentUserStorage.remove();
             return;
         }
         const newCurrentUser: AuthUser = {

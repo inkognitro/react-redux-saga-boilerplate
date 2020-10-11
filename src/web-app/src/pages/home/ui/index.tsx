@@ -95,10 +95,10 @@ export const HomePage: FC = () => {
             </div>
 
             <br />
-            <h3>Login testing</h3>
+            <h3>Login test</h3>
             <div>
                 <FunctionalLink onClick={() => dispatch(createLogin({ username: '', password: '', shouldRemember: true }))}>
-                    trigger login
+                    trigger login programmatically
                 </FunctionalLink>
             </div>
         </ContentPage>

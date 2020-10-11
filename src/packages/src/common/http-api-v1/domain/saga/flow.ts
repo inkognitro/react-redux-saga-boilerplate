@@ -49,6 +49,7 @@ function* handleSendApiV1Request(
 ): Generator {
     if (command.payload.request.type === ApiV1RequestTypes.SINGLE_REQUEST) {
         yield executeApiV1Request(httpApiV1StateSelector, authStateSelector, command.payload.request);
+        return;
     }
     throw new Error(`Request with type "${command.payload.request.type}" not supported!`);
 }

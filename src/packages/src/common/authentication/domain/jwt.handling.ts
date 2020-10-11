@@ -1,7 +1,4 @@
-import {
-    createUtcDateTimeStringFromUtcTimestamp,
-    getUtcDateTimeMinusNowInSeconds,
-} from "packages/common/date.time.handling";
+import { v4 as uuidV4 } from 'uuid';
 
 type Payload = {
     iat: number
@@ -10,15 +7,43 @@ type Payload = {
     jti: string
 }
 
-export function getSecondsUntilExpiration(jwt: string): number {
-    const expirationUtcDateTime = getExpirationUTCDateTime(jwt);
-    return getUtcDateTimeMinusNowInSeconds(expirationUtcDateTime);
+export function createPseudoJWT(userId: string): string {
+    const getBase64WithoutEqualSignsInTheEnd = (base64String: string): string => {
+        return base64String
+            .replace(/\+/g, '-')
+            .replace(/\//g, '_')
+            .replace(/\=+$/, '');
+    };
+    const header = {
+        alg: 'HS256',
+        typ: 'JWT',
+    };
+    const payload = {
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + 5,
+        sub: userId,
+        jti: uuidV4(),
+    };
+    const base64Header = getBase64WithoutEqualSignsInTheEnd(btoa(JSON.stringify(header)));
+    const base64Payload = getBase64WithoutEqualSignsInTheEnd(btoa(JSON.stringify(payload)));
+    return [base64Header, base64Payload].join('.');
 }
 
-function getExpirationUTCDateTime(jwt: string): string {
+export function findSecondsUntilExpiration(jwt: string): null | number {
+    const expirationTimestamp = findExpirationUTCTimestamp(jwt);
+    if (expirationTimestamp === undefined) {
+        return null;
+    }
+    return (expirationTimestamp - getNowTimestamp());
+}
+
+function getNowTimestamp(): number {
+    return Math.floor(Date.now() / 1000);
+}
+
+function findExpirationUTCTimestamp(jwt: string): (undefined | number) {
     const payload = getPayloadFromToken(jwt);
-    const expirationUtcTimestamp = payload.exp;
-    return createUtcDateTimeStringFromUtcTimestamp(expirationUtcTimestamp);
+    return payload.exp;
 }
 
 function getPayloadFromToken(jwt: string): Payload {

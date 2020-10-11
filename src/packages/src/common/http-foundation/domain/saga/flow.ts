@@ -1,5 +1,9 @@
-import { spawn, takeEvery, put, cancelled, select } from "redux-saga/effects";
-import { HttpFoundationState, HttpFoundationStateSelector, HttpRequestDispatcher, RequestResponse } from "../types";
+import {
+    spawn, takeEvery, put, cancelled, select, call,
+} from "redux-saga/effects";
+import {
+    HttpFoundationState, HttpFoundationStateSelector, HttpRequestDispatcher, RequestResponse,
+} from "../types";
 import { HttpFoundationCommandTypes, SendRequest } from "../command";
 import { findRunningHttpRequestById } from "../query";
 import {

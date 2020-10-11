@@ -26,16 +26,23 @@ To fully understand this project you should be familiar with the technologies be
 Below the common features are listed. Followed additional features are divided in web and mobile app features.
 
 1. Basic [JWT](http://jwt.io) authentication:
-    - with remember me flag
-    - ideally the authentication server responds with the [jwtSecret]-httpOnly-cookie and [jwtHeader].[jwtPayload] in the response body, to be protected against XSS and CSRF attacks.
-    - simulated with a mocked http request dispatcher in development mode
-2. Toasts integration
-    - multiple messages per toast
-    - pipelined messages considering running toast animations (async visibility of toasts)
-3. Loader integration e.g. for running requests
-4. UTC datetime handling with [moment](http://momentjs.com) in the background
-5. Test integration with jest (see [coding guidelines](docs/coding.guidelines.md))
-6. Code linting (see [coding guidelines](docs/coding.guidelines.md))
+    - JWT `exp` in UTC time, see `mock.http.request.dispatcher.ts` as the mock for several endpoints in dev mode
+    - automatic token refresh, see `src/packages/src/common/authentication/domain/flow.ts`
+    - ideally the authentication server responds with the `[jwtHeader].[jwtSecret]`-httpOnly-cookie and `[jwtPayload]` in the response body, to be protected against XSS and CSRF attacks.
+    - auth user generally saved at session storage, when required also at local storage - according to remember me flag
+    - auth user type visible at `/src/packages/src/common/types/auth-user/domain/types.ts`
+2. Toasts integration:
+    - Smooth intro animation by automatically grouping new messages together
+    - Grouping of messages in toasts (success, info, warning, error toasts)
+    - Configurable options like (animation times, closable message, automatic close etc.)
+3. Form components in redux:
+    - Handling errors recursively trough every (partial) state tree (see `form` module)
+    - Available form elements and customizable reducers (e.g. have a look at the login page's reducer)
+4. Loader integration
+    - Internal counter to show and hide loader over multiple sagas
+5. Testing with jest (see [coding guidelines](docs/coding.guidelines.md)) and [react-test-renderer](https://reactjs.org/docs/test-renderer.html)
+6. Code linting with [eslint](https://eslint.org/docs/user-guide/getting-started)
+7. Much more, see the [docs](docs/api.docs.md)
     
 ### Web app
 1. Bootstrap 4 SCSS and [material icons](http://material.io/resources/icons/) integration
@@ -52,10 +59,10 @@ Certainly the project also can be used as a starter for mobile app development.
 Nevertheless the primary focus for this project was on the overall architecture and the web view.
 
 ## Documentation
-- [Environment](docs/environment.md): Installation, development start, scripts
-- [Architecture](docs/architecture.md): Architecture and code structure.
-- [Coding guidelines](docs/coding.guidelines.md): Please don't mess up this project.
-- [Api documentation](docs/api.docs.md): Documentation for existing code and its usage.
+- [environment](docs/environment.md): Installation, development start, scripts
+- [architecture](docs/architecture.md): Architecture and code structure.
+- [coding guidelines](docs/coding.guidelines.md): Please don't mess up this project.
+- [module documentations](docs/api.docs.md): Documentation of contained modules.
 
 ## Appreciation
 Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).

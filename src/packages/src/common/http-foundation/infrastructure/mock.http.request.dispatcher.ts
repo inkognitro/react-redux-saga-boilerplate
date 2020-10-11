@@ -1,6 +1,7 @@
 import { ApiV1Response } from "packages/common/http-api-v1/domain";
 import { MessageTypes } from "packages/common/types/util/domain";
 import { MinimalUser } from "packages/common/types/user/domain";
+import { createPseudoJWT } from "packages/common/authentication/domain";
 import { HttpRequestDispatcher, Request, RequestResponse } from "../domain/types";
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
@@ -62,12 +63,6 @@ function createInvalidLoginResponse(): ApiV1Response {
     };
 }
 
-const authToken = (
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
-    + "eyJpYXQiOjE1NDcyMzkwMjIsImV4cCI6MTU4MzIzOTAyMiwic3ViIjoiMTVjZjUwZDgtYzJmYS00ZDZmL"
-    + "TgyMTctMjkzYWRmMzNlNTA5IiwianRpIjoiZjM2OTE4MWEtNjQ5ZS00NjRiLTliZjEtMjk1ZTNhMzI0ODc2In0"
-);
-
 function createValidLoginResponse(): ApiV1Response<{ data: { token: string, user: MinimalUser } }> {
     return {
         headers: {
@@ -86,9 +81,9 @@ function createValidLoginResponse(): ApiV1Response<{ data: { token: string, user
             ],
             fieldMessages: [],
             data: {
-                token: authToken,
+                token: createPseudoJWT('1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b'),
                 user: {
-                    id: "1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b",
+                    id: '1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b',
                     username: "Nagato (initial)",
                 },
             },
@@ -105,7 +100,7 @@ function createValidAuthenticationRefreshResponse(): ApiV1Response<{ data: { tok
             generalMessages: [],
             fieldMessages: [],
             data: {
-                token: authToken,
+                token: createPseudoJWT('1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b'),
                 user: {
                     id: "1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b",
                     username: "Nagato (refreshed)",
