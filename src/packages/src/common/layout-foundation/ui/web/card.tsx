@@ -8,7 +8,7 @@ export type CardProps = {
 export const Card: FC<CardProps> = (props) => (
     <div className="card">
         <div className="card-body">
-            {(props.title ? (<h5 className="card-title">{props.title}</h5>) : null)}
+            {(props.title ? (<h5 className="card-title text-center">{props.title}</h5>) : null)}
             {props.children}
         </div>
     </div>

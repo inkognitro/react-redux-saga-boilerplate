@@ -8,5 +8,5 @@ export const authenticateEndpointSchema: EndpointSchema = {
 
 export const refreshAuthenticationEndpointSchema: EndpointSchema = {
     method: RequestMethods.POST,
-    urlPath: EndpointUrlPaths.AUTHENTICATE,
+    urlPath: EndpointUrlPaths.REFRESH_AUTHENTICATION,
 };

@@ -10,6 +10,9 @@ function createButtonClassName(props: InternalButtonProps): string {
     if (props.isDisabled) {
         classNames.push('disabled');
     }
+    if (props.extraClassName) {
+        classNames.push(props.extraClassName);
+    }
     return classNames.join(' ');
 }
 

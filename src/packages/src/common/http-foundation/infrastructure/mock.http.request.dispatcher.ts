@@ -21,7 +21,7 @@ function createResponseByRequest(request: Request): ApiV1Response {
     if (request.url === (`/auth/authenticate`)) {
         return createValidLoginResponse();
     }
-    if (request.url === (`/auth/refreshauthentication`)) {
+    if (request.url === (`/auth/refresh`)) {
         return createValidAuthenticationRefreshResponse();
     }
     return createInvalidLoginResponse();
