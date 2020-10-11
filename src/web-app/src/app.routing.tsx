@@ -6,9 +6,11 @@ import { ErrorPage } from "web-app/foundation/ui";
 import { TranslatedText } from "packages/common/translator/ui/web";
 import { TranslationIds } from "packages/common/types/util/domain";
 import { HomePage } from './pages/home/ui';
+import { LoginPage } from "./pages/login/ui";
 
 const routes: Route[] = [
     { path: '/', exact: true, component: HomePage },
+    { path: '/auth/login', exact: true, component: LoginPage },
 ];
 
 export const createHomeUrl = () => `/`;

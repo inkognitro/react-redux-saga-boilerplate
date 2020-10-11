@@ -15,7 +15,7 @@ export type CheckboxState = CheckboxStateType;
 export type FormElementState = FormElementStateType;
 
 export { FormElementTypes, IsFormElementTypeConfirmationProp } from './types';
-export { createFormElementReducer } from './reducer';
+export { createFormElementReducer, formElementReducer } from './reducer';
 export { createFormElementStateWasChanged } from './event';
 export { setFormElementMessages } from './saga/effect';
 export {

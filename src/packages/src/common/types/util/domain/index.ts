@@ -17,6 +17,7 @@ export enum TranslationIds {
     PAGE_NOT_FOUND_TITLE = 'pageNotFoundTitle',
     NOT_AUTHORIZED = 'notAuthorized',
     LOADING = 'Loading..',
+    LOGIN = 'login',
 }
 
 export type Translation = {

@@ -1,8 +1,9 @@
 import { v4 as uuidV4 } from 'uuid';
 import { FormState } from "./types";
 
-type CreationSettings<C = any> = Partial<FormState<C>> & Pick<FormState<C>, 'content'>
-export function createFormState<C = any>(settings: CreationSettings<C>): FormState<C> {
+type CreationSettings<S extends FormState> = Partial<S> & Pick<S, 'content'>
+export function createFormState<S extends FormState>(settings: CreationSettings<S>): S {
+    // @ts-ignore
     return {
         id: uuidV4(),
         isSubmitRunning: false,

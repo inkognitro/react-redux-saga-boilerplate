@@ -6,7 +6,7 @@ import { FormState } from "../types";
 
 type StartSettings = {
     form: FormState
-    fieldMessagesPrefixPath: FieldMessagePath
+    fieldMessagesPrefixPath?: FieldMessagePath
 }
 
 export function* startFormSubmission(settings: StartSettings): Generator {
@@ -21,7 +21,7 @@ export function* startFormSubmission(settings: StartSettings): Generator {
 type FinishSettings = {
     form: FormState
     fieldMessages: FieldMessage[]
-    fieldMessagesPrefixPath: FieldMessagePath
+    fieldMessagesPrefixPath?: FieldMessagePath
 }
 
 export function* finishFormSubmission(settings: FinishSettings): Generator {

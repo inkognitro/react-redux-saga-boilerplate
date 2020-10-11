@@ -4,9 +4,10 @@ import { createShowMessage, ToastTypes } from "packages/common/toaster/domain";
 import { ContentPage } from "web-app/foundation/ui";
 import { RootState } from "web-app/services.factory";
 import { FunctionalLink, Link, LinkTargets } from "packages/common/layout-foundation/ui/web";
-import {createLeakReduxState} from "web-app/pages/home/domain";
-import {FormElement, FormGroup } from "packages/common/form-element/ui/web";
-import {Form} from "packages/common/form/ui/web";
+import { createLeakReduxState } from "web-app/pages/home/domain";
+import { FormElement, FormGroup } from "packages/common/form-element/ui/web";
+import { Form } from "packages/common/form/ui/web";
+import { createLogin } from "packages/common/authentication/domain/command"; // todo: remove this dependency!
 
 export const HomePage: FC = () => {
     const dispatch = useDispatch();
@@ -90,6 +91,14 @@ export const HomePage: FC = () => {
                 {' '}
                 <FunctionalLink onClick={() => dispatch(createLeakReduxState())}>
                     leak redux state in console
+                </FunctionalLink>
+            </div>
+
+            <br />
+            <h3>Login testing</h3>
+            <div>
+                <FunctionalLink onClick={() => dispatch(createLogin({ username: '', password: '', shouldRemember: true }))}>
+                    trigger login
                 </FunctionalLink>
             </div>
         </ContentPage>
