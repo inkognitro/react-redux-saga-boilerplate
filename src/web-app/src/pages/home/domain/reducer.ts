@@ -1,9 +1,7 @@
-import { Reducer, Action } from 'redux';
-import { createTextFieldState } from "packages/common/form-element/domain";
+import { Reducer, combineReducers } from 'redux';
+import { createFormElementReducer, createTextFieldState, TextFieldState } from "packages/common/form-element/domain";
 import { HomePageState } from "./types";
 
-const initialHomePageState: HomePageState = {
-    toastContent: createTextFieldState({ value: 'Hi there :)' }),
-};
-
-export const homePageReducer: Reducer<HomePageState> = (state = initialHomePageState, _: Action) => state;
+export const homePageReducer: Reducer<HomePageState> = combineReducers({
+    toastContent: createFormElementReducer<TextFieldState>(createTextFieldState({ value: 'Change content and press enter..' })),
+});

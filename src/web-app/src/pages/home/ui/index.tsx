@@ -5,10 +5,13 @@ import { ContentPage } from "web-app/foundation/ui";
 import { RootState } from "web-app/services.factory";
 import { FunctionalLink, Link, LinkTargets } from "packages/common/layout-foundation/ui/web";
 import {createLeakReduxState} from "web-app/pages/home/domain";
+import {FormElement, FormGroup } from "packages/common/form-element/ui/web";
+import {Form} from "packages/common/form/ui/web";
 
 export const HomePage: FC = () => {
     const dispatch = useDispatch();
-    const toastContentValue = useSelector((state: RootState) => state.pages.homePage.toastContent.value);
+    const toastContent = useSelector((state: RootState) => state.pages.homePage.toastContent);
+    const toastContentValue = toastContent.value;
     return (
         <ContentPage>
             <h3>Routing</h3>
@@ -18,6 +21,16 @@ export const HomePage: FC = () => {
 
             <br />
             <h3>Toasts</h3>
+            <Form
+                onSubmit={() => dispatch(createShowMessage({
+                    toastType: ToastTypes.SUCCESS,
+                    content: toastContentValue,
+                }))}
+            >
+                <FormGroup>
+                    <FormElement data={toastContent} />
+                </FormGroup>
+            </Form>
             <div>
                 <FunctionalLink
                     onClick={() => dispatch(createShowMessage({
@@ -81,29 +94,4 @@ export const HomePage: FC = () => {
             </div>
         </ContentPage>
     );
-
-    /*
-    return (
-        <ContentPage>
-            <br/>
-            <FormGroup>
-                <InputGroup
-                    label={(
-                        <Label formElementId={props.toastContentField.id}>
-                            Toast content:
-                            {' '}
-                            {props.toastContentField.value}
-                        </Label>
-                    )}
-                    formElement={props.toastContentField}
-                />
-                <small>
-                    FYI: Without any content, the ID of the transmitted translation object will be shown in the toast
-                    message.
-                </small>
-            </FormGroup>
-
-        </ContentPage>
-    );
-    */
 };
