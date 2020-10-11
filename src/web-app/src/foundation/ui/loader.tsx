@@ -1,13 +1,11 @@
-import { connect } from "react-redux";
-import {
-    Loader as PresentationalLoader,
-    LoaderState as PresentationalLoaderState,
-} from "packages/common/loader/ui/web";
+import React, { FC } from "react";
+import { useSelector } from "react-redux";
+import { Loader as CommonLoader } from "packages/common/loader/ui/web";
 import { RootState } from "web-app/services.factory";
 import { shouldShowLoader } from "packages/common/loader/domain";
 
-const mapStateToProps = (state: RootState): PresentationalLoaderState => ({
-    isVisible: shouldShowLoader(state.loader),
-});
-
-export const Loader = connect(mapStateToProps)(PresentationalLoader);
+export const Loader: FC = () => {
+    const loaderState = useSelector((state: RootState) => state.loader);
+    const isVisible = shouldShowLoader(loaderState);
+    return (<CommonLoader isVisible={isVisible} />);
+};

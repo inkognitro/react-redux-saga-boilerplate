@@ -6,29 +6,24 @@ import { TranslatedText } from "packages/common/translator/ui/web";
 import { TranslationIds } from "packages/common/types/util/domain";
 
 const StyledLoaderDiv = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
 `;
 
 const StyledLoaderTextDiv = styled.div`
-  padding-top: 40px;
-  color: white;
+    padding-top: 40px;
+    color: white;
 `;
 
-export type LoaderState = {
-    isVisible: boolean;
-};
-
-export type LoaderProps = LoaderState;
+export type LoaderProps = { isVisible: boolean }
 
 export class Loader extends Component<LoaderProps> {
     private fadeInAnimation: TimelineLite;
-
     private loader: HTMLDivElement;
 
     componentDidMount() {
