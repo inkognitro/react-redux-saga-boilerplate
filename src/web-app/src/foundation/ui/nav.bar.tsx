@@ -1,79 +1,59 @@
-import React, { Component, ReactNode } from "react";
-import { connect } from "react-redux";
-import { FunctionalLink, RouteLink } from "packages/common/router/ui/web";
-import { RootState } from "web-app/services.factory";
-import { Dispatch } from "redux";
-import { getCurrentAuthUser, isCurrentUserInitializationRunning } from "packages/common/authentication/domain";
-import { AuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
-import { createHomeRouteUrl, createLoginRouteUrl } from "web-app/routing/domain";
+import React, { FC } from "react";
+import { useDispatch } from "react-redux";
+import {
+    getCurrentAuthUser,
+    isCurrentUserInitializationRunning,
+    createLogout,
+} from "packages/common/authentication/domain";
+import { AuthUserTypes } from "packages/common/types/auth-user/domain";
 import { UserLabel } from "packages/common/types/user/ui/web";
 import { TranslatedText } from "packages/common/translator/ui/web";
 import { TranslationIds } from "packages/common/types/util/domain";
-import { createLogout } from "../domain";
+import { useAuthState } from "packages/common/authentication/ui";
+import { FunctionalLink, RouteLink } from "packages/common/layout-foundation/ui/web";
+import { createHomeUrl, createLoginUrl } from "web-app/app.routing";
 
-type RepresentationalNavBarState = {
-    isCurrentUserInitializationRunning: boolean
-    currentUser: AuthUser
-};
-
-type RepresentationalNavBarCallbacks = {
-    onClickLogout(): void
-};
-
-type RepresentationalNavBarProps = (RepresentationalNavBarState & RepresentationalNavBarCallbacks);
-
-class RepresentationalNavBar extends Component<RepresentationalNavBarProps> {
-    renderAuthLink(): ReactNode {
-        if (this.props.isCurrentUserInitializationRunning) {
-            return (
-                <li className="nav-item">
-                    <FunctionalLink className="nav-link">
-                        <TranslatedText translation={{ translationId: TranslationIds.LOADING }} />
-                    </FunctionalLink>
-                </li>
-            );
-        }
-        if (this.props.currentUser.type === AuthUserTypes.AUTHENTICATED_USER) {
-            return (
-                <li className="nav-item">
-                    <FunctionalLink className="nav-link" onClick={() => this.props.onClickLogout()}>
-                        <UserLabel user={this.props.currentUser.user} />
-                        {' '}
-                        :: Logout
-                    </FunctionalLink>
-                </li>
-            );
-        }
+const AuthLink: FC = () => {
+    const dispatch = useDispatch();
+    const authState = useAuthState();
+    const currentUser = getCurrentAuthUser(authState);
+    const userInitializationRunning = isCurrentUserInitializationRunning(authState);
+    if (userInitializationRunning) {
         return (
             <li className="nav-item">
-                <RouteLink className="nav-link" url={createLoginRouteUrl()}>
-                    Login
-                </RouteLink>
+                <FunctionalLink className="nav-link">
+                    <TranslatedText translation={{ translationId: TranslationIds.LOADING }} />
+                </FunctionalLink>
             </li>
         );
     }
-
-    render(): ReactNode {
+    if (currentUser.type === AuthUserTypes.AUTHENTICATED_USER) {
         return (
-            <ul className="nav justify-content-center">
-                <li className="nav-item">
-                    <RouteLink className="nav-link" url={createHomeRouteUrl()}>
-                        Home
-                    </RouteLink>
-                </li>
-                {this.renderAuthLink()}
-            </ul>
+            <li className="nav-item">
+                <FunctionalLink className="nav-link" onClick={() => dispatch(createLogout())}>
+                    <UserLabel user={currentUser.user} />
+                    {' '}
+                    :: Logout
+                </FunctionalLink>
+            </li>
         );
     }
-}
+    return (
+        <li className="nav-item">
+            <RouteLink className="nav-link" url={createLoginUrl()}>
+                Login
+            </RouteLink>
+        </li>
+    );
+};
 
-const mapStateToProps = (state: RootState): RepresentationalNavBarState => ({
-    isCurrentUserInitializationRunning: isCurrentUserInitializationRunning(state.authentication),
-    currentUser: getCurrentAuthUser(state.authentication),
-});
-
-const mapDispatchToProps = (dispatch: Dispatch): RepresentationalNavBarCallbacks => ({
-    onClickLogout: () => dispatch(createLogout()),
-});
-
-export const NavBar = connect(mapStateToProps, mapDispatchToProps)(RepresentationalNavBar);
+export const NavBar: FC = () => (
+    <ul className="nav justify-content-center">
+        <li className="nav-item">
+            <RouteLink className="nav-link" url={createHomeUrl()}>
+                Home
+            </RouteLink>
+        </li>
+        <AuthLink />
+    </ul>
+);

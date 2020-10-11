@@ -4,5 +4,5 @@ import renderer from 'react-test-renderer';
 import { Toaster } from "./toaster";
 
 it('renders correctly', () => {
-    renderer.create(<Toaster toasts={[]} onRemoveMessage={() => {}} />);
+    renderer.create(<Toaster toasts={[]} />);
 });

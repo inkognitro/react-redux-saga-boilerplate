@@ -48,10 +48,7 @@ export function getAllToasts(state: ToasterState): Toast[] {
     return state.toasts;
 }
 
-export function findToastById(
-    state: ToasterState,
-    toastId: string,
-): null | Toast {
+export function findToastById(state: ToasterState, toastId: string): null | Toast {
     const foundToast = state.toasts.find((toast) => toast.id === toastId);
     if (foundToast) {
         return foundToast;

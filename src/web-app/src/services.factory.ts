@@ -21,8 +21,6 @@ import {
     createTranslatorSaga,
     translatorReducer,
 } from "packages/common/translator/domain";
-import { createCookieSaga } from "packages/common/cookie/domain";
-import { BrowserCookieStorage } from "packages/common/cookie/infrastructure";
 import {
     HttpFoundationState,
     HttpFoundationStateSelector,
@@ -40,7 +38,7 @@ import {
     authenticationReducer,
     createAuthenticationSaga,
 } from "packages/common/authentication/domain";
-import {designReducer, DesignState, DesignStateSelector} from "packages/common/design/domain";
+import { designReducer, DesignState, DesignStateSelector } from "packages/common/design/domain";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLoaderSaga, loaderReducer, LoaderState } from "packages/common/loader/domain";
 import {
@@ -50,8 +48,8 @@ import {
     HttpApiV1StateSelector,
 } from "packages/common/http-api-v1/domain";
 import { createHttpApiV1ToasterSaga } from "packages/common/http-api-v1-toaster/domain";
-import { createFoundationSaga } from "web-app/foundation/domain/saga/flow";
 import { pagesReducer, PagesState } from "web-app/pages/services";
+import { BrowserCurrentUserStorage } from "packages/common/authentication/infrastructure";
 
 export type AppServices = {
     store: Store
@@ -100,25 +98,21 @@ function createRootSaga(httpRequestDispatcher: HttpRequestDispatcher): () => Gen
     const toasterSaga = createToasterSaga(toasterSettings, toasterStateSelector);
     const translatorSaga = createTranslatorSaga(translatorStateSelector);
     const loaderSaga = createLoaderSaga();
-    const cookieStorage = new BrowserCookieStorage();
-    const cookieSaga = createCookieSaga(cookieStorage);
-    const authenticationSaga = createAuthenticationSaga(cookieStorage, authStateSelector);
+    const currentUserStorage = new BrowserCurrentUserStorage();
+    const authenticationSaga = createAuthenticationSaga(authStateSelector, currentUserStorage);
     const httpFoundationStateSelector: HttpFoundationStateSelector = (state: RootState) => state.httpFoundation;
     const httpFoundationSaga = createHttpFoundationSaga(httpFoundationStateSelector, httpRequestDispatcher);
     const httpApiV1StateSelector: HttpApiV1StateSelector = (state: RootState) => state.httpApiV1;
     const httpApiV1Saga = createHttpApiV1Saga(httpApiV1StateSelector, authStateSelector);
     const httpApiV1ToasterSaga = createHttpApiV1ToasterSaga();
-    const appFoundationSaga = createFoundationSaga();
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
         yield spawn(loaderSaga);
         yield spawn(toasterSaga);
-        yield spawn(cookieSaga);
         yield spawn(authenticationSaga);
         yield spawn(httpFoundationSaga);
         yield spawn(httpApiV1Saga);
         yield spawn(httpApiV1ToasterSaga);
-        yield spawn(appFoundationSaga);
     };
 }
 

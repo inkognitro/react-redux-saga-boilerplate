@@ -38,13 +38,8 @@ export type FieldMessage = {
     message: Message
 }
 
-export type Command<Type = any, Payload = undefined> = Action<Type> & {
-    payload: Payload
-}
-
-export type Event<Type = any, Payload = undefined> = Action<Type> & {
-    payload: Payload
-}
+export type Command<Type = any, Payload = undefined> = Action<Type> & { payload: Payload }
+export type Event<Type = any, Payload = undefined> = Action<Type> & { payload: Payload }
 
 export enum ResultTypes {
     SUCCESS = 'success',
@@ -58,8 +53,9 @@ type ResultProps<Data> = {
 }
 
 type GenericResult<Type extends ResultTypes, Data> = ({ type: Type } & ResultProps<Data>)
-export type SuccessResult<Data = undefined> = GenericResult<ResultTypes.SUCCESS, Data>;
-export type ErrorResult<Data = undefined> = GenericResult<ResultTypes.ERROR, Data>;
+export type SuccessResult<Data = undefined> = GenericResult<ResultTypes.SUCCESS, Data>
+export type ErrorResult<Data = undefined> = GenericResult<ResultTypes.ERROR, Data>
+export type Result = (SuccessResult | ErrorResult)
 
 export type ResultCreationSettings<Data = any> = Partial<ResultProps<Data>> & Pick<ResultProps<Data>, 'data'>;
 

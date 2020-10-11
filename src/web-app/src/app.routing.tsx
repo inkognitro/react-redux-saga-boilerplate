@@ -11,6 +11,9 @@ const routes: Route[] = [
     { path: '/', exact: true, component: HomePage },
 ];
 
+export const createHomeUrl = () => `/`;
+export const createLoginUrl = () => `/auth/login`;
+
 const NotFoundPage: FC = () => (
     <ErrorPage>
         <div className="text-center">

@@ -1,25 +1,15 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import { Text } from 'react-native';
-import { Toast } from "../../domain";
+import { Toast as ToastData } from "../../domain";
 
-export type ToasterState = {
-    toasts: Toast[]
+export type ToasterProps = { toasts: ToastData[] }
+
+export const Toaster: FC<ToasterProps> = (props) => {
+    return (
+        <>
+            {props.toasts.map((toast) => toast.messages.map((message) => (
+                <Text key={message.id}>{message.content.fallback}</Text>
+            )))}
+        </>
+    );
 };
-
-export type ToasterCallbacks = {
-    onRemoveMessage(messageId: string): void;
-};
-
-export type ToasterProps = ToasterState & ToasterCallbacks;
-
-export const Toaster: FC<ToasterProps> = (props) => (
-    <>
-        {props.toasts.map((toast) => (
-            <Fragment key={toast.id}>
-                {toast.messages.map((message) => (
-                    <Text key={message.id}>{message.content.fallback}</Text>
-                ))}
-            </Fragment>
-        ))}
-    </>
-);

@@ -1,2 +1,2 @@
 # Http-api-v1-toaster
-This modules listens to API version 1 events and dispatches toasts in case of a connection fail.
+This modules listens to events from `http-api-v1` package and dispatches toasts e.g. in case of connection fail.

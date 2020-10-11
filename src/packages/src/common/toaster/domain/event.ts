@@ -13,9 +13,10 @@ export enum ToasterEventTypes {
     TOAST_WAS_REMOVED = "TOAST_WAS_REMOVED-8266728a-7572-48cb-9ff4-2e27071e1343",
 }
 
-export function createMessageIntroAnimationsWereFinished(
-    messageIds: string[],
-): MessageIntroAnimationsWereFinished {
+export type MessageIntroAnimationsWereFinished = Event<ToasterEventTypes.MESSAGE_INTRO_ANIMATIONS_WERE_FINISHED, {
+    messageIds: string[]
+}>
+export function createMessageIntroAnimationsWereFinished(messageIds: string[]): MessageIntroAnimationsWereFinished {
     return {
         type: ToasterEventTypes.MESSAGE_INTRO_ANIMATIONS_WERE_FINISHED,
         payload: {
@@ -24,114 +25,74 @@ export function createMessageIntroAnimationsWereFinished(
     };
 }
 
-export type MessageIntroAnimationsWereFinished = Event<ToasterEventTypes.MESSAGE_INTRO_ANIMATIONS_WERE_FINISHED, {
-    messageIds: string[];
-}>;
-
-export function createMessageOutroAnimationWasStarted(
-    messageId: string,
-): MessageOutroAnimationWasStarted {
+export type MessageOutroAnimationWasStarted = Event<ToasterEventTypes.MESSAGE_OUTRO_ANIMATION_WAS_STARTED, {
+    messageId: string
+}>
+export function createMessageOutroAnimationWasStarted(messageId: string): MessageOutroAnimationWasStarted {
     return {
         type: ToasterEventTypes.MESSAGE_OUTRO_ANIMATION_WAS_STARTED,
-        payload: {
-            messageId,
-        },
-    };
-}
-
-export type MessageOutroAnimationWasStarted = Event<ToasterEventTypes.MESSAGE_OUTRO_ANIMATION_WAS_STARTED, {
-    messageId: string;
-}>;
-
-export function createMessagesWereAddedToToast(
-    toastId: string,
-    messages: Message[],
-): MessagesWereAddedToToast {
-    return {
-        type: ToasterEventTypes.MESSAGES_WERE_ADDED_TO_TOAST,
-        payload: {
-            toastId,
-            messages,
-        },
+        payload: { messageId },
     };
 }
 
 export type MessagesWereAddedToToast = Event<ToasterEventTypes.MESSAGES_WERE_ADDED_TO_TOAST, {
-    toastId: string;
-    messages: Message[];
-}>;
-
-export function createMessageWasAddedToPipeline(
-    messageToAdd: MessageToAdd,
-): MessageWasAddedToPipeline {
+    toastId: string
+    messages: Message[]
+}>
+export function createMessagesWereAddedToToast(toastId: string, messages: Message[]): MessagesWereAddedToToast {
     return {
-        type: ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
-        payload: {
-            messageToAdd,
-        },
+        type: ToasterEventTypes.MESSAGES_WERE_ADDED_TO_TOAST,
+        payload: { toastId, messages },
     };
 }
 
 export type MessageWasAddedToPipeline = Event<ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE, {
-    messageToAdd: MessageToAdd;
+    messageToAdd: MessageToAdd
 }>;
-
-export type MessageWasRemoved = Event<ToasterEventTypes.MESSAGE_WAS_REMOVED, {
-    messageId: string;
-}>;
-
-export function createMessageWasRemoved(messageId: string): MessageWasRemoved {
+export function createMessageWasAddedToPipeline(messageToAdd: MessageToAdd): MessageWasAddedToPipeline {
     return {
-        type: ToasterEventTypes.MESSAGE_WAS_REMOVED,
-        payload: {
-            messageId,
-        },
+        type: ToasterEventTypes.MESSAGE_WAS_ADDED_TO_PIPELINE,
+        payload: { messageToAdd },
     };
 }
 
-export function createToastIntroAnimationWasFinished(
-    toastId: string,
-): ToastIntroAnimationWasFinished {
+export type MessageWasRemoved = Event<ToasterEventTypes.MESSAGE_WAS_REMOVED, { messageId: string }>
+export function createMessageWasRemoved(messageId: string): MessageWasRemoved {
     return {
-        type: ToasterEventTypes.TOAST_INTRO_ANIMATION_WAS_FINISHED,
-        payload: {
-            toastId,
-        },
+        type: ToasterEventTypes.MESSAGE_WAS_REMOVED,
+        payload: { messageId },
     };
 }
 
 export type ToastIntroAnimationWasFinished = Event<ToasterEventTypes.TOAST_INTRO_ANIMATION_WAS_FINISHED, {
-    toastId: string;
-}>;
-
-export function createToastOutroAnimationWasStarted(
-    toastId: string,
-): ToastOutroAnimationWasStarted {
+    toastId: string
+}>
+export function createToastIntroAnimationWasFinished(toastId: string): ToastIntroAnimationWasFinished {
     return {
-        type: ToasterEventTypes.TOAST_OUTRO_ANIMATION_WAS_STARTED,
-        payload: {
-            toastId,
-        },
+        type: ToasterEventTypes.TOAST_INTRO_ANIMATION_WAS_FINISHED,
+        payload: { toastId },
     };
 }
 
 export type ToastOutroAnimationWasStarted = Event<ToasterEventTypes.TOAST_OUTRO_ANIMATION_WAS_STARTED, {
-    toastId: string;
-}>;
-
-export function createToastWasAdded(toast: Toast): ToastWasAdded {
+    toastId: string
+}>
+export function createToastOutroAnimationWasStarted(toastId: string): ToastOutroAnimationWasStarted {
     return {
-        type: ToasterEventTypes.TOAST_WAS_ADDED,
-        payload: {
-            toast,
-        },
+        type: ToasterEventTypes.TOAST_OUTRO_ANIMATION_WAS_STARTED,
+        payload: { toastId },
     };
 }
 
-export type ToastWasAdded = Event<ToasterEventTypes.TOAST_WAS_ADDED, {
-    toast: Toast;
-}>;
+export type ToastWasAdded = Event<ToasterEventTypes.TOAST_WAS_ADDED, { toast: Toast }>
+export function createToastWasAdded(toast: Toast): ToastWasAdded {
+    return {
+        type: ToasterEventTypes.TOAST_WAS_ADDED,
+        payload: { toast },
+    };
+}
 
+export type ToastWasRemoved = Event<ToasterEventTypes.TOAST_WAS_REMOVED, { toastId: string }>
 export function createToastWasRemoved(toastId: string): ToastWasRemoved {
     return {
         type: ToasterEventTypes.TOAST_WAS_REMOVED,
@@ -140,7 +101,3 @@ export function createToastWasRemoved(toastId: string): ToastWasRemoved {
         },
     };
 }
-
-export type ToastWasRemoved = Event<ToasterEventTypes.TOAST_WAS_REMOVED, {
-    toastId: string;
-}>;

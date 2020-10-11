@@ -23,16 +23,16 @@ export type Message = {
 };
 
 export type Toast = {
-    id: string;
-    type: ToastTypes;
-    messages: Message[];
+    id: string
+    type: ToastTypes
+    messages: Message[]
     isIntroAnimationRunning?: boolean
     isOutroAnimationRunning?: boolean
 };
 
 export type ToasterState = {
-    messagesToAdd: MessageToAdd[];
-    toasts: Toast[];
+    messagesToAdd: MessageToAdd[]
+    toasts: Toast[]
 };
 
 export type ToasterSettings = {
@@ -43,4 +43,4 @@ export type ToasterSettings = {
     toastMessageOutroAnimationTimeInMs: number
 };
 
-export type ToasterStateSelector<State = any> = (state: State) => ToasterState;
+export type ToasterStateSelector<State = any> = (state: State) => ToasterState

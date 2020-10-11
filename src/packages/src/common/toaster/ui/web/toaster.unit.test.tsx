@@ -24,7 +24,6 @@ describe("Toaster", () => {
                         ],
                     },
                 ]}
-                onRemoveMessage={() => {}}
             />,
         );
     });

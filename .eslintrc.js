@@ -43,6 +43,7 @@ module.exports = {
     "linebreak-style": 0,
     "jest/expect-expect": "off",
     "import/no-extraneous-dependencies": "off",
+    "no-script-url": "off",
     "default-case": "off"
   }
 };

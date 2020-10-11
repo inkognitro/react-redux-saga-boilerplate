@@ -1,26 +1,20 @@
 import React, { FC } from "react";
+import { useDispatch } from 'react-redux';
 import styled from "styled-components";
-import { Toast as ToastData } from "../../domain";
+import { createRemoveMessage, Toast as ToastData } from "../../domain";
 import { Toast } from "./toast";
 
 const StyledToastsContainer = styled.div`
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 0;
 `;
 
-export type ToasterState = {
-    toasts: ToastData[]
-};
-
-export type ToasterCallbacks = {
-    onRemoveMessage(messageId: string): void;
-};
-
-export type ToasterProps = ToasterState & ToasterCallbacks;
+export type ToasterProps = { toasts: ToastData[] }
 
 export const Toaster: FC<ToasterProps> = (props) => {
+    const dispatch = useDispatch();
     const { toasts } = props;
     return (
         <StyledToastsContainer>
@@ -28,7 +22,7 @@ export const Toaster: FC<ToasterProps> = (props) => {
                 <Toast
                     key={toast.id}
                     toast={toast}
-                    onRemoveMessage={(messageId: string) => props.onRemoveMessage(messageId)}
+                    onRemoveMessage={(messageId: string) => dispatch(createRemoveMessage(messageId))}
                 />
             ))}
         </StyledToastsContainer>
