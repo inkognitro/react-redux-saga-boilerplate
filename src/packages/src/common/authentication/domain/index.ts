@@ -2,8 +2,10 @@ import {
     AuthState as AuthStateType,
     AuthStateSelector as AuthStateSelectorType,
     LoginResult as LoginResultType,
+    CurrentUserStorage as CurrentUserStorageType,
 } from './types';
 
+export type CurrentUserStorage = CurrentUserStorageType;
 export type AuthStateSelector = AuthStateSelectorType;
 export type AuthState = AuthStateType;
 export type LoginResult = LoginResultType;
