@@ -44,6 +44,7 @@ module.exports = {
     "jest/expect-expect": "off",
     "import/no-extraneous-dependencies": "off",
     "no-script-url": "off",
+    "jsx-a11y/anchor-is-valid": "off",
     "default-case": "off"
   }
 };

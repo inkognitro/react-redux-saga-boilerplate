@@ -23,7 +23,7 @@ type FunctionalLinkProps = {
 export const FunctionalLink: FC<FunctionalLinkProps> = (props) => (
     <StyledLink
         className={props.className}
-        href={props.url ? props.url : "#"}
+        href={props.url ? props.url : ''}
         onClick={(event) => {
             event.preventDefault();
             if (props.onClick) {
@@ -35,24 +35,32 @@ export const FunctionalLink: FC<FunctionalLinkProps> = (props) => (
     </StyledLink>
 );
 
-export type RouteLinkProps = {
+export enum LinkTargets {
+    BLANK = '_blank',
+}
+
+export type LinkProps = {
     url: string
+    target?: LinkTargets,
     children: any
     className?: string
 }
 
-export const RouteLink: FC<RouteLinkProps> = (props) => {
+export const Link: FC<LinkProps> = (props) => {
     const history = useHistory();
     return (
-        <StyledLink
+        <FunctionalLink
             className={props.className}
-            href={props.url ? props.url : 'javascript:void(0);'}
-            onClick={(event) => {
-                event.preventDefault();
+            url={props.url}
+            onClick={() => {
+                if (props.target === LinkTargets.BLANK) {
+                    window.open(props.url, LinkTargets.BLANK);
+                    return;
+                }
                 history.push(props.url);
             }}
         >
             {props.children}
-        </StyledLink>
+        </FunctionalLink>
     );
 };

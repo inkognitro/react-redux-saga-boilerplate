@@ -17,7 +17,7 @@ export type Message = {
     id: string
     canBeClosedManually: boolean
     automaticCloseDelayInMs: null | number
-    content: Translation
+    content: Translation | string
     isIntroAnimationRunning?: boolean
     isOutroAnimationRunning?: boolean
 };

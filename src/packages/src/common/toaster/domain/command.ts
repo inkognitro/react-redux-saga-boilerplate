@@ -25,7 +25,7 @@ export function createShowMessage(settings: ShowMessageSettings): ShowMessage {
 export type ShowMessageSettings = {
     id?: string
     toastType: ToastTypes
-    content: Translation
+    content: Translation | string
     canBeClosedManually?: boolean
     automaticCloseDelayInMs?: null | number
     mustBeShownInSeparateToast?: boolean

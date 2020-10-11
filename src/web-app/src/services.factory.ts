@@ -48,7 +48,7 @@ import {
     HttpApiV1StateSelector,
 } from "packages/common/http-api-v1/domain";
 import { createHttpApiV1ToasterSaga } from "packages/common/http-api-v1-toaster/domain";
-import { pagesReducer, PagesState } from "web-app/pages/services";
+import {createPagesSaga, pagesReducer, PagesState} from "web-app/pages/services";
 import { BrowserCurrentUserStorage } from "packages/common/authentication/infrastructure";
 
 export type AppServices = {
@@ -105,6 +105,7 @@ function createRootSaga(httpRequestDispatcher: HttpRequestDispatcher): () => Gen
     const httpApiV1StateSelector: HttpApiV1StateSelector = (state: RootState) => state.httpApiV1;
     const httpApiV1Saga = createHttpApiV1Saga(httpApiV1StateSelector, authStateSelector);
     const httpApiV1ToasterSaga = createHttpApiV1ToasterSaga();
+    const pagesSaga = createPagesSaga();
     return function* rootSaga(): Generator {
         yield spawn(translatorSaga);
         yield spawn(loaderSaga);
@@ -113,6 +114,7 @@ function createRootSaga(httpRequestDispatcher: HttpRequestDispatcher): () => Gen
         yield spawn(httpFoundationSaga);
         yield spawn(httpApiV1Saga);
         yield spawn(httpApiV1ToasterSaga);
+        yield spawn(pagesSaga);
     };
 }
 

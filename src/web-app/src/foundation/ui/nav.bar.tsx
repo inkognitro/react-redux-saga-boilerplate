@@ -10,7 +10,7 @@ import { UserLabel } from "packages/common/types/user/ui/web";
 import { TranslatedText } from "packages/common/translator/ui/web";
 import { TranslationIds } from "packages/common/types/util/domain";
 import { useAuthState } from "packages/common/authentication/ui";
-import { FunctionalLink, RouteLink } from "packages/common/layout-foundation/ui/web";
+import { FunctionalLink, Link } from "packages/common/layout-foundation/ui/web";
 import { createHomeUrl, createLoginUrl } from "web-app/app.routing";
 
 const AuthLink: FC = () => {
@@ -40,9 +40,9 @@ const AuthLink: FC = () => {
     }
     return (
         <li className="nav-item">
-            <RouteLink className="nav-link" url={createLoginUrl()}>
+            <Link className="nav-link" url={createLoginUrl()}>
                 Login
-            </RouteLink>
+            </Link>
         </li>
     );
 };
@@ -50,9 +50,9 @@ const AuthLink: FC = () => {
 export const NavBar: FC = () => (
     <ul className="nav justify-content-center">
         <li className="nav-item">
-            <RouteLink className="nav-link" url={createHomeUrl()}>
+            <Link className="nav-link" url={createHomeUrl()}>
                 Home
-            </RouteLink>
+            </Link>
         </li>
         <AuthLink />
     </ul>

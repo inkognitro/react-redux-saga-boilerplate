@@ -87,12 +87,19 @@ export class Message extends Component<MessageProps> {
         );
     }
 
+    renderContent() {
+        if (typeof this.props.message.content === 'string') {
+            return this.props.message.content;
+        }
+        return (<TranslatedText translation={this.props.message.content} />);
+    }
+
     render() {
         return (
             <StyledMessage ref={(element: HTMLDivElement) => { this.message = element; }}>
                 <StyledMessageContent>
                     {this.renderCloseIcon()}
-                    <TranslatedText translation={this.props.message.content} />
+                    {this.renderContent()}
                 </StyledMessageContent>
             </StyledMessage>
         );

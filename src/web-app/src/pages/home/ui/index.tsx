@@ -1,53 +1,90 @@
 import React, { FC } from "react";
-import { useSelector } from 'react-redux';
-// import { ToastTypes } from "packages/common/toaster/domain";
-// import { FormGroup, Label } from "packages/common/form-element/ui/web";
-// import { ContentPage } from "web-app/foundation/ui";
+import { useDispatch, useSelector } from 'react-redux';
+import { createShowMessage, ToastTypes } from "packages/common/toaster/domain";
+import { ContentPage } from "web-app/foundation/ui";
 import { RootState } from "web-app/services.factory";
+import { FunctionalLink, Link, LinkTargets } from "packages/common/layout-foundation/ui/web";
+import {createLeakReduxState} from "web-app/pages/home/domain";
 
 export const HomePage: FC = () => {
-    const toastContent = useSelector((state: RootState) => state.pages.homePage.toastContent);
-    return (
-        <>
-            ToastContent:
-            {JSON.stringify(toastContent)}
-        </>
-    );
-    /*
+    const dispatch = useDispatch();
+    const toastContentValue = useSelector((state: RootState) => state.pages.homePage.toastContent.value);
     return (
         <ContentPage>
             <h3>Routing</h3>
             <div>
-                <RouteLink url="/some-page-which-does-not-exist">
-                    go to non existing page
-                </RouteLink>
+                <Link url="/some-page-which-does-not-exist">go to non existing page</Link>
             </div>
 
-            <br/>
+            <br />
             <h3>Toasts</h3>
             <div>
-                <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.SUCCESS, props.toastContentField.value)}>
+                <FunctionalLink
+                    onClick={() => dispatch(createShowMessage({
+                        toastType: ToastTypes.SUCCESS,
+                        content: toastContentValue,
+                    }))}
+                >
                     add a success toast message
                 </FunctionalLink>
                 {' '}
                 (is being closed after 3 seconds)
             </div>
             <div>
-                <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.INFO, props.toastContentField.value)}>
-                    add an info toast message
+                <FunctionalLink
+                    onClick={() => dispatch(createShowMessage({
+                        toastType: ToastTypes.INFO,
+                        content: toastContentValue,
+                    }))}
+                >
+                    add a info toast message
                 </FunctionalLink>
             </div>
             <div>
-                <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.WARNING, props.toastContentField.value)}>
+                <FunctionalLink
+                    onClick={() => dispatch(createShowMessage({
+                        toastType: ToastTypes.WARNING,
+                        content: toastContentValue,
+                    }))}
+                >
                     add a warning toast message
                 </FunctionalLink>
             </div>
             <div>
-                <FunctionalLink onClick={(): void => props.onAddToast(ToastTypes.ERROR, props.toastContentField.value)}>
-                    add an error toast message
+                <FunctionalLink
+                    onClick={() => dispatch(createShowMessage({
+                        toastType: ToastTypes.ERROR,
+                        content: toastContentValue,
+                    }))}
+                >
+                    add a error toast message
                 </FunctionalLink>
             </div>
 
+            <br />
+            <h3>Redux</h3>
+            <div>
+                Download
+                {' '}
+                <Link
+                    url="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd"
+                    target={LinkTargets.BLANK}
+                >
+                    Redux DevTools
+                </Link>
+                {' '}
+                for a better developer experience or
+                {' '}
+                <FunctionalLink onClick={() => dispatch(createLeakReduxState())}>
+                    leak redux state in console
+                </FunctionalLink>
+            </div>
+        </ContentPage>
+    );
+
+    /*
+    return (
+        <ContentPage>
             <br/>
             <FormGroup>
                 <InputGroup
@@ -66,24 +103,6 @@ export const HomePage: FC = () => {
                 </small>
             </FormGroup>
 
-            <br/>
-            <h3>Redux</h3>
-            <div>
-                Download
-                {' '}
-                <RouteLink
-                    url="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd"
-                    target="_blank"
-                >
-                    Redux DevTools
-                </RouteLink>
-                {' '}
-                for a better developer experience or
-                {' '}
-                <FunctionalLink onClick={props.onClickLeakReduxState}>
-                    leak redux state in console
-                </FunctionalLink>
-            </div>
         </ContentPage>
     );
     */
