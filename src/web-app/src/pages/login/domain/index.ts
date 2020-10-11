@@ -6,4 +6,4 @@ export type Login = LoginType;
 
 export { createLogin, createInitialize } from "./command";
 export { loginPageReducer } from './reducer';
-export { createLoginPageSaga } from './saga/flow';;
+export { createLoginPageSaga } from './saga/flow'; ;

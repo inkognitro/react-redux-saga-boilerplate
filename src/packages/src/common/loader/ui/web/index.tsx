@@ -24,6 +24,7 @@ export type LoaderProps = { isVisible: boolean }
 
 export class Loader extends Component<LoaderProps> {
     private fadeInAnimation: TimelineLite;
+
     private loader: HTMLDivElement;
 
     componentDidMount() {

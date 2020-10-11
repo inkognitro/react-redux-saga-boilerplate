@@ -1,6 +1,6 @@
 import { Event } from "packages/common/types/util/domain";
 import { AuthenticatedAuthUser, AuthUser } from "packages/common/types/auth-user/domain";
-import {LoginErrorResult, LoginSuccessResult} from "./types";
+import { LoginErrorResult, LoginSuccessResult } from "./types";
 
 export enum AuthEventTypes {
     CURRENT_USER_WAS_INITIALIZED = "CURRENT_USER_WAS_INITIALIZED-42db2e56-7772-436f-91bc-17b2ba6798a1",
