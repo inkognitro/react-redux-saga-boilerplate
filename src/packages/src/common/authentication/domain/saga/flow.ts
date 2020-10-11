@@ -1,6 +1,6 @@
 import {
-    call, cancelled, delay, put, race, select, spawn, fork, cancel, take,
-} from "@redux-saga/core/effects";
+    call, cancelled, delay, put, race, select, spawn, take,
+} from "redux-saga/effects";
 import { AuthenticatedAuthUser, AuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
 import {
     AuthenticateResult,
@@ -26,14 +26,15 @@ import {
 import { AuthCommandTypes, Login } from "../command";
 import { findSecondsUntilExpiration } from "../jwt.handling";
 
-const authRefreshIntervalInMs = 5000;
+const checkForAuthRefreshEveryMs = 60000;
+const maxDifferenceBetweenRefreshToExpirationInMs = 10000;
 function* executeAuthRefreshInterval(
     authStateSelector: AuthStateSelector,
     currentUserStorage: CurrentUserStorage,
     startImmediately: boolean,
 ): Generator {
     if (!startImmediately) {
-        yield delay(authRefreshIntervalInMs);
+        yield delay(checkForAuthRefreshEveryMs);
     }
     while (true) {
         // @ts-ignore
@@ -42,11 +43,16 @@ function* executeAuthRefreshInterval(
         if (currentUser.type !== AuthUserTypes.AUTHENTICATED_USER) {
             return;
         }
-        if (findSecondsUntilExpiration(currentUser.token) < 0) {
-            console.log('secondsUntilExpiration: ' + findSecondsUntilExpiration(currentUser.token));
+        const secondsUntilExpiration = findSecondsUntilExpiration(currentUser.token);
+        if (secondsUntilExpiration !== null && secondsUntilExpiration <= 0) {
             yield put(createUserAuthenticationRefreshFailed());
             currentUserStorage.remove();
             return;
+        }
+        const maxDelayUntilRefresh = (checkForAuthRefreshEveryMs + maxDifferenceBetweenRefreshToExpirationInMs) / 1000;
+        if (secondsUntilExpiration !== null && secondsUntilExpiration > maxDelayUntilRefresh) {
+            yield delay(checkForAuthRefreshEveryMs);
+            continue;
         }
         // @ts-ignore
         const result: AuthenticationRefreshResult = yield callRefreshAuthenticationEndpoint({
@@ -64,7 +70,7 @@ function* executeAuthRefreshInterval(
         };
         currentUserStorage.save(newCurrentUser);
         yield put(createAuthenticationWasRefreshed(newCurrentUser, currentUser));
-        yield delay(authRefreshIntervalInMs);
+        yield delay(checkForAuthRefreshEveryMs);
     }
 }
 
@@ -126,18 +132,16 @@ function* authenticationFlow(
     yield call(initializeCurrentUser, currentUserStorage);
     let startImmediately = true;
     while (true) {
-        const refreshTask = yield fork(
-            executeAuthRefreshInterval,
-            authStateSelector,
-            currentUserStorage,
-            startImmediately,
-        );
         yield race({
+            refreshTask: call(
+                executeAuthRefreshInterval,
+                authStateSelector,
+                currentUserStorage,
+                startImmediately,
+            ),
             loginTask: call(watchLogin, currentUserStorage),
             logoutTask: call(watchLogout, authStateSelector, currentUserStorage),
         });
-        // @ts-ignore
-        cancel(refreshTask);
         startImmediately = false;
     }
 }

@@ -20,7 +20,7 @@ export function createPseudoJWT(userId: string): string {
     };
     const payload = {
         iat: Math.floor(Date.now() / 1000),
-        exp: Math.floor(Date.now() / 1000) + 30,
+        exp: Math.floor(Date.now() / 1000) + 120,
         sub: userId,
         jti: uuidV4(),
     };
