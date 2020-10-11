@@ -6,5 +6,5 @@ it is recommended to list documentation parts for every package here.
 Each documentation should live in the corresponding codebase.
 
 ## Packages
-- [packages/common/README.md](../src/packages/src/common/README.md)
+- [common](../src/packages/src/common/README.md) - modules to use over multiple applications
 
