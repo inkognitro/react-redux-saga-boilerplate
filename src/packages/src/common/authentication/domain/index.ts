@@ -13,6 +13,6 @@ export type LoginResult = LoginResultType;
 export { createAuthenticationSaga } from './saga/flow';
 export { logout, login } from './saga/effect';
 export { authenticationReducer, initialAuthState } from './reducer';
-export { createLogout } from './command';
+export { createLogout, createLogin } from './command';
 export { getCurrentAuthUser, isCurrentUserInitializationRunning } from './query';
 export { createPseudoJWT } from './jwt.handling';
