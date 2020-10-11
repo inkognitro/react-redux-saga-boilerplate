@@ -7,13 +7,14 @@ type Payload = {
     jti: string
 }
 
+function getBase64WithoutEqualSignsInTheEnd (base64String: string): string {
+    return base64String
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+}
+
 export function createPseudoJWT(userId: string): string {
-    const getBase64WithoutEqualSignsInTheEnd = (base64String: string): string => {
-        return base64String
-            .replace(/\+/g, '-')
-            .replace(/\//g, '_')
-            .replace(/\=+$/, '');
-    };
     const header = {
         alg: 'HS256',
         typ: 'JWT',
