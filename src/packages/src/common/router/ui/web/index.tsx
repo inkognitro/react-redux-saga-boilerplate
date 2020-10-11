@@ -3,6 +3,8 @@ import { Route as ReactRoute, Router as ReactRouter, Switch } from "react-router
 import { History } from "history";
 import { AuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
 
+// todo: implement redirects as well: e.g. redirect from login page to home if user is already logged in.
+
 export type Route = {
     path: string
     exact: boolean
