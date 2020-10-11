@@ -97,7 +97,13 @@ export const HomePage: FC = () => {
             <br />
             <h3>Login test</h3>
             <div>
-                <FunctionalLink onClick={() => dispatch(createLogin({ username: '', password: '', shouldRemember: true }))}>
+                <FunctionalLink
+                    onClick={() => dispatch(createLogin({
+                        username: 'nagato',
+                        password: '1234',
+                        shouldRemember: true,
+                    }))}
+                >
                     trigger login programmatically
                 </FunctionalLink>
             </div>
