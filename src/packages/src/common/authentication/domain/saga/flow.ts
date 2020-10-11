@@ -24,6 +24,7 @@ import {
     AuthState, AuthStateSelector, CurrentUserStorage, LoginSuccessResult,
 } from "../types";
 import { AuthCommandTypes, Login } from "../command";
+import { getSecondsUntilExpiration } from "../jwt.handling";
 
 const authRefreshIntervalInMs = 30000;
 function* executeAuthRefreshInterval(
@@ -39,6 +40,10 @@ function* executeAuthRefreshInterval(
         const state: AuthState = yield select(authStateSelector);
         const currentUser = getCurrentAuthUser(state);
         if (currentUser.type !== AuthUserTypes.AUTHENTICATED_USER) {
+            return;
+        }
+        if (getSecondsUntilExpiration(currentUser.token) < 0) {
+            yield put(createUserAuthenticationRefreshFailed());
             return;
         }
         // @ts-ignore

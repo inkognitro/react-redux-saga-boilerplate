@@ -4,11 +4,11 @@ import {
 } from "packages/common/date.time.handling";
 
 type Payload = {
-  iat: number;
-  exp: number;
-  sub: string;
-  jti: string;
-};
+    iat: number
+    exp: number
+    sub: string
+    jti: string
+}
 
 export function getSecondsUntilExpiration(jwt: string): number {
     const expirationUtcDateTime = getExpirationUTCDateTime(jwt);
