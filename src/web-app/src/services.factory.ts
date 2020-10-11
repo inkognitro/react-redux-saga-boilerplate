@@ -48,7 +48,9 @@ import {
     HttpApiV1StateSelector,
 } from "packages/common/http-api-v1/domain";
 import { createHttpApiV1ToasterSaga } from "packages/common/http-api-v1-toaster/domain";
-import {createPagesSaga, pagesReducer, PagesState, PagesStateSelector} from "web-app/pages/services";
+import {
+    createPagesSaga, pagesReducer, PagesState, PagesStateSelector,
+} from "web-app/pages/services";
 import { BrowserCurrentUserStorage } from "packages/common/authentication/infrastructure";
 
 export type AppServices = {

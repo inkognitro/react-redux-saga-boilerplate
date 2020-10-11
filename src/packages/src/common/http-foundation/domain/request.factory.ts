@@ -30,6 +30,6 @@ function createHttpRequest(settings: CreationSettings, method: RequestMethods): 
         queryParameters: {},
         headers: {},
         body: {},
-        ...settings
+        ...settings,
     };
 }
