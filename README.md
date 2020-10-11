@@ -28,7 +28,7 @@ Below the common features are listed. Followed additional features are divided i
 1. Basic [JWT](http://jwt.io) authentication:
     - JWT `exp` in UTC time, see `mock.http.request.dispatcher.ts` as the mock for several endpoints in dev mode
     - automatic token refresh, see `src/packages/src/common/authentication/domain/flow.ts`
-    - ideally the authentication server responds with the `[jwtHeader].[jwtSecret]`-httpOnly-cookie and `[jwtPayload]` in the response body, to be protected against XSS and CSRF attacks.
+    - ideally the authentication server responds with the `[jwtSecret]` cookie (`httpOnly` and `sameSite`) and `[jwtHeader].[jwtPayload]` in the response body, to be protected against XSS and CSRF attacks.
     - auth user generally saved at session storage, when required also at local storage - according to remember me flag
     - auth user type visible at `/src/packages/src/common/types/auth-user/domain/types.ts`
 2. Toasts integration:
