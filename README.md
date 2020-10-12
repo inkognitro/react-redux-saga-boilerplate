@@ -48,18 +48,17 @@ To fully understand this project you should be familiar with the technologies be
 ### Web app
 1. Bootstrap 4 SCSS and [material icons](http://material.io/resources/icons/) integration
 2. Styling with [styled-components](http://styled-components.com/)
-3. 
-5. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) and paste the content of `.browserslistrc`.
+3. Dynamic browser support. Have a look at [browsersl.ist](http://browsersl.ist/) (paste the content of `.browserslistrc`)
     
 ### Mobile app
 The purpose of the mobile app is a demonstration of using domain layer code in another view environment.
-This was achieved by a small implementation in of the `packages/common/toaster` module.
+This was achieved by a small react native implementation of the `packages/common/toaster` module.
 
 ## Documentation
-- [environment](docs/environment.md): Installation, development start, scripts
-- [architecture](docs/architecture.md): Architecture and code structure.
-- [coding guidelines](docs/coding.guidelines.md): Please don't mess up this project.
-- [module documentations](docs/api.docs.md): Documentation of modules.
+- [environment](docs/environment.md) - installation, development start, scripts
+- [architecture](docs/architecture.md) - architecture and code structure
+- [coding guidelines](docs/coding.guidelines.md) - please don't mess up this project
+- [api documentations](docs/api.docs.md) - documentation for developers
 
 ## Appreciation
-Many thanks to the awesome [Dan Abramov](http://github.com/gaearon), for redux and the [ingeniously great redux video tutorial](https://egghead.io/courses/getting-started-with-redux).
+Many thanks to the awesome react community.
