@@ -1,9 +1,9 @@
 export enum RequestMethods {
-    GET = "GET",
-    POST = "POST",
-    PUT = "PUT",
-    PATCH = "PATCH",
-    DELETE = "DELETE",
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    PATCH = 'PATCH',
+    DELETE = 'DELETE',
 }
 
 export enum HttpStatusCodes {
@@ -13,26 +13,26 @@ export enum HttpStatusCodes {
 }
 
 export type Response<B extends object = {}> = {
-    headers: { statusCode: number }
-    body: B
-}
+    headers: { statusCode: number };
+    body: B;
+};
 
 export type Request<Q extends object = {}, B extends object = {}, H extends object = {}> = {
-    id: string
-    method: RequestMethods
-    url: string
-    headers: H
-    queryParameters: Q
-    body: B
-}
+    id: string;
+    method: RequestMethods;
+    url: string;
+    headers: H;
+    queryParameters: Q;
+    body: B;
+};
 
 export type RequestResponse<R extends Response = any> = {
-    request: Request
-    response: R | undefined
+    request: Request;
+    response: R | undefined;
 };
 
 export type HttpFoundationState = {
-    runningRequests: Request[]
+    runningRequests: Request[];
 };
 
 export type HttpFoundationStateSelector<State = any> = (state: State) => HttpFoundationState;

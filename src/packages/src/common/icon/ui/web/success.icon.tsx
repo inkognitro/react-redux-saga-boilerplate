@@ -1,10 +1,6 @@
-import React, { FC } from "react";
-import DoneIcon from "@material-ui/icons/Done";
-import {
-    CommonIconProps,
-    createBaseIconProps,
-    createStyledIcon,
-} from "./icon";
+import React, { FC } from 'react';
+import DoneIcon from '@material-ui/icons/Done';
+import { CommonIconProps, createBaseIconProps, createStyledIcon } from './icon';
 
 export type SuccessIconProps = CommonIconProps;
 

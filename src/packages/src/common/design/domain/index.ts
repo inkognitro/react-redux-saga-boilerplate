@@ -9,5 +9,5 @@ export type DesignStateSelector = DesignStateSelectorType;
 export type Theme = ThemeType;
 
 export { designReducer } from './reducer';
-export { getDefaultTheme } from "./query";
-export { getTheme } from "./query";
+export { getDefaultTheme } from './query';
+export { getTheme } from './query';

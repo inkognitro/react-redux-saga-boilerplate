@@ -1,10 +1,6 @@
-import React, { FunctionComponent } from "react";
-import MaterialCloseIcon from "@material-ui/icons/Close";
-import {
-    CommonIconProps,
-    createBaseIconProps,
-    createStyledIcon,
-} from "./icon";
+import React, { FunctionComponent } from 'react';
+import MaterialCloseIcon from '@material-ui/icons/Close';
+import { CommonIconProps, createBaseIconProps, createStyledIcon } from './icon';
 
 export type CloseIconProps = CommonIconProps;
 

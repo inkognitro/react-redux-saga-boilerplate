@@ -1,17 +1,14 @@
 import { v4 as uuidV4 } from 'uuid';
 
 type Payload = {
-    iat: number
-    exp: number
-    sub: string
-    jti: string
-}
+    iat: number;
+    exp: number;
+    sub: string;
+    jti: string;
+};
 
-function getBase64WithoutEqualSignsInTheEnd (base64String: string): string {
-    return base64String
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
+function getBase64WithoutEqualSignsInTheEnd(base64String: string): string {
+    return base64String.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
 export function createPseudoJWT(userId: string): string {
@@ -35,14 +32,14 @@ export function findSecondsUntilExpiration(jwt: string): null | number {
     if (expirationTimestamp === undefined) {
         return null;
     }
-    return (expirationTimestamp - getNowTimestamp());
+    return expirationTimestamp - getNowTimestamp();
 }
 
 function getNowTimestamp(): number {
     return Math.floor(Date.now() / 1000);
 }
 
-function findExpirationUTCTimestamp(jwt: string): (undefined | number) {
+function findExpirationUTCTimestamp(jwt: string): undefined | number {
     const payload = getPayloadFromToken(jwt);
     return payload.exp;
 }
@@ -53,9 +50,9 @@ function getPayloadFromToken(jwt: string): Payload {
 }
 
 function getBase64Payload(jwt: string): string {
-    return getCleanBase64String(jwt.split(".")[1]);
+    return getCleanBase64String(jwt.split('.')[1]);
 }
 
 function getCleanBase64String(base64JwtPart: string): string {
-    return base64JwtPart.replace("-", "+").replace("_", "/");
+    return base64JwtPart.replace('-', '+').replace('_', '/');
 }

@@ -1,13 +1,13 @@
-import { put, take } from "redux-saga/effects";
-import { Request, RequestResponse, Response } from "../types";
-import { createSendRequest } from "../command";
+import { put, take } from 'redux-saga/effects';
+import { Request, RequestResponse, Response } from '../types';
+import { createSendRequest } from '../command';
 import {
     HttpFoundationEventTypes,
     RequestWasCancelled,
     RequestWasNotSent,
     ResponseCouldNotBeReceived,
     ResponseWasReceived,
-} from "../event";
+} from '../event';
 
 const executionEndiingEventTypes = [
     HttpFoundationEventTypes.REQUEST_WAS_NOT_SENT,
@@ -16,7 +16,7 @@ const executionEndiingEventTypes = [
     HttpFoundationEventTypes.RESPONSE_WAS_RECEIVED,
 ];
 
-type ExecutionEndingEvent = (RequestWasNotSent | RequestWasCancelled | ResponseCouldNotBeReceived | ResponseWasReceived)
+type ExecutionEndingEvent = RequestWasNotSent | RequestWasCancelled | ResponseCouldNotBeReceived | ResponseWasReceived;
 
 export function* executeRequest<R extends Response = any>(request: Request): Generator {
     yield put(createSendRequest(request));

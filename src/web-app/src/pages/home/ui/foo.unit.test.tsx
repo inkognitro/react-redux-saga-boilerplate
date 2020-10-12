@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import renderer from 'react-test-renderer';
 
-const Foo: FC = () => (<>Foo</>);
+const Foo: FC = () => <>Foo</>;
 
-describe("Foo", () => {
+describe('Foo', () => {
     it('renders correctly', () => {
         renderer.create(<Foo />);
     });

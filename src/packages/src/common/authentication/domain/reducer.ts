@@ -1,5 +1,5 @@
-import { AnonymousAuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
-import { AuthState } from "./types";
+import { AnonymousAuthUser, AuthUserTypes } from 'packages/common/types/auth-user/domain';
+import { AuthState } from './types';
 import {
     AuthEventTypes,
     AuthenticationRefreshFailed,
@@ -10,18 +10,17 @@ import {
     UserWasLoggedOut,
     CurrentUserWasInitialized,
     CurrentUserCouldNotBeInitialized,
-} from "./event";
+} from './event';
 
-export type AuthEvent = (
-    AuthenticationRefreshFailed
+export type AuthEvent =
+    | AuthenticationRefreshFailed
     | LoginWasCancelled
     | LoginFailed
     | AuthenticationWasRefreshed
     | UserWasLoggedIn
     | UserWasLoggedOut
     | CurrentUserWasInitialized
-    | CurrentUserCouldNotBeInitialized
-);
+    | CurrentUserCouldNotBeInitialized;
 
 const anonymousUser: AnonymousAuthUser = {
     type: AuthUserTypes.ANONYMOUS,
@@ -32,20 +31,24 @@ export const initialAuthState: AuthState = {
     currentUser: anonymousUser,
 };
 
-export function authenticationReducer(
-    state: AuthState = initialAuthState,
-    event?: AuthEvent,
-): AuthState {
+export function authenticationReducer(state: AuthState = initialAuthState, event?: AuthEvent): AuthState {
     if (!event) {
         return state;
     }
     switch (event.type) {
         case AuthEventTypes.CURRENT_USER_WAS_INITIALIZED:
-            return { ...state, currentUser: event.payload.authUser, isInitializationRunning: false };
+            return {
+                ...state,
+                currentUser: event.payload.authUser,
+                isInitializationRunning: false,
+            };
         case AuthEventTypes.CURRENT_USER_COULD_NOT_BE_INITIALIZED:
             return { ...state, isInitializationRunning: false };
         case AuthEventTypes.USER_WAS_LOGGED_IN:
-            return { ...state, currentUser: event.payload.result.data.authUser };
+            return {
+                ...state,
+                currentUser: event.payload.result.data.authUser,
+            };
         case AuthEventTypes.AUTHENTICATION_WAS_REFRESHED:
             return { ...state, currentUser: event.payload.authUser };
         case AuthEventTypes.AUTHENTICATION_REFRESH_FAILED:

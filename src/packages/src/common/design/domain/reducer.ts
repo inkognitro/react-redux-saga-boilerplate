@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
-import { DesignState } from "./types";
-import { getDefaultTheme } from "./query";
+import { DesignState } from './types';
+import { getDefaultTheme } from './query';
 
 const initialDesignState: DesignState = {
     theme: getDefaultTheme(),

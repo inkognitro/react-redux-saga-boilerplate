@@ -1,17 +1,17 @@
-import React, { FC } from "react";
-import { useDispatch } from "react-redux";
+import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import {
     getCurrentAuthUser,
     isCurrentUserInitializationRunning,
     createLogout,
-} from "packages/common/authentication/domain";
-import { AuthUserTypes } from "packages/common/types/auth-user/domain";
-import { UserLabel } from "packages/common/types/user/ui/web";
-import { TranslatedText } from "packages/common/translator/ui/web";
-import { TranslationIds } from "packages/common/types/util/domain";
-import { useAuthState } from "packages/common/authentication/ui";
-import { FunctionalLink, Link } from "packages/common/layout-foundation/ui/web";
-import { createHomeUrl, createLoginUrl } from "web-app/app.routing";
+} from 'packages/common/authentication/domain';
+import { AuthUserTypes } from 'packages/common/types/auth-user/domain';
+import { UserLabel } from 'packages/common/types/user/ui/web';
+import { TranslatedText } from 'packages/common/translator/ui/web';
+import { TranslationIds } from 'packages/common/types/util/domain';
+import { useAuthState } from 'packages/common/authentication/ui';
+import { FunctionalLink, Link } from 'packages/common/layout-foundation/ui/web';
+import { createHomeUrl, createLoginUrl } from 'web-app/app.routing';
 
 const AuthLink: FC = () => {
     const dispatch = useDispatch();
@@ -31,9 +31,7 @@ const AuthLink: FC = () => {
         return (
             <li className="nav-item">
                 <FunctionalLink className="nav-link" onClick={() => dispatch(createLogout())}>
-                    <UserLabel user={currentUser.user} />
-                    {' '}
-                    :: Logout
+                    <UserLabel user={currentUser.user} /> :: Logout
                 </FunctionalLink>
             </li>
         );

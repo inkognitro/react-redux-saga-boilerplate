@@ -2,7 +2,7 @@ import {
     AuthUser as AuthUserType,
     AuthenticatedAuthUser as AuthenticatedAuthUserType,
     AnonymousAuthUser as AnonymousAuthUserType,
-} from "./types";
+} from './types';
 
 export type AuthUser = AuthUserType;
 export type AuthenticatedAuthUser = AuthenticatedAuthUserType;

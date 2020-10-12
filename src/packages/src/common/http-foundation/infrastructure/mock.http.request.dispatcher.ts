@@ -1,8 +1,8 @@
-import { ApiV1Response } from "packages/common/http-api-v1/domain";
-import { MessageTypes } from "packages/common/types/util/domain";
-import { MinimalUser } from "packages/common/types/user/domain";
-import { createPseudoJWT } from "packages/common/authentication/domain";
-import { HttpRequestDispatcher, Request, RequestResponse } from "../domain/types";
+import { ApiV1Response } from 'packages/common/http-api-v1/domain';
+import { MessageTypes } from 'packages/common/types/util/domain';
+import { MinimalUser } from 'packages/common/types/user/domain';
+import { createPseudoJWT } from 'packages/common/authentication/domain';
+import { HttpRequestDispatcher, Request, RequestResponse } from '../domain/types';
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(request: Request): Promise<RequestResponse> {
@@ -19,18 +19,18 @@ export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
 
 function createResponseByRequest(request: Request): ApiV1Response {
     if (
-        request.url === (`/auth/authenticate`)
+        request.url === `/auth/authenticate` &&
         // @ts-ignore
-        && request.body.username === 'nagato'
+        request.body.username === 'nagato' &&
         // @ts-ignore
-        && request.body.password === '1234'
+        request.body.password === '1234'
     ) {
         return createSuccessLoginResponse();
     }
-    if (request.url === (`/auth/authenticate`)) {
+    if (request.url === `/auth/authenticate`) {
         return createErrorLoginResponse();
     }
-    if (request.url === (`/auth/refresh`)) {
+    if (request.url === `/auth/refresh`) {
         return createValidAuthenticationRefreshResponse();
     }
     return createErrorLoginResponse();
@@ -59,10 +59,9 @@ function createErrorLoginResponse(): ApiV1Response {
                         type: MessageTypes.ERROR,
                         content: {
                             translationId: 'bar123',
-                            fallback: (
-                                'This is just a test error message.'
-                                + ' Normally you should not provide such hints in login forms!'
-                            ),
+                            fallback:
+                                'This is just a test error message.' +
+                                ' Normally you should not provide such hints in login forms!',
                         },
                     },
                     path: ['username'],
@@ -72,7 +71,9 @@ function createErrorLoginResponse(): ApiV1Response {
     };
 }
 
-function createSuccessLoginResponse(): ApiV1Response<{ data: { token: string, user: MinimalUser } }> {
+function createSuccessLoginResponse(): ApiV1Response<{
+    data: { token: string; user: MinimalUser };
+}> {
     return {
         headers: {
             statusCode: 200,
@@ -93,14 +94,16 @@ function createSuccessLoginResponse(): ApiV1Response<{ data: { token: string, us
                 token: createPseudoJWT('1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b'),
                 user: {
                     id: '1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b',
-                    username: "Nagato (initial)",
+                    username: 'Nagato (initial)',
                 },
             },
         },
     };
 }
 
-function createValidAuthenticationRefreshResponse(): ApiV1Response<{ data: { token: string, user: MinimalUser } }> {
+function createValidAuthenticationRefreshResponse(): ApiV1Response<{
+    data: { token: string; user: MinimalUser };
+}> {
     return {
         headers: {
             statusCode: 200,
@@ -111,8 +114,8 @@ function createValidAuthenticationRefreshResponse(): ApiV1Response<{ data: { tok
             data: {
                 token: createPseudoJWT('1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b'),
                 user: {
-                    id: "1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b",
-                    username: "Nagato (refreshed)",
+                    id: '1f61d5cd-eedd-4edc-9b3f-ffa1b5142d6b',
+                    username: 'Nagato (refreshed)',
                 },
             },
         },

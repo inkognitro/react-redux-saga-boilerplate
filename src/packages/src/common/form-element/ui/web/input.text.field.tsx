@@ -1,44 +1,43 @@
-import React, { FC, ReactNode } from "react";
-import { useDispatch } from "react-redux";
+import React, { FC, ReactNode } from 'react';
+import { useDispatch } from 'react-redux';
 import {
     FormElementTypes,
     TextFieldState,
     PasswordFieldState,
     EmailFieldState,
     createFormElementStateWasChanged,
-} from "../../domain";
-import { Messages } from "./messages";
+} from '../../domain';
+import { Messages } from './messages';
 
-type InputFieldState = (TextFieldState | PasswordFieldState | EmailFieldState)
+type InputFieldState = TextFieldState | PasswordFieldState | EmailFieldState;
 
 function createHtmlInputTypeByTextFieldType(type: FormElementTypes): string {
     if (type === FormElementTypes.TEXT) {
-        return "text";
+        return 'text';
     }
     if (type === FormElementTypes.PASSWORD) {
-        return "password";
+        return 'password';
     }
     if (type === FormElementTypes.EMAIL) {
-        return "email";
+        return 'email';
     }
     throw new Error(`Form element type "${type}" not supported!`);
 }
 
 type InputFieldProps<D extends InputFieldState> = {
-    data: D
-    label?: ReactNode
-}
+    data: D;
+    label?: ReactNode;
+};
 
 type InternalInputFieldProps<D extends InputFieldState = any> = InputFieldProps<D> & {
-    onChange: (stateChanges: Partial<D>) => void
-    data: D
-}
+    onChange: (stateChanges: Partial<D>) => void;
+    data: D;
+};
 
 const InternalInputField: FC<InternalInputFieldProps> = (props) => {
-    const onChange = (props.data.isDisabled
+    const onChange = props.data.isDisabled
         ? undefined
-        : (event: React.ChangeEvent<HTMLInputElement>) => props.onChange({ value: event.target.value })
-    );
+        : (event: React.ChangeEvent<HTMLInputElement>) => props.onChange({ value: event.target.value });
     return (
         <>
             {props.label}
@@ -50,12 +49,12 @@ const InternalInputField: FC<InternalInputFieldProps> = (props) => {
                 onChange={onChange}
                 disabled={props.data.readOnly}
             />
-            {props.data.messages.length === 0 ? null : (<Messages messages={props.data.messages} />)}
+            {props.data.messages.length === 0 ? null : <Messages messages={props.data.messages} />}
         </>
     );
 };
 
-export type TextFieldProps = InputFieldProps<TextFieldState>
+export type TextFieldProps = InputFieldProps<TextFieldState>;
 export const TextField: FC<TextFieldProps> = (props) => {
     const dispatch = useDispatch();
     return (
@@ -66,7 +65,7 @@ export const TextField: FC<TextFieldProps> = (props) => {
     );
 };
 
-export type PasswordFieldProps = InputFieldProps<PasswordFieldState>
+export type PasswordFieldProps = InputFieldProps<PasswordFieldState>;
 export const PasswordField: FC<PasswordFieldProps> = (props) => {
     const dispatch = useDispatch();
     return (
@@ -77,7 +76,7 @@ export const PasswordField: FC<PasswordFieldProps> = (props) => {
     );
 };
 
-export type EmailFieldProps = InputFieldProps<EmailFieldState>
+export type EmailFieldProps = InputFieldProps<EmailFieldState>;
 export const EmailField: FC<EmailFieldProps> = (props) => {
     const dispatch = useDispatch();
     return (

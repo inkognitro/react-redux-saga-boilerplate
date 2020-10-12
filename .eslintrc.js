@@ -1,53 +1,44 @@
 module.exports = {
-  "root": true,
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "project": "tsconfig.json"
-  },
-  "env": {
-    "browser": true,
-    "jest/globals": true
-  },
-  "extends": [
-    "airbnb-typescript",
-    "airbnb/hooks",
-    "plugin:jest/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
-  ],
-  "rules": {
-    "no-console": ["error", {
-      "allow": ["info", "error"]
-    }],
-    "react/prop-types": "off",
-    "indent": ["error", 4, { "SwitchCase": 1 }],
-    "react/jsx-indent": ["error", 4],
-    "react/jsx-indent-props": ["error", 4],
-    "react/jsx-fragments": "off",
-    "react/destructuring-assignment": "off",
-    "react/jsx-props-no-spreading": "off",
-    "max-len": ["error", { "code": 130 }],
-    "import/prefer-default-export": "off",
-    "func-names": "off",
-    "@typescript-eslint/ban-ts-ignore": "off",
-    "no-continue": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "guard-for-in": "off",
-    "no-restricted-syntax": "off",
-    "no-shadow": "off",
-    "no-plusplus": "off",
-    "class-methods-use-this": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "linebreak-style": 0,
-    "jest/expect-expect": "off",
-    "import/no-extraneous-dependencies": "off",
-    "no-script-url": "off",
-    "jsx-a11y/anchor-is-valid": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "react-hooks/exhaustive-deps": "off",
-    "default-case": "off"
-  }
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "react-app",
+        "plugin:prettier/recommended",
+        "prettier/@typescript-eslint",
+        "prettier/babel",
+        "prettier/react",
+    ],
+    "plugins": [
+        "@typescript-eslint",
+        "import",
+        "jsx-a11y",
+        "prettier",
+        "react",
+        "react-hooks",
+    ],
+    "rules": {
+        "no-use-before-define": "off",
+        "prettier/prettier": "error",
+        "import/no-default-export": "error",
+        "no-duplicate-imports": "error",
+        "import/no-internal-modules": [ "error", {
+            "allow": [
+                "redux-saga/effects",
+                "gsap/CSSPlugin",
+                "bootstrap/scss/bootstrap.scss",
+                "@material-ui/icons/**",
+            ],
+        }],
+        "no-restricted-imports": ["error", {
+            "paths": ["packages"],
+            "patterns": [
+                "packages/**/domain/**",
+                "packages/**/ui/**",
+                "!packages/**/ui/web",
+                "packages/**/ui/web/**",
+                "!packages/**/ui/native",
+                "packages/**/ui/native/**",
+                "packages/**/infrastructure/**",
+            ],
+        }],
+    },
 };

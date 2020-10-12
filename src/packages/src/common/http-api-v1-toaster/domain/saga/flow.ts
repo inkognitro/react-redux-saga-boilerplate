@@ -1,7 +1,7 @@
-import { put, takeEvery } from "redux-saga/effects";
-import { createShowMessage, ToastTypes } from "packages/common/toaster/domain";
-import { HttpApiV1EventTypes } from "packages/common/http-api-v1/domain";
-import { TranslationIds } from "packages/common/types/util/domain";
+import { put, takeEvery } from 'redux-saga/effects';
+import { createShowMessage, ToastTypes } from 'packages/common/toaster/domain';
+import { HttpApiV1EventTypes } from 'packages/common/http-api-v1/domain';
+import { TranslationIds } from 'packages/common/types/util/domain';
 
 export function createHttpApiV1ToasterSaga(): () => Generator {
     return function* (): Generator {
@@ -14,7 +14,7 @@ export function createHttpApiV1ToasterSaga(): () => Generator {
                         translationId: TranslationIds.COULD_NOT_CONNECT_TO_SERVER,
                         fallback: 'Could not connect to server.',
                     },
-                }),
+                })
             );
         });
     };

@@ -1,25 +1,13 @@
-import {
-    applyMiddleware,
-    combineReducers,
-    createStore as createReduxStore,
-    Reducer,
-    Store,
-} from "redux";
-import createSagaMiddleware from "redux-saga";
-import { spawn } from "redux-saga/effects";
-import {
-    ToasterState,
-    ToasterStateSelector,
-    toasterReducer,
-    createToasterSaga,
-    ToasterSettings,
-} from "packages/common/toaster/domain";
-import { TranslatorState, translatorReducer } from "packages/common/translator/domain";
-import { designReducer, DesignState } from "packages/common/design/domain";
+import { applyMiddleware, combineReducers, createStore as createReduxStore, Reducer, Store } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { spawn } from 'redux-saga/effects';
+import { ToasterState, ToasterStateSelector, toasterReducer, createToasterSaga, ToasterSettings } from 'packages/common/toaster/domain';
+import { TranslatorState, translatorReducer } from 'packages/common/translator/domain';
+import { designReducer, DesignState } from 'packages/common/design/domain';
 
 type AppServices = {
-    store: Store
-    sagaTask: any
+    store: Store;
+    sagaTask: any;
 };
 
 function createRootReducer(): Reducer {
@@ -57,7 +45,7 @@ export function createAppServices(): AppServices {
 }
 
 export type RootState = {
-    design: DesignState
-    translator: TranslatorState
-    toaster: ToasterState
+    design: DesignState;
+    translator: TranslatorState;
+    toaster: ToasterState;
 };

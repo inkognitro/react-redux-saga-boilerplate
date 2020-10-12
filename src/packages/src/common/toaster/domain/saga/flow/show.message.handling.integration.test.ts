@@ -1,18 +1,13 @@
-import { expectSaga } from "redux-saga-test-plan";
-import uuidV4 from "uuid/v4";
-import { createShowMessage } from "../../command";
-import { CommonToastIds } from "../../query";
-import { toasterReducer } from "../../reducer";
-import {
-    ToasterState,
-    ToasterStateSelector,
-    ToastTypes,
-    ToasterSettings,
-} from "../../types";
-import { handleShowMessage } from "./show.message.handling";
+import { expectSaga } from 'redux-saga-test-plan';
+import { v4 as uuidV4 } from 'uuid';
+import { createShowMessage } from '../../command';
+import { CommonToastIds } from '../../query';
+import { toasterReducer } from '../../reducer';
+import { ToasterState, ToasterStateSelector, ToastTypes, ToasterSettings } from '../../types';
+import { handleShowMessage } from './show.message.handling';
 
-describe("Dispatching ShowMessage command", () => {
-    it("should add a message", () => {
+describe('Dispatching ShowMessage command', () => {
+    it('should add a message', () => {
         const toasterSettings: ToasterSettings = {
             toastMessageOutroAnimationTimeInMs: 0,
             toastOutroAnimationTimeInMs: 0,
@@ -23,7 +18,7 @@ describe("Dispatching ShowMessage command", () => {
         const toasterStateSelector: ToasterStateSelector = (state: ToasterState) => state;
         const translationId = uuidV4();
         const command = createShowMessage({
-            id: "1234",
+            id: '1234',
             toastType: ToastTypes.INFO,
             content: {
                 translationId,
@@ -38,7 +33,7 @@ describe("Dispatching ShowMessage command", () => {
                     type: ToastTypes.INFO,
                     messages: [
                         {
-                            id: "1234",
+                            id: '1234',
                             content: {
                                 translationId,
                                 fallback: 'foo',

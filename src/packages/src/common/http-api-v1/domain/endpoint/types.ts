@@ -1,4 +1,4 @@
-import { RequestMethods } from "packages/common/http-foundation/domain";
+import { RequestMethods } from 'packages/common/http-foundation/domain';
 
 export enum EndpointUrlPaths {
     AUTHENTICATE = '/auth/authenticate',
@@ -6,6 +6,6 @@ export enum EndpointUrlPaths {
 }
 
 export type EndpointSchema<UP extends EndpointUrlPaths = any> = {
-    urlPath: UP
-    method: RequestMethods
-}
+    urlPath: UP;
+    method: RequestMethods;
+};

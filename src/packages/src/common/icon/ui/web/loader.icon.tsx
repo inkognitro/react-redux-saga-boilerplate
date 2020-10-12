@@ -1,10 +1,6 @@
-import React, { FunctionComponent } from "react";
-import MaterialHourGlassEmptyIcon from "@material-ui/icons/HourglassEmpty";
-import {
-    CommonIconProps,
-    createBaseIconProps,
-    createStyledIcon,
-} from "./icon";
+import React, { FunctionComponent } from 'react';
+import MaterialHourGlassEmptyIcon from '@material-ui/icons/HourglassEmpty';
+import { CommonIconProps, createBaseIconProps, createStyledIcon } from './icon';
 
 export type LoaderIconProps = CommonIconProps;
 

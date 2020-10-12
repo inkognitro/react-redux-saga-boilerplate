@@ -1,17 +1,18 @@
-import { delay, put, select } from "redux-saga/effects";
-import { RemoveMessage } from "../../command";
+import { delay, put, select } from 'redux-saga/effects';
+import { RemoveMessage } from '../../command';
 import {
     createMessageOutroAnimationWasStarted,
     createMessageWasRemoved,
-    createToastOutroAnimationWasStarted, createToastWasRemoved,
-} from "../../event";
-import { findToastByMessageId, getNonRemovingMessagesInToast } from "../../query";
-import { ToasterSettings, ToasterState, ToasterStateSelector } from "../../types";
+    createToastOutroAnimationWasStarted,
+    createToastWasRemoved,
+} from '../../event';
+import { findToastByMessageId, getNonRemovingMessagesInToast } from '../../query';
+import { ToasterSettings, ToasterState, ToasterStateSelector } from '../../types';
 
 export function* handleRemoveMessage(
     toasterSettings: ToasterSettings,
     toasterStateSelector: ToasterStateSelector,
-    command: RemoveMessage,
+    command: RemoveMessage
 ): Generator {
     // @ts-ignore
     const toasterState: ToasterState = yield select(toasterStateSelector);
@@ -20,10 +21,7 @@ export function* handleRemoveMessage(
     if (!toast) {
         return;
     }
-    const nonRemovingMessages = getNonRemovingMessagesInToast(
-        toasterState,
-        toast.id,
-    );
+    const nonRemovingMessages = getNonRemovingMessagesInToast(toasterState, toast.id);
     if (nonRemovingMessages.length === 1) {
         if (nonRemovingMessages[0].id !== messageIdToRemove) {
             return;

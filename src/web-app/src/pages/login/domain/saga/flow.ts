@@ -1,13 +1,11 @@
-import {
-    select, spawn, takeLeading, takeEvery, put,
-} from "@redux-saga/core/effects";
-import { login, LoginResult } from "packages/common/authentication/domain";
-import { finishFormSubmission, startFormSubmission } from "packages/common/form/domain";
-import { hideLoader, showLoader } from "packages/common/loader/domain";
-import { dispatchToastsFromResult } from "packages/common/toaster/domain";
-import { createLoginPageWasInitialized } from "../event";
-import { Login, LoginPageCommandTypes } from "../command";
-import { LoginPageState, LoginPageStateSelector } from "../types";
+import { select, spawn, takeLeading, takeEvery, put } from 'redux-saga/effects';
+import { login, LoginResult } from 'packages/common/authentication/domain';
+import { finishFormSubmission, startFormSubmission } from 'packages/common/form/domain';
+import { hideLoader, showLoader } from 'packages/common/loader/domain';
+import { dispatchToastsFromResult } from 'packages/common/toaster/domain';
+import { createLoginPageWasInitialized } from '../event';
+import { Login, LoginPageCommandTypes } from '../command';
+import { LoginPageState, LoginPageStateSelector } from '../types';
 
 function* handleLoginCommand(loginPageStateSelector: LoginPageStateSelector, _: Login): Generator {
     // @ts-ignore
@@ -22,7 +20,7 @@ function* handleLoginCommand(loginPageStateSelector: LoginPageStateSelector, _: 
     });
     yield finishFormSubmission({
         form: state.form,
-        fieldMessages: (result === null ? [] : result.fieldMessages),
+        fieldMessages: result === null ? [] : result.fieldMessages,
     });
     if (result !== null) {
         yield dispatchToastsFromResult(result);
@@ -40,9 +38,7 @@ function* watchLoginCommands(loginPageStateSelector: LoginPageStateSelector): Ge
     yield takeLeading(LoginPageCommandTypes.LOGIN, handleLoginCommand, loginPageStateSelector);
 }
 
-export function createLoginPageSaga(
-    loginPageStateSelector: LoginPageStateSelector,
-): () => Generator {
+export function createLoginPageSaga(loginPageStateSelector: LoginPageStateSelector): () => Generator {
     return function* (): Generator {
         yield spawn(watchInitializeCommands);
         yield spawn(watchLoginCommands, loginPageStateSelector);

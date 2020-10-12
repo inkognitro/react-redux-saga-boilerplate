@@ -16,7 +16,7 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-declare const global: {HermesInternal: null | {}};
+declare const global: { HermesInternal: null | {} };
 
 export const SampleContent: FC = () => (
     <>
@@ -24,8 +24,7 @@ export const SampleContent: FC = () => (
         <SafeAreaView>
             <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
-                style={styles.scrollView}
-            >
+                style={styles.scrollView}>
                 <Header />
                 {global.HermesInternal == null ? null : (
                     <View style={styles.engine}>
@@ -36,16 +35,15 @@ export const SampleContent: FC = () => (
                     <View style={styles.sectionContainer}>
                         <Text style={styles.sectionTitle}>Step One</Text>
                         <Text style={styles.sectionDescription}>
-                            Edit
-                            {' '}
-                            <Text style={styles.highlight}>App.tsx</Text>
-                            {' '}
-                            to change
-                            this screen and then come back to see your edits.
+                            Edit <Text style={styles.highlight}>App.tsx</Text>{' '}
+                            to change this screen and then come back to see your
+                            edits.
                         </Text>
                     </View>
                     <View style={styles.sectionContainer}>
-                        <Text style={styles.sectionTitle}>See Your Changes</Text>
+                        <Text style={styles.sectionTitle}>
+                            See Your Changes
+                        </Text>
                         <Text style={styles.sectionDescription}>
                             <ReloadInstructions />
                         </Text>

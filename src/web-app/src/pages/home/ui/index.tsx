@@ -1,13 +1,13 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createShowMessage, ToastTypes } from "packages/common/toaster/domain";
-import { ContentPage } from "web-app/foundation/ui";
-import { RootState } from "web-app/services.factory";
-import { FunctionalLink, Link, LinkTargets } from "packages/common/layout-foundation/ui/web";
-import { createLeakReduxState } from "web-app/pages/home/domain";
-import { FormElement, FormGroup } from "packages/common/form-element/ui/web";
-import { Form } from "packages/common/form/ui/web";
-import { createLogin } from "packages/common/authentication/domain";
+import { createShowMessage, ToastTypes } from 'packages/common/toaster/domain';
+import { ContentPage } from 'web-app/foundation/ui';
+import { RootState } from 'web-app/services.factory';
+import { FunctionalLink, Link, LinkTargets } from 'packages/common/layout-foundation/ui/web';
+import { createLeakReduxState } from 'web-app/pages/home/domain';
+import { FormElement, FormGroup } from 'packages/common/form-element/ui/web';
+import { Form } from 'packages/common/form/ui/web';
+import { createLogin } from 'packages/common/authentication/domain';
 
 export const HomePage: FC = () => {
     const dispatch = useDispatch();
@@ -23,54 +23,68 @@ export const HomePage: FC = () => {
             <br />
             <h3>Toasts</h3>
             <Form
-                onSubmit={() => dispatch(createShowMessage({
-                    toastType: ToastTypes.SUCCESS,
-                    content: toastContentValue,
-                }))}
-            >
+                onSubmit={() =>
+                    dispatch(
+                        createShowMessage({
+                            toastType: ToastTypes.SUCCESS,
+                            content: toastContentValue,
+                        })
+                    )
+                }>
                 <FormGroup>
                     <FormElement data={toastContent} />
                 </FormGroup>
             </Form>
             <div>
                 <FunctionalLink
-                    onClick={() => dispatch(createShowMessage({
-                        toastType: ToastTypes.SUCCESS,
-                        content: toastContentValue,
-                    }))}
-                >
+                    onClick={() =>
+                        dispatch(
+                            createShowMessage({
+                                toastType: ToastTypes.SUCCESS,
+                                content: toastContentValue,
+                            })
+                        )
+                    }>
                     add a success toast message
-                </FunctionalLink>
-                {' '}
+                </FunctionalLink>{' '}
                 (is being closed after 3 seconds)
             </div>
             <div>
                 <FunctionalLink
-                    onClick={() => dispatch(createShowMessage({
-                        toastType: ToastTypes.INFO,
-                        content: toastContentValue,
-                    }))}
-                >
+                    onClick={() =>
+                        dispatch(
+                            createShowMessage({
+                                toastType: ToastTypes.INFO,
+                                content: toastContentValue,
+                            })
+                        )
+                    }>
                     add a info toast message
                 </FunctionalLink>
             </div>
             <div>
                 <FunctionalLink
-                    onClick={() => dispatch(createShowMessage({
-                        toastType: ToastTypes.WARNING,
-                        content: toastContentValue,
-                    }))}
-                >
+                    onClick={() =>
+                        dispatch(
+                            createShowMessage({
+                                toastType: ToastTypes.WARNING,
+                                content: toastContentValue,
+                            })
+                        )
+                    }>
                     add a warning toast message
                 </FunctionalLink>
             </div>
             <div>
                 <FunctionalLink
-                    onClick={() => dispatch(createShowMessage({
-                        toastType: ToastTypes.ERROR,
-                        content: toastContentValue,
-                    }))}
-                >
+                    onClick={() =>
+                        dispatch(
+                            createShowMessage({
+                                toastType: ToastTypes.ERROR,
+                                content: toastContentValue,
+                            })
+                        )
+                    }>
                     add a error toast message
                 </FunctionalLink>
             </div>
@@ -78,17 +92,13 @@ export const HomePage: FC = () => {
             <br />
             <h3>Redux</h3>
             <div>
-                Download
-                {' '}
+                Download{' '}
                 <Link
                     url="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd"
-                    target={LinkTargets.BLANK}
-                >
+                    target={LinkTargets.BLANK}>
                     Redux DevTools
-                </Link>
-                {' '}
-                for a better developer experience or
-                {' '}
+                </Link>{' '}
+                for a better developer experience or{' '}
                 <FunctionalLink onClick={() => dispatch(createLeakReduxState())}>
                     leak redux state in console
                 </FunctionalLink>
@@ -98,12 +108,15 @@ export const HomePage: FC = () => {
             <h3>Login test</h3>
             <div>
                 <FunctionalLink
-                    onClick={() => dispatch(createLogin({
-                        username: 'nagato',
-                        password: '1234',
-                        shouldRemember: true,
-                    }))}
-                >
+                    onClick={() =>
+                        dispatch(
+                            createLogin({
+                                username: 'nagato',
+                                password: '1234',
+                                shouldRemember: true,
+                            })
+                        )
+                    }>
                     trigger login programmatically
                 </FunctionalLink>
             </div>

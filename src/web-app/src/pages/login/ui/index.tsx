@@ -1,13 +1,13 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContentPage } from "web-app/foundation/ui";
-import { Card } from "packages/common/layout-foundation/ui/web";
-import { FormGroup, PrimaryButton, SimpleFormElement } from "packages/common/form-element/ui/web";
-import { Form } from "packages/common/form/ui/web";
-import { TranslatedText } from "packages/common/translator/ui/web";
-import { TranslationIds } from "packages/common/types/util/domain";
-import { RootState } from "web-app/services.factory";
-import { createInitialize, createLogin } from "../domain";
+import { ContentPage } from 'web-app/foundation/ui';
+import { Card } from 'packages/common/layout-foundation/ui/web';
+import { FormGroup, PrimaryButton, SimpleFormElement } from 'packages/common/form-element/ui/web';
+import { Form } from 'packages/common/form/ui/web';
+import { createInitialize, createLogin } from '../domain';
+import { TranslatedText } from 'packages/common/translator/ui/web';
+import { TranslationIds } from 'packages/common/types/util/domain';
+import { RootState } from 'web-app/services.factory';
 
 export const LoginPage: FC = () => {
     useEffect(() => {
@@ -17,7 +17,14 @@ export const LoginPage: FC = () => {
     const form = useSelector((state: RootState) => state.pages.loginPage.form);
     return (
         <ContentPage>
-            <Card title={<TranslatedText translation={{ translationId: TranslationIds.LOGIN_TITLE }} />}>
+            <Card
+                title={
+                    <TranslatedText
+                        translation={{
+                            translationId: TranslationIds.LOGIN_TITLE,
+                        }}
+                    />
+                }>
                 <Form onSubmit={() => dispatch(createLogin())}>
                     <FormGroup>
                         <SimpleFormElement
@@ -48,7 +55,11 @@ export const LoginPage: FC = () => {
                     </FormGroup>
                     <FormGroup>
                         <PrimaryButton onClick={() => dispatch(createLogin())}>
-                            <TranslatedText translation={{ translationId: TranslationIds.LOGIN }} />
+                            <TranslatedText
+                                translation={{
+                                    translationId: TranslationIds.LOGIN,
+                                }}
+                            />
                         </PrimaryButton>
                     </FormGroup>
                 </Form>

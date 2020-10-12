@@ -1,21 +1,12 @@
-import uuidV4 from "uuid/v4";
-import {
-    delay, fork, put, select,
-} from "redux-saga/effects";
-import {
-    MessageToAdd, ToasterSettings,
-    ToasterState,
-    ToasterStateSelector,
-    ToastTypes,
-} from "../../types";
-import { moveMessagesFromPipelineToToastsHandling } from "./move.messages.from.pipeline.to.toasts.handling";
-import { ShowMessage, ShowMessageSettings } from "../../command";
-import { createMessageWasAddedToPipeline } from "../../event";
-import { findMessageToAddByMessageId, findToastByMessageId } from "../../query";
+import { v4 as uuidV4 } from 'uuid';
+import { delay, fork, put, select } from 'redux-saga/effects';
+import { MessageToAdd, ToasterSettings, ToasterState, ToasterStateSelector, ToastTypes } from '../../types';
+import { moveMessagesFromPipelineToToastsHandling } from './move.messages.from.pipeline.to.toasts.handling';
+import { ShowMessage, ShowMessageSettings } from '../../command';
+import { createMessageWasAddedToPipeline } from '../../event';
+import { findMessageToAddByMessageId, findToastByMessageId } from '../../query';
 
-function createAutomaticCloseDelayInMs(
-    settings: ShowMessageSettings,
-): null | number {
+function createAutomaticCloseDelayInMs(settings: ShowMessageSettings): null | number {
     if (settings.automaticCloseDelayInMs !== undefined) {
         return settings.automaticCloseDelayInMs;
     }
@@ -35,7 +26,7 @@ function createCanBeClosedManually(settings: ShowMessageSettings): boolean {
 export function* handleShowMessage(
     toasterSettings: ToasterSettings,
     toasterStateSelector: ToasterStateSelector,
-    command: ShowMessage,
+    command: ShowMessage
 ): Generator {
     // @ts-ignore
     const toasterState: ToasterState = yield select(toasterStateSelector);
@@ -49,9 +40,7 @@ export function* handleShowMessage(
         return;
     }
     const messageToAdd: MessageToAdd = {
-        toastType: command.payload.toastType
-            ? command.payload.toastType
-            : ToastTypes.INFO,
+        toastType: command.payload.toastType ? command.payload.toastType : ToastTypes.INFO,
         mustBeShownInSeparateToast: !!command.payload.mustBeShownInSeparateToast,
         message: {
             id: command.payload.id ? command.payload.id : uuidV4(),

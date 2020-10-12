@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { AlignedArea, horizontalAligns, verticalAligns } from "packages/common/layout-foundation/ui/web";
-import { TimelineLite } from "gsap";
-import styled from "styled-components";
-import { TranslatedText } from "packages/common/translator/ui/web";
-import { TranslationIds } from "packages/common/types/util/domain";
+import React, { Component } from 'react';
+import { AlignedArea, horizontalAligns, verticalAligns } from 'packages/common/layout-foundation/ui/web';
+import { TimelineLite } from 'gsap';
+import styled from 'styled-components';
+import { TranslatedText } from 'packages/common/translator/ui/web';
+import { TranslationIds } from 'packages/common/types/util/domain';
 
 const StyledLoaderDiv = styled.div`
     position: fixed;
@@ -20,7 +20,7 @@ const StyledLoaderTextDiv = styled.div`
     color: white;
 `;
 
-export type LoaderProps = { isVisible: boolean }
+export type LoaderProps = { isVisible: boolean };
 
 export class Loader extends Component<LoaderProps> {
     private fadeInAnimation: TimelineLite;
@@ -53,24 +53,23 @@ export class Loader extends Component<LoaderProps> {
 
     createFadeInAnimation() {
         this.fadeInAnimation = new TimelineLite({ paused: true });
-        this.fadeInAnimation.fromTo(
-            this.loader,
-            { display: "none" },
-            { display: "block", duration: 0.01 },
-        );
-        this.fadeInAnimation.fromTo(
-            this.loader,
-            { opacity: 0 },
-            { delay: 0.5, opacity: 1, duration: 0.25 },
-        );
+        this.fadeInAnimation.fromTo(this.loader, { display: 'none' }, { display: 'block', duration: 0.01 });
+        this.fadeInAnimation.fromTo(this.loader, { opacity: 0 }, { delay: 0.5, opacity: 1, duration: 0.25 });
     }
 
     render() {
         return (
-            <StyledLoaderDiv ref={(element: HTMLDivElement) => { this.loader = element; }}>
+            <StyledLoaderDiv
+                ref={(element: HTMLDivElement) => {
+                    this.loader = element;
+                }}>
                 <AlignedArea horizontalAlign={horizontalAligns.CENTER} verticalAlign={verticalAligns.TOP}>
                     <StyledLoaderTextDiv>
-                        <TranslatedText translation={{ translationId: TranslationIds.LOADING }} />
+                        <TranslatedText
+                            translation={{
+                                translationId: TranslationIds.LOADING,
+                            }}
+                        />
                     </StyledLoaderTextDiv>
                 </AlignedArea>
             </StyledLoaderDiv>

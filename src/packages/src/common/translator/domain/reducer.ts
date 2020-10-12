@@ -1,11 +1,8 @@
-import {
-    LanguageIds,
-    TranslatorState,
-} from "./types";
-import { translationIdToTranslationMapping } from "./translation/en";
-import { TranslatorEventTypes, UILanguageWasSet } from "./event";
+import { LanguageIds, TranslatorState } from './types';
+import { translationIdToTranslationMapping } from './translation/en';
+import { TranslatorEventTypes, UILanguageWasSet } from './event';
 
-type TranslatorEvent = UILanguageWasSet
+type TranslatorEvent = UILanguageWasSet;
 
 export const initialTranslatorState: TranslatorState = {
     currentLanguageId: LanguageIds.EN,
@@ -14,7 +11,7 @@ export const initialTranslatorState: TranslatorState = {
 
 export function translatorReducer(
     state: TranslatorState = initialTranslatorState,
-    event?: TranslatorEvent,
+    event?: TranslatorEvent
 ): TranslatorState {
     if (!event) {
         return state;

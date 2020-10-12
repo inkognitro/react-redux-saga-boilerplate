@@ -1,74 +1,63 @@
-import {
-    applyMiddleware,
-    combineReducers,
-    createStore as createReduxStore,
-    Reducer,
-    Store,
-} from "redux";
-import createSagaMiddleware from "redux-saga";
-import { spawn } from "redux-saga/effects";
-import { createBrowserHistory, History } from "history";
+import { applyMiddleware, combineReducers, createStore as createReduxStore, Reducer, Store } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { spawn } from 'redux-saga/effects';
+import { createBrowserHistory, History } from 'history';
 import {
     ToasterState,
     ToasterStateSelector,
     toasterReducer,
     createToasterSaga,
     ToasterSettings,
-} from "packages/common/toaster/domain";
+} from 'packages/common/toaster/domain';
 import {
     TranslatorState,
     TranslatorStateSelector,
     createTranslatorSaga,
     translatorReducer,
-} from "packages/common/translator/domain";
+} from 'packages/common/translator/domain';
 import {
     HttpFoundationState,
     HttpFoundationStateSelector,
     HttpRequestDispatcher,
     httpFoundationReducer,
     createHttpFoundationSaga,
-} from "packages/common/http-foundation/domain";
-import {
-    AxiosHttpRequestDispatcher,
-    MockHttpRequestDispatcher,
-} from "packages/common/http-foundation/infrastructure";
+} from 'packages/common/http-foundation/domain';
+import { AxiosHttpRequestDispatcher, MockHttpRequestDispatcher } from 'packages/common/http-foundation/infrastructure';
 import {
     AuthState,
     AuthStateSelector,
     authenticationReducer,
     createAuthenticationSaga,
-} from "packages/common/authentication/domain";
-import { designReducer, DesignState, DesignStateSelector } from "packages/common/design/domain";
+} from 'packages/common/authentication/domain';
+import { designReducer, DesignState, DesignStateSelector } from 'packages/common/design/domain';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { createLoaderSaga, loaderReducer, LoaderState } from "packages/common/loader/domain";
+import { createLoaderSaga, loaderReducer, LoaderState } from 'packages/common/loader/domain';
 import {
     createHttpApiV1Saga,
     httpApiV1Reducer,
     HttpApiV1State,
     HttpApiV1StateSelector,
-} from "packages/common/http-api-v1/domain";
-import { createHttpApiV1ToasterSaga } from "packages/common/http-api-v1-toaster/domain";
-import {
-    createPagesSaga, pagesReducer, PagesState, PagesStateSelector,
-} from "web-app/pages/services";
-import { BrowserCurrentUserStorage } from "packages/common/authentication/infrastructure";
+} from 'packages/common/http-api-v1/domain';
+import { createHttpApiV1ToasterSaga } from 'packages/common/http-api-v1-toaster/domain';
+import { createPagesSaga, pagesReducer, PagesState, PagesStateSelector } from 'web-app/pages/services';
+import { BrowserCurrentUserStorage } from 'packages/common/authentication/infrastructure';
 
 export type AppServices = {
-    store: Store
-    sagaTask: any
-    history: History
-    httpRequestDispatcher: HttpRequestDispatcher
+    store: Store;
+    sagaTask: any;
+    history: History;
+    httpRequestDispatcher: HttpRequestDispatcher;
 };
 
 export type RootState = {
-    design: DesignState
-    translator: TranslatorState
-    loader: LoaderState
-    toaster: ToasterState
-    httpFoundation: HttpFoundationState
-    httpApiV1: HttpApiV1State
-    authentication: AuthState
-    pages: PagesState
+    design: DesignState;
+    translator: TranslatorState;
+    loader: LoaderState;
+    toaster: ToasterState;
+    httpFoundation: HttpFoundationState;
+    httpApiV1: HttpApiV1State;
+    authentication: AuthState;
+    pages: PagesState;
 };
 
 function createRootReducer(): Reducer<RootState> {
@@ -126,13 +115,13 @@ export function createDevAppServices(currentServices?: AppServices): AppServices
         currentServices.sagaTask.cancel();
     }
     const httpRequestDispatcher: HttpRequestDispatcher = new MockHttpRequestDispatcher();
-    const history: History = (currentServices ? currentServices.history : createBrowserHistory());
+    const history: History = currentServices ? currentServices.history : createBrowserHistory();
     const sagaMiddleware = createSagaMiddleware();
-    const initialState = (currentServices ? currentServices.store.getState() : undefined);
+    const initialState = currentServices ? currentServices.store.getState() : undefined;
     const store = createReduxStore(
         createRootReducer(),
         initialState,
-        composeWithDevTools(applyMiddleware(sagaMiddleware)),
+        composeWithDevTools(applyMiddleware(sagaMiddleware))
     );
     const rootSaga = createRootSaga(httpRequestDispatcher);
     const sagaTask = sagaMiddleware.run(rootSaga);
@@ -160,7 +149,7 @@ export function createProdAppServices(): AppServices {
 }
 
 // @ts-ignore
-window.hotReloadedServices = (window.hotReloadedServices ? window.hotReloadedServices : null);
+window.hotReloadedServices = window.hotReloadedServices ? window.hotReloadedServices : null;
 export function createHotReloadedDevAppServices(): AppServices {
     // @ts-ignore
     if (window.hotReloadedServices === null) {

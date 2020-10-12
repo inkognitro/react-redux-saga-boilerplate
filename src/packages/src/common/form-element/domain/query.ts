@@ -1,15 +1,15 @@
-import { FieldMessage, FieldMessagePath, Message } from "packages/common/types/util/domain";
-import { FieldMessagePathPart, FormElementState, IsFormElementTypeConfirmationProp } from "./types";
+import { FieldMessage, FieldMessagePath, Message } from 'packages/common/types/util/domain';
+import { FieldMessagePathPart, FormElementState, IsFormElementTypeConfirmationProp } from './types';
 
 type PathFormElement = {
-    path: FieldMessagePath
-    formElement: FormElementState
-}
+    path: FieldMessagePath;
+    formElement: FormElementState;
+};
 
 type ExtractionSettings = {
-    state: any
-    fieldMessagesPrefixPath: FieldMessagePath
-}
+    state: any;
+    fieldMessagesPrefixPath: FieldMessagePath;
+};
 
 export function getPathFormElementsToConsiderForMessages(settings: ExtractionSettings): PathFormElement[] {
     if (typeof settings.state !== 'object') {
@@ -17,16 +17,13 @@ export function getPathFormElementsToConsiderForMessages(settings: ExtractionSet
     }
     let elements: PathFormElement[] = [];
     let subPath = settings.fieldMessagesPrefixPath;
-    const isStateAFormElementToConsiderForMessages = (
-        settings.state[IsFormElementTypeConfirmationProp]
-        && settings.state.fieldMessagePathPart !== undefined
-    );
+    const isStateAFormElementToConsiderForMessages =
+        settings.state[IsFormElementTypeConfirmationProp] && settings.state.fieldMessagePathPart !== undefined;
     if (isStateAFormElementToConsiderForMessages) {
         const { fieldMessagePathPart } = settings.state;
-        const fieldMessagePathPartToAdd: FieldMessagePathPart = (Array.isArray(fieldMessagePathPart)
+        const fieldMessagePathPartToAdd: FieldMessagePathPart = Array.isArray(fieldMessagePathPart)
             ? fieldMessagePathPart
-            : [fieldMessagePathPart]
-        );
+            : [fieldMessagePathPart];
         subPath = [...subPath, ...fieldMessagePathPartToAdd];
         elements.push({ path: subPath, formElement: settings.state });
     }

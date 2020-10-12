@@ -1,3 +1,3 @@
 export type LoaderState = {
-    loaderDemandCount: number
+    loaderDemandCount: number;
 };

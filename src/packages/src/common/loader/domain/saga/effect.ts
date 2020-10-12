@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import { createHideLoader, createShowLoader } from "../command";
+import { createHideLoader, createShowLoader } from '../command';
 
 export function* showLoader(): Generator {
     yield put(createShowLoader());

@@ -3,15 +3,18 @@ import {
     createCheckboxState,
     createPasswordFieldState,
     createTextFieldState,
-} from "packages/common/form-element/domain";
-import { createFormElementsByNameFormReducer } from "packages/common/form/domain";
-import { LoginFormState, LoginPageState } from "./types";
-import { LoginPageEventTypes } from "./event";
+} from 'packages/common/form-element/domain';
+import { createFormElementsByNameFormReducer } from 'packages/common/form/domain';
+import { LoginFormState, LoginPageState } from './types';
+import { LoginPageEventTypes } from './event';
 
 const loginFormReducer = createFormElementsByNameFormReducer<LoginFormState>({
     initialStateSettings: {
         content: {
-            username: createTextFieldState({ value: 'nagato', fieldMessagePathPart: 'username' }),
+            username: createTextFieldState({
+                value: 'nagato',
+                fieldMessagePathPart: 'username',
+            }),
             password: createPasswordFieldState({ value: '1234' }),
             shouldRemember: createCheckboxState({}),
         },

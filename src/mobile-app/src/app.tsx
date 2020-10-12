@@ -1,13 +1,19 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import {
-    Button, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View,
+    Button,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    View,
 } from 'react-native';
-import { Provider as StoreProvider } from "react-redux";
+import { Provider as StoreProvider } from 'react-redux';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { createShowMessage, ToastTypes } from "packages/common/toaster/domain";
-import uuidV4 from 'uuid/v4';
-import { createAppServices } from "./services.factory";
-import { Toaster } from "./foundation/toaster";
+import { createShowMessage, ToastTypes } from 'packages/common/toaster/domain';
+import { v4 as uuidV4 } from 'uuid';
+import { createAppServices } from './services.factory';
+import { Toaster } from './foundation/toaster';
 
 const services = createAppServices();
 
@@ -18,24 +24,28 @@ export const App: FC = () => (
             <StoreProvider store={services.store}>
                 <ScrollView
                     contentInsetAdjustmentBehavior="automatic"
-                    style={styles.scrollView}
-                >
+                    style={styles.scrollView}>
                     <View style={styles.sectionContainer}>
                         <Text style={styles.sectionTitle}>Toaster Demo</Text>
                         <Text style={styles.sectionDescription}>
-                            The toaster below uses the toaster domain logic
-                            but the native view.
+                            The toaster below uses the toaster domain logic but
+                            the native view.
                         </Text>
                     </View>
                     <View style={styles.sectionContainer}>
                         <Button
-                            onPress={() => services.store.dispatch(createShowMessage({
-                                content: {
-                                    translationId: uuidV4(),
-                                    fallback: 'Some static typed sample message.',
-                                },
-                                toastType: ToastTypes.INFO,
-                            }))}
+                            onPress={() =>
+                                services.store.dispatch(
+                                    createShowMessage({
+                                        content: {
+                                            translationId: uuidV4(),
+                                            fallback:
+                                                'Some static typed sample message.',
+                                        },
+                                        toastType: ToastTypes.INFO,
+                                    })
+                                )
+                            }
                             title="Add message"
                             color="#841584"
                         />

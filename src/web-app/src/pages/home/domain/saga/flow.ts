@@ -1,5 +1,5 @@
-import { select, spawn, takeEvery } from "@redux-saga/core/effects";
-import { HomePageCommandTypes } from "../command";
+import { select, spawn, takeEvery } from 'redux-saga/effects';
+import { HomePageCommandTypes } from '../command';
 
 export function createHomePageSaga(): () => Generator {
     return function* (): Generator {

@@ -4,4 +4,4 @@ export type FormState<C = any> = FormStateType<C>;
 
 export { startFormSubmission, finishFormSubmission } from './saga/effect';
 export { createFormReducer, createFormElementsByNameFormReducer } from './reducer';
-export { FormEventTypes } from "./event";
+export { FormEventTypes } from './event';

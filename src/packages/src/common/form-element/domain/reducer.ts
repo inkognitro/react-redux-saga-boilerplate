@@ -1,8 +1,8 @@
-import { Reducer, Action } from "redux";
-import { FormElementState, FormElementStateChanges } from "./types";
-import { FormElementStatesWereChanged, FormElementStateWasChanged, FormElementEventTypes } from "./event";
+import { Reducer, Action } from 'redux';
+import { FormElementState, FormElementStateChanges } from './types';
+import { FormElementStatesWereChanged, FormElementStateWasChanged, FormElementEventTypes } from './event';
 
-type FormElementEvent = (FormElementStateWasChanged | FormElementStatesWereChanged)
+type FormElementEvent = FormElementStateWasChanged | FormElementStatesWereChanged;
 
 const formElementEventTypes = Object.values(FormElementEventTypes);
 
@@ -12,7 +12,10 @@ export function formElementReducer<S extends FormElementState = any>(state: S, a
     }
     // @ts-ignore
     const event: FormElementEvent = action;
-    if (event.type === FormElementEventTypes.FORM_ELEMENT_STATE_WAS_CHANGED && state.id === event.payload.formElement.id) {
+    if (
+        event.type === FormElementEventTypes.FORM_ELEMENT_STATE_WAS_CHANGED &&
+        state.id === event.payload.formElement.id
+    ) {
         return {
             ...state,
             ...event.payload.stateChanges,
@@ -40,7 +43,7 @@ export function formElementReducer<S extends FormElementState = any>(state: S, a
                     },
                 };
             },
-            initialStateChanges,
+            initialStateChanges
         );
         return {
             ...state,
@@ -51,7 +54,7 @@ export function formElementReducer<S extends FormElementState = any>(state: S, a
 }
 
 export function createFormElementReducer<S extends FormElementState>(initialState: S): Reducer<S> {
-    return function(state: S = initialState, action: Action): S {
+    return function (state: S = initialState, action: Action): S {
         if (!action) {
             return state;
         }

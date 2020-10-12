@@ -13,9 +13,9 @@ export type Toast = ToastType;
 export type Message = MessageType;
 
 export { ToastTypes } from './types';
-export { createToasterSaga } from "./saga/flow";
-export { dispatchToastsFromResult } from "./saga/effect";
+export { createToasterSaga } from './saga/flow';
+export { dispatchToastsFromResult } from './saga/effect';
 export { toasterReducer } from './reducer';
-export { ToasterCommandTypes, createRemoveMessage, createShowMessage } from "./command";
-export { ToasterEventTypes } from "./event";
-export { getAllToasts } from "./query";
+export { ToasterCommandTypes, createRemoveMessage, createShowMessage } from './command';
+export { ToasterEventTypes } from './event';
+export { getAllToasts } from './query';

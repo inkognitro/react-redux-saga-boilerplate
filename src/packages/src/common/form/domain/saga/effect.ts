@@ -1,13 +1,13 @@
 import { put } from 'redux-saga/effects';
-import { FieldMessage, FieldMessagePath } from "packages/common/types/util/domain";
-import { setFormElementMessages } from "packages/common/form-element/domain";
-import { createFormSubmitHasFinished, createFormSubmitHasStarted } from "../event";
-import { FormState } from "../types";
+import { FieldMessage, FieldMessagePath } from 'packages/common/types/util/domain';
+import { setFormElementMessages } from 'packages/common/form-element/domain';
+import { createFormSubmitHasFinished, createFormSubmitHasStarted } from '../event';
+import { FormState } from '../types';
 
 type StartSettings = {
-    form: FormState
-    fieldMessagesPrefixPath?: FieldMessagePath
-}
+    form: FormState;
+    fieldMessagesPrefixPath?: FieldMessagePath;
+};
 
 export function* startFormSubmission(settings: StartSettings): Generator {
     yield put(createFormSubmitHasStarted(settings.form));
@@ -19,10 +19,10 @@ export function* startFormSubmission(settings: StartSettings): Generator {
 }
 
 type FinishSettings = {
-    form: FormState
-    fieldMessages: FieldMessage[]
-    fieldMessagesPrefixPath?: FieldMessagePath
-}
+    form: FormState;
+    fieldMessages: FieldMessage[];
+    fieldMessagesPrefixPath?: FieldMessagePath;
+};
 
 export function* finishFormSubmission(settings: FinishSettings): Generator {
     yield put(createFormSubmitHasFinished(settings.form));

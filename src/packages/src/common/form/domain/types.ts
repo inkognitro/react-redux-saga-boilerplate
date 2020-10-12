@@ -1,13 +1,13 @@
-import { FormElementState } from "packages/common/form-element/domain";
+import { FormElementState } from 'packages/common/form-element/domain';
 
 export type FormElementsByNameState = {
-    [name: string]: FormElementState
-}
+    [name: string]: FormElementState;
+};
 
 export type FormState<C = any> = {
-    id: string
-    isSubmitRunning: boolean
-    content: C
-}
+    id: string;
+    isSubmitRunning: boolean;
+    content: C;
+};
 
-export type FormElementsByNameForm<E extends FormElementsByNameState = any> = FormState<E>
+export type FormElementsByNameForm<E extends FormElementsByNameState = any> = FormState<E>;

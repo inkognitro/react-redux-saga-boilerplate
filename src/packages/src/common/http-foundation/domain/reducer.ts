@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { HttpFoundationState } from "./types";
+import { HttpFoundationState } from './types';
 import {
     HttpFoundationEventTypes,
     ResponseCouldNotBeReceived,
@@ -7,15 +7,14 @@ import {
     RequestWasNotSent,
     RequestWasSent,
     ResponseWasReceived,
-} from "./event";
+} from './event';
 
-type HttpFoundationEvent = (
+type HttpFoundationEvent =
     | RequestWasSent
     | RequestWasNotSent
     | ResponseWasReceived
     | ResponseCouldNotBeReceived
-    | RequestWasCancelled
-);
+    | RequestWasCancelled;
 
 const initialHttpFoundationState: HttpFoundationState = {
     runningRequests: [],
@@ -29,7 +28,7 @@ const eventTypesForRunningHttpRequestsRemoval = [
 
 export const httpFoundationReducer: Reducer<HttpFoundationState> = (
     state = initialHttpFoundationState,
-    event: HttpFoundationEvent,
+    event: HttpFoundationEvent
 ) => {
     if (!event) {
         return state;
@@ -37,18 +36,13 @@ export const httpFoundationReducer: Reducer<HttpFoundationState> = (
     if (event.type === HttpFoundationEventTypes.REQUEST_WAS_SENT) {
         return {
             ...state,
-            runningHttpRequests: [
-                ...state.runningRequests,
-                event.payload.request,
-            ],
+            runningHttpRequests: [...state.runningRequests, event.payload.request],
         };
     }
     if (eventTypesForRunningHttpRequestsRemoval.includes(event.type)) {
         return {
             ...state,
-            runningHttpRequests: state.runningRequests.filter(
-                (request) => request.id !== event.payload.request.id,
-            ),
+            runningHttpRequests: state.runningRequests.filter((request) => request.id !== event.payload.request.id),
         };
     }
     return state;

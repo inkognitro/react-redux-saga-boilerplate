@@ -1,22 +1,14 @@
-import uuidV4 from "uuid/v4";
-import {
-    delay, fork, put, select, spawn,
-} from "redux-saga/effects";
-import { createRemoveMessage } from "../../command";
+import { v4 as uuidV4 } from 'uuid';
+import { delay, fork, put, select, spawn } from 'redux-saga/effects';
+import { createRemoveMessage } from '../../command';
 import {
     createMessageIntroAnimationsWereFinished,
     createMessagesWereAddedToToast,
     createToastIntroAnimationWasFinished,
     createToastWasAdded,
-} from "../../event";
-import { findToastById, getCommonToastIdByType } from "../../query";
-import {
-    Message,
-    Toast,
-    ToasterSettings,
-    ToasterState,
-    ToasterStateSelector,
-} from "../../types";
+} from '../../event';
+import { findToastById, getCommonToastIdByType } from '../../query';
+import { Message, Toast, ToasterSettings, ToasterState, ToasterStateSelector } from '../../types';
 
 function getToastsToMerge(toasterState: ToasterState): Toast[] {
     const toastsToMerge: Toast[] = [];
@@ -24,9 +16,7 @@ function getToastsToMerge(toasterState: ToasterState): Toast[] {
         const toastId = messageToAdd.mustBeShownInSeparateToast
             ? uuidV4()
             : getCommonToastIdByType(messageToAdd.toastType);
-        const foundToastIndex = toastsToMerge.findIndex(
-            (toast) => toast.id === toastId,
-        );
+        const foundToastIndex = toastsToMerge.findIndex((toast) => toast.id === toastId);
         if (foundToastIndex !== -1) {
             const toast = toastsToMerge[foundToastIndex];
             toastsToMerge[foundToastIndex] = {
@@ -62,7 +52,7 @@ function* startAutomaticMessageCloseTimers(messages: Message[]): Generator {
 function* handleMoveMessagesFromPipelineToToast(
     toasterSettings: ToasterSettings,
     toasterState: ToasterState,
-    toastToMerge: Toast,
+    toastToMerge: Toast
 ): Generator {
     const storedToast = findToastById(toasterState, toastToMerge.id);
     if (!storedToast) {
@@ -80,18 +70,13 @@ function* handleMoveMessagesFromPipelineToToast(
 
 export function* moveMessagesFromPipelineToToastsHandling(
     toasterSettings: ToasterSettings,
-    toasterStateSelector: ToasterStateSelector,
+    toasterStateSelector: ToasterStateSelector
 ): Generator {
     // @ts-ignore
     const toasterState: ToasterState = yield select(toasterStateSelector);
     const toastsToMerge = getToastsToMerge(toasterState);
     for (const index in toastsToMerge) {
         const toastToMerge = toastsToMerge[index];
-        yield spawn(
-            handleMoveMessagesFromPipelineToToast,
-            toasterSettings,
-            toasterState,
-            toastToMerge,
-        );
+        yield spawn(handleMoveMessagesFromPipelineToToast, toasterSettings, toasterState, toastToMerge);
     }
 }

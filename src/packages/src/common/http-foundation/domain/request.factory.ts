@@ -1,7 +1,7 @@
-import uuidV4 from "uuid/v4";
-import { Request, RequestMethods } from "./types";
+import { v4 as uuidV4 } from 'uuid';
+import { Request, RequestMethods } from './types';
 
-type CreationSettings = Partial<Omit<Request, 'method'>> & Pick<Request, 'url'>
+type CreationSettings = Partial<Omit<Request, 'method'>> & Pick<Request, 'url'>;
 
 export function createGetRequest(settings: CreationSettings): Request {
     return createHttpRequest(settings, RequestMethods.GET);

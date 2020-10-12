@@ -1,5 +1,5 @@
-import { AuthenticatedAuthUser } from "packages/common/types/auth-user/domain";
-import { CurrentUserStorage } from "../domain";
+import { AuthenticatedAuthUser } from 'packages/common/types/auth-user/domain';
+import { CurrentUserStorage } from '../domain';
 
 const currentUserStorageKey = 'currentUser157c737a';
 
@@ -11,7 +11,7 @@ export class BrowserCurrentUserStorage implements CurrentUserStorage {
         }
     }
 
-    public find(): (null | AuthenticatedAuthUser) {
+    public find(): null | AuthenticatedAuthUser {
         let userAsString = window.localStorage.getItem(currentUserStorageKey);
         if (!userAsString) {
             userAsString = window.sessionStorage.getItem(currentUserStorageKey);

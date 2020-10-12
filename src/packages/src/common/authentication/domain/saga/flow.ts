@@ -1,14 +1,12 @@
-import {
-    call, cancelled, delay, put, race, select, spawn, take,
-} from "redux-saga/effects";
-import { AuthenticatedAuthUser, AuthUser, AuthUserTypes } from "packages/common/types/auth-user/domain";
+import { call, cancelled, delay, put, race, select, spawn, take } from 'redux-saga/effects';
+import { AuthenticatedAuthUser, AuthUser, AuthUserTypes } from 'packages/common/types/auth-user/domain';
 import {
     AuthenticateResult,
     AuthenticationRefreshResult,
     callAuthenticateEndpoint,
     callRefreshAuthenticationEndpoint,
-} from "packages/common/http-api-v1/domain";
-import { ResultTypes } from "packages/common/types/util/domain";
+} from 'packages/common/http-api-v1/domain';
+import { ResultTypes } from 'packages/common/types/util/domain';
 import {
     createAuthenticationWasRefreshed,
     createLoginWasCancelled,
@@ -18,20 +16,18 @@ import {
     createCurrentUserWasInitialized,
     createUserAuthenticationRefreshFailed,
     createCurrentUserCouldNotBeInitialized,
-} from "../event";
-import { getCurrentAuthUser } from "../query";
-import {
-    AuthState, AuthStateSelector, CurrentUserStorage, LoginSuccessResult,
-} from "../types";
-import { AuthCommandTypes, Login } from "../command";
-import { findSecondsUntilExpiration } from "../jwt.handling";
+} from '../event';
+import { getCurrentAuthUser } from '../query';
+import { AuthState, AuthStateSelector, CurrentUserStorage, LoginSuccessResult } from '../types';
+import { AuthCommandTypes, Login } from '../command';
+import { findSecondsUntilExpiration } from '../jwt.handling';
 
 const checkForAuthRefreshEveryMs = 60000;
 const maxDifferenceBetweenRefreshToExpirationInMs = 10000;
 function* executeAuthRefreshInterval(
     authStateSelector: AuthStateSelector,
     currentUserStorage: CurrentUserStorage,
-    startImmediately: boolean,
+    startImmediately: boolean
 ): Generator {
     if (!startImmediately) {
         yield delay(checkForAuthRefreshEveryMs);
@@ -94,7 +90,10 @@ function* watchLogin(currentUserStorage: CurrentUserStorage): Generator {
             shouldRemember: command.payload.settings.shouldRemember,
         };
         currentUserStorage.save(authUser);
-        const successResult: LoginSuccessResult = { ...result, data: { authUser } };
+        const successResult: LoginSuccessResult = {
+            ...result,
+            data: { authUser },
+        };
         yield put(createUserWasLoggedIn(successResult, command.payload.taskId));
         return true;
     } finally {
@@ -125,20 +124,12 @@ function* initializeCurrentUser(currentUserStorage: CurrentUserStorage): Generat
     yield put(createCurrentUserWasInitialized(currentUser));
 }
 
-function* authenticationFlow(
-    authStateSelector: AuthStateSelector,
-    currentUserStorage: CurrentUserStorage,
-): Generator {
+function* authenticationFlow(authStateSelector: AuthStateSelector, currentUserStorage: CurrentUserStorage): Generator {
     yield call(initializeCurrentUser, currentUserStorage);
     let startImmediately = true;
     while (true) {
         yield race({
-            refreshTask: call(
-                executeAuthRefreshInterval,
-                authStateSelector,
-                currentUserStorage,
-                startImmediately,
-            ),
+            refreshTask: call(executeAuthRefreshInterval, authStateSelector, currentUserStorage, startImmediately),
             loginTask: call(watchLogin, currentUserStorage),
             logoutTask: call(watchLogout, authStateSelector, currentUserStorage),
         });
@@ -148,7 +139,7 @@ function* authenticationFlow(
 
 export function createAuthenticationSaga(
     authStateSelector: AuthStateSelector,
-    currentUserStorage: CurrentUserStorage,
+    currentUserStorage: CurrentUserStorage
 ): () => Generator {
     return function* (): Generator {
         yield spawn(authenticationFlow, authStateSelector, currentUserStorage);

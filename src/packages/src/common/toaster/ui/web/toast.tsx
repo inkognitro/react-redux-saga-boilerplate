@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Power1, TimelineLite } from "gsap";
-import styled from "styled-components";
-import { StyledComponentProps, createBoxShadowCss } from "packages/common/design/ui/web";
-import { Message as MessageData, Toast as ToastData, ToastTypes } from "../../domain";
-import { Message } from "./message";
+import React, { Component } from 'react';
+import { Power1, TimelineLite } from 'gsap';
+import styled from 'styled-components';
+import { StyledComponentProps, createBoxShadowCss } from 'packages/common/design/ui/web';
+import { Message as MessageData, Toast as ToastData, ToastTypes } from '../../domain';
+import { Message } from './message';
 
 const StyledToast = styled.div`
     margin-top: 20px;
@@ -12,15 +12,23 @@ const StyledToast = styled.div`
     border-top: 3px solid ${(props: StyledComponentProps) => props.theme.colorPrimary};
     overflow: hidden;
     ${createBoxShadowCss()}
-    &.info { border-color: ${(props: StyledComponentProps) => props.theme.colorInfo}; }
-    &.success { border-color: ${(props: StyledComponentProps) => props.theme.colorSuccess}; }
-    &.warning { border-color: ${(props: StyledComponentProps) => props.theme.colorWarning}; }
-    &.error { border-color: ${(props: StyledComponentProps) => props.theme.colorError}; }
+    &.info {
+        border-color: ${(props: StyledComponentProps) => props.theme.colorInfo};
+    }
+    &.success {
+        border-color: ${(props: StyledComponentProps) => props.theme.colorSuccess};
+    }
+    &.warning {
+        border-color: ${(props: StyledComponentProps) => props.theme.colorWarning};
+    }
+    &.error {
+        border-color: ${(props: StyledComponentProps) => props.theme.colorError};
+    }
 `;
 
 export type ToastProps = {
-    toast: ToastData
-    onRemoveMessage(messageId: string): void
+    toast: ToastData;
+    onRemoveMessage(messageId: string): void;
 };
 
 export class Toast extends Component<ToastProps> {
@@ -40,8 +48,8 @@ export class Toast extends Component<ToastProps> {
 
     componentDidUpdate(prevProps: ToastProps) {
         if (
-            this.props.toast.isOutroAnimationRunning
-            && prevProps.toast.isOutroAnimationRunning !== this.props.toast.isOutroAnimationRunning
+            this.props.toast.isOutroAnimationRunning &&
+            prevProps.toast.isOutroAnimationRunning !== this.props.toast.isOutroAnimationRunning
         ) {
             this.playOutroAnimation();
         }
@@ -49,20 +57,19 @@ export class Toast extends Component<ToastProps> {
 
     playIntroAnimation() {
         this.introAnimation = new TimelineLite({ paused: true });
-        this.introAnimation.addLabel("start");
-        this.introAnimation.fromTo(
-            this.toastWrapperElement,
-            { height: 0 },
-            { height: "auto", duration: 0.3 },
-            "start",
-        );
+        this.introAnimation.addLabel('start');
+        this.introAnimation.fromTo(this.toastWrapperElement, { height: 0 }, { height: 'auto', duration: 0.3 }, 'start');
         this.introAnimation.fromTo(
             this.toastElement,
             { opacity: 0, y: -25 },
             {
-                opacity: 1, y: 0, marginTop: 20, duration: 0.5, ease: Power1.easeOut,
+                opacity: 1,
+                y: 0,
+                marginTop: 20,
+                duration: 0.5,
+                ease: Power1.easeOut,
             },
-            "start",
+            'start'
         );
         this.introAnimation.play();
     }
@@ -76,7 +83,10 @@ export class Toast extends Component<ToastProps> {
             duration: 0.4,
             ease: Power1.easeIn,
         });
-        this.outroAnimation.to(this.toastWrapperElement, { height: 0, duration: 0.15 });
+        this.outroAnimation.to(this.toastWrapperElement, {
+            height: 0,
+            duration: 0.15,
+        });
         if (this.introAnimation) {
             this.introAnimation.pause();
         }
@@ -85,27 +95,29 @@ export class Toast extends Component<ToastProps> {
 
     createToastTypeClassName(): string {
         if (this.props.toast.type === ToastTypes.SUCCESS) {
-            return "success";
+            return 'success';
         }
         if (this.props.toast.type === ToastTypes.WARNING) {
-            return "warning";
+            return 'warning';
         }
         if (this.props.toast.type === ToastTypes.ERROR) {
-            return "error";
+            return 'error';
         }
-        return "info";
+        return 'info';
     }
 
     render() {
         return (
             <div
-                ref={(element: HTMLDivElement) => { this.toastWrapperElement = element; }}
-                className="app-toast-wrapper"
-            >
+                ref={(element: HTMLDivElement) => {
+                    this.toastWrapperElement = element;
+                }}
+                className="app-toast-wrapper">
                 <StyledToast
-                    ref={(element: HTMLDivElement) => { this.toastElement = element; }}
-                    className={this.createToastTypeClassName()}
-                >
+                    ref={(element: HTMLDivElement) => {
+                        this.toastElement = element;
+                    }}
+                    className={this.createToastTypeClassName()}>
                     {this.props.toast.messages.map((message: MessageData) => (
                         <Message
                             key={message.id}

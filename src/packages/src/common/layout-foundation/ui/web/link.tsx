@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from "styled-components";
-import { StyledComponentProps } from "packages/common/design/ui/web";
+import styled from 'styled-components';
+import { StyledComponentProps } from 'packages/common/design/ui/web';
 
 const StyledLink = styled.a`
     color: $colorInteractive;
@@ -15,9 +15,9 @@ const StyledLink = styled.a`
 `;
 
 type FunctionalLinkProps = {
-    url?: string
-    onClick?: () => void
-    className?: string
+    url?: string;
+    onClick?: () => void;
+    className?: string;
 };
 
 export const FunctionalLink: FC<FunctionalLinkProps> = (props) => (
@@ -29,8 +29,7 @@ export const FunctionalLink: FC<FunctionalLinkProps> = (props) => (
             if (props.onClick) {
                 props.onClick();
             }
-        }}
-    >
+        }}>
         {props.children}
     </StyledLink>
 );
@@ -40,11 +39,11 @@ export enum LinkTargets {
 }
 
 export type LinkProps = {
-    url: string
-    target?: LinkTargets,
-    children: any
-    className?: string
-}
+    url: string;
+    target?: LinkTargets;
+    children: any;
+    className?: string;
+};
 
 export const Link: FC<LinkProps> = (props) => {
     const history = useHistory();
@@ -58,8 +57,7 @@ export const Link: FC<LinkProps> = (props) => {
                     return;
                 }
                 history.push(props.url);
-            }}
-        >
+            }}>
             {props.children}
         </FunctionalLink>
     );

@@ -1,4 +1,4 @@
-import uuidV4 from "uuid/v4";
+import { v4 as uuidV4 } from 'uuid';
 import {
     CheckboxState,
     EmailFieldState,
@@ -6,9 +6,9 @@ import {
     IsFormElementTypeConfirmationProp,
     PasswordFieldState,
     TextFieldState,
-} from "./types";
+} from './types';
 
-type TextFieldCreationSettings = Partial<Omit<TextFieldState, "isFormElement3025a126" | "type">>
+type TextFieldCreationSettings = Partial<Omit<TextFieldState, 'isFormElement3025a126' | 'type'>>;
 export function createTextFieldState(partialInitialState: TextFieldCreationSettings = {}): TextFieldState {
     return {
         [IsFormElementTypeConfirmationProp]: true,
@@ -22,8 +22,10 @@ export function createTextFieldState(partialInitialState: TextFieldCreationSetti
     };
 }
 
-type PasswordFieldStateCreationSettings = Partial<Omit<PasswordFieldState, "isFormElement3025a126" | "type">>;
-export function createPasswordFieldState(partialInitialState: PasswordFieldStateCreationSettings = {}): PasswordFieldState {
+type PasswordFieldStateCreationSettings = Partial<Omit<PasswordFieldState, 'isFormElement3025a126' | 'type'>>;
+export function createPasswordFieldState(
+    partialInitialState: PasswordFieldStateCreationSettings = {}
+): PasswordFieldState {
     return {
         [IsFormElementTypeConfirmationProp]: true,
         type: FormElementTypes.PASSWORD,
@@ -36,7 +38,7 @@ export function createPasswordFieldState(partialInitialState: PasswordFieldState
     };
 }
 
-type EmailFieldStateCreationSettings = Partial<Omit<EmailFieldState, "isFormElement3025a126" | "type">>;
+type EmailFieldStateCreationSettings = Partial<Omit<EmailFieldState, 'isFormElement3025a126' | 'type'>>;
 export function createEmailFieldState(partialInitialState: EmailFieldStateCreationSettings = {}): EmailFieldState {
     return {
         [IsFormElementTypeConfirmationProp]: true,
@@ -50,7 +52,7 @@ export function createEmailFieldState(partialInitialState: EmailFieldStateCreati
     };
 }
 
-type CheckboxStateCreationSettings = Partial<Omit<CheckboxState, "isFormElement3025a126" | "type">>;
+type CheckboxStateCreationSettings = Partial<Omit<CheckboxState, 'isFormElement3025a126' | 'type'>>;
 export function createCheckboxState(partialInitialState: CheckboxStateCreationSettings = {}): CheckboxState {
     return {
         [IsFormElementTypeConfirmationProp]: true,

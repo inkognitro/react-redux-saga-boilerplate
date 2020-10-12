@@ -1,5 +1,5 @@
-import { TextFieldState } from "packages/common/form-element/domain";
+import { TextFieldState } from 'packages/common/form-element/domain';
 
 export type HomePageState = {
-    toastContent: TextFieldState
-}
+    toastContent: TextFieldState;
+};

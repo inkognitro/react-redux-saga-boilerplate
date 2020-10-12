@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import styled from "styled-components";
-import { createRemoveMessage, Toast as ToastData } from "../../domain";
-import { Toast } from "./toast";
+import styled from 'styled-components';
+import { createRemoveMessage, Toast as ToastData } from '../../domain';
+import { Toast } from './toast';
 
 const StyledToastsContainer = styled.div`
     position: fixed;
@@ -11,7 +11,7 @@ const StyledToastsContainer = styled.div`
     height: 0;
 `;
 
-export type ToasterProps = { toasts: ToastData[] }
+export type ToasterProps = { toasts: ToastData[] };
 
 export const Toaster: FC<ToasterProps> = (props) => {
     const dispatch = useDispatch();

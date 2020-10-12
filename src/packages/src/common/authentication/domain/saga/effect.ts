@@ -1,12 +1,7 @@
 import { put, StrictEffect, take } from 'redux-saga/effects';
-import { createLogin, createLogout } from "../command";
-import { LoginResult, LoginSettings } from "../types";
-import {
-    AuthEventTypes,
-    LoginFailed,
-    LoginWasCancelled,
-    UserWasLoggedIn,
-} from "../event";
+import { createLogin, createLogout } from '../command';
+import { LoginResult, LoginSettings } from '../types';
+import { AuthEventTypes, LoginFailed, LoginWasCancelled, UserWasLoggedIn } from '../event';
 
 const loginFinishEventTypes = [
     AuthEventTypes.USER_WAS_LOGGED_IN,
@@ -14,7 +9,7 @@ const loginFinishEventTypes = [
     AuthEventTypes.LOGIN_WAS_CANCELLED,
 ];
 
-type LoginFinishEvent = (UserWasLoggedIn | LoginFailed | LoginWasCancelled)
+type LoginFinishEvent = UserWasLoggedIn | LoginFailed | LoginWasCancelled;
 
 export function* login(settings: LoginSettings): Generator<StrictEffect, LoginResult> {
     const command = createLogin(settings);

@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
 export type ButtonProps = {
-    onClick?(): void
-    isDisabled?: boolean
+    onClick?(): void;
+    isDisabled?: boolean;
 };
 
 function createButtonClassName(props: InternalButtonProps): string {
@@ -16,16 +16,12 @@ function createButtonClassName(props: InternalButtonProps): string {
     return classNames.join(' ');
 }
 
-type InternalButtonProps = ButtonProps & { extraClassName: string }
+type InternalButtonProps = ButtonProps & { extraClassName: string };
 const InternalButton: FC<InternalButtonProps> = (props) => (
-    <button
-        type="button"
-        className={createButtonClassName(props)}
-        onClick={props.onClick}
-    >
+    <button type="button" className={createButtonClassName(props)} onClick={props.onClick}>
         {props.children}
     </button>
 );
 
-export const PrimaryButton: FC<ButtonProps> = (props) => (<InternalButton {...props} extraClassName="btn-primary" />);
-export const SecondaryButton: FC<ButtonProps> = (props) => (<InternalButton {...props} extraClassName="btn-secondary" />);
+export const PrimaryButton: FC<ButtonProps> = (props) => <InternalButton {...props} extraClassName="btn-primary" />;
+export const SecondaryButton: FC<ButtonProps> = (props) => <InternalButton {...props} extraClassName="btn-secondary" />;

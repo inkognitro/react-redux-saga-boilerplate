@@ -1,13 +1,11 @@
-import { MessageTypes } from "packages/common/types/util/domain";
-import {
-    Message, MessageToAdd, Toast, ToasterState, ToastTypes,
-} from "./types";
+import { MessageTypes } from 'packages/common/types/util/domain';
+import { Message, MessageToAdd, Toast, ToasterState, ToastTypes } from './types';
 
 export enum CommonToastIds {
-    INFO = "5011d2e7-ce60-4186-bbee-bf3e8ab57c3b",
-    SUCCESS = "fb02626d-b3f7-4589-b880-ae468d763f7f",
-    WARNING = "9210671f-37da-4258-90e5-dc6faf6ba87a",
-    ERROR = "3fd1b7de-cf2e-49ba-bda3-fcde9e0632bd",
+    INFO = '5011d2e7-ce60-4186-bbee-bf3e8ab57c3b',
+    SUCCESS = 'fb02626d-b3f7-4589-b880-ae468d763f7f',
+    WARNING = '9210671f-37da-4258-90e5-dc6faf6ba87a',
+    ERROR = '3fd1b7de-cf2e-49ba-bda3-fcde9e0632bd',
 }
 
 export function getCommonToastIdByType(type: ToastTypes): string {
@@ -26,10 +24,8 @@ export function getCommonToastIdByType(type: ToastTypes): string {
     throw new Error(`toast type "${type}" not supported`);
 }
 
-export function findMessageToAddByMessageId(state: ToasterState, messageId: string): (null | MessageToAdd) {
-    const foundMessage = state.messagesToAdd.find(
-        (messageToAdd) => messageToAdd.message.id === messageId,
-    );
+export function findMessageToAddByMessageId(state: ToasterState, messageId: string): null | MessageToAdd {
+    const foundMessage = state.messagesToAdd.find((messageToAdd) => messageToAdd.message.id === messageId);
     if (foundMessage) {
         return foundMessage;
     }
@@ -56,12 +52,10 @@ export function findToastById(state: ToasterState, toastId: string): null | Toas
     return null;
 }
 
-export function findToastByMessageId(state: ToasterState, messageId: string): (null | Toast) {
+export function findToastByMessageId(state: ToasterState, messageId: string): null | Toast {
     for (const index in state.toasts) {
         const toast = state.toasts[index];
-        const foundMessage = toast.messages.find(
-            (message) => message.id === messageId,
-        );
+        const foundMessage = toast.messages.find((message) => message.id === messageId);
         if (foundMessage) {
             return toast;
         }

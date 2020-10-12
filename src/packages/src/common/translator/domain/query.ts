@@ -1,5 +1,5 @@
-import { Translation } from "packages/common/types/util/domain";
-import { LanguageIds, TranslatorState } from "./types";
+import { Translation } from 'packages/common/types/util/domain';
+import { LanguageIds, TranslatorState } from './types';
 
 export function getCurrentLanguageId(state: TranslatorState): LanguageIds {
     return state.currentLanguageId;
@@ -15,9 +15,7 @@ export function findTranslatedText(state: TranslatorState, translation: Translat
     }
     for (const key in translation.placeholders) {
         const placeholder = translation.placeholders[key];
-        translatedText = translatedText
-            .split(`%${translation.placeholders[key]}%`)
-            .join(placeholder);
+        translatedText = translatedText.split(`%${translation.placeholders[key]}%`).join(placeholder);
     }
     return translatedText;
 }

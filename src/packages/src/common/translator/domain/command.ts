@@ -1,8 +1,8 @@
-import { Command } from "packages/common/types/util/domain";
-import { LanguageIds } from "./types";
+import { Command } from 'packages/common/types/util/domain';
+import { LanguageIds } from './types';
 
 export enum TranslatorCommandTypes {
-    SET_UI_LANGUAGE = "SET_UI_LANGUAGE-42486f3c-e848-4371-810e-5c55d3cce2a6"
+    SET_UI_LANGUAGE = 'SET_UI_LANGUAGE-42486f3c-e848-4371-810e-5c55d3cce2a6',
 }
 
 export function createSetUILanguage(languageId: LanguageIds): SetUILanguage {
@@ -14,6 +14,9 @@ export function createSetUILanguage(languageId: LanguageIds): SetUILanguage {
     };
 }
 
-export type SetUILanguage = Command<TranslatorCommandTypes.SET_UI_LANGUAGE, {
-    languageId: LanguageIds;
-}>;
+export type SetUILanguage = Command<
+    TranslatorCommandTypes.SET_UI_LANGUAGE,
+    {
+        languageId: LanguageIds;
+    }
+>;

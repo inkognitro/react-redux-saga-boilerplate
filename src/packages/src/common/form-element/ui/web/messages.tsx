@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { IconSizes, IconTypes, ErrorIcon } from "packages/common/icon/ui/web";
-import { Message as MessageData, MessageTypes } from "packages/common/types/util/domain";
-import { TranslatedText } from "packages/common/translator/ui/web";
+import React, { FC } from 'react';
+import { IconSizes, IconTypes, ErrorIcon } from 'packages/common/icon/ui/web';
+import { Message as MessageData, MessageTypes } from 'packages/common/types/util/domain';
+import { TranslatedText } from 'packages/common/translator/ui/web';
 
 type MessageProps = {
     message: MessageData;
@@ -11,8 +11,7 @@ const Message: FC<MessageProps> = (props) => {
     if (props.message.type === MessageTypes.ERROR) {
         return (
             <>
-                <ErrorIcon size={IconSizes.XS} type={IconTypes.ERROR} />
-                {' '}
+                <ErrorIcon size={IconSizes.XS} type={IconTypes.ERROR} />{' '}
                 <small className="text-danger">
                     <TranslatedText translation={props.message.content} />
                 </small>

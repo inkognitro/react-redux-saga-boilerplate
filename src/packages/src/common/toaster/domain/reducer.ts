@@ -1,12 +1,19 @@
-import { Reducer } from "redux";
-import { ToasterState } from "./types";
+import { Reducer } from 'redux';
+import { ToasterState } from './types';
 import {
     MessageIntroAnimationsWereFinished,
-    MessageOutroAnimationWasStarted, MessagesWereAddedToToast, MessageWasAddedToPipeline, MessageWasRemoved,
-    ToasterEventTypes, ToastIntroAnimationWasFinished, ToastOutroAnimationWasStarted, ToastWasAdded, ToastWasRemoved,
-} from "./event";
+    MessageOutroAnimationWasStarted,
+    MessagesWereAddedToToast,
+    MessageWasAddedToPipeline,
+    MessageWasRemoved,
+    ToasterEventTypes,
+    ToastIntroAnimationWasFinished,
+    ToastOutroAnimationWasStarted,
+    ToastWasAdded,
+    ToastWasRemoved,
+} from './event';
 
-type ToasterEvent = (
+type ToasterEvent =
     | MessageIntroAnimationsWereFinished
     | MessageOutroAnimationWasStarted
     | MessagesWereAddedToToast
@@ -15,8 +22,7 @@ type ToasterEvent = (
     | ToastIntroAnimationWasFinished
     | ToastOutroAnimationWasStarted
     | ToastWasAdded
-    | ToastWasRemoved
-)
+    | ToastWasRemoved;
 
 const initialToasterState: ToasterState = {
     messagesToAdd: [],
@@ -25,7 +31,7 @@ const initialToasterState: ToasterState = {
 
 export const toasterReducer: Reducer<ToasterState, ToasterEvent> = function (
     state: ToasterState = initialToasterState,
-    event?: ToasterEvent,
+    event?: ToasterEvent
 ): ToasterState {
     if (!event) {
         return state;
@@ -47,7 +53,7 @@ export const toasterReducer: Reducer<ToasterState, ToasterEvent> = function (
         return {
             ...state,
             messagesToAdd: state.messagesToAdd.filter(
-                (messageToAdd) => !addedMessageIds.includes(messageToAdd.message.id),
+                (messageToAdd) => !addedMessageIds.includes(messageToAdd.message.id)
             ),
             toasts: state.toasts.map((toast) => {
                 if (toast.id !== event.payload.toastId) {
@@ -62,13 +68,11 @@ export const toasterReducer: Reducer<ToasterState, ToasterEvent> = function (
     }
 
     if (event.type === ToasterEventTypes.TOAST_WAS_ADDED) {
-        const addedMessageIds = event.payload.toast.messages.map(
-            (message) => message.id,
-        );
+        const addedMessageIds = event.payload.toast.messages.map((message) => message.id);
         return {
             ...state,
             messagesToAdd: state.messagesToAdd.filter(
-                (messageToAdd) => !addedMessageIds.includes(messageToAdd.message.id),
+                (messageToAdd) => !addedMessageIds.includes(messageToAdd.message.id)
             ),
             toasts: [
                 {
@@ -155,9 +159,7 @@ export const toasterReducer: Reducer<ToasterState, ToasterEvent> = function (
     if (event.type === ToasterEventTypes.TOAST_WAS_REMOVED) {
         return {
             ...state,
-            toasts: state.toasts.filter(
-                (toast) => toast.id !== event.payload.toastId,
-            ),
+            toasts: state.toasts.filter((toast) => toast.id !== event.payload.toastId),
         };
     }
 
@@ -166,9 +168,7 @@ export const toasterReducer: Reducer<ToasterState, ToasterEvent> = function (
             ...state,
             toasts: state.toasts.map((toast) => ({
                 ...toast,
-                messages: toast.messages.filter(
-                    (message) => message.id !== event.payload.messageId,
-                ),
+                messages: toast.messages.filter((message) => message.id !== event.payload.messageId),
             })),
         };
     }

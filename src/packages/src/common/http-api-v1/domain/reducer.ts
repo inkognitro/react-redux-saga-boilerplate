@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { HttpApiV1State } from "./types";
+import { HttpApiV1State } from './types';
 import { HttpApiV1WasInitialized, HttpApiV1EventTypes } from './event';
 
 const initialState: HttpApiV1State = {
@@ -16,7 +16,7 @@ export const httpApiV1Reducer: Reducer<HttpApiV1State> = (state = initialState, 
         return {
             ...state,
             baseUrl: event.payload.baseUrl,
-        }
+        };
     }
     return state;
 };

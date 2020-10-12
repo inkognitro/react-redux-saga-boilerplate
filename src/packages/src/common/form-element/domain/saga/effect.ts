@@ -1,11 +1,8 @@
 import { put } from 'redux-saga/effects';
-import { FieldMessage, FieldMessagePath, Message } from "packages/common/types/util/domain";
-import { createFormElementStatesWereChanged } from "../event";
-import {
-    getMessagesByPathFromFieldMessages,
-    getPathFormElementsToConsiderForMessages,
-} from "../query";
-import { FormElementState, FormElementStateChanges, FormElementTypes } from "../types";
+import { FieldMessage, FieldMessagePath, Message } from 'packages/common/types/util/domain';
+import { createFormElementStatesWereChanged } from '../event';
+import { getMessagesByPathFromFieldMessages, getPathFormElementsToConsiderForMessages } from '../query';
+import { FormElementState, FormElementStateChanges, FormElementTypes } from '../types';
 
 const directlyIncludedMessagesFormElementTypes = [
     FormElementTypes.TEXT,
@@ -16,27 +13,29 @@ const directlyIncludedMessagesFormElementTypes = [
 
 function findMessagesFormElementStateChanges(
     formElement: FormElementState,
-    messages: Message[],
-): (null | FormElementStateChanges) {
+    messages: Message[]
+): null | FormElementStateChanges {
     if (directlyIncludedMessagesFormElementTypes.includes(formElement.type)) {
-        return (messages.length === 0 && formElement.messages.length === 0 ? null : {
-            formElement,
-            stateChanges: {
-                messages,
-            },
-        });
+        return messages.length === 0 && formElement.messages.length === 0
+            ? null
+            : {
+                  formElement,
+                  stateChanges: {
+                      messages,
+                  },
+              };
     }
     throw new Error(`Form element type "${formElement.type}" not supported!`);
 }
 
 type SetFormElementMessagesSettings = {
-    state: any
-    fieldMessages: FieldMessage[]
-    fieldMessagesPrefixPath?: FieldMessagePath
-}
+    state: any;
+    fieldMessages: FieldMessage[];
+    fieldMessagesPrefixPath?: FieldMessagePath;
+};
 
 export function* setFormElementMessages(settings: SetFormElementMessagesSettings): Generator {
-    const fieldMessagesPrefixPath = (settings.fieldMessagesPrefixPath ? settings.fieldMessagesPrefixPath : []);
+    const fieldMessagesPrefixPath = settings.fieldMessagesPrefixPath ? settings.fieldMessagesPrefixPath : [];
     const pathFormElements = getPathFormElementsToConsiderForMessages({
         state: settings.state,
         fieldMessagesPrefixPath,

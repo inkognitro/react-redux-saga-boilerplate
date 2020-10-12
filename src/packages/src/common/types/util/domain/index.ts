@@ -1,15 +1,15 @@
-import { Action } from "redux";
+import { Action } from 'redux';
 
 export enum MessageTypes {
-    INFO = "info",
-    SUCCESS = "success",
-    WARNING = "warning",
-    ERROR = "error",
+    INFO = 'info',
+    SUCCESS = 'success',
+    WARNING = 'warning',
+    ERROR = 'error',
 }
 
 export type Placeholders = {
-    [key: string]: string
-}
+    [key: string]: string;
+};
 
 export enum TranslationIds {
     COULD_NOT_CONNECT_TO_SERVER = 'couldNotConnectToServer',
@@ -22,26 +22,30 @@ export enum TranslationIds {
 }
 
 export type Translation = {
-    translationId: (TranslationIds | string)
-    placeholders?: Placeholders
-    fallback?: string
-}
+    translationId: TranslationIds | string;
+    placeholders?: Placeholders;
+    fallback?: string;
+};
 
 export type Message = {
     id: string;
-    type: MessageTypes
-    content: Translation
-}
+    type: MessageTypes;
+    content: Translation;
+};
 
-export type FieldMessagePath = (string | number)[] // e.g. ['users', 0, 'username']
+export type FieldMessagePath = (string | number)[]; // e.g. ['users', 0, 'username']
 
 export type FieldMessage = {
-    path: FieldMessagePath
-    message: Message
-}
+    path: FieldMessagePath;
+    message: Message;
+};
 
-export type Command<Type = any, Payload = undefined> = Action<Type> & { payload: Payload }
-export type Event<Type = any, Payload = undefined> = Action<Type> & { payload: Payload }
+export type Command<Type = any, Payload = undefined> = Action<Type> & {
+    payload: Payload;
+};
+export type Event<Type = any, Payload = undefined> = Action<Type> & {
+    payload: Payload;
+};
 
 export enum ResultTypes {
     SUCCESS = 'success',
@@ -49,15 +53,17 @@ export enum ResultTypes {
 }
 
 type ResultProps<Data> = {
-    generalMessages: Message[]
-    fieldMessages: FieldMessage[]
-    data: Data
-}
+    generalMessages: Message[];
+    fieldMessages: FieldMessage[];
+    data: Data;
+};
 
-type GenericResult<Type extends ResultTypes, Data> = ({ type: Type } & ResultProps<Data>)
-export type SuccessResult<Data = any> = GenericResult<ResultTypes.SUCCESS, Data>
-export type ErrorResult<Data = any> = GenericResult<ResultTypes.ERROR, Data>
-export type Result = (SuccessResult | ErrorResult)
+type GenericResult<Type extends ResultTypes, Data> = {
+    type: Type;
+} & ResultProps<Data>;
+export type SuccessResult<Data = any> = GenericResult<ResultTypes.SUCCESS, Data>;
+export type ErrorResult<Data = any> = GenericResult<ResultTypes.ERROR, Data>;
+export type Result = SuccessResult | ErrorResult;
 
 export type ResultCreationSettings<Data = any> = Partial<ResultProps<Data>> & Pick<ResultProps<Data>, 'data'>;
 
