@@ -25,7 +25,7 @@ and `mobile-app` as sub repositories, manageable by [lerna](https://lerna.js.org
 - A `module` always is the leaf of a subdirectory structure and must not contain other modules (partially ensured by eslint rules).
 - A module can have dependencies to other modules.
 
-With this feature based structure, modules can easily can be moved in the codebase.
+With this feature based structure, modules easily can be moved in the codebase.
 
 ## Appendix
 Following information is not necessary to know but may be interesting for you.
@@ -77,5 +77,5 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 - (-) no community, no documentation
 
 Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
-about a comparison between these two. After that you probably want to understand [saga's flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html),
+about the comparison between these two. After that you probably want to understand [saga's flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html),
 which could be really helpful to write readable and especially less code.
