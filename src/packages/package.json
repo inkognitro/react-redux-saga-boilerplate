@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Shared modules for usages in several apps.",
   "author": "Marcel Fischer",
+  "private": true,
   "scripts": {
     "tsc": "tsc",
     "test": "jest",

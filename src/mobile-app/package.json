@@ -1,6 +1,8 @@
 {
   "name": "@app/mobile-app",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Native mobile app.",
+  "author": "Marcel Fischer",
   "private": true,
   "scripts": {
     "tsc": "tsc",

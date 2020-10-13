@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Single page web app.",
   "author": "Marcel Fischer",
+  "private": true,
   "scripts": {
     "tsc": "tsc",
     "test": "jest",
