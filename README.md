@@ -58,7 +58,7 @@ This was achieved by a small react native implementation of the `packages/common
 - [environment](docs/environment.md) - installation, development start, scripts
 - [architecture](docs/architecture.md) - architecture and code structure
 - [coding guidelines](docs/coding.guidelines.md) - please don't mess up this project
-- [api documentations](docs/api.docs.md) - documentation for developers
+- [api documentation](docs/api.docs.md) - documentation for developers
 
 ## Appreciation
 Many thanks to the awesome react community.

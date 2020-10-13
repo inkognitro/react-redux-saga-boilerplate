@@ -1,54 +1,58 @@
 [« docs overview](../README.md)
 
 # Architecture
-Target was to create a highly maintainable frontend boilerplate.
-To be specific, the criteria were: reusable codebase, readable code, flat learning curve, documentation, large community, easy testing.
-Following explanations should clarify the architecture.
+The codebase is divided in three layers.
+1. `ui` - In this layer all react or other ui components live in
+2. `domain` - This is the source of truth layer: it holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
+3. `infrastructure` - This is the layer where non ui but too specific implementations live in: e.g. local or session storage for browser environments.
 
-## Layers
-The codebase is divided in three layers:
-1. **Domain Layer**: This is the source of truth layer. It holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
-2. **Infrastructure Layer**: This is the layer where the specific implementations live in (e.g browser cookie storage for browser environments).
-3. **UI Layer**: In this layer all web UI components live in.
+With this separation already written business logic could be used for multiple views,
+for instance in a native mobile app view.
 
-With the separation of these layers it is guaranteed that already written business logic can be used for multiple views (e.g. web and native).
+The graphic below shows the three layers, their contents and some layer connecting library functions.
+Imagine an onion in which the outer shell is dependent on the inner one.
 
-For a better understanding have a look at the info graphic below. The relevant technologies are listed as well.
-![DDD info graphic](assets/architecture.png)
+![architecture](assets/architecture.svg)
 
 ## Structure
-Generally the project is structured as a monorepo with several sub projects inside.
-Following definitions are given:
+The project is structured as a monorepo with `packages`, `web-app`
+and `mobile-app` as sub repositories, manageable by [lerna](https://lerna.js.org/).
 
-- `Package:` A package is a collection of `modules`.
-- `Module:` A module contains strongly coupled features:
-    - Every module is divided in `domain`, `infrastructure` and `ui` (divided in `native` and `web`) layer.
-    - In each of these layers an `index.ts` file lives in, to define its public api (except `ui` where the `index.ts` file lives in `native` and `web` folders).
-    - To keep the code base lean and reactive, a module can contain sub modules in a `sub-modules` directory.
-    These sub modules should only be imported from the module itself.
+#### What's a  `module`?
+- A so called `module` is divided in the three layers by `ui`, `domain` and `infrastructure` folders.
+- Every layer folder should only be present if it contains code.
+- Every layer folder must have a `index.ts(x)` file to define its public api (ensured by eslint rules).
+- A `module` always is the leaf of a subdirectory structure and must not contain other modules (partially ensured by eslint rules).
+- A module can have dependencies to other modules.
 
-With this feature based structure, it is ensured that specific features easily can be moved up and down in the codebase.
+With this feature based structure, modules can easily can be moved in the codebase.
 
 ## Appendix
 Following information is not necessary to know but may be interesting for you.
 
-### Why redux?
-Redux was chosen because it makes modularity and maintainability a breeze while giving you full control over every action which is happening during the runtime of your frontend app.
-It works like a charm with Domain Driven Design (DDD) by providing a pattern to encapsulate the view from the business logic with its general bus for actions (e.g. commands, events).
+First of all it's probably good to have a clue about the evolution of frontend architectures,
+explained by a sweet article:
+["MVC vs Flux vs Redux – The Real Differences"](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences).
 
-Additional readings:
-- The evolution of frontend architectures: ["MVC vs Flux vs Redux – The Real Differences"](https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences)
-- ["Command vs. Event in Domain Driven Design"](https://medium.com/ingeniouslysimple/command-vs-event-in-domain-driven-design-be6c45be52a9)
+### Why redux?
+Redux was chosen because it makes modularity and maintainability a breeze
+while giving you full control over every action which is happening during the runtime
+of your frontend app.
+With its general bus for actions, redux provides a way to encapsulate view from state changes.
 
 ### Why redux-saga?
-Redux only handles synchronous data flow and therefore it was required to find a solution for handling sync and async business logic.
-Most common redux libraries for this are [redux-thunk](https://www.npmjs.com/package/redux-thunk), [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
+Redux only handles synchronous data flow.
+Therefore it was required to find a solution for handling async (and sync) logic.
+Most common redux libraries for this are [redux-thunk](https://www.npmjs.com/package/redux-thunk),
+[redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
 
-[Redux-thunk](https://www.npmjs.com/package/redux-thunk) could be sorted out quite early:
-The code gets really messy over time. Most people end up in a callback hell and therefore testing is also not that easy.
-One would crawl through some articles or give it a try. No further discussion here about [redux-thunk](https://www.npmjs.com/package/redux-thunk).
+[Redux-thunk](https://www.npmjs.com/package/redux-thunk) was sorted out quite early:
+Code could easily get messy over time.
+Coding goes on with the familiar and known callback hell.
+Code used with [redux-thunk](https://www.npmjs.com/package/redux-thunk)
+mostly therefore is strongly coupled so it is hard to write encapsulated tests.
 
-The two favorites obviously were redux-saga and redux-observable.
+The two favorites obviously were [redux-saga](http://redux-saga.js.org) and [redux-observable](http://redux-observable.js.org).
 Following comparison will give a hint why [redux-saga](http://redux-saga.js.org) was chosen over [redux-observable](http://redux-observable.js.org):
 
 **redux-observable**:
@@ -73,7 +77,5 @@ Following comparison will give a hint why [redux-saga](http://redux-saga.js.org)
 - (-) no community, no documentation
 
 Read a [good article](https://shift.infinite.red/redux-observable-epics-vs-redux-sagas-8e53610c0eda)
-about this and understand saga's [flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html).
-But keep in mind: Whenever you apply saga's flow principle, time travelling with an injected
-redux state could get tricky. With the previous "login flow" example, imagine the current user is already given in the injected state
-and the saga is not listening for a "logout" action yet.
+about a comparison between these two. After that you probably want to understand [saga's flow principle](https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html),
+which could be really helpful to write readable and especially less code.
