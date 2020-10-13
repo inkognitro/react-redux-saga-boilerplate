@@ -6,9 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "test": "jest",
-    "test:coverage": "jest --coverage --colors && make-coverage-badge --output-path \"./coverage/coverageBadge.svg\" --report-path \"./coverage/coverage-summary.json\"",
-    "lint": "eslint ./src --ext .ts,.tsx",
-    "lint:fix": "tsc && eslint ./src --ext .ts,.tsx --quiet --fix"
+    "test:coverage": "jest --coverage --colors && make-coverage-badge --output-path \"./coverage/coverageBadge.svg\" --report-path \"./coverage/coverage-summary.json\""
   },
   "dependencies": {
     "@material-ui/core": "^4.8.2",

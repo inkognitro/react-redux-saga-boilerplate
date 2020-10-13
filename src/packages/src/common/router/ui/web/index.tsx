@@ -32,8 +32,8 @@ export type RouterProps = {
     currentUser: AuthUser;
     history: History;
     routes: Route[];
-    notAuthorizedComponent: ComponentType;
-    notFoundComponent: ComponentType;
+    notAuthorizedComponent: ComponentType<any>;
+    notFoundComponent: ComponentType<any>;
 };
 
 export const Router: FC<RouterProps> = (props) => (

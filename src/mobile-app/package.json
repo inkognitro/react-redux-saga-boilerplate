@@ -6,8 +6,6 @@
     "tsc": "tsc",
     "test": "jest --passWithNoTests",
     "test:coverage": "jest --passWithNoTests --coverage --colors && make-coverage-badge --output-path \"./coverage/coverageBadge.svg\" --report-path \"./coverage/coverage-summary.json\"",
-    "lint": "eslint ./src --ext .ts,.tsx",
-    "lint:fix": "tsc && eslint ./src --ext .ts,.tsx --quiet --fix",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start"

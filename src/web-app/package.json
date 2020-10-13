@@ -7,8 +7,6 @@
     "tsc": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage --colors && make-coverage-badge --output-path \"./coverage/coverageBadge.svg\" --report-path \"./coverage/coverage-summary.json\"",
-    "lint": "eslint ./src --ext .ts,.tsx",
-    "lint:fix": "tsc && eslint ./src --ext .ts,.tsx --quiet --fix",
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
