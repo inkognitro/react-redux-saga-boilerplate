@@ -6,10 +6,11 @@ The codebase is divided in three layers.
 2. `domain` - This is the source of truth layer: it holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later. Never couple specific implementations (e.g. browser cookies or browser history) in this layer.
 3. `infrastructure` - This is the layer where non ui but too specific implementations live in: e.g. local or session storage for browser environments.
 
-With this separation already written business logic could be used for multiple views,
-for instance in a native mobile app view.
+With this separation of concerns it is possible to reuse domain logic and to create encapsulated tests.
+Domain logic could - for instance - be reused in native mobile app components.
 
-The graphic below shows the three layers, their contents and some layer connecting library functions.
+The graphic below shows the mentioned three layers,
+their contents and some layer connecting library functions.
 Imagine an onion in which the outer shell is dependent on the inner one.
 
 ![architecture](assets/architecture.svg)
