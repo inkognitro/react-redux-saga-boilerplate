@@ -23,7 +23,7 @@
     "test:coverage": "lerna run test:coverage --stream",
     "lint": "eslint ./src --ext .ts,.tsx",
     "lint:fix": "tsc && eslint ./src --ext .ts,.tsx --quiet --fix",
-    "ci": "lerna run test:coverage --stream && lerna run lint:fix --stream && lerna run build --stream"
+    "ci": "lerna run test:coverage --stream && yarn run lint:fix && lerna run build --stream"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.29.0",
