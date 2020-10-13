@@ -1,13 +1,5 @@
 import React, { FC } from 'react';
-import {
-    Button,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
+import { Button, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { Provider as StoreProvider } from 'react-redux';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { createShowMessage, ToastTypes } from 'packages/common/toaster/domain';
@@ -22,14 +14,11 @@ export const App: FC = () => (
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
             <StoreProvider store={services.store}>
-                <ScrollView
-                    contentInsetAdjustmentBehavior="automatic"
-                    style={styles.scrollView}>
+                <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
                     <View style={styles.sectionContainer}>
                         <Text style={styles.sectionTitle}>Toaster Demo</Text>
                         <Text style={styles.sectionDescription}>
-                            The toaster below uses the toaster domain logic but
-                            the native view.
+                            The toaster below uses the toaster domain logic but the native view.
                         </Text>
                     </View>
                     <View style={styles.sectionContainer}>
@@ -39,8 +28,7 @@ export const App: FC = () => (
                                     createShowMessage({
                                         content: {
                                             translationId: uuidV4(),
-                                            fallback:
-                                                'Some static typed sample message.',
+                                            fallback: 'Some static typed sample message.',
                                         },
                                         toastType: ToastTypes.INFO,
                                     })

@@ -26,6 +26,7 @@ module.exports = {
                 "gsap/CSSPlugin",
                 "bootstrap/scss/bootstrap.scss",
                 "@material-ui/icons/**",
+                "react-native/**",
             ],
         }],
         "no-restricted-imports": ["error", {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RequestResponse, Request, RequestMethods, HttpRequestDispatcher } from '../domain/types';
+import { RequestResponse, Request, RequestMethods, HttpRequestDispatcher } from '../domain';
 
 type AxiosError = {
     request?: object;

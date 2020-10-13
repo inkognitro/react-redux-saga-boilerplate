@@ -2,7 +2,7 @@ import { ApiV1Response } from 'packages/common/http-api-v1/domain';
 import { MessageTypes } from 'packages/common/types/util/domain';
 import { MinimalUser } from 'packages/common/types/user/domain';
 import { createPseudoJWT } from 'packages/common/authentication/domain';
-import { HttpRequestDispatcher, Request, RequestResponse } from '../domain/types';
+import { HttpRequestDispatcher, Request, RequestResponse } from '../domain';
 
 export class MockHttpRequestDispatcher implements HttpRequestDispatcher {
     executeRequest(request: Request): Promise<RequestResponse> {

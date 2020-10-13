@@ -1,7 +1,13 @@
 import { applyMiddleware, combineReducers, createStore as createReduxStore, Reducer, Store } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { spawn } from 'redux-saga/effects';
-import { ToasterState, ToasterStateSelector, toasterReducer, createToasterSaga, ToasterSettings } from 'packages/common/toaster/domain';
+import {
+    ToasterState,
+    ToasterStateSelector,
+    toasterReducer,
+    createToasterSaga,
+    ToasterSettings,
+} from 'packages/common/toaster/domain';
 import { TranslatorState, translatorReducer } from 'packages/common/translator/domain';
 import { designReducer, DesignState } from 'packages/common/design/domain';
 
