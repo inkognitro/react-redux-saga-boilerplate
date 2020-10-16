@@ -9,16 +9,6 @@ This section describes how this monorepo can be handled.
 3. Install yarn globally: `npm install yarn -g`
 4. Install lerna globally: `npm install lerna -g`
 5. Open console and move into project folder, run:  `lerna bootstrap`
-6. Configure eslint (see below)
-
-## Eslint configuration
-Below you can see the eslint configuration for [WebStorm](https://www.jetbrains.com/webstorm).
-
-Automatic detection of `.eslintrc.json` in the project folder:
-![esLintAutomaticDetection](assets/esLintAutomaticDetection.png)
-
-Replace `Strg + Alt + L` shortcut with eslint fix:
-![esLintKeymapShortcut](assets/esLintKeymapShortcut.png)
 
 ## Web app development
 To run the web app with hot module reloading at `//localhost:9000`, run:
@@ -33,32 +23,33 @@ To run the mobile app with hot module reloading on android device emulator, run:
 ## Scripts
 Following scripts are executed for every sub repository via lerna.
 Be aware that these commands require [yarn](https://yarnpkg.com/) and [lerna](https://lerna.js.org/) as a global dependency.
-Due to limitations of the react-native the `src/mobile-app` package is not yet integrated as a yarn workspace.
+Due to limitations of the react-native the `src/mobile-app` package is not yet integrated as a yarn workspace
+and has no lerna management support in this project.
 
 To install install `node_modules` in every package, run:
 
-    \Foo\Bar\MonorepoRootFolder> lerna bootstrap
+    lerna bootstrap
 
-To remove `node_modules` from all packages, run:
+To remove `node_modules` from all packages (mobile-app excluded), run:
 
-    \Foo\Bar\MonorepoRootFolder> lerna clean
+    lerna clean
 
-To run all package tests, run:
+To run all package tests (mobile-app excluded), run:
 
-    \Foo\Bar\MonorepoRootFolder> yarn run test
+    yarn run test
 
 To type check every package, run:
 
-    \Foo\Bar\MonorepoRootFolder> yarn run tsc
+    yarn run tsc
 
-To lint every package without fixing it, run:
+To test linting for every package, run:
 
-    \Foo\Bar\MonorepoRootFolder> yarn run lint
+    yarn run lint
 
-To lint every package with fixing it, run:
+To fix linting for every package, run:
 
-    \Foo\Bar\MonorepoRootFolder> yarn run lint:fix
+    yarn run lint:fix
 
-Continuous integration. To execute tests, type check, lint fix and build every package, run:
+To execute tests, type check, lint fix and build every package, run:
 
-    \Foo\Bar\MonorepoRootFolder> yarn run ci
+    yarn run ci
