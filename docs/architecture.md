@@ -2,9 +2,9 @@
 
 # Architecture
 The codebase is divided in three layers.
-1. `ui` - In this layer all react or other ui components live in
-2. `domain` - This is the source of truth layer: it holds your business logic, manages your app state, async action logic and side effects. Try to put in the most stuff in this layer to reuse it later.
-3. `infrastructure` - This is the layer where non ui but too specific implementations live in: e.g. local or session storage functionality for browser environments.
+1. `ui` - in this layer all react or other ui components live in
+2. `domain` - this is the source of truth layer: it holds your sync and async logic, manages your app state and side effects. Try to put in the most stuff here to reuse it later.
+3. `infrastructure` - this is the layer where non ui but too specific implementations live in: e.g. local or session storage functionality for browser environments.
 
 With this separation of concerns it is possible to reuse domain logic and to create encapsulated tests.
 Domain logic could - for instance - be reused in native mobile app components.
@@ -14,6 +14,12 @@ their contents and some layer connecting library functions.
 Imagine an onion in which the outer shell is dependent on the inner one.
 
 ![architecture](assets/architecture.svg)
+
+In some redux tutorials out there, some action names were not really clear to me about their purpose.
+With a Domain Driven Design background it is clear,
+an action should be worded either as `command` or `event`.
+No redux rule changes here, both can change the app's state via reducer.
+In DDD normally only `events` can change the app's state.
 
 ## Structure
 The project is structured as a monorepo with `packages`, `web-app`
