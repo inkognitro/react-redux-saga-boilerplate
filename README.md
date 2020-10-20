@@ -57,7 +57,7 @@ This was achieved by a small react native implementation of the `packages/common
 ## Documentation
 - [environment](docs/environment.md) - installation, how to start development, other scripts
 - [architecture](docs/architecture.md) - structure and rules of the codebase
-- [coding guidelines](docs/coding.guidelines.md) - best practices and helpful tips
+- [coding guidelines](docs/coding.guidelines.md) - best practices and common conventions
 - [api documentation](docs/api.docs.md) - how to use existing modules
 
 ## Appreciation
