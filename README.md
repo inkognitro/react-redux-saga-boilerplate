@@ -26,8 +26,8 @@ To fully understand this project you should be familiar with the technologies be
 1. Http foundation and api template module:
     - Request handling with [axios](http://npmjs.com/package/axios) library in the background
     - Explicit type definitions e.g. `Request`, `Response` and saga generator functions per endpoint.
-1. Basic [JWT](http://jwt.io) authentication:
-    - JWT `exp` in UTC time, see `mock.http.request.dispatcher.ts` as the mock for several endpoints in dev mode
+1. Basic [jwt](http://jwt.io) authentication:
+    - jwt `exp` in UTC time, see `mock.http.request.dispatcher.ts` as the mock for several endpoints in dev mode
     - automatic token refresh, see `src/packages/src/common/authentication/domain/flow.ts`
     - ideally the authentication server responds with the `[jwtSecret]` cookie (`httpOnly` and `sameSite`) and `[jwtHeader].[jwtPayload]` in the response body, to be protected against XSS and CSRF attacks.
     - auth user generally saved at session storage, when required also at local storage - according to remember me flag
@@ -55,10 +55,10 @@ The purpose of the mobile app is a demonstration of using domain layer code in a
 This was achieved by a small react native implementation of the `packages/common/toaster` module.
 
 ## Documentation
-- [environment](docs/environment.md) - installation, development start, scripts
-- [architecture](docs/architecture.md) - architecture and code structure
-- [coding guidelines](docs/coding.guidelines.md) - please don't mess up this project
-- [api documentation](docs/api.docs.md) - documentation for developers
+- [environment](docs/environment.md) - installation, how to start development, other scripts
+- [architecture](docs/architecture.md) - structure and rules of the codebase
+- [coding guidelines](docs/coding.guidelines.md) - best practices and helpful tips
+- [api documentation](docs/api.docs.md) - how to use existing modules
 
 ## Appreciation
 Many thanks to the awesome react community.

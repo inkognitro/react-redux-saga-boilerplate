@@ -15,13 +15,10 @@ In one of my workplaces we created a `RequestHandler` class.
 The purpose of this class was to handle requests for every endpoint.
 Depending on every response, one or multiple toast messages could be dispatched.
 
-I bet you already see the problem:
-
-Yes, this shit is totally coupled and therefore not reusable.
+I bet you already see the problem: This shit is totally coupled and therefore not reusable.
 I mean, what if we had another app without toasts?
-Or what if we wanted a caching for one endpoint?
-Or what if we had no routes at all? For instance in an embeddable iframe app?
-
+Or what if we wanted a caching mechanism for that one specific endpoint?
+Or what if we had no routes at all, for instance in an embeddable iframe app?
 Actually the weirdest thing in my eyes was following piece of code:
 
 ```javascript
@@ -31,14 +28,16 @@ if (response.statusCode === 401) {
 }
 //...
 ```
-With this, even `ui` logic was mixed with `domain` logic.
-Routing to another url is definitely a `ui` layer thing and has nothing todo with request handling.
+With this code, even `ui` logic has been mixed with `domain` logic.
+Routing to another url is definitely a `ui` layer thing and has nothing todo with request handling itself.
 
 > Remember: A module can have dependencies to other modules.
 
 For a better approach have a look at `http-foundation`, `http-api-v1` and `http-api-v1-toaster` modules.
-These modules are totally decoupled and can plugged together in an app's services factory.
-You find an example for an app's service in `./src/webapp/src/services.factory.ts`.
+All these modules are decoupled but together they can provide the same functionality as the
+horrible coupled `RequestHandler` class.
+To find out how, just have a look at `./src/webapp/src/services.factory.ts` and find out
+how these decoupled services are plugged together.
 
 ## Don't use default exports
 It is recommended importing things like
