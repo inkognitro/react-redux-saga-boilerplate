@@ -58,7 +58,7 @@ Dependencies are passed down by these factories.
 Side effects are happening in these sagas.
 
 ### `effect` - generator functions
-A `effect` is an independent saga, listening for commands and events, without dependencies :warning: !!
+A `effect` is an independent saga, listening for commands and events, without dependencies :warning:.
 A custom effect provides functionality, which otherwise must be double coded in other modules.
 
 ## Avoid circular imports
