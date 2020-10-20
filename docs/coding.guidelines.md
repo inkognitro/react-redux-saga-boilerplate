@@ -19,7 +19,6 @@ Depending on every response, one or multiple toast messages could be dispatched.
 I bet you already see the problem: This shit is totally coupled and therefore not reusable.
 I mean, what if we had another app without toasts?
 Or what if we wanted a caching mechanism for that one specific endpoint?
-Or what if we had no routes at all, for instance in an embeddable iframe app?
 Actually the weirdest thing in my eyes was following piece of code:
 
 ```javascript
@@ -29,7 +28,8 @@ if (response.statusCode === 401) {
 }
 //...
 ```
-With this code, even `ui` logic has been mixed with `domain` logic.
+What if we had no routes at all, for instance in an embeddable iframe app?
+With this code, even `ui` logic was mixed with `domain` logic.
 Routing to another url is definitely a `ui` layer thing and has nothing todo with request handling itself.
 
 > Remember: A module can have dependencies to other modules.
