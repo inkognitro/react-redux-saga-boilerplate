@@ -45,7 +45,7 @@ function useKeyPress(fn: (keyboardKey: string, event: KeyboardEvent | undefined)
             window.removeEventListener('keydown', downHandler);
             window.removeEventListener('keyup', upHandler);
         };
-    }, deps);
+    }, [...deps, fn]);
 }
 
 function getPreviousEntryRowKey(currentKey: string | null, entryRows: EntryRow[]): string | null {
