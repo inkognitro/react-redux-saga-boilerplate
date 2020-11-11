@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState, useEffect, useRef } from 'react';
+import React, { FC, ReactNode, useState, useRef } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styled from 'styled-components';
 import { useDidUpdate, useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
