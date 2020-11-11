@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createShowMessage, ToastTypes } from 'packages/common/toaster/domain';
 import { ContentPage } from 'web-app/foundation/ui';
 import { RootState } from 'web-app/services.factory';
-import { FunctionalLink, Link, LinkTargets } from 'packages/common/layout-foundation/ui/web';
+import { FunctionalLink, Link, LinkTargets, DropdownMenu } from 'packages/common/layout-foundation/general/ui/web';
 import { createLeakReduxState } from 'web-app/pages/home/domain';
-import { FormElement, FormGroup } from 'packages/common/form-element/ui/web';
+import { FormElement, FormGroup } from 'packages/common/form-element/general/ui/web';
 import { Form } from 'packages/common/form/ui/web';
 import { createLogin } from 'packages/common/authentication/domain';
 
@@ -119,6 +119,12 @@ export const HomePage: FC = () => {
                     }>
                     trigger login programmatically
                 </FunctionalLink>
+            </div>
+
+            <br />
+            <h3>Testing</h3>
+            <div>
+                <DropdownMenu entries={['foo', 'bar', 'baz', 'bllllöööö']} renderEntry={(entry) => entry} />
             </div>
         </ContentPage>
     );

@@ -1,5 +1,5 @@
 import { Action, Reducer } from 'redux';
-import { formElementReducer } from 'packages/common/form-element/domain';
+import { formElementReducer } from 'packages/common/form-element/general/domain';
 import { FormElementsByNameForm, FormElementsByNameState, FormState } from './types';
 import { FormEventTypes, FormSubmitHasFinished, FormSubmitHasStarted } from './event';
 import { createFormState } from './state.factory';

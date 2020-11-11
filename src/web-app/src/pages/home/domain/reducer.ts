@@ -1,5 +1,5 @@
 import { Reducer, combineReducers } from 'redux';
-import { createFormElementReducer, createTextFieldState, TextFieldState } from 'packages/common/form-element/domain';
+import { createFormElementReducer, createTextFieldState, TextFieldState } from 'packages/common/form-element/general/domain';
 import { HomePageState } from './types';
 
 export const homePageReducer: Reducer<HomePageState> = combineReducers({

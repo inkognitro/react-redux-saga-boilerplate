@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContentPage } from 'web-app/foundation/ui';
-import { Card } from 'packages/common/layout-foundation/ui/web';
-import { FormGroup, PrimaryButton, SimpleFormElement } from 'packages/common/form-element/ui/web';
+import { Card } from 'packages/common/layout-foundation/general/ui/web';
+import { FormGroup, PrimaryButton, SimpleFormElement } from 'packages/common/form-element/general/ui/web';
 import { Form } from 'packages/common/form/ui/web';
 import { createInitialize, createLogin } from '../domain';
 import { TranslatedText } from 'packages/common/translator/ui/web';

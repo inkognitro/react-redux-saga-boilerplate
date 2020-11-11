@@ -1,4 +1,4 @@
-import { CheckboxState, PasswordFieldState, TextFieldState } from 'packages/common/form-element/domain';
+import { CheckboxState, PasswordFieldState, TextFieldState } from 'packages/common/form-element/general/domain';
 import { FormState } from 'packages/common/form/domain';
 
 export type LoginFormState = FormState<{

@@ -3,7 +3,7 @@ import {
     createCheckboxState,
     createPasswordFieldState,
     createTextFieldState,
-} from 'packages/common/form-element/domain';
+} from 'packages/common/form-element/general/domain';
 import { createFormElementsByNameFormReducer } from 'packages/common/form/domain';
 import { LoginFormState, LoginPageState } from './types';
 import { LoginPageEventTypes } from './event';

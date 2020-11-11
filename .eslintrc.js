@@ -38,6 +38,8 @@ module.exports = {
                 "**/ui/web/**",
                 "!**/ui/native",
                 "**/ui/native/**",
+                "!**/ui/all",
+                "**/ui/all/**",
                 "**/infrastructure/**",
             ],
         }],
