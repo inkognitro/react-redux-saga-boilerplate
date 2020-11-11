@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, ReactNode, useState, useEffect, useRef } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styled from 'styled-components';
 import { useDidUpdate, useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
@@ -8,6 +8,7 @@ const StyledEntries = styled.div`
     border: 1px solid grey;
     max-height: 200px;
     overflow: auto;
+    position: relative;
 `;
 
 const StyledEntry = styled.div`
@@ -54,8 +55,31 @@ function getNextEntryRowKey(currentKey: string | null, entryRows: EntryRow[]): s
     return currentKey;
 }
 
+function setSelectedOptionsScrollPosition(containerElement: HTMLDivElement, focusedElement: HTMLDivElement): void {
+    const isFocusedElementAboveContainerTop = focusedElement.offsetTop < containerElement.scrollTop;
+    if (isFocusedElementAboveContainerTop) {
+        focusedElement.scrollIntoView({ block: 'start' });
+        return;
+    }
+    const containerBottom = containerElement.scrollTop + containerElement.clientHeight;
+    const focusedElementBottom = focusedElement.offsetTop + focusedElement.clientHeight;
+    const isFocusedElementBelowContainerBottom = focusedElementBottom < containerBottom;
+    if (isFocusedElementBelowContainerBottom) {
+        focusedElement.scrollIntoView({ block: 'start' });
+        return;
+    }
+}
+
 const Entries: FC<EntriesProps> = (props) => {
     const [focusedRowKey, setFocusedRowKey] = useState<string | null>(null);
+    const containerElement = useRef<HTMLDivElement>(null);
+    const focusedElement = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!containerElement.current || !focusedElement.current) {
+            return;
+        }
+        setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
+    }, [focusedRowKey]);
     useKeyPress(
         (keyboardKey: string, event: KeyboardEvent | undefined) => {
             if (keyboardKey === 'ArrowUp') {
@@ -76,7 +100,7 @@ const Entries: FC<EntriesProps> = (props) => {
         [props.entryRows]
     );
     return (
-        <StyledEntries>
+        <StyledEntries ref={containerElement}>
             {props.entryRows.map((row) => {
                 const onClickCallback = () => {
                     if (!props.onChooseEntry) {
@@ -85,12 +109,14 @@ const Entries: FC<EntriesProps> = (props) => {
                     props.onChooseEntry(row.entry);
                 };
                 const classNames = [];
-                if (row.key === focusedRowKey) {
+                const isFocused = row.key === focusedRowKey;
+                if (isFocused) {
                     classNames.push('focused-f64f7c4f');
                 }
                 const className = classNames.join(' ');
                 return (
                     <StyledEntry
+                        ref={!isFocused ? undefined : focusedElement}
                         onMouseOver={() => setFocusedRowKey(row.key)}
                         onClick={onClickCallback}
                         key={row.key}
