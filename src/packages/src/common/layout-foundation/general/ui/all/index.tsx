@@ -1,1 +1,1 @@
-export { useDidUpdate, useOnClickOutside } from './custom.effects';
+export { useDidUpdate, useOnClickOutside, useKeyPress } from './custom.effects';

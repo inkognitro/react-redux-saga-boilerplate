@@ -124,7 +124,11 @@ export const HomePage: FC = () => {
             <br />
             <h3>Testing</h3>
             <div>
-                <DropdownMenu entries={['foo', 'bar', 'baz', 'bllllöööö']} renderEntry={(entry) => entry} />
+                <DropdownMenu
+                    entries={['foo', 'bar', 'baz', 'bllllöööö', 'baz', 'bllllöööö', 'baz', 'bllllöööö']}
+                    renderEntry={(entry) => entry}
+                    onChooseEntry={(entry) => console.log(entry)}
+                />
             </div>
         </ContentPage>
     );

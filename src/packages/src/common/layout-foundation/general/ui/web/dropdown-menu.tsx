@@ -1,52 +1,30 @@
-import React, { FC, ReactNode, useState, DependencyList, useEffect } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styled from 'styled-components';
-import { useDidUpdate } from 'packages/common/layout-foundation/general/ui/all';
+import { useDidUpdate, useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
+import { StyledComponentProps } from 'packages/common/design/ui/web';
 
 const StyledEntries = styled.div`
     border: 1px solid grey;
+    max-height: 200px;
+    overflow: auto;
 `;
 
 const StyledEntry = styled.div`
     text-align: left;
-    padding: 15px;
+    padding: 10px 5px;
+    cursor: pointer;
+    &.focused-f64f7c4f {
+        color: white;
+        background-color: ${(props: StyledComponentProps) => props.theme.colorPrimary};
+    }
 `;
 
 type EntriesProps<Entry = any> = {
     entryRows: EntryRow[];
     renderEntry: (entry: Entry) => ReactNode;
+    onChooseEntry?: (entry: Entry) => void;
 };
-
-function useKeyPress(fn: (keyboardKey: string, event: KeyboardEvent | undefined) => void, deps: DependencyList): void {
-    const [currentKeyPressId, setCurrentKeyPressId] = useState<string | null>(null);
-    function triggerCallbackFromKeyPress(keyboardKey: string, keyPressId: string) {
-        setTimeout(() => {
-            if (keyPressId !== currentKeyPressId) {
-                return;
-            }
-            fn(keyboardKey, undefined);
-            triggerCallbackFromKeyPress(keyboardKey, keyPressId);
-        }, 200);
-    }
-    function downHandler(event: KeyboardEvent) {
-        const keyPressId = uuidV4();
-        setCurrentKeyPressId(keyPressId);
-        fn(event.key, event);
-        setTimeout(() => triggerCallbackFromKeyPress(event.key, keyPressId), 1000);
-    }
-    const upHandler = () => {
-        setCurrentKeyPressId(null);
-    };
-    useEffect(() => {
-        window.addEventListener('keydown', downHandler);
-        window.addEventListener('keyup', upHandler);
-        // Remove event listeners on cleanup
-        return () => {
-            window.removeEventListener('keydown', downHandler);
-            window.removeEventListener('keyup', upHandler);
-        };
-    }, [...deps, fn]);
-}
 
 function getPreviousEntryRowKey(currentKey: string | null, entryRows: EntryRow[]): string | null {
     if (entryRows.length === 0) {
@@ -94,21 +72,30 @@ const Entries: FC<EntriesProps> = (props) => {
                 }
                 setFocusedRowKey(getNextEntryRowKey(focusedRowKey, props.entryRows));
             }
-            console.log('key press: ' + keyboardKey);
         },
         [props.entryRows]
     );
     return (
         <StyledEntries>
             {props.entryRows.map((row) => {
+                const onClickCallback = () => {
+                    if (!props.onChooseEntry) {
+                        return;
+                    }
+                    props.onChooseEntry(row.entry);
+                };
                 const classNames = [];
-                if (focusedRowKey === row.key) {
-                    classNames.push('focused');
+                if (row.key === focusedRowKey) {
+                    classNames.push('focused-f64f7c4f');
                 }
                 const className = classNames.join(' ');
                 return (
-                    <StyledEntry key={row.key} className={className ? className : undefined}>
-                        {props.renderEntry(row.entry)} {row.key === focusedRowKey && 'focused!'}
+                    <StyledEntry
+                        onMouseOver={() => setFocusedRowKey(row.key)}
+                        onClick={onClickCallback}
+                        key={row.key}
+                        className={className ? className : undefined}>
+                        {props.renderEntry(row.entry)}
                     </StyledEntry>
                 );
             })}
@@ -131,10 +118,11 @@ function createEntryRowsFromEntries<Entry = any>(entries: Entry[]): EntryRow<Ent
 type DropdownMenuProps<Entry = any> = {
     entries: Entry[];
     renderEntry: (entry: Entry) => ReactNode;
+    onChooseEntry?: (entry: Entry) => void;
 };
 
 export const DropdownMenu: FC<DropdownMenuProps> = (props) => {
     const [entryRows, setEntryRows] = useState(createEntryRowsFromEntries(props.entries));
     useDidUpdate(() => setEntryRows(createEntryRowsFromEntries(props.entries)), [props.entries]);
-    return <Entries entryRows={entryRows} renderEntry={props.renderEntry} />;
+    return <Entries entryRows={entryRows} renderEntry={props.renderEntry} onChooseEntry={props.onChooseEntry} />;
 };
