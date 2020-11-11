@@ -55,7 +55,13 @@ function getNextEntryRowKey(currentKey: string | null, entryRows: EntryRow[]): s
     return currentKey;
 }
 
-function setSelectedOptionsScrollPosition(containerElement: HTMLDivElement, focusedElement: HTMLDivElement): void {
+function setSelectedOptionsScrollPosition(
+    containerElement: HTMLDivElement | null,
+    focusedElement: HTMLDivElement | null
+): void {
+    if (!containerElement || !focusedElement) {
+        return;
+    }
     const isFocusedElementAboveContainerTop = focusedElement.offsetTop < containerElement.scrollTop;
     if (isFocusedElementAboveContainerTop) {
         focusedElement.scrollIntoView({ block: 'start' });
@@ -74,12 +80,6 @@ const Entries: FC<EntriesProps> = (props) => {
     const [focusedRowKey, setFocusedRowKey] = useState<string | null>(null);
     const containerElement = useRef<HTMLDivElement>(null);
     const focusedElement = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (!containerElement.current || !focusedElement.current) {
-            return;
-        }
-        setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
-    }, [focusedRowKey]);
     useKeyPress(
         (keyboardKey: string, event: KeyboardEvent | undefined) => {
             if (keyboardKey === 'ArrowUp') {
@@ -88,6 +88,7 @@ const Entries: FC<EntriesProps> = (props) => {
                     event.preventDefault();
                 }
                 setFocusedRowKey(getPreviousEntryRowKey(focusedRowKey, props.entryRows));
+                setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
             if (keyboardKey === 'ArrowDown') {
                 if (event) {
@@ -95,6 +96,7 @@ const Entries: FC<EntriesProps> = (props) => {
                     event.preventDefault();
                 }
                 setFocusedRowKey(getNextEntryRowKey(focusedRowKey, props.entryRows));
+                setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
         },
         [props.entryRows]
@@ -117,7 +119,7 @@ const Entries: FC<EntriesProps> = (props) => {
                 return (
                     <StyledEntry
                         ref={!isFocused ? undefined : focusedElement}
-                        onMouseOver={() => setFocusedRowKey(row.key)}
+                        onMouseEnter={() => setFocusedRowKey(row.key)}
                         onClick={onClickCallback}
                         key={row.key}
                         className={className ? className : undefined}>
