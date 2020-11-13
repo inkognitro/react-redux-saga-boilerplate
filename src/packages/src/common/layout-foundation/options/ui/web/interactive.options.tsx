@@ -70,6 +70,8 @@ type InteractiveOptionsProps<OptionData = any> = {
     renderOption: (option: OptionState<OptionData>, isFocused: boolean) => ReactNode;
     onChooseOption?: (option: OptionState<OptionData>) => void;
     shouldListenToKeyboardEvents: boolean;
+    shouldLooseFocusOnMouseLeave: boolean;
+    onChangeFocusedOption?: (option: OptionState<OptionData> | null) => void;
 };
 
 export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
@@ -77,6 +79,20 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
     const [ignoreMouseOver, setIgnoreMouseOver] = useState(false);
     const containerElement = useRef<HTMLDivElement>(null);
     const focusedElement = useRef<HTMLDivElement>(null);
+    function changeFocusedOptionKey(focusedOptionKey: null | string) {
+        setFocusedOptionKey(focusedOptionKey);
+        if (props.onChangeFocusedOption) {
+            if (focusedOptionKey === null) {
+                props.onChangeFocusedOption(null);
+                return;
+            }
+            const focusedOption = props.options.find((option) => option.key === focusedOptionKey);
+            if (!focusedOption) {
+                return;
+            }
+            props.onChangeFocusedOption(focusedOption);
+        }
+    }
     useKeyPress(
         (keyboardKey: string, event: KeyboardEvent | undefined) => {
             if (!props.shouldListenToKeyboardEvents) {
@@ -88,7 +104,7 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
                     event.preventDefault();
                 }
                 setIgnoreMouseOver(true);
-                setFocusedOptionKey(getPreviousOptionKey(focusedOptionKey, props.options));
+                changeFocusedOptionKey(getPreviousOptionKey(focusedOptionKey, props.options));
                 setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
             if (keyboardKey === 'ArrowDown') {
@@ -97,7 +113,7 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
                     event.preventDefault();
                 }
                 setIgnoreMouseOver(true);
-                setFocusedOptionKey(getNextOptionKey(focusedOptionKey, props.options));
+                changeFocusedOptionKey(getNextOptionKey(focusedOptionKey, props.options));
                 setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
             if (keyboardKey === 'Enter') {
@@ -123,9 +139,13 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
                         onMouseEnter={
                             ignoreMouseOver ? () => setIgnoreMouseOver(false) : () => setFocusedOptionKey(option.key)
                         }
-                        onMouseLeave={() => setFocusedOptionKey(null)}
+                        onMouseLeave={() => {
+                            if (props.shouldLooseFocusOnMouseLeave) {
+                                setFocusedOptionKey(null);
+                            }
+                        }}
                         onClick={() => {
-                            setFocusedOptionKey(option.key)
+                            setFocusedOptionKey(option.key);
                             if (!props.onChooseOption) {
                                 return;
                             }

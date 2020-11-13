@@ -1,9 +1,8 @@
-import React, { FC, ReactNode, useRef } from 'react';
+import React, { FC, ReactNode, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { OptionsMenu } from 'packages/common/layout-foundation/options/ui/web';
 import { createBoxShadowCss, StyledComponentProps } from 'packages/common/design/ui/web';
 import { DropdownOptionState } from 'packages/common/layout-foundation/dropdown-menu/domain';
-import { useOnClickOutside } from 'packages/common/layout-foundation/general/ui/all';
 import { ArrowRightIcon, IconSizes, IconTypes } from 'packages/common/icon/ui/web';
 
 const StyledSubMenuContainer = styled.div`
@@ -28,16 +27,13 @@ const StyledOptionIconContainer = styled.div`
 
 type DropdownMenuOptionProps<OptionData = any> = {
     data: DropdownOptionState<OptionData>;
-    isFocused: boolean;
     renderOption: (option: DropdownOptionState<OptionData>) => ReactNode;
     onChooseOption?: (option: DropdownOptionState<OptionData>) => void;
-    onToggleSubMenu: (state: boolean) => void;
     isSubMenuVisible: boolean;
 };
 
 export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
     const optionRef = useRef<any>();
-    useOnClickOutside(optionRef, () => props.onToggleSubMenu(false));
     const childrenOptions = props.data.data.children;
     const subMenu =
         !childrenOptions || !childrenOptions.length || !props.isSubMenuVisible ? null : (
@@ -46,14 +42,13 @@ export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
                     renderOption={props.renderOption}
                     onChooseOption={props.onChooseOption}
                     options={childrenOptions}
-                    isFocused={props.isFocused}
                 />
             </StyledSubMenuContainer>
         );
     return (
         <div ref={optionRef}>
             {subMenu}
-            <StyledOptionContainer onClick={() => props.onToggleSubMenu(props.isSubMenuVisible)}>
+            <StyledOptionContainer>
                 <StyledOptionNameContainer>{props.renderOption(props.data)}</StyledOptionNameContainer>
                 {props.data.data.children.length > 0 && (
                     <StyledOptionIconContainer>
@@ -66,11 +61,9 @@ export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
 };
 
 type DropdownMenuProps<OptionData = any> = {
-    isFocused?: boolean;
     options: DropdownOptionState<OptionData>[];
     renderOption: (option: DropdownOptionState<OptionData>) => ReactNode;
     onChooseOption?: (option: DropdownOptionState<OptionData>) => void;
-    onClickOutside?: () => void;
 };
 
 const StyledDropdownMenu = styled.div`
@@ -80,33 +73,33 @@ const StyledDropdownMenu = styled.div`
 `;
 
 export const DropdownMenu: FC<DropdownMenuProps> = (props) => {
-    const menuRef = useRef<any>();
-    useOnClickOutside(menuRef, () => {
-        if (props.onClickOutside) {
-            props.onClickOutside();
-        }
-    });
+    const [shouldListenToKeyboardEvents, setShouldListenToKeyboardEvents] = useState(true);
     return (
-        <StyledDropdownMenu ref={menuRef}>
+        <StyledDropdownMenu>
             <OptionsMenu
-                options={props.options.map((dpOption) => dpOption)}
+                onChangeFocusedOption={(option) => {
+                    const shouldListen = !option || !option.data.children.length;
+                    if (shouldListenToKeyboardEvents !== shouldListen) {
+                        setShouldListenToKeyboardEvents(shouldListen);
+                    }
+                }}
+                options={props.options}
                 renderOption={(option: DropdownOptionState, isFocused) => (
                     <DropdownMenuOption
                         isSubMenuVisible={isFocused}
-                        onToggleSubMenu={() => console.log('toogle')}
                         data={option}
-                        isFocused={isFocused}
                         renderOption={props.renderOption}
                         onChooseOption={props.onChooseOption}
                     />
                 )}
-                shouldListenToKeyboardEvents={!!props.isFocused}
+                shouldListenToKeyboardEvents={shouldListenToKeyboardEvents}
                 onChooseOption={(option) => {
                     if (!props.onChooseOption || option.data.children.length > 0) {
                         return;
                     }
                     props.onChooseOption(option);
                 }}
+                shouldLooseFocusOnMouseLeave={false}
             />
         </StyledDropdownMenu>
     );

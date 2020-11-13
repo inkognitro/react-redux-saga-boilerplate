@@ -30,15 +30,19 @@ const StyledOptionMenu = styled.div`
 type OptionsMenuProps<OptionData = any> = {
     options: OptionState<OptionData>[];
     renderOption: (option: OptionState<OptionData>, isFocused: boolean) => ReactNode;
+    onChangeFocusedOption?: (option: OptionState<OptionData> | null) => void;
     onChooseOption?: (option: OptionState<OptionData>) => void;
-    shouldListenToKeyboardEvents: boolean;
+    shouldListenToKeyboardEvents?: boolean;
+    shouldLooseFocusOnMouseLeave?: boolean;
 };
 
 export const OptionsMenu: FC<OptionsMenuProps> = (props) => {
     return (
         <StyledOptionMenu>
             <InteractiveOptions
-                shouldListenToKeyboardEvents={props.shouldListenToKeyboardEvents}
+                onChangeFocusedOption={props.onChangeFocusedOption}
+                shouldListenToKeyboardEvents={!!props.shouldListenToKeyboardEvents}
+                shouldLooseFocusOnMouseLeave={!!props.shouldLooseFocusOnMouseLeave}
                 options={props.options}
                 onChooseOption={(option: OptionState) => {
                     if (!props.onChooseOption) {
@@ -54,11 +58,7 @@ export const OptionsMenu: FC<OptionsMenuProps> = (props) => {
                     if (isFocused) {
                         classNames.push('option-focused-f64f7c4f');
                     }
-                    return (
-                        <div className={classNames.join(' ')}>
-                            {props.renderOption(option, isFocused)}
-                        </div>
-                    );
+                    return <div className={classNames.join(' ')}>{props.renderOption(option, isFocused)}</div>;
                 }}
             />
         </StyledOptionMenu>
