@@ -78,6 +78,9 @@ export const DropdownMenu: FC<DropdownMenuProps> = (props) => {
         <StyledDropdownMenu>
             <OptionsMenu
                 onChangeFocusedOption={(option) => {
+
+                    console.log('change!');
+
                     const shouldListen = !option || !option.data.children.length;
                     if (shouldListenToKeyboardEvents !== shouldListen) {
                         setShouldListenToKeyboardEvents(shouldListen);
