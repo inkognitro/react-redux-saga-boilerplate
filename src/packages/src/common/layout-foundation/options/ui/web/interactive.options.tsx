@@ -120,10 +120,10 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
                 return (
                     <div
                         ref={!isFocused ? undefined : focusedElement}
-                        onMouseOver={
+                        onMouseEnter={
                             ignoreMouseOver ? () => setIgnoreMouseOver(false) : () => setFocusedOptionKey(option.key)
                         }
-                        onMouseOut={() => setFocusedOptionKey(null)}
+                        onMouseLeave={() => setFocusedOptionKey(null)}
                         onClick={() => {
                             setFocusedOptionKey(option.key)
                             if (!props.onChooseOption) {

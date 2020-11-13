@@ -1,12 +1,18 @@
 import { v4 as uuidV4 } from 'uuid';
 import { OptionState } from './types';
 
-export function createOptionsStateFromOptionsData<OptionData = any>(
-    optionsData: OptionData[]
-): OptionState<OptionData>[] {
-    return optionsData.map((optionData) => ({
+export type OptionStateCreationSettings<OptionData = any> = Partial<OptionState> & { data: OptionData };
+
+export function createOptionState<OptionData = any>(settings: OptionStateCreationSettings): OptionState<OptionData> {
+    return {
         key: uuidV4(),
-        data: optionData,
         isSelected: false,
-    }));
+        ...settings,
+    };
+}
+
+export function createOptionsState<OptionData = any>(
+    settings: OptionStateCreationSettings<OptionData>[] = []
+): OptionState<OptionData>[] {
+    return settings.map((setting) => createOptionState(setting));
 }

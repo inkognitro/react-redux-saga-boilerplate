@@ -8,11 +8,56 @@ import { createLeakReduxState } from 'web-app/pages/home/domain';
 import { FormElement, FormGroup } from 'packages/common/form-element/general/ui/web';
 import { Form } from 'packages/common/form/ui/web';
 import { createLogin } from 'packages/common/authentication/domain';
-import {OptionsMenu} from "packages/common/layout-foundation/options/ui/web";
-import {createOptionsStateFromOptionsData} from "packages/common/layout-foundation/options/domain";
+import { DropdownMenu } from 'packages/common/layout-foundation/dropdown-menu/ui/web';
+import { createDropdownOptionsState } from 'packages/common/layout-foundation/dropdown-menu/domain';
 
 export const HomePage: FC = () => {
-    const [optionsState] = useState(createOptionsStateFromOptionsData(['foo', 'bar', 'baz', 'buz']));
+    const [optionsState] = useState(
+        createDropdownOptionsState<string>([
+            {
+                data: 'foo',
+                children: [
+                    {
+                        data: 'foo0',
+                    },
+                    {
+                        data: 'foo1',
+                        children: [
+                            {
+                                data: 'foo1.1',
+                            },
+                            {
+                                data: 'foo1.2',
+                            },
+                            {
+                                data: 'foo1.3',
+                            },
+                        ],
+                    },
+                    {
+                        data: 'foo2',
+                        children: [
+                            {
+                                data: 'foo2.1',
+                            },
+                            {
+                                data: 'foo2.2',
+                            },
+                            {
+                                data: 'foo2.3',
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                data: 'bar',
+            },
+            {
+                data: 'baz',
+            },
+        ])
+    );
     const dispatch = useDispatch();
     const toastContent = useSelector((state: RootState) => state.pages.homePage.toastContent);
     const toastContentValue = toastContent.value;
@@ -126,12 +171,12 @@ export const HomePage: FC = () => {
 
             <br />
             <h3>Testing (use arrow keys)</h3>
-            <div>
-                <OptionsMenu
+            <div style={{ width: '200px'}}>
+                <DropdownMenu
                     options={optionsState}
-                    renderOptionData={(entry) => entry}
+                    renderOption={(option) => option.data.data}
                     onChooseOption={(option) => console.log(option)}
-                    shouldListenToKeyboardEvents={true}
+                    isFocused={true}
                 />
                 <br />
             </div>

@@ -1,29 +1,31 @@
-import { call, cancelled, delay, put, race, select, spawn, take } from 'redux-saga/effects';
-import { AuthenticatedAuthUser, AuthUser, AuthUserTypes } from 'packages/common/types/auth-user/domain';
+import { call, cancelled, put, race, select, spawn, take } from 'redux-saga/effects';
+import { AuthenticatedAuthUser, AuthUserTypes } from 'packages/common/types/auth-user/domain';
 import {
     AuthenticateResult,
-    AuthenticationRefreshResult,
+    // AuthenticationRefreshResult,
     callAuthenticateEndpoint,
-    callRefreshAuthenticationEndpoint,
+    // callRefreshAuthenticationEndpoint,
 } from 'packages/common/http-api-v1/domain';
 import { ResultTypes } from 'packages/common/types/util/domain';
 import {
-    createAuthenticationWasRefreshed,
+    // createAuthenticationWasRefreshed,
     createLoginWasCancelled,
     createLoginFailed,
     createUserWasLoggedIn,
     createUserWasLoggedOut,
     createCurrentUserWasInitialized,
-    createUserAuthenticationRefreshFailed,
+    // createUserAuthenticationRefreshFailed,
     createCurrentUserCouldNotBeInitialized,
 } from '../event';
 import { getCurrentAuthUser } from '../query';
 import { AuthState, AuthStateSelector, CurrentUserStorage, LoginSuccessResult } from '../types';
 import { AuthCommandTypes, Login } from '../command';
-import { findSecondsUntilExpiration } from '../jwt.handling';
+// import { findSecondsUntilExpiration } from '../jwt.handling';
 
-const checkForAuthRefreshEveryMs = 60000;
-const maxDifferenceBetweenRefreshToExpirationInMs = 10000;
+// const checkForAuthRefreshEveryMs = 60000;
+// const maxDifferenceBetweenRefreshToExpirationInMs = 10000;
+
+/*
 function* executeAuthRefreshInterval(
     authStateSelector: AuthStateSelector,
     currentUserStorage: CurrentUserStorage,
@@ -69,6 +71,7 @@ function* executeAuthRefreshInterval(
         yield delay(checkForAuthRefreshEveryMs);
     }
 }
+*/
 
 function* watchLogin(currentUserStorage: CurrentUserStorage): Generator {
     // @ts-ignore
@@ -124,16 +127,17 @@ function* initializeCurrentUser(currentUserStorage: CurrentUserStorage): Generat
     yield put(createCurrentUserWasInitialized(currentUser));
 }
 
+// todo: check correct refresh interval
 function* authenticationFlow(authStateSelector: AuthStateSelector, currentUserStorage: CurrentUserStorage): Generator {
     yield call(initializeCurrentUser, currentUserStorage);
-    let startImmediately = true;
+    // let startImmediately = true;
     while (true) {
         yield race({
-            refreshTask: call(executeAuthRefreshInterval, authStateSelector, currentUserStorage, startImmediately),
+            // refreshTask: call(executeAuthRefreshInterval, authStateSelector, currentUserStorage, startImmediately),
             loginTask: call(watchLogin, currentUserStorage),
             logoutTask: call(watchLogout, authStateSelector, currentUserStorage),
         });
-        startImmediately = false;
+        //startImmediately = false;
     }
 }
 

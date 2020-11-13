@@ -29,7 +29,7 @@ const StyledOptionMenu = styled.div`
 
 type OptionsMenuProps<OptionData = any> = {
     options: OptionState<OptionData>[];
-    renderOptionData: (optionData: OptionData) => ReactNode;
+    renderOption: (option: OptionState<OptionData>, isFocused: boolean) => ReactNode;
     onChooseOption?: (option: OptionState<OptionData>) => void;
     shouldListenToKeyboardEvents: boolean;
 };
@@ -38,18 +38,27 @@ export const OptionsMenu: FC<OptionsMenuProps> = (props) => {
     return (
         <StyledOptionMenu>
             <InteractiveOptions
-                shouldListenToKeyboardEvents={true}
+                shouldListenToKeyboardEvents={props.shouldListenToKeyboardEvents}
                 options={props.options}
-                onChooseOption={props.onChooseOption}
-                renderOption={(option: OptionState, isFocused: boolean) => {
-                    const classNames = ['option-f64f7c4f'];
-                    if (isFocused) {
-                        classNames.push('option-focused-f64f7c4f');
+                onChooseOption={(option: OptionState) => {
+                    if (!props.onChooseOption) {
+                        return;
                     }
+                    props.onChooseOption(option);
+                }}
+                renderOption={(option, isFocused) => {
+                    const classNames = ['option-f64f7c4f'];
                     if (option.isSelected) {
                         classNames.push('option-selected-f64f7c4f');
                     }
-                    return <div className={classNames.join(' ')}>{props.renderOptionData(option.data)}</div>;
+                    if (isFocused) {
+                        classNames.push('option-focused-f64f7c4f');
+                    }
+                    return (
+                        <div className={classNames.join(' ')}>
+                            {props.renderOption(option, isFocused)}
+                        </div>
+                    );
                 }}
             />
         </StyledOptionMenu>
