@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createShowMessage, ToastTypes } from 'packages/common/toaster/domain';
 import { ContentPage } from 'web-app/foundation/ui';
 import { RootState } from 'web-app/services.factory';
-import { FunctionalLink, Link, LinkTargets, DropdownMenu } from 'packages/common/layout-foundation/general/ui/web';
+import { FunctionalLink, Link, LinkTargets, OptionsMenu } from 'packages/common/layout-foundation/general/ui/web';
 import { createLeakReduxState } from 'web-app/pages/home/domain';
 import { FormElement, FormGroup } from 'packages/common/form-element/general/ui/web';
 import { Form } from 'packages/common/form/ui/web';
@@ -124,10 +124,10 @@ export const HomePage: FC = () => {
             <br />
             <h3>Testing</h3>
             <div>
-                <DropdownMenu
-                    entries={['foo', 'bar', 'baz', 'bllllöööö', 'baz', 'bllllöööö', 'baz', 'bllllöööö']}
-                    renderEntry={(entry) => entry}
-                    onChooseEntry={(entry) => console.log(entry)}
+                <OptionsMenu
+                    options={['foo', 'bar', 'baz', 'bllllöööö', 'baz', 'bllllöööö', 'baz', 'bllllöööö']}
+                    renderOption={(entry) => entry}
+                    onChooseOption={(entry) => console.log(entry)}
                 />
             </div>
         </ContentPage>

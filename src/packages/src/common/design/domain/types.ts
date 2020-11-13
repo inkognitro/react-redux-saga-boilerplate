@@ -15,4 +15,7 @@ export type Theme = {
     colorInteractive: string;
     colorInteracting: string;
     colorSmoothLineOnWhite: string;
+    optionsMenu: {
+        focusBackgroundColor: string;
+    };
 };

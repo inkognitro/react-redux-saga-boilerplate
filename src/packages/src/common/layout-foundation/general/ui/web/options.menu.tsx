@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import { useDidUpdate, useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
 import { StyledComponentProps } from 'packages/common/design/ui/web';
 
-const StyledEntries = styled.div`
+const StyledOptions = styled.div`
     border: 1px solid grey;
     max-height: 200px;
     overflow: auto;
     position: relative;
 `;
 
-const StyledEntry = styled.div`
+const StyledOption = styled.div`
     text-align: left;
     padding: 10px 5px;
     cursor: pointer;
@@ -21,36 +21,36 @@ const StyledEntry = styled.div`
     }
 `;
 
-type EntriesProps<Entry = any> = {
-    entryRows: EntryRow[];
-    renderEntry: (entry: Entry) => ReactNode;
-    onChooseEntry?: (entry: Entry) => void;
+type OptionsProps<Option = any> = {
+    optionRows: OptionRow[];
+    renderOption: (option: Option) => ReactNode;
+    onChooseOption?: (option: Option) => void;
 };
 
-function getPreviousEntryRowKey(currentKey: string | null, entryRows: EntryRow[]): string | null {
-    if (entryRows.length === 0) {
+function getPreviousOptionRowKey(currentKey: string | null, optionRows: OptionRow[]): string | null {
+    if (optionRows.length === 0) {
         return null;
     }
-    const currentRowIndex = entryRows.findIndex((row) => row.key === currentKey);
+    const currentRowIndex = optionRows.findIndex((row) => row.key === currentKey);
     if (currentRowIndex === -1) {
-        return entryRows[0].key;
+        return optionRows[0].key;
     }
     if (currentRowIndex > 0) {
-        return entryRows[currentRowIndex - 1].key;
+        return optionRows[currentRowIndex - 1].key;
     }
     return currentKey;
 }
 
-function getNextEntryRowKey(currentKey: string | null, entryRows: EntryRow[]): string | null {
-    if (entryRows.length === 0) {
+function getNextOptionRowKey(currentKey: string | null, optionRows: OptionRow[]): string | null {
+    if (optionRows.length === 0) {
         return null;
     }
-    const currentRowIndex = entryRows.findIndex((row) => row.key === currentKey);
+    const currentRowIndex = optionRows.findIndex((row) => row.key === currentKey);
     if (currentRowIndex === -1) {
-        return entryRows[0].key;
+        return optionRows[0].key;
     }
-    if (currentRowIndex < entryRows.length - 1) {
-        return entryRows[currentRowIndex + 1].key;
+    if (currentRowIndex < optionRows.length - 1) {
+        return optionRows[currentRowIndex + 1].key;
     }
     return currentKey;
 }
@@ -76,18 +76,18 @@ function setSelectedOptionsScrollPosition(
     }
 }
 
-function findFocusedEntry<Entry>(currentKey: string | null, entryRows: EntryRow<Entry>[]): Entry | null {
-    if (entryRows.length === 0) {
+function findFocusedEntry<Entry>(currentKey: string | null, optionRows: OptionRow<Entry>[]): Entry | null {
+    if (optionRows.length === 0) {
         return null;
     }
-    const currentRowIndex = entryRows.findIndex((row) => row.key === currentKey);
+    const currentRowIndex = optionRows.findIndex((row) => row.key === currentKey);
     if (currentRowIndex === -1) {
         return null;
     }
-    return entryRows[currentRowIndex].entry;
+    return optionRows[currentRowIndex].option;
 }
 
-const Entries: FC<EntriesProps> = (props) => {
+const Options: FC<OptionsProps> = (props) => {
     const [focusedRowKey, setFocusedRowKey] = useState<string | null>(null);
     const [ignoreMouseOver, setIgnoreMouseOver] = useState(false);
     const containerElement = useRef<HTMLDivElement>(null);
@@ -100,7 +100,7 @@ const Entries: FC<EntriesProps> = (props) => {
                     event.preventDefault();
                 }
                 setIgnoreMouseOver(true);
-                setFocusedRowKey(getPreviousEntryRowKey(focusedRowKey, props.entryRows));
+                setFocusedRowKey(getPreviousOptionRowKey(focusedRowKey, props.optionRows));
                 setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
             if (keyboardKey === 'ArrowDown') {
@@ -109,7 +109,7 @@ const Entries: FC<EntriesProps> = (props) => {
                     event.preventDefault();
                 }
                 setIgnoreMouseOver(true);
-                setFocusedRowKey(getNextEntryRowKey(focusedRowKey, props.entryRows));
+                setFocusedRowKey(getNextOptionRowKey(focusedRowKey, props.optionRows));
                 setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
             if (keyboardKey === 'Enter') {
@@ -117,22 +117,22 @@ const Entries: FC<EntriesProps> = (props) => {
                     event.stopPropagation();
                     event.preventDefault();
                 }
-                const focusedEntry = findFocusedEntry(focusedRowKey, props.entryRows);
-                if (props.onChooseEntry && focusedEntry) {
-                    props.onChooseEntry(focusedEntry);
+                const focusedEntry = findFocusedEntry(focusedRowKey, props.optionRows);
+                if (props.onChooseOption && focusedEntry) {
+                    props.onChooseOption(focusedEntry);
                 }
             }
         },
-        [props.entryRows]
+        [props.optionRows]
     );
     return (
-        <StyledEntries ref={containerElement}>
-            {props.entryRows.map((row) => {
+        <StyledOptions ref={containerElement}>
+            {props.optionRows.map((row) => {
                 const onClickCallback = () => {
-                    if (!props.onChooseEntry) {
+                    if (!props.onChooseOption) {
                         return;
                     }
-                    props.onChooseEntry(row.entry);
+                    props.onChooseOption(row.option);
                 };
                 const classNames = [];
                 const isFocused = row.key === focusedRowKey;
@@ -141,7 +141,7 @@ const Entries: FC<EntriesProps> = (props) => {
                 }
                 const className = classNames.join(' ');
                 return (
-                    <StyledEntry
+                    <StyledOption
                         ref={!isFocused ? undefined : focusedElement}
                         onMouseEnter={
                             ignoreMouseOver ? () => setIgnoreMouseOver(false) : () => setFocusedRowKey(row.key)
@@ -149,34 +149,34 @@ const Entries: FC<EntriesProps> = (props) => {
                         onClick={onClickCallback}
                         key={row.key}
                         className={className ? className : undefined}>
-                        {props.renderEntry(row.entry)}
-                    </StyledEntry>
+                        {props.renderOption(row.option)}
+                    </StyledOption>
                 );
             })}
-        </StyledEntries>
+        </StyledOptions>
     );
 };
 
-type EntryRow<Entry = any> = {
+type OptionRow<Entry = any> = {
     key: string;
-    entry: Entry;
+    option: Entry;
 };
 
-function createEntryRowsFromEntries<Entry = any>(entries: Entry[]): EntryRow<Entry>[] {
-    return entries.map((entry) => ({
+function createOptionRowsFromOptions<Option = any>(options: Option[]): OptionRow<Option>[] {
+    return options.map((option) => ({
         key: uuidV4(),
-        entry: entry,
+        option: option,
     }));
 }
 
-type DropdownMenuProps<Entry = any> = {
-    entries: Entry[];
-    renderEntry: (entry: Entry) => ReactNode;
-    onChooseEntry?: (entry: Entry) => void;
+type OptionsMenuProps<Option = any> = {
+    options: Option[];
+    renderOption: (option: Option) => ReactNode;
+    onChooseOption?: (option: Option) => void;
 };
 
-export const DropdownMenu: FC<DropdownMenuProps> = (props) => {
-    const [entryRows, setEntryRows] = useState(createEntryRowsFromEntries(props.entries));
-    useDidUpdate(() => setEntryRows(createEntryRowsFromEntries(props.entries)), [props.entries]);
-    return <Entries entryRows={entryRows} renderEntry={props.renderEntry} onChooseEntry={props.onChooseEntry} />;
+export const OptionsMenu: FC<OptionsMenuProps> = (props) => {
+    const [optionRows, setEntryRows] = useState(createOptionRowsFromOptions(props.options));
+    useDidUpdate(() => setEntryRows(createOptionRowsFromOptions(props.options)), [props.options]);
+    return <Options optionRows={optionRows} renderOption={props.renderOption} onChooseOption={props.onChooseOption} />;
 };
