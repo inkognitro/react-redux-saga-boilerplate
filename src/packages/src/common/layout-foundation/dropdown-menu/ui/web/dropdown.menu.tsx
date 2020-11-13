@@ -4,6 +4,7 @@ import { OptionsMenu } from 'packages/common/layout-foundation/options/ui/web';
 import { createBoxShadowCss, StyledComponentProps } from 'packages/common/design/ui/web';
 import { DropdownOptionState } from 'packages/common/layout-foundation/dropdown-menu/domain';
 import { ArrowRightIcon, IconSizes, IconTypes } from 'packages/common/icon/ui/web';
+import { useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
 
 const StyledSubMenuContainer = styled.div`
     position: absolute;
@@ -29,16 +30,26 @@ type DropdownMenuOptionProps<OptionData = any> = {
     data: DropdownOptionState<OptionData>;
     renderOption: (option: DropdownOptionState<OptionData>) => ReactNode;
     onChooseOption?: (option: DropdownOptionState<OptionData>) => void;
-    isSubMenuVisible: boolean;
+    isFocused: boolean;
+    onClick?: () => void;
 };
 
 export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
-    const optionRef = useRef<any>();
+    /*
+    const [subMenuIsVisible, setSubMenuIsVisible] = useState(true);
+    useKeyPress((keyboardKey) => {
+        if (subMenuIsVisible) {
+            return;
+        }
+    }, []);
+    */
+    const optionRef = useRef<any>(null);
     const childrenOptions = props.data.data.children;
     const subMenu =
-        !childrenOptions || !childrenOptions.length || !props.isSubMenuVisible ? null : (
+        !childrenOptions || !childrenOptions.length || !props.isFocused ? null : (
             <StyledSubMenuContainer>
                 <DropdownMenu
+                    // onChangeVisibility={(state: boolean) => setSubMenuIsVisible(state)}
                     renderOption={props.renderOption}
                     onChooseOption={props.onChooseOption}
                     options={childrenOptions}
@@ -48,7 +59,7 @@ export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
     return (
         <div ref={optionRef}>
             {subMenu}
-            <StyledOptionContainer>
+            <StyledOptionContainer onClick={props.onClick}>
                 <StyledOptionNameContainer>{props.renderOption(props.data)}</StyledOptionNameContainer>
                 {props.data.data.children.length > 0 && (
                     <StyledOptionIconContainer>
@@ -86,7 +97,7 @@ export const DropdownMenu: FC<DropdownMenuProps> = (props) => {
                 options={props.options}
                 renderOption={(option: DropdownOptionState, isFocused) => (
                     <DropdownMenuOption
-                        isSubMenuVisible={isFocused}
+                        isFocused={isFocused}
                         data={option}
                         renderOption={props.renderOption}
                         onChooseOption={props.onChooseOption}
