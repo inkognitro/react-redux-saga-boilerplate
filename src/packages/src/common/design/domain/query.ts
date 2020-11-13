@@ -15,9 +15,6 @@ const defaultTheme: Theme = {
     colorInteractive: '#007bff',
     colorInteracting: '#007bff',
     colorSmoothLineOnWhite: '#ededed',
-    optionsMenu: {
-        focusBackgroundColor: '#e3e3e3',
-    },
 };
 
 export function getDefaultTheme(): Theme {

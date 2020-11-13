@@ -1,15 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createShowMessage, ToastTypes } from 'packages/common/toaster/domain';
 import { ContentPage } from 'web-app/foundation/ui';
 import { RootState } from 'web-app/services.factory';
-import { FunctionalLink, Link, LinkTargets, OptionsMenu } from 'packages/common/layout-foundation/general/ui/web';
+import { FunctionalLink, Link, LinkTargets } from 'packages/common/layout-foundation/general/ui/web';
 import { createLeakReduxState } from 'web-app/pages/home/domain';
 import { FormElement, FormGroup } from 'packages/common/form-element/general/ui/web';
 import { Form } from 'packages/common/form/ui/web';
 import { createLogin } from 'packages/common/authentication/domain';
+import {OptionsMenu} from "packages/common/layout-foundation/options/ui/web";
+import {createOptionsStateFromOptionsData} from "packages/common/layout-foundation/options/domain";
 
 export const HomePage: FC = () => {
+    const [optionsState] = useState(createOptionsStateFromOptionsData(['foo', 'bar', 'baz', 'buz']));
     const dispatch = useDispatch();
     const toastContent = useSelector((state: RootState) => state.pages.homePage.toastContent);
     const toastContentValue = toastContent.value;
@@ -122,13 +125,15 @@ export const HomePage: FC = () => {
             </div>
 
             <br />
-            <h3>Testing</h3>
+            <h3>Testing (use arrow keys)</h3>
             <div>
                 <OptionsMenu
-                    options={['foo', 'bar', 'baz', 'bllllöööö', 'baz', 'bllllöööö', 'baz', 'bllllöööö']}
-                    renderOption={(entry) => entry}
-                    onChooseOption={(entry) => console.log(entry)}
+                    options={optionsState}
+                    renderOptionData={(entry) => entry}
+                    onChooseOption={(option) => console.log(option)}
+                    shouldListenToKeyboardEvents={true}
                 />
+                <br />
             </div>
         </ContentPage>
     );
