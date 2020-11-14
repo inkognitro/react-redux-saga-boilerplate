@@ -1,11 +1,10 @@
-import React, { FC, ReactNode, useRef, useState } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import { OptionsMenu } from 'packages/common/layout-foundation/options/ui/web';
 import { createBoxShadowCss, StyledComponentProps } from 'packages/common/design/ui/web';
-import { MenuOptionState } from 'packages/common/layout-foundation/menu/domain';
+import { MenuOptionState, MenuState } from 'packages/common/layout-foundation/menu/domain';
 import { ArrowRightIcon, IconSizes, IconTypes } from 'packages/common/icon/ui/web';
 import { useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
-import { MenuState } from 'packages/common/layout-foundation/menu/domain/types';
 
 const StyledSubMenuContainer = styled.div`
     position: absolute;
@@ -27,11 +26,16 @@ const StyledOptionIconContainer = styled.div`
     text-align: right;
 `;
 
-type DropdownMenuOptionProps = {
+type CommonApiCallbacks = {
+    nestingLevel: number;
+    renderHeader?: (focusedOption: null | MenuOptionState, nestingLevel: number) => ReactNode;
+    renderOption: (option: MenuOptionState, nestingLevel: number) => ReactNode;
+    onChooseOption?: (option: MenuOptionState, nestingLevel: number) => void;
+};
+
+type DropdownMenuOptionProps = CommonApiCallbacks & {
     data: MenuOptionState;
     onChangeData: (option: MenuOptionState) => void;
-    renderOption: (option: MenuOptionState) => ReactNode;
-    onChooseOption?: (option: MenuOptionState) => void;
 };
 
 export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
@@ -49,10 +53,17 @@ export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
         !props.data.isFocused ? null : (
             <StyledSubMenuContainer>
                 <DropdownMenu
-                    onChangeData={}
                     data={props.data.childMenu}
+                    onChangeData={(menu) =>
+                        props.onChangeData({
+                            ...props.data,
+                            childMenu: menu,
+                        })
+                    }
+                    nestingLevel={props.nestingLevel + 1}
                     renderOption={props.renderOption}
                     onChooseOption={props.onChooseOption}
+                    renderHeader={props.renderHeader}
                 />
             </StyledSubMenuContainer>
         );
@@ -60,7 +71,9 @@ export const DropdownMenuOption: FC<DropdownMenuOptionProps> = (props) => {
         <div>
             {subMenu}
             <StyledOptionContainer>
-                <StyledOptionNameContainer>{props.renderOption(props.data)}</StyledOptionNameContainer>
+                <StyledOptionNameContainer>
+                    {props.renderOption(props.data, props.nestingLevel)}
+                </StyledOptionNameContainer>
                 {props.data.data.children.length > 0 && (
                     <StyledOptionIconContainer>
                         <ArrowRightIcon size={IconSizes.SM} type={IconTypes.INTERACTIVE} />
@@ -79,13 +92,9 @@ function findFocusedOption(options: MenuOptionState[]): null | MenuOptionState {
     return focusedOption;
 }
 
-type DropdownMenuProps = {
+type DropdownMenuProps = CommonApiCallbacks & {
     data: MenuState;
     onChangeData: (data: MenuState) => void;
-    nestingLevel?: number;
-    renderHeader?: (focusedOption: null | MenuOptionState, nestingLevel: number) => ReactNode;
-    renderOption: (option: MenuOptionState, nestingLevel: number) => ReactNode;
-    onChooseOption?: (option: MenuOptionState, nestingLevel: number) => void;
 };
 
 const StyledMenu = styled.div`
@@ -124,12 +133,9 @@ export const DropdownMenu: FC<DropdownMenuProps> = (props) => {
                                 }),
                             });
                         }}
-                        renderOption={(option) => props.renderOption(option, nestingLevel)}
-                        onChooseOption={(option) => {
-                            if (props.onChooseOption) {
-                                props.onChooseOption(option, nestingLevel);
-                            }
-                        }}
+                        nestingLevel={nestingLevel}
+                        renderOption={props.renderOption}
+                        onChooseOption={props.onChooseOption}
                     />
                 )}
                 shouldListenToKeyboardEvents={true}
