@@ -8,8 +8,8 @@ import { createLeakReduxState } from 'web-app/pages/home/domain';
 import { FormElement, FormGroup } from 'packages/common/form-element/general/ui/web';
 import { Form } from 'packages/common/form/ui/web';
 import { createLogin } from 'packages/common/authentication/domain';
-import { DropdownMenu } from 'packages/common/layout-foundation/dropdown-menu/ui/web';
-import { createDropdownOptionsState } from 'packages/common/layout-foundation/dropdown-menu/domain';
+import { DropdownMenu } from 'packages/common/layout-foundation/menu/ui/web';
+import { createDropdownOptionsState } from 'packages/common/layout-foundation/menu/domain';
 
 export const HomePage: FC = () => {
     const [optionsState] = useState(

@@ -2,32 +2,37 @@ import React, { FC, ReactNode, useState, useRef } from 'react';
 import { useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
 import { OptionState } from 'packages/common/layout-foundation/options/domain';
 
-function getPreviousOptionKey(currentKey: string | null, options: OptionState[]): string | null {
+function getPreviousOptionToFocus(options: OptionState[]): OptionState | null {
     if (options.length === 0) {
         return null;
     }
-    const currentOptionIndex = options.findIndex((option) => option.key === currentKey);
-    if (currentOptionIndex === -1) {
-        return options[0].key;
+    const focusedOption = findFocusedOption(options);
+    if (!focusedOption) {
+        return options[0];
     }
-    if (currentOptionIndex > 0) {
-        return options[currentOptionIndex - 1].key;
+    const focusedOptionIndex = options.findIndex((option) => option.key === focusedOption.key);
+    if (focusedOptionIndex > 0) {
+        return options[focusedOptionIndex - 1];
     }
-    return currentKey;
+    return focusedOption;
 }
 
-function getNextOptionKey(currentKey: string | null, options: OptionState[]): string | null {
+function getNextOptionToFocus(options: OptionState[]): OptionState | null {
     if (options.length === 0) {
         return null;
     }
-    const currentOptionIndex = options.findIndex((option) => option.key === currentKey);
-    if (currentOptionIndex === -1) {
-        return options[0].key;
+    const focusedOption = findFocusedOption(options);
+    if (!focusedOption) {
+        return options[0];
     }
-    if (currentOptionIndex < options.length - 1) {
-        return options[currentOptionIndex + 1].key;
+    const focusedOptionIndex = options.findIndex((option) => option.key === focusedOption.key);
+    if (focusedOptionIndex === -1) {
+        return options[0];
     }
-    return currentKey;
+    if (focusedOptionIndex < options.length - 1) {
+        return options[focusedOptionIndex + 1];
+    }
+    return focusedOption;
 }
 
 function setSelectedOptionsScrollPosition(
@@ -51,47 +56,42 @@ function setSelectedOptionsScrollPosition(
     }
 }
 
-function findFocusedOption<OptionData>(
-    currentKey: string | null,
-    options: OptionState<OptionData>[]
-): OptionState<OptionData> | null {
+function findFocusedOption<OptionData>(options: OptionState<OptionData>[]): OptionState<OptionData> | null {
     if (options.length === 0) {
         return null;
     }
-    const currentOptionIndex = options.findIndex((option) => option.key === currentKey);
-    if (currentOptionIndex === -1) {
-        return null;
-    }
-    return options[currentOptionIndex];
+    const focusedOption = options.find((option) => option.isFocused);
+    return !focusedOption ? null : focusedOption;
 }
 
 type InteractiveOptionsProps<OptionData = any> = {
     options: OptionState<OptionData>[];
-    renderOption: (option: OptionState<OptionData>, isFocused: boolean) => ReactNode;
+    onChangeOptions: (options: OptionState<OptionData>[]) => void;
+    renderOption: (option: OptionState<OptionData>) => ReactNode;
     onChooseOption?: (option: OptionState<OptionData>) => void;
     shouldListenToKeyboardEvents: boolean;
     shouldLooseFocusOnMouseLeave: boolean;
-    onChangeFocusedOption?: (option: OptionState<OptionData> | null) => void;
 };
 
 export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
-    const [focusedOptionKey, setFocusedOptionKey] = useState<string | null>(null);
     const [ignoreMouseOver, setIgnoreMouseOver] = useState(false);
     const containerElement = useRef<HTMLDivElement>(null);
     const focusedElement = useRef<HTMLDivElement>(null);
-    function changeFocusedOptionKey(focusedOptionKey: null | string) {
-        setFocusedOptionKey(focusedOptionKey);
-        if (props.onChangeFocusedOption) {
-            if (focusedOptionKey === null) {
-                props.onChangeFocusedOption(null);
-                return;
-            }
-            const focusedOption = props.options.find((option) => option.key === focusedOptionKey);
-            if (!focusedOption) {
-                return;
-            }
-            props.onChangeFocusedOption(focusedOption);
-        }
+    function changeFocusedOption(focusedOption: OptionState | null) {
+        props.onChangeOptions(
+            props.options.map((option) => {
+                if (focusedOption && focusedOption.key === option.key) {
+                    return {
+                        ...option,
+                        isFocused: true,
+                    };
+                }
+                return {
+                    ...option,
+                    isFocused: false,
+                };
+            })
+        );
     }
     useKeyPress(
         (keyboardKey: string, event: KeyboardEvent | undefined) => {
@@ -104,7 +104,7 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
                     event.preventDefault();
                 }
                 setIgnoreMouseOver(true);
-                changeFocusedOptionKey(getPreviousOptionKey(focusedOptionKey, props.options));
+                changeFocusedOption(getPreviousOptionToFocus(props.options));
                 setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
             if (keyboardKey === 'ArrowDown') {
@@ -113,7 +113,7 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
                     event.preventDefault();
                 }
                 setIgnoreMouseOver(true);
-                changeFocusedOptionKey(getNextOptionKey(focusedOptionKey, props.options));
+                changeFocusedOption(getNextOptionToFocus(props.options));
                 setSelectedOptionsScrollPosition(containerElement.current, focusedElement.current);
             }
             if (keyboardKey === 'Enter') {
@@ -121,7 +121,7 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
                     event.stopPropagation();
                     event.preventDefault();
                 }
-                const focusedEntry = findFocusedOption(focusedOptionKey, props.options);
+                const focusedEntry = findFocusedOption(props.options);
                 if (props.onChooseOption && focusedEntry) {
                     props.onChooseOption(focusedEntry);
                 }
@@ -129,30 +129,31 @@ export const InteractiveOptions: FC<InteractiveOptionsProps> = (props) => {
         },
         [props.options, props.shouldListenToKeyboardEvents]
     );
+    const focusedOption = props.options.find((option) => option.isFocused);
     return (
         <div ref={containerElement}>
             {props.options.map((option) => {
-                const isFocused = option.key === focusedOptionKey;
+                const isFocused = option.key === (focusedOption && focusedOption.key);
                 return (
                     <div
                         ref={!isFocused ? undefined : focusedElement}
                         onMouseEnter={
-                            ignoreMouseOver ? () => setIgnoreMouseOver(false) : () => changeFocusedOptionKey(option.key)
+                            ignoreMouseOver ? () => setIgnoreMouseOver(false) : () => changeFocusedOption(option)
                         }
                         onMouseLeave={() => {
                             if (props.shouldLooseFocusOnMouseLeave) {
-                                changeFocusedOptionKey(null);
+                                changeFocusedOption(null);
                             }
                         }}
                         onClick={() => {
-                            changeFocusedOptionKey(option.key);
+                            changeFocusedOption(option);
                             if (!props.onChooseOption) {
                                 return;
                             }
                             props.onChooseOption(option);
                         }}
                         key={option.key}>
-                        {props.renderOption(option, isFocused)}
+                        {props.renderOption(option)}
                     </div>
                 );
             })}
