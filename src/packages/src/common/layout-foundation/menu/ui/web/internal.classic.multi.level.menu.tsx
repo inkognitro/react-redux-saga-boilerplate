@@ -28,6 +28,7 @@ const StyledOptionContainer = styled.div`
 
 const StyledOptionNameContainer = styled.div`
     display: table-cell;
+    white-space: pre;
 `;
 
 const StyledOptionIconContainer = styled.div`
@@ -65,7 +66,7 @@ const InternalClassicMultiLevelMenuOption: FC<InternalClassicMultiLevelMenuOptio
                 <StyledOptionNameContainer>
                     {props.renderOption(props.data, props.nestingLevel)}
                 </StyledOptionNameContainer>
-                {props.data.data.children.length > 0 && (
+                {props.data.childMenu && props.data.childMenu.options.length > 0 && (
                     <StyledOptionIconContainer>
                         <ArrowRightIcon size={IconSizes.SM} type={IconTypes.INTERACTIVE} />
                     </StyledOptionIconContainer>
@@ -100,27 +101,27 @@ export const InternalClassicMultiLevelMenu: FC<InternalClassicMultiLevelMenuProp
                         renderOption={props.renderOption}
                         nestingLevel={props.nestingLevel}
                         data={option}
+                        onMouseEnterOption={props.onMouseEnterOption}
                         onMouseLeaveOption={props.onMouseLeaveOption}
-                        onMouseEnterOption={props.onMouseLeaveOption}
                         onClickOption={props.onClickOption}
                         renderHeader={props.renderHeader}
                         visibleMenuNestingLevel={props.visibleMenuNestingLevel}
                     />
                 )}
                 options={props.data.options}
-                onClickOption={(option) => {
+                onClickOption={(subOption) => {
                     if (props.onClickOption) {
-                        props.onClickOption(option, props.nestingLevel);
+                        props.onClickOption(subOption, props.nestingLevel);
                     }
                 }}
-                onMouseEnterOption={(option) => {
+                onMouseEnterOption={(subOption) => {
                     if (props.onMouseEnterOption) {
-                        props.onMouseEnterOption(option, props.nestingLevel);
+                        props.onMouseEnterOption(subOption, props.nestingLevel);
                     }
                 }}
-                onMouseLeaveOption={(option) => {
+                onMouseLeaveOption={(subOption) => {
                     if (props.onMouseLeaveOption) {
-                        props.onMouseLeaveOption(option, props.nestingLevel);
+                        props.onMouseLeaveOption(subOption, props.nestingLevel);
                     }
                 }}
             />

@@ -27,17 +27,17 @@ function createOptionState<OptionData = any>(
     return state;
 }
 
-type MenuStateCreationSettings<MenuOptionData> = Partial<MenuState<MenuOptionData>> & {
+type MenuStateCreationSettings<OptionData> = Partial<MenuState<OptionData>> & {
     isVisible?: boolean;
-    options: OptionStateCreationSettings<MenuOptionData>[];
+    options: OptionStateCreationSettings<OptionData>[];
 };
 
-export function createMenuState<MenuOptionData = any>(
-    settings: MenuStateCreationSettings<MenuOptionData>
-): MenuState<MenuOptionData> {
+export function createMenuState<OptionData = any>(
+    settings: MenuStateCreationSettings<OptionData>
+): MenuState<OptionData> {
     return {
         isVisible: settings.isVisible === undefined ? true : settings.isVisible,
-        options: settings.options.map((option) => createOptionState<MenuOptionData>(option)),
+        options: settings.options.map((optionSettings) => createOptionState<OptionData>(optionSettings)),
     };
 }
 

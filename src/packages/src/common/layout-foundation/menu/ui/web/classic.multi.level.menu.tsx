@@ -1,5 +1,4 @@
 import React, { FC, ReactNode, useState } from 'react';
-import { Action } from 'redux';
 import {
     createMenuStateByFocusedDeepNestedOption,
     findOptionPathByDeepNestedOption,
@@ -12,7 +11,6 @@ import { useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
 type ClassicMultiLevelMenuProps = {
     data: MenuState;
     onChangeData: (menu: MenuState) => void;
-    onDispatchAction: (action: Action) => void;
     renderOption: (option: OptionState, nestingLevel: number) => ReactNode;
     onChooseOption?: (option: OptionState, nestingLevel: number) => ReactNode;
     renderHeader?: (focusedOption: null | OptionState, nestingLevel: number) => ReactNode;

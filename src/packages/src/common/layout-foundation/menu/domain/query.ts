@@ -23,15 +23,15 @@ export function findOptionPathByDeepNestedOption(
     return null;
 }
 
-// todo: clean up from here!
-
-function findFocusedOption(options: OptionState[]): OptionState | null {
+export function findFocusedOption(options: OptionState[]): OptionState | null {
     if (options.length === 0) {
         return null;
     }
     const focusedOption = options.find((option) => option.isFocused);
     return !focusedOption ? null : focusedOption;
 }
+
+// todo: clean up from here!
 
 export function getPreviousOptionToFocus(options: OptionState[]): OptionState | null {
     if (options.length === 0) {

@@ -8,55 +8,76 @@ import { createLeakReduxState } from 'web-app/pages/home/domain';
 import { FormElement, FormGroup } from 'packages/common/form-element/general/ui/web';
 import { Form } from 'packages/common/form/ui/web';
 import { createLogin } from 'packages/common/authentication/domain';
-import { DropdownMenu } from 'packages/common/layout-foundation/menu/ui/web';
-import { createDropdownOptionsState } from 'packages/common/layout-foundation/menu/domain';
+import { ClassicMultiLevelMenu } from 'packages/common/layout-foundation/menu/ui/web';
+import { createMenuState } from 'packages/common/layout-foundation/menu/domain';
 
 export const HomePage: FC = () => {
-    const [optionsState] = useState(
-        createDropdownOptionsState<string>([
-            {
-                data: 'foo',
-                children: [
-                    {
-                        data: 'foo0',
-                    },
-                    {
-                        data: 'foo1',
-                        children: [
+    const [menuState, setMenuState] = useState(
+        createMenuState<string>({
+            options: [
+                {
+                    data: 'foo 1',
+                    childMenu: {
+                        options: [
                             {
-                                data: 'foo1.1',
+                                data: 'foo 1.1',
+                                childMenu: {
+                                    options: [
+                                        {
+                                            data: 'foo 1.1.1',
+                                        },
+                                        {
+                                            data: 'foo 1.1.2',
+                                        },
+                                        {
+                                            data: 'foo 1.1.3',
+                                        },
+                                    ],
+                                },
                             },
                             {
-                                data: 'foo1.2',
+                                data: 'foo 1.2',
                             },
                             {
-                                data: 'foo1.3',
-                            },
-                        ],
-                    },
-                    {
-                        data: 'foo2',
-                        children: [
-                            {
-                                data: 'foo2.1',
-                            },
-                            {
-                                data: 'foo2.2',
-                            },
-                            {
-                                data: 'foo2.3',
+                                data: 'foo 1.3',
                             },
                         ],
                     },
-                ],
-            },
-            {
-                data: 'bar',
-            },
-            {
-                data: 'baz',
-            },
-        ])
+                },
+                {
+                    data: 'foo 2',
+                },
+                {
+                    data: 'foo 3',
+                    childMenu: {
+                        options: [
+                            {
+                                data: 'foo 3.1',
+                                childMenu: {
+                                    options: [
+                                        {
+                                            data: 'foo 3.1.1',
+                                        },
+                                        {
+                                            data: 'foo 3.1.2',
+                                        },
+                                        {
+                                            data: 'foo 3.1.3',
+                                        },
+                                    ],
+                                },
+                            },
+                            {
+                                data: 'foo 3.2',
+                            },
+                            {
+                                data: 'foo 3.3',
+                            },
+                        ],
+                    },
+                },
+            ],
+        })
     );
     const dispatch = useDispatch();
     const toastContent = useSelector((state: RootState) => state.pages.homePage.toastContent);
@@ -171,12 +192,12 @@ export const HomePage: FC = () => {
 
             <br />
             <h3>Testing (use arrow keys)</h3>
-            <div style={{ width: '200px'}}>
-                <DropdownMenu
-                    options={optionsState}
-                    renderOption={(option) => option.data.data}
+            <div style={{ width: '200px' }}>
+                <ClassicMultiLevelMenu
+                    data={menuState}
+                    onChangeData={(menuState) => setMenuState(menuState)}
+                    renderOption={(option) => option.data}
                     onChooseOption={(option) => console.log(option)}
-                    isFocused={true}
                 />
                 <br />
             </div>
