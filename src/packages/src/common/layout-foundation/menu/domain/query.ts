@@ -23,12 +23,12 @@ export function findOptionPathByDeepNestedOption(
     return null;
 }
 
-export function findFocusedOption(options: OptionState[]): OptionState | null {
+export function findInFocusPathOption(options: OptionState[]): OptionState | null {
     if (options.length === 0) {
         return null;
     }
-    const focusedOption = options.find((option) => option.isFocused);
-    return !focusedOption ? null : focusedOption;
+    const inFocusPathOption = options.find((option) => option.isInFocusPath);
+    return !inFocusPathOption ? null : inFocusPathOption;
 }
 
 // todo: clean up from here!
@@ -37,7 +37,7 @@ export function getPreviousOptionToFocus(options: OptionState[]): OptionState | 
     if (options.length === 0) {
         return null;
     }
-    const focusedOption = findFocusedOption(options);
+    const focusedOption = findInFocusPathOption(options);
     if (!focusedOption) {
         return options[0];
     }
@@ -52,7 +52,7 @@ export function getNextOptionToFocus(options: OptionState[]): OptionState | null
     if (options.length === 0) {
         return null;
     }
-    const focusedOption = findFocusedOption(options);
+    const focusedOption = findInFocusPathOption(options);
     if (!focusedOption) {
         return options[0];
     }

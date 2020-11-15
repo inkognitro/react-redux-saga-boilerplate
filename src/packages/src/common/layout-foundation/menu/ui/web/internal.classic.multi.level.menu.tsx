@@ -1,14 +1,14 @@
 import React, { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import { createBoxShadowCss, StyledComponentProps } from 'packages/common/design/ui/web';
-import { findFocusedOption, MenuState, OptionState } from 'packages/common/layout-foundation/menu/domain';
+import { findInFocusPathOption, MenuState, OptionState } from 'packages/common/layout-foundation/menu/domain';
 import { ArrowRightIcon, IconSizes, IconTypes } from 'packages/common/icon/ui/web';
 import { OptionHandleProps, OptionsMenu } from './options.menu';
 
 type CommonInternalProps = {
     nestingLevel: number;
     renderOption: (option: OptionState, nestingLevel: number) => ReactNode;
-    renderHeader?: (focusedOption: null | OptionState, nestingLevel: number) => ReactNode;
+    renderHeader?: (inFocusPathOption: null | OptionState, nestingLevel: number) => ReactNode;
     onClickOption?: (option: OptionState, nestingLevel: number) => void;
     onMouseEnterOption?: (option: OptionState, nestingLevel: number) => void;
     onMouseLeaveOption?: (option: OptionState, nestingLevel: number) => void;
@@ -100,7 +100,7 @@ export const InternalClassicMultiLevelMenu: FC<InternalClassicMultiLevelMenuProp
     const nestingLevel = props.nestingLevel === undefined ? 0 : props.nestingLevel;
     const header = props.renderHeader && (
         <StyledMenuHeaderContainer>
-            {props.renderHeader(findFocusedOption(props.data.options), nestingLevel)}
+            {props.renderHeader(findInFocusPathOption(props.data.options), nestingLevel)}
         </StyledMenuHeaderContainer>
     );
     return (

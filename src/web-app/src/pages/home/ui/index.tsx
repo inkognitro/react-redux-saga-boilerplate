@@ -197,11 +197,16 @@ export const HomePage: FC = () => {
                     data={menuState}
                     onChangeData={(menuState) => setMenuState(menuState)}
                     renderOption={(option) => option.data}
-                    renderHeader={(option, nestingLevel) => (
-                        <div style={{ width: '200px' }}>
-                            HEADER, {nestingLevel}, {option && option.data}
-                        </div>
-                    )}
+                    renderHeader={(option, nestingLevel) => {
+                        if (nestingLevel === 0) {
+                            return null;
+                        }
+                        return (
+                            <div style={{ width: '200px' }}>
+                                HEADER, {nestingLevel}, {option && option.data}
+                            </div>
+                        );
+                    }}
                     onChooseOption={(option) => console.log(option)}
                 />
                 <br />
