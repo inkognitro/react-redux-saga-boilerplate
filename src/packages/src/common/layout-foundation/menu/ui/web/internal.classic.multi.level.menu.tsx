@@ -33,6 +33,7 @@ const StyledOptionContainer = styled.div`
 const StyledOptionNameContainer = styled.div`
     display: table-cell;
     white-space: pre;
+    padding: 8px;
 `;
 
 const StyledOptionIconContainer = styled.div`

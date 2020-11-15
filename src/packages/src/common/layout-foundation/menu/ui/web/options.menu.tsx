@@ -6,11 +6,9 @@ import { OptionState } from 'packages/common/layout-foundation/menu/domain';
 const StyledOptionMenu = styled.div`
     position: relative;
     .option-f64f7c4f {
-        margin-top: 1px;
         background-color: white;
         transition: all 0.2s ease;
         text-align: left;
-        padding: 8px;
         cursor: pointer;
         &.option-in-focus-path-f64f7c4f {
             transition: all 0.2s ease;
@@ -19,9 +17,6 @@ const StyledOptionMenu = styled.div`
         &.option-selected-f64f7c4f {
             background-color: #f8f9fa;
             color: ${(props: StyledComponentProps) => props.theme.colorPrimary};
-        }
-        &:first-child {
-            margin-top: 0px;
         }
     }
 `;

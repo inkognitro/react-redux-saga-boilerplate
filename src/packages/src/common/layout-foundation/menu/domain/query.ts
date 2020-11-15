@@ -86,8 +86,3 @@ export function setSelectedOptionsScrollPosition(
         return;
     }
 }
-
-export function doesMenuContainSubMenusWhichCanBeVisible(menu: MenuState): boolean {
-    const foundVisibleSubMenu = menu.options.find((option) => option.childMenu && option.childMenu.isVisible);
-    return !!foundVisibleSubMenu;
-}
