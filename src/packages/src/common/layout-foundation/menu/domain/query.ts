@@ -31,6 +31,11 @@ export function findInFocusPathOption(options: OptionState[]): OptionState | nul
     return !inFocusPathOption ? null : inFocusPathOption;
 }
 
+export function findFocusedOptionNestingLevel(menu: MenuState, nestingLevel: number = 0): null | number {
+    // todo: implement
+    return 0;
+}
+
 // todo: clean up from here!
 
 export function getPreviousOptionToFocus(options: OptionState[]): OptionState | null {

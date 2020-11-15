@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, useState } from 'react';
 import {
     createMenuStateByFocusedDeepNestedOption,
+    findFocusedOptionNestingLevel,
     findOptionPathByDeepNestedOption,
     MenuState,
     OptionState,
@@ -32,12 +33,23 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
     const [visibleMenuNestingLevel, setVisibleMenuNestingLevel] = useState<number | null>(null);
     useKeyPress(
         (keyboardKey) => {
-            if (keyboardKey === 'ArrowLeft' && visibleMenuNestingLevel) {
+            console.log(visibleMenuNestingLevel);
+            if (keyboardKey === 'ArrowLeft') {
+                const focusedOptionNestingLevel = findFocusedOptionNestingLevel(props.data);
+                if (!focusedOptionNestingLevel) {
+                    return;
+                }
+                setVisibleMenuNestingLevel(focusedOptionNestingLevel - 1);
+                return;
             }
-            if (keyboardKey === 'ArrowRight' && visibleMenuNestingLevel !== null) {
+            if (keyboardKey === 'ArrowLeft' && visibleMenuNestingLevel === null) {
+                setVisibleMenuNestingLevel(0);
+                return;
+            }
+            if (keyboardKey === 'ArrowRight') {
             }
         },
-        [props.data, visibleMenuNestingLevel, props.onChangeData]
+        [props.data, visibleMenuNestingLevel, setVisibleMenuNestingLevel, props.onChangeData]
     );
     return (
         <InternalClassicMultiLevelMenu

@@ -21,6 +21,19 @@ export const HomePage: FC = () => {
                         options: [
                             {
                                 data: 'foo 1.1',
+                                childMenu: {
+                                    options: [
+                                        {
+                                            data: 'foo 1.1.1',
+                                        },
+                                        {
+                                            data: 'foo 1.1.2',
+                                        },
+                                        {
+                                            data: 'foo 1.1.3',
+                                        },
+                                    ],
+                                }
                             },
                             {
                                 data: 'foo 1.2',
