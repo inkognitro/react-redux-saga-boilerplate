@@ -1,6 +1,8 @@
-import { MenuState as MenuStateType, MenuOptionState as MenuOptionStateType } from './types';
+import { MenuState as MenuStateType, OptionState as OptionStateType } from './types';
 
 export type MenuState<OptionData = any> = MenuStateType<OptionData>;
-export type MenuOptionState<OptionData = any> = MenuOptionStateType<OptionData>;
+export type OptionState<OptionData = any> = OptionStateType<OptionData>;
 
-export { createMenuState } from './state.factory';
+export { findOptionPathByDeepNestedOption } from './query';
+
+export { createMenuState, createMenuStateByFocusedDeepNestedOption } from './state.factory';

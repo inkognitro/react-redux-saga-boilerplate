@@ -47,6 +47,8 @@ export type Event<Type = any, Payload = undefined> = Action<Type> & {
     payload: Payload;
 };
 
+export type DomainAction<Type = any, Payload = undefined> = Command<Type, Payload> | Event<Type, Payload>;
+
 export enum ResultTypes {
     SUCCESS = 'success',
     ERROR = 'error',

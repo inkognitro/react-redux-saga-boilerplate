@@ -1,1 +1,1 @@
-export { DropdownMenu } from './dropdown.menu';
+export { ClassicMultiLevelMenu } from './classic.multi.level.menu';
