@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { createBoxShadowCss, StyledComponentProps } from 'packages/common/design/ui/web';
 import { findFocusedOption, MenuState, OptionState } from 'packages/common/layout-foundation/menu/domain';
 import { ArrowRightIcon, IconSizes, IconTypes } from 'packages/common/icon/ui/web';
-import { OptionsMenu } from './options.menu';
+import { OptionHandleProps, OptionsMenu } from './options.menu';
 
 type CommonInternalProps = {
     nestingLevel: number;
-    renderHeader?: (focusedOption: null | OptionState, nestingLevel: number) => ReactNode;
     renderOption: (option: OptionState, nestingLevel: number) => ReactNode;
+    renderHeader?: (focusedOption: null | OptionState, nestingLevel: number) => ReactNode;
     onClickOption?: (option: OptionState, nestingLevel: number) => void;
     onMouseEnterOption?: (option: OptionState, nestingLevel: number) => void;
     onMouseLeaveOption?: (option: OptionState, nestingLevel: number) => void;
@@ -18,7 +18,11 @@ type CommonInternalProps = {
 const StyledSubMenuContainer = styled.div`
     position: absolute;
     left: 100%;
-    margin-top: -20px;
+    top: 0px;
+`;
+
+const StyledMenuHeaderContainer = styled.div`
+    background-color: white;
 `;
 
 const StyledOptionContainer = styled.div`
@@ -38,19 +42,22 @@ const StyledOptionIconContainer = styled.div`
 
 type InternalClassicMultiLevelMenuOptionProps = CommonInternalProps & {
     data: OptionState;
+    optionHandleProps: OptionHandleProps;
 };
 
 const InternalClassicMultiLevelMenuOption: FC<InternalClassicMultiLevelMenuOptionProps> = (props) => {
+    const subMenuNestingLevel = props.nestingLevel + 1;
     const subMenu =
         !props.data.childMenu ||
         !props.data.childMenu.isVisible ||
         !props.data.childMenu.options.length ||
-        (props.visibleMenuNestingLevel !== undefined && props.visibleMenuNestingLevel < props.nestingLevel) ||
-        !props.data.isFocused ? null : (
+        (props.visibleMenuNestingLevel !== undefined && props.visibleMenuNestingLevel < subMenuNestingLevel) ||
+        !props.data.isInFocusPath ? null : (
             <StyledSubMenuContainer>
                 <InternalClassicMultiLevelMenu
                     data={props.data.childMenu}
-                    nestingLevel={props.nestingLevel + 1}
+                    visibleMenuNestingLevel={props.visibleMenuNestingLevel}
+                    nestingLevel={subMenuNestingLevel}
                     renderOption={props.renderOption}
                     renderHeader={props.renderHeader}
                     onClickOption={props.onClickOption}
@@ -62,7 +69,7 @@ const InternalClassicMultiLevelMenuOption: FC<InternalClassicMultiLevelMenuOptio
     return (
         <div>
             {subMenu}
-            <StyledOptionContainer>
+            <StyledOptionContainer {...props.optionHandleProps}>
                 <StyledOptionNameContainer>
                     {props.renderOption(props.data, props.nestingLevel)}
                 </StyledOptionNameContainer>
@@ -91,16 +98,21 @@ export const InternalClassicMultiLevelMenu: FC<InternalClassicMultiLevelMenuProp
         return null;
     }
     const nestingLevel = props.nestingLevel === undefined ? 0 : props.nestingLevel;
-    const header = props.renderHeader && props.renderHeader(findFocusedOption(props.data.options), nestingLevel);
+    const header = props.renderHeader && (
+        <StyledMenuHeaderContainer>
+            {props.renderHeader(findFocusedOption(props.data.options), nestingLevel)}
+        </StyledMenuHeaderContainer>
+    );
     return (
         <StyledMultiLevelMenu>
             {header}
             <OptionsMenu
-                renderOption={(option) => (
+                renderOption={(option, handleProps) => (
                     <InternalClassicMultiLevelMenuOption
-                        renderOption={props.renderOption}
-                        nestingLevel={props.nestingLevel}
                         data={option}
+                        nestingLevel={props.nestingLevel}
+                        renderOption={props.renderOption}
+                        optionHandleProps={handleProps}
                         onMouseEnterOption={props.onMouseEnterOption}
                         onMouseLeaveOption={props.onMouseLeaveOption}
                         onClickOption={props.onClickOption}

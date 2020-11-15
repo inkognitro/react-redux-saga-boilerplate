@@ -3,7 +3,6 @@ import { MenuState, OptionState } from './types';
 
 type OptionStateCreationSettings<OptionData> = {
     key?: string;
-    isFocused?: boolean;
     isSelected?: boolean;
     data: OptionData;
     childMenu?: MenuStateCreationSettings<OptionData>;
@@ -15,7 +14,8 @@ function createOptionState<OptionData = any>(
     const state = {
         key: settings.key ? settings.key : uuidV4(),
         isSelected: settings.isSelected ? settings.isSelected : false,
-        isFocused: settings.isFocused ? settings.isFocused : false,
+        isFocused: false,
+        isInFocusPath: false,
         data: settings.data,
     };
     if (settings.childMenu) {
@@ -27,7 +27,7 @@ function createOptionState<OptionData = any>(
     return state;
 }
 
-type MenuStateCreationSettings<OptionData> = Partial<MenuState<OptionData>> & {
+type MenuStateCreationSettings<OptionData> = Partial<Omit<MenuState<OptionData>, 'options'>> & {
     isVisible?: boolean;
     options: OptionStateCreationSettings<OptionData>[];
 };
@@ -42,14 +42,16 @@ export function createMenuState<OptionData = any>(
 }
 
 export function createMenuStateByFocusedDeepNestedOption(menu: MenuState, focusedOptionPath: OptionState[]): MenuState {
-    const focusedOption = focusedOptionPath.length ? focusedOptionPath[0] : null;
+    const focusPathOption = focusedOptionPath.length ? focusedOptionPath[0] : null;
     const nextFocusedOptionPath = focusedOptionPath.slice(1);
     return {
         ...menu,
         options: menu.options.map((option) => {
+            const isInFocusPath = focusPathOption !== null && option.key === focusPathOption.key;
             const newOption = {
                 ...option,
-                isFocused: focusedOption !== null && option.key === focusedOption.key,
+                isFocused: isInFocusPath && nextFocusedOptionPath.length === 0,
+                isInFocusPath: isInFocusPath,
             };
             if (!newOption.childMenu || !newOption.childMenu.options.length) {
                 return newOption;

@@ -12,7 +12,7 @@ type ClassicMultiLevelMenuProps = {
     data: MenuState;
     onChangeData: (menu: MenuState) => void;
     renderOption: (option: OptionState, nestingLevel: number) => ReactNode;
-    onChooseOption?: (option: OptionState, nestingLevel: number) => ReactNode;
+    onChooseOption?: (option: OptionState, nestingLevel: number) => void;
     renderHeader?: (focusedOption: null | OptionState, nestingLevel: number) => ReactNode;
 };
 
@@ -50,6 +50,9 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
                 props.onChangeData(getNewMenuStateWithDeepNestedFocusedOption(props.data, option, nestingLevel))
             }
             onClickOption={(option, nestingLevel) => {
+                if (!option.isFocused) {
+                    return;
+                }
                 const optionHasChildMenu = option.childMenu && option.childMenu.options.length;
                 if (!optionHasChildMenu && props.onChooseOption) {
                     props.onChooseOption(option, nestingLevel);

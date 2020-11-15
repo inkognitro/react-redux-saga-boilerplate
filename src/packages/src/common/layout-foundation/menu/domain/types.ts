@@ -2,6 +2,7 @@ export type OptionState<OptionData = any> = {
     key: string;
     isSelected: boolean;
     isFocused: boolean;
+    isInFocusPath: boolean;
     childMenu?: MenuState<OptionData>;
     data: OptionData;
 };

@@ -12,7 +12,7 @@ const StyledOptionMenu = styled.div`
         text-align: left;
         padding: 8px;
         cursor: pointer;
-        &.option-focused-f64f7c4f {
+        &.option-in-focus-path-f64f7c4f {
             transition: all 0.2s ease;
             background-color: #f8f9fa;
         }
@@ -26,9 +26,15 @@ const StyledOptionMenu = styled.div`
     }
 `;
 
+export type OptionHandleProps = {
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+    onClick?: () => void;
+};
+
 type OptionsMenuProps = {
     options: OptionState[];
-    renderOption: (option: OptionState) => ReactNode;
+    renderOption: (option: OptionState, optionHandleProps: OptionHandleProps) => ReactNode;
     onClickOption?: (option: OptionState) => void;
     onMouseEnterOption?: (option: OptionState) => void;
     onMouseLeaveOption?: (option: OptionState) => void;
@@ -42,29 +48,25 @@ export const OptionsMenu: FC<OptionsMenuProps> = (props) => {
                 if (option.isSelected) {
                     classNames.push('option-selected-f64f7c4f');
                 }
-                if (option.isFocused) {
-                    classNames.push('option-focused-f64f7c4f');
+                if (option.isInFocusPath) {
+                    classNames.push('option-in-focus-path-f64f7c4f');
+                }
+                let optionHandleProps = {};
+                if (props.onMouseEnterOption) {
+                    // @ts-ignore
+                    optionHandleProps.onMouseEnter = () => props.onMouseEnterOption(option);
+                }
+                if (props.onMouseLeaveOption) {
+                    // @ts-ignore
+                    optionHandleProps.onMouseLeave = () => props.onMouseLeaveOption(option);
+                }
+                if (props.onClickOption) {
+                    // @ts-ignore
+                    optionHandleProps.onClick = () => props.onClickOption(option);
                 }
                 return (
-                    <div
-                        className={classNames.join(' ')}
-                        onMouseEnter={() => {
-                            if (props.onMouseEnterOption) {
-                                props.onMouseEnterOption(option);
-                            }
-                        }}
-                        onMouseLeave={() => {
-                            if (props.onMouseLeaveOption) {
-                                props.onMouseLeaveOption(option);
-                            }
-                        }}
-                        onClick={() => {
-                            if (props.onClickOption) {
-                                props.onClickOption(option);
-                            }
-                        }}
-                        key={option.key}>
-                        {props.renderOption(option)}
+                    <div className={classNames.join(' ')} key={option.key}>
+                        {props.renderOption(option, optionHandleProps)}
                     </div>
                 );
             })}
