@@ -12,7 +12,6 @@ type CommonInternalProps = {
     onClickOption?: (option: OptionState, nestingLevel: number) => void;
     onMouseEnterOption?: (option: OptionState, nestingLevel: number) => void;
     onMouseLeaveOption?: (option: OptionState, nestingLevel: number) => void;
-    visibleMenuNestingLevel?: number;
 };
 
 const StyledSubMenuContainer = styled.div`
@@ -47,18 +46,15 @@ type InternalClassicMultiLevelMenuOptionProps = CommonInternalProps & {
 };
 
 const InternalClassicMultiLevelMenuOption: FC<InternalClassicMultiLevelMenuOptionProps> = (props) => {
-    const subMenuNestingLevel = props.nestingLevel + 1;
     const subMenu =
         !props.data.childMenu ||
         !props.data.childMenu.isVisible ||
         !props.data.childMenu.options.length ||
-        (props.visibleMenuNestingLevel !== undefined && props.visibleMenuNestingLevel < subMenuNestingLevel) ||
         !props.data.isInFocusPath ? null : (
             <StyledSubMenuContainer>
                 <InternalClassicMultiLevelMenu
                     data={props.data.childMenu}
-                    visibleMenuNestingLevel={props.visibleMenuNestingLevel}
-                    nestingLevel={subMenuNestingLevel}
+                    nestingLevel={props.nestingLevel + 1}
                     renderOption={props.renderOption}
                     renderHeader={props.renderHeader}
                     onClickOption={props.onClickOption}
@@ -118,7 +114,6 @@ export const InternalClassicMultiLevelMenu: FC<InternalClassicMultiLevelMenuProp
                         onMouseLeaveOption={props.onMouseLeaveOption}
                         onClickOption={props.onClickOption}
                         renderHeader={props.renderHeader}
-                        visibleMenuNestingLevel={props.visibleMenuNestingLevel}
                     />
                 )}
                 options={props.data.options}

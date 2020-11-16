@@ -1,5 +1,11 @@
 import { v4 as uuidV4 } from 'uuid';
 import { MenuState, OptionState } from './types';
+import {
+    findMenuWithNestingLevelOfFocusedOption,
+    findNextOptionToFocus,
+    findOptionPathByDeepNestedOption,
+    findPreviousOptionToFocus,
+} from './query';
 
 type OptionStateCreationSettings<OptionData> = {
     key?: string;
@@ -41,7 +47,10 @@ export function createMenuState<OptionData = any>(
     };
 }
 
-export function createMenuStateByFocusedDeepNestedOption(menu: MenuState, focusedOptionPath: OptionState[]): MenuState {
+export function createMenuStateForNewlyFocusedDeepNestedOption(
+    menu: MenuState,
+    focusedOptionPath: OptionState[]
+): MenuState {
     const focusPathOption = focusedOptionPath.length ? focusedOptionPath[0] : null;
     const nextFocusedOptionPath = focusedOptionPath.slice(1);
     return {
@@ -58,8 +67,80 @@ export function createMenuStateByFocusedDeepNestedOption(menu: MenuState, focuse
             }
             return {
                 ...newOption,
-                childMenu: createMenuStateByFocusedDeepNestedOption(newOption.childMenu, nextFocusedOptionPath),
+                childMenu: createMenuStateForNewlyFocusedDeepNestedOption(newOption.childMenu, nextFocusedOptionPath),
             };
         }),
     };
+}
+
+export function createMenuStateByNewNestingLevelVisibilityRestriction(
+    menu: MenuState,
+    newNestingLevelVisibilityRestriction: null | number,
+    currentNestingLevel: number = 0
+): MenuState {
+    return {
+        ...menu,
+        isVisible:
+            newNestingLevelVisibilityRestriction === null ||
+            newNestingLevelVisibilityRestriction >= currentNestingLevel,
+        options: menu.options.map((option) => {
+            if (!option.childMenu) {
+                return option;
+            }
+            return {
+                ...option,
+                childMenu: createMenuStateByNewNestingLevelVisibilityRestriction(
+                    option.childMenu,
+                    newNestingLevelVisibilityRestriction,
+                    currentNestingLevel + 1
+                ),
+            };
+        }),
+    };
+}
+
+export function createMenuStateWithNextNewlyFocusedDeepNestedOption(
+    menu: MenuState,
+    nestingLevel: number = 0
+): MenuState {
+    const menuWithNestingLevelOfFocusedOption = findMenuWithNestingLevelOfFocusedOption(menu, nestingLevel);
+    if (!menuWithNestingLevelOfFocusedOption) {
+        return menu;
+    }
+    const optionToFocus = findNextOptionToFocus(menuWithNestingLevelOfFocusedOption.menu.options);
+    if (!optionToFocus) {
+        return menu;
+    }
+    const path = findOptionPathByDeepNestedOption(
+        menu,
+        optionToFocus,
+        menuWithNestingLevelOfFocusedOption.nestingLevel
+    );
+    if (!path) {
+        return menu;
+    }
+    return createMenuStateForNewlyFocusedDeepNestedOption(menu, path);
+}
+
+export function createMenuStateWithPreviousNewlyFocusedDeepNestedOption(
+    menu: MenuState,
+    nestingLevel: number = 0
+): MenuState {
+    const menuWithNestingLevelOfFocusedOption = findMenuWithNestingLevelOfFocusedOption(menu, nestingLevel);
+    if (!menuWithNestingLevelOfFocusedOption) {
+        return menu;
+    }
+    const optionToFocus = findPreviousOptionToFocus(menuWithNestingLevelOfFocusedOption.menu.options);
+    if (!optionToFocus) {
+        return menu;
+    }
+    const path = findOptionPathByDeepNestedOption(
+        menu,
+        optionToFocus,
+        menuWithNestingLevelOfFocusedOption.nestingLevel
+    );
+    if (!path) {
+        return menu;
+    }
+    return createMenuStateForNewlyFocusedDeepNestedOption(menu, path);
 }
