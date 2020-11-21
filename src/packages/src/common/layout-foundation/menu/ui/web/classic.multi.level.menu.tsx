@@ -1,12 +1,15 @@
 import React, { FC, ReactNode } from 'react';
 import {
     createMenuStateForNewlyFocusedDeepNestedOption,
-    createMenuStateByNewNestingLevelVisibilityRestriction,
     findDeepestVisibleMenuNestingLevel,
     findOptionPathByDeepNestedOption,
     MenuState,
     OptionState,
-    createMenuStateWithNextNewlyFocusedDeepNestedOption, createMenuStateWithPreviousNewlyFocusedDeepNestedOption,
+    createMenuStateWithNextNewlyFocusedDeepNestedOption,
+    createMenuStateWithPreviousNewlyFocusedDeepNestedOption,
+    createMenuStateByDecreasedNestingLevelVisibility,
+    createMenuStateByIncreasedNestingLevelVisibility,
+    createMenuStateByNewNestingLevelVisibilityRestriction,
 } from 'packages/common/layout-foundation/menu/domain';
 import { InternalClassicMultiLevelMenu } from './internal.classic.multi.level.menu';
 import { useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
@@ -37,24 +40,20 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
                 event.stopPropagation();
             }
             if (keyboardKey === 'ArrowLeft') {
-                const deepestVisibleNestingLevel = findDeepestVisibleMenuNestingLevel(props.data);
-                console.log('deepestVisibleNestingLevel', deepestVisibleNestingLevel);
-                if (deepestVisibleNestingLevel === 0) {
-                    return;
-                }
-                props.onChangeData(
-                    createMenuStateByNewNestingLevelVisibilityRestriction(props.data, deepestVisibleNestingLevel - 1)
-                );
+                props.onChangeData(createMenuStateByDecreasedNestingLevelVisibility(props.data));
                 return;
             }
             if (keyboardKey === 'ArrowRight') {
-                // todo: implement!
+                props.onChangeData(createMenuStateByIncreasedNestingLevelVisibility(props.data));
+                return;
             }
             if (keyboardKey === 'ArrowUp') {
                 props.onChangeData(createMenuStateWithPreviousNewlyFocusedDeepNestedOption(props.data));
+                return;
             }
             if (keyboardKey === 'ArrowDown') {
                 props.onChangeData(createMenuStateWithNextNewlyFocusedDeepNestedOption(props.data));
+                return;
             }
         },
         [props.data, props.onChangeData]

@@ -8,7 +8,9 @@ export { findOptionPathByDeepNestedOption, findInFocusPathOption, findDeepestVis
 export {
     createMenuState,
     createMenuStateForNewlyFocusedDeepNestedOption,
-    createMenuStateByNewNestingLevelVisibilityRestriction,
     createMenuStateWithNextNewlyFocusedDeepNestedOption,
     createMenuStateWithPreviousNewlyFocusedDeepNestedOption,
+    createMenuStateByNewNestingLevelVisibilityRestriction,
+    createMenuStateByDecreasedNestingLevelVisibility,
+    createMenuStateByIncreasedNestingLevelVisibility,
 } from './state.factory';

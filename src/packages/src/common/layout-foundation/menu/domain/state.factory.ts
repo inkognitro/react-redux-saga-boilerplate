@@ -1,6 +1,7 @@
 import { v4 as uuidV4 } from 'uuid';
 import { MenuState, OptionState } from './types';
 import {
+    findDeepestVisibleMenuNestingLevel,
     findMenuWithNestingLevelOfFocusedOption,
     findNextOptionToFocus,
     findOptionPathByDeepNestedOption,
@@ -71,6 +72,19 @@ export function createMenuStateForNewlyFocusedDeepNestedOption(
             };
         }),
     };
+}
+
+export function createMenuStateByDecreasedNestingLevelVisibility(menu: MenuState): MenuState {
+    const deepestVisibleNestingLevel = findDeepestVisibleMenuNestingLevel(menu);
+    if (deepestVisibleNestingLevel === 0) {
+        return menu;
+    }
+    return createMenuStateByNewNestingLevelVisibilityRestriction(menu, deepestVisibleNestingLevel - 1);
+}
+
+export function createMenuStateByIncreasedNestingLevelVisibility(menu: MenuState): MenuState {
+    // todo: implement!
+    return menu;
 }
 
 export function createMenuStateByNewNestingLevelVisibilityRestriction(
