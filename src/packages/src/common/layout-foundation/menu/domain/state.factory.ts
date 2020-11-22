@@ -11,6 +11,7 @@ import {
 type OptionStateCreationSettings<OptionData> = {
     key?: string;
     isSelected?: boolean;
+    canBeFocused?: boolean;
     data: OptionData;
     childMenu?: MenuStateCreationSettings<OptionData>;
 };
@@ -20,7 +21,8 @@ function createOptionState<OptionData = any>(
 ): OptionState<OptionData> {
     const state = {
         key: settings.key ? settings.key : uuidV4(),
-        isSelected: settings.isSelected ? settings.isSelected : false,
+        isSelected: settings.isSelected !== undefined ? settings.isSelected : false,
+        canBeFocused: settings.canBeFocused !== undefined ? settings.canBeFocused : true,
         isFocused: false,
         isInFocusPath: false,
         data: settings.data,
@@ -103,6 +105,15 @@ export function createMenuStateWithOptionToFocus(
     optionToFocus: OptionState,
     menuVisibilityUntilNestingLevel?: number | null
 ): MenuState {
+    if (!optionToFocus.canBeFocused) {
+        console.warn(
+            'The following option printed below cannot be focused. ' +
+                'Due to performance reasons it is recommended catching this case with the "option.canBeFocused" ' +
+                'flag, before generating a new state for the whole menu.',
+            optionToFocus
+        );
+        return menu;
+    }
     const foundFocusedOptionPath = findOptionPathByOption(menu, optionToFocus);
     const focusedOptionPath = foundFocusedOptionPath ? foundFocusedOptionPath : [];
     const visibilityChangeSettings: undefined | VisibilityChangeSettings =
@@ -125,7 +136,7 @@ export function createMenuStateWithFocusedOptionOfPreviousNestingLevel(menu: Men
     return createMenuStateWithOptionToFocus(menu, optionToFocus, menuVisibilityUntilNestingLevel);
 }
 
-export function createMenuStateWithFirstFocusedOptionOfNextNestingLevel(menu: MenuState): MenuState {
+export function createMenuStateWithDefaultFocusedOptionOfNextNestingLevel(menu: MenuState): MenuState {
     const inFocusOptionPath = getInFocusOptionPath(menu);
     if (!inFocusOptionPath.length) {
         return menu;
@@ -134,17 +145,16 @@ export function createMenuStateWithFirstFocusedOptionOfNextNestingLevel(menu: Me
     if (!focusedOption.childMenu || !focusedOption.childMenu.options.length) {
         return menu;
     }
-    const optionToFocus = focusedOption.childMenu.options[0];
+    const foundOptionToFocus = findNextOptionToFocus(focusedOption.childMenu.options);
+    const optionToFocus = foundOptionToFocus ? foundOptionToFocus : focusedOption;
     const menuVisibilityUntilNestingLevel = inFocusOptionPath.length;
     return createMenuStateWithOptionToFocus(menu, optionToFocus, menuVisibilityUntilNestingLevel);
 }
 
 export function createMenuStateWithNextFocusedOptionOfSameNestingLevel(menu: MenuState): MenuState {
     const menuOfFocusedOption = findMenuOfFocusedOption(menu);
-    if (!menuOfFocusedOption) {
-        return menu;
-    }
-    const optionToFocus = findNextOptionToFocus(menuOfFocusedOption.options);
+    const menuToUse = menuOfFocusedOption ? menuOfFocusedOption : menu;
+    const optionToFocus = findNextOptionToFocus(menuToUse.options);
     if (!optionToFocus) {
         return menu;
     }
@@ -153,10 +163,8 @@ export function createMenuStateWithNextFocusedOptionOfSameNestingLevel(menu: Men
 
 export function createMenuStateWithPreviousFocusedOptionOnTheSameNestingLevel(menu: MenuState): MenuState {
     const menuOfFocusedOption = findMenuOfFocusedOption(menu);
-    if (!menuOfFocusedOption) {
-        return menu;
-    }
-    const optionToFocus = findPreviousOptionToFocus(menuOfFocusedOption.options);
+    const menuToUse = menuOfFocusedOption ? menuOfFocusedOption : menu;
+    const optionToFocus = findPreviousOptionToFocus(menuToUse.options);
     if (!optionToFocus) {
         return menu;
     }

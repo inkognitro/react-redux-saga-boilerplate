@@ -45,6 +45,36 @@ export const HomePage: FC = () => {
                     },
                 },
                 {
+                    data: 'foo -',
+                    canBeFocused: false,
+                    childMenu: {
+                        options: [
+                            {
+                                data: 'foo -.1',
+                                childMenu: {
+                                    options: [
+                                        {
+                                            data: 'foo -.1.1',
+                                        },
+                                        {
+                                            data: 'foo -.1.2',
+                                        },
+                                        {
+                                            data: 'foo -.1.3',
+                                        },
+                                    ],
+                                }
+                            },
+                            {
+                                data: 'foo -.2',
+                            },
+                            {
+                                data: 'foo -.3',
+                            },
+                        ],
+                    },
+                },
+                {
                     data: 'foo 2',
                 },
                 {

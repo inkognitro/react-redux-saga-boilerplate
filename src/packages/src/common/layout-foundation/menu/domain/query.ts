@@ -73,34 +73,36 @@ export function getInFocusOptionPath(menu: MenuState): OptionState[] {
 }
 
 export function findPreviousOptionToFocus(options: OptionState[]): OptionState | null {
-    if (options.length === 0) {
+    const focusableOptions = options.filter((option) => option.canBeFocused);
+    if (focusableOptions.length === 0) {
         return null;
     }
-    const focusedOption = findInFocusPathOption(options);
+    const focusedOption = findInFocusPathOption(focusableOptions);
     if (!focusedOption) {
-        return options[0];
+        return focusableOptions[0];
     }
-    const focusedOptionIndex = options.findIndex((option) => option.key === focusedOption.key);
+    const focusedOptionIndex = focusableOptions.findIndex((option) => option.key === focusedOption.key);
     if (focusedOptionIndex > 0) {
-        return options[focusedOptionIndex - 1];
+        return focusableOptions[focusedOptionIndex - 1];
     }
     return focusedOption;
 }
 
 export function findNextOptionToFocus(options: OptionState[]): OptionState | null {
-    if (options.length === 0) {
+    const focusableOptions = options.filter((option) => option.canBeFocused);
+    if (focusableOptions.length === 0) {
         return null;
     }
-    const focusedOption = findInFocusPathOption(options);
+    const focusedOption = findInFocusPathOption(focusableOptions);
     if (!focusedOption) {
-        return options[0];
+        return focusableOptions[0];
     }
-    const focusedOptionIndex = options.findIndex((option) => option.key === focusedOption.key);
+    const focusedOptionIndex = focusableOptions.findIndex((option) => option.key === focusedOption.key);
     if (focusedOptionIndex === -1) {
-        return options[0];
+        return focusableOptions[0];
     }
-    if (focusedOptionIndex < options.length - 1) {
-        return options[focusedOptionIndex + 1];
+    if (focusedOptionIndex < focusableOptions.length - 1) {
+        return focusableOptions[focusedOptionIndex + 1];
     }
     return focusedOption;
 }

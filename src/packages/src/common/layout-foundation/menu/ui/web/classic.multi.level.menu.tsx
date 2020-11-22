@@ -6,7 +6,7 @@ import {
     createMenuStateWithNextFocusedOptionOfSameNestingLevel,
     createMenuStateWithPreviousFocusedOptionOnTheSameNestingLevel,
     createMenuStateWithFocusedOptionOfPreviousNestingLevel,
-    createMenuStateWithFirstFocusedOptionOfNextNestingLevel,
+    createMenuStateWithDefaultFocusedOptionOfNextNestingLevel,
     createMenuStateWithOptionToFocus,
 } from 'packages/common/layout-foundation/menu/domain';
 import { InternalClassicMultiLevelMenu } from './internal.classic.multi.level.menu';
@@ -32,7 +32,7 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
                 return;
             }
             if (keyboardKey === 'ArrowRight') {
-                props.onChangeData(createMenuStateWithFirstFocusedOptionOfNextNestingLevel(props.data));
+                props.onChangeData(createMenuStateWithDefaultFocusedOptionOfNextNestingLevel(props.data));
                 return;
             }
             if (keyboardKey === 'ArrowUp') {

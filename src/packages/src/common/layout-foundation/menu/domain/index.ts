@@ -10,6 +10,6 @@ export {
     createMenuStateWithNextFocusedOptionOfSameNestingLevel,
     createMenuStateWithPreviousFocusedOptionOnTheSameNestingLevel,
     createMenuStateWithFocusedOptionOfPreviousNestingLevel,
-    createMenuStateWithFirstFocusedOptionOfNextNestingLevel,
+    createMenuStateWithDefaultFocusedOptionOfNextNestingLevel,
     createMenuStateWithOptionToFocus,
 } from './state.factory';
