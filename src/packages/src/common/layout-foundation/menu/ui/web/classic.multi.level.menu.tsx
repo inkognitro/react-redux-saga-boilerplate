@@ -52,7 +52,12 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
             data={props.data}
             renderOption={props.renderOption}
             renderHeader={props.renderHeader}
-            onMouseEnterOption={(option) => props.onChangeData(createMenuStateWithOptionToFocus(props.data, option))}
+            onMouseEnterOption={(option) => {
+                if (!option.canBeFocused) {
+                    return;
+                }
+                props.onChangeData(createMenuStateWithOptionToFocus(props.data, option));
+            }}
             onClickOption={(option, nestingLevel) => {
                 if (!option.isFocused) {
                     return;
