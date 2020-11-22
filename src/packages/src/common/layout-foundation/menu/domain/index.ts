@@ -3,14 +3,13 @@ import { MenuState as MenuStateType, OptionState as OptionStateType } from './ty
 export type MenuState<OptionData = any> = MenuStateType<OptionData>;
 export type OptionState<OptionData = any> = OptionStateType<OptionData>;
 
-export { findOptionPathByDeepNestedOption, findInFocusPathOption, findDeepestVisibleMenuNestingLevel } from './query';
+export { findInFocusPathOption, findDeepestVisibleMenuNestingLevel } from './query';
 
 export {
     createMenuState,
-    createMenuStateForNewlyFocusedDeepNestedOption,
-    createMenuStateWithNextNewlyFocusedDeepNestedOption,
-    createMenuStateWithPreviousNewlyFocusedDeepNestedOption,
-    createMenuStateByNewNestingLevelVisibilityRestriction,
-    createMenuStateByDecreasedNestingLevelVisibility,
-    createMenuStateByIncreasedNestingLevelVisibility,
+    createMenuStateWithNextFocusedOptionOfSameNestingLevel,
+    createMenuStateWithPreviousFocusedOptionOnTheSameNestingLevel,
+    createMenuStateWithFocusedOptionOfPreviousNestingLevel,
+    createMenuStateWithFirstFocusedOptionOfNextNestingLevel,
+    createMenuStateWithOptionToFocus,
 } from './state.factory';

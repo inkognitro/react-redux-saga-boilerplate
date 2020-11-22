@@ -1,18 +1,16 @@
 import React, { FC, ReactNode } from 'react';
 import {
-    createMenuStateForNewlyFocusedDeepNestedOption,
     findDeepestVisibleMenuNestingLevel,
-    findOptionPathByDeepNestedOption,
     MenuState,
     OptionState,
-    createMenuStateWithNextNewlyFocusedDeepNestedOption,
-    createMenuStateWithPreviousNewlyFocusedDeepNestedOption,
-    createMenuStateByDecreasedNestingLevelVisibility,
-    createMenuStateByIncreasedNestingLevelVisibility,
-    createMenuStateByNewNestingLevelVisibilityRestriction,
+    createMenuStateWithNextFocusedOptionOfSameNestingLevel,
+    createMenuStateWithPreviousFocusedOptionOnTheSameNestingLevel,
+    createMenuStateWithFocusedOptionOfPreviousNestingLevel,
+    createMenuStateWithFirstFocusedOptionOfNextNestingLevel,
+    createMenuStateWithOptionToFocus,
 } from 'packages/common/layout-foundation/menu/domain';
 import { InternalClassicMultiLevelMenu } from './internal.classic.multi.level.menu';
-import { useKeyPress } from 'packages/common/layout-foundation/general/ui/all';
+import { useKeyPress } from 'packages/common/util/general/ui/web';
 
 type ClassicMultiLevelMenuProps = {
     data: MenuState;
@@ -22,16 +20,6 @@ type ClassicMultiLevelMenuProps = {
     renderHeader?: (focusedOption: null | OptionState, nestingLevel: number) => ReactNode;
 };
 
-function getNewMenuStateByNewDeepNestedFocusedOption(
-    menu: MenuState,
-    option: OptionState,
-    nestingLevel: number
-): MenuState {
-    const foundOptionPath = findOptionPathByDeepNestedOption(menu, option, nestingLevel);
-    const optionPath = foundOptionPath === null ? [] : foundOptionPath;
-    return createMenuStateForNewlyFocusedDeepNestedOption(menu, optionPath);
-}
-
 export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => {
     useKeyPress(
         (keyboardKey, event) => {
@@ -40,19 +28,19 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
                 event.stopPropagation();
             }
             if (keyboardKey === 'ArrowLeft') {
-                props.onChangeData(createMenuStateByDecreasedNestingLevelVisibility(props.data));
+                props.onChangeData(createMenuStateWithFocusedOptionOfPreviousNestingLevel(props.data));
                 return;
             }
             if (keyboardKey === 'ArrowRight') {
-                props.onChangeData(createMenuStateByIncreasedNestingLevelVisibility(props.data));
+                props.onChangeData(createMenuStateWithFirstFocusedOptionOfNextNestingLevel(props.data));
                 return;
             }
             if (keyboardKey === 'ArrowUp') {
-                props.onChangeData(createMenuStateWithPreviousNewlyFocusedDeepNestedOption(props.data));
+                props.onChangeData(createMenuStateWithPreviousFocusedOptionOnTheSameNestingLevel(props.data));
                 return;
             }
             if (keyboardKey === 'ArrowDown') {
-                props.onChangeData(createMenuStateWithNextNewlyFocusedDeepNestedOption(props.data));
+                props.onChangeData(createMenuStateWithNextFocusedOptionOfSameNestingLevel(props.data));
                 return;
             }
         },
@@ -64,9 +52,7 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
             data={props.data}
             renderOption={props.renderOption}
             renderHeader={props.renderHeader}
-            onMouseEnterOption={(option, nestingLevel) =>
-                props.onChangeData(getNewMenuStateByNewDeepNestedFocusedOption(props.data, option, nestingLevel))
-            }
+            onMouseEnterOption={(option) => props.onChangeData(createMenuStateWithOptionToFocus(props.data, option))}
             onClickOption={(option, nestingLevel) => {
                 if (!option.isFocused) {
                     return;
@@ -78,14 +64,14 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
                 }
                 const deepestVisibleNestingLevel = findDeepestVisibleMenuNestingLevel(props.data);
                 if (optionHasChildMenu && nestingLevel === deepestVisibleNestingLevel) {
-                    props.onChangeData(createMenuStateByNewNestingLevelVisibilityRestriction(props.data, null));
+                    props.onChangeData(createMenuStateWithOptionToFocus(props.data, option, null));
                     return;
                 }
                 if (optionHasChildMenu && nestingLevel !== deepestVisibleNestingLevel) {
-                    props.onChangeData(createMenuStateByNewNestingLevelVisibilityRestriction(props.data, nestingLevel));
+                    props.onChangeData(createMenuStateWithOptionToFocus(props.data, option, nestingLevel));
                     return;
                 }
-                props.onChangeData(getNewMenuStateByNewDeepNestedFocusedOption(props.data, option, nestingLevel));
+                props.onChangeData(createMenuStateWithOptionToFocus(props.data, option));
             }}
         />
     );

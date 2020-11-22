@@ -1,11 +1,11 @@
 import { v4 as uuidV4 } from 'uuid';
 import { MenuState, OptionState } from './types';
 import {
-    findDeepestVisibleMenuNestingLevel,
-    findMenuWithNestingLevelOfFocusedOption,
+    findMenuOfFocusedOption,
     findNextOptionToFocus,
-    findOptionPathByDeepNestedOption,
+    findOptionPathByOption,
     findPreviousOptionToFocus,
+    getInFocusOptionPath,
 } from './query';
 
 type OptionStateCreationSettings<OptionData> = {
@@ -48,14 +48,34 @@ export function createMenuState<OptionData = any>(
     };
 }
 
-export function createMenuStateForNewlyFocusedDeepNestedOption(
+type VisibilityChangeSettings = {
+    currentNestingLevel: number;
+    menuVisibilityUntilNestingLevel: null | number;
+};
+
+function createMenuStateWithFocusedOptionByPath(
     menu: MenuState,
-    focusedOptionPath: OptionState[]
+    focusedOptionPath: OptionState[],
+    visibilityChangeSettings?: VisibilityChangeSettings
 ): MenuState {
     const focusPathOption = focusedOptionPath.length ? focusedOptionPath[0] : null;
     const nextFocusedOptionPath = focusedOptionPath.slice(1);
+    const nextVisibilityChangeSettings: VisibilityChangeSettings | undefined = !visibilityChangeSettings
+        ? undefined
+        : {
+              ...visibilityChangeSettings,
+              currentNestingLevel: visibilityChangeSettings.currentNestingLevel + 1,
+          };
+
+    let isMenuVisible = menu.isVisible;
+    if (visibilityChangeSettings) {
+        isMenuVisible =
+            visibilityChangeSettings.menuVisibilityUntilNestingLevel === null ||
+            visibilityChangeSettings.currentNestingLevel <= visibilityChangeSettings.menuVisibilityUntilNestingLevel;
+    }
     return {
         ...menu,
+        isVisible: isMenuVisible,
         options: menu.options.map((option) => {
             const isInFocusPath = focusPathOption !== null && option.key === focusPathOption.key;
             const newOption = {
@@ -68,93 +88,77 @@ export function createMenuStateForNewlyFocusedDeepNestedOption(
             }
             return {
                 ...newOption,
-                childMenu: createMenuStateForNewlyFocusedDeepNestedOption(newOption.childMenu, nextFocusedOptionPath),
-            };
-        }),
-    };
-}
-
-export function createMenuStateByDecreasedNestingLevelVisibility(menu: MenuState): MenuState {
-    const deepestVisibleNestingLevel = findDeepestVisibleMenuNestingLevel(menu);
-    if (deepestVisibleNestingLevel === 0) {
-        return menu;
-    }
-    return createMenuStateByNewNestingLevelVisibilityRestriction(menu, deepestVisibleNestingLevel - 1);
-}
-
-export function createMenuStateByIncreasedNestingLevelVisibility(menu: MenuState): MenuState {
-    // todo: implement!
-    return menu;
-}
-
-export function createMenuStateByNewNestingLevelVisibilityRestriction(
-    menu: MenuState,
-    newNestingLevelVisibilityRestriction: null | number,
-    currentNestingLevel: number = 0
-): MenuState {
-    return {
-        ...menu,
-        isVisible:
-            newNestingLevelVisibilityRestriction === null ||
-            newNestingLevelVisibilityRestriction >= currentNestingLevel,
-        options: menu.options.map((option) => {
-            if (!option.childMenu) {
-                return option;
-            }
-            return {
-                ...option,
-                childMenu: createMenuStateByNewNestingLevelVisibilityRestriction(
-                    option.childMenu,
-                    newNestingLevelVisibilityRestriction,
-                    currentNestingLevel + 1
+                childMenu: createMenuStateWithFocusedOptionByPath(
+                    newOption.childMenu,
+                    nextFocusedOptionPath,
+                    nextVisibilityChangeSettings
                 ),
             };
         }),
     };
 }
 
-export function createMenuStateWithNextNewlyFocusedDeepNestedOption(
+export function createMenuStateWithOptionToFocus(
     menu: MenuState,
-    nestingLevel: number = 0
+    optionToFocus: OptionState,
+    menuVisibilityUntilNestingLevel?: number | null
 ): MenuState {
-    const menuWithNestingLevelOfFocusedOption = findMenuWithNestingLevelOfFocusedOption(menu, nestingLevel);
-    if (!menuWithNestingLevelOfFocusedOption) {
-        return menu;
-    }
-    const optionToFocus = findNextOptionToFocus(menuWithNestingLevelOfFocusedOption.menu.options);
-    if (!optionToFocus) {
-        return menu;
-    }
-    const path = findOptionPathByDeepNestedOption(
-        menu,
-        optionToFocus,
-        menuWithNestingLevelOfFocusedOption.nestingLevel
-    );
-    if (!path) {
-        return menu;
-    }
-    return createMenuStateForNewlyFocusedDeepNestedOption(menu, path);
+    const foundFocusedOptionPath = findOptionPathByOption(menu, optionToFocus);
+    const focusedOptionPath = foundFocusedOptionPath ? foundFocusedOptionPath : [];
+    const visibilityChangeSettings: undefined | VisibilityChangeSettings =
+        menuVisibilityUntilNestingLevel === undefined
+            ? undefined
+            : {
+                  currentNestingLevel: 0,
+                  menuVisibilityUntilNestingLevel: menuVisibilityUntilNestingLevel,
+              };
+    return createMenuStateWithFocusedOptionByPath(menu, focusedOptionPath, visibilityChangeSettings);
 }
 
-export function createMenuStateWithPreviousNewlyFocusedDeepNestedOption(
-    menu: MenuState,
-    nestingLevel: number = 0
-): MenuState {
-    const menuWithNestingLevelOfFocusedOption = findMenuWithNestingLevelOfFocusedOption(menu, nestingLevel);
-    if (!menuWithNestingLevelOfFocusedOption) {
+export function createMenuStateWithFocusedOptionOfPreviousNestingLevel(menu: MenuState): MenuState {
+    const inFocusOptionPath = getInFocusOptionPath(menu);
+    if (inFocusOptionPath.length < 2) {
         return menu;
     }
-    const optionToFocus = findPreviousOptionToFocus(menuWithNestingLevelOfFocusedOption.menu.options);
+    const optionToFocus = inFocusOptionPath[inFocusOptionPath.length - 2];
+    const menuVisibilityUntilNestingLevel = inFocusOptionPath.length - 2;
+    return createMenuStateWithOptionToFocus(menu, optionToFocus, menuVisibilityUntilNestingLevel);
+}
+
+export function createMenuStateWithFirstFocusedOptionOfNextNestingLevel(menu: MenuState): MenuState {
+    const inFocusOptionPath = getInFocusOptionPath(menu);
+    if (!inFocusOptionPath.length) {
+        return menu;
+    }
+    const focusedOption = inFocusOptionPath[inFocusOptionPath.length - 1];
+    if (!focusedOption.childMenu || !focusedOption.childMenu.options.length) {
+        return menu;
+    }
+    const optionToFocus = focusedOption.childMenu.options[0];
+    const menuVisibilityUntilNestingLevel = inFocusOptionPath.length;
+    return createMenuStateWithOptionToFocus(menu, optionToFocus, menuVisibilityUntilNestingLevel);
+}
+
+export function createMenuStateWithNextFocusedOptionOfSameNestingLevel(menu: MenuState): MenuState {
+    const menuOfFocusedOption = findMenuOfFocusedOption(menu);
+    if (!menuOfFocusedOption) {
+        return menu;
+    }
+    const optionToFocus = findNextOptionToFocus(menuOfFocusedOption.options);
     if (!optionToFocus) {
         return menu;
     }
-    const path = findOptionPathByDeepNestedOption(
-        menu,
-        optionToFocus,
-        menuWithNestingLevelOfFocusedOption.nestingLevel
-    );
-    if (!path) {
+    return createMenuStateWithOptionToFocus(menu, optionToFocus);
+}
+
+export function createMenuStateWithPreviousFocusedOptionOnTheSameNestingLevel(menu: MenuState): MenuState {
+    const menuOfFocusedOption = findMenuOfFocusedOption(menu);
+    if (!menuOfFocusedOption) {
         return menu;
     }
-    return createMenuStateForNewlyFocusedDeepNestedOption(menu, path);
+    const optionToFocus = findPreviousOptionToFocus(menuOfFocusedOption.options);
+    if (!optionToFocus) {
+        return menu;
+    }
+    return createMenuStateWithOptionToFocus(menu, optionToFocus);
 }

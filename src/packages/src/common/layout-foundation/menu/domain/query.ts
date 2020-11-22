@@ -1,25 +1,16 @@
 import { MenuState, OptionState } from './types';
 
-export function findOptionPathByDeepNestedOption(
-    menu: MenuState,
-    optionToFindPathFor: OptionState,
-    nestingLevelOfOptionToFindPathFor: number
-): null | OptionState[] {
-    if (nestingLevelOfOptionToFindPathFor === 0) {
-        const option = menu.options.find((option) => option.key === optionToFindPathFor.key);
-        return option ? [option] : null;
-    }
+export function findOptionPathByOption(menu: MenuState, optionToFindPathFor: OptionState): null | OptionState[] {
     for (let index in menu.options) {
         const option = menu.options[index];
+        if (option.key === optionToFindPathFor.key) {
+            return [option];
+        }
         if (!option.childMenu || !option.childMenu.options.length) {
             continue;
         }
-        const optionPath = findOptionPathByDeepNestedOption(
-            option.childMenu,
-            optionToFindPathFor,
-            nestingLevelOfOptionToFindPathFor - 1
-        );
-        if (optionPath === null) {
+        const optionPath = findOptionPathByOption(option.childMenu, optionToFindPathFor);
+        if (!optionPath) {
             continue;
         }
         return [option, ...optionPath];
@@ -50,29 +41,35 @@ export function findDeepestVisibleMenuNestingLevel(menu: MenuState, nestingLevel
     return findDeepestVisibleMenuNestingLevel(inFocusPathOption.childMenu, nestingLevel + 1);
 }
 
-type MenuWithNestingLevel = {
-    menu: MenuState;
-    nestingLevel: number;
-};
-
-export function findMenuWithNestingLevelOfFocusedOption(
-    menu: MenuState,
-    nestingLevel: number = 0
-): null | MenuWithNestingLevel {
+export function findMenuOfFocusedOption(menu: MenuState): null | MenuState {
     const inFocusPathOption = menu.options.find((option) => option.isInFocusPath);
     if (!inFocusPathOption) {
         return null;
     }
     if (inFocusPathOption && inFocusPathOption.isFocused) {
-        return {
-            menu: menu,
-            nestingLevel: nestingLevel,
-        };
+        return menu;
     }
     if (inFocusPathOption.childMenu) {
-        return findMenuWithNestingLevelOfFocusedOption(inFocusPathOption.childMenu, nestingLevel + 1);
+        return findMenuOfFocusedOption(inFocusPathOption.childMenu);
     }
     return null;
+}
+
+export function getInFocusOptionPath(menu: MenuState): OptionState[] {
+    for (let index in menu.options) {
+        const option = menu.options[index];
+        if (!option.isInFocusPath) {
+            continue;
+        }
+        if (!option.childMenu || !option.childMenu.options.length) {
+            return [option];
+        }
+        const inFocusOptionPath = getInFocusOptionPath(option.childMenu);
+        if (inFocusOptionPath) {
+            return [option, ...inFocusOptionPath];
+        }
+    }
+    return [];
 }
 
 export function findPreviousOptionToFocus(options: OptionState[]): OptionState | null {
@@ -106,26 +103,4 @@ export function findNextOptionToFocus(options: OptionState[]): OptionState | nul
         return options[focusedOptionIndex + 1];
     }
     return focusedOption;
-}
-
-// todo: use in UI layer for dropdown:
-export function setSelectedOptionsScrollPosition(
-    containerElement: HTMLDivElement | null,
-    focusedElement: HTMLDivElement | null
-): void {
-    if (!containerElement || !focusedElement) {
-        return;
-    }
-    const isFocusedElementAboveContainerTop = focusedElement.offsetTop < containerElement.scrollTop;
-    if (isFocusedElementAboveContainerTop) {
-        focusedElement.scrollIntoView({ block: 'start' });
-        return;
-    }
-    const containerBottom = containerElement.scrollTop + containerElement.clientHeight;
-    const focusedElementBottom = focusedElement.offsetTop + focusedElement.clientHeight;
-    const isFocusedElementBelowContainerBottom = focusedElementBottom < containerBottom;
-    if (isFocusedElementBelowContainerBottom) {
-        focusedElement.scrollIntoView({ block: 'start' });
-        return;
-    }
 }

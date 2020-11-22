@@ -32,6 +32,11 @@ module.exports = {
         "no-restricted-imports": ["error", {
             "paths": ["*"],
             "patterns": [
+                "**/internal/*",
+                "!../internal/*",
+                "!../../internal/*",
+                "!../../../internal/*",
+                "!../../../../internal/*",
                 "**/domain/**",
                 "**/ui/**",
                 "!**/ui/web",
