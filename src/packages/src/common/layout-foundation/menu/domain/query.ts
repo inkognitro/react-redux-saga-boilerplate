@@ -18,6 +18,26 @@ export function findOptionPathByOption(menu: MenuState, optionToFindPathFor: Opt
     return null;
 }
 
+type OptionWithNestingLevel = {
+    option: OptionState;
+    nestingLevel: number;
+};
+
+export function findFocusedOptionWithNestingLevel(menu: MenuState): null | OptionWithNestingLevel {
+    const inFocusOptionPath = getInFocusOptionPath(menu);
+    if (!inFocusOptionPath.length) {
+        return null;
+    }
+    const option = inFocusOptionPath[inFocusOptionPath.length - 1];
+    if (!option.isFocused) {
+        return null;
+    }
+    return {
+        option: option,
+        nestingLevel: inFocusOptionPath.length - 1,
+    };
+}
+
 export function findInFocusPathOption(options: OptionState[]): OptionState | null {
     if (options.length === 0) {
         return null;
@@ -77,15 +97,15 @@ export function findPreviousOptionToFocus(options: OptionState[]): OptionState |
     if (focusableOptions.length === 0) {
         return null;
     }
-    const focusedOption = findInFocusPathOption(focusableOptions);
-    if (!focusedOption) {
+    const inFocusPathOption = findInFocusPathOption(focusableOptions);
+    if (!inFocusPathOption) {
         return focusableOptions[0];
     }
-    const focusedOptionIndex = focusableOptions.findIndex((option) => option.key === focusedOption.key);
-    if (focusedOptionIndex > 0) {
-        return focusableOptions[focusedOptionIndex - 1];
+    const inFocusPathOptionIndex = focusableOptions.findIndex((option) => option.key === inFocusPathOption.key);
+    if (inFocusPathOptionIndex > 0) {
+        return focusableOptions[inFocusPathOptionIndex - 1];
     }
-    return focusedOption;
+    return inFocusPathOption;
 }
 
 export function findNextOptionToFocus(options: OptionState[]): OptionState | null {
@@ -93,16 +113,16 @@ export function findNextOptionToFocus(options: OptionState[]): OptionState | nul
     if (focusableOptions.length === 0) {
         return null;
     }
-    const focusedOption = findInFocusPathOption(focusableOptions);
-    if (!focusedOption) {
+    const inFocusPathOption = findInFocusPathOption(focusableOptions);
+    if (!inFocusPathOption) {
         return focusableOptions[0];
     }
-    const focusedOptionIndex = focusableOptions.findIndex((option) => option.key === focusedOption.key);
-    if (focusedOptionIndex === -1) {
+    const inFocusPathOptionIndex = focusableOptions.findIndex((option) => option.key === inFocusPathOption.key);
+    if (inFocusPathOptionIndex === -1) {
         return focusableOptions[0];
     }
-    if (focusedOptionIndex < focusableOptions.length - 1) {
-        return focusableOptions[focusedOptionIndex + 1];
+    if (inFocusPathOptionIndex < focusableOptions.length - 1) {
+        return focusableOptions[inFocusPathOptionIndex + 1];
     }
-    return focusedOption;
+    return inFocusPathOption;
 }

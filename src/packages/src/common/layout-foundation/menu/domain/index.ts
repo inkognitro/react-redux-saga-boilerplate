@@ -3,7 +3,7 @@ import { MenuState as MenuStateType, OptionState as OptionStateType } from './ty
 export type MenuState<OptionData = any> = MenuStateType<OptionData>;
 export type OptionState<OptionData = any> = OptionStateType<OptionData>;
 
-export { findInFocusPathOption, findDeepestVisibleMenuNestingLevel } from './query';
+export { findFocusedOptionWithNestingLevel, findInFocusPathOption, findDeepestVisibleMenuNestingLevel } from './query';
 
 export {
     createMenuState,

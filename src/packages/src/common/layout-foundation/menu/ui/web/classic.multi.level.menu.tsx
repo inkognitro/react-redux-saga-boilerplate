@@ -8,6 +8,7 @@ import {
     createMenuStateWithFocusedOptionOfPreviousNestingLevel,
     createMenuStateWithDefaultFocusedOptionOfNextNestingLevel,
     createMenuStateWithOptionToFocus,
+    findFocusedOptionWithNestingLevel,
 } from 'packages/common/layout-foundation/menu/domain';
 import { InternalClassicMultiLevelMenu } from './internal.classic.multi.level.menu';
 import { useKeyPress } from 'packages/common/util/general/ui/web';
@@ -23,7 +24,7 @@ type ClassicMultiLevelMenuProps = {
 export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => {
     useKeyPress(
         (keyboardKey, event) => {
-            if (event && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(keyboardKey)) {
+            if (event && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'].includes(keyboardKey)) {
                 event.preventDefault();
                 event.stopPropagation();
             }
@@ -42,6 +43,22 @@ export const ClassicMultiLevelMenu: FC<ClassicMultiLevelMenuProps> = (props) => 
             if (keyboardKey === 'ArrowDown') {
                 props.onChangeData(createMenuStateWithNextFocusedOptionOfSameNestingLevel(props.data));
                 return;
+            }
+            if (keyboardKey === 'Enter') {
+                const focusedOptionWithNestingLevel = findFocusedOptionWithNestingLevel(props.data);
+                if (!focusedOptionWithNestingLevel) {
+                    return;
+                }
+                const focusedOption = focusedOptionWithNestingLevel.option;
+                const nestingLevel = focusedOptionWithNestingLevel.nestingLevel;
+                if (!focusedOptionWithNestingLevel.option.childMenu && props.onChooseOption) {
+                    props.onChooseOption(focusedOption, nestingLevel);
+                    return;
+                }
+                if (focusedOption.childMenu && !focusedOption.childMenu.isVisible) {
+                    props.onChangeData(createMenuStateWithDefaultFocusedOptionOfNextNestingLevel(props.data));
+                    return;
+                }
             }
         },
         [props.data, props.onChangeData]
